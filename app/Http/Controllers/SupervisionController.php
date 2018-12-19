@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Carbon\Carbon;
+use App\SupervisionProyecto;
+use App\ImgSupervision;
+use App\Proyecto;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\Request;
+
+class SupervisionController extends Controller
+{
+    public function __construct(){
+
+        $this->middleware('guestVerify');
+        
+    }
+    public function index(Request $request)
+    {  
+    }
+    
+    public function store(Request $request)
+    {
+            try{
+                  DB::beginTransaction();
+                  $supervision = new SupervisionProyecto();
+                  $supervision->fecha = $request->fecha;
+                  $supervision->observacion = $request->observacion;
+                  $supervision->estado = 0;
+                  Proyecto::findOrFail($request->proyecto_id)->supervision()->save($supervision);
+                  
+                  for ($i=0;$i<count($request->imagenes);$i++) { 
+                      
+                    $imgSuper = new ImgSupervision();
+                    $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
+                    $imgSuper->img = $name_img;    
+                    Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
+                    SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
+
+                  }
+                  DB::commit();   
+              }catch (Exception $e){
+                  DB::rollBack();
+              }  
+    }
+
+    public function GetSupervision($id)
+    {
+        $s = Proyecto::findOrFail($id)->supervision;
+        $i = ImgSupervision::where('supervision_id',$s->id)->get();
+        $s->setAttribute('imagenes',$i);
+        return $s;
+    }
+        
+}

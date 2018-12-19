@@ -1,0 +1,9 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/admintemplate.css": "/css/admintemplate.css",
+    "/js/admintemplate.js": "/js/admintemplate.js",
+    "/css/publicTemplate.css": "/css/publicTemplate.css",
+    "/js/publicTemplate.js": "/js/publicTemplate.js",
+    "/css/loginTemplate.css": "/css/loginTemplate.css",
+    "/js/loginTemplate.js": "/js/loginTemplate.js"
+}

@@ -1,0 +1,17 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ImgSupervision extends Model
+{
+    protected $table = 'img_supervisiones';
+    protected $fillable = ['img','supervision_id'];
+    public $timestamps = false;
+
+    public function supervisionProyecto(){
+
+        return $this->belongsTo(SupervisionProyecto::class,'supervision_id');
+    }
+}
