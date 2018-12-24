@@ -10,13 +10,15 @@ use App\SectorInstitucion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use PDF;
+
 
 class InstitucionController extends Controller
 {
     public function __construct(){
 
         //$this->middleware('auguestVerifyth');
-        
+
     }
     public function index(Request $request)
     {
@@ -37,7 +39,7 @@ class InstitucionController extends Controller
                     $query->where('proceso_id', $proceso);
                 })->where('instituciones.nombre','like','%'.$buscar.'%')->where('instituciones.estado','=','1')->orderBy('instituciones.id','desc')->paginate(5);
             }
-  
+
         return [
             'pagination' => [
                 'total'        => $institucion->total(),
@@ -52,7 +54,7 @@ class InstitucionController extends Controller
     }
     public function store(Request $request)
     {
- 
+
         $institucion = new Institucion();
         $institucion->nombre = $request->nombre;
         $institucion->direccion = $request->direccion;
@@ -62,9 +64,9 @@ class InstitucionController extends Controller
         $institucion->municipio_id = $request->municipio_id;
         $institucion->estado = '1';
         $institucion->save();
-        
+
         if($request->proceso_id == 3){
-            
+
             $institucion->procesos()->attach(array( 1, 2));
 
         }else{
@@ -75,7 +77,7 @@ class InstitucionController extends Controller
 
     public function update(Request $request)
     {
-        
+
         $institucion = Institucion::findOrFail($request->id);
         $institucion->nombre = $request->nombre;
         $institucion->direccion = $request->direccion;
@@ -86,7 +88,7 @@ class InstitucionController extends Controller
         $institucion->estado = $request->estado;
         $institucion->procesos()->sync($request->proceso_id);
         $institucion->save();
-    
+
     }
     public function desactivar(Request $request)
     {
@@ -108,14 +110,14 @@ class InstitucionController extends Controller
             $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
                 $query->where('proceso_id', $proceso);
             })->where('instituciones.estado','1')->orderBy('instituciones.id','desc')->get();
- 
+
         $data = [];
         foreach ($institucion as $key => $value) {
             $data[$key] =[
                 'value'   => $value->id,
-                'label' => $value->nombre,  
+                'label' => $value->nombre,
             ];
-   
+
         }
         return  response()->json($data);
 
@@ -136,12 +138,12 @@ class InstitucionController extends Controller
 
         }
 
-            for ($i=0; $i <count($institucion); $i++) { 
-                $idEstado = Proyecto::findOrFail($institucion[$i]->id)->supervision()->select('estado')->get();  
-                $carrera = Proyecto::findOrFail($institucion[$i]->id)->carre_proy()->select('nombre')->get(); 
+            for ($i=0; $i <count($institucion); $i++) {
+                $idEstado = Proyecto::findOrFail($institucion[$i]->id)->supervision()->select('estado')->get();
+                $carrera = Proyecto::findOrFail($institucion[$i]->id)->carre_proy()->select('nombre')->get();
 
                 if(sizeof($idEstado) > 0){
-                  for ($j=0; $j <count($idEstado) ; $j++) { 
+                  for ($j=0; $j <count($idEstado) ; $j++) {
                      if($idEstado[$j]->estado == 0){
                        $institucion[$i]->setAttribute('supervision',0);
                      }elseif(count($idEstado[$j])==0 && $idEstado[$j]->estado == 1 ){
@@ -153,13 +155,13 @@ class InstitucionController extends Controller
                 }
 
                 if($proceso == 2){
-                    for ($x=0; $x <count($carrera) ; $x++) { 
-                        
-                        $institucion[$i]->setAttribute('carrera',$carrera[$x]);                
+                    for ($x=0; $x <count($carrera) ; $x++) {
+
+                        $institucion[$i]->setAttribute('carrera',$carrera[$x]);
                     }
                 }
         }
-            
+
         return [
             'pagination' => [
                 'total'        => $institucion->total(),
@@ -189,7 +191,7 @@ class InstitucionController extends Controller
                     $query->where('proceso_id', $proceso);
                 })->where('instituciones.nombre','like','%'.$buscar.'%')->where('instituciones.estado','=','0')->orderBy('instituciones.id','desc')->paginate(5);
             }
-  
+
         return [
             'pagination' => [
                 'total'        => $institucion->total(),
@@ -213,9 +215,9 @@ class InstitucionController extends Controller
         foreach ($instituciones as $key => $value) {
             $data[$key+1] =[
                 'value'   => $value->id,
-                'label' => $value->nombre,  
+                'label' => $value->nombre,
             ];
-   
+
         }
         return  response()->json($data);
     }
@@ -224,12 +226,11 @@ class InstitucionController extends Controller
     function getReportByMunicipio(Request $request){
 
         $ins = Institucion::with(['municipio.departamento'])->where('municipio_id',$request->muni_id)->where('estado',1)->get();
-        $no_insti = Institucion::where('municipio_id',$request->muni_id)->count();
-        $date = Carbon::now();
-        $date = $date->format('Y-m-d');
+        $no_insti = Institucion::where('municipio_id',$request->muni_id)->where('estado',1)->count();
+        $date = date('Y-m-d');
 
-        $pdf = \PDF::loadView('reportes.hojasupervigen',['instituciones'=>$ins,'total'=>$no_insti]);
-        return base64_encode($pdf->stream('supervision-general '.Carbon::parse($date).'.pdf'));
+        $pdf = PDF::loadView('reportes.hojasupervigen',['instituciones'=>$ins,'total'=>$no_insti]);
+        return $pdf->stream('supervision-general '.$date.'.pdf');
     }
 
     function getReportInstituciones($id){
@@ -242,7 +243,7 @@ class InstitucionController extends Controller
         $date = Carbon::now();
         $date = $date->format('Y-m-d');
         $pdf = \PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $proces]);
-    
+
         return base64_encode($pdf->stream('instituciones ' .Carbon::parse($date).'.pdf'));
     }
     function getSupervisiones($id){
@@ -252,10 +253,11 @@ class InstitucionController extends Controller
         })->select('fecha','proyecto_id')->get();
         $supv = SupervisionProyecto::where('estado','0')->count();
         $proces = Institucion::findOrFail($id)->procesos()->select('nombre')->get();
+
         $date = Carbon::now();
         $date = $date->format('Y-m-d');
         $pdf = \PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervision,'total' =>$supv, 'proceso' =>$proces]);
-    
+
         return base64_encode($pdf->stream('supervisiones ' .Carbon::parse($date).'.pdf'));
     }
     function regSupervision(){
@@ -267,16 +269,16 @@ class InstitucionController extends Controller
     }
 
     public function ifInstitucionExist($nombre,$proceso_id){
-        
+
         if(Institucion::where('nombre',$nombre)->whereHas('procesos',function($query) use($proceso_id){
             $query->where('proceso_id',$proceso_id);
         })->first()){
             return "true";
-        }            
+        }
         else{
             return "false";
         }
-            
+
     }
 }
 

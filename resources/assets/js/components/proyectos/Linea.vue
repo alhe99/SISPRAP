@@ -59,8 +59,8 @@
 						<th>Nombre del proyecto</th>
 						<th v-if="proceso == 2">Carrera del proyecto</th>
 						<th>Institución</th>
-						<th>Fecha de la publicación</th>
-						<th>Acciones</th>
+						<th class="text-center">Fecha de la publicación</th>
+						<th class="text-center">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,15 +68,12 @@
 						<td v-text="proyecto.nombre"></td>
 						<td v-if="proceso == 2 && proyecto.carre_proy[0].nombre != null">{{proyecto.carre_proy[0].nombre}}</td>
 						<td v-text="proyecto.institucion.nombre"></td>
-						<td v-text="proyecto.fecha"></td>
-						<td>
-							<button type="button" @click="abrirModal('proyecto','actualizar',proyecto)" class="btn btn-primary " data-toggle="tooltip" title="Editar datos del Proyecto"><i class="mdi mdi-border-color i-crud"></i></button>
-							<template v-if="proyecto.estado">
-								<button type="button" @click="desactivarProyecto(proyecto.id)" class="btn btn-primary " data-toggle="tooltip" title="Desactivar proyecto"><i class="mdi mdi-delete i-crud"></i></button>
-							</template>
-							<template v-else>
-								<button type="button" @click="activarProyecto(proyecto.id)" class="btn btn-primary" data-toggle="tooltip" title="Activar institución"><i class="mdi mdi-check-circle i-crud"></i></button>
-							</template>                                   
+						<td class="text-center" v-text="proyecto.fecha"></td>
+						<td class="text-center">
+							<button type="button" @click="abrirModal('proyecto','actualizar',proyecto)" class="button blue" data-toggle="tooltip" title="Editar datos del Proyecto"><i class="mdi mdi-border-color i-crud"></i></button>
+							<template >
+								<button type="button" @click="desactivarProyecto(proyecto.id)" class="button red" data-toggle="tooltip" title="Desactivar proyecto"><i class="mdi mdi-delete i-crud"></i></button>
+							</template>                               
 						</td>
 					</tr>
 				</tbody>
@@ -201,7 +198,7 @@
 							<div class="row">
 								<div class="col-md-12 col-xs-12 col-lg-12">
 									<br><label  class="font-weight-bold" for="nombre">Nombre del proyecto</label>
-									<input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" autocomplete="off">
+									<input type="text" v-model="nombreP" id="nombre" name="nombre" class="form-control" autocomplete="off">
 									<span v-if="errors.nombre" class="text-danger" v-text="errors.nombre[0]" ></span> 
 								</div>
 							</div><br>
@@ -220,13 +217,13 @@
 								<mdc-button type="button" ref="myBtn" raised slot="next">Siguiente</mdc-button>
 								<mdc-button type="button" ref="btnEnd" raised slot="finish">Aceptar</mdc-button>
 							</form-wizard>
-							<vue-editor v-if="proceso == 1"  v-model="actividades"  :editorToolbar="toolBars"></vue-editor>
+							<vue-editor v-if="proceso == 1"  v-model="actividadesP"  :editorToolbar="toolBars"></vue-editor>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12 col-xs-12 col-lg-12">
 							<br><label  class="font-weight-bold" for="">Institución donde se realiza proyecto:*</label><br>
-							<v-select label="label" v-model="institucion_id" placeholder="Seleccione una institución" :options="arrayInstitucion"></v-select>
+							<v-select label="label" v-model="institucionP"  placeholder="Seleccione una institución" :options="arrayInstitucion"></v-select>
 						</div>
 					</div><br>
 					<div class="form-group row">
@@ -294,12 +291,11 @@ return {
 	carrerasProy: [],
 	arrayCarreras: [],
 	arrayActivities: [],
-	nombre: "",
-	disabledVE: false,
-	descripcion: "",
-	actividades: "",
+	nombreP: "",
+	actividadesP: "",
 	proyecto_id: 0,
-	proyecto: 0,
+	institucionP: 0,
+	imagenP: "",
 	proceso: 0,
 	estado: 0,
 	buscar: "",
@@ -331,7 +327,6 @@ return {
 	proyectoact: [],
 	buscarID: "",
 	carreras_id: 0,
-	institucion_id: 0,
 	paginationProyDes: {},
 	loading: false,
 	pagination: {
@@ -345,6 +340,7 @@ return {
 	offset: 3,
 	color: "#533fd0",
 	size: "20px",
+	disabledVE: false,
 };
 },
 computed: {
@@ -470,12 +466,12 @@ listarProyectoDes(page, proceso, buscar) {
 },
 getInst() {
 	let me = this;
+	me.loadSpinner = 1;
 	var url = "GetInstituciones/" + this.proceso;
-	axios
-		.get(url)
-		.then(function(response) {
+	axios.get(url).then(function(response) {
 		var respuesta = response.data;
 		me.arrayInstitucion = respuesta;
+		me.loadSpinner = 0;
 		})
 		.catch(function(error) {
 		console.log(error);
@@ -529,34 +525,38 @@ getProyAct(id){
 	});
 },
 abrirModal(modelo, accion, data = []) {
-
+	this.loadSpinner = 1;
+	let me = this;
 	const el = document.body;
 	el.classList.add("abrirModal");
 
 	var inst = JSON.stringify({
-	value: data.institucion["id"],
-	label: data.institucion["nombre"]
+		value: data.institucion.id,
+		label: data.institucion.nombre
 	});
+	//Cargando datos de proyecto en modal
+	switch(me.proceso){
+		//El proyecto a actualizar es de Serivio Social
+		case "1": 
+		   this.modal = 1;
+		   me.nombreP = data.nombre;
+		   me.actividadesP = data.actividades;
+		   me.institucionP = JSON.parse(inst);
+		   me.getInst();
+		   if(data.img != null)
+		   me.imgGallery = data.img;
+		   this.loadSpinner = 0;
+		break;
+		case "2":
 
-	this.modal = 1;
-	this.proyecto_id = data["id"];
-	this.proyecto = data["id"];
-	this.tipoproceso_id = data.proceso_id;
-	this.nombre = data["nombre"];
-	this.descripcion = data["descripcion"];
-	this.actividades = data["actividades"];
-	this.idinstitucion = data.institucion;
-	this.institucion_id = JSON.parse(inst);
-	this.estado = data["estado"];
-	this.image = data["img"];
-	this.imgGallery = data["image"];
+		break;
+	}
 
-
-	this.getInst();
-	this.proyecto = data;
-	this.infoAct = this.proyecto["id"];
-	if(this.proceso == 2)
-	this.getProyAct(this.infoAct);
+	console.log(data);
+	
+	
+	
+	
 
 },
 abrirModalID() {
@@ -577,13 +577,9 @@ cerrarModal() {
 	el.classList.remove("abrirModal");
 	this.modal = 0;
 	this.tituloModal = "";
-	this.tipoproceso_id = 0;
-	this.nombre = "";
-	this.descripcion = "";
-	this.actividades = "";
+	this.nombreP = "";
+	this.actividadesP = "";
 	this.arrayInstitucion = [];
-	this.institucion_id = 0;
-	this.proyecto_id = 0;
 	this.estado = 0;
 	this.errors = [];
 },
@@ -591,13 +587,13 @@ cambiarPaginaPID(page, proceso, buscar) {
       let me = this;
       me.paginationProyDes.current_page = page;
       me.listarProyectoDes(page,this.proceso,"");
-  },
-  cambiarPagina(page, proceso, buscar) {
+},
+cambiarPagina(page, proceso, buscar) {
   	let me = this;
       me.pagination.current_page = page;
       me.listarProyecto(page, proceso, buscar);
-  },
-  desactivarProyecto(id) {
+},
+desactivarProyecto(id) {
   	swal({
   		title: "Esta seguro de desactivar este Proyecto?",
   		type: "warning",
@@ -606,8 +602,8 @@ cambiarPaginaPID(page, proceso, buscar) {
   		cancelButtonColor: "#d33",
   		confirmButtonText: "Aceptar!",
   		cancelButtonText: "Cancelar",
-  		confirmButtonClass: "btn update",
-  		cancelButtonClass: "btn edit",
+  		confirmButtonClass: "button blue",
+  		cancelButtonClass: "button red",
   		buttonsStyling: false,
   		reverseButtons: true
   	}).then(result => {
@@ -636,8 +632,8 @@ cambiarPaginaPID(page, proceso, buscar) {
           ) {
   		}
   	});
-  },
-  activarProyecto(id) {
+},
+activarProyecto(id) {
   	swal({
   		title: "Esta seguro de activar este Proyecto?",
   		type: "warning",
@@ -646,8 +642,8 @@ cambiarPaginaPID(page, proceso, buscar) {
   		cancelButtonColor: "#d33",
   		confirmButtonText: "Aceptar!",
   		cancelButtonText: "Cancelar",
-  		confirmButtonClass: "btn update",
-  		cancelButtonClass: "btn edit",
+  		confirmButtonClass: "button blue",
+  		cancelButtonClass: "button red",
   		buttonsStyling: false,
   		reverseButtons: true
   	}).then(result => {
@@ -677,8 +673,8 @@ cambiarPaginaPID(page, proceso, buscar) {
           ) {
   		}
   	});
-  },
-  searchEmpty() {
+},
+searchEmpty() {
      let me = this;
       if (me.arrayProyecto.length == 0) {
       	me.search = 1;
@@ -686,7 +682,7 @@ cambiarPaginaPID(page, proceso, buscar) {
       	me.search = 0;
       }
       return me.search;
-  }
+}
 },
 components: {
 	VueEditor,

@@ -1,9 +1,10 @@
 <?php
+
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
 echo "<pre>{$query->time}</pre>";
 }); */
- 
+
 
 ///////////////////////// ADMIN /////////////////////////////////
 Route::get('/main', function () {
@@ -71,7 +72,7 @@ Route::get('/perfil_proy', function () {
 
 //Notificaciones
 
-Route::post('notifications/get', 'NotificationController@get'); 
+Route::post('notifications/get', 'NotificationController@get');
 
 ///////////////////////// PUBLIC /////////////////////////////////
 
@@ -93,10 +94,10 @@ Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provi
 
 
 //RUTAS PARA REPORTES
-Route::post('institucion/getHojaSupervision','InstitucionController@getReportByMunicipio')->name('hojasupervigen');
-Route::post('institucion/getInstituciones/{id}','InstitucionController@getReportInstituciones')->name('reginst');
-Route::post('institucion/getSupervisiones/{id}','InstitucionController@getSupervisiones')->name('supervisiones');
-Route::post('institucion/regSupervision','InstitucionController@regSupervision')->name('regSupervision');
+Route::get('institucion/getHojaSupervision','InstitucionController@getReportByMunicipio')->name('hojasupervigen');
+Route::get('institucion/getInstituciones/{id}','InstitucionController@getReportInstituciones')->name('reginst');
+Route::get('institucion/getSupervisiones/{id}','InstitucionController@getSupervisiones')->name('supervisiones');
+Route::get('institucion/regSupervision','InstitucionController@regSupervision')->name('regSupervision');
 
 //Reportes GP
 
@@ -142,7 +143,7 @@ Route::get('/test', function () {
     $proyecto[$i]->setAttribute("carrera",$carreActvidad[$i]["carre_proy"][0]["nombre"]);
     } */
 
-    //return $proyecto; 
+    //return $proyecto;
 
     //Guardando en la tala de Nivel Academico
     /*$na = new App\NivelAcademico;
@@ -180,7 +181,7 @@ Route::get('/test', function () {
     $u->rol_id = 2;
     $u->save();
 
-    
+
     $e = new App\Estudiante;
     $e->nombre = "Juan Arnol";
     $e->apellido = "Sosa Suarez";

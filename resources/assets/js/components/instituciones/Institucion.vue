@@ -57,7 +57,7 @@
     <div class="row">
      <div class="col-md-12 col-lg-12 col-sm-12">
       <div class="table-responsive">
-       <table class="table table-striped table-bordered table-mc-light-blue">
+       <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
         <thead class="thead-primary">
          <tr>
            <th>Nombre de institución</th>

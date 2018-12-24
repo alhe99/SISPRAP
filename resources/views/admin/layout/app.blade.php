@@ -25,6 +25,7 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border ">
+    @routes
     <div id="app">
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
@@ -213,6 +214,7 @@
 
                 <div class="row">
                     <!-- Column -->
+                    
                     @yield('contenido')
                     
                 </div>

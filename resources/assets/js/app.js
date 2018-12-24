@@ -36,13 +36,11 @@ import VueToastr from '@deveodk/vue-toastr'
 import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 Vue.use(VueToastr)
 
-//Material CheckBox
-
-
 import es from 'vee-validate/dist/locale/es';
 import VeeValidate, { Validator } from 'vee-validate';
 Vue.use(VeeValidate);
 Validator.localize('es', es);
+
 
 Vue.component('pulse-loader', require('vue-spinner/src/PulseLoader.vue'));
 Vue.component('institucion', require('./components/instituciones/Institucion.vue'));

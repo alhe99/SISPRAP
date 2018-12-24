@@ -6,24 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hojas de Supervision</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
-    
+
 </head>
 <body>
     <header>
         <div class="row text-center">
-        
+
             <div class="col-md-6">
                  <img class="text-center img-fluid " src="images/img_reportes/logoITCHA.png" alt="">
-                 
+
                  <img class="text-center img-fluid " src="images/img_reportes/mined.jpg" alt="">
-                  
+
                  <img class="text-center img-fluid " src="images/img_reportes/megatec.jpg" alt="">
-                  
+
                  <img class="text-center img-fluid " src="images/img_reportes/logopequeño.png" alt="">
 
-            </div>    
+            </div>
         </div>
-        
+
     </header>
     <div>
     <div class="row">
@@ -36,7 +36,7 @@
     </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
-                <thead> 
+                <thead>
                     <tr>
                         <th>Nombre de institución / empresa</th>
                         <th>Municipio / Departamento</th>
@@ -48,7 +48,7 @@
                                 <th>{{$i->nombre}}</th>
                                 <th>{{$i->municipio->nombre}},{{$i->municipio->departamento->nombre}}</th>
                             </tr>
-                    @endforeach 
+                    @endforeach
                 </tbody>
             </table>
             @if($total == 0)
@@ -56,6 +56,8 @@
             @endif
             <h6>Total: {{$total}}</h6>
         </div>
+<p>Page <span class="page"></span> of <span class="topage"></span></p>
     </div>
+
 </body>
 </html>

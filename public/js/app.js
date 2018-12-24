@@ -14830,9 +14830,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_8_vue_tabs_component___default.a);
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_9__deveodk_vue_toastr___default.a);
 
-//Material CheckBox
-
-
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_12_vee_validate__["b" /* default */]);
@@ -80177,7 +80174,8 @@ var render = function() {
                       "table",
                       {
                         staticClass:
-                          "table table-striped table-bordered table-mc-light-blue"
+                          "table table-striped table-bordered table-mc-light-blue",
+                        attrs: { id: "myTable" }
                       },
                       [
                         _vm._m(1),
@@ -84392,9 +84390,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -84407,12 +84402,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			carrerasProy: [],
 			arrayCarreras: [],
 			arrayActivities: [],
-			nombre: "",
-			disabledVE: false,
-			descripcion: "",
-			actividades: "",
+			nombreP: "",
+			actividadesP: "",
 			proyecto_id: 0,
-			proyecto: 0,
+			institucionP: 0,
+			imagenP: "",
 			proceso: 0,
 			estado: 0,
 			buscar: "",
@@ -84432,7 +84426,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			proyectoact: [],
 			buscarID: "",
 			carreras_id: 0,
-			institucion_id: 0,
 			paginationProyDes: {},
 			loading: false,
 			pagination: {
@@ -84445,7 +84438,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			offset: 3,
 			color: "#533fd0",
-			size: "20px"
+			size: "20px",
+			disabledVE: false
 		};
 	},
 
@@ -84569,10 +84563,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		getInst: function getInst() {
 			var me = this;
+			me.loadSpinner = 1;
 			var url = "GetInstituciones/" + this.proceso;
 			axios.get(url).then(function (response) {
 				var respuesta = response.data;
 				me.arrayInstitucion = respuesta;
+				me.loadSpinner = 0;
 			}).catch(function (error) {
 				console.log(error);
 			});
@@ -84621,32 +84617,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		abrirModal: function abrirModal(modelo, accion) {
 			var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-
+			this.loadSpinner = 1;
+			var me = this;
 			var el = document.body;
 			el.classList.add("abrirModal");
 
 			var inst = JSON.stringify({
-				value: data.institucion["id"],
-				label: data.institucion["nombre"]
+				value: data.institucion.id,
+				label: data.institucion.nombre
 			});
+			//Cargando datos de proyecto en modal
+			switch (me.proceso) {
+				//El proyecto a actualizar es de Serivio Social
+				case "1":
+					this.modal = 1;
+					me.nombreP = data.nombre;
+					me.actividadesP = data.actividades;
+					me.institucionP = JSON.parse(inst);
+					me.getInst();
+					if (data.img != null) me.imgGallery = data.img;
+					this.loadSpinner = 0;
+					break;
+				case "2":
 
-			this.modal = 1;
-			this.proyecto_id = data["id"];
-			this.proyecto = data["id"];
-			this.tipoproceso_id = data.proceso_id;
-			this.nombre = data["nombre"];
-			this.descripcion = data["descripcion"];
-			this.actividades = data["actividades"];
-			this.idinstitucion = data.institucion;
-			this.institucion_id = JSON.parse(inst);
-			this.estado = data["estado"];
-			this.image = data["img"];
-			this.imgGallery = data["image"];
+					break;
+			}
 
-			this.getInst();
-			this.proyecto = data;
-			this.infoAct = this.proyecto["id"];
-			if (this.proceso == 2) this.getProyAct(this.infoAct);
+			console.log(data);
 		},
 		abrirModalID: function abrirModalID() {
 			var el = document.body;
@@ -84666,13 +84663,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			el.classList.remove("abrirModal");
 			this.modal = 0;
 			this.tituloModal = "";
-			this.tipoproceso_id = 0;
-			this.nombre = "";
-			this.descripcion = "";
-			this.actividades = "";
+			this.nombreP = "";
+			this.actividadesP = "";
 			this.arrayInstitucion = [];
-			this.institucion_id = 0;
-			this.proyecto_id = 0;
 			this.estado = 0;
 			this.errors = [];
 		},
@@ -84697,8 +84690,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				cancelButtonColor: "#d33",
 				confirmButtonText: "Aceptar!",
 				cancelButtonText: "Cancelar",
-				confirmButtonClass: "btn update",
-				cancelButtonClass: "btn edit",
+				confirmButtonClass: "button blue",
+				cancelButtonClass: "button red",
 				buttonsStyling: false,
 				reverseButtons: true
 			}).then(function (result) {
@@ -84730,8 +84723,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				cancelButtonColor: "#d33",
 				confirmButtonText: "Aceptar!",
 				cancelButtonText: "Cancelar",
-				confirmButtonClass: "btn update",
-				cancelButtonClass: "btn edit",
+				confirmButtonClass: "button blue",
+				cancelButtonClass: "button red",
 				buttonsStyling: false,
 				reverseButtons: true
 			}).then(function (result) {
@@ -84962,9 +84955,13 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", [_vm._v("Institución")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Fecha de la publicación")]),
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Fecha de la publicación")
+                      ]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Acciones")])
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Acciones")
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -84990,16 +84987,18 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("td", {
+                          staticClass: "text-center",
                           domProps: { textContent: _vm._s(proyecto.fecha) }
                         }),
                         _vm._v(" "),
                         _c(
                           "td",
+                          { staticClass: "text-center" },
                           [
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-primary ",
+                                staticClass: "button blue",
                                 attrs: {
                                   type: "button",
                                   "data-toggle": "tooltip",
@@ -85022,54 +85021,29 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            proyecto.estado
-                              ? [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-primary ",
-                                      attrs: {
-                                        type: "button",
-                                        "data-toggle": "tooltip",
-                                        title: "Desactivar proyecto"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.desactivarProyecto(proyecto.id)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "mdi mdi-delete i-crud"
-                                      })
-                                    ]
-                                  )
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "button red",
+                                  attrs: {
+                                    type: "button",
+                                    "data-toggle": "tooltip",
+                                    title: "Desactivar proyecto"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.desactivarProyecto(proyecto.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-delete i-crud"
+                                  })
                                 ]
-                              : [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-primary",
-                                      attrs: {
-                                        type: "button",
-                                        "data-toggle": "tooltip",
-                                        title: "Activar institución"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.activarProyecto(proyecto.id)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass:
-                                          "mdi mdi-check-circle i-crud"
-                                      })
-                                    ]
-                                  )
-                                ]
+                              )
+                            ]
                           ],
                           2
                         )
@@ -85655,8 +85629,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.nombre,
-                                expression: "nombre"
+                                value: _vm.nombreP,
+                                expression: "nombreP"
                               }
                             ],
                             staticClass: "form-control",
@@ -85666,13 +85640,13 @@ var render = function() {
                               name: "nombre",
                               autocomplete: "off"
                             },
-                            domProps: { value: _vm.nombre },
+                            domProps: { value: _vm.nombreP },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.nombre = $event.target.value
+                                _vm.nombreP = $event.target.value
                               }
                             }
                           }),
@@ -85785,11 +85759,11 @@ var render = function() {
                             ? _c("vue-editor", {
                                 attrs: { editorToolbar: _vm.toolBars },
                                 model: {
-                                  value: _vm.actividades,
+                                  value: _vm.actividadesP,
                                   callback: function($$v) {
-                                    _vm.actividades = $$v
+                                    _vm.actividadesP = $$v
                                   },
-                                  expression: "actividades"
+                                  expression: "actividadesP"
                                 }
                               })
                             : _vm._e()
@@ -85821,11 +85795,11 @@ var render = function() {
                               options: _vm.arrayInstitucion
                             },
                             model: {
-                              value: _vm.institucion_id,
+                              value: _vm.institucionP,
                               callback: function($$v) {
-                                _vm.institucion_id = $$v
+                                _vm.institucionP = $$v
                               },
-                              expression: "institucion_id"
+                              expression: "institucionP"
                             }
                           })
                         ],
@@ -90085,11 +90059,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       layer = jQuery(win.document);
     },
     downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
-      var a = document.createElement("a");
-      var name = "Supervisión General " + new Date(Date.now()).toLocaleString();
-      a.href = "data:application/octet-stream;base64," + base64;
-      a.download = name + ".pdf";
-      a.click();
+      window.location.origin;
     },
     clearData: function clearData() {
       var me = this;
@@ -90100,20 +90070,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       $("#btnGenerar").prop('disabled', true);
     },
     sendParameterToMethod: function sendParameterToMethod() {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "institucion/getHojaSupervision?muni_id=" + this.municipio_id.value;
-      axios.post(url).then(function (response) {
-        var respuesta = response.data;
-        console.log(respuesta);
-        me.loadSpinner = 0;
-        me.viewPdfFromBase64(respuesta, 'Hoja de Supervisión General');
-        me.downloadPdfFromBase64(respuesta, name);
-        me.clearData();
-      }).catch(function (error) {
-        console.log(error);
-      });
-      //window.open('http://sisprap.test/institucion/getHojaSupervision?'+this.municipio_id.value + ',' + '_blank')
+      var url = route('hojasupervigen', { "muni_id": this.municipio_id.value });
+      window.open(url);
     }
   },
   mounted: function mounted() {

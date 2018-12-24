@@ -31,11 +31,11 @@ class ProyectoController extends Controller
         $proceso = $request->proceso;
 
         if ($buscar == '') {
-
+          
             $proyecto = Proyecto::distinct('nombre')->with(['institucion', 'tipoProceso','carre_proy'])
                 ->whereHas('tipoProceso', function ($query) use ($proceso) {
                     $query->where('proceso_id', $proceso);
-                })->where('proyectos.estado', '1')->orderBy('proyectos.id', 'desc')->get();
+                })->where('proyectos.estado', '1')->orderBy('proyectos.id', 'desc')->paginate(10);
 
         } else {
 
@@ -43,16 +43,16 @@ class ProyectoController extends Controller
                 ->whereHas('tipoProceso', function ($query) use ($proceso) {
                     $query->where('proceso_id', $proceso);
             })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->where('proyectos.estado', '1')
-            ->orderBy('proyectos.id', 'desc')->get();
+            ->orderBy('proyectos.id', 'desc')->paginate(10);
 
             //
 
         }
         
+        
+       // return $proyecto;
 
-        return $proyecto;
-
-        /*return [
+        return [
             'pagination' => [
                 'total' => $proyecto->total(),
                 'current_page' => $proyecto->currentPage(),
@@ -62,7 +62,7 @@ class ProyectoController extends Controller
                 'to' => $proyecto->lastItem(),
             ],
             'proyecto' => $proyecto,
-        ];*/
+        ];  
     }
 
     public function store(Request $request)

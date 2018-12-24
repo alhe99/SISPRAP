@@ -165,8 +165,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        //Linea a remover
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        //Nueva Libreria para PDF
+        Barryvdh\Snappy\ServiceProvider::class,
     ],
 
     /*
@@ -218,7 +221,9 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'ResponseCache' => Spatie\ResponseCache\ResponseCacheFacade::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

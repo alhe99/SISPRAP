@@ -109,11 +109,7 @@ methods: {
         
     },
     downloadPdfFromBase64(base64){
-         let a = document.createElement("a");
-         var name = "Supervisión General " + new Date(Date.now()).toLocaleString();
-         a.href = "data:application/octet-stream;base64,"+base64;
-         a.download = name+".pdf"
-         a.click();
+        window.location.origin
     },
     clearData(){
         let me = this;
@@ -124,21 +120,8 @@ methods: {
         $("#btnGenerar").prop('disabled',true);
     },
     sendParameterToMethod() {
-      let me = this;
-      me.loadSpinner = 1;
-      var url = "institucion/getHojaSupervision?muni_id="+this.municipio_id.value;
-      axios.post(url).then(function(response) {
-          var respuesta = response.data;
-          console.log(respuesta);
-          me.loadSpinner = 0;
-          me.viewPdfFromBase64(respuesta,'Hoja de Supervisión General');
-          me.downloadPdfFromBase64(respuesta,name);
-          me.clearData();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-        //window.open('http://sisprap.test/institucion/getHojaSupervision?'+this.municipio_id.value + ',' + '_blank')
+        var url = route('hojasupervigen', {"muni_id" : this.municipio_id.value});
+        window.open(url);
     },
    },
    mounted() {
