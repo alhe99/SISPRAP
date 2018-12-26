@@ -43,16 +43,16 @@ class NotifyPreRegisterProject extends Notification
     public function toDatabase($notifiable){
         return $this->GlobalData;
     }
-    public function toBroadcast($notifiable) 
-    {   
+    public function toBroadcast($notifiable)
+    {
         return $this->GlobalData;
-    } 
+    }
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        ->line('The introduction to the notification.')
+        ->action('Notification Action', url('/'))
+        ->line('Thank you for using our application!');
     }
 
     /**

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="userId" content="{{ Auth::check() ? Auth::user()->id : ''}}"> 
+	<meta name="userId" content="{{ Auth::check() ? Auth::user()->id : ''}}">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>SISPRAP || Public</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/logo-favicon.png')}}">
@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="{{asset('css/publicTemplate.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/normalize.min.css')}}">
 	<link rel="stylesheet" type="text/css" media="screen" href="{{asset('other/css/indigo.css')}}">
+	<link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
+
 	<style>
 </style>
 
@@ -108,50 +110,50 @@
 				<i class="far fa-comments fa-sm"></i>
 			</button>
 			<button class="btn BF4 hint--left" data-hint="Notificaciones" data-toggle="modal" data-target=".docs-example-modal-lg" style="border-radius: 50px"><i class="far fa-bell fa">
-					@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+				@if (count(Auth::user()->estudiante->preinscripciones) != 0)
+				@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
 				<span class="badge badge-danger">1</span>
 				@endif
 				@endif
 			</i>
-			</button>
-		</div>
-		<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Panel de Notificaciones</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row ">
-						<div class="col-md-12 ">
-							&nbsp;
-							@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-							@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-							<h6>
-								<i class="fas fa-check">
-								</i> Tu solicitud al proyecto  Ha sido aceptada!
-								<a href="{{route('show_perfil')}}" onclick="perfilProy()">
-									<strong>
-										Puedes iniciar con tu proceso ahora!!
-									</strong>
-								</a>
+		</button>
+	</div>
+	<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Panel de Notificaciones</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row ">
+					<div class="col-md-12 ">
+						&nbsp;
+						@if (count(Auth::user()->estudiante->preinscripciones) != 0)
+						@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+						<h6>
+							<i class="fas fa-check">
+							</i> Tu solicitud al proyecto  Ha sido aceptada!
+							<a href="{{route('show_perfil')}}" onclick="perfilProy()">
+								<strong>
+									Puedes iniciar con tu proceso ahora!!
+								</strong>
 							</a>
-						</h6>
-						@endif
-						@endif
-					</div>
+						</a>
+					</h6>
+					@endif
+					@endif
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
 		</div>
 	</div>
+</div>
 </div>
 </div>
 
@@ -240,7 +242,7 @@
 			<div class="ripple-container" style="float:left;"></div>
 			<i class="mdi mdi-arrow-up">
 			</i>
-		</a>		
+		</a>
 		<div id="preloader" >
 			<div class="loader"  id="loader-1"></div>
 		</div>
@@ -266,7 +268,9 @@
 	<script src="{{asset('other/js/main.js')}}"></script>
 	<script src="{{asset('other/js/scripts.js')}}"></script>
 	<script src="{{asset('js/publicTemplate.js')}}"></script>
-	<script src="{{asset('js/publicTemplate.js')}}"></script>
+	<script src="{{asset('other/js/jquery.mask.min.js')}}"></script>
+	<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
+	<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
 	@routes @yield('page_script')
 </body>
 

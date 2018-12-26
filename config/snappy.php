@@ -7,7 +7,10 @@ return array(
         'enabled' => true,
         'binary' => base_path('vendor\wemersonjanuario\wkhtmltopdf-windows\bin\64bit\wkhtmltopdf'),
         'timeout' => false,
-        'options' => array(),
+        'options' => array(
+            'footer-center' => 'Page [page] of [toPage]',
+            'footer-font-size' => 8,
+        ),
         'env'     => array(),
     ),
     'image' => array(

@@ -1,10 +1,10 @@
 <?php
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
 echo "<pre>{$query->time}</pre>";
 }); */
-
 
 ///////////////////////// ADMIN /////////////////////////////////
 Route::get('/main', function () {
@@ -52,13 +52,6 @@ Route::get('/', 'Auth\LoginController@showLoginForm')->name("showLogin");
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-/*Route::get('/test',function(){
-// $s = App\Proyecto::all();
-
-return App\Proyecto::carre_proy()->get();
-
-}); */
-
 //Para Preincripciones Proyectos
 
 Route::get('GetProjectsByProcess', 'ProyectoController@getProjectsByProcess');
@@ -141,7 +134,7 @@ Route::get('/test', function () {
 
     for ($i=0; $i < count($proyecto) ; $i++) {
     $proyecto[$i]->setAttribute("carrera",$carreActvidad[$i]["carre_proy"][0]["nombre"]);
-    } */
+} */
 
     //return $proyecto;
 
@@ -163,69 +156,123 @@ Route::get('/test', function () {
 
     //return App\Rol::find(3)->permisos()->get();
 
-    $u = new App\User();
-    $u->id = 0;
-    $u->nombre = "Carlos Francisco Orellana";
-    $u->usuario = "admin";
-    $u->password = bcrypt('sisprap');
-    $u->estado = 1;
-    $u->rol_id = 1;
-    $u->save();
+    // $u = new App\User();
+    // $u->id = 0;
+    // $u->nombre = "Carlos Francisco Orellana";
+    // $u->usuario = "admin";
+    // $u->password = bcrypt('sisprap');
+    // $u->estado = 1;
+    // $u->rol_id = 1;
+    // $u->save();
 
-    $u = new App\User();
-    $u->id = 1;
-    $u->nombre = "Mirta Lilian Orellana";
-    $u->usuario = "recepcion";
-    $u->password = bcrypt('sisprap');
-    $u->estado = 1;
-    $u->rol_id = 2;
-    $u->save();
-
-
-    $e = new App\Estudiante;
-    $e->nombre = "Juan Arnol";
-    $e->apellido = "Sosa Suarez";
-    $e->fechaNac = date('Y-m-d');
-    $e->genero = "M";
-    $e->telefono = "79086578";
-    $e->codCarnet = "SS17001001";
-    $e->email = "romulo@gmail.com";
-    $e->direccion = "Chalatenango";
-    $e->tipo_beca_id = 1;
-    $e->estado = 1;
-    $e->carrera_id = 1;
-    $e->municipio_id = 48;
-    $e->supero_limite = 0;
-    $e->no_proyectos = 0;
-    $e->password = bcrypt('123');
-    $e->foto_name = "SS17001001".".JPG";
-    $e->save();
-
-    $e = new App\Estudiante;
-    $e->nombre = "Juan Maria Parada Presa";
-    $e->apellido = "Parada Presa";
-    $e->fechaNac = date('Y-m-d');
-    $e->genero = "M";
-    $e->telefono = "22345678";
-    $e->codCarnet = "PP17001001";
-    $e->email = "jchema@gmail.com";
-    $e->direccion = "San Salvador";
-    $e->tipo_beca_id = 1;
-    $e->estado = 1;
-    $e->carrera_id = 5; //Civil
-    $e->municipio_id = 48;
-    $e->supero_limite = 0;
-    $e->password = bcrypt('123');
-    $e->foto_name = "PP17001001".".JPG";
-    $e->no_proyectos = 0;
-    $e->save();
-
-    $e->proceso()->attach(2);
-    //return App\Notification::all();
+    // $u = new App\User();
+    // $u->id = 1;
+    // $u->nombre = "Mirta Lilian Orellana";
+    // $u->usuario = "recepcion";
+    // $u->password = bcrypt('sisprap');
+    // $u->estado = 1;
+    // $u->rol_id = 2;
+    // $u->save();
 
 
-    return "True";
+    // $e = new App\Estudiante;
+    // $e->nombre = "Juan Arnol";
+    // $e->apellido = "Sosa Suarez";
+    // $e->fechaNac = date('Y-m-d');
+    // $e->genero = "M";
+    // $e->telefono = "79086578";
+    // $e->codCarnet = "SS17001001";
+    // $e->email = "romulo@gmail.com";
+    // $e->direccion = "Chalatenango";
+    // $e->tipo_beca_id = 1;
+    // $e->estado = 1;
+    // $e->carrera_id = 1;
+    // $e->municipio_id = 48;
+    // $e->supero_limite = 0;
+    // $e->no_proyectos = 0;
+    // $e->password = bcrypt('123');
+    // $e->foto_name = "SS17001001".".JPG";
+    // $e->save();
 
+    // $e = new App\Estudiante;
+    // $e->nombre = "Juan Maria Parada Presa";
+    // $e->apellido = "Parada Presa";
+    // $e->fechaNac = date('Y-m-d');
+    // $e->genero = "M";
+    // $e->telefono = "22345678";
+    // $e->codCarnet = "PP17001001";
+    // $e->email = "jchema@gmail.com";
+    // $e->direccion = "San Salvador";
+    // $e->tipo_beca_id = 1;
+    // $e->estado = 1;
+    // $e->carrera_id = 5; //Civil
+    // $e->municipio_id = 48;
+    // $e->supero_limite = 0;
+    // $e->password = bcrypt('123');
+    // $e->foto_name = "PP17001001".".JPG";
+    // $e->no_proyectos = 0;
+    // $e->save();
+
+    // $e->proceso()->attach(2);
+    // //return App\Notification::all();
+
+    $gp = new App\GestionProyecto();
+        $gp->fecha_inicio = date('Y-m-d'); //Fecha Inicio
+        $gp->horas_a_realizar = "300"; //Total de Horas
+        $gp->proyecto_id = 1;
+        $gp->estudiante_id = 2;
+        $gp->nombre_supervisor = "Juan Sosa"; //Nombre del supervisor
+        $gp->tel_supervisor = "3463847";//Telefono del supervisor
+
+            //Informacion del estudiante
+        $proceso = Auth::user()->estudiante->proceso[0]->id;
+        $nombre = Auth::user()->estudiante->nombre;
+        $apellido = Auth::user()->estudiante->apellido;
+        $carnet = Auth::user()->estudiante->codCarnet;
+        $telefono = Auth::user()->estudiante->telefono;
+        $carrera = Auth::user()->estudiante->carrera->nombre;
+        $email = Auth::user()->estudiante->email;
+
+            //Informacion de la institucion
+        $nombreI = Auth::user()->estudiante->preinscripciones[0]->institucion->nombre;
+        $direccionI = Auth::user()->estudiante->preinscripciones[0]->institucion->direccion;
+        $departamentoI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->departamento->nombre;
+        $municipioI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->nombre;
+        $sectorI = Auth::user()->estudiante->preinscripciones[0]->institucion->sectorInstitucion->sector;
+        $telefonoI = Auth::user()->estudiante->preinscripciones[0]->institucion->telefono;
+        $emailI = Auth::user()->estudiante->preinscripciones[0]->institucion->email;
+
+            //Informacion del proyecto
+        $nombreP = Auth::user()->estudiante->preinscripciones[0]->nombre;
+        $actividadesP = Auth::user()->estudiante->preinscripciones[0]->actividades;
+
+
+        $data = new Collection([
+            "proceso" => $proceso,
+            "nombreE" => $nombre,
+            "apellidoE" => $apellido,
+            "carnetE" => $carnet,
+            "telefonoE" => $telefono,
+            "carreraE" => $carrera,
+            "emailE" => $email,
+            "nombreI" => $nombreI,
+            "direccionI" => $direccionI,
+            "departamentoI" => $departamentoI,
+            "municipioI" => $municipioI,
+            "sectorI" => $sectorI,
+            "telefonoI" => $telefonoI,
+            "emailI" => $emailI,
+            "nombreP" => $nombreP,
+            "actividadesP" => $actividadesP,
+            "hrasRealizar" => "300",
+            "fechaInicio" => date('Y-m-d'),
+            "fechaFin" => "",
+            "nombreS" => "Juan Sosa",
+            "telefonoS" => "3463847",
+        ]);
+
+    // return "True";
+        return view('public.reportes.rellenarperfil',compact('data'));
     //return Auth::user()->estudiante->proceso[0]->id;
 
-});
+    });

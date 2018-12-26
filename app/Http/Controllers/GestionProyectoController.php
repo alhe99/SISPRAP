@@ -11,22 +11,26 @@ use App\Estudiante;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection as Collection;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class GestionProyectoController extends Controller
 {
 
     public function initGestionProyecto($fechaini,$fechafin = null,$hrsreal,$student_id,$proyecto_id,$ns,$ts){
-      
-        $gp = new GestionProyecto();
+
+        try {
+            DB::beginTransaction();
+            $gp = new GestionProyecto();
         $gp->fecha_inicio = $fechaini; //Fecha Inicio
         if (!$fechafin) {
             $gp->fecha_fin = $fechafin; //Fecha Fin
-        }        
+        }
         $gp->horas_a_realizar = $hrsreal; //Total de Horas
         $gp->proyecto_id = $proyecto_id;
         $gp->estudiante_id = $student_id;
         $gp->nombre_supervisor = $ns; //Nombre del supervisor
         $gp->tel_supervisor = $ts; //Telefono del supervisor
+
 
         if(Auth::user()->rol_id >2){
             //Informacion del estudiante
@@ -76,179 +80,185 @@ class GestionProyectoController extends Controller
             "nombreS" => $ns,
             "telefonoS" => $ts,
         ]);
-        
-       if($gp->save())
+
+        if($gp->save())
         {
-            DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
-            $pdf = \PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
+
+            $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
+             //DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
+
             return base64_encode($pdf->download('Perfil de proyecto ' .$nombre.'.pdf'));
+            DB::commit();
 
         }else{
             return "false";
         }
-        
-    }
-    public function index(Request $request)
-    {
+    } catch (Exception $e) {
+      DB::rollBack();
+  }
+
+}
+public function index(Request $request)
+{
         //if (!$request->ajax()) {
            // return redirect('/');
         //
-        $buscar = $request->buscar;
-        $proceso = $request->proceso_id;
-        $carrera_id = $request->carre_id;
+    $buscar = $request->buscar;
+    $proceso = $request->proceso_id;
+    $carrera_id = $request->carre_id;
 
-        if ($buscar == '') {
+    if ($buscar == '') {
 
-            $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])
-                ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
-                    $query->where('proceso_id', $proceso);
+        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])
+        ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
+            $query->where('proceso_id', $proceso);
 
-                })->whereHas('estudiante', function ($query) use ($carrera_id) {
-                    $query->where('carrera_id', $carrera_id);
+        })->whereHas('estudiante', function ($query) use ($carrera_id) {
+            $query->where('carrera_id', $carrera_id);
 
-                })->paginate(8);
+        })->paginate(8);
 
-        } else {
+    } else {
 
-            $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto'])
-            ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
-                $query->where('proceso_id', $proceso);
+        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto'])
+        ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
+            $query->where('proceso_id', $proceso);
 
-            })->whereHas('estudiante', function ($query) use ($buscar) {
-                $query->where('nombre', 'like', '%' . $buscar . '%');
+        })->whereHas('estudiante', function ($query) use ($buscar) {
+            $query->where('nombre', 'like', '%' . $buscar . '%');
 
-            })->whereHas('estudiante', function ($query) use ($carrera_id) {
-                    $query->where('carrera_id', $carrera_id);
-            })->paginate(8);
-        }
-
-        return [
-            'pagination' => [
-                'total' => $gp->total(),
-                'current_page' => $gp->currentPage(),
-                'per_page' => $gp->perPage(),
-                'last_page' => $gp->lastPage(),
-                'from' => $gp->firstItem(),
-                'to' => $gp->lastItem(),
-            ],
-            'gp' => $gp,
-        ];
-    }
-    public function constancias(Request $request)
-    {
-        $buscar = $request->buscar;
-        $proceso = $request->proceso_id;
-        $carrera_id = $request->carre_id;
-
-        if ($buscar == '') {
-
-            $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','constancia_entreg'])
-                ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
-                    $query->where('proceso_id', $proceso);
-
-                })->whereHas('estudiante', function ($query) use ($carrera_id) {
-                    $query->where('carrera_id', $carrera_id);
-
-                })->where('estado','F')->paginate(8);
-
-        } else {
-
-            $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto','constancia_entreg'])
-            ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
-                $query->where('proceso_id', $proceso);
-
-            })->whereHas('estudiante', function ($query) use ($buscar) {
-                $query->where('nombre', 'like', '%' . $buscar . '%');
-
-            })->whereHas('estudiante', function ($query) use ($carrera_id) {
-                    $query->where('carrera_id', $carrera_id);
-
-            })->where('estado','F')->paginate(8);
-        }
-
-        return [
-            'pagination' => [
-                'total' => $gp->total(),
-                'current_page' => $gp->currentPage(),
-                'per_page' => $gp->perPage(),
-                'last_page' => $gp->lastPage(),
-                'from' => $gp->firstItem(),
-                'to' => $gp->lastItem(),
-            ],
-            'gp' => $gp,
-        ];
+        })->whereHas('estudiante', function ($query) use ($carrera_id) {
+            $query->where('carrera_id', $carrera_id);
+        })->paginate(8);
     }
 
-    public function getInfoGpById($id){
+    return [
+        'pagination' => [
+            'total' => $gp->total(),
+            'current_page' => $gp->currentPage(),
+            'per_page' => $gp->perPage(),
+            'last_page' => $gp->lastPage(),
+            'from' => $gp->firstItem(),
+            'to' => $gp->lastItem(),
+        ],
+        'gp' => $gp,
+    ];
+}
+public function constancias(Request $request)
+{
+    $buscar = $request->buscar;
+    $proceso = $request->proceso_id;
+    $carrera_id = $request->carre_id;
 
-        $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','documentos_entrega'])->findOrFail($id);
+    if ($buscar == '') {
 
-        return $gestionp;
+        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','constancia_entreg'])
+        ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
+            $query->where('proceso_id', $proceso);
 
+        })->whereHas('estudiante', function ($query) use ($carrera_id) {
+            $query->where('carrera_id', $carrera_id);
+
+        })->where('estado','F')->paginate(8);
+
+    } else {
+
+        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto','constancia_entreg'])
+        ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
+            $query->where('proceso_id', $proceso);
+
+        })->whereHas('estudiante', function ($query) use ($buscar) {
+            $query->where('nombre', 'like', '%' . $buscar . '%');
+
+        })->whereHas('estudiante', function ($query) use ($carrera_id) {
+            $query->where('carrera_id', $carrera_id);
+
+        })->where('estado','F')->paginate(8);
     }
-    public function getGestionProyectoByStudent($student_id){
 
-        $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])->whereHas('estudiante', function ($query) use ($student_id) {
-            $query->where('estudiantes.id',$student_id);
-        })->get();
+    return [
+        'pagination' => [
+            'total' => $gp->total(),
+            'current_page' => $gp->currentPage(),
+            'per_page' => $gp->perPage(),
+            'last_page' => $gp->lastPage(),
+            'from' => $gp->firstItem(),
+            'to' => $gp->lastItem(),
+        ],
+        'gp' => $gp,
+    ];
+}
 
-        return view('public.gestionPro',compact("gestionp"));
+public function getInfoGpById($id){
+
+    $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','documentos_entrega'])->findOrFail($id);
+
+    return $gestionp;
+
+}
+public function getGestionProyectoByStudent($student_id){
+
+    $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])->whereHas('estudiante', function ($query) use ($student_id) {
+        $query->where('estudiantes.id',$student_id);
+    })->get();
+
+    return view('public.gestionPro',compact("gestionp"));
         //return $gestionp;
-    }
-    public function closeProy($gp_id,$fecha_fin,$hsrFin,$obsFin){
+}
+public function closeProy($gp_id,$fecha_fin,$hsrFin,$obsFin){
 
-        $gp = GestionProyecto::findOrFail($gp_id);
-        $gp->fecha_fin = $fecha_fin;
-        $gp->horas_realizadas = $hsrFin;
-        $gp->observacion_final = $obsFin;
-        $gp->estado = 'F';
-        $gp->update();
-        
-        if($hsrFin == $gp->horas_a_realizar){
-            $a = $gp->estudiante_id;
-            $e = Estudiante::findOrFail($a);
-            $e->no_proyectos = 0;
-            $e->update();
-            $e->proceso()->detach(1);
-            $e->proceso()->attach(2);
-        }
-    }
+    $gp = GestionProyecto::findOrFail($gp_id);
+    $gp->fecha_fin = $fecha_fin;
+    $gp->horas_realizadas = $hsrFin;
+    $gp->observacion_final = $obsFin;
+    $gp->estado = 'F';
+    $gp->update();
 
- 
+    if($hsrFin == $gp->horas_a_realizar){
+        $a = $gp->estudiante_id;
+        $e = Estudiante::findOrFail($a);
+        $e->no_proyectos = 0;
+        $e->update();
+        $e->proceso()->detach(1);
+        $e->proceso()->attach(2);
+    }
+}
+
+
 
     //Funciones para reportes
     //REPORTE 1 RUTA = /gestionProy/reportes/initialprocess/{pId}
-    public function getInitialProcessReporte($proceso_id){
+public function getInitialProcessReporte($proceso_id){
 
-        $collection;
-        $carrera = Carrera::with(['estudiantes'])->get();
-        $test = [10,11,12];
+    $collection;
+    $carrera = Carrera::with(['estudiantes'])->get();
+    $test = [10,11,12];
 
-        $data = [];
-        foreach ($carrera as $carre) {
-            $data[$carre->id] = $collection = new Collection(["Carrera" => $carre->nombre,
-             "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
-             "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
-        }
-
-        return $data;
-    } 
-
-    public function generateConstancia($gp_id){
-        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])->findOrFail($gp_id);
-        $proces = $gp->estudiante->proceso[0]->nombre;
-        $date = Carbon::now();
-        $date = $date->format('Y-m-d');
-
-        if($gp->estudiante->proceso[0]->id == 1){
-   
-            $pdf = \PDF::loadView('reportes.constanciass',['gp'=>$gp, 'proceso' =>$proces,'fecha' => $date]);
-            return base64_encode($pdf->stream('constancia ' .Carbon::parse($date).'.pdf'));
-        }else{
-         
-            $pdf = \PDF::loadView('reportes.constanciapp',['gp'=>$gp, 'proceso' =>$proces,'fecha' => $date]);
-            return base64_encode($pdf->stream('constancia ' .Carbon::parse($date).'.pdf'));
-        }
-      
+    $data = [];
+    foreach ($carrera as $carre) {
+        $data[$carre->id] = $collection = new Collection(["Carrera" => $carre->nombre,
+           "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
+           "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
     }
+
+    return $data;
+}
+
+public function generateConstancia($gp_id){
+    $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])->findOrFail($gp_id);
+    $proces = $gp->estudiante->proceso[0]->nombre;
+    $date = Carbon::now();
+    $date = $date->format('Y-m-d');
+
+    if($gp->estudiante->proceso[0]->id == 1){
+
+        $pdf = \PDF::loadView('reportes.constanciass',['gp'=>$gp, 'proceso' =>$proces,'fecha' => $date]);
+        return base64_encode($pdf->stream('constancia ' .Carbon::parse($date).'.pdf'));
+    }else{
+
+        $pdf = \PDF::loadView('reportes.constanciapp',['gp'=>$gp, 'proceso' =>$proces,'fecha' => $date]);
+        return base64_encode($pdf->stream('constancia ' .Carbon::parse($date).'.pdf'));
+    }
+
+}
 }

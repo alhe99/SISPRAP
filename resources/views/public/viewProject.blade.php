@@ -1,4 +1,4 @@
-@extends('public.layout.app') 
+@extends('public.layout.app')
 @section('contenido')
 <div class="row">
     <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
@@ -97,11 +97,11 @@
             }).then((result) => {
                 if (result.value) {
                     let me = this;
-                    $('#preloader').fadeIn();
+                    //$('#preloader').fadeIn();
                     var url = route('preRegister', [studen_id, project_id]);
                     axios.get(url).then(function(response) {
                         if(response.data == true){
-                            $('#preloader').fadeOut();
+                            //$('#preloader').fadeOut();
                             swal({
                                 position: "center",
                                 type: "warning",
@@ -112,7 +112,7 @@
                                  window.location.href = route('myPreregister',[studen_id,process_id]);
                                 //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                              })
-                            
+
                             //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                         }
 
