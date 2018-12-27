@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SectorInstitucionController extends Controller
 {
+    public function store(Request $request)
+    {
+        $sector = new SectorInstitucion();
+        $sector->sector = $request->nombre;
+        $sector->save();
+    }
     public function __construct(){
 
         $this->middleware('guestVerify');

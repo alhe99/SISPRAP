@@ -13,6 +13,7 @@ class EstudianteController extends Controller
 
             $estudiante = new Estudiante();
             $estudiante->nombre = $request->nombre;
+            $estudiante->apellido = $request->apellido;
             $estudiante->fechaNac = $request->fecha;
             $estudiante->genero = 'F';
             $estudiante->telefono = $request->telefono;
@@ -29,6 +30,7 @@ class EstudianteController extends Controller
        }else{
             $estudiante = new Estudiante();
             $estudiante->nombre = $request->nombre;
+            $estudiante->apellido = $request->apellido;
             $estudiante->fechaNac = $request->fecha;
             $estudiante->genero = 'M';
             $estudiante->telefono = $request->telefono;
@@ -45,6 +47,7 @@ class EstudianteController extends Controller
 
        }
     }
+    
     public function getStudentById($id){
 
         $e = Estudiante::findOrFail($id);

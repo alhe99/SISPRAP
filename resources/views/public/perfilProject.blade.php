@@ -22,8 +22,9 @@
     </div>
     <div class="single-blog-post col-md-12">
       <form class="shake" role="form" method="POST" id="perfilproy" name="perfilproy" data-toggle="validator" >
-        <input type="hidden" name="student_id" id="student_id" value="{{Auth::user()->estudiante->id}}" >
-        <input type="hidden" name="project_id" id="project_id" value="{{Auth::user()->estudiante->preinscripciones[0]->id}}" >
+        @csrf
+        <input type="hidden" v-model="studentId" name="student_id" id="student_id" value="{{Auth::user()->estudiante->id}}" >
+        <input type="hidden" v-model="projectId" name="project_id" id="project_id" value="{{Auth::user()->estudiante->preinscripciones[0]->id}}" >
         <div class="row">
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
@@ -162,19 +163,19 @@
         <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
           <div class="form-group control-label">
             <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
-            <input class="form-control" id="fecha_ini" disabled  name="fecha_ini" />
+            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
           </div>
         </div>
         <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
           <div class="form-group control-label">
-            <label class="control-label" for="fecha_fin">Fecha Finalización*</label>
-            <input class="form-control" id="fecha_fin"  name="fecha_fin" >
+            <label class="control-label" for="fecha_fin">Fecha Finalización</label>
+            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_fin" disabled  name="fecha_fin" >
           </div>
         </div>
         <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
           <div class="form-group label-floating">
             <label class="control-label" for="total_horas">Total de Horas*</label>
-            <input class="form-control" id="total_horas" maxlength="3" type="text" name="total_horas" >
+            <input class="form-control" v-model="hrsRea" id="total_horas" maxlength="3" type="text" name="total_horas" >
           </div>
         </div>
       </div>
@@ -183,13 +184,13 @@
         <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
           <div class="form-group label-floating">
             <label class="control-label" for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
-            <input class="form-control" id="name_supervisor" type="text" name="name_supervisor" >
+            <input class="form-control" v-model="nameSuper" id="name_supervisor" type="text" name="name_supervisor" >
           </div>
         </div>
         <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
          <div class="form-group label-floating">
           <label class="control-label" for="tel_supervisor">Teléfono del supervisor*</label>
-          <input class="form-control" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
+          <input class="form-control" v-model="telSuper" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
         </div>
       </div>
     </div>
@@ -197,7 +198,7 @@
     <div class="row text-center">
       <div class="col-md-3"></div>
       <div class="col-md-3 col-sm-3 wow animated fadeInRight" data-wow-delay=".1s">
-        <button type="button" @click.prevent="saveData({{session('student_id')}})" class="btn btn-round btn-block text-capitalize btn-lg font-weight-bold">Guardar Datos</button>
+        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="btn btn-round btn-block text-capitalize btn-lg font-weight-bold">Guardar Datos</button>
       </div>
       <div class="col-md-3 col-sm-3 wow animated fadeInRight" data-wow-delay=".1s">
         <a  href="{{ url()->previous() }}" class="btn btn-danger btn-block text-capitalize text-white font-weight-bold">Cancelar</a>
@@ -215,50 +216,65 @@
   var app = new Vue({
     el : '#form',
     data : {
-      fechaI: 0,
-      fechaFin: null,
-      hrsRea: 0,
-      projectId: 0,
-      studentId: 0,
+      fechaI: "",
+      fechaFin: "",
+      hrsRea: "",
+      projectId: "",
+      studentId: "",
       nameSuper: "",
-      telSuper: 0
+      telSuper: "",
     },
-    methods : {
-      downloadPdfFromBase64(base64){
-        let a = document.createElement("a");
-        var name = "Perfil de proyecto " + new Date(Date.now()).toLocaleString();
-        a.href = "data:application/octet-stream;base64,"+base64;
-        a.download = name+".pdf"
-        a.click();
-      },
-      saveData: function (studen_id){
-       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-       swal({
-        title: 'Seguro de Guardar los datos?',
-        text: "Una vez realizado quedaras registrado a este proyecto!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Aceptar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.value) {
-          let me = this;
-          // $('#preloader').fadeIn();
+    computed:{
+      validate: function(){
+        let me = this;
+        me.fechaI = $("#fecha_ini").val().trim();
+        if(
+         !(me.fechaI == "") ||
+         !(me.hrsRea == "") ||
+         !(me.nameSuper == "") ||
+         !(me.telSuper == "")){
+          return false;
+      }else{return true;}
+    },
+  },
+  methods : {
+    downloadPdfFromBase64(base64){
+      let a = document.createElement("a");
+      var name = "Perfil de proyecto " + new Date(Date.now()).toLocaleString();
+      a.href = "data:application/octet-stream;base64,"+base64;
+      a.download = name+".pdf"
+      a.click();
+    },
+    saveData: function (studen_id){
+     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+     swal({
+      title: 'Seguro de Guardar los datos?',
+      text: "Una vez realizado quedaras registrado a este proyecto!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        let me = this;
+          //$('#preloader').fadeIn();
           me.fechaI = $("#fecha_ini").val().trim();
           me.fechaFin = $("#fecha_fin").val().trim();
-          me.hrsRea =  $("#total_horas").val().trim();
-          me.projectId = $("#project_id").val().trim();
-          me.studentId = $("#student_id").val().trim();
-          me.nameSuper = $("#name_supervisor").val().trim();
-          me.telSuper = $("#tel_supervisor").val().trim();
 
-          var url = route('save_perfil', [this.fechaI, this.fechaFin,this.hrsRea,this.studentId,this.projectId,this.nameSuper,this.telSuper]);
+          var url = route('save_perfil', {
+            "fechaini": this.fechaI,
+            "fechafin":this.fechaFin,
+            "hrsreal":this.hrsRea,
+            "student_id":this.studentId,
+            "proyecto_id":this.projectId,
+            "super_name":this.nameSuper,
+            "super_cell":this.telSuper });
+
           axios.get(url).then(function(response) {
-                        //if(response.data == true){
-                          var respuesta = response.data;
-                          me.downloadPdfFromBase64(respuesta);
+            var respuesta = response.data;
+            me.downloadPdfFromBase64(respuesta);
                           // $('#preloader').fadeOut();
                           swal({
                             position: "center",
@@ -280,22 +296,22 @@
                     });
                    }
                  })
-    }
-  },
-  mounted(){
-   $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
-   $('#total_horas').mask('###', {reverse: true});
-   $("#fecha_ini").datepicker({
-    locale: 'es-es',
-    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-    format: 'yyyy-mm-dd'
-  });
-   $("#fecha_fin").datepicker({
-    locale: 'es-es',
-    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-    format: 'yyyy-mm-dd'
-  });
- }
+  }
+},
+mounted(){
+ $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
+ $('#total_horas').mask('###', {reverse: true});
+ $("#fecha_ini").datepicker({
+  locale: 'es-es',
+  minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+  format: 'yyyy-mm-dd'
+});
+ $("#fecha_fin").datepicker({
+  locale: 'es-es',
+  minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+  format: 'yyyy-mm-dd'
+});
+}
 })
 
 </script>

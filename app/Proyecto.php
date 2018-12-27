@@ -51,7 +51,7 @@ class Proyecto extends Model
         return $this->belongsToMany(Estudiante::class, 'preinscripciones_proyectos', 'proyecto_id', 'estudiante_id')->withPivot('estado')->withTimestamps();
     }
     public function gestionProyecto(){
-        
+
         return $this->hasOne(GestionProyecto::class);
     }
 
@@ -62,6 +62,13 @@ class Proyecto extends Model
                 'source' => 'nombre',
             ],
         ];
+    }
+
+    //QueryScopes
+
+    public function scopeNombre($query,$name){
+        if($name)
+            return $query->where('nombre','LIKE',"%$name%");
     }
 
 }

@@ -76,7 +76,8 @@ Route::get('/preRegister/{studentId}/{projectId}', 'ProyectoController@preRegist
 Route::get('/my-pre-register/{studentId}/{proceso_id}', 'ProyectoController@getPreregisterProjects')->name('myPreregister');
 Route::get('/deletePreRegister/{studentId}/{projectId}', 'ProyectoController@deletePreRegistration')->name('deletePreRegister');
 Route::get('/proyecto/validatess/{nombre}','ProyectoController@ifProjectExist');
-Route::get('/my-proyect/saveDataOfPerfil/{fIni}/{fFin?}/{hrsRea}/{estudentId}/{projectId}/{ns}/{ts}','GestionProyectoController@initGestionProyecto')->name('save_perfil');
+Route::get('/my-proyect/saveDataOfPerfil','GestionProyectoController@initGestionProyecto')->name('save_perfil');
+Route::get('/gestion_proy/{perfil}','GestionProyectoController@generatePerfil')->name('generate_perfil');
 
 //Recharaz una preinscripcion
 
@@ -121,6 +122,9 @@ Route::get('/gestionProy/reportes/initialprocess/{pId}','GestionProyectoControll
 Route::get('/getDocuments','DocumentoController@getDocumentsByStudent');
 Route::get('/saveDoc/{gp}/{doc}/{obs}','DocumentoController@addDocToStudent');
 Route::get('/closeProyect/{gpId}/{fechaFin}/{hrs}/{obs}','GestionProyectoController@closeProy')->name('close_proyect');
+
+Route::post('sector/registrar','SectorInstitucionController@store');
+Route::post('admin/registrar', 'EstudianteController@store');
 
 Route::get('/test', function () {
 

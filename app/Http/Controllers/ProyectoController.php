@@ -250,6 +250,7 @@ class ProyectoController extends Controller
         return $proyecto;
     }
 
+//Funcion que obtiene los proyectos deacuerdo ala carerra del alumno logeado y verifica si ya se preisncribio a ese proyecto no lo muestra
     public function getProjectsByCarrer(Request $request)
     {
         $carre_id = $request->estudent_carrer;
@@ -259,106 +260,57 @@ class ProyectoController extends Controller
 
         if ($tp == 1) {
 
-            if($buscar != ""){
-                if(collect($pre_register)->isNotEmpty()){
-
-                    $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
-                        $query->where('proceso_id', $tp);
-                    })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->orderby('id', 'desc')->where('estado',1)->get();
-
-                    for ($i=0; $i < count($pre_register) ; $i++) {
-
-
-                     $proyectos = $proyectos->except([$pre_register[$i]->id]);
-
-                 }
-
-             }else{
-
-                $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
-                    $query->where('proceso_id', $tp);
-                })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->orderby('id', 'desc')->where('estado',1)->get();
-
-            }
-        }else{
-            if($buscar != ""){
-                if(collect($pre_register)->isNotEmpty()){
-
-                    $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
-                        $query->where('proceso_id', $tp);
-                    })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->orderby('id', 'desc')->where('estado',1)->get();
-
-                    for ($i=0; $i < count($pre_register) ; $i++) {
-
-
-                     $proyectos = $proyectos->except([$pre_register[$i]->id]);
-
-                 }
-
-             }else{
-
-                $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
-                    $query->where('proceso_id', $tp);
-                })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->orderby('id', 'desc')->where('estado',1)->get();
-
-            }
-        }else{
             if(collect($pre_register)->isNotEmpty()){
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                     $query->where('proceso_id', $tp);
-                })->orderby('id', 'desc')->where('estado',1)->get();
+                })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
 
                 for ($i=0; $i < count($pre_register) ; $i++) {
-
-
                  $proyectos = $proyectos->except([$pre_register[$i]->id]);
-
              }
 
          }else{
 
             $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                 $query->where('proceso_id', $tp);
-            })->orderby('id', 'desc')->where('estado',1)->get();
-
-        }
-    }
-
-}
-
-} else if ($tp == 2) {
-
-    if(collect($pre_register)->isNotEmpty()){
-
-        $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
-            $query->where('carrera_id', $carre_id);
-        })->orderby('id', 'desc')->where('estado',1)->get();
-
-        for ($i=0; $i < count($pre_register) ; $i++) {
-
-            $proyectos = $proyectos->except([$pre_register[$i]->id]);
+            })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
 
         }
 
-    }else{
 
-        $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
-            $query->where('carrera_id', $carre_id);
-        })->orderby('id', 'desc')->where('estado',1)->get();
+    } else if ($tp == 2) {
+
+        if(collect($pre_register)->isNotEmpty()){
+
+            $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
+                $query->where('carrera_id', $carre_id);
+            })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+
+            for ($i=0; $i < count($pre_register) ; $i++) {
+
+                $proyectos = $proyectos->except([$pre_register[$i]->id]);
+
+            }
+
+        }else{
+
+            $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
+                $query->where('carrera_id', $carre_id);
+            })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+
+        }
 
     }
 
-}
 
+    $projects_ids = $proyectos->pluck('id');
 
-$projects_ids = $proyectos->pluck('id');
-
-$result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(9);
+    $result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(9);
 
 
 
-return $result_paginate;
+    return $result_paginate;
 
 }
 

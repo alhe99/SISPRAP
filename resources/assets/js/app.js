@@ -1,13 +1,14 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+window.$ = window.jQuery = require('jquery');
 //Vue-Select para el manejo de datos en varias formas
 import vSelect from 'vue-select';
 Vue.component('v-select', vSelect);
 
-import jquery from 'vue-jquery';
+// import jquery from 'vue-jquery';
+// Vue.use(jquery);
 
-Vue.use(jquery);
 
 import ImgInputer from 'vue-img-inputer';
 import 'vue-img-inputer/dist/index.css';
@@ -31,6 +32,12 @@ Vue.use(VueTruncate)
 import Tabs from 'vue-tabs-component';
 Vue.use(Tabs);
 
+// import datables from 'datatables';
+// Vue.use(datables);
+
+import Checkbox from 'vue-material-checkbox'
+Vue.use(Checkbox)
+
 //Import Vue Toaster
 import VueToastr from '@deveodk/vue-toastr'
 import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
@@ -41,7 +48,7 @@ import VeeValidate, { Validator } from 'vee-validate';
 Vue.use(VeeValidate);
 Validator.localize('es', es);
 
-
+Vue.component('datables', require('datatables'));
 Vue.component('pulse-loader', require('vue-spinner/src/PulseLoader.vue'));
 Vue.component('institucion', require('./components/instituciones/Institucion.vue'));
 Vue.component('publiproject', require('./components/proyectos/Publicacion.vue'));

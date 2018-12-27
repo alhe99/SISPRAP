@@ -1,4 +1,4 @@
-@extends('public.layout.app') 
+@extends('public.layout.app')
 @section('contenido')
 <div class="row">
   <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
@@ -13,34 +13,25 @@
   <p class="mb-0"><a href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}" class="btn btn-link">Ver mis preinscripciones</a></p>
 </div>
 @else
-@if (count($proyectos) > 0)
 <div class="row">
   <div class="col-md-12 col-lg-12 col-xl-12 wow animated fadeInUp" data-wow-delay=".3s">
     <article class="single-blog-post col-md-12">
-      <div class="featured-image">
-        <div class="search-icon">
-          <span class="open-search col-md-1">
-            <i class="mdi mdi-magnify btn btn-common"></i>
-          </span>
-        </div>
-        <br>
-        <form role="search" class="navbar-form">
-          <div class="container">
-            <div class="row">
-              <div class="form-group has-feedback">
-                <input type="text" placeholder="Buscar Proyectos..." class="form-control">
-                <div class="close"><i class="mdi mdi-close"></i></div>
-              </div>
-            </div>
+      <div class="featured-image"><br>
+        {{ Form::open(['route' => 'public', 'method' => 'GET','class' => 'form-horizontal','role' => 'search','id' => 'form-search']) }}
+        <div class="form-group row">
+          <div class="col-md-10">
+            {{ Form::text('buscar', isset($data_search) ? $data_search : '', ['class' => 'form-control', 'placeholder' => 'Buscar Proyectos...']) }}
           </div>
-        </form>
-        <div class="col-md-1 text-center">
-          <a href="#" rel="nofollow"  class="animated4 btn btn-common">Buscar</a>
+          <div class="col-md-2">
+            {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify"></i>', ['class' => 'animated4 btn btn-common btn-block','type'=>'submit','id' => 'btn-search']) !!}
+          </div>
         </div>
+        {{ Form::close() }}
       </div>
     </article>
   </div>
 </div>
+@if (count($proyectos) > 0)
 <div class="row">
   @foreach ($proyectos as $p)
   <div class="col-md-6 col-lg-4 col-xl-4 card-group wow animated fadeInUp"  onclick="redirectToCard('{{session('process_id')}}','{{$p->slug}}')" data-wow-delay=".3s">
@@ -48,13 +39,13 @@
       <div class="featured-image">
         <a href="#">
           @if ($p->img == null)
-           @if (session('process_id') == 1)
-            <img src="/images/img_projects/SS.png" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
-            @elseif(session('process_id') == 2)
-            <img src="/images/img_projects/PP.png" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
-            @endif
+          @if (session('process_id') == 1)
+          <img src="/images/img_projects/SS.png" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
+          @elseif(session('process_id') == 2)
+          <img src="/images/img_projects/PP.png" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
+          @endif
           @else
-           <img src="/images/img_projects/{{$p->img}}" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
+          <img src="/images/img_projects/{{$p->img}}" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
           @endif
         </a>
       </div>
@@ -78,13 +69,13 @@
   </div>
   @endif
   @elseif(count($proyectos) == 0)
-<div class="alert alert-success" role="alert">
-  <hr>
-  <h4 class="alert-heading">No Hay Proyectos Publicados!</h4>
-  <p>Espera a que el administrador realice nuevas publicaciones pronto</p>
-  <hr>
-</div>
-@endif
+  <div class="alert alert-success" role="alert">
+    <hr>
+    <h4 class="alert-heading">No Hay Proyectos Publicados!</h4>
+    <p>Espera a que el administrador realice nuevas publicaciones pronto</p>
+    <hr>
+  </div>
+  @endif
 </div>
 @endif
 </div>
@@ -93,9 +84,12 @@
 @section('page_script')
 <script>
  $(document).ready(function(){
-  redirectToCard = function (process_id,project_slug) { 
+  redirectToCard = function (process_id,project_slug) {
     window.location.href = route('viewProject',[process_id,project_slug])
-  }.bind(this)
+  }.bind(this);
+  $("#btn-search").click(function(e){
+    //e.preventDefault();
+  })
 });
-</script>   
+</script>
 @endsection

@@ -39,15 +39,15 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-4 col-xs-12 welcome-column">
-                            @if ($proyecto->img == null)
-                                @if (session('process_id') == 1)
-                                  <img src="/images/img_projects/SS.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
-                                @elseif(session('process_id') == 2)
-                                  <img src="/images/img_projects/PP.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
-                                @endif
-                           @else
-                           <img class="img-fluid"  style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;" src="/images/img_projects/{{$proyecto->img}}" alt="{{$proyecto->nombre}}">
-                           @endif
+                        @if ($proyecto->img == null)
+                        @if (session('process_id') == 1)
+                        <img src="/images/img_projects/SS.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
+                        @elseif(session('process_id') == 2)
+                        <img src="/images/img_projects/PP.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
+                        @endif
+                        @else
+                        <img class="img-fluid"  style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;" src="/images/img_projects/{{$proyecto->img}}" alt="{{$proyecto->nombre}}">
+                        @endif
                     </div>
                     <div class="row">
                         @if (in_array($proyecto->id,Auth::user()->estudiante->preinscripciones->pluck('id')->toArray()) == 1)
@@ -84,10 +84,10 @@
         },
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
-               const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-               swal({
-                title: 'Esta seguro de Preinscribirte al este proyecto?',
-                text: "Una vez hecho espera la respuesta del admistrador!",
+             const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+             swal({
+                title: 'Esta seguro de Preinscribirte a este proyecto?',
+                text: "Una vez hecho espera la respuesta del administrador!",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -97,11 +97,11 @@
             }).then((result) => {
                 if (result.value) {
                     let me = this;
-                    //$('#preloader').fadeIn();
+                    $('#preloader').fadeIn();
                     var url = route('preRegister', [studen_id, project_id]);
                     axios.get(url).then(function(response) {
                         if(response.data == true){
-                            //$('#preloader').fadeOut();
+                            $('#preloader').fadeOut();
                             swal({
                                 position: "center",
                                 type: "warning",
@@ -109,9 +109,9 @@
                                 showConfirmButton: true,
                                 width: '350px',
                             }).then(function(result){
-                                 window.location.href = route('myPreregister',[studen_id,process_id]);
+                               //window.location.href = route('myPreregister',[studen_id,process_id]);
                                 //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
-                             })
+                            })
 
                             //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                         }

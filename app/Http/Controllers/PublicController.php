@@ -14,7 +14,7 @@ class PublicController extends Controller
         //$this->middleware('guestVerify');
 
     }
-    public function index()
+    public function index(Request $request2)
     {
 
         $userCarrer = Auth::user()->estudiante->carrera_id;
@@ -23,8 +23,10 @@ class PublicController extends Controller
         $request->setMethod('POST');
         $request->request->add(['estudent_carrer' => $userCarrer]);
         $request->request->add(['estudent_process' => $userProcess]);
+        $request->request->add(['buscar' => $request2->buscar]);
         $proyectos = app(\App\Http\Controllers\ProyectoController::class)->getProjectsByCarrer($request);
-        return view('public.index', compact("proyectos"));
+        $data_search = $request2->buscar;
+        return view('public.index', compact(['proyectos','data_search']));
 
     }
     public function create()

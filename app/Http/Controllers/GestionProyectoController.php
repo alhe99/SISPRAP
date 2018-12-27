@@ -16,90 +16,84 @@ use PDF;
 class GestionProyectoController extends Controller
 {
 
-    public function initGestionProyecto($fechaini,$fechafin = null,$hrsreal,$student_id,$proyecto_id,$ns,$ts){
+    public function initGestionProyecto(Request $request){
 
         try {
             DB::beginTransaction();
             $gp = new GestionProyecto();
-        $gp->fecha_inicio = $fechaini; //Fecha Inicio
-        if (!$fechafin) {
-            $gp->fecha_fin = $fechafin; //Fecha Fin
-        }
-        $gp->horas_a_realizar = $hrsreal; //Total de Horas
-        $gp->proyecto_id = $proyecto_id;
-        $gp->estudiante_id = $student_id;
-        $gp->nombre_supervisor = $ns; //Nombre del supervisor
-        $gp->tel_supervisor = $ts; //Telefono del supervisor
+            $gp->fecha_inicio = $request->fechaini; //Fecha Inicio
+            $gp->fecha_fin = $request->fechafin; //Fecha Fin
+            $gp->horas_a_realizar = $request->hrsreal; //Total de Horas
+            $gp->proyecto_id = $request->proyecto_id;
+            $gp->estudiante_id = $request->student_id;
+            $gp->nombre_supervisor = $request->super_name; //Nombre del supervisor
+            $gp->tel_supervisor = $request->super_cell; //Telefono del supervisor
 
 
-        if(Auth::user()->rol_id >2){
+            if(Auth::user()->rol_id >2){
             //Informacion del estudiante
-            $proceso = Auth::user()->estudiante->proceso[0]->id;
-            $nombre = Auth::user()->estudiante->nombre;
-            $apellido = Auth::user()->estudiante->apellido;
-            $carnet = Auth::user()->estudiante->codCarnet;
-            $telefono = Auth::user()->estudiante->telefono;
-            $carrera = Auth::user()->estudiante->carrera->nombre;
-            $email = Auth::user()->estudiante->email;
+                $proceso = Auth::user()->estudiante->proceso[0]->id;
+                $nombre = Auth::user()->estudiante->nombre;
+                $apellido = Auth::user()->estudiante->apellido;
+                $carnet = Auth::user()->estudiante->codCarnet;
+                $telefono = Auth::user()->estudiante->telefono;
+                $carrera = Auth::user()->estudiante->carrera->nombre;
+                $email = Auth::user()->estudiante->email;
 
             //Informacion de la institucion
-            $nombreI = Auth::user()->estudiante->preinscripciones[0]->institucion->nombre;
-            $direccionI = Auth::user()->estudiante->preinscripciones[0]->institucion->direccion;
-            $departamentoI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->departamento->nombre;
-            $municipioI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->nombre;
-            $sectorI = Auth::user()->estudiante->preinscripciones[0]->institucion->sectorInstitucion->sector;
-            $telefonoI = Auth::user()->estudiante->preinscripciones[0]->institucion->telefono;
-            $emailI = Auth::user()->estudiante->preinscripciones[0]->institucion->email;
+                $nombreI = Auth::user()->estudiante->preinscripciones[0]->institucion->nombre;
+                $direccionI = Auth::user()->estudiante->preinscripciones[0]->institucion->direccion;
+                $departamentoI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->departamento->nombre;
+                $municipioI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->nombre;
+                $sectorI = Auth::user()->estudiante->preinscripciones[0]->institucion->sectorInstitucion->sector;
+                $telefonoI = Auth::user()->estudiante->preinscripciones[0]->institucion->telefono;
+                $emailI = Auth::user()->estudiante->preinscripciones[0]->institucion->email;
 
             //Informacion del proyecto
-            $nombreP = Auth::user()->estudiante->preinscripciones[0]->nombre;
-            $actividadesP = Auth::user()->estudiante->preinscripciones[0]->actividades;
+                $nombreP = Auth::user()->estudiante->preinscripciones[0]->nombre;
+                $actividadesP = Auth::user()->estudiante->preinscripciones[0]->actividades;
 
-        }
+            }
 
-        $collection = new Collection([
-            "proceso" => $proceso,
-            "nombreE" => $nombre,
-            "apellidoE" => $apellido,
-            "carnetE" => $carnet,
-            "telefonoE" => $telefono,
-            "carreraE" => $carrera,
-            "emailE" => $email,
-            "nombreI" => $nombreI,
-            "direccionI" => $direccionI,
-            "departamentoI" => $departamentoI,
-            "municipioI" => $municipioI,
-            "sectorI" => $sectorI,
-            "telefonoI" => $telefonoI,
-            "emailI" => $emailI,
-            "nombreP" => $nombreP,
-            "actividadesP" => $actividadesP,
-            "hrasRealizar" => $hrsreal,
-            "fechaInicio" => $fechaini,
-            "fechaFin" => $fechafin,
-            "nombreS" => $ns,
-            "telefonoS" => $ts,
-        ]);
+            $collection = new Collection([
+                "proceso" => $proceso,
+                "nombreE" => $nombre,
+                "apellidoE" => $apellido,
+                "carnetE" => $carnet,
+                "telefonoE" => $telefono,
+                "carreraE" => $carrera,
+                "emailE" => $email,
+                "nombreI" => $nombreI,
+                "direccionI" => $direccionI,
+                "departamentoI" => $departamentoI,
+                "municipioI" => $municipioI,
+                "sectorI" => $sectorI,
+                "telefonoI" => $telefonoI,
+                "emailI" => $emailI,
+                "nombreP" => $nombreP,
+                "actividadesP" => $actividadesP,
+                "hrasRealizar" => $request->hrsreal,
+                "fechaInicio" => $request->fechaini,
+                "fechaFin" => $request->fechafin,
+                "nombreS" => $request->super_name,
+                "telefonoS" => $request->super_cell,
+            ]);
 
-        if($gp->save())
-        {
+            if($gp->save())
+            {
 
-            $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
-             //DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
+                $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
+                 //DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
+                //DB::commit();
+                return base64_encode($pdf->download('Perfil de proyecto.pdf'));
+            }
+        } catch (Exception $e) {
+          DB::rollBack();
+      }
 
-            return base64_encode($pdf->download('Perfil de proyecto ' .$nombre.'.pdf'));
-            DB::commit();
-
-        }else{
-            return "false";
-        }
-    } catch (Exception $e) {
-      DB::rollBack();
   }
-
-}
-public function index(Request $request)
-{
+  public function index(Request $request)
+  {
         //if (!$request->ajax()) {
            // return redirect('/');
         //
@@ -237,8 +231,8 @@ public function getInitialProcessReporte($proceso_id){
     $data = [];
     foreach ($carrera as $carre) {
         $data[$carre->id] = $collection = new Collection(["Carrera" => $carre->nombre,
-           "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
-           "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
+         "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
+         "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
     }
 
     return $data;
