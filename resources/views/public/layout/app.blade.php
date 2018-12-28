@@ -40,7 +40,7 @@
 					<ul class="navbar-nav mr-auto w-100 justify-content-end">
 						<li class="nav-item active">
 							<a class="nav-link" href="{{route('public')}}">
-								INICI
+								INICIO
 							</a>
 						</li>
 						<li class="nav-item active">
@@ -50,7 +50,7 @@
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="{{route('proyects_now',array(session('student_id'))) }}">
-								MIS PROYECTOS 
+								MIS PROYECTOS
 							</a>
 						</li>
 						<li class="nav-item dropdown active">

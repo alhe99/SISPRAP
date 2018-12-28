@@ -24,7 +24,7 @@
                   </div>
                 </div>
               </fieldset>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
          <tr>
            <th>Nombre de institución</th>
            <th>Dirección</th>
-           <th class="text-center">Email</th> 
+           <th class="text-center">Email</th>
            <th class="text-center">Sector perteneciente</th>
            <th class="text-center">Municipio</th>
            <th class="text-center">Acciones</th>
@@ -83,12 +83,12 @@
             </template>
             <template v-else>
               <button type="button" @click="activarInstitucion(institucion.id)" class="btn btn-primary" data-toggle="tooltip" title="Activar institución"><i class="mdi mdi-check-circle i-crud"></i></button>
-            </template>  
+            </template>
             <button type="button" @click="verMasInfo(institucion)" class="btn btn-primary " data-toggle="tooltip" title="Ver más información"><i class="mdi mdi-playlist-plus i-crud"></i></button>
           </td>
         </tr>
       </tbody>
-    </table> 
+    </table>
     <nav>
       <ul class="pagination">
         <li class="page-item" v-if="pagination.current_page > 1">
@@ -104,13 +104,13 @@
         </ul>
       </nav>
     </div>
-  </div> 
+  </div>
 </div>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-lg-12">
-   <div v-show="search == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>                                
+   <div v-show="search == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
  </div>
-</div> 
+</div>
 </div>
 <!-- CIERRE DE CARDBODY -->
 <!--MODAL PARA REGISTRAR UNA SUPERVICION-->
@@ -128,7 +128,7 @@
     <div class="bmd-form-group bmd-collapse-inline pull-xs-right">
      <button class="btn bmd-btn-icon" for="search" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
       <i class="mdi mdi-magnify"></i>
-    </button>  
+    </button>
     <span id="collapse-search" class="collapse">
      <input v-model="buscarID" @keyup="listarInstitucionDes(1,proceso,buscarID)" class="form-control" data-toggle="tooltip" title="Buscar Registros" type="text" id="search" placeholder="Ingrese Nombre de la Institución/Empresa">
    </span>
@@ -141,7 +141,7 @@
           <tr>
             <th>Nombre de institucion</th>
             <th>Telefono</th>
-            <th>Email</th> 
+            <th>Email</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Acciones</th>
           </tr>
@@ -149,7 +149,7 @@
         <tbody>
           <tr v-for="instituciondes in arrayInstitucionDes" :key="instituciondes.id">
             <td v-text="instituciondes.nombre"></td>
-            <td v-text="instituciondes.telefono"></td> 
+            <td v-text="instituciondes.telefono"></td>
             <td v-text="instituciondes.email"></td>
             <td class="text-center">
              <template>
@@ -161,11 +161,11 @@
          <td class="text-center">
           <template>
             <button type="button" @click="activarInstitucion(instituciondes.id)" class="btn btn-primary" data-toggle="tooltip" title="Activar institución"><i class="mdi mdi-check-circle i-crud"></i></button>
-          </template>  
+          </template>
         </td>
       </tr>
     </tbody>
-  </table> 
+  </table>
   <nav>
     <ul class="pagination">
       <li class="page-item" v-if="paginationInstiDes.current_page > 1">
@@ -186,12 +186,12 @@
       <div v-show="searchID == 1" class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
       <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
     </div>
-  </div> 
-</div> 
+  </div>
+</div>
 </div>
 </div>
 <div class="modal-footer">
-  <div class="row"> 
+  <div class="row">
     <div class="col-md-12">
       <button type="button" @click="cerrarModalID()" class="btn btn-danger">Cerrar</button>
     </div>
@@ -233,7 +233,7 @@
                         <div v-if="tipoAccion == 1" class="col-md-4 text-center">
                           <input id="a" value="3" v-model="tipoproceso_id" type="radio" name="ambos" required >
                           <label for="a">Ambos</label>
-                        </div> 
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -253,7 +253,7 @@
           <div class="col-md-12 col-xs-12 col-lg-12">
             <br><label for="direccion">Dirección exacta*</label><br>
             <textarea v-model="direccion" id="direccion" name="direccion" class="form-control" rows="3"></textarea>
-            <!-- <span v-if="errors.direccion" class="text-danger" v-text="errors.direccion[0]"></span>--> 
+            <!-- <span v-if="errors.direccion" class="text-danger" v-text="errors.direccion[0]"></span>-->
           </div>
         </div>
         <div class="row">
@@ -291,7 +291,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div class="row"> 
+        <div class="row">
           <div class="col-md-12">
             <button type="button" :disabled="validate == true" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense>Guardar Institución</button>
             <button type="button" :disabled="validate == true" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense>Actualizar Institución</button>
@@ -302,7 +302,7 @@
     </div>
   </div>
 </div>
-<!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS --> 
+<!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
 </div>
 <div class="row">
   <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
@@ -327,9 +327,9 @@
                           <h5><strong>Nombre: </strong> {{ institucion["nombre"] }} </h5>
                           <h5><strong>Dirección: </strong>{{ institucion["direccion"] }} </h5>
                           <h5><strong>Telefono: </strong>{{ institucion["telefono"] }} </h5>
-                          <div v-for="sector in institucion.sector_institucion" :key="sector.id"> 
+                          <div v-for="sector in institucion.sector_institucion" :key="sector.id">
                            <h5 v-show="sector.length > 4"><strong>Sector de la institucion: </strong> {{ sector }}</h5>
-                         </div> 
+                         </div>
                          <h5><strong>Correo: </strong><a :href="'mailto:'+ institucion['email']" id="link-email" class="btn btn-link text-lowercase" >{{ institucion["email"]}}</a></h5>
                        </div>
                      </div>
@@ -370,7 +370,7 @@
                                     <span v-else class="badge badge-pill badge-danger">No Supervisado</span>
                                   </h4>
                                 </template>
-                              </td> 
+                              </td>
                               <td class="text-center" v-if="proceso == 2">
                                 <button type="button" v-if="proyecto.supervision == 1"  class="btn btn-primary text-capitalize" @click="abrirModalSuper('registrar',proyecto.id,proyecto.nombre)" data-toggle="tooltip" title="Registrar nueva supervisión a este proyecto" >
                                   <i class="mdi mdi-folder-plus h4"></i>Registrar Supervisión</button>
@@ -379,7 +379,7 @@
                                   </td>
                                 </tr>
                               </tbody>
-                            </table> 
+                            </table>
                             <nav>
                               <ul class="pagination">
                                 <li class="page-item" v-if="pagination.current_page > 1">
@@ -447,7 +447,7 @@
                                                                <img  :src="image" :alt="`Imagen ${index}`">
                                                                <div class="details">
                                                                  <span class="name" v-text="files[index].name"></span>
-                                                                 <span class="size" v-text="getFileSize(files[index].size)"></span> 
+                                                                 <span class="size" v-text="getFileSize(files[index].size)"></span>
                                                                </div>
                                                              </div>
                                                            </div>
@@ -457,7 +457,7 @@
                                                        <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
                                                      </div>
                                                      <div class="modal-footer">
-                                                      <div class="row"> 
+                                                      <div class="row">
                                                         <div class="col-md-12">
                                                           <button type="button" class="button blue" @click="registrarSupervision()" dense>Registrar Supervisión</button>
                                                           <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
@@ -469,16 +469,16 @@
                                               </div>
                                               <!--FIN DE MODAL PARA REGISTRAR UNA SUPERVICION-->
                                             </div>
-                                          </div> 
+                                          </div>
                                         </div>
                                         <div v-if="arrayProyectos.length == 0" class="row">
                                           <div class="col-md-12 col-sm-12 col-lg-12">
-                                            <div class="alert alert-warning h6 font-weight-bold text-center" role="alert" v-text="'No existen proyectos registrados en esta institución'"></div>                                
+                                            <div class="alert alert-warning h6 font-weight-bold text-center" role="alert" v-text="'No existen proyectos registrados en esta institución'"></div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <button type="button" @click="back()" class="btn btn-primary text-capitalize  font-weight-bold" data-toggle="tooltip" id="back" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</button>                    
+                                    <button type="button" @click="back()" class="btn btn-primary text-capitalize  font-weight-bold" data-toggle="tooltip" id="back" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</button>
                                   </div>
                                 </div>
                               </div>
@@ -663,7 +663,7 @@ methods: {
           //Por si no devuelve datos
           me.loadSpinner = 0;
           me.searchEmpty();
-          
+
         })
     .catch(function(error) {
      me.loadSpinner = 0;
@@ -688,7 +688,7 @@ methods: {
       })
     .catch(function(error) {
       console.log(error);
-      
+
     });
   },
   getSectores() {
@@ -737,7 +737,7 @@ methods: {
           //Por si no devuelve datos
           me.loadSpinner = 0;
           me.searchEmpty();
-          
+
         })
     .catch(function(error) {
       me.loadSpinner = 0;
@@ -850,7 +850,7 @@ methods: {
       me.loadSpinner = 0;
       me.exist = false;
     }
-    
+
   },
   registrarSupervision() {
     let me = this;
@@ -943,7 +943,7 @@ methods: {
               }else{
                 this.tipoproceso_id = data.procesos[0].id;
               }
-              
+
               this.nombre = data["nombre"];
               this.direccion = data["direccion"];
               this.phone = data["telefono"];
@@ -1376,7 +1376,7 @@ methods: {
   -o-transition: 0.3s;
   transition: 0.3s;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  border: none; 
+  border: none;
   font-size: 15px;
   text-align: center;
 }

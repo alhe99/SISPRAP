@@ -94056,7 +94056,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -100228,7 +100228,224 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "col-md-12 col-lg-12 col-sm-12" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table table-striped table-bordered table-mc-light-blue",
+                  attrs: { id: "example" }
+                },
+                [
+                  _c("thead", { staticClass: "thead-primary" }, [
+                    _c("tr", [
+                      _c("th", [_vm._v("Nombre del proyecto")]),
+                      _vm._v(" "),
+                      _vm.proceso == 2
+                        ? _c("th", [_vm._v("Carrera del proyecto")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Institución")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Fecha de la publicación")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "text-center" }, [
+                        _vm._v("Acciones")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.arrayProyecto, function(proyecto) {
+                      return _c("tr", { key: proyecto.id }, [
+                        _c("td", {
+                          domProps: { textContent: _vm._s(proyecto.nombre) }
+                        }),
+                        _vm._v(" "),
+                        _vm.proceso == 2 &&
+                        proyecto.carre_proy[0].nombre != null
+                          ? _c("td", [
+                              _vm._v(_vm._s(proyecto.carre_proy[0].nombre))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("td", {
+                          domProps: {
+                            textContent: _vm._s(proyecto.institucion.nombre)
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(proyecto.fecha) }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-center" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "button blue",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "tooltip",
+                                  title: "Editar datos del Proyecto"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.abrirModal(
+                                      "proyecto",
+                                      "actualizar",
+                                      proyecto
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "mdi mdi-border-color i-crud"
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "button red",
+                                  attrs: {
+                                    type: "button",
+                                    "data-toggle": "tooltip",
+                                    title: "Desactivar proyecto"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.desactivarProyecto(proyecto.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-delete i-crud"
+                                  })
+                                ]
+                              )
+                            ]
+                          ],
+                          2
+                        )
+                      ])
+                    })
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("nav", [
+                _c(
+                  "ul",
+                  { staticClass: "pagination" },
+                  [
+                    _vm.pagination.current_page > 1
+                      ? _c("li", { staticClass: "page-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "page-link font-weight-bold",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.cambiarPagina(
+                                    _vm.pagination.current_page - 1,
+                                    _vm.proceso,
+                                    _vm.buscar
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("Ant")]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm._l(_vm.pagesNumber, function(page) {
+                      return _c(
+                        "li",
+                        {
+                          key: page,
+                          staticClass: "page-item",
+                          class: [page == _vm.isActived ? "active" : ""]
+                        },
+                        [
+                          _c("a", {
+                            staticClass: "page-link",
+                            attrs: { href: "#" },
+                            domProps: { textContent: _vm._s(page) },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.cambiarPagina(page, _vm.proceso, _vm.buscar)
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    }),
+                    _vm.pagination.current_page < _vm.pagination.last_page
+                      ? _c("li", { staticClass: "page-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "page-link font-weight-bold",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.cambiarPagina(
+                                    _vm.pagination.current_page + 1,
+                                    _vm.proceso,
+                                    _vm.buscar
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("Sig")]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("small", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.arrayProyecto.length != 0,
+                          expression: "arrayProyecto.length != 0"
+                        }
+                      ],
+                      staticClass: "text-muted pagination-count",
+                      domProps: {
+                        textContent: _vm._s(
+                          "(Mostrando " +
+                            _vm.arrayProyecto.length +
+                            " de " +
+                            _vm.pagination.total +
+                            " registros)"
+                        )
+                      }
+                    })
+                  ],
+                  2
+                )
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12 col-sm-12 col-lg-12" }, [
@@ -100308,7 +100525,7 @@ var render = function() {
                           "bmd-form-group bmd-collapse-inline pull-xs-right"
                       },
                       [
-                        _vm._m(2),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -100370,7 +100587,7 @@ var render = function() {
                                   "table table-striped table-bordered table-mc-light-blue"
                               },
                               [
-                                _vm._m(3),
+                                _vm._m(2),
                                 _vm._v(" "),
                                 _c(
                                   "tbody",
@@ -101137,14 +101354,6 @@ var staticRenderFns = [
       },
       [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 col-lg-12 col-sm-12" }, [
-      _c("div", { staticClass: "table-responsive" })
-    ])
   },
   function() {
     var _vm = this
@@ -102158,7 +102367,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/**** CLASES PARA GENERAR EL SPINNER ****/\n.loading {\r\n  position: fixed;\r\n  z-index: 999;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\r\n  width: 50px;\r\n  height: 50px;\n}\r\n\r\n/* Transparent Overlay */\n.loading:before {\r\n  content: '';\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0,0,0,0.3);\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading:not(:required):after {\r\n  content: '';\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 50px;\r\n  height: 50px;\r\n  margin-top: -0.5em;\r\n  border: 5px solid #533fd0;\r\n  border-radius: 100%;\r\n  border-bottom-color: transparent;\r\n  -webkit-animation: spinner 1s linear 0s infinite;\r\n  animation: spinner 1s linear 0s infinite;\n}\n@-webkit-keyframes spinner {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n    -moz-transform: rotate(0deg);\r\n    -ms-transform: rotate(0deg);\r\n    -o-transform: rotate(0deg);\r\n    transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n    -moz-transform: rotate(360deg);\r\n    -ms-transform: rotate(360deg);\r\n    -o-transform: rotate(360deg);\r\n    transform: rotate(360deg);\n}\n}\n@-moz-keyframes spinner {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n    -moz-transform: rotate(0deg);\r\n    -ms-transform: rotate(0deg);\r\n    -o-transform: rotate(0deg);\r\n    transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n    -moz-transform: rotate(360deg);\r\n    -ms-transform: rotate(360deg);\r\n    -o-transform: rotate(360deg);\r\n    transform: rotate(360deg);\n}\n}\n@-o-keyframes spinner {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n    -moz-transform: rotate(0deg);\r\n    -ms-transform: rotate(0deg);\r\n    -o-transform: rotate(0deg);\r\n    transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n    -moz-transform: rotate(360deg);\r\n    -ms-transform: rotate(360deg);\r\n    -o-transform: rotate(360deg);\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n    -moz-transform: rotate(0deg);\r\n    -ms-transform: rotate(0deg);\r\n    -o-transform: rotate(0deg);\r\n    transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n    -moz-transform: rotate(360deg);\r\n    -ms-transform: rotate(360deg);\r\n    -o-transform: rotate(360deg);\r\n    transform: rotate(360deg);\n}\n}\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/**** CLASES PARA GENERAR EL SPINNER ****/\n.loading {\n  position: fixed;\n  z-index: 999;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  width: 50px;\n  height: 50px;\n}\n\n/* Transparent Overlay */\n.loading:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n\n/* :not(:required) hides these rules from IE9 and below */\n.loading:not(:required) {\n  /* hide \"loading...\" text */\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.loading:not(:required):after {\n  content: '';\n  display: block;\n  font-size: 10px;\n  width: 50px;\n  height: 50px;\n  margin-top: -0.5em;\n  border: 5px solid #533fd0;\n  border-radius: 100%;\n  border-bottom-color: transparent;\n  -webkit-animation: spinner 1s linear 0s infinite;\n  animation: spinner 1s linear 0s infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-moz-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-o-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n.button {\n  display: inline-block;\n  margin: 0.3em;\n  padding: 1.0em 1em;\n  overflow: hidden;\n  position: relative;\n  text-decoration: none;\n  text-transform: capitalize;\n  border-radius: 3px;\n  -webkit-transition: 0.3s;\n  -moz-transition: 0.3s;\n  -ms-transition: 0.3s;\n  -o-transition: 0.3s;\n  transition: 0.3s;\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\n  border: none;\n  font-size: 15px;\n  text-align: center;\n}\n.button:hover {\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\n  background-color: #4CAF50;\n  color: white;\n}\n.red {\n  background-color: #F44336;\n  color: white;\n}\n.blue {\n  background-color: #6200EC;\n  color: white;\n}\n.ripple {\n  position: absolute;\n  background: rgba(0,0,0,.25);\n  border-radius: 100%;\n  transform: scale(0.2);\n  opacity:0;\n  pointer-events: none;\n  -webkit-animation: ripple .75s ease-out;\n  -moz-animation: ripple .75s ease-out;\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n\n\n", ""]);
 
 // exports
 
@@ -102169,6 +102378,23 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102647,13 +102873,19 @@ var render = function() {
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12" }, [
-                _vm.proceso == 1
-                  ? _c("h1", [_vm._v("Proyectos de Servicio Social")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.proceso == 2
-                  ? _c("h1", [_vm._v("Proyectos de Práctica Profesional")])
-                  : _vm._e()
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-11" }, [
+                    _vm.proceso == 1
+                      ? _c("h1", [_vm._v("Proyectos de Servicio Social")])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.proceso == 2
+                      ? _c("h1", [_vm._v("Proyectos de Práctica Profesional")])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-12" }, [
@@ -102767,7 +102999,7 @@ var render = function() {
                           "table table-striped table-bordered table-mc-light-blue"
                       },
                       [
-                        _vm._m(0),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -103115,18 +103347,14 @@ var render = function() {
                                                   alt: ""
                                                 }
                                               })
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          _vm.estudiante.genero == "F"
-                                            ? _c("img", {
+                                            : _c("img", {
                                                 staticClass:
                                                   "text-center img-fluid",
                                                 attrs: {
-                                                  src: "images/avatarM.png",
+                                                  src: "images/avatarF.png",
                                                   alt: ""
                                                 }
                                               })
-                                            : _vm._e()
                                         ])
                                       ])
                                     ])
@@ -103167,6 +103395,51 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-1 col-sm-1 col-lg-1 text-right" }, [
+      _c("div", { staticClass: "btn-group pull-lg-right" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn bmd-btn-icon dropdown-toggle",
+            attrs: {
+              type: "button",
+              id: "mw2",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false",
+              title: "Más opciones"
+            }
+          },
+          [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu dropdown-menu-right",
+            attrs: { "aria-labelledby": "mw2" }
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "dropdown-item d-block menu",
+                attrs: { type: "button" }
+              },
+              [
+                _c("i", { staticClass: "mdi mdi-plus-box" }),
+                _vm._v(" Asignación de proyecto")
+              ]
+            )
+          ]
+        )
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -103277,7 +103550,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -103290,6 +103563,13 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_switches__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -103546,20 +103826,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.getAllStudens(this.carrera_selected.value, this.proceso, page, "");
       }
     },
-    getMoreInfo: function getMoreInfo(id) {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "stundentById/" + id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.estudiante = respuesta;
-        me.loadSpinner = 0;
-        me.abrirModal();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    savePayArancel: function savePayArancel(no_fac, estudiante_id, tipobeca_id) {
+    savePayArancel: function savePayArancel(no_fac, estudiante_id, tipobeca_id, proceso_id) {
       var _this = this;
 
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
@@ -103579,7 +103846,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          var url = "/recepcion/payArancel?noFac=" + no_fac + "&estudiante_id=" + estudiante_id + "&tipobeca_id=" + tipobeca_id;
+          var url = "/recepcion/payArancel?noFac=" + no_fac + "&estudiante_id=" + estudiante_id + "&tipobeca_id=" + tipobeca_id + "&proceso_id=" + proceso_id;
           axios.post(url).then(function (response) {
             me.getAllStudens(me.carrera_selected.value, me.proceso, 1, "");
             swal("Hecho!", "Apertura de expediente guardada con exito", "success");
@@ -103610,9 +103877,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var nofact = this.no_fact;
       var estudiante_id = this.estudiante.id;
       var tipobeca_id = this.beca_selected.value;
-      this.savePayArancel(nofact, estudiante_id, tipobeca_id);
+      var tipoproceso_id = this.estudiante.proceso[0].id;
+      this.savePayArancel(nofact, estudiante_id, tipobeca_id, tipoproceso_id);
     },
     abrirModal: function abrirModal() {
+      var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      this.estudiante = item;
       var el = document.body;
       el.classList.add("abrirModal");
       this.modal = 1;
@@ -103835,9 +104106,34 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              _c("th", { staticClass: "text-center" }, [
-                                _vm._v("Pendiente")
-                              ]),
+                              _c(
+                                "th",
+                                { staticClass: "text-center" },
+                                [
+                                  [
+                                    _c("h4", [
+                                      item.pago_arancel.length != 0
+                                        ? _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-primary"
+                                            },
+                                            [_vm._v("Cancelado")]
+                                          )
+                                        : _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-danger"
+                                            },
+                                            [_vm._v("Pendiente")]
+                                          )
+                                    ])
+                                  ]
+                                ],
+                                2
+                              ),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-center" }, [
                                 _c(
@@ -103846,12 +104142,13 @@ var render = function() {
                                     staticClass: "button secondary ",
                                     attrs: {
                                       type: "button",
+                                      disabled: item.pago_arancel.length != 0,
                                       "data-toggle": "tooltip",
                                       title: "Registrar Pago"
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.getMoreInfo(item.id)
+                                        _vm.abrirModal(item)
                                       }
                                     }
                                   },

@@ -26,4 +26,8 @@ class TipoProceso extends Model
 
         return $this->hasMany(Documento::class);
     }
+     public function aranceles(){
+
+        return $this->hasMany(PagoArancel::class);
+    }
 }

@@ -14,7 +14,7 @@ class PagoArancelController extends Controller
         $pa = new PagoArancel();
         $pa->no_factura = $request->noFac;
         $pa->estudiante_id = $request->estudiante_id;
-        //$pa->tipo_beca_id = $request->tipobeca_id;
+        $pa->proceso_id = $request->proceso_id;
         $pa->save();
     }
 }

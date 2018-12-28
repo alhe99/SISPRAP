@@ -53,7 +53,7 @@
 			</div>
 			<div class="col-md-12 col-lg-12 col-sm-12">
 				<div class="table-responsive">
-					<!-- <table class="table table-striped table-bordered table-mc-light-blue" id="example">
+					<table class="table table-striped table-bordered table-mc-light-blue" id="example">
 						<thead class="thead-primary">
 							<tr>
 								<th>Nombre del proyecto</th>
@@ -77,8 +77,8 @@
 								</td>
 							</tr>
 						</tbody>
-					</table> -->
-					<!-- <nav>
+					</table>
+					<nav>
 						<ul class="pagination">
 							<li class="page-item" v-if="pagination.current_page > 1">
 								<a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,proceso,buscar)">Ant</a>
@@ -91,7 +91,7 @@
 								</li>
 								<small v-show="arrayProyecto.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayProyecto.length + ' de ' + pagination.total + ' registros)'"></small>
 							</ul>
-						</nav> -->
+						</nav>
 					</div>
 				</div>
 				<div class="row">
