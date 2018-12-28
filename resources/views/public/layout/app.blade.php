@@ -40,7 +40,7 @@
 					<ul class="navbar-nav mr-auto w-100 justify-content-end">
 						<li class="nav-item active">
 							<a class="nav-link" href="{{route('public')}}">
-								INICIO
+								INICI
 							</a>
 						</li>
 						<li class="nav-item active">
