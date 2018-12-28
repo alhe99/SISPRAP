@@ -50,16 +50,15 @@
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="{{route('proyects_now',array(session('student_id'))) }}">
-								MIS PROYECTOS
+								MIS PROYECTOS 
 							</a>
 						</li>
 						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Bienvenido(a): {{Auth::user()->estudiante->nombre ." ".Auth::user()->estudiante->apellido }}
+							<a class="nav-link" href="#">
+								Bienvenido(a): {{Auth::user()->estudiante->nombre}}
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesion </a>
-								<!--<a class="dropdown-item" href="contact-us2.html">istración del sitio</a> -->
+								<a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesion </a>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 									{{ csrf_field() }}
 								</form>
@@ -90,7 +89,7 @@
 					</a>
 					<ul class="dropdown">
 						<li>
-							<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesion</a>
+							<a href="{{ route('logout') }}"  data-target="#exampleModal">Cerrar Sesion</a>
 						</li>
 					</ul>
 				</li>
@@ -150,7 +149,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+			<button type="button" class="btn btn-primary"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
 		</div>
 	</div>
 </div>
@@ -211,7 +210,28 @@
 
 		</div>
 	</section>
-
+	<div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" style="margin-top: 60px;">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h5 class="modal-title text-center" id="exampleModalLabel">{{Auth::user()->estudiante->nombre ." ".Auth::user()->estudiante->apellido }}</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					¿Esta seguro de cerrar Sesion?
+				</div>
+				<div class="contenido text-center">
+					<i class="fas fa-question fa-3x"></i>
+				</div>
+				<div class="modal-body text-center">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar session</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<footer class="page-footer center-on-small-only  pt-0 footer-widget-container">
 		<div class="container pt-3 mb-3">
 			<div class="row">

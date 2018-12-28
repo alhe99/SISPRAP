@@ -141,15 +141,21 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
+          <div class="col-md-10 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="proyecto_name">Nombre del proyecto*</label>
               <input class="form-control" id="proyecto_name" type="text" name="proyecto_name" value="{{Auth::user()->estudiante->preinscripciones[0]->nombre}}" disabled >
 
             </div>
           </div>
+          <div class="col-md-2 wow animated fadeInRight" data-wow-delay=".1s">
+            <div class="form-group label-floating">
+              <label class="control-label" for="total_horas">Total de Horas*</label>
+              <input class="form-control" v-model="hrsRea" id="total_horas" maxlength="3" type="text" name="total_horas" >
+            </div>
+          </div>
         </div>
-        <div class="row">
+   {{--      <div class="row">
           <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
            <div class="form-group label-floating">
             <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
@@ -158,54 +164,56 @@
             </textarea>
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="row">
-        <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
-          <div class="form-group control-label">
-            <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
-            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
-          </div>
-        </div>
-        <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
-          <div class="form-group control-label">
-            <label class="control-label" for="fecha_fin">Fecha Finalización</label>
-            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_fin" disabled  name="fecha_fin" >
-          </div>
-        </div>
-        <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
-          <div class="form-group label-floating">
-            <label class="control-label" for="total_horas">Total de Horas*</label>
-            <input class="form-control" v-model="hrsRea" id="total_horas" maxlength="3" type="text" name="total_horas" >
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
-          <div class="form-group label-floating">
-            <label class="control-label" for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
-            <input class="form-control" v-model="nameSuper" id="name_supervisor" type="text" name="name_supervisor" >
-          </div>
-        </div>
-        <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".2s">
          <div class="form-group label-floating">
-          <label class="control-label" for="tel_supervisor">Teléfono del supervisor*</label>
-          <input class="form-control" v-model="telSuper" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
+          <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
+          <textarea class="form-control-sm col-md-12" rows="6" id="message" name="proyecto_acti" id="proyecto_acti" disabled required data-error="Write your message">
+            {{strip_tags(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
+          </textarea>
         </div>
       </div>
     </div>
-    <br>
-    <div class="row text-center">
-      <div class="col-md-3"></div>
-      <div class="col-md-3 col-sm-3 wow animated fadeInRight" data-wow-delay=".1s">
-        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="btn btn-round btn-block text-capitalize btn-lg font-weight-bold">Guardar Datos</button>
+    <div class="row">
+      <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <div class="form-group control-label">
+          <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
+          <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
+        </div>
       </div>
-      <div class="col-md-3 col-sm-3 wow animated fadeInRight" data-wow-delay=".1s">
-        <a  href="{{ url()->previous() }}" class="btn btn-danger btn-block text-capitalize text-white font-weight-bold">Cancelar</a>
+      <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <div class="form-group control-label">
+          <label class="control-label" for="fecha_fin">Fecha Finalización</label>
+          <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_fin" disabled  name="fecha_fin" >
+        </div>
       </div>
-      <div class="col-md-3"></div>
-    </div><br>
-  </form>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 wow animated fadeInRight" data-wow-delay=".1s">
+        <div class="form-group label-floating">
+          <label class="control-label" for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
+          <input class="form-control" v-model="nameSuper" id="name_supervisor" type="text" name="name_supervisor" >
+        </div>
+      </div>
+      <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
+       <div class="form-group label-floating">
+        <label class="control-label" for="tel_supervisor">Teléfono del supervisor*</label>
+        <input class="form-control" v-model="telSuper" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row text-center">
+    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+      <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
+    </div>
+    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+      <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+    </div>
+  </div><br>
+</form>
 </div>
 </div>
 </div>

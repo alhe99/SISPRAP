@@ -18,12 +18,17 @@
     <article class="single-blog-post col-md-12">
       <div class="featured-image"><br>
         {{ Form::open(['route' => 'public', 'method' => 'GET','class' => 'form-horizontal','role' => 'search','id' => 'form-search']) }}
-        <div class="form-group row">
-          <div class="col-md-10">
-            {{ Form::text('buscar', isset($data_search) ? $data_search : '', ['class' => 'form-control', 'placeholder' => 'Buscar Proyectos...']) }}
+        <div class="row">
+          <div class="col-md-10 wow animated fadeInRight">
+            <div class="form-group label-floating">
+              <label class="control-label" for="name_supervisor">Buscar Proyectos...</label>
+              {{ Form::text('buscar', isset($data_search) ? $data_search : '', ['class' => 'form-control']) }}
+            </div>
           </div>
-          <div class="col-md-2">
-            {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify"></i>', ['class' => 'animated4 btn btn-common btn-block','type'=>'submit','id' => 'btn-search']) !!}
+          <div class="col-md-2 wow animated fadeInRight">
+            <div class="form-group label-floating">
+              {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify"></i>', ['class' => 'animated4 btn btn-common btn-block','type'=>'submit','id' => 'btn-search']) !!}
+            </div>
           </div>
         </div>
         {{ Form::close() }}
@@ -54,7 +59,7 @@
         <p class="truncate">{!!substr($p->actividades,0,125)!!}</p>
       </div>
       <div class="meta-tags">
-        <span class="comments"><i class="mdi mdi-comment-outline"></i> {{substr($p->created_at,0,10)}}</span>
+        <span class="comments"><i class="mdi mdi-calendar-check"></i>Publicación: {{substr($p->created_at,0,10)}}</span>
         <a class="btn btn-round btn-fab" href="{{route('viewProject', array($p->proceso_id,$p->slug))}}"><i style="margin-top: 0% " class="material-icons mdi mdi-arrow-right"></i><div class="ripple-container"></div></a>
       </div>
     </article>

@@ -56,10 +56,9 @@
                         </div>
                         @else
                         <div class="col-md-6 text-center">
-                            <br><button style="cursor: pointer;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                            <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                 id="btnPreinscribir">Preinscribirme&nbsp;<i class="fas fa-plus-circle MisProyFon"></i></button>
                             </div>
-
                             @endif
                             <div class="col-md-6 text-center">
                                 <br><a href="#" rel="nofollow" class="animated4 btn btn-info">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
@@ -84,8 +83,8 @@
         },
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
-             const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-             swal({
+               const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+               swal({
                 title: 'Esta seguro de Preinscribirte a este proyecto?',
                 text: "Una vez hecho espera la respuesta del administrador!",
                 type: 'warning',
