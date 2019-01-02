@@ -19,7 +19,8 @@ class Carrera extends Model
         return $this->hasMany(Proyecto::class);
     }
 
-
+    //Trimestral
+    
     public function getCountStudentsByMinedTrimestral(Array $data)
     {
         return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($data){

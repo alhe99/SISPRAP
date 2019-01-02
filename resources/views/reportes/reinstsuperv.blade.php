@@ -30,16 +30,16 @@
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>SUPERVISIONES A INSTITUCIONES POR MUNICIPIO</ins></strong></p><br>
-             <p class="text-center" style="font-size:small;" ><strong>AÑO 2019</strong></p>
+            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME DE EMPRESAS AFILIADAS AL PROCESO DE SERVICIO SOCIAL SUPERVISADAS</ins></strong></p><br>
+            <p class="text-center" style="font-size:small;" ><strong>AÑO 2019</strong></p>
         </div>
     </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
                 <thead> 
                     <tr>
-                        <th>Nombre de institución / empresa</th>
-                        <th>Municipio / Departamento</th>
+                        <th>Nombre de empresa</th>
+                        <th>Fecha de supervisión</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,12 +63,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                    {{--  @foreach ($instituciones as $i)
-                        <tr>
-                            <th>{{$i->nombre}}</th>
-                            <th>{{$i->municipio->nombre}} {{$i->municipio->departamento->nombre}}</th>
-                        </tr>
-                    @endforeach  --}}
+                    
                 </tbody>
             </table>
             <h4>Total: {{$total}}</h4>

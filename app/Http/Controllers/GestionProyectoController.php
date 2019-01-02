@@ -15,6 +15,25 @@ use PDF;
 
 class GestionProyectoController extends Controller
 {
+    public $meses = array(
+        "ENERO", 
+        "FEBRERO",
+        "MARZO", 
+        "ABRIL", 
+        "MAYO", 
+        "JUNIO", 
+        "JULIO", 
+        "AGOSTO", 
+        "SEPTIEMBRE", 
+        "OCTUBRE", 
+        "NOVIEMBRE", 
+        "DICIEMBRE");
+    public $trimestres = array(
+        "123" => 'PRIMER TRIMESTRE',
+        "456" => 'SEGUNDO TRIMESTRE',
+        "789" => 'TERCER TRIMESTRE',
+        "101112" => 'CUARTO TRIMESTRE'
+    );
 
     public function initGestionProyecto(Request $request){
 
@@ -226,16 +245,30 @@ public function getInitialProcessReporte($proceso_id){
 
     $collection;
     $carrera = Carrera::with(['estudiantes'])->get();
-    $test = [10,11,12];
+    $test = [1,2,3];
+    $totalMined = 0;
+    $totalOtros = 0;
+    
 
     $data = [];
+    $data[0] = "CONSOLIDADO ".$this->trimestres[implode($test)];
     foreach ($carrera as $carre) {
-        $data[$carre->id] = $collection = new Collection(["Carrera" => $carre->nombre,
+        //Obteniendo el total de resultados becados y otros
+        $totalMined += $carre->getCountStudentsByMinedTrimestral($test);
+        $totalOtros += $carre->getCountStudentsByOtherBecaTrimestral($test);
+
+        $data[1] = array("totalMined" => $totalMined,"totalOtros"=>$totalOtros); 
+        $data[$carre->id+1] = $collection = new Collection(["Carrera" => $carre->nombre,
          "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
          "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
     }
 
-    return $data;
+
+    $pdf = PDF::loadView('reportes.iniprocesos', ['consolidado' => $data])->setOption('footer-center', 'Página [page] de [topage]');;
+    return $pdf->stream('Inicio Procesos.pdf');
+    /* return view('reportes.iniprocesos'); */
+   /*  return $data; */
+
 }
 
 public function generateConstancia($gp_id){

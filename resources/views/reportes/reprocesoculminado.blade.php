@@ -30,38 +30,43 @@
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>SUPERVISIONES A INSTITUCIONES POR MUNICIPIO</ins></strong></p><br>
-             <p class="text-center" style="font-size:small;" ><strong>AÑO 2019</strong></p>
+            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME TRIMESTRAL DE ALUMNOS QUE CULMINARON EL PROCESO SERVICIO SOCIAL</ins></strong></p><br>
+            <p class="text-center" style="font-size:small;" ><strong><ins>MESES: ENERO, FEBRERO, MARZO </ins></strong></p>
+
         </div>
     </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
-                <thead> 
+                <thead>
+                     <tr style="background-color:#ffbb98;">
+                        <td colspan="4"><strong>Carrera: </strong></td>
+                        <td colspan="4"><strong>Nivel Académico: </strong></td>
+                    </tr> 
                     <tr>
-                        <th>Nombre de institución / empresa</th>
-                        <th>Municipio / Departamento</th>
+                        <th>Nombre del Alumno</th>
+                        <th>Beca MINED</th>
+                         <th>Otra</th>
                     </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>Sub total: </td>
+                    <td>{{$total}}</td>
+                    <td>{{$total}}</td>
+                </tr>
+                <tr>
+                    <td>Total: </td>
+                    <td>{{$total}}</td>
                 </tr>
                     {{--  @foreach ($instituciones as $i)
                         <tr>
@@ -71,7 +76,7 @@
                     @endforeach  --}}
                 </tbody>
             </table>
-            <h4>Total: {{$total}}</h4>
+            
         </div>
     </div>
 </body>

@@ -6,45 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Test Pdf</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
-    
-    
+    <style>
+     .bg-header{
+         background-color:#F8EFB6
+     }
+     .font-normal{
+         font-weight: normal;
+     }
+    </style>
+
 </head>
-<body>
+<body style="background-color:white">
     <header>
         <div class="row text-center">
-        
-            <div class="col-md-6">
-                 <img class="text-center img-fluid " src="images/img_reportes/logoITCHA.png" alt="">
-                 
-                 <img class="text-center img-fluid " src="images/img_reportes/mined.jpg" alt="">
-                  
-                 <img class="text-center img-fluid " src="images/img_reportes/megatec.jpg" alt="">
-                  
-                 <img class="text-center img-fluid " src="images/img_reportes/logopequeño.png" alt="">
-
-            </div>    
+            <div class="col-md-8">
+                 <img class="img-fluid" width="450" src="{{asset('images/header_reportes.PNG')}}">
+            </div>
         </div>
-        
+
     </header>
     <div>
     <div class="row">
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME TRIMESTRAL DE ALUMNOS QUE INICIARON EL PROCESO DE SERVICIO SOCIAL</ins></strong></p><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>MESES: ENERO, FEBRERO, MARZO </ins></strong></p>
+            <p class="text-center font-weight-bold"><u>INFORME SERVICIO SOCIAL Y PRÁCTICA PROFESIONAL DE ENERO, FEBRERO Y MARZO DE 2018</u></p><br>
+            <p class="text-center font-weight-bold"><u>MESES: ENERO, FEBRERO, MARZO</u></strong></p>
         </div>
     </div>
         <div class="col-md-12">
-            <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
-                <thead>
-                    <tr style="background-color:#ffbb98;">
-                        <td class="text-center"></td>
-                        <td class="text-center"><strong>MES<strong></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                    </tr> 
-                    <tr style="background-color:#ffbb98;">
+            {{-- TABLA PARA MESES INDIVIDUALES --}}
+        {{--     <table class="col-md-12" border cellpadding="10">
+                <thead class="font-weight-bold text-center">
+                    <tr>
+                        <td colspan="4">MES</td>
+                    </tr>
+                    <tr>
                         <th>Carrera</th>
                         <th>Becados MINED</th>
                         <th>Otros</th>
@@ -56,10 +53,40 @@
                             @foreach ($inicioproceso[$i] as $item)
                                 <tr>
                                 <th>{{$item}}</th>
-                          
+
                                 </tr>
                             @endforeach
                         @endfor
+                </tbody>
+            </table> --}}
+            {{-- TABLA PARA CONSOLIDADO FINAL --}}
+            <table class="col-md-12" border cellpadding="5">
+                <thead class="font-weight-bold text-center bg-header">
+                    <tr>
+                        <td colspan="4">{{$consolidado[0]}}</td>
+                    </tr>
+                    <tr>
+                        <th>Carrera</th>
+                        <th>Becados <br> MINED</th>
+                        <th>Otros</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for ($i = 2; $i < count($consolidado); $i++)
+                        <tr>
+                            <th class="font-normal">{{$consolidado[$i]['Carrera']}}</th>
+                            <th class="text-center font-normal">{{$consolidado[$i]['BecadosMined']}}</th>
+                            <th class="text-center font-normal">{{$consolidado[$i]['Otros']}}</th>
+                            <th class="text-center font-normal">{{$consolidado[$i]['BecadosMined']+$consolidado[$i]['Otros']}}</th>
+                        </tr>
+                    @endfor
+                    <tr class="text-center bg-header">
+                        <th class="text-right">Total</th>
+                        <th>{{$consolidado[1]['totalMined']}}</th>
+                        <th>{{$consolidado[1]['totalOtros']}}</th>
+                        <th>{{$consolidado[1]['totalMined']+$consolidado[1]['totalOtros']}}</th>
+                    </tr>
                 </tbody>
             </table>
         </div>

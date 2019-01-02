@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Instituciones registradas</title>
+    <title>Test Pdf</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
     
 </head>
@@ -30,7 +30,7 @@
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-                <p class="text-center text-uppercase" style="font-size:small;" ><strong><ins>INFORME DE EMPRESAS AFILIADAS AL PROCESO DE {{$proceso[0]->nombre}}</ins></strong></p><br>
+            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME DE EMPRESAS AFILIADAS AL PROCESO DE SERVICIO SOCIAL</ins></strong></p><br>
              <p class="text-center" style="font-size:small;" ><strong>AÑO 2019</strong></p>
         </div>
     </div>
@@ -43,12 +43,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                 @foreach ($instituciones as $i)
-                        <tr>
-                        	<th>{{$loop->iteration}}</th>
-                            <th>{{$i->nombre}}</th>
-                        </tr>
-                @endforeach    
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                    
                 </tbody>
             </table>
             <h4>Total: {{$total}}</h4>
@@ -56,6 +71,3 @@
     </div>
 </body>
 </html>
-<script type="text/php">
-
-</script>

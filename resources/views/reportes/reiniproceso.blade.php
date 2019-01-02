@@ -7,6 +7,7 @@
     <title>Test Pdf</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
     
+    
 </head>
 <body>
     <header>
@@ -30,48 +31,47 @@
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>SUPERVISIONES A INSTITUCIONES POR MUNICIPIO</ins></strong></p><br>
-             <p class="text-center" style="font-size:small;" ><strong>AÑO 2019</strong></p>
+            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME TRIMESTRAL DE ALUMNOS QUE INICIARON EL PROCESO DE SERVICIO SOCIAL</ins></strong></p><br>
+            <p class="text-center" style="font-size:small;" ><strong><ins>MESES: ENERO, FEBRERO, MARZO </ins></strong></p>
         </div>
     </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
-                <thead> 
-                    <tr>
-                        <th>Nombre de institución / empresa</th>
-                        <th>Municipio / Departamento</th>
+                <thead>
+                    <tr style="background-color:#ffbb98;">
+                        <td class="text-center"></td>
+                        <td class="text-center"><strong>MES<strong></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr> 
+                    <tr style="background-color:#ffbb98;">
+                        <th>Carrera</th>
+                        <th>Becados MINED</th>
+                        <th>Otros</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                    {{--  @foreach ($instituciones as $i)
-                        <tr>
-                            <th>{{$i->nombre}}</th>
-                            <th>{{$i->municipio->nombre}} {{$i->municipio->departamento->nombre}}</th>
-                        </tr>
-                    @endforeach  --}}
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                     <tr style="background-color:#ffbb98;">
+                        <th><strong>Total</strong></th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                    </tr>
                 </tbody>
             </table>
-            <h4>Total: {{$total}}</h4>
         </div>
     </div>
 </body>
