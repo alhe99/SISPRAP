@@ -70,5 +70,9 @@ class Proyecto extends Model
         if($name)
             return $query->where('nombre','LIKE',"%$name%");
     }
+    public function scopeProceso($query,$proceso){
+        if($proceso)
+            return $query->where('proceso_id',$proceso);
+    }
 
 }

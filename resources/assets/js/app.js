@@ -1,14 +1,10 @@
 require('./bootstrap');
 window.Vue = require('vue');
-
 window.$ = window.jQuery = require('jquery');
+
 //Vue-Select para el manejo de datos en varias formas
 import vSelect from 'vue-select';
 Vue.component('v-select', vSelect);
-
-// import jquery from 'vue-jquery';
-// Vue.use(jquery);
-
 
 import ImgInputer from 'vue-img-inputer';
 import 'vue-img-inputer/dist/index.css';
@@ -20,7 +16,6 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 Vue.use(VueFormWizard);
 
 import Datetime from 'vue-datetime'
-// You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
 
 Vue.use(Datetime)

@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-md-12 col-lg-12 col-xl-12 wow animated fadeInUp" data-wow-delay=".3s">
     <article class="single-blog-post col-md-12">
-      <div class="featured-image"><br>
+      <div class="featured-image">
         {{ Form::open(['route' => 'public', 'method' => 'GET','class' => 'form-horizontal','role' => 'search','id' => 'form-search']) }}
         <div class="row">
           <div class="col-md-10 wow animated fadeInRight">

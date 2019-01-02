@@ -84,7 +84,7 @@ class GestionProyectoController extends Controller
 
                 $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
                  //DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
-                //DB::commit();
+                DB::commit();
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
             }
         } catch (Exception $e) {
@@ -199,16 +199,16 @@ public function getGestionProyectoByStudent($student_id){
     return view('public.gestionPro',compact("gestionp"));
         //return $gestionp;
 }
-public function closeProy($gp_id,$fecha_fin,$hsrFin,$obsFin){
+public function closeProy(Request $request){
 
-    $gp = GestionProyecto::findOrFail($gp_id);
-    $gp->fecha_fin = $fecha_fin;
-    $gp->horas_realizadas = $hsrFin;
-    $gp->observacion_final = $obsFin;
+    $gp = GestionProyecto::findOrFail($request->gestionId);
+    $gp->fecha_fin = $request->fechaFin;
+    $gp->horas_realizadas = $request->horasRea;
+    $gp->observacion_final = $request->obsFinal;
     $gp->estado = 'F';
     $gp->update();
 
-    if($hsrFin == $gp->horas_a_realizar){
+    if($request->horasFina == $gp->horas_a_realizar){
         $a = $gp->estudiante_id;
         $e = Estudiante::findOrFail($a);
         $e->no_proyectos = 0;

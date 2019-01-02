@@ -14794,15 +14794,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_vee_validate__ = __webpack_require__(76);
 __webpack_require__(21);
 window.Vue = __webpack_require__(46);
-
 window.$ = window.jQuery = __webpack_require__(6);
+
 //Vue-Select para el manejo de datos en varias formas
 
 Vue.component('v-select', __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a);
-
-// import jquery from 'vue-jquery';
-// Vue.use(jquery);
-
 
 
 
@@ -14814,7 +14810,6 @@ Vue.component('ImgInputer', __WEBPACK_IMPORTED_MODULE_1_vue_img_inputer___defaul
 Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_form_wizard___default.a);
 
 
-// You need a specific loader for CSS files
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_datetime___default.a);
@@ -14864,7 +14859,7 @@ Vue.component('pendientefin', __webpack_require__(163));
 Vue.component('culminados', __webpack_require__(168));
 Vue.component('configuracion', __webpack_require__(18));
 Vue.component('gestproy', __webpack_require__(173));
-Vue.component('constancias', __webpack_require__(178));
+Vue.component('constancias', __webpack_require__(176));
 
 var app = new Vue({
     el: '#app',
@@ -102367,7 +102362,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/**** CLASES PARA GENERAR EL SPINNER ****/\n.loading {\n  position: fixed;\n  z-index: 999;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  width: 50px;\n  height: 50px;\n}\n\n/* Transparent Overlay */\n.loading:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n\n/* :not(:required) hides these rules from IE9 and below */\n.loading:not(:required) {\n  /* hide \"loading...\" text */\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.loading:not(:required):after {\n  content: '';\n  display: block;\n  font-size: 10px;\n  width: 50px;\n  height: 50px;\n  margin-top: -0.5em;\n  border: 5px solid #533fd0;\n  border-radius: 100%;\n  border-bottom-color: transparent;\n  -webkit-animation: spinner 1s linear 0s infinite;\n  animation: spinner 1s linear 0s infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-moz-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-o-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n.button {\n  display: inline-block;\n  margin: 0.3em;\n  padding: 1.0em 1em;\n  overflow: hidden;\n  position: relative;\n  text-decoration: none;\n  text-transform: capitalize;\n  border-radius: 3px;\n  -webkit-transition: 0.3s;\n  -moz-transition: 0.3s;\n  -ms-transition: 0.3s;\n  -o-transition: 0.3s;\n  transition: 0.3s;\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\n  border: none;\n  font-size: 15px;\n  text-align: center;\n}\n.button:hover {\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\n  background-color: #4CAF50;\n  color: white;\n}\n.red {\n  background-color: #F44336;\n  color: white;\n}\n.blue {\n  background-color: #6200EC;\n  color: white;\n}\n.ripple {\n  position: absolute;\n  background: rgba(0,0,0,.25);\n  border-radius: 100%;\n  transform: scale(0.2);\n  opacity:0;\n  pointer-events: none;\n  -webkit-animation: ripple .75s ease-out;\n  -moz-animation: ripple .75s ease-out;\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n\n\n", ""]);
+exports.push([module.i, "\n.loading {\n  position: fixed;\n  z-index: 999;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  width: 50px;\n  height: 50px;\n}\n\n/* Transparent Overlay */\n.loading:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n\n/* :not(:required) hides these rules from IE9 and below */\n.loading:not(:required) {\n  /* hide \"loading...\" text */\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.loading:not(:required):after {\n  content: '';\n  display: block;\n  font-size: 10px;\n  width: 50px;\n  height: 50px;\n  margin-top: -0.5em;\n  border: 5px solid #533fd0;\n  border-radius: 100%;\n  border-bottom-color: transparent;\n  -webkit-animation: spinner 1s linear 0s infinite;\n  animation: spinner 1s linear 0s infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-moz-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-o-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n\n", ""]);
 
 // exports
 
@@ -102378,6 +102373,91 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102554,6 +102634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       estudiante: 0,
       proyecto_selectd: 0,
       carrera_selected: 0,
+      carrera_proy_ind: 0,
       contentProy: true,
       pagination: {
         total: 0,
@@ -102563,11 +102644,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         from: 0,
         to: 0
       },
+      paginationP: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
       offset: 3,
+      offsetP: 3,
       modal: 0,
+      modalP: 0,
       tituloModal: "",
       tipoAccion: 0,
-      estudiante_id: 0
+      estudiante_id: 0,
+      arrayEstudianteP: [],
+      buscarP: "",
+      loader: false,
+      rutaIMG: ''
     };
   },
 
@@ -102602,11 +102697,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.contentProy = true;
         }
       }
+    },
+    carrera_proy_ind: function carrera_proy_ind() {
+      this.getEstudianteByCarrer(1);
+    },
+    estudiante: function estudiante() {
+      if (this.estudiante.codCarnet.length > 7) this.rutaIMG = "http://portal.itcha.edu.sv/fotos/alumnos/" + this.estudiante.foto_name;else this.rutaIMG = "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" + this.estudiante.foto_name;
     }
   },
   computed: {
     isActived: function isActived() {
       return this.pagination.current_page;
+    },
+    isActivedP: function isActivedP() {
+      return this.paginationP.current_page;
     },
     pagesNumber: function pagesNumber() {
       if (!this.pagination.to) {
@@ -102619,6 +102723,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var to = from + this.offset * 2;
       if (to >= this.pagination.last_page) {
         to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberP: function pagesNumberP() {
+      if (!this.paginationP.to) {
+        return [];
+      }
+      var from = this.paginationP.current_page - this.offsetP;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offsetP * 2;
+      if (to >= this.paginationP.last_page) {
+        to = this.paginationP.last_page;
       }
       var pagesArray = [];
       while (from <= to) {
@@ -102646,6 +102769,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+    getEstudianteByCarrer: function getEstudianteByCarrer(page) {
+      var me = this;
+      var url = "stundentByCarrer?page=" + page + "&carrera_id=" + me.carrera_proy_ind.value + "&proceso_id=" + me.proceso + "&buscar=" + me.buscarP;
+      me.loader = true;
+      axios.get(url).then(function (response) {
+        me.loader = false;
+        var respuesta = response.data;
+        me.arrayEstudianteP = respuesta.estudiantes.data;
+        me.paginationP = respuesta.pagination;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
     getCarreras: function getCarreras() {
       var me = this;
       var url = "carreras/GetCarreras";
@@ -102668,6 +102804,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         console.log(error);
       });
+    },
+    openModalProy: function openModalProy() {
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modalP = 1;
+      this.getCarreras();
+    },
+    cerrarModalP: function cerrarModalP() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalP = 0;
+      this.carrera_proy_ind = 0;
+      this.arrayEstudianteP = [];
     },
     getMoreInfo: function getMoreInfo(id) {
       var me = this;
@@ -102692,6 +102841,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       el.classList.remove("abrirModal");
       this.modal = 0;
       this.estudiante = "";
+      this.rutaIMG = '';
     },
     cambiarPagina: function cambiarPagina(page, buscar) {
       var me = this;
@@ -102701,6 +102851,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (me.arrayPreregister.length > 0) {
 
         me.getPreregister(this.proyecto_selectd.value, page, "");
+      }
+    },
+    cambiarPaginaP: function cambiarPaginaP(page, buscar) {
+      var me = this;
+      //Actualiza la pagina actual
+      me.paginationP.current_page = page;
+      //Envia la pericion para visualizar los datos
+      if (me.arrayEstudianteP.length > 0) {
+
+        me.getEstudianteByCarrer(page, "");
       }
     },
     aprobarProy: function aprobarProy(estudiante_id, proyecto_id) {
@@ -102722,10 +102882,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          var url = "/acceptPreregister/" + estudiante_id + "/" + proyecto_id;
+          var url = route('preregister', { "estudent_id": estudiante_id, "project_id": proyecto_id });
           axios.get(url).then(function (response) {
             me.getPreregister(me.proyecto_selectd.value, 1, "");
             swal("Aprobado!", "Has Probado la solicitud para este proyecto", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            console.log(error);
+            me.loadSpinner = 0;
+          });
+        } else if (result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    asignarProyecto: function asignarProyecto(dataId) {
+      var _this2 = this;
+
+      swal({
+        title: "Dar accesso a que el estudiante(a) ingrese un proyecto externo al sistema",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar!",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "btn update",
+        cancelButtonClass: "btn edit",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          me.loadSpinner = 1;
+          var dataP = 0;
+          var url = route('preregister', { "estudent_id": dataId, "project_id": dataP });
+          axios.get(url).then(function (response) {
+            me.getEstudianteByCarrer(1);
+            swal("Aprobado!", "El Estudiante puede iniciar con su proceso", "success");
             me.loadSpinner = 0;
           }).catch(function (error) {
             console.log(error);
@@ -102734,7 +102926,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     rechazarProy: function rechazarProy(estudiante_id, proyecto_id) {
-      var _this2 = this;
+      var _this3 = this;
 
       swal({
         title: "Seguro de Rechazar este proyecto?",
@@ -102750,7 +102942,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this2;
+          var me = _this3;
           me.loadSpinner = 1;
           var url = "/destroyPreregister/" + estudiante_id + "/" + proyecto_id;
           axios.get(url).then(function (response) {
@@ -102884,9 +103076,430 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _vm._m(0)
+                  _c(
+                    "div",
+                    { staticClass: "col-md-1 col-sm-1 col-lg-1 text-right" },
+                    [
+                      _c("div", { staticClass: "btn-group pull-lg-right" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "dropdown-menu dropdown-menu-right",
+                            attrs: { "aria-labelledby": "mw2" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "dropdown-item d-block menu",
+                                staticStyle: { cursor: "pointer" },
+                                attrs: { type: "button" },
+                                on: { click: _vm.openModalProy }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "mdi mdi-bookmark-plus"
+                                }),
+                                _vm._v(" Asignación de proyecto")
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]
+                  )
                 ])
               ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  class: { mostrar: _vm.modalP },
+                  attrs: {
+                    role: "dialog",
+                    "aria-labelledby": "exampleModalLabel",
+                    "aria-hidden": "true"
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c("h4", { staticClass: "modal-title text-white" }, [
+                          _vm._v("Información del estudiante")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "close",
+                            attrs: {
+                              type: "button",
+                              "data-dismiss": "modal",
+                              "aria-label": "Close"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.cerrarModalP()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "text-white",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("×")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c("fieldset", [
+                          _c("legend", { staticClass: "text-center" }, [
+                            _vm._v("Complete los datos requeridos")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "panel panel-default" }, [
+                            _c("div", { staticClass: "panel-body" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-12" },
+                                  [
+                                    _c(
+                                      "label",
+                                      { staticClass: "font-weight-bold" },
+                                      [_vm._v("Seleccione Carrera*")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("v-select", {
+                                      attrs: {
+                                        options: _vm.arrayCarreras,
+                                        placeholder: "Seleccione una carrera"
+                                      },
+                                      model: {
+                                        value: _vm.carrera_proy_ind,
+                                        callback: function($$v) {
+                                          _vm.carrera_proy_ind = $$v
+                                        },
+                                        expression: "carrera_proy_ind"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-12" },
+                                  [
+                                    _c("br"),
+                                    _c("pulse-loader", {
+                                      staticClass: "text-center",
+                                      attrs: { loading: _vm.loader }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm.arrayEstudianteP.length != 0
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "col-md-10 col-sm-12 col-lg-6"
+                                      },
+                                      [
+                                        _c("mdc-textfield", {
+                                          staticClass: "col-md-12",
+                                          staticStyle: {
+                                            "margin-left": "-10px"
+                                          },
+                                          attrs: {
+                                            type: "text",
+                                            label: "Nombre del estudiante"
+                                          },
+                                          on: {
+                                            keyup: function($event) {
+                                              _vm.getEstudianteByCarrer(
+                                                1,
+                                                _vm.buscarP
+                                              )
+                                            }
+                                          },
+                                          model: {
+                                            value: _vm.buscarP,
+                                            callback: function($$v) {
+                                              _vm.buscarP = $$v
+                                            },
+                                            expression: "buscarP"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.arrayEstudianteP.length != 0
+                                  ? _c("div", { staticClass: "col-md-12" }, [
+                                      _c("br"),
+                                      _c(
+                                        "table",
+                                        {
+                                          staticClass:
+                                            "table table-striped table-bordered table-mc-light-blue"
+                                        },
+                                        [
+                                          _vm._m(1),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tbody",
+                                            _vm._l(
+                                              _vm.arrayEstudianteP,
+                                              function(item) {
+                                                return _c(
+                                                  "tr",
+                                                  { key: item.id },
+                                                  [
+                                                    _c("td", {
+                                                      domProps: {
+                                                        textContent: _vm._s(
+                                                          item.nombre +
+                                                            " " +
+                                                            item.apellido
+                                                        )
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _vm._v("Pendiente...")
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "button secondary",
+                                                            attrs: {
+                                                              type: "button",
+                                                              "data-toggle":
+                                                                "tooltip",
+                                                              title:
+                                                                "Dar Acceso a que el alumno llene el perfil con un proyecto fuera del sistema"
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.asignarProyecto(
+                                                                  item.id
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "mdi mdi-check"
+                                                            }),
+                                                            _vm._v(
+                                                              " Proyecto externo"
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              }
+                                            )
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("nav", [
+                                        _c(
+                                          "ul",
+                                          { staticClass: "pagination" },
+                                          [
+                                            _vm.paginationP.current_page > 1
+                                              ? _c(
+                                                  "li",
+                                                  { staticClass: "page-item" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "page-link font-weight-bold",
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            _vm.cambiarPaginaP(
+                                                              _vm.paginationP
+                                                                .current_page -
+                                                                1,
+                                                              _vm.buscarP
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v("Ant")]
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _vm._l(_vm.pagesNumberP, function(
+                                              page
+                                            ) {
+                                              return _c(
+                                                "li",
+                                                {
+                                                  key: page,
+                                                  staticClass: "page-item",
+                                                  class: [
+                                                    page == _vm.isActivedP
+                                                      ? "active"
+                                                      : ""
+                                                  ]
+                                                },
+                                                [
+                                                  _c("a", {
+                                                    staticClass: "page-link",
+                                                    attrs: { href: "#" },
+                                                    domProps: {
+                                                      textContent: _vm._s(page)
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        $event.preventDefault()
+                                                        _vm.cambiarPaginaP(
+                                                          page,
+                                                          _vm.buscarP
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            }),
+                                            _vm.paginationP.current_page <
+                                            _vm.paginationP.last_page
+                                              ? _c(
+                                                  "li",
+                                                  { staticClass: "page-item" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "page-link font-weight-bold",
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            _vm.cambiarPaginaP(
+                                                              _vm.paginationP
+                                                                .current_page +
+                                                                1,
+                                                              _vm.buscarP
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v("Sig")]
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _c("small", {
+                                              directives: [
+                                                {
+                                                  name: "show",
+                                                  rawName: "v-show",
+                                                  value:
+                                                    _vm.arrayEstudianteP
+                                                      .length != 0,
+                                                  expression:
+                                                    "arrayEstudianteP.length != 0"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "text-muted pagination-count",
+                                              domProps: {
+                                                textContent: _vm._s(
+                                                  "(Mostrando " +
+                                                    _vm.arrayEstudianteP
+                                                      .length +
+                                                    " de " +
+                                                    _vm.paginationP.total +
+                                                    " registros)"
+                                                )
+                                              }
+                                            })
+                                          ],
+                                          2
+                                        )
+                                      ])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.arrayEstudianteP.length == 0 &&
+                                _vm.carrera_proy_ind != 0
+                                  ? _c("div", { staticClass: "col-md-12" }, [
+                                      _vm._m(2)
+                                    ])
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-footer" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.cerrarModalP()
+                                  }
+                                }
+                              },
+                              [_vm._v("Cerrar")]
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-12" }, [
                 _c("div", { staticClass: "row" }, [
@@ -102999,7 +103612,7 @@ var render = function() {
                           "table table-striped table-bordered table-mc-light-blue"
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -103337,25 +103950,45 @@ var render = function() {
                                           ])
                                         ]),
                                         _vm._v(" "),
-                                        _c("div", { staticClass: "col-md-4" }, [
-                                          _vm.estudiante.genero == "M"
-                                            ? _c("img", {
-                                                staticClass:
-                                                  "text-center img-fluid",
-                                                attrs: {
-                                                  src: "images/avatarM.png",
-                                                  alt: ""
-                                                }
-                                              })
-                                            : _c("img", {
-                                                staticClass:
-                                                  "text-center img-fluid",
-                                                attrs: {
-                                                  src: "images/avatarF.png",
-                                                  alt: ""
-                                                }
-                                              })
-                                        ])
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-md-4" },
+                                          [
+                                            _vm.estudiante.foto_name == ""
+                                              ? [
+                                                  _vm.estudiante.genero == "M"
+                                                    ? _c("img", {
+                                                        staticClass:
+                                                          "text-center img-fluid",
+                                                        attrs: {
+                                                          src:
+                                                            "images/avatarM.png",
+                                                          alt: ""
+                                                        }
+                                                      })
+                                                    : _c("img", {
+                                                        staticClass:
+                                                          "text-center img-fluid",
+                                                        attrs: {
+                                                          src:
+                                                            "images/avatarF.png",
+                                                          alt: ""
+                                                        }
+                                                      })
+                                                ]
+                                              : [
+                                                  _c("img", {
+                                                    staticClass:
+                                                      "text-center img-fluid",
+                                                    attrs: {
+                                                      src: _vm.rutaIMG,
+                                                      alt: ""
+                                                    }
+                                                  })
+                                                ]
+                                          ],
+                                          2
+                                        )
                                       ])
                                     ])
                                   ]
@@ -103399,46 +104032,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-1 col-sm-1 col-lg-1 text-right" }, [
-      _c("div", { staticClass: "btn-group pull-lg-right" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn bmd-btn-icon dropdown-toggle",
-            attrs: {
-              type: "button",
-              id: "mw2",
-              "data-toggle": "dropdown",
-              "aria-haspopup": "true",
-              "aria-expanded": "false",
-              title: "Más opciones"
-            }
-          },
-          [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
-        ),
+    return _c(
+      "button",
+      {
+        staticClass: "btn bmd-btn-icon dropdown-toggle",
+        attrs: {
+          type: "button",
+          id: "mw2",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+          title: "Más opciones"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre Estudiante")]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu dropdown-menu-right",
-            attrs: { "aria-labelledby": "mw2" }
-          },
-          [
-            _c(
-              "button",
-              {
-                staticClass: "dropdown-item d-block menu",
-                attrs: { type: "button" }
-              },
-              [
-                _c("i", { staticClass: "mdi mdi-plus-box" }),
-                _vm._v(" Asignación de proyecto")
-              ]
-            )
-          ]
-        )
+        _c("th", [_vm._v("Año Academico")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+      [
+        _c("h4", { staticClass: "font-weight-bold text-center" }, [
+          _vm._v("No hay registros")
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -110119,19 +110755,15 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(174)
-}
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(176)
+var __vue_script__ = __webpack_require__(174)
 /* template */
-var __vue_template__ = __webpack_require__(177)
+var __vue_template__ = __webpack_require__(175)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -110167,50 +110799,16 @@ module.exports = Component.exports
 
 /***/ }),
 /* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(175);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("60eee639", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35a8612c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GestionProyectos.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35a8612c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GestionProyectos.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 175 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 176 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -110550,15 +111148,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       showANotherCard: false,
       modal: 0,
       arrayDocumentos: [],
-      documento_selected: 0,
       obsDoc: "",
       idGP: 0,
       modalEnd: 0,
       textoBtn: "",
-      maxDatetime: new Date().toISOString().substring(0, 10),
-      fechaFin: '',
       obsFinal: '',
-      hrsFinal: 0
+      hrsFinal: 0,
+      rutaIMG: '',
+      valuesDoc: [],
+      arrayDocEntreg: []
     };
   },
 
@@ -110575,6 +111173,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.textoBtn = "Cerrar Proyecto";
       } else if (this.gpObj.documentos_entrega.length < 4) {
         this.textoBtn = "Cancelar Proyecto";
+      }
+      if (this.gpObj.estudiante.codCarnet.length > 7) this.rutaIMG = "http://portal.itcha.edu.sv/fotos/alumnos/" + this.gpObj.estudiante.foto_name;else this.rutaIMG = "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" + this.gpObj.estudiante.foto_name;
+      //Obteniendo en array individual los coumentos entregados de un estudiante
+      if (this.gpObj.documentos_entrega.length > 0) {
+        for (var i = 0; i < this.gpObj.documentos_entrega.length; i++) {
+          this.arrayDocEntreg[i] = this.gpObj.documentos_entrega[i].pivot.documento_id;
+        }
       }
     }
   },
@@ -110646,7 +111251,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          var url = "closeProyect/" + idGp + "/" + me.fechaFin + "/" + me.hrsFinal + "/" + me.obsFinal;
+          var fechaFin = $("#fechaFin").val().trim();
+          var url = route('close_proyect', { "gestionId": idGp, "fechaFin": fechaFin, "horasRea": me.hrsFinal, "obsFinal": me.obsFinal });
           axios.get(url).then(function (response) {
             me.getMoreInfoGp(me.idGP);
             swal("Hecho!", "Proyecto Finalizado Correctamente", "success");
@@ -110674,13 +111280,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       el.classList.remove("abrirModal");
       this.modal = 0;
       this.arrayDocumentos = [];
-      this.documento_selected = 0;
+      this.valuesDoc = [];
       this.obsDoc = "";
+    },
+    getBack: function getBack() {
+      this.showANotherCard = false;
+      this.arrayDocEntreg = [];
     },
     abrirModalEnd: function abrirModalEnd() {
       var el = document.body;
       el.classList.add("abrirModal");
       this.modalEnd = 1;
+
+      $("#fechaFin").datepicker({
+        locale: 'es-es',
+        maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+        format: 'yyyy-mm-dd'
+
+      });
     },
     cerrarModalEnd: function cerrarModalEnd() {
       var el = document.body;
@@ -110689,6 +111306,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.fechaFin = '';
       this.obsFinal = '';
       this.hrsFinal = 0;
+      //$(".gj-icon").click();
     },
     getGestionProy: function getGestionProy(carrera_id, proceso_id, page, buscar) {
       var me = this;
@@ -110743,7 +111361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.idGP = id;
       me.showANotherCard = true;
     },
-    saveDoc: function saveDoc(gp_id, doc_id) {
+    saveDoc: function saveDoc() {
       var _this2 = this;
 
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
@@ -110763,7 +111381,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this2;
           me.loadSpinner = 1;
-          var url = "/saveDoc/" + gp_id + "/" + doc_id + "/" + me.obsDoc;
+          var url = route('savedoc', { "gestionId": me.gpObj.id, "objDoc": me.valuesDoc, "observacion": me.obsDoc });
           axios.get(url).then(function (response) {
             me.getMoreInfoGp(me.idGP);
             swal("Hecho!", "Documento Añadido Correctamente", "success");
@@ -110780,14 +111398,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         } else if (result.dismiss === swal.DismissReason.cancel) {}
       });
     },
-    mounted: function mounted() {
-      this.maxDatetime;
-    }
+    mounted: function mounted() {}
   }
 });
 
 /***/ }),
-/* 177 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -111269,48 +111885,83 @@ var render = function() {
                         _c("br"),
                         _vm._v(" "),
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-4 text-center" }, [
-                            _c("img", {
-                              staticClass: "img-fluid rounded-circle",
-                              staticStyle: {
-                                width: "50%",
-                                display: "block",
-                                "margin-left": "auto",
-                                "margin-right": "auto"
-                              },
-                              attrs: { src: "images/avatarM.png", alt: "" }
-                            }),
-                            _vm._v(" "),
-                            _c("br"),
-                            _c("h5", [
-                              _c("strong", [_vm._v("Num Carnet: ")]),
-                              _vm._v(
-                                " " + _vm._s(_vm.gpObj.estudiante.codCarnet)
-                              )
-                            ]),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-md-12" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "button info",
-                                    attrs: {
-                                      type: "button",
-                                      disabled: _vm.gpObj.estado == "F"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.abrirModalEnd()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(_vm.textoBtn))]
+                          _c(
+                            "div",
+                            { staticClass: "col-md-4 text-center" },
+                            [
+                              _vm.gpObj.estudiante.foto_name == ""
+                                ? [
+                                    _vm.gpObj.estudiante.genero == "M"
+                                      ? _c("img", {
+                                          staticClass: "text-center img-fluid",
+                                          attrs: {
+                                            src: "images/avatarM.png",
+                                            alt: ""
+                                          }
+                                        })
+                                      : _c("img", {
+                                          staticClass: "text-center img-fluid",
+                                          attrs: {
+                                            src: "images/avatarF.png",
+                                            alt: ""
+                                          }
+                                        })
+                                  ]
+                                : [
+                                    _c("img", {
+                                      staticClass: "text-center img-fluid",
+                                      staticStyle: { width: "50%" },
+                                      attrs: { src: _vm.rutaIMG }
+                                    })
+                                  ],
+                              _vm._v(" "),
+                              _c("br"),
+                              _c("br"),
+                              _c("h5", [
+                                _c("strong", [_vm._v("Num Carnet: ")]),
+                                _vm._v(
+                                  " " + _vm._s(_vm.gpObj.estudiante.codCarnet)
                                 )
-                              ])
-                            ])
-                          ]),
+                              ]),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.gpObj.estado != "F",
+                                      expression: "gpObj.estado != 'F'"
+                                    }
+                                  ],
+                                  staticClass: "row"
+                                },
+                                [
+                                  _c("div", { staticClass: "col-md-12" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "button secondary",
+                                        attrs: {
+                                          type: "button",
+                                          disabled: _vm.gpObj.estado == "F"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.abrirModalEnd()
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(_vm.textoBtn))]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ],
+                            2
+                          ),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-8" }, [
                             _c("div", { staticClass: "panel panel-default" }, [
@@ -111350,250 +112001,65 @@ var render = function() {
                                         ]),
                                         _c("br"),
                                         _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-dark fixed-right text-center btn-block text-capitalize",
-                                            attrs: {
-                                              type: "button",
-                                              "data-toggle": "collapse",
-                                              "data-target": "#collapseExample",
-                                              "aria-expanded": "false",
-                                              "aria-controls": "collapseExample"
-                                            }
-                                          },
-                                          [_vm._v("Ver Toda Info")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "collapse",
-                                            staticStyle: {
-                                              "margin-top": "40px"
-                                            },
-                                            attrs: { id: "collapseExample" }
-                                          },
-                                          [
-                                            _c("label", [
-                                              _c("strong", [
-                                                _vm._v("Fecha de Nacimiento: ")
-                                              ]),
-                                              _vm._v(
-                                                " " +
-                                                  _vm._s(
-                                                    _vm.gpObj.estudiante
-                                                      .fechaNac
-                                                  )
-                                              )
-                                            ]),
-                                            _c("br"),
-                                            _vm._v(" "),
-                                            _vm.gpObj.estudiante.genero == "M"
-                                              ? _c("label", [
-                                                  _c("strong", [
-                                                    _vm._v("Género: ")
-                                                  ]),
-                                                  _vm._v(" Masculino")
-                                                ])
-                                              : _vm._e(),
-                                            _c("br"),
-                                            _vm._v(" "),
-                                            _vm.gpObj.estudiante.genero == "F"
-                                              ? _c("label", [
-                                                  _c("strong", [
-                                                    _vm._v("Género: ")
-                                                  ]),
-                                                  _vm._v(" Femenino")
-                                                ])
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            _c("label", [
-                                              _c("strong", [
-                                                _vm._v("Telefono: ")
-                                              ]),
-                                              _vm._v(
-                                                " " +
-                                                  _vm._s(
-                                                    _vm.gpObj.estudiante
-                                                      .telefono
-                                                  )
-                                              )
-                                            ]),
-                                            _c("br"),
-                                            _vm._v(" "),
-                                            _vm.gpObj.estudiante.tipo_beca_id ==
-                                            "1"
-                                              ? _c("label", [
-                                                  _c("strong", [
-                                                    _vm._v("Becado: ")
-                                                  ]),
-                                                  _vm._v(" MINED")
-                                                ])
-                                              : _vm._e(),
-                                            _c("br"),
-                                            _vm._v(" "),
-                                            _vm.gpObj.estudiante.tipo_beca_id ==
-                                            "2"
-                                              ? _c("label", [
-                                                  _c("strong", [
-                                                    _vm._v("Becado: ")
-                                                  ]),
-                                                  _vm._v(" Otro")
-                                                ])
-                                              : _vm._e(),
-                                            _c("br")
-                                          ]
-                                        )
-                                      ])
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("br"),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("div", { staticClass: "panel panel-default" }, [
-                              _c("div", { staticClass: "panel-body" }, [
-                                _c("fieldset", { staticClass: "col-md-12" }, [
-                                  _c("legend", { staticClass: "text-center" }, [
-                                    _vm._v("Datos del proyecto en realización")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "panel panel-default" },
-                                    [
-                                      _c("div", { staticClass: "panel-body" }, [
                                         _c("label", [
-                                          _c("strong", [_vm._v("Nombre: ")]),
+                                          _c("strong", [
+                                            _vm._v("Fecha de Nacimiento: ")
+                                          ]),
                                           _vm._v(
                                             " " +
-                                              _vm._s(_vm.gpObj.proyecto.nombre)
+                                              _vm._s(
+                                                _vm.gpObj.estudiante.fechaNac
+                                              )
                                           )
                                         ]),
                                         _c("br"),
                                         _vm._v(" "),
-                                        _c("div", { staticClass: "row" }, [
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-md-6 " },
-                                            [
-                                              _c("label", [
-                                                _c("strong", [
-                                                  _vm._v("Institución:")
-                                                ]),
-                                                _vm._v(
-                                                  " " +
-                                                    _vm._s(
-                                                      _vm.gpObj.proyecto
-                                                        .institucion.nombre
-                                                    )
-                                                )
-                                              ])
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "row" }, [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "col-md-6",
-                                              staticStyle: {
-                                                "margin-top": "2px"
-                                              }
-                                            },
-                                            [
-                                              _c("label", [
-                                                _c("strong", [
-                                                  _vm._v("Fecha de Inicio:")
-                                                ]),
-                                                _vm._v(
-                                                  " " +
-                                                    _vm._s(
-                                                      _vm.gpObj.fecha_inicio
-                                                    )
-                                                )
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-md-6" },
-                                            [
-                                              [
-                                                _c("h5", [
-                                                  _c("strong", [
-                                                    _vm._v(
-                                                      "Estado del Proceso: "
-                                                    )
-                                                  ]),
-                                                  _vm.gpObj.estado == "I"
-                                                    ? _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "badge h1 badge-pill badge-primary"
-                                                        },
-                                                        [_vm._v("Iniciado")]
-                                                      )
-                                                    : _vm.gpObj.estado == "P"
-                                                      ? _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "badge badge-pill badge-warning"
-                                                          },
-                                                          [_vm._v("En proceso")]
-                                                        )
-                                                      : _vm.gpObj.estado == "F"
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "badge badge-pill badge-info"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Finalizado"
-                                                              )
-                                                            ]
-                                                          )
-                                                        : _vm._e()
-                                                ])
-                                              ]
-                                            ],
-                                            2
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _vm.gpObj.fecha_fin == null
+                                        _vm.gpObj.estudiante.genero == "M"
                                           ? _c("label", [
                                               _c("strong", [
-                                                _vm._v("Fecha Finalización:")
+                                                _vm._v("Género: ")
                                               ]),
-                                              _vm._v(" Pendiente...")
+                                              _vm._v(" Masculino")
+                                            ])
+                                          : _vm._e(),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _vm.gpObj.estudiante.genero == "F"
+                                          ? _c("label", [
+                                              _c("strong", [
+                                                _vm._v("Género: ")
+                                              ]),
+                                              _vm._v(" Femenino")
                                             ])
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _vm.gpObj.fecha_fin != null
+                                        _c("label", [
+                                          _c("strong", [_vm._v("Telefono: ")]),
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(
+                                                _vm.gpObj.estudiante.telefono
+                                              )
+                                          )
+                                        ]),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _vm.gpObj.estudiante.tipo_beca_id == "1"
                                           ? _c("label", [
                                               _c("strong", [
-                                                _vm._v("Fecha Finalización:")
+                                                _vm._v("Becado: ")
                                               ]),
-                                              _vm._v(
-                                                " " +
-                                                  _vm._s(_vm.gpObj.fecha_fin)
-                                              )
+                                              _vm._v(" MINED")
+                                            ])
+                                          : _vm._e(),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _vm.gpObj.estudiante.tipo_beca_id == "2"
+                                          ? _c("label", [
+                                              _c("strong", [
+                                                _vm._v("Becado: ")
+                                              ]),
+                                              _vm._v(" Otro")
                                             ])
                                           : _vm._e(),
                                         _c("br")
@@ -111601,6 +112067,222 @@ var render = function() {
                                     ]
                                   )
                                 ])
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "panel panel-default" },
+                                  [
+                                    _c("div", { staticClass: "panel-body" }, [
+                                      _c(
+                                        "fieldset",
+                                        { staticClass: "col-md-12" },
+                                        [
+                                          _c(
+                                            "legend",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                "Datos del proyecto en realización"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "panel panel-default"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "panel-body" },
+                                                [
+                                                  _c("label", [
+                                                    _c("strong", [
+                                                      _vm._v("Nombre: ")
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          _vm.gpObj.proyecto
+                                                            .nombre
+                                                        )
+                                                    )
+                                                  ]),
+                                                  _c("br"),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-6 "
+                                                        },
+                                                        [
+                                                          _c("label", [
+                                                            _c("strong", [
+                                                              _vm._v(
+                                                                "Institución:"
+                                                              )
+                                                            ]),
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm.gpObj
+                                                                    .proyecto
+                                                                    .institucion
+                                                                    .nombre
+                                                                )
+                                                            )
+                                                          ])
+                                                        ]
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-6",
+                                                          staticStyle: {
+                                                            "margin-top": "2px"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("label", [
+                                                            _c("strong", [
+                                                              _vm._v(
+                                                                "Fecha de Inicio:"
+                                                              )
+                                                            ]),
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm.gpObj
+                                                                    .fecha_inicio
+                                                                )
+                                                            )
+                                                          ])
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-6"
+                                                        },
+                                                        [
+                                                          [
+                                                            _c("h5", [
+                                                              _c("strong", [
+                                                                _vm._v(
+                                                                  "Estado del Proceso: "
+                                                                )
+                                                              ]),
+                                                              _vm.gpObj
+                                                                .estado == "I"
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge h1 badge-pill badge-primary"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Iniciado"
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _vm.gpObj
+                                                                    .estado ==
+                                                                  "P"
+                                                                  ? _c(
+                                                                      "span",
+                                                                      {
+                                                                        staticClass:
+                                                                          "badge badge-pill badge-warning"
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "En proceso"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : _vm.gpObj
+                                                                      .estado ==
+                                                                    "F"
+                                                                    ? _c(
+                                                                        "span",
+                                                                        {
+                                                                          staticClass:
+                                                                            "badge badge-pill badge-info"
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            "Finalizado"
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _vm._e()
+                                                            ])
+                                                          ]
+                                                        ],
+                                                        2
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm.gpObj.fecha_fin == null
+                                                    ? _c("label", [
+                                                        _c("strong", [
+                                                          _vm._v(
+                                                            "Fecha Finalización:"
+                                                          )
+                                                        ]),
+                                                        _vm._v(" Pendiente...")
+                                                      ])
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  _vm.gpObj.fecha_fin != null
+                                                    ? _c("label", [
+                                                        _c("strong", [
+                                                          _vm._v(
+                                                            "Fecha Finalización:"
+                                                          )
+                                                        ]),
+                                                        _vm._v(
+                                                          " " +
+                                                            _vm._s(
+                                                              _vm.gpObj
+                                                                .fecha_fin
+                                                            )
+                                                        )
+                                                      ])
+                                                    : _vm._e(),
+                                                  _c("br")
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
                               ])
                             ])
                           ])
@@ -111621,190 +112303,173 @@ var render = function() {
                                     { staticClass: "panel panel-default" },
                                     [
                                       _c("div", { staticClass: "panel-body" }, [
-                                        _c("div", { staticClass: "row" }, [
-                                          _c(
-                                            "div",
-                                            { staticClass: "table-responsive" },
-                                            [
-                                              _c(
-                                                "table",
-                                                {
-                                                  staticClass:
-                                                    "table table-bordered",
-                                                  staticStyle: {
-                                                    "margin-left": "5px"
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "tr",
-                                                    [
-                                                      _vm._l(
-                                                        _vm.gpObj
-                                                          .documentos_entrega,
-                                                        function(item) {
-                                                          return _c(
-                                                            "td",
-                                                            { key: item.id },
-                                                            [
-                                                              item.pivot
-                                                                .estado == 1
-                                                                ? _c(
-                                                                    "h6",
-                                                                    {
-                                                                      staticClass:
-                                                                        "text-center"
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "Entregado"
-                                                                      ),
-                                                                      _c("i", {
-                                                                        staticClass:
-                                                                          "fas fa-check fa-sm"
-                                                                      })
-                                                                    ]
-                                                                  )
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              item.pivot
-                                                                .estado == 0
-                                                                ? _c(
-                                                                    "h6",
-                                                                    {
-                                                                      staticClass:
-                                                                        "text-center"
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "Pendiente"
-                                                                      ),
-                                                                      _c("i", {
-                                                                        staticClass:
-                                                                          "fas fa-check fa-sm"
-                                                                      })
-                                                                    ]
-                                                                  )
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "p",
-                                                                {
+                                        _c(
+                                          "table",
+                                          {
+                                            staticClass: "table table-bordered",
+                                            staticStyle: {
+                                              "margin-left": "5px"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "tr",
+                                              [
+                                                _vm._l(
+                                                  _vm.gpObj.documentos_entrega,
+                                                  function(item) {
+                                                    return _c(
+                                                      "td",
+                                                      { key: item.id },
+                                                      [
+                                                        item.pivot.estado == 1
+                                                          ? _c(
+                                                              "h6",
+                                                              {
+                                                                staticClass:
+                                                                  "text-center"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Entregado"
+                                                                ),
+                                                                _c("i", {
                                                                   staticClass:
-                                                                    "text-center"
-                                                                },
-                                                                [
-                                                                  _c("em", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        item.nombre
-                                                                      )
-                                                                    )
-                                                                  ])
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
+                                                                    "mdi mdi-check"
+                                                                })
+                                                              ]
+                                                            )
+                                                          : _vm._e(),
+                                                        _vm._v(" "),
+                                                        item.pivot.estado == 0
+                                                          ? _c(
+                                                              "h6",
+                                                              {
+                                                                staticClass:
+                                                                  "text-center"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Pendiente"
+                                                                ),
+                                                                _c("i", {
                                                                   staticClass:
-                                                                    "panel-body",
-                                                                  staticStyle: {
-                                                                    "background-color":
-                                                                      "#fff"
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "p",
-                                                                    {
-                                                                      staticClass:
-                                                                        "text-center"
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          item
-                                                                            .pivot
-                                                                            .observacion
-                                                                        )
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "col-md-12"
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "p",
-                                                                    {
-                                                                      staticClass:
-                                                                        "text-center"
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "small",
-                                                                        [
-                                                                          _vm._v(
-                                                                            _vm._s(
-                                                                              item
-                                                                                .pivot
-                                                                                .created_at
-                                                                            )
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        }
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c("td", [
+                                                                    "fas fa-check fa-sm"
+                                                                })
+                                                              ]
+                                                            )
+                                                          : _vm._e(),
+                                                        _vm._v(" "),
                                                         _c(
-                                                          "button",
+                                                          "p",
                                                           {
                                                             staticClass:
-                                                              "button blue",
-                                                            attrs: {
-                                                              type: "button",
-                                                              disabled:
-                                                                _vm.gpObj
-                                                                  .documentos_entrega
-                                                                  .length == 4
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                _vm.abrirModalDoc()
-                                                              }
+                                                              "text-center"
+                                                          },
+                                                          [
+                                                            _c("em", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.nombre
+                                                                )
+                                                              )
+                                                            ])
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "panel-body",
+                                                            staticStyle: {
+                                                              "background-color":
+                                                                "#fff"
                                                             }
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              "Administrar Documentos"
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "text-center"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    item.pivot
+                                                                      .observacion
+                                                                  )
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "text-center"
+                                                              },
+                                                              [
+                                                                _c("small", [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      item.pivot
+                                                                        .created_at
+                                                                    )
+                                                                  )
+                                                                ])
+                                                              ]
                                                             )
                                                           ]
                                                         )
-                                                      ])
-                                                    ],
-                                                    2
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                _vm._v(" "),
+                                                _c("td", [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "button blue",
+                                                      attrs: {
+                                                        type: "button",
+                                                        disabled:
+                                                          _vm.gpObj
+                                                            .documentos_entrega
+                                                            .length == 4
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.abrirModalDoc()
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Administrar Documentos"
+                                                      )
+                                                    ]
                                                   )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ])
+                                                ])
+                                              ],
+                                              2
+                                            )
+                                          ]
+                                        )
                                       ])
                                     ]
                                   )
@@ -111868,31 +112533,57 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("div", { staticClass: "modal-body" }, [
                                     _c("div", { staticClass: "row" }, [
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-md-12" },
-                                        [
-                                          _c("label", { attrs: { for: "" } }, [
-                                            _vm._v("Seleccione un documento")
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("v-select", {
-                                            attrs: {
-                                              options: _vm.arrayDocumentos,
-                                              placeholder:
-                                                "Seleccione que tipo le ha sido entregado"
-                                            },
-                                            model: {
-                                              value: _vm.documento_selected,
-                                              callback: function($$v) {
-                                                _vm.documento_selected = $$v
-                                              },
-                                              expression: "documento_selected"
-                                            }
+                                      _c("div", { staticClass: "col-md-12" }, [
+                                        _c("label", { attrs: { for: "" } }, [
+                                          _vm._v("Seleccione un documento")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "row" },
+                                          _vm._l(_vm.arrayDocumentos, function(
+                                            item,
+                                            index
+                                          ) {
+                                            return item.value !=
+                                              _vm.arrayDocEntreg[index]
+                                              ? _c(
+                                                  "div",
+                                                  {
+                                                    key: item.id,
+                                                    staticClass: "col-md-3"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "checkbox",
+                                                      {
+                                                        attrs: {
+                                                          value: item.value
+                                                        },
+                                                        model: {
+                                                          value: _vm.valuesDoc,
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.valuesDoc = $$v
+                                                          },
+                                                          expression:
+                                                            "valuesDoc"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(item.label)
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              : _vm._e()
                                           })
-                                        ],
-                                        1
-                                      ),
+                                        )
+                                      ]),
                                       _c("br"),
                                       _vm._v(" "),
                                       _c("div", { staticClass: "col-md-12" }, [
@@ -111951,14 +112642,11 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "button info",
+                                            staticClass: "button secondary",
                                             attrs: { type: "button" },
                                             on: {
                                               click: function($event) {
-                                                _vm.saveDoc(
-                                                  _vm.idGP,
-                                                  _vm.documento_selected.value
-                                                )
+                                                _vm.saveDoc()
                                               }
                                             }
                                           },
@@ -112027,35 +112715,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("div", { staticClass: "modal-body" }, [
                                     _c("div", { staticClass: "row" }, [
-                                      _c("div", { staticClass: "col-md-12" }, [
-                                        _c("label", { attrs: { for: "obs" } }, [
-                                          _vm._v(
-                                            "Seleccione Fecha de Finalización de Proyecto: "
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.fechaFin,
-                                              expression: "fechaFin"
-                                            }
-                                          ],
-                                          staticClass: "form-control",
-                                          attrs: { type: "date" },
-                                          domProps: { value: _vm.fechaFin },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.fechaFin = $event.target.value
-                                            }
-                                          }
-                                        })
-                                      ]),
+                                      _vm._m(1),
                                       _c("br"),
                                       _vm._v(" "),
                                       _c("div", { staticClass: "col-md-12" }, [
@@ -112183,7 +112843,7 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      _vm.showANotherCard = false
+                      _vm.getBack()
                     }
                   }
                 },
@@ -112219,6 +112879,21 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("label", { attrs: { for: "obs" } }, [
+        _vm._v("Seleccione Fecha de Finalización de Proyecto: ")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { placeholder: "aaaa-mm-dd", id: "fechaFin", name: "fechaFin" }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -112231,19 +112906,19 @@ if (false) {
 }
 
 /***/ }),
-/* 178 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(179)
+  __webpack_require__(177)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(181)
+var __vue_script__ = __webpack_require__(179)
 /* template */
-var __vue_template__ = __webpack_require__(182)
+var __vue_template__ = __webpack_require__(180)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -112282,13 +112957,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 179 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(180);
+var content = __webpack_require__(178);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -112308,7 +112983,7 @@ if(false) {
 }
 
 /***/ }),
-/* 180 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -112322,7 +112997,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 181 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112618,7 +113293,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 182 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

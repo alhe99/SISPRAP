@@ -18,7 +18,7 @@ class CreateDocumentosEntregadosTable extends Migration
             $table->integer('gestion_proyecto_id')->unsigned();
             $table->integer('documento_id')->unsigned();
             $table->text('estado');
-            $table->text('observacion');
+            $table->text('observacion')->nullable(true);
             $table->timestamps();
         });
     }

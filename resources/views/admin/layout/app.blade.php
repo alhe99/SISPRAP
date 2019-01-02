@@ -18,7 +18,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/table.css" rel="stylesheet">
     <link href="css/radioBtn.css" rel="stylesheet">
-    <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">f
+    <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">
+    <link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Id for Channel Notification -->
     <meta name="userId" content="0">
@@ -48,15 +49,15 @@
                                     <img src="images/logoITCHAL.png" height="50" alt="homepage" class="light-logo" />
                                 </b>
                                 <!-- Logo text --><span>
-                                 <!-- dark Logo text -->
-                                 <img src="images/ITCHA.png" height="25" alt="homepage" class="dark-logo" />
-                                 <!-- Light Logo text -->
-                                 <img src="images/ITCHA.png" height="25" class="light-logo" alt="homepage" /></span> </a>
-                             </div>
-                             <!-- ============================================================== -->
-                             <!-- End Logo -->
-                             <!-- ============================================================== -->
-                             <div class="navbar-collapse">
+                                   <!-- dark Logo text -->
+                                   <img src="images/ITCHA.png" height="25" alt="homepage" class="dark-logo" />
+                                   <!-- Light Logo text -->
+                                   <img src="images/ITCHA.png" height="25" class="light-logo" alt="homepage" /></span> </a>
+                               </div>
+                               <!-- ============================================================== -->
+                               <!-- End Logo -->
+                               <!-- ============================================================== -->
+                               <div class="navbar-collapse">
                                 <!-- ============================================================== -->
                                 <!-- toggle and nav items -->
                                 <!-- ============================================================== -->
@@ -141,36 +142,32 @@
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box text-center">
-                                           @if (Auth::user()->rol_id == 1)
-                                           <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
-                                           @elseif(Auth::user()->rol_id == 2)
-                                           <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
-                                           @endif
-                                           <div class="u-text text-center ">
-                                             <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
-                                         </div>
-                                     </li>
-                                     <li role="separator" class="divider"></li>
+                                         @if (Auth::user()->rol_id == 1)
+                                         <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
+                                         @elseif(Auth::user()->rol_id == 2)
+                                         <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
+                                         @endif
+                                         <div class="u-text text-center ">
+                                           <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
+                                       </div>
+                                   </li>
+                                   <li role="separator" class="divider"></li>
                                    {{-- <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
                                    <li><a href="#"><i class="ti-settings"></i> Configuraciones de Cuenta</a></li>
                                    <li role="separator" class="divider"></li>
-                                   <li><a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
+                                   <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                                    </i> Cerrar sesion</a>
-                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-<div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                               </li>
+                           </ul>
+                       </div>
+                   </li>
+               </ul>
+           </div>
+       </nav>
+   </header>
+   <div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document" style="margin-top: 60px;">
         <div class="modal-content">
             <div class="modal-header">
@@ -188,6 +185,10 @@
             <div class="modal-body text-center">
                 <button type="button" class="button red" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar session</button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+
             </div>
         </div>
     </div>
@@ -295,6 +296,8 @@
 </div>
 <script src="js/app.js"></script>
 <script src="js/admintemplate.js"></script>
+<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
+<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
 </body>
 
 </html>
