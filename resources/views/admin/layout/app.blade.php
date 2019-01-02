@@ -18,7 +18,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/table.css" rel="stylesheet">
     <link href="css/radioBtn.css" rel="stylesheet">
-    <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">f
+    <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Id for Channel Notification -->
     <meta name="userId" content="0">
@@ -217,7 +217,8 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <div class="row page-titles">
+        <br>
+   {{--      <div class="row page-titles">
             <div class="col-md-5 col-8 align-self-center">
                 <h3 class="text-themecolor">Home</h3>
                 <ol class="breadcrumb">
@@ -232,7 +233,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <!-- Column -->

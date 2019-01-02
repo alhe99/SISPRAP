@@ -102367,7 +102367,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/**** CLASES PARA GENERAR EL SPINNER ****/\n.loading {\n  position: fixed;\n  z-index: 999;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  width: 50px;\n  height: 50px;\n}\n\n/* Transparent Overlay */\n.loading:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n\n/* :not(:required) hides these rules from IE9 and below */\n.loading:not(:required) {\n  /* hide \"loading...\" text */\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.loading:not(:required):after {\n  content: '';\n  display: block;\n  font-size: 10px;\n  width: 50px;\n  height: 50px;\n  margin-top: -0.5em;\n  border: 5px solid #533fd0;\n  border-radius: 100%;\n  border-bottom-color: transparent;\n  -webkit-animation: spinner 1s linear 0s infinite;\n  animation: spinner 1s linear 0s infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-moz-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-o-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n.button {\n  display: inline-block;\n  margin: 0.3em;\n  padding: 1.0em 1em;\n  overflow: hidden;\n  position: relative;\n  text-decoration: none;\n  text-transform: capitalize;\n  border-radius: 3px;\n  -webkit-transition: 0.3s;\n  -moz-transition: 0.3s;\n  -ms-transition: 0.3s;\n  -o-transition: 0.3s;\n  transition: 0.3s;\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\n  border: none;\n  font-size: 15px;\n  text-align: center;\n}\n.button:hover {\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\n  background-color: #4CAF50;\n  color: white;\n}\n.red {\n  background-color: #F44336;\n  color: white;\n}\n.blue {\n  background-color: #6200EC;\n  color: white;\n}\n.ripple {\n  position: absolute;\n  background: rgba(0,0,0,.25);\n  border-radius: 100%;\n  transform: scale(0.2);\n  opacity:0;\n  pointer-events: none;\n  -webkit-animation: ripple .75s ease-out;\n  -moz-animation: ripple .75s ease-out;\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/**** CLASES PARA GENERAR EL SPINNER ****/\n.loading {\n  position: fixed;\n  z-index: 999;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  width: 50px;\n  height: 50px;\n}\n\n/* Transparent Overlay */\n.loading:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n\n/* :not(:required) hides these rules from IE9 and below */\n.loading:not(:required) {\n  /* hide \"loading...\" text */\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.loading:not(:required):after {\n  content: '';\n  display: block;\n  font-size: 10px;\n  width: 50px;\n  height: 50px;\n  margin-top: -0.5em;\n  border: 5px solid #533fd0;\n  border-radius: 100%;\n  border-bottom-color: transparent;\n  -webkit-animation: spinner 1s linear 0s infinite;\n  animation: spinner 1s linear 0s infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-moz-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@-o-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n    -moz-transform: rotate(360deg);\n    -ms-transform: rotate(360deg);\n    -o-transform: rotate(360deg);\n    transform: rotate(360deg);\n}\n}\n.button {\n  display: inline-block;\n  margin: 0.3em;\n  padding: 1.0em 1em;\n  overflow: hidden;\n  position: relative;\n  text-decoration: none;\n  text-transform: capitalize;\n  border-radius: 3px;\n  -webkit-transition: 0.3s;\n  -moz-transition: 0.3s;\n  -ms-transition: 0.3s;\n  -o-transition: 0.3s;\n  transition: 0.3s;\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\n  border: none;\n  font-size: 15px;\n  text-align: center;\n}\n.button:hover {\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\n  background-color: #4CAF50;\n  color: white;\n}\n.red {\n  background-color: #F44336;\n  color: white;\n}\n.blue {\n  background-color: #6200EC;\n  color: white;\n}\n.ripple {\n  position: absolute;\n  background: rgba(0,0,0,.25);\n  border-radius: 100%;\n  transform: scale(0.2);\n  opacity:0;\n  pointer-events: none;\n  -webkit-animation: ripple .75s ease-out;\n  -moz-animation: ripple .75s ease-out;\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\n    opacity:1;\n}\nto {\n    transform: scale(2);\n    opacity: 0;\n}\n}\n\n\n", ""]);
 
 // exports
 
@@ -102378,6 +102378,16 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102868,25 +102878,31 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-11" }, [
+            _vm.proceso == 1
+              ? _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Proyectos de Servicio Social")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.proceso == 2
+              ? _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Proyectos de Práctica Profesional")
+                ])
+              : _vm._e()
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _vm.proceso != 0
       ? _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-11" }, [
-                    _vm.proceso == 1
-                      ? _c("h1", [_vm._v("Proyectos de Servicio Social")])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.proceso == 2
-                      ? _c("h1", [_vm._v("Proyectos de Práctica Profesional")])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ])
-              ]),
+              _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-12" }, [
                 _c("div", { staticClass: "row" }, [
@@ -103052,7 +103068,10 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._v("Aprobar")]
+                                  [
+                                    _c("i", { staticClass: "mdi mdi-check" }),
+                                    _vm._v(" Aprobar")
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -103073,7 +103092,10 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._v("Rechazar")]
+                                  [
+                                    _c("i", { staticClass: "mdi mdi-close" }),
+                                    _vm._v(" Rechazar")
+                                  ]
                                 )
                               ])
                             ])
@@ -103399,44 +103421,50 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-1 col-sm-1 col-lg-1 text-right" }, [
-      _c("div", { staticClass: "btn-group pull-lg-right" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn bmd-btn-icon dropdown-toggle",
-            attrs: {
-              type: "button",
-              id: "mw2",
-              "data-toggle": "dropdown",
-              "aria-haspopup": "true",
-              "aria-expanded": "false",
-              title: "Más opciones"
-            }
-          },
-          [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
-        ),
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-11" }),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu dropdown-menu-right",
-            attrs: { "aria-labelledby": "mw2" }
-          },
-          [
+        _c("div", { staticClass: "col-md-1 col-sm-1 col-lg-1 text-right" }, [
+          _c("div", { staticClass: "btn-group pull-lg-right" }, [
             _c(
               "button",
               {
-                staticClass: "dropdown-item d-block menu",
-                attrs: { type: "button" }
+                staticClass: "btn bmd-btn-icon dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "mw2",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false",
+                  title: "Más opciones"
+                }
+              },
+              [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu dropdown-menu-right",
+                attrs: { "aria-labelledby": "mw2" }
               },
               [
-                _c("i", { staticClass: "mdi mdi-plus-box" }),
-                _vm._v(" Asignación de proyecto")
+                _c(
+                  "button",
+                  {
+                    staticClass: "dropdown-item d-block menu",
+                    attrs: { type: "button" }
+                  },
+                  [
+                    _c("i", { staticClass: "mdi mdi-plus-box" }),
+                    _vm._v(" Asignación de proyecto")
+                  ]
+                )
               ]
             )
-          ]
-        )
+          ])
+        ])
       ])
     ])
   },
@@ -105069,7 +105097,10 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._v("Dar Acceso")]
+                                  [
+                                    _c("i", { staticClass: "mdi mdi-share" }),
+                                    _vm._v(" Dar Acceso")
+                                  ]
                                 )
                               ])
                             ])
