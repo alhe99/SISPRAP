@@ -56,7 +56,6 @@
         "vue-truncate-filter": "^1.1.7",
         "vue2-dropzone": "^3.5.2",
         "vue2-editor": "^2.6.6",
-        "vuejs-datepicker": "^1.5.3",
         "weekstart": "^1.0.0"
     },
     "require": {

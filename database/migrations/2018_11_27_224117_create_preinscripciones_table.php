@@ -16,7 +16,7 @@ class CreatePreinscripcionesTable extends Migration
         Schema::create('preinscripciones_proyectos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('estudiante_id')->unsigned();
-            $table->integer('proyecto_id')->unsigned();
+            $table->integer('proyecto_id')->unsigned()->nullable(true);
             $table->char('estado',1)->default("P"); //P = prinscrito
             $table->timestamps();
         });

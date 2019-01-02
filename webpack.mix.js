@@ -27,7 +27,6 @@ mix.styles([
         "resources/assets/PublicTemplate/js/sweetalert2.all.min.js",
         "resources/assets/AdminTemplate/js/vue-mdc-adapter.umd.min.js",
 
-
     ], 'public/js/admintemplate.js')
 
 .js(['resources/assets/js/app.js'], 'public/js/app.js');

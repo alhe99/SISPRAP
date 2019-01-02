@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estudiante;
 use App\Jobs\sendNotificationToAdmin;
 use App\Notifications\NotifyAcceptProjectToStudent;
 use App\Notifications\NotifyPreRegisterProject;
@@ -31,27 +32,10 @@ class ProyectoController extends Controller
         $buscar = $request->buscar;
         $proceso = $request->proceso;
 
-        if ($buscar == '') {
-
-            $proyecto = Proyecto::distinct('nombre')->with(['institucion', 'tipoProceso','carre_proy'])
-            ->whereHas('tipoProceso', function ($query) use ($proceso) {
-                $query->where('proceso_id', $proceso);
-            })->where('proyectos.estado', '1')->orderBy('proyectos.id', 'desc')->paginate(10);
-
-        } else {
-
-            $proyecto = Proyecto::distinct('nombre')->with(['institucion', 'tipoProceso','carre_proy'])
-            ->whereHas('tipoProceso', function ($query) use ($proceso) {
-                $query->where('proceso_id', $proceso);
-            })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->where('proyectos.estado', '1')
-            ->orderBy('proyectos.id', 'desc')->paginate(10);
-
-            //
-
-        }
-
-
-       // return $proyecto;
+        $proyecto = Proyecto::distinct('nombre')->with(['institucion', 'tipoProceso','carre_proy'])->whereHas('tipoProceso', function ($query) use ($proceso) {
+            $query->where('proceso_id', $proceso);
+        })->nombre($buscar)->where('proyectos.estado', '1')
+        ->orderBy('proyectos.id', 'desc')->paginate(10);
 
         return [
             'pagination' => [
@@ -169,10 +153,7 @@ class ProyectoController extends Controller
     public function GetProyectos($id)
     {
         $proceso = $id;
-        $proyecto = Proyecto::select('id', 'nombre')->whereHas('tipoProceso', function ($query) use ($proceso) {
-            $query->where('proceso_id', $proceso);
-        })->where('proyectos.estado', '1')->orderBy('proyectos.id', 'desc')->get();
-
+        $proyecto = Proyecto::select('id', 'nombre')->proceso($proceso)->where('proyectos.estado', '1')->orderBy('proyectos.id', 'desc')->get();
         $data = [];
         foreach ($proyecto as $key => $value) {
             $data[$key] = [
@@ -185,132 +166,110 @@ class ProyectoController extends Controller
     }
     public function desactivar(Request $request)
     {
-        if (!$request->ajax()) {
-            return redirect('/');
-        }
-
-        $proyecto = Proyecto::findOrFail($request->id);
-        $proyecto->estado = '0';
-        $proyecto->save();
-    }
-    public function activar(Request $request)
-    {
-        if (!$request->ajax()) {
-            return redirect('/');
-        }
-
-        $proyecto = Proyecto::findOrFail($request->id);
-        $proyecto->estado = '1';
-        $proyecto->save();
-    }
-    public function getProyDes(Request $request)
-    {
+        if (!$request->ajax())
+         return redirect('/');
+     $proyecto = Proyecto::findOrFail($request->id);
+     $proyecto->estado = '0';
+     $proyecto->save();
+ }
+ public function activar(Request $request)
+ {
+    if (!$request->ajax())
+      return redirect('/');
+  $proyecto = Proyecto::findOrFail($request->id);
+  $proyecto->estado = '1';
+  $proyecto->save();
+}
+public function getProyDes(Request $request)
+{
         // if (!$request->ajax()) return redirect('/');
-        $buscar = $request->buscar;
-        $proceso = $request->proceso;
-        if ($buscar == '') {
+    $buscar = $request->buscar;
+    $proceso = $request->proceso;
 
-            $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
-                $query->where('proceso_id', $proceso);
-            })->where('proyectos.estado', '=', '0')->orderBy('proyectos.id', 'desc')->paginate(5);
+    $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
+        $query->where('proceso_id', $proceso);
+    })->where('proyectos.estado', '=', '0')->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
 
-        } else {
+    return [
+        'pagination' => [
+            'total' => $proyecto->total(),
+            'current_page' => $proyecto->currentPage(),
+            'per_page' => $proyecto->perPage(),
+            'last_page' => $proyecto->lastPage(),
+            'from' => $proyecto->firstItem(),
+            'to' => $proyecto->lastItem(),
+        ],
+        'proyecto' => $proyecto,
+    ];
 
-            $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
-                $query->where('proceso_id', $proceso);
-            })->where('proyectos.nombre', 'like', '%' . $buscar . '%')->where('proyectos.estado', '=', '0')->orderBy('proyectos.id', 'desc')->paginate(5);
-        }
+}
+public function obtenerProyecto(Request $request)
+{
 
-        return [
-            'pagination' => [
-                'total' => $proyecto->total(),
-                'current_page' => $proyecto->currentPage(),
-                'per_page' => $proyecto->perPage(),
-                'last_page' => $proyecto->lastPage(),
-                'from' => $proyecto->firstItem(),
-                'to' => $proyecto->lastItem(),
-            ],
-            'proyecto' => $proyecto,
-        ];
-
+    $proy = Proyecto::findOrFail($request->id);
+    $proyecto = Proyecto::where("nombre", $proy->nombre)->select("actividades", "id")->get();
+    $carreActvidad = Proyecto::where("nombre", $proy->nombre)->with(["carre_proy"])->select("id")->get();
+    for ($i = 0; $i < count($proyecto); $i++) {
+        $proyecto[$i]->setAttribute("Carrera", $carreActvidad[$i]["carre_proy"][0]["nombre"]);
     }
-    public function obtenerProyecto(Request $request)
-    {
-
-        $proy = Proyecto::findOrFail($request->id);
-
-        $proyecto = Proyecto::where("nombre", $proy->nombre)->select("actividades", "id")->get();
-
-        $carreActvidad = Proyecto::where("nombre", $proy->nombre)->with(["carre_proy"])->select("id")->get();
-
-        for ($i = 0; $i < count($proyecto); $i++) {
-            $proyecto[$i]->setAttribute("Carrera", $carreActvidad[$i]["carre_proy"][0]["nombre"]);
-        }
-
-        return $proyecto;
-    }
+    return $proyecto;
+}
 
 //Funcion que obtiene los proyectos deacuerdo ala carerra del alumno logeado y verifica si ya se preisncribio a ese proyecto no lo muestra
-    public function getProjectsByCarrer(Request $request)
-    {
-        $carre_id = $request->estudent_carrer;
-        $tp = $request->estudent_process;
-        $pre_register = Auth::user()->estudiante->preinscripciones;
-        $buscar = $request->buscar;
+public function getProjectsByCarrer(Request $request)
+{
+    $carre_id = $request->estudent_carrer;
+    $tp = $request->estudent_process;
+    $pre_register = Auth::user()->estudiante->preinscripciones;
+    $buscar = $request->buscar;
 
-        if ($tp == 1) {
+    if ($tp == 1) {
 
-            if(collect($pre_register)->isNotEmpty()){
-
-                $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
-                    $query->where('proceso_id', $tp);
-                })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
-
-                for ($i=0; $i < count($pre_register) ; $i++) {
-                 $proyectos = $proyectos->except([$pre_register[$i]->id]);
-             }
-
-         }else{
+        if(collect($pre_register)->isNotEmpty()){
 
             $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                 $query->where('proceso_id', $tp);
             })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
 
-        }
-
-
-    } else if ($tp == 2) {
-
-        if(collect($pre_register)->isNotEmpty()){
-
-            $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
-                $query->where('carrera_id', $carre_id);
-            })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
-
             for ($i=0; $i < count($pre_register) ; $i++) {
+             $proyectos = $proyectos->except([$pre_register[$i]->id]);
+         }
 
-                $proyectos = $proyectos->except([$pre_register[$i]->id]);
+     }else{
 
-            }
-
-        }else{
-
-            $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
-                $query->where('carrera_id', $carre_id);
-            })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
-
-        }
+        $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
+            $query->where('proceso_id', $tp);
+        })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
 
     }
 
 
-    $projects_ids = $proyectos->pluck('id');
+} else if ($tp == 2) {
 
-    $result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(9);
+    if(collect($pre_register)->isNotEmpty()){
 
+        $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
+            $query->where('carrera_id', $carre_id);
+        })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
 
+        for ($i=0; $i < count($pre_register) ; $i++) {
 
-    return $result_paginate;
+            $proyectos = $proyectos->except([$pre_register[$i]->id]);
+
+        }
+
+    }else{
+
+        $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
+            $query->where('carrera_id', $carre_id);
+        })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+
+    }
+
+}
+$projects_ids = $proyectos->pluck('id');
+$result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(9);
+return $result_paginate;
 
 }
 
@@ -349,7 +308,6 @@ public function getProjectsByProcess(Request $request)
 
 public function getProjectBySlug($process, $slug)
 {
-
     if ($process == 1) {
 
         $proyecto = Proyecto::with(["tipoProceso", "institucion.sectorInstitucion"])->where('proceso_id', $process)->where('slug',$slug)->firstOrFail();
@@ -357,11 +315,8 @@ public function getProjectBySlug($process, $slug)
     } else if ($process == 2) {
 
         $proyecto = Proyecto::with(["carre_proy", "tipoProceso", "institucion.sectorInstitucion"])->where('proceso_id', $process)->where('slug',$slug)->firstOrFail();
-
     }
-
     return view('public.viewProject', compact("proyecto"));
-        //return $proyecto;
 }
 
 public function preRegistrationProject($estudent_id, $project_id)
@@ -373,7 +328,6 @@ public function preRegistrationProject($estudent_id, $project_id)
         DB::beginTransaction();
         if (!$proyect->preRegistration()->attach($estudent_id)) {
 
-                //$count_pre = $proyect->preRegistration()->whereDate('created_at', $fechaActual)->count();
             $count_pre = $proyect->preRegistration()->count();
 
             $arrayData = [
@@ -442,32 +396,43 @@ public function rechazPreregistration($estudent_id,$project_id){
     DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->
     where('proyecto_id',$project_id)->update(array('estado' => 'R'));
 }
-public function aceptarPreregistration($estudent_id,$project_id){
+public function aceptarPreregistration(Request $request){
+   $query;
+   if($request->project_id == 0){
+     $proyect = Proyecto::find(0);
+     $proyect->preRegistration()->attach($request->estudent_id,array('estado' => 'A','tipo_proyecto' => 'E'));
 
-    if(DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->
-     where('proyecto_id',$project_id)->update(array('estado' => 'A'))){
+     $estudiante = Estudiante::findOrFail($request->estudent_id);
+    if ($estudiante->proceso[0]->pago_arancel == 0) {
+          $arrayData = [
+            'msj' =>  "Se te ha asignado un proyecto,el siguiente paso es que apertures el expediente de tu proceso en recepción",
+            'fecha' => now()->toDateTimeString(),
+        ];
+        User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+      }
 
-        DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->where('estado','P')->delete();
-}
+   }
+   else{
+        $query =  DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->estudent_id)->where('proyecto_id',$request->project_id)->update(array('estado' => 'A'));
 
-$p = Proyecto::findOrFail($project_id);
+        if($query){
+            DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->estudent_id)->where('estado','P')->delete();
+        }
 
-$arrayData = [
-    'msj' =>  "Tu solictud al proyecto de ".$p->nombre." ha sido procesada, el siguiente paso es que apertures el expediente de tu proceso en recepción",
-    'fecha' => now()->toDateTimeString(),
-];
-
-User::FindOrFail($estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+        $p = Proyecto::findOrFail($request->project_id);
+        $arrayData = [
+            'msj' =>  "Tu solictud al proyecto de ".$p->nombre." ha sido procesada, el siguiente paso es que apertures el expediente de tu proceso en recepción",
+            'fecha' => now()->toDateTimeString(),
+        ];
+        User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+    }
 
 }
 public function provideAccessToPerfil($estudent_id,$project_id){
 
     DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->
     where('proyecto_id',$project_id)->update(array('estado' => 'F'));
-
     $p = Proyecto::findOrFail($project_id);
-
-
     $arrayData = [
         'msj' =>  "Tu solictud al proyecto de ".$p->nombre."<a class='btn btn-link' href='route{{showPerfilProy}}'> puedes completar el perfil del proyecto ahora</a>",
         'fecha' => now()->toDateTimeString(),
@@ -478,13 +443,11 @@ public function provideAccessToPerfil($estudent_id,$project_id){
         //Enviar Notificacion Aqui
 }
 public function ifProjectExist($nombre){
-
     if(Proyecto::where('nombre',$nombre)->where('proceso_id',1)->first()){
         return "true";
     }
     else{
         return "false";
     }
-
 }
 }

@@ -108,7 +108,7 @@
                                 showConfirmButton: true,
                                 width: '350px',
                             }).then(function(result){
-                               //window.location.href = route('myPreregister',[studen_id,process_id]);
+                                window.location.href = route('myPreregister',[studen_id,process_id]);
                                 //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                             })
 

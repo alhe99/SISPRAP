@@ -9,133 +9,120 @@ class EstudianteController extends Controller
 {
     public function store(Request $request)
     {
-       if($request->genero == 'F'){
+     $estudiante = new Estudiante();
+     $estudiante->nombre = $request->nombre;
+     $estudiante->apellido = $request->apellido;
+     $estudiante->fechaNac = $request->fecha;
+     if($request->genero == 'F')
+        $estudiante->genero = 'F';
+     else
+       $estudiante->genero = 'M';
+     $estudiante->telefono = $request->telefono;
+     $estudiante->codCarnet = $request->codcarnet;
+     $estudiante->password = $request->password;
+     $estudiante->email = $request->email;
+     $estudiante->direccion = $request->direccion;
+     $estudiante->tipo_beca_id = $request->beca_id;
+     $estudiante->carrera_id = $request->carrera_id;
+     $estudiante->municipio_id = $request->municipio_id;
+     $estudiante->no_proyectos = 0;
+     $estudiante->estado = 1;
+     $estudiante->save();
+}
 
-            $estudiante = new Estudiante();
-            $estudiante->nombre = $request->nombre;
-            $estudiante->apellido = $request->apellido;
-            $estudiante->fechaNac = $request->fecha;
-            $estudiante->genero = 'F';
-            $estudiante->telefono = $request->telefono;
-            $estudiante->codCarnet = $request->codcarnet;
-            $estudiante->password = $request->password;
-            $estudiante->email = $request->email;
-            $estudiante->direccion = $request->direccion;
-            $estudiante->tipo_beca_id = $request->beca_id;
-            $estudiante->carrera_id = $request->carrera_id;
-            $estudiante->municipio_id = $request->municipio_id;
-            $estudiante->no_proyectos = 0;
-            $estudiante->estado = 1;
-            $estudiante->save();
-       }else{
-            $estudiante = new Estudiante();
-            $estudiante->nombre = $request->nombre;
-            $estudiante->apellido = $request->apellido;
-            $estudiante->fechaNac = $request->fecha;
-            $estudiante->genero = 'M';
-            $estudiante->telefono = $request->telefono;
-            $estudiante->codCarnet = $request->codcarnet;
-            $estudiante->password = $request->password;
-            $estudiante->email = $request->email;
-            $estudiante->direccion = $request->direccion;
-            $estudiante->tipo_beca_id = $request->beca_id;
-            $estudiante->carrera_id = $request->carrera_id;
-            $estudiante->municipio_id = $request->municipio_id;
-            $estudiante->no_proyectos = 0;
-            $estudiante->estado = 1;
-            $estudiante->save();
+public function getStudentById($id){
 
-       }
-    }
+    $e = Estudiante::findOrFail($id);
+    $e->setAttribute('carrer',$e->carrera->nombre);
+    $e->setAttribute('direccion',$e->direccion.', '.$e->municipio->nombre.','.$e->municipio->departamento->nombre);
+    return $e;
+}
+public function getStudentsToRecepcion(Request $request){
 
-    public function getStudentById($id){
+    $carrera_id = $request->carre_id;
+    $process_id = $request->proceso_id;
+    $buscar = $request->buscar;
 
-        $e = Estudiante::findOrFail($id);
-        $e->setAttribute('carrer',$e->carrera->nombre);
-        $e->setAttribute('direccion',$e->direccion.', '.$e->municipio->nombre.','.$e->municipio->departamento->nombre);
-        return $e;
-    }
-    public function getStudentsToRecepcion(Request $request){
+    $estu = Estudiante::with(['carrera','pagoArancel','proceso'])->whereHas('proceso', function ($query) use($process_id) {
 
-        $carrera_id = $request->carre_id;
-        $process_id = $request->proceso_id;
-        $buscar = $request->buscar;
+        $query->where('procesos_estudiantes.proceso_id',$process_id);
 
-        if($buscar != ""){
-            $estu = Estudiante::with(['carrera','pagoArancel','proceso'])->whereHas('preinscripciones', function ($query) {
+    })->where('carrera_id',$carrera_id)->nombre($buscar)->paginate(8);
 
-                $query->where('preinscripciones_proyectos.estado','A');
 
-            })->whereHas('proceso', function ($query) use($process_id) {
+    return [
+        'pagination' => [
+            'total' => $estu->total(),
+            'current_page' => $estu->currentPage(),
+            'per_page' => $estu->perPage(),
+            'last_page' => $estu->lastPage(),
+            'from' => $estu->firstItem(),
+            'to' => $estu->lastItem(),
+        ],
+        'estudiante' => $estu,
+    ];
 
-                $query->where('procesos_estudiantes.proceso_id',$process_id);
+}
+public function getStudentsHasPayArancel(Request $request){
 
-            })->where('carrera_id',$carrera_id)->where('nombre', 'like', '%' . $buscar . '%')->paginate(8);
-        }else{
-            $estu = Estudiante::with(['carrera','pagoArancel','proceso'])->whereHas('preinscripciones', function ($query) {
+    $carrera_id = $request->carre_id;
+    $process_id = $request->proceso_id;
+    $buscar = $request->buscar;
 
-                $query->where('preinscripciones_proyectos.estado','A');
 
-            })->whereHas('proceso', function ($query) use($process_id) {
+    $estu = Estudiante::with(['carrera','pagoArancel','preinscripciones'])->whereHas('preinscripciones', function ($query) {
 
-                $query->where('procesos_estudiantes.proceso_id',$process_id);
+        $query->where('preinscripciones_proyectos.estado','A');
 
-            })->where('carrera_id',$carrera_id)->paginate(8);
-        }
+    })->whereHas('proceso', function ($query) use($process_id) {
 
-         return [
-            'pagination' => [
-                'total' => $estu->total(),
-                'current_page' => $estu->currentPage(),
-                'per_page' => $estu->perPage(),
-                'last_page' => $estu->lastPage(),
-                'from' => $estu->firstItem(),
-                'to' => $estu->lastItem(),
-            ],
-            'estudiante' => $estu,
-        ];
+        $query->where('procesos_estudiantes.proceso_id',$process_id)->where('procesos_estudiantes.pago_arancel',true);;
 
-    }
-    public function getStudentsHasPayArancel(Request $request){
+    })->where('carrera_id',$carrera_id)->nombre($buscar)->paginate(5);
 
-        $carrera_id = $request->carre_id;
-        $process_id = $request->proceso_id;
-        $buscar = $request->buscar;
+    return [
+        'pagination' => [
+            'total' => $estu->total(),
+            'current_page' => $estu->currentPage(),
+            'per_page' => $estu->perPage(),
+            'last_page' => $estu->lastPage(),
+            'from' => $estu->firstItem(),
+            'to' => $estu->lastItem(),
+        ],
+        'estudiante' => $estu,
+    ];
 
-        if($buscar != ""){
-            $estu = Estudiante::with(['carrera','pagoArancel','preinscripciones'])->whereHas('preinscripciones', function ($query) {
+}
+public function getStudensByCarrerAndProcess(Request $request){
 
-                $query->where('preinscripciones_proyectos.estado','A')->where('preinscripciones_proyectos.pago_arancel',true);
+    $carrera_id = $request->carrera_id;
+    $proceso_id = $request->proceso_id;
+    $nombre = $request->buscar;
 
-            })->whereHas('proceso', function ($query) use($process_id) {
+    $estudiantes = Estudiante::with(['carrera'])->whereHas('carrera', function ($query) use($carrera_id) {
 
-                $query->where('procesos_estudiantes.proceso_id',$process_id);
+        $query->where('id',$carrera_id);
 
-            })->where('carrera_id',$carrera_id)->where('nombre', 'like', '%' . $buscar . '%')->paginate(5);
+    })->whereHas('proceso', function ($query) use($proceso_id) {
 
-        }else{
-            $estu = Estudiante::with(['carrera','pagoArancel','preinscripciones'])->whereHas('preinscripciones', function ($query) {
+        $query->where('procesos_estudiantes.proceso_id',$proceso_id);
 
-                $query->where('preinscripciones_proyectos.estado','A')->where('preinscripciones_proyectos.pago_arancel',true);
+    })->whereDoesntHave('preinscripciones', function ($query) {
 
-            })->whereHas('proceso', function ($query) use($process_id) {
+        $query->where('preinscripciones_proyectos.estado','A')->where('preinscripciones_proyectos.proyecto_id',0);
 
-                $query->where('procesos_estudiantes.proceso_id',$process_id);
+    })->nombre($nombre)->paginate(5);
 
-            })->where('carrera_id',$carrera_id)->paginate(5);
-        }
-
-         return [
-            'pagination' => [
-                'total' => $estu->total(),
-                'current_page' => $estu->currentPage(),
-                'per_page' => $estu->perPage(),
-                'last_page' => $estu->lastPage(),
-                'from' => $estu->firstItem(),
-                'to' => $estu->lastItem(),
-            ],
-            'estudiante' => $estu,
-        ];
-
-    }
+    return [
+        'pagination' => [
+            'total' => $estudiantes->total(),
+            'current_page' => $estudiantes->currentPage(),
+            'per_page' => $estudiantes->perPage(),
+            'last_page' => $estudiantes->lastPage(),
+            'from' => $estudiantes->firstItem(),
+            'to' => $estudiantes->lastItem(),
+        ],
+        'estudiantes' => $estudiantes,
+    ];
+}
 }

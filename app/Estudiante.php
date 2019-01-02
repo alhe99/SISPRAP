@@ -37,24 +37,30 @@ class Estudiante extends Model
         return $this->belongsTo(Municipio::class);
     }
     public function usuario(){
-        
+
         return $this->hasOne(User::class);
     }
     public function gestionProyecto(){
-        
+
         return $this->hasOne(GestionProyecto::class);
     }
     public function proceso(){
 
-        return $this->belongsToMany(TipoProceso::class, 'procesos_estudiantes','estudiante_id','proceso_id')->withPivot('estado');
+        return $this->belongsToMany(TipoProceso::class, 'procesos_estudiantes','estudiante_id','proceso_id')->withPivot(['estado','pago_arancel']);
     }
     public function preinscripciones(){
 
-        return $this->belongsToMany(Proyecto::class, 'preinscripciones_proyectos','estudiante_id','proyecto_id')->withPivot(['estado','id'])->withTimestamps();
+        return $this->belongsToMany(Proyecto::class, 'preinscripciones_proyectos','estudiante_id','proyecto_id')->withPivot(['estado','id','tipo_proyecto'])->withTimestamps();
     }
 
     public function pagoArancel(){
-        
+
         return $this->hasMany(PagoArancel::class);
+    }
+     //QueryScopes
+
+    public function scopeNombre($query,$name){
+        if($name)
+            return $query->where('nombre','LIKE',"%$name%");
     }
 }

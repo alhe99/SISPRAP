@@ -58,6 +58,7 @@ Route::get('GetProjectsByProcess', 'ProyectoController@getProjectsByProcess');
 Route::get('getPreregistrationByProject','ProyectoController@getPreregistrationByProject');
 Route::get('stundentById/{id}','EstudianteController@getStudentById');
 Route::post('admin/registrar', 'EstudianteController@store');
+Route::get('stundentByCarrer','EstudianteController@getStudensByCarrerAndProcess');
 
 Route::get('/perfil_proy', function () {
     return view('public.perfilProject');
@@ -82,7 +83,7 @@ Route::get('/gestion_proy/{perfil}','GestionProyectoController@generatePerfil')-
 //Recharaz una preinscripcion
 
 Route::get('/destroyPreregister/{sId}/{pId}','ProyectoController@rechazPreregistration');
-Route::get('/acceptPreregister/{sId}/{pId}','ProyectoController@aceptarPreregistration');
+Route::get('acceptPreregister','ProyectoController@aceptarPreregistration')->name("preregister");
 Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepcion');
 Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provideAccessToPerfil');
 
@@ -120,8 +121,8 @@ Route::get('/gestionProy/reportes/initialprocess/{pId}','GestionProyectoControll
 
 //Documentos
 Route::get('/getDocuments','DocumentoController@getDocumentsByStudent');
-Route::get('/saveDoc/{gp}/{doc}/{obs}','DocumentoController@addDocToStudent');
-Route::get('/closeProyect/{gpId}/{fechaFin}/{hrs}/{obs}','GestionProyectoController@closeProy')->name('close_proyect');
+Route::get('/saveDoc','DocumentoController@addDocToStudent')->name('savedoc');
+Route::get('/closeProyect','GestionProyectoController@closeProy')->name('close_proyect');
 
 Route::post('sector/registrar','SectorInstitucionController@store');
 Route::post('admin/registrar', 'EstudianteController@store');
@@ -198,85 +199,30 @@ Route::get('/test', function () {
     // $e->foto_name = "SS17001001".".JPG";
     // $e->save();
 
-    // $e = new App\Estudiante;
-    // $e->nombre = "Juan Maria Parada Presa";
-    // $e->apellido = "Parada Presa";
-    // $e->fechaNac = date('Y-m-d');
-    // $e->genero = "M";
-    // $e->telefono = "22345678";
-    // $e->codCarnet = "PP17001001";
-    // $e->email = "jchema@gmail.com";
-    // $e->direccion = "San Salvador";
-    // $e->tipo_beca_id = 1;
-    // $e->estado = 1;
-    // $e->carrera_id = 5; //Civil
-    // $e->municipio_id = 48;
-    // $e->supero_limite = 0;
-    // $e->password = bcrypt('123');
-    // $e->foto_name = "PP17001001".".JPG";
-    // $e->no_proyectos = 0;
-    // $e->save();
+    $e = new App\Estudiante;
+    $e->nombre = "Luis Alonso";
+    $e->apellido = "Hernandez Orellana";
+    $e->fechaNac = date('Y-m-d');
+    $e->genero = "M";
+    $e->telefono = "70893823";
+    $e->codCarnet = "HO17001001";
+    $e->email = "HO17001001@itcha.edu.sv";
+    $e->direccion = "La Cabaña";
+    $e->tipo_beca_id = 1;
+    $e->estado = 1;
+    $e->carrera_id = 1; //Civil
+    $e->municipio_id = 48;
+    $e->supero_limite = 0;
+    $e->password = bcrypt('123');
+    $e->foto_name = "HO17001001.JPG";
+    $e->no_proyectos = 0;
+    $e->save();
 
-    // $e->proceso()->attach(2);
+    $e->proceso()->attach(1);
     // //return App\Notification::all();
 
-    $gp = new App\GestionProyecto();
-        $gp->fecha_inicio = date('Y-m-d'); //Fecha Inicio
-        $gp->horas_a_realizar = "300"; //Total de Horas
-        $gp->proyecto_id = 1;
-        $gp->estudiante_id = 2;
-        $gp->nombre_supervisor = "Juan Sosa"; //Nombre del supervisor
-        $gp->tel_supervisor = "3463847";//Telefono del supervisor
 
-            //Informacion del estudiante
-        $proceso = Auth::user()->estudiante->proceso[0]->id;
-        $nombre = Auth::user()->estudiante->nombre;
-        $apellido = Auth::user()->estudiante->apellido;
-        $carnet = Auth::user()->estudiante->codCarnet;
-        $telefono = Auth::user()->estudiante->telefono;
-        $carrera = Auth::user()->estudiante->carrera->nombre;
-        $email = Auth::user()->estudiante->email;
-
-            //Informacion de la institucion
-        $nombreI = Auth::user()->estudiante->preinscripciones[0]->institucion->nombre;
-        $direccionI = Auth::user()->estudiante->preinscripciones[0]->institucion->direccion;
-        $departamentoI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->departamento->nombre;
-        $municipioI = Auth::user()->estudiante->preinscripciones[0]->institucion->municipio->nombre;
-        $sectorI = Auth::user()->estudiante->preinscripciones[0]->institucion->sectorInstitucion->sector;
-        $telefonoI = Auth::user()->estudiante->preinscripciones[0]->institucion->telefono;
-        $emailI = Auth::user()->estudiante->preinscripciones[0]->institucion->email;
-
-            //Informacion del proyecto
-        $nombreP = Auth::user()->estudiante->preinscripciones[0]->nombre;
-        $actividadesP = Auth::user()->estudiante->preinscripciones[0]->actividades;
-
-
-        $data = new Collection([
-            "proceso" => $proceso,
-            "nombreE" => $nombre,
-            "apellidoE" => $apellido,
-            "carnetE" => $carnet,
-            "telefonoE" => $telefono,
-            "carreraE" => $carrera,
-            "emailE" => $email,
-            "nombreI" => $nombreI,
-            "direccionI" => $direccionI,
-            "departamentoI" => $departamentoI,
-            "municipioI" => $municipioI,
-            "sectorI" => $sectorI,
-            "telefonoI" => $telefonoI,
-            "emailI" => $emailI,
-            "nombreP" => $nombreP,
-            "actividadesP" => $actividadesP,
-            "hrasRealizar" => "300",
-            "fechaInicio" => date('Y-m-d'),
-            "fechaFin" => "",
-            "nombreS" => "Juan Sosa",
-            "telefonoS" => "3463847",
-        ]);
-
-    // return "True";
-        return view('public.reportes.rellenarperfil',compact('data'));
+    return "True";
     //return Auth::user()->estudiante->proceso[0]->id;
 
     });

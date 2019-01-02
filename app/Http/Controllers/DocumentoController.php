@@ -12,18 +12,22 @@ class DocumentoController extends Controller
     {
         $doc = Documento::all();
         $data = [];
-        $data[0] = [];
         foreach ($doc as $key => $value) {
-            $data[$key+1] =[
+            $data[$key] =[
                 'value'   => $value->id,
-                'label' => $value->nombre,  
+                'label' => $value->nombre,
             ];
-   
+
         }
         return  response()->json($data);
     }
-    public function addDocToStudent($gp,$doc_id,$obser){
-        $e = GestionProyecto::findOrFail($gp);
-        $e->documentos_entrega()->attach($doc_id,['observacion'=>$obser,'estado'=>1]);
+    public function addDocToStudent(Request $request){
+
+        $arraydoc = explode(',',$request->objDoc);
+        $e = GestionProyecto::findOrFail($request->gestionId);
+        for ($i=0; $i < count($arraydoc); $i++) {
+            $e->documentos_entrega()->attach($arraydoc[$i],['observacion'=>$request->observacion,'estado'=>true]);
+        }
+         // return count($arraydoc);
     }
 }

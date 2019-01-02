@@ -15,6 +15,25 @@ use PDF;
 
 class GestionProyectoController extends Controller
 {
+    public $meses = array(
+        "ENERO", 
+        "FEBRERO",
+        "MARZO", 
+        "ABRIL", 
+        "MAYO", 
+        "JUNIO", 
+        "JULIO", 
+        "AGOSTO", 
+        "SEPTIEMBRE", 
+        "OCTUBRE", 
+        "NOVIEMBRE", 
+        "DICIEMBRE");
+    public $trimestres = array(
+        "123" => 'PRIMER TRIMESTRE',
+        "456" => 'SEGUNDO TRIMESTRE',
+        "789" => 'TERCER TRIMESTRE',
+        "101112" => 'CUARTO TRIMESTRE'
+    );
 
     public function initGestionProyecto(Request $request){
 
@@ -84,7 +103,7 @@ class GestionProyectoController extends Controller
 
                 $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
                  //DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
-                //DB::commit();
+                DB::commit();
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
             }
         } catch (Exception $e) {
@@ -199,16 +218,16 @@ public function getGestionProyectoByStudent($student_id){
     return view('public.gestionPro',compact("gestionp"));
         //return $gestionp;
 }
-public function closeProy($gp_id,$fecha_fin,$hsrFin,$obsFin){
+public function closeProy(Request $request){
 
-    $gp = GestionProyecto::findOrFail($gp_id);
-    $gp->fecha_fin = $fecha_fin;
-    $gp->horas_realizadas = $hsrFin;
-    $gp->observacion_final = $obsFin;
+    $gp = GestionProyecto::findOrFail($request->gestionId);
+    $gp->fecha_fin = $request->fechaFin;
+    $gp->horas_realizadas = $request->horasRea;
+    $gp->observacion_final = $request->obsFinal;
     $gp->estado = 'F';
     $gp->update();
 
-    if($hsrFin == $gp->horas_a_realizar){
+    if($request->horasFina == $gp->horas_a_realizar){
         $a = $gp->estudiante_id;
         $e = Estudiante::findOrFail($a);
         $e->no_proyectos = 0;
@@ -226,16 +245,30 @@ public function getInitialProcessReporte($proceso_id){
 
     $collection;
     $carrera = Carrera::with(['estudiantes'])->get();
-    $test = [10,11,12];
+    $test = [1,2,3];
+    $totalMined = 0;
+    $totalOtros = 0;
+    
 
     $data = [];
+    $data[0] = "CONSOLIDADO ".$this->trimestres[implode($test)];
     foreach ($carrera as $carre) {
-        $data[$carre->id] = $collection = new Collection(["Carrera" => $carre->nombre,
+        //Obteniendo el total de resultados becados y otros
+        $totalMined += $carre->getCountStudentsByMinedTrimestral($test);
+        $totalOtros += $carre->getCountStudentsByOtherBecaTrimestral($test);
+
+        $data[1] = array("totalMined" => $totalMined,"totalOtros"=>$totalOtros); 
+        $data[$carre->id+1] = $collection = new Collection(["Carrera" => $carre->nombre,
          "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
          "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
     }
 
-    return $data;
+
+    $pdf = PDF::loadView('reportes.iniprocesos', ['consolidado' => $data])->setOption('footer-center', 'Página [page] de [topage]');;
+    return $pdf->stream('Inicio Procesos.pdf');
+    /* return view('reportes.iniprocesos'); */
+   /*  return $data; */
+
 }
 
 public function generateConstancia($gp_id){

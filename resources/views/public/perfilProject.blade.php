@@ -23,8 +23,8 @@
     <div class="single-blog-post col-md-12">
       <form class="shake" role="form" method="POST" id="perfilproy" name="perfilproy" data-toggle="validator" >
         @csrf
-        <input type="hidden" v-model="studentId" name="student_id" id="student_id" value="{{Auth::user()->estudiante->id}}" >
-        <input type="hidden" v-model="projectId" name="project_id" id="project_id" value="{{Auth::user()->estudiante->preinscripciones[0]->id}}" >
+        <input type="hidden" name="student_id" id="student_id" value="{{Auth::user()->estudiante->id}}" >
+        <input type="hidden" name="project_id" id="project_id" value="{{Auth::user()->estudiante->preinscripciones[0]->id == 0 ? '' : Auth::user()->estudiante->preinscripciones[0]->id  }}" >
         <div class="row">
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
@@ -253,7 +253,7 @@
       a.download = name+".pdf"
       a.click();
     },
-    saveData: function (studen_id){
+    saveData: function (){
      const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
      swal({
       title: 'Seguro de Guardar los datos?',
@@ -270,6 +270,8 @@
           //$('#preloader').fadeIn();
           me.fechaI = $("#fecha_ini").val().trim();
           me.fechaFin = $("#fecha_fin").val().trim();
+          me.studentId = $("#student_id").val().trim();
+          me.projectId = $("#project_id").val().trim();
 
           var url = route('save_perfil', {
             "fechaini": this.fechaI,
