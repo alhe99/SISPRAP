@@ -102,7 +102,7 @@
 			<button class="btn BF1" style="border-radius: 50px">
 				<span><i class="fas fa-plus fa-sm text-center"></i></span>
 			</button>
-			<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" style="border-radius: 50px;">
+			<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" data-toggle="modal" data-target=".bd-example-modal-lg" style="border-radius: 50px;">
 				<i class="far fa-user fa-sm"></i>
 			</button>
 			<button class="btn BF3 hint--left" data-hint="Chat con el administrador" style="border-radius: 50px">
@@ -153,6 +153,33 @@
 		</div>
 	</div>
 </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Actualiza tus datos</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row ">
+					<div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s"">
+						<div class="form-group {{-- label-floating --}}">
+							<label class="control-label" for="estudiante_telefono">Teléfono*</label>
+							<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
 </div>
 </div>
 
