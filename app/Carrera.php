@@ -57,10 +57,24 @@ class Carrera extends Model
             $query->where('procesos_estudiantes.proceso_id',$procesoId);
         })->count();
     }
-    
-    public function getTotalByMes($total)
-    {   $var = 0;
-        return $var += $total;
+
+    //Reporte Anual
+    public function getCountStudentsByMinedYear($year,$procesoId)
+    {
+        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($year){
+            $query->whereYear('created_at',$year)->where('estado','=','I')->orWhere('estado','=','P');
+        })->where('tipo_beca_id',1)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id',$procesoId);
+        })->count();
     }
 
+    public function getCountStudentsByOtherBecaYear($year,$procesoId)
+    {
+        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($year){
+            $query->whereYear('created_at',$year)->where('estado','=','I')->orWhere('estado','=','P');
+        })->where('tipo_beca_id',2)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id',$procesoId);
+        })->count();
+    }
+    
 }

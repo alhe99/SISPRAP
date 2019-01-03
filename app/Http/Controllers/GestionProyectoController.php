@@ -320,6 +320,7 @@ public function getInitialProcessReporte(Request $request){
             "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($arrayTrimestre,$procesoId),
             "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($arrayTrimestre,$procesoId) ]);
         }
+
         $mensuales[0] = [
             'mes1' => $mes1,
             'mes2' => $mes2,
@@ -363,7 +364,64 @@ public function getInitialProcessReporte(Request $request){
        return $pdf->stream('Inicio Procesos.pdf');
     }else if($request->tipoRepo == 'A'){
 
-       return "Anual";
+        $arrayMeses = explode(",", "1,2,3,4,5,6,7,8,9,10,11,12");
+        $dataMensual = [];
+        $collectionMensual;
+        $data = array();
+        $totalMined = 0;
+        $totalMinedArray = [];
+        $totalOtros = 0;
+        $totalOtrosArray = [];
+        $mesesSelectedArray = [];
+        $anio = date('Y');       
+
+        for ($i = 0; $i < count($arrayMeses); $i++) {
+
+            for ($j = 0; $j < $carrera->count(); $j++) {
+                $totalMinedArray[$i] = $totalMined += $carrera[$j]->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId);
+                $totalOtrosArray[$i] = $totalOtros += $carrera[$j]->getCountStudentsByOtherBecaMensual($arrayMeses[$i], $procesoId);
+            }
+            $totalMined = 0;
+            $totalOtros = 0;
+
+            foreach ($carrera as $carre) {
+                $dataMensual[0] = $this->meses[$arrayMeses[$i]];
+                $dataMensual[1] = array(
+                    "totalMined" => $totalMinedArray[$i],
+                    "totalOtros" => $totalOtrosArray[$i],
+                );
+
+                $dataMensual[$carre->id + 1] = $collectionMensual = new Collection([
+                    "Carrera" => $carre->nombre,
+                    "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId),
+                    "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayMeses[$i], $procesoId),
+                ]);
+            };
+
+            //Consolidado Anual
+            $totalMinedAnual = 0;
+            $totalOtrosAnual = 0;
+
+            $dataAnual = [];
+            $dataAnual[0] = $anio;
+            foreach ($carrera as $carre) {
+                //Obteniendo el total de resultados becados y otros
+                $totalMinedAnual += $carre->getCountStudentsByMinedYear($anio, $procesoId);
+                $totalOtrosAnual += $carre->getCountStudentsByOtherBecaYear($anio, $procesoId);
+
+                $dataAnual[1] = array("totalMined" => $totalMinedAnual, "totalOtros" => $totalOtrosAnual);
+
+                $dataAnual[$carre->id + 1] = $collection = new Collection(["Carrera" => $carre->nombre,
+                    "BecadosMined" => $carre->getCountStudentsByMinedYear($anio, $procesoId),
+                    "Otros" => $carre->getCountStudentsByOtherBecaYear($anio, $procesoId)]);
+            }
+
+            array_push($data, $dataMensual);
+            $mesesTitulo = "ANUAL";
+
+        }
+        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $data,'consolidadoAnual'=>$dataAnual,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        return $pdf->stream('Inicio Procesos.pdf');
     }
 }
 
