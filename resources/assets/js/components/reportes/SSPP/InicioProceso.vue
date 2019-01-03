@@ -110,7 +110,8 @@ export default {
       arrayCarreras: [],
       tipoRepo: '',
       trimestral: false,
-      mensual: false
+      mensual: false,
+      valuesMonth: []
     }
   },
   watch:{
@@ -130,6 +131,11 @@ export default {
       if (this.mensual == true) {this.tipoRepo = 'M';}
       else {this.tipoRepo = '';}
       this.mes = [];
+    },
+    mes:function(){
+      for (var i = 0; i < this.mes.length; i++) {
+        this.valuesMonth[i] = this.mes[i].value;
+      }
     }
   },
   methods: {
@@ -153,7 +159,10 @@ export default {
     },
     sendParameterToMethod() {
       let me = this;
-      var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
+      if(me.trimestral == true)
+         var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
+      else if(me.mensual == true)
+        var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
       window.open(url);
     },
   },
