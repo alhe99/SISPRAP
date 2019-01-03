@@ -159,24 +159,57 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Actualiza tus datos</h5>
+				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Actualiza tus datos</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
 				<div class="row ">
-					<div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s"">
-						<div class="form-group {{-- label-floating --}}">
-							<label class="control-label" for="estudiante_telefono">Teléfono*</label>
-							<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
-
+					<div class="col-md-12">
+						<div class="form-group label-floating">
+							<label class="control-label" for="estudiante_telefono">Teléfono</label>
+							<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="{{Auth::user()->estudiante->telefono}}">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-outline-info text-center btn-lg btn-block" type="button" data-toggle="collapse" style="display: block; margin-left: auto; margin-right: auto;" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"> 
+							Cambiar contraseña
+						</button>
+						<div class="row">
+							<div class="col-md-6" data-wow-delay=".1s">
+								<div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
+									<label class="control-label" for="estudiante_contraseña">Nueva contraseña</label>
+									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
+								</div>
+							</div>
+							<div class="col-md-6" data-wow-delay=".1s">
+								<div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
+									<label class="control-label" for="estudiante_contraseña_conf">Confirmar contraseña</label>
+									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-md-12">
+						<div class="form-group label-floating">
+							<label class="control-label" for="estudiante_email">Correo electrónico</label>
+							<input class="form-control" id="estudiante_email" type="text" name="estudiante_email" value="{{Auth::user()->estudiante->email}}">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
+				<div class="col-md-6 text-center">
+					<button type="button" class="btn btn-primary"  data-target="#exampleModal">Actualizar</button>
+				</div>
+				<div class="col-md-6 text-center">
+					<button type="button" class="btn btn-primary"  data-target="#exampleModal" data-dismiss="modal">Cancelar</button>
+				</div>
 			</div>
 		</div>
 	</div>
