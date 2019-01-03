@@ -102,7 +102,7 @@
 			<button class="btn BF1" style="border-radius: 50px">
 				<span><i class="fas fa-plus fa-sm text-center"></i></span>
 			</button>
-			<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" data-toggle="modal" data-target=".bd-example-modal-lg" style="border-radius: 50px;">
+			<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" data-toggle="modal" data-target="#exampleModal1" style="border-radius: 50px;">
 				<i class="far fa-user fa-sm"></i>
 			</button>
 			<button class="btn BF3 hint--left" data-hint="Chat con el administrador" style="border-radius: 50px">
@@ -154,9 +154,8 @@
 	</div>
 </div>
 </div>
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+<div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Actualiza tus datos</h5>
@@ -173,9 +172,17 @@
 						</div>
 					</div>
 				</div>
+				<div class="row ">
+					<div class="col-md-12">
+						<div class="form-group label-floating">
+							<label class="control-label" for="estudiante_email">Correo electrónico</label>
+							<input class="form-control" id="estudiante_email" type="text" name="estudiante_email" value="{{Auth::user()->estudiante->email}}">
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<button class="btn btn-outline-info text-center btn-lg btn-block" type="button" data-toggle="collapse" style="display: block; margin-left: auto; margin-right: auto;" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"> 
+						<button class="btn btn-outline-info text-center btn-lg btn-block" type="button" data-toggle="collapse" style="display: block; margin-left: auto; margin-right: auto;" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
 							Cambiar contraseña
 						</button>
 						<div class="row">
@@ -194,21 +201,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="row ">
-					<div class="col-md-12">
-						<div class="form-group label-floating">
-							<label class="control-label" for="estudiante_email">Correo electrónico</label>
-							<input class="form-control" id="estudiante_email" type="text" name="estudiante_email" value="{{Auth::user()->estudiante->email}}">
-						</div>
-					</div>
-				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-primary"  data-target="#exampleModal">Actualizar</button>
+					<button type="button" class="btn btn-primary btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
 				</div>
 				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-primary"  data-target="#exampleModal" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-danger btn-block text-white" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
 				</div>
 			</div>
 		</div>
