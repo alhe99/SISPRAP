@@ -239,15 +239,15 @@ public function closeProy(Request $request){
     //Funciones para reportes
     //REPORTE 1 RUTA = /gestionProy/reportes/initialprocess/{pId}
 public function getInitialProcessReporte(Request $request){
+    $carrera = Carrera::get();
+    $procesoId = $request->proceso_id;
 
     if($request->tipoRepo == 'T'){
         $collection;
-        $carrera = Carrera::get();
         $arrayTrimestre = explode(",",$request->meses);
         $mesesTitulo = "";
         $totalMined = 0;$totalOtros = 0;$totalMinedMes1 = 0;$totalOtrosMes1 = 0;$totalMinedMes2 = 0;$totalOtrosMes2 = 0;$totalMinedMes3 = 0;
         $totalOtrosMes3 = 0;
-        $procesoId = $request->proceso_id;
         //Sacando datos mensuales
         $dataMensual = [];
         $mes1 = [];$mes2 = [];$mes3 = [];
@@ -319,11 +319,75 @@ public function getInitialProcessReporte(Request $request){
             'mes2' => $mes2,
             'mes3' => $mes3,
         ];
-        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo])->setOption('footer-center', 'Página [page] de [topage]');;
+        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T'])->setOption('footer-center', 'Página [page] de [topage]');;
         return $pdf->stream('Inicio Procesos.pdf');
 
     }else if($request->tipoRepo == 'M'){
-        return "Mensual";
+        $arrayMeses = explode(",", $request->meses);
+        $dataMensual = []; $collectionMensual;
+        
+        for ($i=0; $i < count($arrayMeses) ; $i++) { 
+            foreach ($carrera as $carre) {
+
+                $dataMensual[$carre->id] = $collectionMensual = new Collection([
+                    "Carrera" => $carre->nombre,
+                    "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId),
+                    "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayMeses[$i], $procesoId),
+                ]);
+
+            }
+        }
+        /* $collection1;
+        $collection2;
+        $collection3;
+        $mesesTitulo = $mes1[0] . ", " . $mes2[0] . ", " . $mes3[0];
+        foreach ($carrera as $key => $carre) {
+
+            $totalMinedMes1 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId);
+            $totalOtrosMes1 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId);
+
+            $mes1[1] = array(
+                "totalMined" => $totalMinedMes1,
+                "totalOtros" => $totalOtrosMes1,
+            );
+
+            $mes1[$carre->id + 1] = $collection1 = new Collection([
+                "Carrera" => $carre->nombre,
+                "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId),
+                "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId),
+            ]);
+
+            $totalMinedMes2 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[1], $procesoId);
+            $totalOtrosMes2 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[1], $procesoId);
+
+            $mes2[1] = array(
+                "totalMined" => $totalMinedMes2,
+                "totalOtros" => $totalOtrosMes2,
+            );
+
+            $mes2[$carre->id + 1] = $collection2 = new Collection([
+                "Carrera" => $carre->nombre,
+                "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[1], $procesoId),
+                "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[1], $procesoId),
+            ]);
+
+            $totalMinedMes3 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[2], $procesoId);
+            $totalOtrosMes3 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[2], $procesoId);
+
+            $mes3[1] = array(
+                "totalMined" => $totalMinedMes3,
+                "totalOtros" => $totalOtrosMes3,
+            );
+
+            $mes3[$carre->id + 1] = $collection2 = new Collection([
+                "Carrera" => $carre->nombre,
+                "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[2], $procesoId),
+                "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[2], $procesoId),
+            ]);
+        } */
+
+        return $dataMensual;
+
     }
 }
 

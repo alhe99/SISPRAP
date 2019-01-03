@@ -203,7 +203,7 @@
                             <tr>
                               <td v-for="item in gpObj.documentos_entrega" :key="item.id">
                                 <h6 class="text-center" v-if="item.pivot.estado == 1">Entregado<i class="mdi mdi-check"></i></h6>
-                                <h6 class="text-center" v-if="item.pivot.estado == 0">Pendiente<i class="fas fa-check fa-sm"></i></h6>
+                                <h6 class="text-center" v-if="item.pivot.estado == 0">Pendiente<i class="mdi mdi-share"></i></h6>
                                 <p class="text-center"><em>{{item.nombre}}</em></p>
                                 <div class="panel-body" style="background-color: #fff">
                                   <p class="text-center">{{item.pivot.observacion}}</p>

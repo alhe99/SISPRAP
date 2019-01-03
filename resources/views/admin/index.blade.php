@@ -12,21 +12,31 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card  text-center">
-           <img src="images/atajos/GESTIONES.png" @click="menu=4" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 410px; height: 180px; display: block; margin-left: auto; margin-right: auto;">
+    <div class="col-lg-11 col-md-11">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="card  text-center">
+                   <img src="images/atajos/GESTIONES.png" @click="menu=4" class="img-fluid" alt="logo sisprap" style="cursor:pointer;display: block; margin-left: auto; margin-right: auto;">
+               </div>
+           </div>
+           <div class="col-md-1">
+           </div>
+           <div class="col-lg-3 col-md-3">
+            <div class="card text-center">
+                <img src="images/atajos/PEINSCRIPCIONES.png" @click="menu=2" class="img-fluid" alt="logo sisprap" style="cursor:pointer; display: block; margin-left: auto; margin-right: auto;">
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-lg-3 col-md-3">
+            <div class="card text-center">
+                <img src="images/atajos/PUBLICACIONES.png" @click="menu=1" class="img-fluid" alt="logo sisprap" style="cursor:pointer;display: block; margin-left: auto; margin-right: auto;">
+            </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card text-center">
-        <img src="images/atajos/PEINSCRIPCIONES.png" @click="menu=2" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 410px; height: 180px; display: block; margin-left: auto; margin-right: auto;">
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4">
-        <div class="card text-center">
-        <img src="images/atajos/PUBLICACIONES.png" @click="menu=1" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 410px; height: 180px;display: block; margin-left: auto; margin-right: auto;">
-        </div>
-    </div>
+</div>
 </template>
 @if (Auth::user()->rol_id == 1)
 <template v-if="menu==1">

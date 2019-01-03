@@ -42,17 +42,18 @@
                         <!-- Logo -->
                         <!-- ============================================================== -->
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="/">
+                            <a class="navbar-brand">
                                 <!-- Logo icon --><b>
-                                    <img src="images/logoITCHAL.png" height="50" alt="homepage" class="dark-logo" />
+                                    <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="dark-logo" />
                                     <!-- Light Logo icon -->
-                                    <img src="images/logoITCHAL.png" height="50" alt="homepage" class="light-logo" />
+                                    <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="light-logo" />
                                 </b>
                                 <!-- Logo text --><span>
                                    <!-- dark Logo text -->
-                                   <img src="images/ITCHA.png" height="25" alt="homepage" class="dark-logo" />
-                                   <!-- Light Logo text -->
-                                   <img src="images/ITCHA.png" height="25" class="light-logo" alt="homepage" /></span> </a>
+                                    <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
+                                                                                                        <!-- Light Logo text -->
+                                    <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
+</a>
                                </div>
                                <!-- ============================================================== -->
                                <!-- End Logo -->

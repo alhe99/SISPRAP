@@ -108882,7 +108882,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       arrayCarreras: [],
       tipoRepo: '',
       trimestral: false,
-      mensual: false
+      mensual: false,
+      valuesMonth: []
     };
   },
 
@@ -108908,6 +108909,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.tipoRepo = '';
       }
       this.mes = [];
+    },
+    mes: function mes() {
+      for (var i = 0; i < this.mes.length; i++) {
+        this.valuesMonth[i] = this.mes[i].value;
+      }
     }
   },
   methods: {
@@ -108928,7 +108934,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
-      var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.trimestre.value], 'tipoRepo': me.tipoRepo });
+      if (me.trimestral == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.trimestre.value], 'tipoRepo': me.tipoRepo });else if (me.mensual == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.valuesMonth], 'tipoRepo': me.tipoRepo });
       window.open(url);
     }
   },
@@ -112326,7 +112332,7 @@ var render = function() {
                                                                 ),
                                                                 _c("i", {
                                                                   staticClass:
-                                                                    "fas fa-check fa-sm"
+                                                                    "mdi mdi-share"
                                                                 })
                                                               ]
                                                             )
