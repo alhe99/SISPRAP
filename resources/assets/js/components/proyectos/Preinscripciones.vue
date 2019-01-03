@@ -33,7 +33,7 @@
       <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
       </div>
     </div>
-      <div class="card">
+    <div class="card" v-if="proceso != 0 ">
       <div class="card-body">
         <div class="row">
             <div class="col-md-11">

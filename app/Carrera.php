@@ -21,34 +21,41 @@ class Carrera extends Model
 
     //Trimestral
     
-    public function getCountStudentsByMinedTrimestral(Array $data)
+    public function getCountStudentsByMinedTrimestral(Array $data,$procesoId)
     {
         return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($data){
             $query->whereMonth('created_at',$data[0])->orWhereMonth('created_at',$data[1])->orWhereMonth('created_at',$data[2])->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',1)->count();
+        })->where('tipo_beca_id',1)->whereHas('proceso', function ($query) use($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id',$procesoId);
+        })->count();
     }
 
-    public function getCountStudentsByOtherBecaTrimestral(Array $data)
+    public function getCountStudentsByOtherBecaTrimestral(Array $data,$procesoId)
     {
         return $this->estudiantes()->whereHas('gestionProyecto',function($query) use ($data){
             $query->whereMonth('created_at',$data[0])->orWhereMonth('created_at',$data[1])->orWhereMonth('created_at',$data[2])->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',2)->count();
+        })->where('tipo_beca_id',2)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id',$procesoId);
+        })->count();
     }
 
     //Mes Individual
-
-    public function getCountStudentsByMinedMensual($mes)
+    public function getCountStudentsByMinedMensual($mes,$procesoId)
     {
         return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($mes){
             $query->whereMonth('created_at',$mes)->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',1)->count();
+        })->where('tipo_beca_id',1)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id',$procesoId);
+        })->count();
     }
 
-    public function getCountStudentsByOtherBecaMensual($mes)
+    public function getCountStudentsByOtherBecaMensual($mes,$procesoId)
     {
         return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($mes){
             $query->whereMonth('created_at',$mes)->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',2)->count();
+        })->where('tipo_beca_id',2)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id',$procesoId);
+        })->count();
     }
     
 

@@ -96,7 +96,7 @@ Route::get('institucion/regSupervision','InstitucionController@regSupervision')-
 
 //Reportes GP
 
-Route::get('/gestionProy/reportes/initialprocess/{pId}/{mes}','GestionProyectoController@getInitialProcessReporte');
+Route::get('/gestionProy/reportes/initialprocess','GestionProyectoController@getInitialProcessReporte')->name('reporteIniProd');
 //metodo de carrerActividadProyecto
 
 ///////PARTE DE RECEPCION ////////
