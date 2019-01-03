@@ -69,7 +69,7 @@
                     <th class="text-center" v-text="item.pago_arancel[0].created_at"></th>
                     <th class="text-center" v-text="item.preinscripciones[0].nombre"></th>
                     <td class="text-center">
-                      <button type="button" @click="provideAccess(item.id,item.preinscripciones[0].id)" class="button info btn-sm" >Dar Acceso</button>
+                      <button type="button" @click="provideAccess(item.id,item.preinscripciones[0].id)" class="button info btn-sm" ><i class="mdi mdi-share"></i>&nbsp;Dar Acceso</button>
                   </td>
                 </tr> 
               </tbody>
