@@ -102234,8 +102234,11 @@ var render = function() {
               "a",
               {
                 staticClass: "nav-link text-center",
-                attrs: { href: "#" },
-                on: { click: _vm.loadComponent }
+                on: {
+                  click: function($event) {
+                    _vm.menu = 2
+                  }
+                }
               },
               [
                 _c("strong", [_vm._v("Ver todas las preinscripciones")]),
@@ -108878,12 +108881,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       carreras: "",
       trimestre: "",
       arrayTrimestral: [{ value: [1, 2, 3], label: "Primer Trimestre" }, { value: [4, 5, 6], label: "Segundo Trimestre" }, { value: [7, 8, 9], label: "Tercer Trimestre" }, { value: [10, 11, 12], label: "Cuarto Trimestre" }],
-      arrayMeses: [{ value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
+      arrayMeses: [{ value: 0, label: "--Todos--" }, { value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
       arrayCarreras: [],
       tipoRepo: '',
       trimestral: false,
       mensual: false,
-      valuesMonth: []
+      valuesMonth: [],
+      anual: false
     };
   },
 
@@ -108909,11 +108913,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.tipoRepo = '';
       }
       this.mes = [];
+      this.valuesMonth = [];
     },
     mes: function mes() {
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
+      if (this.mes[0].value == 0) this.anual = true;
+      this.tipoRepo = 'A';
     }
   },
   methods: {
@@ -108928,14 +108935,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     clearData: function clearData() {
-      var me = this;
-      me.proceso_id = 0;
-      $("#btnGenerar").prop('disabled', true);
+      this.trimestre = "";
+      this.mes = [];
+      this.valuesMonth = [];
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
-      if (me.trimestral == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.trimestre.value], 'tipoRepo': me.tipoRepo });else if (me.mensual == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.valuesMonth], 'tipoRepo': me.tipoRepo });
+      if (me.trimestral == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.trimestre.value], 'tipoRepo': me.tipoRepo });else if (me.mensual == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.valuesMonth], 'tipoRepo': me.tipoRepo });else if (me.anual == true) var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'tipoRepo': me.tipoRepo });
       window.open(url);
+      me.clearData();
     }
   },
   components: {

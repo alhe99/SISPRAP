@@ -58,5 +58,9 @@ class Carrera extends Model
         })->count();
     }
     
+    public function getTotalByMes($total)
+    {   $var = 0;
+        return $var += $total;
+    }
 
 }

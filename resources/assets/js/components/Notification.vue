@@ -21,7 +21,7 @@
                         </div>
                     </li>
                     <li>
-                        <a class="nav-link text-center" href="#" @click="loadComponent"> <strong>Ver todas las preinscripciones</strong> <i class="fa fa-angle-right"></i> </a>
+                        <a class="nav-link text-center" @click="menu=2"><strong>Ver todas las preinscripciones</strong> <i class="fa fa-angle-right"></i> </a>
                     </li>
                 </ul>
             </div>

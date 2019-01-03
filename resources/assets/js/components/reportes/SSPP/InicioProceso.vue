@@ -94,6 +94,7 @@ export default {
       {value: [10,11,12] ,label: "Cuarto Trimestre"},
       ],
       arrayMeses: [
+      {value: 0 ,label: "--Todos--"},
       {value: 1 ,label: "Enero"},
       {value: 2 ,label: "Febrero"},
       {value: 3 ,label: "Marzo"},
@@ -111,7 +112,8 @@ export default {
       tipoRepo: '',
       trimestral: false,
       mensual: false,
-      valuesMonth: []
+      valuesMonth: [],
+      anual: false
     }
   },
   watch:{
@@ -131,11 +133,15 @@ export default {
       if (this.mensual == true) {this.tipoRepo = 'M';}
       else {this.tipoRepo = '';}
       this.mes = [];
+      this.valuesMonth = [];
     },
     mes:function(){
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
+      if(this.mes[0].value == 0)
+        this.anual =true;
+        this.tipoRepo = 'A';
     }
   },
   methods: {
@@ -153,9 +159,9 @@ export default {
       });
     },
     clearData(){
-      let me = this;
-      me.proceso_id = 0;
-      $("#btnGenerar").prop('disabled',true);
+      this.trimestre = "";
+      this.mes = [];
+      this.valuesMonth = [];
     },
     sendParameterToMethod() {
       let me = this;
@@ -163,7 +169,10 @@ export default {
          var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
       else if(me.mensual == true)
         var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
+      else if(me.anual == true)
+        var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo})
       window.open(url);
+      me.clearData();
     },
   },
   components: {
