@@ -49,39 +49,39 @@
                                     <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="light-logo" />
                                 </b>
                                 <!-- Logo text --><span>
-                                   <!-- dark Logo text -->
-                                    <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
-                                                                                                        <!-- Light Logo text -->
-                                    <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
-</a>
-                               </div>
-                               <!-- ============================================================== -->
-                               <!-- End Logo -->
-                               <!-- ============================================================== -->
-                               <div class="navbar-collapse">
+                                 <!-- dark Logo text -->
+                                 <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
+                                 <!-- Light Logo text -->
+                                 <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
+                             </a>
+                         </div>
+                         <!-- ============================================================== -->
+                         <!-- End Logo -->
+                         <!-- ============================================================== -->
+                         <div class="navbar-collapse">
+                            <!-- ============================================================== -->
+                            <!-- toggle and nav items -->
+                            <!-- ============================================================== -->
+                            <ul class="navbar-nav mr-auto mt-md-0">
+                                <!-- This is  -->
+                                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                                <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                                 <!-- ============================================================== -->
-                                <!-- toggle and nav items -->
+                            </ul>
+                            <!-- ============================================================== -->
+                            <!-- User profile and search -->
+                            <!-- ============================================================== -->
+                            <ul class="navbar-nav my-lg-0">
                                 <!-- ============================================================== -->
-                                <ul class="navbar-nav mr-auto mt-md-0">
-                                    <!-- This is  -->
-                                    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                                    <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                                    <!-- ============================================================== -->
-                                </ul>
+                                <!-- Comment -->
+                                @if (Auth::user()->rol_id == 1)
                                 <!-- ============================================================== -->
-                                <!-- User profile and search -->
+                                <notification :notifications="notifications"></notification>
                                 <!-- ============================================================== -->
-                                <ul class="navbar-nav my-lg-0">
-                                    <!-- ============================================================== -->
-                                    <!-- Comment -->
-                                    @if (Auth::user()->rol_id == 1)
-                                    <!-- ============================================================== -->
-                                    <notification :notifications="notifications"></notification>
-                                    <!-- ============================================================== -->
-                                    <!-- End Comment -->
-                                    <!-- ============================================================== -->
-                                    <!-- ============================================================== -->
-                                    <!-- Messages -->
+                                <!-- End Comment -->
+                                <!-- ============================================================== -->
+                                <!-- ============================================================== -->
+                                <!-- Messages -->
                         <!-- ==============================================================
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
@@ -127,8 +127,8 @@
                         </li> --}}
                         @endif
 
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
+                        ============================================================== -->
+                        <!--End Messages -->
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
                         <!-- Profile -->
@@ -143,16 +143,16 @@
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box text-center">
-                                         @if (Auth::user()->rol_id == 1)
-                                         <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
-                                         @elseif(Auth::user()->rol_id == 2)
-                                         <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
-                                         @endif
-                                         <div class="u-text text-center ">
-                                           <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
-                                       </div>
-                                   </li>
-                                   <li role="separator" class="divider"></li>
+                                           @if (Auth::user()->rol_id == 1)
+                                           <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
+                                           @elseif(Auth::user()->rol_id == 2)
+                                           <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
+                                           @endif
+                                           <div class="u-text text-center ">
+                                             <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
+                                         </div>
+                                     </li>
+                                     <li role="separator" class="divider"></li>
                                    {{-- <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
@@ -238,15 +238,11 @@
         </div> --}}
 
         <div class="row">
-            <!-- Column -->
 
             @yield('contenido')
 
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
+
         <div class="right-sidebar">
             <div class="slimscrollright">
                 <div class="rpanel-title"> Personalización <span><i class="ti-close right-side-toggle"></i></span> </div>
@@ -270,31 +266,11 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
     <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-APAGE </footer>
-    <!-- ============================================================== -->
-    <!-- End footer -->
-    <!-- ============================================================== -->
 </div>
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->
+
 </div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
 </div>
 <script src="js/app.js"></script>
 <script src="js/admintemplate.js"></script>

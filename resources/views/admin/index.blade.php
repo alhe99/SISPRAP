@@ -6,7 +6,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <img src="images/logo.png" class="img-fluid" alt="logo sisprap" style="width: 600px;">
+                        <img src="images/logo.png" class="img-fluid" alt="logo sisprap" style="width: 750px;">
                     </div>
                 </div>
             </div>
@@ -16,17 +16,17 @@
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <div class="card  text-center">
-                   <img src="images/atajos/GESTIONES.png" @click="menu=4" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 410px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                   <img src="images/atajos/GESTIONES.png" @click="menu=4" class="img-fluid" alt="logo sisprap" {{-- style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;" --}}>
                </div>
            </div>
            <div class="col-lg-4 col-md-4">
             <div class="card text-center">
-                <img src="images/atajos/PEINSCRIPCIONES.png" @click="menu=2" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 410px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                <img src="images/atajos/PEINSCRIPCIONES.png" @click="menu=2" class="img-fluid" alt="logo sisprap" s{{-- tyle="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;" --}}>
             </div>
         </div>
         <div class="col-lg-4 col-md-4">
             <div class="card text-center">
-                <img src="images/atajos/PUBLICACIONES.png" @click="menu=1" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 410px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                <img src="images/atajos/PUBLICACIONES.png" @click="menu=1" class="img-fluid" alt="logo sisprap" {{-- style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;" --}}>
             </div>
         </div>
     </div>
