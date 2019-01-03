@@ -108721,10 +108721,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(154)
-}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(156)
@@ -108733,7 +108729,7 @@ var __vue_template__ = __webpack_require__(157)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -108768,46 +108764,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 154 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(155);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("6f1c281e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8cd1f546\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InicioProceso.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8cd1f546\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InicioProceso.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 155 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 154 */,
+/* 155 */,
 /* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -108894,115 +108852,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            loadSpinner: 0,
-            proceso_id: 0,
-            mes: "",
-            carreras: "",
-            trimestre: "",
-            arrayTrimestral: [{ value: [1, 2, 3], label: "Primer Trimestre" }, { value: [4, 5, 6], label: "Segundo Trimestre" }, { value: [7, 8, 9], label: "Tercer Trimestre" }, { value: [10, 11, 12], label: "Cuarto Trimestre" }],
-            arrayMeses: [{ value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
-            arrayCarreras: [],
-            arrayMonths: []
-        };
-    },
+  data: function data() {
+    return {
+      loadSpinner: 0,
+      proceso_id: 0,
+      mes: "",
+      carreras: "",
+      trimestre: "",
+      arrayTrimestral: [{ value: [1, 2, 3], label: "Primer Trimestre" }, { value: [4, 5, 6], label: "Segundo Trimestre" }, { value: [7, 8, 9], label: "Tercer Trimestre" }, { value: [10, 11, 12], label: "Cuarto Trimestre" }],
+      arrayMeses: [{ value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
+      arrayCarreras: [],
+      tipoRepo: '',
+      trimestral: false,
+      mensual: false
+    };
+  },
 
-    watch: {
-        trimestre: function trimestre() {
-            console.log(this.trimestre.value[0]);
-            this.arrayMonths[0] = [this.trimestre.value[0]];
-            this.arrayMonths[1] = [this.trimestre.value[1]];
-            this.arrayMonths[2] = [this.trimestre.value[2]];
-        }
-    },
-    methods: {
-        getCarreras: function getCarreras() {
-            var me = this;
-            var url = "carreras/GetCarreras";
-            axios.get(url).then(function (response) {
-                var respuesta = response.data;
-                //console.log(respuesta);
-                me.arrayCarreras = respuesta;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        clearData: function clearData() {
-            var me = this;
-            me.proceso_id = 0;
-            $("#btnGenerar").prop('disabled', true);
-        },
-        viewPdfFromBase64: function viewPdfFromBase64(base64, titlepdf) {
-            var objbuilder = '';
-            objbuilder += '<object width="100%" height="100%"data="data:application/pdf;base64,';
-            objbuilder += base64;
-            objbuilder += '" type="application/pdf" class="internal">';
-            objbuilder += '<embed src="data:application/pdf;base64,';
-            objbuilder += base64;
-            objbuilder += '" type="application/pdf"  />';
-            objbuilder += '</object>';
+  watch: {
+    proceso_id: function proceso_id() {
 
-            var win = window.open("#", "_blank");
-            win.document.write('<html><title>' + titlepdf + '</title><body style="margin-top:0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
-            win.document.write(objbuilder);
-            win.document.write('</body></html>');
-            layer = jQuery(win.document);
-        },
-        downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
-            var a = document.createElement("a");
-            var name = "Inicio de procesos ";
-            a.href = "data:application/octet-stream;base64," + base64;
-            a.download = name + ".pdf";
-            a.click();
-        },
-        sendParameterToMethod: function sendParameterToMethod() {
-            var me = this;
-            //me.loadSpinner = 1;
-            window.open('http://sisprap.test/gestionProy/reportes/initialprocess/' + this.proceso_id + '/' + [this.arrayMonths]);
-            /* var url = "gestionProy/reportes/initialprocess/" +this.proceso_id + "/"+ [this.arrayMonths];
-             axios.get(url).then(function(response) {
-                 var respuesta = response.data;
-                 console.log(respuesta);
-                 //console.log(me.trimestre.value);
-                 me.loadSpinner = 0;
-                 //me.viewPdfFromBase64(respuesta,'Inicio de proceso');
-                 me.downloadPdfFromBase64(respuesta,name);
-             
-                // me.clearData();
-                 })
-                 .catch(function(error) {
-                 console.log(error);
-                 });*/
-        }
+      this.trimestral = false;
+      this.mensual = false;
+      this.trimestre = "";
     },
-    components: {
-        Switches: __WEBPACK_IMPORTED_MODULE_0_vue_switches___default.a
+    trimestral: function trimestral() {
+      if (this.trimestral == true) {
+        this.tipoRepo = 'T';
+      } else {
+        this.tipoRepo = '';
+      }
+      this.trimestre = "";
     },
-    mounted: function mounted() {
-        this.getCarreras();
+    mensual: function mensual() {
+      if (this.mensual == true) {
+        this.tipoRepo = 'M';
+      } else {
+        this.tipoRepo = '';
+      }
+      this.mes = [];
     }
+  },
+  methods: {
+    getCarreras: function getCarreras() {
+      var me = this;
+      var url = "carreras/GetCarreras";
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayCarreras = respuesta;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    clearData: function clearData() {
+      var me = this;
+      me.proceso_id = 0;
+      $("#btnGenerar").prop('disabled', true);
+    },
+    sendParameterToMethod: function sendParameterToMethod() {
+      var me = this;
+      var url = route('reporteIniProd', { 'proceso_id': me.proceso_id, 'meses': [me.trimestre.value], 'tipoRepo': me.tipoRepo });
+      window.open(url);
+    }
+  },
+  components: {
+    Switches: __WEBPACK_IMPORTED_MODULE_0_vue_switches___default.a
+  },
+  mounted: function mounted() {
+    this.getCarreras();
+  }
 });
 
 /***/ }),
@@ -109093,11 +109013,20 @@ var render = function() {
                     ])
                   ])
                 ])
-              ]),
-              _c("br"),
-              _vm._v(" "),
-              _vm.proceso_id != 0
-                ? _c("fieldset", [
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.proceso_id != 0
+      ? _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "panel panel-default" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("fieldset", [
                     _c("legend", { staticClass: "text-center" }, [
                       _vm._v("Seleccione el tipo de informe")
                     ]),
@@ -109117,31 +109046,30 @@ var render = function() {
                                       "col-md-6 col-sm-12 col-lg-6 text-center"
                                   },
                                   [
-                                    _c(
-                                      "button",
-                                      {
-                                        ref: "btntest",
-                                        staticClass:
-                                          "btn btn-primary font-weight-bold text-dark",
-                                        attrs: {
-                                          type: "button",
-                                          "data-toggle": "collapse",
-                                          "data-target": "#collapseExample",
-                                          "aria-expanded": "false",
-                                          "aria-controls": "collapseExample"
-                                        }
+                                    _vm._v(" \n                    "),
+                                    _c("switches", {
+                                      staticClass: "switch-md",
+                                      attrs: {
+                                        disabled: _vm.mensual == true,
+                                        theme: "bootstrap",
+                                        color: "primary"
                                       },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "mdi mdi-folder-multiple-image h4"
-                                        }),
-                                        _vm._v(
-                                          " Trimestral\n                                "
-                                        )
-                                      ]
-                                    )
-                                  ]
+                                      model: {
+                                        value: _vm.trimestral,
+                                        callback: function($$v) {
+                                          _vm.trimestral = $$v
+                                        },
+                                        expression: "trimestral "
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("i", {
+                                      staticClass:
+                                        "mdi mdi-folder-multiple-image h4"
+                                    }),
+                                    _vm._v(" Trimestral\n                  ")
+                                  ],
+                                  1
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -109151,120 +109079,127 @@ var render = function() {
                                       "col-md-6 col-sm-12 col-lg-6 text-center"
                                   },
                                   [
-                                    _c(
-                                      "button",
-                                      {
-                                        ref: "btntest",
-                                        staticClass:
-                                          "btn btn-primary font-weight-bold text-dark",
-                                        attrs: {
-                                          type: "button",
-                                          "data-toggle": "collapse",
-                                          "data-target": "#collapseExample2",
-                                          "aria-expanded": "false",
-                                          "aria-controls": "collapseExample"
-                                        }
+                                    _c("switches", {
+                                      staticClass: "switch-md",
+                                      attrs: {
+                                        disabled: _vm.trimestral == true,
+                                        theme: "bootstrap",
+                                        color: "primary"
                                       },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "mdi mdi-folder-multiple-image h4"
-                                        }),
-                                        _vm._v(
-                                          " Mensual\n                                "
-                                        )
-                                      ]
-                                    )
-                                  ]
+                                      model: {
+                                        value: _vm.mensual,
+                                        callback: function($$v) {
+                                          _vm.mensual = $$v
+                                        },
+                                        expression: "mensual "
+                                      }
+                                    }),
+                                    _vm._v(" \n                    "),
+                                    _c("i", {
+                                      staticClass:
+                                        "mdi mdi-folder-multiple-image h4"
+                                    }),
+                                    _vm._v(" Mensual\n                  ")
+                                  ],
+                                  1
                                 )
                               ]),
                               _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  ref: "divCollapse",
-                                  staticClass: "collapse",
-                                  attrs: { id: "collapseExample" }
-                                },
-                                [
-                                  _c("v-select", {
-                                    attrs: {
-                                      options: _vm.arrayTrimestral,
-                                      placeholder: "Seleccione un trimestre"
-                                    },
-                                    model: {
-                                      value: _vm.trimestre,
-                                      callback: function($$v) {
-                                        _vm.trimestre = $$v
-                                      },
-                                      expression: "trimestre"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
+                              _vm.trimestral == true
+                                ? _c("div", { staticClass: "row" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-12" },
+                                      [
+                                        _c("br"),
+                                        _c("v-select", {
+                                          attrs: {
+                                            options: _vm.arrayTrimestral,
+                                            placeholder:
+                                              "Seleccione un trimestre"
+                                          },
+                                          model: {
+                                            value: _vm.trimestre,
+                                            callback: function($$v) {
+                                              _vm.trimestre = $$v
+                                            },
+                                            expression: "trimestre"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.mensual == true
+                                ? _c("div", { staticClass: "row" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-12" },
+                                      [
+                                        _c("br"),
+                                        _c("v-select", {
+                                          attrs: {
+                                            multiple: "",
+                                            options: _vm.arrayMeses,
+                                            placeholder: "Seleccione mes"
+                                          },
+                                          model: {
+                                            value: _vm.mes,
+                                            callback: function($$v) {
+                                              _vm.mes = $$v
+                                            },
+                                            expression: "mes"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                : _vm._e(),
                               _vm._v(" "),
                               _c(
                                 "div",
-                                {
-                                  ref: "divCollapse",
-                                  staticClass: "collapse",
-                                  attrs: { id: "collapseExample2" }
-                                },
+                                { staticClass: "col-md-12 text-center" },
                                 [
-                                  _c("v-select", {
-                                    attrs: {
-                                      multiple: "",
-                                      options: _vm.arrayMeses,
-                                      placeholder: "Seleccione mes"
-                                    },
-                                    model: {
-                                      value: _vm.mes,
-                                      callback: function($$v) {
-                                        _vm.mes = $$v
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button secondary",
+                                      attrs: {
+                                        type: "button",
+                                        id: "btnGenerar",
+                                        disabled:
+                                          _vm.mes == "" && _vm.trimestre == "",
+                                        "data-toggle": "tooltip",
+                                        title: "Generar Reporte"
                                       },
-                                      expression: "mes"
-                                    }
-                                  })
-                                ],
-                                1
+                                      on: {
+                                        click: function($event) {
+                                          _vm.sendParameterToMethod()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Generar Reporte")]
+                                  )
+                                ]
                               )
                             ]
                           )
                         ])
                       ])
                     ])
-                  ])
-                : _vm._e(),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-12 text-center" }, [
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "button blue",
-                    attrs: {
-                      type: "button",
-                      id: "btnGenerar",
-                      "data-toggle": "tooltip",
-                      title: "Generar Hoja de Supervisión"
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.sendParameterToMethod()
-                      }
-                    }
-                  },
-                  [_vm._v("Generar Reporte")]
-                )
+                  ]),
+                  _c("br")
+                ])
               ])
             ])
           ])
         ])
-      ])
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

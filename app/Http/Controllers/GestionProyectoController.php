@@ -16,18 +16,18 @@ use PDF;
 class GestionProyectoController extends Controller
 {
     public $meses = array(
-        "ENERO", 
-        "FEBRERO",
-        "MARZO", 
-        "ABRIL", 
-        "MAYO", 
-        "JUNIO", 
-        "JULIO", 
-        "AGOSTO", 
-        "SEPTIEMBRE", 
-        "OCTUBRE", 
-        "NOVIEMBRE", 
-        "DICIEMBRE");
+       "1" => "ENERO", 
+       "2" => "FEBRERO",
+       "3" => "MARZO", 
+       "4" => "ABRIL", 
+       "5" => "MAYO", 
+       "6" => "JUNIO", 
+       "7" => "JULIO", 
+       "8" => "AGOSTO", 
+       "9" => "SEPTIEMBRE", 
+       "10" => "OCTUBRE", 
+       "11" => "NOVIEMBRE", 
+       "12" => "DICIEMBRE");
     public $trimestres = array(
         "123" => 'PRIMER TRIMESTRE',
         "456" => 'SEGUNDO TRIMESTRE',
@@ -236,39 +236,95 @@ public function closeProy(Request $request){
         $e->proceso()->attach(2);
     }
 }
-
-
-
     //Funciones para reportes
     //REPORTE 1 RUTA = /gestionProy/reportes/initialprocess/{pId}
-public function getInitialProcessReporte($proceso_id){
+public function getInitialProcessReporte(Request $request){
 
-    $collection;
-    $carrera = Carrera::with(['estudiantes'])->get();
-    $test = [1,2,3];
-    $totalMined = 0;
-    $totalOtros = 0;
-    
+    if($request->tipoRepo == 'T'){
+        $collection;
+        $carrera = Carrera::get();
+        $arrayTrimestre = explode(",",$request->meses);
+        $mesesTitulo = "";
+        $totalMined = 0;$totalOtros = 0;$totalMinedMes1 = 0;$totalOtrosMes1 = 0;$totalMinedMes2 = 0;$totalOtrosMes2 = 0;$totalMinedMes3 = 0;
+        $totalOtrosMes3 = 0;
+        $procesoId = $request->proceso_id;
+        //Sacando datos mensuales
+        $dataMensual = [];
+        $mes1 = [];$mes2 = [];$mes3 = [];
 
-    $data = [];
-    $data[0] = "CONSOLIDADO ".$this->trimestres[implode($test)];
-    foreach ($carrera as $carre) {
-        //Obteniendo el total de resultados becados y otros
-        $totalMined += $carre->getCountStudentsByMinedTrimestral($test);
-        $totalOtros += $carre->getCountStudentsByOtherBecaTrimestral($test);
+        $mes1[0] = $this->meses[$arrayTrimestre[0]];
+        $mes2[0] = $this->meses[$arrayTrimestre[1]];
+        $mes3[0] = $this->meses[$arrayTrimestre[2]];
+        $collection1;$collection2;$collection3;
+        $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
+        foreach($carrera as $key => $carre){
 
-        $data[1] = array("totalMined" => $totalMined,"totalOtros"=>$totalOtros); 
-        $data[$carre->id+1] = $collection = new Collection(["Carrera" => $carre->nombre,
-         "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($test),
-         "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($test) ]);
+            $totalMinedMes1 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId);
+            $totalOtrosMes1 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId);
+
+            $mes1[1] = array(
+                "totalMined" => $totalMinedMes1,
+                "totalOtros"=> $totalOtrosMes1
+            ); 
+
+            $mes1[$carre->id+1] = $collection1 = new Collection([
+                "Carrera" => $carre->nombre,
+                "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId),
+                "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId)
+            ]);
+            
+            $totalMinedMes2 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[1], $procesoId);
+            $totalOtrosMes2 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[1], $procesoId);
+
+            $mes2[1] = array(
+                "totalMined" => $totalMinedMes2,
+                "totalOtros" => $totalOtrosMes2,
+            );
+
+            $mes2[$carre->id+1] = $collection2 = new Collection([
+                "Carrera" => $carre->nombre,
+                "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[1], $procesoId),
+                "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[1], $procesoId),
+            ]);
+
+            $totalMinedMes3 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[2], $procesoId);
+            $totalOtrosMes3 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[2], $procesoId);
+
+            $mes3[1] = array(
+                "totalMined" => $totalMinedMes3,
+                "totalOtros" => $totalOtrosMes3,
+            );
+
+            $mes3[$carre->id+1] = $collection2 = new Collection([
+                "Carrera" => $carre->nombre,
+                "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[2], $procesoId),
+                "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[2], $procesoId),
+            ]);
+        }
+        //Sacando Consolidado por los 3 meses
+        $data = [];
+        $data[0] = $this->trimestres[implode($arrayTrimestre)];
+        foreach ($carrera as $carre) {
+            //Obteniendo el total de resultados becados y otros
+            $totalMined += $carre->getCountStudentsByMinedTrimestral($arrayTrimestre,$procesoId);
+            $totalOtros += $carre->getCountStudentsByOtherBecaTrimestral($arrayTrimestre,$procesoId);
+
+            $data[1] = array("totalMined" => $totalMined,"totalOtros"=>$totalOtros); 
+            $data[$carre->id+1] = $collection = new Collection(["Carrera" => $carre->nombre,
+            "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($arrayTrimestre,$procesoId),
+            "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($arrayTrimestre,$procesoId) ]);
+        }
+        $mensuales[0] = [
+            'mes1' => $mes1,
+            'mes2' => $mes2,
+            'mes3' => $mes3,
+        ];
+        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo])->setOption('footer-center', 'Página [page] de [topage]');;
+        return $pdf->stream('Inicio Procesos.pdf');
+
+    }else if($request->tipoRepo == 'M'){
+        return "Mensual";
     }
-
-
-    $pdf = PDF::loadView('reportes.iniprocesos', ['consolidado' => $data])->setOption('footer-center', 'Página [page] de [topage]');;
-    return $pdf->stream('Inicio Procesos.pdf');
-    /* return view('reportes.iniprocesos'); */
-   /*  return $data; */
-
 }
 
 public function generateConstancia($gp_id){
