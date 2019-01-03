@@ -17,7 +17,7 @@
          {{--    <div class="card-body">
                 <div class="row">
                     <div class="col-md-12 text-center"> --}}
-                        <img src="images/atajos/GESTIONES.png" class="img-fluid" alt="logo sisprap" style="width: 410px; height: 170px; display: block; margin-left: auto; margin-right: auto;">
+                        <img src="images/atajos/GESTIONES.png" class="img-fluid" alt="logo sisprap" style="width: 410px; height: 180px; display: block; margin-left: auto; margin-right: auto;">
             {{--         </div>
                 </div>
             </div> --}}
@@ -28,7 +28,7 @@
             {{-- <div class="card-body">
                 <div class="row">
                     <div class="col-md-12 text-center"> --}}
-                        <img src="images/atajos/PEINSCRIPCIONES.png" class="img-fluid" alt="logo sisprap" style="width: 410px; height: 170px; display: block; margin-left: auto; margin-right: auto;">
+                        <img src="images/atajos/PEINSCRIPCIONES.png" class="img-fluid" alt="logo sisprap" style="width: 410px; height: 180px; display: block; margin-left: auto; margin-right: auto;">
            {{--          </div>
                 </div>
             </div> --}}
@@ -39,7 +39,7 @@
       {{--       <div class="card-body">
                 <div class="row">
                     <div class="col-md-12 text-center"> --}}
-                        <img src="images/atajos/PUBLICACIONES.png" class="img-fluid" alt="logo sisprap" style="width: 410px; height: 170px;display: block; margin-left: auto; margin-right: auto;">
+                        <img src="images/atajos/PUBLICACIONES.png" class="img-fluid" alt="logo sisprap" style="width: 410px; height: 180px;display: block; margin-left: auto; margin-right: auto;">
           {{--           </div>
                 </div>
             </div> --}}

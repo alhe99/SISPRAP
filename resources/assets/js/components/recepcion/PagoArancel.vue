@@ -136,8 +136,8 @@
                       <div class="modal-footer">
                         <div class="row">
                           <div class="col-md-12">
-                            <button type="button" id="btnSave" @click="savePay()" class="button blue">Guardar Datos</button>
-                            <button type="button" @click="cerrarModal()" class="button red">Cerrar</button>
+                            <button type="button" id="btnSave" @click="savePay()" class="button blue"><i class="mdi mdi-content-save"></i>Guardar Datos</button>
+                            <button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>Cerrar</button>
                           </div>
                         </div>
                       </div>
