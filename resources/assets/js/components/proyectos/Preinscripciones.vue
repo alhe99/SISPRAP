@@ -33,7 +33,7 @@
       <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
       </div>
     </div>
-      <div class="card">
+    <div class="card" v-if="proceso != 0 ">
       <div class="card-body">
         <div class="row">
             <div class="col-md-11">
@@ -143,36 +143,6 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
-          <br>
-          <table class="table table-striped table-bordered table-mc-light-blue">
-            <thead class="thead-primary">
-              <tr>
-                <th>Nombre Estudiante</th>
-                <th>Fecha preinscripción</th>
-                <th class="text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in arrayPreregister" :key="item.id">
-                <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
-                <td v-text="item.pivot.created_at"></td>
-                <td class="text-center">
-                  <button type="button" class="button blue " @click="aprobarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
-                  <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <nav>
-           <ul class="pagination">
-            <li class="page-item" v-if="pagination.current_page > 1">
-              <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
-            </li>
-            <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-              <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
-=======
       </div>
     </div>
     <!--///////// FIN DE MODAL PARA ASIGNAR PROYECTOS FUERA DEL SISTEMA /////////-->
@@ -189,7 +159,6 @@
         </div>
       </div>
     </div><br>
->>>>>>> d46898c36cf551041067a20f950e5d857cb4e930
 
     <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-10 col-sm-12 col-lg-6">
       <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>

@@ -19,10 +19,7 @@
     <link href="css/table.css" rel="stylesheet">
     <link href="css/radioBtn.css" rel="stylesheet">
     <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">
-<<<<<<< HEAD
-=======
     <link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
->>>>>>> d46898c36cf551041067a20f950e5d857cb4e930
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Id for Channel Notification -->
     <meta name="userId" content="0">
