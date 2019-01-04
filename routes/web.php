@@ -20,7 +20,7 @@ Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
 Route::get('GetInstitucion/', 'InstitucionController@GetInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
-Route::get('/institucion/validate/{nombre}/{proceso}','InstitucionController@validateInstitucion');
+Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
 
 
 Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');

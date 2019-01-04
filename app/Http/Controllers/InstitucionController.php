@@ -266,15 +266,11 @@ function regSupervision(){
 
 public function validateInstitucion(Request $request){
 
-    if(Institucion::where('nombre',$nombre)->whereHas('procesos',function($query) use($proceso_id){
-        $query->where('proceso_id',$proceso_id);
+    if(Institucion::where('nombre',$request->nombre)->whereHas('procesos',function($query) use($request){
+        $query->where('proceso_id',$request->proceso_id);
     })->exists()){
-        return "true";
+        return response('existe', 200);
     }
-    else{
-        return "false";
-    }
-
 }
 }
 
