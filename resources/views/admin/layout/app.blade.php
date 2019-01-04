@@ -127,7 +127,7 @@
                         </li> --}}
                         @endif
 
-                        ============================================================== -->
+                         <!-- ============================================================== -->
                         <!--End Messages -->
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
@@ -220,14 +220,7 @@
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <br>
-   {{--      <div class="row page-titles">
-            <div class="col-md-5 col-8 align-self-center">
-                <h3 class="text-themecolor">Home</h3>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
-            </div>
+{{--         <div class="row page-titles">
             <div class="col-md-7 col-4 align-self-center">
                 <div class="d-flex m-t-10 justify-content-end">
                     <div class="">
@@ -268,6 +261,7 @@
         </div>
     </div>
     <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-APAGE </footer>
+     <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
 </div>
 
 </div>

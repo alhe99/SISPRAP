@@ -213,7 +213,7 @@
                                 </div>
                               </td>
                               <td>
-                               <button type="button" :disabled="gpObj.documentos_entrega.length == 4" class="button blue" @click="abrirModalDoc()">Administrar Documentos</button>
+                               <button type="button" :disabled="gpObj.documentos_entrega.length == 4" class="button blue" @click="abrirModalDoc()"><i class="mdi mdi-clipboard-text"></i>&nbsp;Administrar Documentos</button>
                              </td>
                            </tr>
                          </table>
@@ -257,8 +257,8 @@
               <div class="modal-footer">
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" @click="cerrarModalDoc()" class="button red">Cerrar</button>
-                    <button type="button" @click="saveDoc()" class="button secondary">Guardar Datos</button>
+                    <button type="button" @click="cerrarModalDoc()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cerrar</button>
+                    <button type="button" @click="saveDoc()" class="button blue"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Datos</button>
                   </div>
                 </div>
               </div>

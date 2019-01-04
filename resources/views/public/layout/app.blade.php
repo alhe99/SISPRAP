@@ -195,7 +195,7 @@
 							<div class="col-md-6" data-wow-delay=".1s">
 								<div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
 									<label class="control-label" for="estudiante_contraseña_conf">Confirmar contraseña</label>
-									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
+									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value=""> 
 								</div>
 							</div>
 						</div>

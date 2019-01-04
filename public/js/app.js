@@ -96678,7 +96678,12 @@ var render = function() {
                                   },
                                   on: { click: _vm.registrarInstitucion }
                                 },
-                                [_vm._v("Guardar Institución")]
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-content-save"
+                                  }),
+                                  _vm._v(" Guardar Institución")
+                                ]
                               )
                             : _vm._e(),
                           _vm._v(" "),
@@ -96694,7 +96699,12 @@ var render = function() {
                                   },
                                   on: { click: _vm.actualizarInstitucion }
                                 },
-                                [_vm._v("Actualizar Institución")]
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-content-save"
+                                  }),
+                                  _vm._v(" Actualizar Institución")
+                                ]
                               )
                             : _vm._e(),
                           _vm._v(" "),
@@ -96709,7 +96719,10 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Cancelar")]
+                            [
+                              _c("i", { staticClass: "mdi mdi-close-box" }),
+                              _vm._v(" Cancelar")
+                            ]
                           )
                         ])
                       ])
@@ -99318,7 +99331,12 @@ var render = function() {
                                 },
                                 on: { click: _vm.saveProyect }
                               },
-                              [_vm._v("Guardar Proyecto")]
+                              [
+                                _c("i", {
+                                  staticClass: "mdi mdi-content-save"
+                                }),
+                                _vm._v(" Guardar Proyecto")
+                              ]
                             )
                           ])
                         ]),
@@ -101291,7 +101309,10 @@ var render = function() {
                             attrs: { type: "button" },
                             on: { click: _vm.actualizarProyecto }
                           },
-                          [_vm._v("Actualizar Proyecto")]
+                          [
+                            _c("i", { staticClass: "mdi mdi-content-save" }),
+                            _vm._v(" Actualizar Proyecto")
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -101305,7 +101326,10 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Cancelar")]
+                          [
+                            _c("i", { staticClass: "mdi mdi-close-box" }),
+                            _vm._v(" Cancelar")
+                          ]
                         )
                       ])
                     ])
@@ -103686,7 +103710,10 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._v("Aprobar")]
+                                  [
+                                    _c("i", { staticClass: "mdi mdi-check" }),
+                                    _vm._v(" Aprobar")
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -103707,7 +103734,10 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._v("Rechazar")]
+                                  [
+                                    _c("i", { staticClass: "mdi mdi-close" }),
+                                    _vm._v(" Rechazar")
+                                  ]
                                 )
                               ])
                             ])
@@ -112394,8 +112424,12 @@ var render = function() {
                                                       }
                                                     },
                                                     [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "mdi mdi-clipboard-text"
+                                                      }),
                                                       _vm._v(
-                                                        "Administrar Documentos"
+                                                        " Administrar Documentos"
                                                       )
                                                     ]
                                                   )
@@ -112571,13 +112605,18 @@ var render = function() {
                                               }
                                             }
                                           },
-                                          [_vm._v("Cerrar")]
+                                          [
+                                            _c("i", {
+                                              staticClass: "mdi  mdi-close-box"
+                                            }),
+                                            _vm._v(" Cerrar")
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "button secondary",
+                                            staticClass: "button blue",
                                             attrs: { type: "button" },
                                             on: {
                                               click: function($event) {
@@ -112585,7 +112624,13 @@ var render = function() {
                                               }
                                             }
                                           },
-                                          [_vm._v("Guardar Datos")]
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-content-save"
+                                            }),
+                                            _vm._v(" Guardar Datos")
+                                          ]
                                         )
                                       ])
                                     ])

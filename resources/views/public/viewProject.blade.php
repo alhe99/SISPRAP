@@ -52,12 +52,12 @@
                     <div class="row">
                         @if (in_array($proyecto->id,Auth::user()->estudiante->preinscripciones->pluck('id')->toArray()) == 1)
                         <div class="col-md-6 text-center">
-                            <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="fas fa-plus-circle MisProyFon"></i></button>
+                            <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                         </div>
                         @else
                         <div class="col-md-6 text-center">
                             <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
-                                id="btnPreinscribir">Preinscribirme&nbsp;<i class="fas fa-plus-circle MisProyFon"></i></button>
+                                id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                             </div>
                             @endif
                             <div class="col-md-6 text-center">
