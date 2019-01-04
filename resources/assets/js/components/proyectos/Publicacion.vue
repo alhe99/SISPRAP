@@ -206,7 +206,7 @@
                   <div class="row">
                     <div class="col-md-3">
                       <br>
-                      <button type="button" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect">Guardar Proyecto</button>
+                      <button type="button" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
                       <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
                     </div>
                   </div>

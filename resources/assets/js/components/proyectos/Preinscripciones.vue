@@ -178,8 +178,8 @@
             <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
             <td v-text="item.pivot.created_at"></td>
             <td class="text-center">
-              <button type="button" class="button blue " @click="aprobarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Aprobar Proyecto">Aprobar</button>
-              <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto">Rechazar</button>
+              <button type="button" class="button blue " @click="aprobarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
+              <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
             </td>
           </tr>
         </tbody>
