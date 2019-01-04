@@ -47,6 +47,7 @@ return array(
     'App\\Institucion' => $baseDir . '/app/Institucion.php',
     'App\\Jobs\\sendNotificationToAdmin' => $baseDir . '/app/Jobs/sendNotificationToAdmin.php',
     'App\\Municipio' => $baseDir . '/app/Municipio.php',
+    'App\\NivelAcademico' => $baseDir . '/app/NivelAcademico.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',
     'App\\Notifications\\NotifyAcceptProjectToStudent' => $baseDir . '/app/Notifications/NotifyAcceptProjectToStudent.php',
     'App\\Notifications\\NotifyPreRegisterProject' => $baseDir . '/app/Notifications/NotifyPreRegisterProject.php',

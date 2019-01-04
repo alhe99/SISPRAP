@@ -4,71 +4,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test Pdf</title>
+    <title>Estudiantes que Estan Pendientes de Iniciar Procesos</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
-    
+    <style>
+    .bg-header{
+       background-color:#F8EFB6
+   }
+   .font-normal{
+       font-weight: normal;
+   }
+</style>
+
 </head>
-<body>
+<body style="background-color:white">
     <header>
         <div class="row text-center">
-        
-            <div class="col-md-6">
-                 <img class="text-center img-fluid " src="images/img_reportes/logoITCHA.png" alt="">
-                 
-                 <img class="text-center img-fluid " src="images/img_reportes/mined.jpg" alt="">
-                  
-                 <img class="text-center img-fluid " src="images/img_reportes/megatec.jpg" alt="">
-                  
-                 <img class="text-center img-fluid " src="images/img_reportes/logopequeño.png" alt="">
-
-            </div>    
-        </div>
-        
-    </header>
-    <div>
+            <div class="col-md-8">
+               <img class="img-fluid" width="450" src="{{asset('images/header_reportes.PNG')}}">
+           </div>
+       </div>
+   </header>
+   <div class="row m-5">
     <div class="row">
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME TRIMESTRAL DE ALUMNOS PENDIENTES DE INICIO DE SERVICIO SOCIAL</ins></strong></p><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>MESES: ENERO, FEBRERO, MARZO </ins></strong></p>
-
+            {{-- TRAER EL PROCESO PARA TERMINAR ESTE TITULO --}}
+            <p class="text-center font-weight-bold"><u>INFORME DE PENDIENTES DE INICIO DE {{ $procesoTitulo }} DE {{ date('Y')}}</u></p><br>
+            @if ($tipo == 'M')
+            <p class="text-center font-weight-bold"><u>MESES: {{ implode(",", $meses) }}</u></strong></p>
+            @elseif($tipo == 'T')
+            <p class="text-center font-weight-bold"><u>MESES: {{ $meses }}</u></strong></p>
+            @elseif($tipo == 'A')
+            <p class="text-center font-weight-bold"><u>INFORME ANUAL</u></strong></p>
+            @endif
         </div>
     </div>
-        <div class="col-md-12">
-            <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
-                <thead>
-                     <tr style="background-color:#ffbb98;">
-                        <td colspan="4"><strong>Carrera: </strong></td>
-                        <td colspan="4"><strong>Nivel Académico: </strong></td>
-                    </tr> 
+    <div class="col-md-12">
+        @if ($tipo == 'T')
+        {{-- TABLA PARA MESES INDIVIDUALES --}}
+       {{--  @for ($i = 0; $i < count($mensuales[0]) ; $i++)
+            <h6 class="font-weight-bold text-center">{{ $mensuales[$i][0] }}</h6>
+            @endfor --}}
+
+            <h6 class="font-weight-bold text-center">{{ $mensuales[0][0] }}</h6>
+
+            @for ($i = 0; $i < count($mensuales) ; $i++)
+            @for ($j = 2; $j < count($mensuales[$i]) ; $j++)
+            <table class="col-md-12" border cellpadding="7">
+                <thead class="font-weight-bold text-center bg-header">
                     <tr>
-                        <th>Nombre del Alumno</th>
+                        <td>Carrera: </td>
+                    </tr>
+                    <tr>
+                        <th>Nombre del alumno</th>
                     </tr>
                 </thead>
                 <tbody>
+                  {{--  @for ($i = 1; $i < count($item) ; $i++)
+                   @foreach ($item[$i] as $val)
+                   <tr>
+                    <th class="font-normal">{{ $val["nombre"] }}</th>
+                </tr>
+                @endforeach
+                @endfor --}}
+            </tbody>
+        </table><br>
+        @endfor
+        @endfor
+        {{-- TABLA PARA CONSOLIDADO FINAL --}}
+        {{-- <table class="col-md-12" border cellpadding="7">
+            <thead class="font-weight-bold text-center bg-header">
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td colspan="4">{{"CONSOLIDADO ".$consolidado[0]}}</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <th>Carrera</th>
+                    <th>Becados <br> MINED</th>
+                    <th>Otros</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ($i = 2; $i < count($consolidado); $i++)
+                <tr>
+                    <th class="font-normal">{{$consolidado[$i]['Carrera']}}</th>
+                    <th class="text-center font-normal">{{$consolidado[$i]['BecadosMined']}}</th>
+                    <th class="text-center font-normal">{{$consolidado[$i]['Otros']}}</th>
+                    <th class="text-center font-normal">{{$consolidado[$i]['BecadosMined']+$consolidado[$i]['Otros']}}</th>
+                </tr>
+                @endfor
+                <tr class="text-center bg-header">
+                    <th class="text-right">Total</th>
+                    <th>{{$consolidado[1]['totalMined']}}</th>
+                    <th>{{$consolidado[1]['totalOtros']}}</th>
+                    <th>{{$consolidado[1]['totalMined']+$consolidado[1]['totalOtros']}}</th>
+                </tr>
+            </tbody>
+        </table> --}}
+        @elseif($tipo == 'M')
+        @foreach ($mensuales as $item)
+        <br><br><table class="col-md-12" border cellpadding="4" style="margin-bottom: -17px;">
+            <thead class="font-weight-bold text-center bg-header">
+                <tr>
+                    <td colspan="4">{{ $item[0] }}</td>
                 </tr>
                 <tr>
-                    <td>Total: </td>
-                    <td>{{$total}}</td>
+                    <th>Carrera</th>
+                    <th>Becados MINED</th>
+                    <th>Otros</th>
+                    <th>Total</th>
                 </tr>
-                    {{--  @foreach ($instituciones as $i)
-                        <tr>
-                            <th>{{$i->nombre}}</th>
-                            <th>{{$i->municipio->nombre}} {{$i->municipio->departamento->nombre}}</th>
-                        </tr>
-                    @endforeach  --}}
-                </tbody>
-            </table>
-            
-        </div>
+            </thead>
+            <tbody>
+                @for ($i = 2; $i < count($item); $i++)
+                <tr>
+                    <th class="font-normal">{{ $item[$i]['Carrera']}}</th>
+                    <th class="text-center font-normal">{{ $item[$i]['BecadosMined']}}</th>
+                    <th class="text-center font-normal">{{ $item[$i]['Otros']}}</th>
+                    <th class="text-center font-normal">{{ $item[$i]['BecadosMined']+$item[$i]['Otros']}}</th>
+                </tr>
+                @endfor
+                <tr class="bg-header">
+                    <th class="text-right">Total</th>
+                    <th class="text-center">{{ $item[1]['totalMined'] }}</th>
+                    <th class="text-center">{{ $item[1]['totalOtros'] }}</th>
+                    <th class="text-center">{{ $item[1]['totalMined'] + $item[1]['totalOtros'] }}</th>
+                </tr>
+            </tbody>
+        </table><br><br>
+        @endforeach
+        @elseif($tipo == 'A')
+        @foreach ($mensuales as $item)
+        <br><br><table class="col-md-12" border cellpadding="4" style="margin-bottom: -17px;">
+            <thead class="font-weight-bold text-center bg-header">
+                <tr>
+                    <td colspan="4">{{ $item[0] }}</td>
+                </tr>
+                <tr>
+                    <th>Carrera</th>
+                    <th>Becados MINED</th>
+                    <th>Otros</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ($i = 2; $i < count($item); $i++)
+                <tr>
+                    <th class="font-normal">{{ $item[$i]['Carrera']}}</th>
+                    <th class="text-center font-normal">{{ $item[$i]['BecadosMined']}}</th>
+                    <th class="text-center font-normal">{{ $item[$i]['Otros']}}</th>
+                    <th class="text-center font-normal">{{ $item[$i]['BecadosMined']+$item[$i]['Otros']}}</th>
+                </tr>
+                @endfor
+                <tr class="bg-header">
+                    <th class="text-right">Total</th>
+                    <th class="text-center">{{ $item[1]['totalMined'] }}</th>
+                    <th class="text-center">{{ $item[1]['totalOtros'] }}</th>
+                    <th class="text-center">{{ $item[1]['totalMined'] + $item[1]['totalOtros'] }}</th>
+                </tr>
+            </tbody>
+        </table><br><br>
+        @endforeach
+        {{-- TABLA PARA CONSOLIDADO FINAL ANUAL  --}}
+        <table class="col-md-12" border cellpadding="7">
+            <thead class="font-weight-bold text-center bg-header">
+                <tr>
+                    <td colspan="4">{{"CONSOLIDADO DEL AÑO ".$consolidadoAnual[0]}}</td>
+                </tr>
+                <tr>
+                    <th>Carrera</th>
+                    <th>Becados <br> MINED</th>
+                    <th>Otros</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ($i = 2; $i < count($consolidadoAnual); $i++)
+                <tr>
+                    <th class="font-normal">{{$consolidadoAnual[$i]['Carrera']}}</th>
+                    <th class="text-center font-normal">{{$consolidadoAnual[$i]['BecadosMined']}}</th>
+                    <th class="text-center font-normal">{{$consolidadoAnual[$i]['Otros']}}</th>
+                    <th class="text-center font-normal">{{$consolidadoAnual[$i]['BecadosMined']+$consolidadoAnual[$i]['Otros']}}</th>
+                </tr>
+                @endfor
+                <tr class="text-center bg-header">
+                    <th class="text-right">Total</th>
+                    <th>{{$consolidadoAnual[1]['totalMined']}}</th>
+                    <th>{{$consolidadoAnual[1]['totalOtros']}}</th>
+                    <th>{{$consolidadoAnual[1]['totalMined']+$consolidadoAnual[1]['totalOtros']}}</th>
+                </tr>
+            </tbody>
+        </table>
+        @endif
     </div>
+</div>
 </body>
 </html>

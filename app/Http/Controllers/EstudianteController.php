@@ -99,7 +99,7 @@ public function getStudensByCarrerAndProcess(Request $request){
     $proceso_id = $request->proceso_id;
     $nombre = $request->buscar;
 
-    $estudiantes = Estudiante::with(['carrera'])->whereHas('carrera', function ($query) use($carrera_id) {
+    $estudiantes = Estudiante::with(['carrera','nivelAcademico'])->whereHas('carrera', function ($query) use($carrera_id) {
 
         $query->where('id',$carrera_id);
 

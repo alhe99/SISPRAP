@@ -15,11 +15,7 @@ use PDF;
 
 class InstitucionController extends Controller
 {
-    public function __construct(){
 
-        //$this->middleware('auguestVerifyth');
-
-    }
     public function index(Request $request)
     {
      if (!$request->ajax()) return redirect('/');
@@ -268,17 +264,13 @@ function regSupervision(){
     return base64_encode($pdf->stream('regsupervisiones' .Carbon::parse($date).'.pdf'));
 }
 
-public function ifInstitucionExist($nombre,$proceso_id){
+public function validateInstitucion(Request $request){
 
-    if(Institucion::where('nombre',$nombre)->whereHas('procesos',function($query) use($proceso_id){
-        $query->where('proceso_id',$proceso_id);
-    })->first()){
-        return "true";
+    if(Institucion::where('nombre',$request->nombre)->whereHas('procesos',function($query) use($request){
+        $query->where('proceso_id',$request->proceso_id);
+    })->exists()){
+        return response('existe', 200);
     }
-    else{
-        return "false";
-    }
-
 }
 }
 

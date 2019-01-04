@@ -222,15 +222,15 @@
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <div class="row md-radio">
-                        <div class="col-md-4 text-center" :class="[tipoAccion == 2 ? 'col-md-6' : 'col-md-4']">
+                        <div class="col-md-4 text-center">
                           <input id="ss" value="1" v-model="tipoproceso_id" type="radio" name="radiosP" required >
                           <label for="ss">Servicio Social</label>
                         </div>
-                        <div class="col-md-4 text-center" :class="[tipoAccion == 2 ? 'col-md-6' : 'col-md-4']">
+                        <div class="col-md-4 text-center">
                           <input id="pp" value="2" v-model="tipoproceso_id" type="radio" name="radiosP" required >
                           <label for="pp" class="d-inline">Práctica Profesional</label>
                         </div>
-                        <div v-if="tipoAccion == 1" class="col-md-4 text-center">
+                        <div class="col-md-4 text-center">
                           <input id="a" value="3" v-model="tipoproceso_id" type="radio" name="ambos" required >
                           <label for="a">Ambos</label>
                         </div>
@@ -551,7 +551,7 @@
                     titleMRS: "",
                     supervision: {},
                     maxDatetime:  new Date().toISOString().substring(0, 10),
-                    exist: false,
+                    nombreUpd: "",
                   };
                 },
                 computed: {
@@ -612,6 +612,13 @@
                       return false;
                     }
                   },
+                 /*  removeOpcion: function(){
+                    let me = this;
+                    return $("#nombre").on('keyup',function(){
+                      //me.opcion = "";
+                      me.validateIfExist($(this).val().trim(),me.proceso);
+                    }); 
+                  } */
                 },
                 watch: {
                   departamento_id: function() {
@@ -631,16 +638,14 @@
                     }
                   },
                   supervision: function(){
-     // if(this.supervision != {})
-     // {
-      this.observacion = this.supervision["observacion"];
-      this.date = this.supervision["fecha"];
-       // this.images = this.supervision["imagenes"];
-     // }
-   },
-   nombre: function(){
-    this.validateIfExist(this.nombre,this.proceso);
-  }
+            // if(this.supervision != {})
+            // {
+              this.observacion = this.supervision["observacion"];
+              this.date = this.supervision["fecha"];
+              // this.images = this.supervision["imagenes"];
+            // }
+          },
+
 },
 methods: {
   listarInstitucion(page, proceso, buscar) {
@@ -760,51 +765,69 @@ methods: {
   registrarInstitucion() {
     let me = this;
     me.loadSpinner = 1;
-    if(me.exist == false){
-      axios
-      .post("/institucion/registrar", {
-        nombre: me.nombre,
-        direccion: me.direccion,
-        telefono: me.phone,
-        email: me.email,
-        sector_institucion_id: me.sector_id["value"],
-        municipio_id: me.municipio_id["value"],
-        proceso_id: me.tipoproceso_id
-      })
-      .then(function(response) {
-        me.loadSpinner = 0;
+    var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
+    axios.get(url).then(function(response) {
+     var respuesta = response.data;
+     console.log(respuesta);
+     if(respuesta == 'existe'){
         swal({
           position: "center",
-          type: "success",
-          title: "¡Institución agregada correctamente!",
-          showConfirmButton: false,
-          timer: 1000
+          type: "warning",
+          title: "Institución existente! Ingrese otro nombre",
+          showConfirmButton: true,
+          timer: 5000
         });
-        me.cerrarModal();
-        me.listarInstitucion(1, me.proceso, "");
-      })
-      .catch(error => {
+        me.nombre = "";
         me.loadSpinner = 0;
-        console.log(error);
-      });
-    }else{
-      swal({
+        me.exist = false;
+      }else {
+        axios.post("/institucion/registrar", {
+          nombre: me.nombre,
+          direccion: me.direccion,
+          telefono: me.phone,
+          email: me.email,
+          sector_institucion_id: me.sector_id["value"],
+          municipio_id: me.municipio_id["value"],
+          proceso_id: me.tipoproceso_id
+        })
+        .then(function(response) {
+          me.loadSpinner = 0;
+          swal({
+            position: "center",
+            type: "success",
+            title: "¡Institución agregada correctamente!",
+            showConfirmButton: false,
+            timer: 1000
+          });
+          me.cerrarModal();
+          me.listarInstitucion(1, me.proceso, "");
+        })
+        .catch(error => {
+          me.loadSpinner = 0;
+          console.log(error);
+        });
+      }
+ });
+  },
+  actualizarInstitucion() {
+    let me = this;
+    me.loadSpinner = 1;
+   var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
+    axios.get(url).then(function(response) {
+     var respuesta = response.data;
+     console.log(respuesta);
+     if((me.nombre != me.nombreUpd) && (respuesta == 'existe')){
+        swal({
         position: "center",
         type: "warning",
         title: "Institución existente! Ingrese otro nombre",
         showConfirmButton: true,
         timer: 5000
-      });
-      me.nombre = "";
-      me.loadSpinner = 0;
-      me.exist = false;
-    }
-  },
-  actualizarInstitucion() {
-    let me = this;
-    me.loadSpinner = 1;
-    if(me.exist == false){
-      axios
+        });
+        me.loadSpinner = 0;
+        me.exist = false;
+     }else{
+       axios
       .put("/institucion/actualizar", {
         id: me.institucion_id,
         nombre: me.nombre,
@@ -839,18 +862,8 @@ methods: {
         me.loadSpinner = 0;
         console.log(error);
       });
-    }else{
-      swal({
-        position: "center",
-        type: "warning",
-        title: "Institución existente! Ingrese otro nombre",
-        showConfirmButton: true,
-        timer: 5000
-      });
-      me.loadSpinner = 0;
-      me.exist = false;
-    }
-
+     }
+    });
   },
   registrarSupervision() {
     let me = this;
@@ -879,16 +892,8 @@ methods: {
   },
   validateIfExist(institucion,proceso_id){
     let me = this;
-    var url = "/institucion/validate/"+ institucion + "/" + proceso_id;
-    axios.get(url).then(function(response) {
-     var respuesta = response.data;
-     console.log(respuesta);
-     if(respuesta == true){
-      me.exist = true;
-    }else {
-     me.exist = false;
-   }
- });
+   
+   
   },
   abrirModal(modelo, accion, data = []) {
     const el = document.body;
@@ -897,7 +902,6 @@ methods: {
       case "institucion": {
         switch (accion) {
           case "registrar": {
-
             this.modal = 1;
             this.tipoproceso_id = this.proceso;
             this.nombre = "";
@@ -934,17 +938,16 @@ methods: {
               this.institucion_id = data["id"];
               this.idSector = data.sector_institucion;
 
-              if(data.procesos.length > 1){
-                if(this.proceso == 1)
-                  this.tipoproceso_id = data.procesos[0].id;
-                else if(this.proceso == 2)
-                  this.tipoproceso_id = data.procesos[1].id;
-
+               if(data.procesos.length > 1){
+                  this.tipoproceso_id = 3;
+               /*  else if(this.proceso == 2)
+                  this.tipoproceso_id = data.procesos[1].id; */
               }else{
                 this.tipoproceso_id = data.procesos[0].id;
-              }
+              } 
 
               this.nombre = data["nombre"];
+              this.nombreUpd = data["nombre"];
               this.direccion = data["direccion"];
               this.phone = data["telefono"];
               this.email = data["email"];
@@ -1025,6 +1028,7 @@ methods: {
       this.estado = 0;
       this.departamento_id = 0;
      // this.errors = [];
+      this.nombreUpd = "";
    },
    cambiarPagina(page, proceso, buscar) {
     let me = this;
