@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAnotherAtributesToEstudiantesTable extends Migration
+class AddTipoGpToGestionProyectos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddAnotherAtributesToEstudiantesTable extends Migration
      */
     public function up()
     {
-        Schema::table('estudiantes', function (Blueprint $table) {
-            $table->integer('estado_ss')->nullable(true);
-            $table->integer('estado_pp')->nullable(true);
+        Schema::table('gestion_proyectos', function (Blueprint $table) {
+            $table->integer('tipo_gp')->nullable(true)->after('observacion_final');
         });
     }
 
@@ -26,7 +25,7 @@ class AddAnotherAtributesToEstudiantesTable extends Migration
      */
     public function down()
     {
-        Schema::table('estudiantes', function (Blueprint $table) {
+        Schema::table('gestion_proyectos', function (Blueprint $table) {
             //
         });
     }

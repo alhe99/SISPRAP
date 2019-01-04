@@ -46,11 +46,11 @@ class Estudiante extends Model
     }
     public function gestionProyecto(){
 
-        return $this->hasOne(GestionProyecto::class);
+        return $this->hasMany(GestionProyecto::class);
     }
     public function proceso(){
 
-        return $this->belongsToMany(TipoProceso::class, 'procesos_estudiantes','estudiante_id','proceso_id')->withPivot(['estado','pago_arancel']);
+        return $this->belongsToMany(TipoProceso::class, 'procesos_estudiantes','estudiante_id','proceso_id')->withPivot(['estado','pago_arancel','num_horas']);
     }
     public function preinscripciones(){
 
@@ -66,5 +66,10 @@ class Estudiante extends Model
     public function scopeNombre($query,$name){
         if($name)
             return $query->where('nombre','LIKE',"%$name%");
+    }
+    public function procesos(){
+      /*   for ($i=0; $i < $this->proceso->count(); $i++) {  */
+            return $this->distinct()->get();
+       /*  } */
     }
 }

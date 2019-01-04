@@ -12,6 +12,12 @@
   <hr>
   <p class="mb-0"><a href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}" class="btn btn-link">Ver mis preinscripciones</a></p>
 </div>
+@elseif (Auth::user()->estudiante->no_proyectos == 2)
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
+    <p>El limite de proyecto por proceso es de 2!</p>
+</div>
+
 @else
 <div class="row">
   <div class="col-md-12 col-lg-12 col-xl-12 wow animated fadeInUp" data-wow-delay=".3s">

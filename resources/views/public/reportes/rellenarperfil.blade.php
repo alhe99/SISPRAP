@@ -1,5 +1,24 @@
-<link rel="stylesheet" href="{{asset('css/bmdf.css')}}">
+<!DOCTYPE html>
+<html lang="es">
 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Perfil de Proyecto</title>
+        <link rel="stylesheet" href="{{asset('css/bmdf.css')}}">
+        <style>
+            .text-jus {
+                text-align: justify;
+                text-justify: inter-word;
+                line-height: 1.6;
+            }
+
+            .bg-header {
+                background-color: #F8EFB6
+            }
+        </style>
+    </head>
 <body>
  <div>
         <table class="table-bordered container-fluid" cellpadding="0" cellspacing="0"  style="border-collapse: collapse; heigth:auto;" >

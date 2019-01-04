@@ -18,7 +18,8 @@ class GestionProyecto extends Model
         'estado',
         'nombre_supervisor',
         'tel_supervisor',
-        'observacion_final'
+        'observacion_final',
+        'tipo_gp '
     ];
 
     public function preinscripcion()

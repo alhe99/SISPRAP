@@ -99426,6 +99426,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_editor__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_switches__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_switches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_switches__);
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -99711,381 +99722,425 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			loadSpinner: 0,
-			arrayProyecto: [],
-			arrayInstitucion: [],
-			carrerasProy: [],
-			arrayCarreras: [],
-			arrayActivities: [],
-			nombreP: "",
-			actividadesP: "",
-			proyecto_id: 0,
-			institucionP: 0,
-			imagenP: "",
-			proceso: 0,
-			estado: 0,
-			buscar: "",
-			search: 0,
-			searchID: 0,
-			tipoproceso_id: 0,
-			switchImg: false,
-			imgGallery: "",
-			arrayImages: ["test.jpg", "turismo.jpg", "agro.jpg", "focos.jpg", "herramienta.jpg", "mercadeo.jpg"],
-			files: "",
-			image: "",
-			toolBars: [[{ header: [false, 1, 2, 3, 4, 5, 6] }], [{ align: "" }, { align: "center" }, { align: "right" }, { align: "justify" }], ["bold", "blockquote", "code-block"], [{ list: "ordered" }, { list: "bullet" }, { list: "check" }], [{ indent: "-1" }, { indent: "+1" }], [{ color: [] }]],
-			modal: 0,
-			modalID: 0,
-			arrayProyectosDes: [],
-			arrayActividadesCarre: [],
-			proyectoact: [],
-			buscarID: "",
-			carreras_id: 0,
-			paginationProyDes: {},
-			loading: false,
-			pagination: {
-				total: 0,
-				current_page: 0,
-				per_page: 0,
-				last_page: 0,
-				from: 0,
-				to: 0
-			},
-			offset: 3,
-			color: "#533fd0",
-			size: "20px",
-			disabledVE: false
-		};
-	},
+  data: function data() {
+    return {
+      loadSpinner: 0,
+      errors: [],
+      arrayProyecto: [],
+      arrayInstitucion: [],
+      carrerasProy: [],
+      arrayCarreras: [],
+      testCarre: [],
+      arrayActivities: [],
+      nombre: "",
+      descripcion: "",
+      actividades: "",
+      proyecto_id: 0,
+      proyecto: 0,
+      verCard: 1,
+      proceso: 0,
+      estado: 0,
+      buscar: "",
+      search: 0,
+      searchID: 0,
+      tipoproceso_id: 0,
+      switchImg: false,
+      imgGallery: "",
+      arrayImages: ["test.jpg", "turismo.jpg", "agro.jpg", "focos.jpg", "herramienta.jpg", "mercadeo.jpg"],
+      files: "",
+      image: "",
+      toolBars: [[{ header: [false, 1, 2, 3, 4, 5, 6] }], [{ align: "" }, { align: "center" }, { align: "right" }, { align: "justify" }], ["bold", "blockquote", "code-block"], [{ list: "ordered" }, { list: "bullet" }, { list: "check" }], [{ indent: "-1" }, { indent: "+1" }], [{ color: [] }]],
+      modal: 0,
+      tituloModal: "",
+      modalID: 0,
+      arrayProyectosDes: [],
+      arrayActividadesCarre: [],
+      proyectoact: [],
+      buscarID: "",
+      carreras_id: 0,
+      institucion_id: 0,
+      paginationProyDes: {},
+      loading: false,
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      offset: 3
+    };
+  },
 
-	computed: {
-		isActived: function isActived() {
-			return this.pagination.current_page;
-		},
-		isActivedPID: function isActivedPID() {
-			return this.paginationProyDes.current_page;
-		},
-		pagesNumber: function pagesNumber() {
-			if (!this.pagination.to) {
-				return [];
-			}
-			var from = this.pagination.current_page - this.offset;
-			if (from < 1) {
-				from = 1;
-			}
-			var to = from + this.offset * 2;
-			if (to >= this.pagination.last_page) {
-				to = this.pagination.last_page;
-			}
-			var pagesArray = [];
-			while (from <= to) {
-				pagesArray.push(from);
-				from++;
-			}
-			return pagesArray;
-		},
-		pagesNumberPID: function pagesNumberPID() {
-			if (!this.paginationProyDes.to) {
-				return [];
-			}
-			var from = this.paginationProyDes.current_page - this.offset;
-			if (from < 1) {
-				from = 1;
-			}
-			var to = from + this.offset * 2;
-			if (to >= this.paginationProyDes.last_page) {
-				to = this.paginationProyDes.last_page;
-			}
-			var pagesArray = [];
-			while (from <= to) {
-				pagesArray.push(from);
-				from++;
-			}
-			return pagesArray;
-		}
-	},
-	watch: {
-		switchImg: function switchImg() {
-			if (this.switchImg == true) {
-				this.imgGallery = "";
-			}
-		},
-		proceso: function proceso() {
-			this.listarProyecto(1, this.proceso, "");
-		},
-		carrerasProy: function carrerasProy() {
-			this.disabledVE = false;
-			if (this.carrerasProy.length >= 0) {}
-		},
-		carreActividad: function carreActividad() {
-			if (this.proyecto.length > 0) {
-				this.getProyecto(this.proyecto["id"]);
-			}
-		}
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    isActivedPID: function isActivedPID() {
+      return this.paginationProyDes.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+      var from = this.pagination.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberPID: function pagesNumberPID() {
+      if (!this.paginationProyDes.to) {
+        return [];
+      }
+      var from = this.paginationProyDes.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.paginationProyDes.last_page) {
+        to = this.paginationProyDes.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    }
+  },
 
-	},
-	methods: {
-		clearGallery: function clearGallery() {
-			var me = this;
-			var elem = me.$refs.imgUpload;
-			me.imgGallery = "";
-			me.image = "";
-			elem.reset();
-		},
-		mytable: function mytable() {
-			$(function () {
-				$('#example').DataTable();
-			});
-		},
-		changeImg: function changeImg(file) {
-			this.image = "";
-			this.addImage(file);
-		},
-		addImage: function addImage(file) {
-			var _this = this;
+  watch: {
+    switchImg: function switchImg() {
+      if (this.switchImg == true) {
+        this.imgGallery = "";
+      }
+    },
+    proceso: function proceso() {
+      this.listarProyecto(1, this.proceso, "");
+    },
+    carrerasProy: function (_carrerasProy) {
+      function carrerasProy() {
+        return _carrerasProy.apply(this, arguments);
+      }
 
-			var img = new Image(),
-			    reader = new FileReader();
-			reader.onload = function (e) {
-				return _this.image = e.target.result;
-			};
-			reader.readAsDataURL(file);
-		},
-		listarProyecto: function listarProyecto(page, proceso, buscar) {
-			var me = this;
-			me.loadSpinner = 1;
-			me.arrayProyecto = [];
-			var url = "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
-			axios.get(url).then(function (response) {
-				var respuesta = response.data;
-				me.arrayProyecto = respuesta.proyecto.data;
-				me.pagination = respuesta.pagination;
-				me.mytable();
-				me.loadSpinner = 0;
-				me.searchEmpty();
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		listarProyectoDes: function listarProyectoDes(page, proceso, buscar) {
-			var me = this;
-			var url = "/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
-			me.loading = true;
-			axios.get(url).then(function (response) {
-				var respuesta = response.data;
-				me.arrayProyectosDes = respuesta.proyecto.data;
-				me.paginationProyDes = respuesta.pagination;
-				if (me.arrayProyectosDes.length == 0) me.searchID = 1;else me.searchID = 0;
+      carrerasProy.toString = function () {
+        return _carrerasProy.toString();
+      };
 
-				me.loading = false;
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		getInst: function getInst() {
-			var me = this;
-			me.loadSpinner = 1;
-			var url = "GetInstituciones/" + this.proceso;
-			axios.get(url).then(function (response) {
-				var respuesta = response.data;
-				me.arrayInstitucion = respuesta;
-				me.loadSpinner = 0;
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		actualizarProyecto: function actualizarProyecto() {
-			var me = this;
-			var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
-			axios.put("/proyecto/actualizar", {
-				id: this.proyecto_id,
-				nombre: this.nombre,
-				descripcion: this.descripcion,
-				actividades: this.actividades,
-				institucion_id: this.institucion_id["value"],
-				estado: this.estado,
-				proceso_id: this.tipoproceso_id,
-				imagenG: this.imgGallery,
-				imagen: this.image
-			}).then(function (response) {
-				swal({
-					position: "center",
-					type: "success",
-					title: "Proyecto actualizado correctamente!",
-					showConfirmButton: false,
-					timer: 1000
-				});
-				me.cerrarModal();
-				me.listarProyecto(1, me.proceso, "");
-			}).catch(function (error) {
-				toast({
-					type: 'danger',
-					title: 'Error! Intente Nuevamente'
-				});
-				console.log(error);
-			});
-		},
-		getProyAct: function getProyAct(id) {
-			var me = this;
-			var url = "/proyecto/obtenerProyecto?id=" + id;
-			axios.get(url).then(function (response) {
-				var respuesta = response.data;
-				me.arrayActivities = respuesta;
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		abrirModal: function abrirModal(modelo, accion) {
-			var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      return carrerasProy;
+    }(function () {
+      this.disabledVE = false;
+      if (this.carrerasProy.length >= 0) {
+        for (var index = 0; index < carrerasProy.legend; index++) {
+          console.log("Hecho");
+        }
+      }
+    }),
+    //otro metodo
+    carreActividad: function carreActividad() {
+      if (this.proyecto.length > 0) {
+        this.getProyecto(this.proyecto["id"]);
+      }
+    }
 
-			this.loadSpinner = 1;
-			var me = this;
-			var el = document.body;
-			el.classList.add("abrirModal");
+  },
+  methods: (_methods = {
+    clearGallery: function clearGallery() {
+      var me = this;
+      var elem = me.$refs.imgUpload;
+      me.imgGallery = "";
+      me.image = "";
+      elem.reset();
+    },
+    changeImg: function changeImg(file) {
+      this.image = "";
+      this.addImage(file);
+    },
+    addImage: function addImage(file) {
+      var _this = this;
 
-			var inst = JSON.stringify({
-				value: data.institucion.id,
-				label: data.institucion.nombre
-			});
-			//Cargando datos de proyecto en modal
-			switch (me.proceso) {
-				//El proyecto a actualizar es de Serivio Social
-				case "1":
-					this.modal = 1;
-					me.nombreP = data.nombre;
-					me.actividadesP = data.actividades;
-					me.institucionP = JSON.parse(inst);
-					me.getInst();
-					if (data.img != null) me.imgGallery = data.img;
-					this.loadSpinner = 0;
-					break;
-				case "2":
+      var img = new Image(),
+          reader = new FileReader();
+      reader.onload = function (e) {
+        return _this.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    listarProyecto: function listarProyecto(page, proceso, buscar) {
+      var me = this;
+      var url = "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      me.loadSpinner = 1;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayProyecto = respuesta.proyecto.data;
+        me.pagination = respuesta.pagination;
+        //Por si no devuelve datos
+        me.searchEmpty();
+        me.loadSpinner = 0;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    listarProyectoDes: function listarProyectoDes(page, proceso, buscar) {
+      var me = this;
+      var url = "/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      me.loading = true;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayProyectosDes = respuesta.proyecto.data;
+        me.paginationProyDes = respuesta.pagination;
+        //Por si no devuelve datos
+        if (me.arrayProyectosDes.length == 0) {
+          me.searchID = 1;
+        } else {
+          me.searchID = 0;
+        }
+        me.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
 
-					break;
-			}
+    //CarrerasActividadesProy
 
-			console.log(data);
-		},
-		abrirModalID: function abrirModalID() {
-			var el = document.body;
-			el.classList.add("abrirModal");
-			this.modalID = 1;
-			this.listarProyectoDes(1, this.proceso, "");
-		},
-		cerrarModalID: function cerrarModalID() {
-			var el = document.body;
-			el.classList.remove("abrirModal");
-			this.modalID = 0;
-			this.arrayProyectosDes = [];
-			this.paginationProyDes = "";
-		},
-		cerrarModal: function cerrarModal() {
-			var el = document.body;
-			el.classList.remove("abrirModal");
-			this.modal = 0;
-			this.tituloModal = "";
-			this.nombreP = "";
-			this.actividadesP = "";
-			this.arrayInstitucion = [];
-			this.estado = 0;
-			this.errors = [];
-		},
-		cambiarPaginaPID: function cambiarPaginaPID(page, proceso, buscar) {
-			var me = this;
-			me.paginationProyDes.current_page = page;
-			me.listarProyectoDes(page, this.proceso, "");
-		},
-		cambiarPagina: function cambiarPagina(page, proceso, buscar) {
-			var me = this;
-			me.pagination.current_page = page;
-			me.listarProyecto(page, proceso, buscar);
-		},
-		desactivarProyecto: function desactivarProyecto(id) {
-			var _this2 = this;
 
-			swal({
-				title: "Esta seguro de desactivar este Proyecto?",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#3085d6",
-				cancelButtonColor: "#d33",
-				confirmButtonText: "Aceptar!",
-				cancelButtonText: "Cancelar",
-				confirmButtonClass: "button blue",
-				cancelButtonClass: "button red",
-				buttonsStyling: false,
-				reverseButtons: true
-			}).then(function (result) {
-				if (result.value) {
-					var me = _this2;
-					me.loadSpinner = 1;
-					axios.put("/proyecto/desactivar", {
-						id: id
-					}).then(function (response) {
-						me.listarProyecto(1, me.proceso, "");
-						swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
-						me.loadSpinner = 0;
-					}).catch(function (error) {
-						console.log(error);
-					});
-				} else if (
-				// Esto lo hace cuando se descativa el registro
-				result.dismiss === swal.DismissReason.cancel) {}
-			});
-		},
-		activarProyecto: function activarProyecto(id) {
-			var _this3 = this;
+    //fin..
+    getCarreras: function getCarreras() {
+      var me = this;
+      var url = "carreras/GetCarreras";
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        //console.log(respuesta);
+        me.arrayCarreras = respuesta;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    getInst: function getInst() {
+      var _this2 = this;
 
-			swal({
-				title: "Esta seguro de activar este Proyecto?",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#3085d6",
-				cancelButtonColor: "#d33",
-				confirmButtonText: "Aceptar!",
-				cancelButtonText: "Cancelar",
-				confirmButtonClass: "button blue",
-				cancelButtonClass: "button red",
-				buttonsStyling: false,
-				reverseButtons: true
-			}).then(function (result) {
-				if (result.value) {
-					var me = _this3;
-					me.loadSpinner = 1;
-					axios.put("/proyecto/activar", {
-						id: id
-					}).then(function (response) {
-						me.listarProyectoDes(1, me.proceso, "");
-						me.listarProyecto(1, me.proceso, "");
-						swal("Activada!", "El proyecto ha sido activado con exito", "success");
-						me.loadSpinner = 0;
-					}).catch(function (error) {
-						console.log(error);
-					});
-				} else if (
-				// Esto lo hace cuando se descativa el registro
-				result.dismiss === swal.DismissReason.cancel) {}
-			});
-		},
-		searchEmpty: function searchEmpty() {
-			var me = this;
-			if (me.arrayProyecto.length == 0) {
-				me.search = 1;
-			} else {
-				me.search = 0;
-			}
-			return me.search;
-		}
-	},
-	components: {
-		VueEditor: __WEBPACK_IMPORTED_MODULE_0_vue2_editor__["VueEditor"],
-		Switches: __WEBPACK_IMPORTED_MODULE_1_vue_switches___default.a
-	},
-	mounted: function mounted() {
-		this.mytable();
-	}
+      axios.get("GetInst").then(function (response) {
+        _this2.arrayInstitucion = response.data;
+      });
+    }
+  }, _defineProperty(_methods, "getInst", function getInst() {
+    var _this3 = this;
+
+    axios.get("GetInst").then(function (response) {
+      _this3.arrayInstitucion = response.data;
+    });
+  }), _defineProperty(_methods, "actualizarProyecto", function actualizarProyecto() {
+    var me = this;
+    axios.put("/proyecto/actualizar", {
+      id: this.proyecto_id,
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      actividades: this.actividades,
+      institucion_id: this.institucion_id["value"],
+      estado: this.estado,
+      proceso_id: this.tipoproceso_id,
+      imagenG: this.imgGallery,
+      imagen: this.image
+    }).then(function (response) {
+      swal({
+        position: "center",
+        type: "success",
+        title: "Proyecto actualizado correctamente!",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      me.cerrarModal();
+      me.listarProyecto(1, me.proceso, "");
+    }).catch(function (error) {
+      swal({
+        position: "center",
+        type: "warning",
+        title: "Ocurrio un error al actualizar el proyecto",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      console.log(error);
+    });
+  }), _defineProperty(_methods, "getProyAct", function getProyAct(id) {
+    var me = this;
+    var url = "/proyecto/obtenerProyecto?id=" + id;
+    axios.get(url).then(function (response) {
+      var respuesta = response.data;
+      me.arrayActivities = respuesta;
+      //me.searchEmpty();
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }), _defineProperty(_methods, "abrirModal", function abrirModal(modelo, accion) {
+    var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+    var el = document.body;
+    el.classList.add("abrirModal");
+    //no al switch
+    switch (modelo) {
+      case "proyecto":
+        {
+          switch (accion) {
+            case "actualizar":
+              {
+                var inst = JSON.stringify({
+                  value: data.institucion["id"],
+                  label: data.institucion["nombre"]
+                });
+                //Asignando los datos traidos a los controles del formulario
+                this.modal = 1;
+                this.tituloModal = "Actualizar Proyecto";
+                this.proyecto_id = data["id"];
+                this.proyecto = data["id"];
+                this.tipoproceso_id = data.proceso_id;
+                this.nombre = data["nombre"];
+                this.descripcion = data["descripcion"];
+                this.actividades = data["actividades"];
+                this.idinstitucion = data.institucion;
+                this.institucion_id = JSON.parse(inst);
+                this.estado = data["estado"];
+                this.image = data["img"];
+                this.imgGallery = data["image"];
+                break;
+              }
+          }
+        }
+    }
+    this.getInst();
+    this.proyecto = data;
+    this.infoAct = this.proyecto["id"];
+    this.getProyAct(this.infoAct);
+  }), _defineProperty(_methods, "abrirModalID", function abrirModalID() {
+    var el = document.body;
+    el.classList.add("abrirModal");
+    this.modalID = 1;
+    this.listarProyectoDes(1, this.proceso, "");
+  }), _defineProperty(_methods, "cerrarModalID", function cerrarModalID() {
+    var el = document.body;
+    el.classList.remove("abrirModal");
+    this.modalID = 0;
+    this.arrayProyectosDes = [];
+    this.paginationProyDes = "";
+  }), _defineProperty(_methods, "cerrarModal", function cerrarModal() {
+    var el = document.body;
+    el.classList.remove("abrirModal");
+    this.modal = 0;
+    this.tituloModal = "";
+    this.tipoproceso_id = 0;
+    this.nombre = "";
+    this.descripcion = "";
+    this.actividades = "";
+    this.arrayInstitucion = [];
+    this.institucion_id = 0;
+    this.proyecto_id = 0;
+    this.estado = 0;
+    this.errors = [];
+  }), _defineProperty(_methods, "cambiarPaginaPID", function cambiarPaginaPID(page, proceso, buscar) {
+    var me = this;
+    //Actualiza la pagina actual
+    me.paginationProyDes.current_page = page;
+    //Envia la pericion para visualizar los datos
+    me.listarProyectoDes(page, this.proceso, "");
+  }), _defineProperty(_methods, "cambiarPagina", function cambiarPagina(page, proceso, buscar) {
+    var me = this;
+    //Actualiza la pagina actual
+    me.pagination.current_page = page;
+    //Envia la pericion para visualizar los datos
+    me.listarProyecto(page, proceso, buscar);
+  }), _defineProperty(_methods, "desactivarProyecto", function desactivarProyecto(id) {
+    var _this4 = this;
+
+    swal({
+      title: "Esta seguro de desactivar este Proyecto?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar!",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "btn update",
+      cancelButtonClass: "btn edit",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(function (result) {
+      if (result.value) {
+        var me = _this4;
+        me.loadSpinner = 1;
+        axios.put("/proyecto/desactivar", {
+          id: id
+        }).then(function (response) {
+          me.listarProyecto(1, me.proceso, "");
+          swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
+          me.loadSpinner = 0;
+        }).catch(function (error) {
+          console.log(error);
+        });
+      } else if (
+      // Esto lo hace cuando se descativa el registro
+      result.dismiss === swal.DismissReason.cancel) {}
+    });
+  }), _defineProperty(_methods, "activarProyecto", function activarProyecto(id) {
+    var _this5 = this;
+
+    swal({
+      title: "Esta seguro de activar este Proyecto?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar!",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "btn update",
+      cancelButtonClass: "btn edit",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(function (result) {
+      if (result.value) {
+        var me = _this5;
+        me.loadSpinner = 1;
+        axios.put("/proyecto/activar", {
+          id: id
+        }).then(function (response) {
+          me.listarProyectoDes(1, me.proceso, "");
+          me.listarProyecto(1, me.proceso, "");
+          swal("Activada!", "El proyecto ha sido activado con exito", "success");
+          me.loadSpinner = 0;
+        }).catch(function (error) {
+          console.log(error);
+        });
+      } else if (
+      // Esto lo hace cuando se descativa el registro
+      result.dismiss === swal.DismissReason.cancel) {}
+    });
+  }), _defineProperty(_methods, "searchEmpty", function searchEmpty() {
+    var me = this;
+    //Aqui hice la verificacion si hay o no datos para mostrar mensaje
+    if (me.arrayProyecto.length == 0) {
+      me.search = 1;
+    } else {
+      me.search = 0;
+    }
+    return me.search;
+  }), _methods),
+  components: {
+    VueEditor: __WEBPACK_IMPORTED_MODULE_0_vue2_editor__["VueEditor"],
+    Switches: __WEBPACK_IMPORTED_MODULE_1_vue_switches___default.a
+  },
+  mounted: function mounted() {
+    this.getCarreras();
+    this.getProyAct();
+  }
 });
 
 /***/ }),
@@ -100097,77 +100152,91 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-lg-12 col-md-12" }, [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "panel panel-default" }, [
-              _c("div", { staticClass: "panel-body" }, [
-                _c("fieldset", [
-                  _c("legend", { staticClass: "text-center" }, [
-                    _vm._v(
-                      "Seleccione un proceso para la búsqueda de proyectos"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "panel panel-default" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      _c("div", { staticClass: "row md-radio" }, [
-                        _c("div", { staticClass: "col-md-6 text-center" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.proceso,
-                                expression: "proceso"
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.verCard == 1,
+            expression: "verCard == 1"
+          }
+        ],
+        staticClass: "card"
+      },
+      [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "panel panel-default" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("fieldset", [
+                    _c("legend", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "Seleccione un proceso para la búsqueda de proyectos"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "panel panel-default" }, [
+                      _c("div", { staticClass: "panel-body" }, [
+                        _c("div", { staticClass: "row md-radio" }, [
+                          _c("div", { staticClass: "col-md-6 text-center" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.proceso,
+                                  expression: "proceso"
+                                }
+                              ],
+                              attrs: {
+                                id: "radioSS",
+                                value: "1",
+                                type: "radio",
+                                name: "radioP"
+                              },
+                              domProps: { checked: _vm._q(_vm.proceso, "1") },
+                              on: {
+                                change: function($event) {
+                                  _vm.proceso = "1"
+                                }
                               }
-                            ],
-                            attrs: {
-                              id: "radioSS",
-                              value: "1",
-                              type: "radio",
-                              name: "radioP"
-                            },
-                            domProps: { checked: _vm._q(_vm.proceso, "1") },
-                            on: {
-                              change: function($event) {
-                                _vm.proceso = "1"
-                              }
-                            }
-                          }),
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "radioSS" } }, [
+                              _vm._v("Servicio Social")
+                            ])
+                          ]),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "radioSS" } }, [
-                            _vm._v("Servicio Social")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6 text-center" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.proceso,
-                                expression: "proceso"
+                          _c("div", { staticClass: "col-md-6 text-center" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.proceso,
+                                  expression: "proceso"
+                                }
+                              ],
+                              attrs: {
+                                id: "radioPP",
+                                value: "2",
+                                type: "radio",
+                                name: "radioP"
+                              },
+                              domProps: { checked: _vm._q(_vm.proceso, "2") },
+                              on: {
+                                change: function($event) {
+                                  _vm.proceso = "2"
+                                }
                               }
-                            ],
-                            attrs: {
-                              id: "radioPP",
-                              value: "2",
-                              type: "radio",
-                              name: "radioP"
-                            },
-                            domProps: { checked: _vm._q(_vm.proceso, "2") },
-                            on: {
-                              change: function($event) {
-                                _vm.proceso = "2"
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "radioPP" } }, [
-                            _vm._v("Práctica Profesional")
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "radioPP" } }, [
+                              _vm._v("Práctica Profesional")
+                            ])
                           ])
                         ])
                       ])
@@ -100178,8 +100247,8 @@ var render = function() {
             ])
           ])
         ])
-      ])
-    ]),
+      ]
+    ),
     _vm._v(" "),
     _vm.proceso != 0
       ? _c("div", { staticClass: "card" }, [
@@ -100201,6 +100270,32 @@ var render = function() {
                       [_vm._v("Listado de proyectos de Practica Profesional")]
                     )
                   : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-5 col-sm-12 col-lg-5" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group row" },
+                  [
+                    _c("mdc-textfield", {
+                      staticClass: "col-md-12",
+                      attrs: { type: "text", label: "Nombre del proyecto" },
+                      on: {
+                        keyup: function($event) {
+                          _vm.listarProyecto(1, _vm.proceso, _vm.buscar)
+                        }
+                      },
+                      model: {
+                        value: _vm.buscar,
+                        callback: function($$v) {
+                          _vm.buscar = $$v
+                        },
+                        expression: "buscar"
+                      }
+                    })
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "btn-group pull-xs-right" }, [
@@ -100241,27 +100336,22 @@ var render = function() {
                 "table",
                 {
                   staticClass:
-                    "table table-striped table-bordered table-mc-light-blue",
-                  attrs: { id: "example" }
+                    "table table-striped table-bordered table-mc-light-blue"
                 },
                 [
                   _c("thead", { staticClass: "thead-primary" }, [
                     _c("tr", [
                       _c("th", [_vm._v("Nombre del proyecto")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("Institución")]),
+                      _vm._v(" "),
                       _vm.proceso == 2
                         ? _c("th", [_vm._v("Carrera del proyecto")])
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Institución")]),
+                      _c("th", [_vm._v("Fecha de la publicación")]),
                       _vm._v(" "),
-                      _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Fecha de la publicación")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "text-center" }, [
-                        _vm._v("Acciones")
-                      ])
+                      _c("th", [_vm._v("Acciones")])
                     ])
                   ]),
                   _vm._v(" "),
@@ -100273,11 +100363,14 @@ var render = function() {
                           domProps: { textContent: _vm._s(proyecto.nombre) }
                         }),
                         _vm._v(" "),
-                        _vm.proceso == 2 &&
-                        proyecto.carre_proy[0].nombre != null
-                          ? _c("td", [
-                              _vm._v(_vm._s(proyecto.carre_proy[0].nombre))
-                            ])
+                        _vm.proceso == 2
+                          ? _c("td", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  proyecto.carre_proy[0].nombre
+                                )
+                              }
+                            })
                           : _vm._e(),
                         _vm._v(" "),
                         _c("td", {
@@ -100287,18 +100380,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("td", {
-                          staticClass: "text-center",
                           domProps: { textContent: _vm._s(proyecto.fecha) }
                         }),
                         _vm._v(" "),
                         _c(
                           "td",
-                          { staticClass: "text-center" },
                           [
                             _c(
                               "button",
                               {
-                                staticClass: "button blue",
+                                staticClass: "btn btn-primary ",
                                 attrs: {
                                   type: "button",
                                   "data-toggle": "tooltip",
@@ -100321,29 +100412,54 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "button red",
-                                  attrs: {
-                                    type: "button",
-                                    "data-toggle": "tooltip",
-                                    title: "Desactivar proyecto"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.desactivarProyecto(proyecto.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "mdi mdi-delete i-crud"
-                                  })
+                            proyecto.estado
+                              ? [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary ",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Desactivar proyecto"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.desactivarProyecto(proyecto.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-delete i-crud"
+                                      })
+                                    ]
+                                  )
                                 ]
-                              )
-                            ]
+                              : [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Activar institución"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.activarProyecto(proyecto.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass:
+                                          "mdi mdi-check-circle i-crud"
+                                      })
+                                    ]
+                                  )
+                                ]
                           ],
                           2
                         )
@@ -100631,7 +100747,7 @@ var render = function() {
                                                       staticClass:
                                                         "badge badge-pill badge-danger"
                                                     },
-                                                    [_vm._v("Desactivado")]
+                                                    [_vm._v("Desactivada")]
                                                   )
                                                 : _vm._e()
                                             ])
@@ -100876,9 +100992,10 @@ var render = function() {
               _c("div", { staticClass: "modal-dialog modal-lg" }, [
                 _c("div", { staticClass: "modal-content" }, [
                   _c("div", { staticClass: "modal-header" }, [
-                    _c("h4", { staticClass: "modal-title text-white" }, [
-                      _vm._v("Actualización de Datos")
-                    ]),
+                    _c("h4", {
+                      staticClass: "modal-title text-white",
+                      domProps: { textContent: _vm._s(_vm.tituloModal) }
+                    }),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -100909,28 +101026,25 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
                       _c(
                         "div",
                         { staticClass: "col-md-12 col-xs-12 col-lg-12" },
                         [
                           _c("br"),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "nombre" }
-                            },
-                            [_vm._v("Nombre del proyecto")]
-                          ),
+                          _c("label", { attrs: { for: "nombre" } }, [
+                            _vm._v("Nombre del proyecto")
+                          ]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.nombreP,
-                                expression: "nombreP"
+                                value: _vm.nombre,
+                                expression: "nombre"
                               }
                             ],
                             staticClass: "form-control",
@@ -100940,13 +101054,13 @@ var render = function() {
                               name: "nombre",
                               autocomplete: "off"
                             },
-                            domProps: { value: _vm.nombreP },
+                            domProps: { value: _vm.nombre },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.nombreP = $event.target.value
+                                _vm.nombre = $event.target.value
                               }
                             }
                           }),
@@ -100962,23 +101076,12 @@ var render = function() {
                         ]
                       )
                     ]),
-                    _c("br"),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
                       _c(
                         "div",
                         { staticClass: "col-md-12 col-sm-12 col-lg-12" },
                         [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "" }
-                            },
-                            [_vm._v("Actividades:*")]
-                          ),
-                          _c("br"),
-                          _vm._v(" "),
                           _vm.proceso == 2
                             ? _c(
                                 "form-wizard",
@@ -101032,6 +101135,7 @@ var render = function() {
                                         type: "button",
                                         raised: ""
                                       },
+                                      on: { click: _vm.agregarActivi },
                                       slot: "next"
                                     },
                                     [_vm._v("Siguiente")]
@@ -101046,6 +101150,7 @@ var render = function() {
                                         type: "button",
                                         raised: ""
                                       },
+                                      on: { click: _vm.agregarActivi },
                                       slot: "finish"
                                     },
                                     [_vm._v("Aceptar")]
@@ -101059,11 +101164,11 @@ var render = function() {
                             ? _c("vue-editor", {
                                 attrs: { editorToolbar: _vm.toolBars },
                                 model: {
-                                  value: _vm.actividadesP,
+                                  value: _vm.actividades,
                                   callback: function($$v) {
-                                    _vm.actividadesP = $$v
+                                    _vm.actividades = $$v
                                   },
-                                  expression: "actividadesP"
+                                  expression: "actividades"
                                 }
                               })
                             : _vm._e()
@@ -101078,16 +101183,6 @@ var render = function() {
                         { staticClass: "col-md-12 col-xs-12 col-lg-12" },
                         [
                           _c("br"),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "" }
-                            },
-                            [_vm._v("Institución donde se realiza proyecto:*")]
-                          ),
-                          _c("br"),
-                          _vm._v(" "),
                           _c("v-select", {
                             attrs: {
                               label: "label",
@@ -101095,11 +101190,11 @@ var render = function() {
                               options: _vm.arrayInstitucion
                             },
                             model: {
-                              value: _vm.institucionP,
+                              value: _vm.institucion_id,
                               callback: function($$v) {
-                                _vm.institucionP = $$v
+                                _vm.institucion_id = $$v
                               },
-                              expression: "institucionP"
+                              expression: "institucion_id"
                             }
                           })
                         ],
@@ -101110,16 +101205,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
                       _c("div", { staticClass: "col-md-12 col-lg-12" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "font-weight-bold",
-                            attrs: { for: "" }
-                          },
-                          [_vm._v("Imagen:*")]
-                        ),
-                        _c("br"),
-                        _vm._v(" "),
                         _c("div", { staticClass: "row" }, [
                           _c(
                             "div",
@@ -101151,7 +101236,7 @@ var render = function() {
                                       "mdi mdi-folder-multiple-image h4"
                                   }),
                                   _vm._v(
-                                    " Seleccionar Imagen de Galeria Predeterminada\n\t\t\t\t\t\t\t\t\t\t"
+                                    " Seleccionar Imagen de Galeria Predeterminada\n                  "
                                   )
                                 ]
                               )
@@ -101301,37 +101386,35 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "button blue",
-                            attrs: { type: "button" },
-                            on: { click: _vm.actualizarProyecto }
-                          },
-                          [
-                            _c("i", { staticClass: "mdi mdi-content-save" }),
-                            _vm._v(" Actualizar Proyecto")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "button red",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                _vm.cerrarModal()
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12" },
+                        [
+                          _c(
+                            "mdc-button",
+                            {
+                              attrs: { dense: "" },
+                              on: { click: _vm.actualizarProyecto }
+                            },
+                            [_vm._v("Actualizar Proyecto")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModal()
+                                }
                               }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "mdi mdi-close-box" }),
-                            _vm._v(" Cancelar")
-                          ]
-                        )
-                      ])
+                            },
+                            [_vm._v("Cancelar")]
+                          )
+                        ],
+                        1
+                      )
                     ])
                   ])
                 ])
@@ -101339,13 +101422,7 @@ var render = function() {
             ]
           )
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _vm.loadSpinner == 1
-        ? _c("div", { staticClass: "col-md-12 loading text-center" })
-        : _vm._e()
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -101400,6 +101477,24 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [_vm._v("Estado")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-body" }, [
+            _c("fieldset", [
+              _c("legend", { staticClass: "text-center" }, [
+                _vm._v("Actualizar Proyecto")
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   }
@@ -106477,17 +106572,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         sendParameterToMethod: function sendParameterToMethod() {
             var me = this;
-            me.loadSpinner = 1;
             var url = "institucion/getInstituciones/" + this.proceso_id;
-            axios.post(url).then(function (response) {
-                var respuesta = response.data;
-                me.loadSpinner = 0;
-                me.viewPdfFromBase64(respuesta, 'Instituciones generales');
-                me.downloadPdfFromBase64(respuesta, name);
-                me.clearData();
-            }).catch(function (error) {
-                console.log(error);
-            });
+            window.open(url);
+            me.clearData();
         }
     },
     components: {
@@ -111146,6 +111233,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.arrayDocEntreg[i] = this.gpObj.documentos_entrega[i].pivot.documento_id;
         }
       }
+      this.hrsFinal = this.gpObj.estudiante.proceso[0].pivot.num_horas;
     }
   },
   computed: {
@@ -113089,7 +113177,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -113196,34 +113283,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.pagination.current_page = page;
       if (me.arrayStudents.length > 0) {
-        me.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, page, "");
+        me.getGestionProy(me.carrera_selected.value, me.proceso, page, "");
       }
-    },
-    getMoreInfo: function getMoreInfo(id) {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "stundentById/" + id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.estudiante = respuesta;
-        me.loadSpinner = 0;
-        me.abrirModal();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    getMoreInfoGp: function getMoreInfoGp(id) {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "/getMoreInfoGP/" + id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.gpObj = respuesta;
-        me.loadSpinner = 0;
-      }).catch(function (error) {
-        console.log(error);
-        me.loadSpinner = 0;
-      });
     },
     downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
       var a = document.createElement("a");
@@ -113232,12 +113293,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       a.download = name + ".pdf";
       a.click();
     },
-    saveDoc: function saveDoc(gp_id) {
-      var _this = this;
-
+    saveDoc: function saveDoc(gp_id, procesoId) {
+      var me = this;
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       swal({
-        title: "¿Desea Guardar los datos?",
+        title: "¿ Desea Generar Constancia?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -113250,22 +113310,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this;
-          me.loadSpinner = 1;
-          var url = "/getCostancia/" + gp_id;
-          axios.get(url).then(function (response) {
-            //me.getMoreInfoGp(me.idGP);
-            me.downloadPdfFromBase64(response.data);
-            me.loadSpinner = 0;
-          }).catch(function (error) {
-            me.loadSpinner = 0;
-            console.log(error);
-            toast({
-              type: 'danger',
-              title: 'Error! Intente Nuevamente'
-            });
-          });
-        } else if (result.dismiss === swal.DismissReason.cancel) {}
+          var url = route('getConstancia', { "estudianteId": gp_id, "procesoId": procesoId });
+          window.open(url);
+
+          me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
+        }
+        me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
       });
     },
     mounted: function mounted() {}
@@ -113472,26 +113524,23 @@ var render = function() {
                               _c("td", {
                                 domProps: {
                                   textContent: _vm._s(
-                                    item.estudiante.nombre +
-                                      " " +
-                                      item.estudiante.apellido
+                                    item.nombre + " " + item.apellido
                                   )
                                 }
                               }),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("truncate")(item.proyecto.nombre, 30)
-                                  )
-                                )
-                              ]),
+                              _c("td", {
+                                staticClass: "text-center",
+                                domProps: {
+                                  textContent: _vm._s(item.carrera.nombre)
+                                }
+                              }),
                               _vm._v(" "),
                               _c("td", {
                                 staticClass: "text-center",
                                 domProps: {
                                   textContent: _vm._s(
-                                    item.estudiante.carrera.nombre
+                                    item.nivel_academico.nivel
                                   )
                                 }
                               }),
@@ -113502,34 +113551,33 @@ var render = function() {
                                 [
                                   [
                                     _c("h4", [
-                                      item.estado == "I"
+                                      item.gestion_proyecto[0].constancia_entreg
+                                        .length > 0
                                         ? _c(
                                             "span",
                                             {
                                               staticClass:
-                                                "badge h1 badge-pill badge-primary"
+                                                "badge badge-pill badge-primary"
                                             },
-                                            [_vm._v("Iniciado")]
-                                          )
-                                        : item.estado == "P"
-                                          ? _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "badge badge-pill badge-danger"
-                                              },
-                                              [_vm._v("En proceso")]
-                                            )
-                                          : item.estado == "F"
-                                            ? _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-danger"
-                                                },
-                                                [_vm._v("Finalizado")]
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  "Entregada: " +
+                                                    item.gestion_proyecto[0]
+                                                      .constancia_entreg[0]
+                                                      .created_at
+                                                )
                                               )
-                                            : _vm._e()
+                                            ]
+                                          )
+                                        : _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-danger"
+                                            },
+                                            [_vm._v("No Entregada")]
+                                          )
                                     ])
                                   ]
                                 ],
@@ -113549,14 +113597,14 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.saveDoc(item.id)
+                                        _vm.saveDoc(item.id, _vm.proceso)
                                       }
                                     }
                                   },
                                   [
                                     _c("i", {
                                       staticClass:
-                                        "mdi mdi-playlist-plus i-crud"
+                                        "mdi mdi-file-document-box i-crud"
                                     })
                                   ]
                                 )
@@ -113697,13 +113745,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre Estudiante")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Proyecto")]),
-        _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Carrera")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [
-          _vm._v("Estado del proceso")
-        ]),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Nivel Academico")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Entregada")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
       ])

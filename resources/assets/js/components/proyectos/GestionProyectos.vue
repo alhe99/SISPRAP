@@ -378,6 +378,7 @@ export default {
           this.arrayDocEntreg[i] = this.gpObj.documentos_entrega[i].pivot.documento_id;
         }
       }
+      this.hrsFinal = this.gpObj.estudiante.proceso[0].pivot.num_horas;
 
     }
   },

@@ -234,13 +234,21 @@ function getReportInstituciones($id){
     $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
         $query->where('proceso_id', $proceso);
     })->where('instituciones.estado','1')->orderBy('instituciones.id','desc')->get();
-    $inst = Institucion::where('instituciones.estado','1')->count();
-    $proces = Institucion::findOrFail($id)->procesos()->select('nombre')->get();
-    $date = Carbon::now();
-    $date = $date->format('Y-m-d');
-    $pdf = \PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $proces]);
 
-    return base64_encode($pdf->stream('instituciones ' .Carbon::parse($date).'.pdf'));
+    $inst = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
+         $query->where('proceso_id', $proceso);
+    })->where('instituciones.estado', '1')->orderBy('instituciones.id', 'desc')->count();
+
+    $proces = "";
+    if($proceso == 1)
+        $proces = "Servicio Social";
+    else
+        $proces = "Práctica Profesional";
+       
+    $date = date('Y-m-d');
+    $pdf = PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $proces])->setOption('footer-center', 'Página [page] de [topage]');
+    return $pdf->stream('instituciones ' .Carbon::parse($date).'.pdf');
+
 }
 function getSupervisiones($id){
     $proceso = $id;
@@ -252,7 +260,7 @@ function getSupervisiones($id){
 
     $date = Carbon::now();
     $date = $date->format('Y-m-d');
-    $pdf = \PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervision,'total' =>$supv, 'proceso' =>$proces]);
+    $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervision,'total' =>$supv, 'proceso' =>$proces])->setOption('footer-center', 'Página [page] de [topage]');
 
     return base64_encode($pdf->stream('supervisiones ' .Carbon::parse($date).'.pdf'));
 }
@@ -260,8 +268,8 @@ function regSupervision(){
 
     $date = Carbon::now();
     $date = $date->format('Y-m-d');
-    $pdf = \PDF::loadView('reportes.registro');
-    return base64_encode($pdf->stream('regsupervisiones' .Carbon::parse($date).'.pdf'));
+    $pdf = PDF::loadView('reportes.registro');
+    return base64_encode($pdf->stream('regsupervisiones' .Carbon::parse($date).'.pdf'))->setOption('footer-center', 'Página [page] de [topage]');
 }
 
 public function validateInstitucion(Request $request){

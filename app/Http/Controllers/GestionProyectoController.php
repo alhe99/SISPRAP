@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PreinscripcionProyecto;
 use App\GestionProyecto;
-use App\Carrera;
-use Carbon\Carbon;
 use App\Estudiante;
+use App\Carrera;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection as Collection;
 use Illuminate\Support\Facades\DB;
@@ -16,17 +17,17 @@ use PDF;
 class GestionProyectoController extends Controller
 {
     public $meses = array(
-       "1" => "ENERO", 
+       "1" => "ENERO",
        "2" => "FEBRERO",
-       "3" => "MARZO", 
-       "4" => "ABRIL", 
-       "5" => "MAYO", 
-       "6" => "JUNIO", 
-       "7" => "JULIO", 
-       "8" => "AGOSTO", 
-       "9" => "SEPTIEMBRE", 
-       "10" => "OCTUBRE", 
-       "11" => "NOVIEMBRE", 
+       "3" => "MARZO",
+       "4" => "ABRIL",
+       "5" => "MAYO",
+       "6" => "JUNIO",
+       "7" => "JULIO",
+       "8" => "AGOSTO",
+       "9" => "SEPTIEMBRE",
+       "10" => "OCTUBRE",
+       "11" => "NOVIEMBRE",
        "12" => "DICIEMBRE");
     public $trimestres = array(
         "123" => 'PRIMER TRIMESTRE',
@@ -46,7 +47,7 @@ class GestionProyectoController extends Controller
             $gp->estudiante_id = $request->student_id;
             $gp->nombre_supervisor = $request->super_name; //Nombre del supervisor
             $gp->tel_supervisor = $request->super_cell; //Telefono del supervisor
-
+            $gp->tipo_gp = Auth::user()->estudiante->proceso[0]->id;
 
             if(Auth::user()->rol_id >2){
             //Informacion del estudiante
@@ -100,8 +101,9 @@ class GestionProyectoController extends Controller
             if($gp->save())
             {
 
-                $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection]);
-                 //DB::table('preinscripciones_proyectos')->where('estudiante_id', $student_id)->where('estado','F')->delete();
+                $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection])->setOption('footer-center', '');;
+                DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->student_id)->where('estado', 'F')->delete();
+
                 DB::commit();
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
             }
@@ -162,32 +164,22 @@ public function constancias(Request $request)
     $proceso = $request->proceso_id;
     $carrera_id = $request->carre_id;
 
-    if ($buscar == '') {
+    if($proceso == 1){
+        $gp = Estudiante::distinct('id')->with([
+        'carrera',
+        'gestionProyecto',
+        'gestionProyecto.constancia_entreg',
+        'nivelAcademico'
+        ])->nombre($buscar)->where('estado_ss',1)->paginate(8);
 
-        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','constancia_entreg'])
-        ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
-            $query->where('proceso_id', $proceso);
-
-        })->whereHas('estudiante', function ($query) use ($carrera_id) {
-            $query->where('carrera_id', $carrera_id);
-
-        })->where('estado','F')->paginate(8);
-
-    } else {
-
-        $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto','constancia_entreg'])
-        ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
-            $query->where('proceso_id', $proceso);
-
-        })->whereHas('estudiante', function ($query) use ($buscar) {
-            $query->where('nombre', 'like', '%' . $buscar . '%');
-
-        })->whereHas('estudiante', function ($query) use ($carrera_id) {
-            $query->where('carrera_id', $carrera_id);
-
-        })->where('estado','F')->paginate(8);
+    }else if($proceso == 2){
+        $gp = Estudiante::distinct('id')->with([
+        'carrera',
+        'gestionProyecto',
+        'gestionProyecto.constancia_entreg',
+        'nivelAcademico'
+        ])->nombre($buscar)->where('estado_pp', 2)->paginate(8);
     }
-
     return [
         'pagination' => [
             'total' => $gp->total(),
@@ -203,7 +195,7 @@ public function constancias(Request $request)
 
 public function getInfoGpById($id){
 
-    $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','documentos_entrega'])->findOrFail($id);
+    $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','documentos_entrega','estudiante.proceso'])->findOrFail($id);
 
     return $gestionp;
 
@@ -231,6 +223,7 @@ public function closeProy(Request $request){
         $e = Estudiante::findOrFail($a);
         $e->no_proyectos = 0;
         $e->update();
+
         $e->proceso()->detach(1);
         $e->proceso()->attach(2);
     }
@@ -253,7 +246,7 @@ public function getInitialProcessReporte(Request $request){
         $arrayTrimestre = explode(",",$request->meses);
         $totalMined = 0;$totalOtros = 0;$totalMinedMes1 = 0;$totalOtrosMes1 = 0;$totalMinedMes2 = 0;$totalOtrosMes2 = 0;$totalMinedMes3 = 0;
         $totalOtrosMes3 = 0;
-        
+
         //Sacando datos mensuales
         $dataMensual = [];
         $mes1 = [];$mes2 = [];$mes3 = [];
@@ -271,14 +264,14 @@ public function getInitialProcessReporte(Request $request){
             $mes1[1] = array(
                 "totalMined" => $totalMinedMes1,
                 "totalOtros"=> $totalOtrosMes1
-            ); 
+            );
 
             $mes1[$carre->id+1] = $collection1 = new Collection([
                 "Carrera" => $carre->nombre,
                 "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId),
                 "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId)
             ]);
-            
+
             $totalMinedMes2 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[1], $procesoId);
             $totalOtrosMes2 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[1], $procesoId);
 
@@ -315,7 +308,7 @@ public function getInitialProcessReporte(Request $request){
             $totalMined += $carre->getCountStudentsByMinedTrimestral($arrayTrimestre,$procesoId);
             $totalOtros += $carre->getCountStudentsByOtherBecaTrimestral($arrayTrimestre,$procesoId);
 
-            $data[1] = array("totalMined" => $totalMined,"totalOtros"=>$totalOtros); 
+            $data[1] = array("totalMined" => $totalMined,"totalOtros"=>$totalOtros);
             $data[$carre->id+1] = $collection = new Collection(["Carrera" => $carre->nombre,
             "BecadosMined" => $carre->getCountStudentsByMinedTrimestral($arrayTrimestre,$procesoId),
             "Otros" => $carre->getCountStudentsByOtherBecaTrimestral($arrayTrimestre,$procesoId) ]);
@@ -335,10 +328,10 @@ public function getInitialProcessReporte(Request $request){
         $dataMensual = []; $collectionMensual; $data = array();
         $totalMined = 0;$totalMinedArray = [];$totalOtros = 0;$totalOtrosArray = [];$mesesSelectedArray=[];
 
-        for ($i=0; $i < count($arrayMeses) ; $i++) { 
+        for ($i=0; $i < count($arrayMeses) ; $i++) {
 
             $mesesSelectedArray[$i] = $this->meses[$arrayMeses[$i]];
-            for ($j=0; $j < $carrera->count(); $j++) { 
+            for ($j=0; $j < $carrera->count(); $j++) {
                 $totalMinedArray[$i] = $totalMined += $carrera[$j]->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId);
                 $totalOtrosArray[$i] = $totalOtros += $carrera[$j]->getCountStudentsByOtherBecaMensual($arrayMeses[$i], $procesoId);
 
@@ -351,7 +344,7 @@ public function getInitialProcessReporte(Request $request){
                     "totalMined" => $totalMinedArray[$i],
                     "totalOtros" => $totalOtrosArray[$i]
                 );
-                 
+
                 $dataMensual[$carre->id+1] = $collectionMensual = new Collection([
                     "Carrera" => $carre->nombre,
                     "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId),
@@ -373,7 +366,7 @@ public function getInitialProcessReporte(Request $request){
         $totalOtros = 0;
         $totalOtrosArray = [];
         $mesesSelectedArray = [];
-        $anio = date('Y');       
+        $anio = date('Y');
 
         for ($i = 0; $i < count($arrayMeses); $i++) {
 
@@ -442,7 +435,7 @@ public function getPendientesIniProcessReporte(Request $request){
     if($request->tipoRepo == 'T'){
         $collection;
         $arrayTrimestre = explode(",",$request->meses);
-    
+
         //Sacando datos mensuales
         $dataMensual = [];
         $mes1 = [];$mes2 = [];$mes3 = [];
@@ -457,7 +450,7 @@ public function getPendientesIniProcessReporte(Request $request){
         $c1 = [];$c2 = [];$c3 = [];
 
         foreach($carrera as $carre){
-            
+
             $estudiantesM1 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
             })->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[0]])->get();
@@ -507,7 +500,7 @@ public function getPendientesIniProcessReporte(Request $request){
         $mensuales = array();
         array_push($mensuales,$mes1);
         array_push($mensuales,$mes2);
-        array_push($mensuales,$mes3); 
+        array_push($mensuales,$mes3);
 
         $pdf = PDF::loadView('reportes.repeninicio', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');;
         return $pdf->stream('Pendientes de Inicio.pdf');
@@ -518,10 +511,10 @@ public function getPendientesIniProcessReporte(Request $request){
         $dataMensual = []; $collectionMensual; $data = array();
         $totalMined = 0;$totalMinedArray = [];$totalOtros = 0;$totalOtrosArray = [];$mesesSelectedArray=[];
 
-        for ($i=0; $i < count($arrayMeses) ; $i++) { 
+        for ($i=0; $i < count($arrayMeses) ; $i++) {
 
             $mesesSelectedArray[$i] = $this->meses[$arrayMeses[$i]];
-            for ($j=0; $j < $carrera->count(); $j++) { 
+            for ($j=0; $j < $carrera->count(); $j++) {
                 $totalMinedArray[$i] = $totalMined += $carrera[$j]->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId);
                 $totalOtrosArray[$i] = $totalOtros += $carrera[$j]->getCountStudentsByOtherBecaMensual($arrayMeses[$i], $procesoId);
 
@@ -534,7 +527,7 @@ public function getPendientesIniProcessReporte(Request $request){
                     "totalMined" => $totalMinedArray[$i],
                     "totalOtros" => $totalOtrosArray[$i]
                 );
-                 
+
                 $dataMensual[$carre->id+1] = $collectionMensual = new Collection([
                     "Carrera" => $carre->nombre,
                     "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayMeses[$i], $procesoId),
@@ -556,7 +549,7 @@ public function getPendientesIniProcessReporte(Request $request){
         $totalOtros = 0;
         $totalOtrosArray = [];
         $mesesSelectedArray = [];
-        $anio = date('Y');       
+        $anio = date('Y');
 
         for ($i = 0; $i < count($arrayMeses); $i++) {
 
@@ -610,21 +603,43 @@ public function getPendientesIniProcessReporte(Request $request){
     }
 }
 
-public function generateConstancia($gp_id){
-    $gp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])->findOrFail($gp_id);
-    $proces = $gp->estudiante->proceso[0]->nombre;
-    $date = Carbon::now();
-    $date = $date->format('Y-m-d');
+public function generateConstancia(Request $request){
 
-    if($gp->estudiante->proceso[0]->id == 1){
+    $estudianteId = $request->estudianteId;
+    $procesoId = $request->procesoId;
+    $date = date('Y-m-d');
+    $tituloProceso = "";
+    $totalHoras = 0;
 
-        $pdf = \PDF::loadView('reportes.constanciass',['gp'=>$gp, 'proceso' =>$proces,'fecha' => $date]);
-        return base64_encode($pdf->stream('constancia ' .Carbon::parse($date).'.pdf'));
-    }else{
+    if($procesoId == 1)
+        $tituloProceso = "Servicio Social";
+    else
+        $tituloProceso = "Práctica Profesional";
 
-        $pdf = \PDF::loadView('reportes.constanciapp',['gp'=>$gp, 'proceso' =>$proces,'fecha' => $date]);
-        return base64_encode($pdf->stream('constancia ' .Carbon::parse($date).'.pdf'));
+    $estudiante = Estudiante::with([
+        'carrera',
+        'gestionProyecto',
+        'nivelAcademico',
+        'gestionProyecto.proyecto',
+        'gestionProyecto.proyecto.institucion',
+    ])->whereHas('gestionProyecto', function ($query) use ($procesoId) {
+            $query->where('tipo_gp', $procesoId);
+    })->find($estudianteId);
+
+
+    foreach ($estudiante->gestionProyecto as $value) {
+        $totalHoras += $value->horas_realizadas;
+        if($value->doesntHave('constancia_entreg')){
+
+            DB::table('constancias_entregadas')->insert(
+                ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString()]
+            );
+
+        }
     }
 
+    $admin = User::select('nombre')->find(0);
+    $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'data'=>$estudiante, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
+    return $pdf->stream('Perfil de proyecto.pdf');
 }
 }

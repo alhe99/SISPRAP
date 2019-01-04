@@ -14,8 +14,8 @@
     </div>
     <div class="col-lg-4 col-md-4">
         <div class="card">
-            <img class="card-img-top"  src="images/atajos/GESTIONES.png" alt="Card image cap">
-            <div class="card-img-overlay" style="height:90px;">
+            <img class="card-img-top" @click="menu=4" style="cursor:pointer"  src="images/atajos/GESTIONES.png" alt="Card image cap">
+            <div class="card-img-overlay" style="height:90px;cursor:pointer">
             </div>
             <div class="card-body weather-small">
                 <div class="row">
@@ -33,14 +33,14 @@
     </div>
     <div class="col-lg-4 col-md-4">
         <div class="card">
-            <img class="card-img-top"  src="images/atajos/PEINSCRIPCIONES.png" alt="Card image cap">
-            <div class="card-img-overlay" style="height:90px;">
+            <img class="card-img-top" @click="menu=2" style="cursor:pointer"  src="images/atajos/PEINSCRIPCIONES.png" alt="Card image cap">
+            <div class="card-img-overlay" style="height:90px;cursor:pointer">
             </div>
             <div class="card-body weather-small">
                 <div class="row">
                     <div class="col-12 b-r align-self-center">
                         <div class="d-flex">
-                            <div class="m-l-20 text-center"  style="display: block;margin-left: auto;margin-right: auto;">
+                            <div class="m-l-20 text-center" style="display: block;margin-left: auto;margin-right: auto;">
                                 <h6><strong>PREINSCRIPCIONES</strong></h6>
                             </div>
                         </div>
@@ -51,14 +51,14 @@
     </div>
     <div class="col-lg-4 col-md-4">
         <div class="card">
-            <img class="card-img-top"  src="images/atajos/PUBLICACIONES.png"  alt="Card image cap">
-            <div class="card-img-overlay" style="height:90px;">
+            <img class="card-img-top" @click="menu=1" style="cursor:pointer"  src="images/atajos/PUBLICACIONES.png"  alt="Card image cap">
+            <div class="card-img-overlay" style="height:90px;cursor:pointer">
             </div>
             <div class="card-body weather-small">
                 <div class="row">
                     <div class="col-12 b-r align-self-center">
                         <div class="d-flex">
-                            <div class="m-l-20 text-center"  style="display: block;margin-left: auto;margin-right: auto;">
+                            <div class="m-l-20 text-center"   style="display: block;margin-left: auto;margin-right: auto;">
                                 <h6><strong>PUBLICACIONES</strong></h6>
                             </div>
                         </div>
@@ -72,17 +72,17 @@
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <div class="card  text-center">
-                   <img src="images/atajos/GESTIONES.png" @click="menu=4" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                   <img src="images/atajos/GESTIONES.png"  class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
                </div>
            </div>
            <div class="col-lg-4 col-md-4">
             <div class="card text-center">
-                <img src="images/atajos/PEINSCRIPCIONES.png" @click="menu=2" class="img-fluid" alt="logo sisprap" tyle="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                <img src="images/atajos/PEINSCRIPCIONES.png"  class="img-fluid" alt="logo sisprap" tyle="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
             </div>
         </div>
         <div class="col-lg-4 col-md-4">
             <div class="card text-center">
-                <img src="images/atajos/PUBLICACIONES.png" @click="menu=1" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                <img src="images/atajos/PUBLICACIONES.png"  class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
             </div>
         </div>
     </div>

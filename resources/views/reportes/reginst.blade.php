@@ -4,69 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test Pdf</title>
+    <title>Reporte General de Instituciones</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
-    
-</head>
-<body>
-    <header>
-        <div class="row text-center">
-        
-            <div class="col-md-6">
-                 <img class="text-center img-fluid " src="images/img_reportes/logoITCHA.png" alt="">
-                 
-                 <img class="text-center img-fluid " src="images/img_reportes/mined.jpg" alt="">
-                  
-                 <img class="text-center img-fluid " src="images/img_reportes/megatec.jpg" alt="">
-                  
-                 <img class="text-center img-fluid " src="images/img_reportes/logopequeño.png" alt="">
+    <style>
+    .bg-header {
+        background-color: #F8EFB6
+    }
 
-            </div>    
+    .font-normal {
+        font-weight: normal;
+    }
+</style>
+</head>
+<body style="background-color:white">
+<header>
+    <div class="row text-center">
+        <div class="col-md-8">
+            <img class="img-fluid" width="450" src="{{asset('images/header_reportes.PNG')}}">
         </div>
-        
-    </header>
+    </div>
     <div>
     <div class="row">
         <div class="col-md-12">
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-            <p class="text-center" style="font-size:small;" ><strong><ins>INFORME DE EMPRESAS AFILIADAS AL PROCESO DE SERVICIO SOCIAL</ins></strong></p><br>
-             <p class="text-center" style="font-size:small;" ><strong>AÑO 2019</strong></p>
+             <p class="text-center" style="font-size:small;"><strong><ins>INFORME DE EMPRESAS AFILIADAS AL PROCESO DE
+            {{strtoupper($proceso)}}</ins></strong></p><br>
+             <p class="text-center" style="font-size:small;" ><strong>AÑO {{date('Y')}}</strong></p>
         </div>
     </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered" style="border: solid 1px #000000; ">
                 <thead> 
-                    <tr>
+                <tr class="font-weight-bold">
                         <th>Nº</th>
-                        <th>Empresa / Instituciión</th>
+                        <th>Empresa / Institución</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                    
+                    @foreach ($instituciones as $item)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->nombre}}</td>
+                        </tr>
+                    @endforeach   
                 </tbody>
+            </table><br>
+            <table class="col-md-12" border cellpadding="7">
+            <tr class="bg-header font-weight-bold">
+                    <td>Total:</td>
+                    <td>
+                      {{$total}}</h4>
+                    </td>
+                </tr>
             </table>
-            <h4>Total: {{$total}}</h4>
+           
         </div>
     </div>
 </body>
