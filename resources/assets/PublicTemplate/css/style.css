@@ -2344,7 +2344,7 @@ ul.recent-post li .post-text span {
     color: #FFF;
     font-size: 40px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    transition: .3s;
+    transition: .4s;
 }
 
 .BF2 {
@@ -2394,6 +2394,21 @@ ul.recent-post li .post-text span {
     /* margin-right:-45px; */
     transform: scale(0);
 }
+/* .BF6 {
+  background: #009688;
+    margin-bottom: 170px;
+    transition: 0.9s;
+    width: 46px;
+    height: 46px;
+    color: #FFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right:-45px;
+    transform: scale(0);
+} */
 
 span {
     transition: .5s;

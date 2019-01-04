@@ -29,8 +29,8 @@
 									<div class="panel panel-default">
 										<div class="panel-body">
 											<div class="form-group row">
-												<mdc-textfield type="text" name="nombre" class="col-md-12" label="Nombre del Estudiante" helptext="(Ingrese el nombre del estudiante)" v-model="nombre" v-validate="'required'"></mdc-textfield>
-												<div class="help-block alert-danger" v-show="errors.has('nombre')">{{errors.first('nombre')}}</div>
+												<mdc-textfield type="text" name="estudiante" class="col-md-12" label="Nombre del Estudiante" helptext="(Ingrese el nombre del estudiante)" v-model="nombre" v-validate="'required'"></mdc-textfield>
+												<div class="help-block alert-danger" v-show="errors.has('estudiante')">{{errors.first('estudiante')}}</div>
 											</div>
 											<div class="form-group row">
 												<mdc-textfield type="text" name="apellido" class="col-md-12" label="Apellido del Estudiante" helptext="(Ingrese el apellido del estudiante)" v-model="apellido" v-validate="'required'"></mdc-textfield>
@@ -431,4 +431,5 @@ mounted() {
   box-shadow: 3px 3px 6px #e1e1e1
 }
 </style>
+
 

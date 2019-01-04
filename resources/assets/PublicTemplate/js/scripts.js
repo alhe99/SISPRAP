@@ -17,6 +17,12 @@ $('.BF1').hover(function(){
 $('.contenedorBF').mouseleave(function(){
   $('.BF4').removeClass('animacionVer');});
 
+$('.BF1').hover(function(){
+  $('.BF6').addClass('animacionVer');
+})
+$('.contenedorBF').mouseleave(function(){
+  $('.BF6').removeClass('animacionVer');});
+
 
 
 jQuery(document).ready(function() {

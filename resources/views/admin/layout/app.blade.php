@@ -156,7 +156,7 @@
                                    {{-- <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
-                                   <li><a href="#"><i class="ti-settings"></i> Configuraciones de Cuenta</a></li>
+                                   <li><button type="button" @click="menu=15" class="btn btn-link btn-field"><i class="ti-settings"></i> Configuraciones de Cuenta</button></li>
                                    <li role="separator" class="divider"></li>
                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                                    </i> Cerrar sesion</a>

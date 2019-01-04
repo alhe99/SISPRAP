@@ -108209,7 +108209,7 @@ var render = function() {
                               staticClass: "col-md-12",
                               attrs: {
                                 type: "text",
-                                name: "nombre",
+                                name: "estudiante",
                                 label: "Nombre del Estudiante",
                                 helptext: "(Ingrese el nombre del estudiante)"
                               },
@@ -108229,13 +108229,13 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: _vm.errors.has("nombre"),
-                                    expression: "errors.has('nombre')"
+                                    value: _vm.errors.has("estudiante"),
+                                    expression: "errors.has('estudiante')"
                                   }
                                 ],
                                 staticClass: "help-block alert-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("nombre")))]
+                              [_vm._v(_vm._s(_vm.errors.first("estudiante")))]
                             )
                           ],
                           1
