@@ -116,6 +116,10 @@
 				@endif
 			</i>
 		</button>
+		<button class="btn BF5 hint--left" data-hint="Descargar documentos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px">
+			<i class="far fa-folder-open fa-sm"></i>
+		</button>
+
 	</div>
 	<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 	aria-hidden="true">
@@ -153,6 +157,78 @@
 		</div>
 	</div>
 </div>
+</div>
+<div class="modal" id="exampleModal2" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Desacarga tus documentos</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<section class="welcome-section section-padding section-dark">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 col-lg-12 col-xs-12">
+								<div class="Material-tab">
+									<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#business" role="tab"><i class="far fa-user"></i></br>Perfil del proyecto</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#startup" role="tab"><i class="far fa-list-alt"></i></br>Control de proyecto</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#agency" role="tab"><i class="fa fa-calendar-alt"></i></br>Control de asistencia</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane fade show active" id="business" role="tabpanel" >
+											<div class="card text-center">
+												<div class="card-header">
+													<h6 class="card-title">Presiona en el botón para descargar</h6>
+												</div>
+												<div class="card-body">
+													<button type="button" class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="startup" role="tabpanel" >
+											<div class="card text-center">
+												<div class="card-header">
+													<h6 class="card-title">Presiona en el botón para descargar</h6>
+												</div>
+												<div class="card-body">
+													<button type="button" class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
+												</div>
+											</div>
+										</div>
+										<div  class="tab-pane fade" id="agency" role="tabpanel">
+											<div class="card text-center">
+												<div class="card-header">
+													<h6 class="card-title">Presiona en el botón para descargar</h6>
+												</div>
+												<div class="card-body">
+													<button type="button" class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all " ></i>&nbsp;Descargar</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="modal-footer" style="margin-left: 150px;">
+				<div class="" >
+					<button type="button" class="btn btn-danger btn-sm text-white btn-block btn-lg" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box " ></i>&nbsp;Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">

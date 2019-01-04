@@ -2564,6 +2564,22 @@ ul.recent-post li .post-text span {
     /* margin-right:-45px; */
     transform: scale(0);
 }
+.BF5 {
+ background: #2196F3;
+    margin-bottom: 225px;
+    transition: 0.7s;
+    width: 46px;
+    height: 46px;
+    color: #FFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    /* margin-right: -8376px; */
+    margin-left: -45px;
+    transform: scale(0);
+}
 
 span {
     transition: .5s;
