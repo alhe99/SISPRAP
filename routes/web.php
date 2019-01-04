@@ -20,7 +20,7 @@ Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
 Route::get('GetInstitucion/', 'InstitucionController@GetInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
-Route::get('/institucion/validate/{nombre}/{proceso}','InstitucionController@ifInstitucionExist');
+Route::get('/institucion/validate/{nombre}/{proceso}','InstitucionController@validateInstitucion');
 
 
 Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
@@ -97,6 +97,8 @@ Route::get('institucion/regSupervision','InstitucionController@regSupervision')-
 //Reportes GP
 
 Route::get('/gestionProy/reportes/initialprocess','GestionProyectoController@getInitialProcessReporte')->name('reporteIniProd');
+Route::get('/gestionProy/reportes/pendienteInicio', 'GestionProyectoController@getPendientesIniProcessReporte')->name('reportePenIni');
+
 //metodo de carrerActividadProyecto
 
 ///////PARTE DE RECEPCION ////////
@@ -118,6 +120,7 @@ Route::get('/my_projects_now/{id}','GestionProyectoController@getGestionProyecto
 //Reportes GP
 
 Route::get('/gestionProy/reportes/initialprocess/{pId}','GestionProyectoController@getInitialProcessReporte');
+
 
 //Documentos
 Route::get('/getDocuments','DocumentoController@getDocumentsByStudent');

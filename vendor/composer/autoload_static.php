@@ -500,6 +500,7 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'App\\Institucion' => __DIR__ . '/../..' . '/app/Institucion.php',
         'App\\Jobs\\sendNotificationToAdmin' => __DIR__ . '/../..' . '/app/Jobs/sendNotificationToAdmin.php',
         'App\\Municipio' => __DIR__ . '/../..' . '/app/Municipio.php',
+        'App\\NivelAcademico' => __DIR__ . '/../..' . '/app/NivelAcademico.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
         'App\\Notifications\\NotifyAcceptProjectToStudent' => __DIR__ . '/../..' . '/app/Notifications/NotifyAcceptProjectToStudent.php',
         'App\\Notifications\\NotifyPreRegisterProject' => __DIR__ . '/../..' . '/app/Notifications/NotifyPreRegisterProject.php',

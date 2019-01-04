@@ -9,10 +9,10 @@
     <style>
     .bg-header{
      background-color:#F8EFB6
- }
- .font-normal{
-     font-weight: normal;
- }
+     }
+     .font-normal{
+         font-weight: normal;
+     }
 </style>
 
 </head>

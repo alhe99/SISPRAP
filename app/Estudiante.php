@@ -21,16 +21,20 @@ class Estudiante extends Model
         'estado',
         'carrera_id',
         'municipio_id',
+        'nivel_academico_id',
         'supero_limite',
         'proyectos_por_proceso',
         'foto_name',
         'no_proyectos'
     ];
 
-    public $timestamps = false;
     public function carrera(){
 
         return $this->belongsTo(Carrera::class,'carrera_id');
+    }
+    public function nivelAcademico(){
+
+        return $this->belongsTo(NivelAcademico::class,'nivel_academico_id');
     }
     public function municipio(){
 
