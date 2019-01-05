@@ -54,28 +54,27 @@
                   <thead class="thead-primary">
                   <tr>
                     <th>Nombre Estudiante</th>
-                    <th class="text-center">Proyecto</th>
                     <th class="text-center">Carrera</th>
-                    <th class="text-center">Estado del proceso</th>
+                    <th class="text-center">Nivel Academico</th>
+                    <th class="text-center">Entregada</th>
                     <th class="text-center">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                  <tr v-for="item in arrayStudents" :key="item.id">
-                    <td v-text="item.estudiante.nombre +' '+ item.estudiante.apellido"></td>
-                    <td>{{item.proyecto.nombre | truncate(30)}}</td>
-                    <td class="text-center" v-text="item.estudiante.carrera.nombre"></td>
+                    <td v-text="item.nombre +' '+ item.apellido"></td>
+                    <td class="text-center" v-text="item.carrera.nombre"></td>
+                    <td class="text-center" v-text="item.nivel_academico.nivel"></td>
                     <td class="text-center">
                         <template>
                              <h4>
-                               <span v-if="item.estado == 'I'" class="badge h1 badge-pill badge-primary">Iniciado</span>
-                               <span v-else-if="item.estado == 'P'" class="badge badge-pill badge-danger">En proceso</span>
-                               <span v-else-if="item.estado == 'F'" class="badge badge-pill badge-danger">Finalizado</span>
+                               <span v-if="item.gestion_proyecto[0].constancia_entreg.length > 0" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
+                               <span v-else class="badge badge-pill badge-danger">No Entregada</span>
                             </h4>
                        </template>
                      </td> 
                     <td class="text-center">
-                      <button type="button" style="cursor:pointer;" @click="saveDoc(item.id)" class="button blue" data-toggle="tooltip" title="Generar Constancia"><i class="mdi mdi-playlist-plus i-crud"></i></button>
+                      <button type="button" style="cursor:pointer;" @click="saveDoc(item.id,proceso)" class="button blue" data-toggle="tooltip" title="Generar Constancia"><i class="mdi mdi-file-document-box i-crud"></i></button>
                   </td>
                 </tr> 
               </tbody>
@@ -216,35 +215,9 @@ export default {
             let me = this;
             me.pagination.current_page = page;
             if (me.arrayStudents.length > 0) {
-                me.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,page,"");
+                me.getGestionProy(me.carrera_selected.value,me.proceso,page,"");  
             }
         },
-    getMoreInfo(id) {
-      let me = this;
-      me.loadSpinner = 1;
-      var url = "stundentById/"+id;
-      axios.get(url).then(function(response) {
-          var respuesta = response.data;
-          me.estudiante = respuesta;
-          me.loadSpinner = 0;
-          me.abrirModal();
-        }).catch(function(error) {
-          console.log(error);
-        });
-    },
-     getMoreInfoGp(id) {
-      let me = this;
-      me.loadSpinner = 1;
-      var url = "/getMoreInfoGP/"+id;
-      axios.get(url).then(function(response) {
-          var respuesta = response.data;
-          me.gpObj = respuesta;
-          me.loadSpinner = 0;
-        }).catch(function(error) {
-          console.log(error);
-          me.loadSpinner = 0;
-        });
-    },
     downloadPdfFromBase64(base64){
          let a = document.createElement("a");
          var name = "Constancia " + new Date(Date.now()).toLocaleString();
@@ -252,10 +225,11 @@ export default {
          a.download = name+".pdf"
          a.click();
     },
-    saveDoc(gp_id) {
+    saveDoc(gp_id,procesoId) {
+      let me = this;
      const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
         swal({
-        title: "¿Desea Guardar los datos?",
+        title: "¿ Desea Generar Constancia?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -268,30 +242,17 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-          let me = this;
-          me.loadSpinner = 1;
-          var url = "/getCostancia/"+gp_id;
-          axios.get(url)
-            .then(function(response) {
-              //me.getMoreInfoGp(me.idGP);
-              me.downloadPdfFromBase64(response.data);
-              me.loadSpinner = 0;
-              
-             
-            })
-            .catch(function(error) {
-              me.loadSpinner = 0;
-              console.log(error);
-              toast({
-                  type: 'danger',
-                  title: 'Error! Intente Nuevamente'
-              });
-            });
+         var url = route('getConstancia', {"estudianteId": gp_id,"procesoId": procesoId});
+         window.open(url);
+         
+         me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");  
         } else if (
-
           result.dismiss === swal.DismissReason.cancel
+           
         ) {
+           me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");  
         }
+         me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");  
       }); 
     },
     mounted(){}

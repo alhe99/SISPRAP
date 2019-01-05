@@ -75,17 +75,17 @@
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <div class="card  text-center">
-                   <img src="images/atajos/GESTIONES.png" @click="menu=4" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                   <img src="images/atajos/GESTIONES.png"  class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
                </div>
            </div>
            <div class="col-lg-4 col-md-4">
             <div class="card text-center">
-                <img src="images/atajos/PEINSCRIPCIONES.png" @click="menu=2" class="img-fluid" alt="logo sisprap" tyle="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                <img src="images/atajos/PEINSCRIPCIONES.png"  class="img-fluid" alt="logo sisprap" tyle="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
             </div>
         </div>
         <div class="col-lg-4 col-md-4">
             <div class="card text-center">
-                <img src="images/atajos/PUBLICACIONES.png" @click="menu=1" class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
+                <img src="images/atajos/PUBLICACIONES.png"  class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
             </div>
         </div>
     </div>

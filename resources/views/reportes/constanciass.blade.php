@@ -1,92 +1,121 @@
-<link rel="stylesheet" href="{{asset('css/bmdf.css')}}">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Constancia {{ $proceso }}</title>
+    <link rel="stylesheet" href="{{asset('css/bmdf.css')}}">
+    <style>
+    .text-jus {
+      text-align: justify;
+      text-justify: inter-word;
+      line-height: 1.6;
+  }
+  .bg-header{
+   background-color:#F8EFB6
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="row m-4">
+            <div class="col-md-12">
+                <table class="col-md-12" border="1" cellpadding="2" cellspacing="1">
+                    <td width="8">
+                        <img src="{{ asset('images/img_reportes/logopequeño.png') }}">
+                    </td>
+                    <td class="text-center font-weight-bold ">
+                        ASOCIACION AGAPE <br> DE EL SALVADOR
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        DOCUMENTO DE LA CALIDAD <br> FORMULARIO
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        CODIGO: F.IT.058 <br>
+                        Versión: 01<br>
+                        Pagina 1 de 1
+                    </td>
+                    <tr>
+                        <td colspan="3" height="50" class="text-left font-weight-bold">
+                            Título: Constancia de {{ $proceso }}
+                        </td>
+                        <td class="text-center font-weight-bold">
+                           FECHA DE REVISIÓN: <br> 14/07/2016
 
- <body>
- <div>
-        <table class="table-bordered container-fluid" cellpadding="0" cellspacing="0"  style="border-collapse: collapse; heigth:auto;" >
-            <thead> 
-                    <img  src="images/img_reportes/logopequeño.png" style=" width: 50px; height:15px ; margin-top:-50px; position:absolute; " alt="">
-                    <tr>
-                        
-                        {{--  <td style="background:  background-color: #fff;"></td>  --}}
-                        <td class="text-center" style="font-size: 0.800em;  padding-top: 0px; " colspan="2"><strong>ASOCIACION AGAPE<br>DE EL SALVADOR</strong></td>
-                        <td class="text-center" style="font-size: 0.800em;  padding-top: 0px; "><strong>DOCUMENTO DE LA CALIDAD<br>FORMULARIO</strong></td>
-                        <td class="text-center" style="font-size: 0.800em;  padding-top: 0px; "><strong>CODIGO: F.IT.036<br>Verion: 02<br>Página 1 de 1</strong></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="text-align: left; font-size: 0.800em;  height:10px;  padding-top: 0px;"><p><strong>Titulo: Constancia de Servicio Social</strong></p></td>
-                        <td colspan="1" class="text-center" style="font-size: 0.800em; height:10px;  padding-top: 0px; "><p><strong>FECHA DE REVISION:<br> 14/07/2016</strong></p></td>
-                    </tr>
-                </thead>
-        </table>
-        </div>
-         <br><br><br>
-        <div class="row" style="">
-       
-            <div> 
-                <p class="text-center"><strong>INSTITUTO TECNOLOGICO DE CHALATENANGO ITCHA/AGAPE<br><br>CONSTANCIA DE SERVICIO SOCIAL</strong></p>
-            <div>
-                <img style="margin-top:-90px; margin-left:630px;"  class="text-center img-fluid " src="images/img_reportes/logoITCHA.png" alt=""></div>
+                       </td>
+                   </tr>
+               </table><br><br>
+
+               <h5 class="text-center font-weight-bold">INSTITUTO TECNOLOGICO DE CHALATENANGO ITCHA/AGAPE</h5><br>
+               <h5 class="text-center font-weight-bold"> CONSTANCIA DE {{ strtoupper($proceso) }}</h5><br><br>
+
+               <div class="row">
+                <div class="col-md-12">
+                    <h4 class=" text-jus">
+                        El (la) infrascrito(a) Encargado(a) de Práctica Profesional del Instituto Tecnológico de
+                        Chalatenango /AGAPE (ITCHA/AGAPE), hace constar que de conformidad a la Ley de
+                        Educación Superior, Capítulo I, Art. 19, literal C); el alumno(a) de la carrera:
+                        <u>{{ $data->carrera->nombre }}</u> ha realizado el {{ $proceso }} de acuerdo a lo que se detalla a
+                        continuación:
+                    </h4>
+                </div><br>
+                <div class="col-md-12">
+                    <h4 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $data->nombre." ".$data->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;Total
+                    horas: {{$totalHoras}}</h4>
+
+                </div><br><br>
+                <div class="col-md-12">
+                    <table class="col-md-12" border="1" cellpadding="2">
+                        <tr class="bg-header">
+                            <td class="text-center font-weight-bold">
+                                Institución / Organización
+                            </td>
+                            <td class="text-center font-weight-bold">
+                                Proyecto o actividad <br>
+                                realizada
+                            </td>
+                            <td class="text-center font-weight-bold">
+                                Período
+                            </td>
+                            <td class="text-center font-weight-bold">
+                                Horas
+                            </td>
+                        </tr>
+                        @foreach ($data->gestionProyecto as $item)
+                        <tr>
+                            <td height="50">{{ $item->proyecto->institucion->nombre }}</td>
+                            <td height="50">{{ $item->proyecto->nombre }}</td>
+                            <td class="text-center" height="50">{{ $item->fecha_inicio." al ".$item->fecha_fin }}</td>
+                            <td class="text-center" height="50">{{ $item->horas_realizadas }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div><br><br><br>
+                <div class="col-md-12">
+                    <table class="col-md-12"  cellpadding="15">
+                        <tr>
+                            <td colspan="10">
+                                Fecha: <u>&nbsp;{{ $fecha }}&nbsp;</u>
+                            </td>
+                                <td class="text-center">
+                                   <br><br> F: <u>&nbsp;{{ $admin->nombre }}&nbsp;</u> <br>
+                                    <span class="text-muted text-center">
+                                        Nombre del Encargado(a)<br>
+                                        de Práctica Profesional
+                                    </span>
+                                </td>
+                                <td>
+                                    <img  src="{{ asset('images/img_reportes/cuadro.png') }}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br><br><br><br>
-        <div class="row">
-            <div> 
-                <p class="text-justify" style="margin-left:35px; margin-right:22px;">El (la) infrascrito(a) Encargado(a) de Práctica Profesional del Instituto Tecnológico de Chalatenango /AGAPE(ITCHA/AGAPE), hace constar que de conformidad a la Ley de Educación Superior, Capítulo I, Art.19, literal C); el alumno(a)
-                de la carrera {{$gp->estudiante->carrera->nombre}} ha realizado el Servicio Social de acuerdo a lo que se detalla a continuación:</p>
-        </div>
-        <br><br>
-        <div class="row">
-            <div> 
-                <p class="text-justify" style="margin-left:55px; margin-right:22px; margin-top:180px;">Alumno(a): {{$gp->estudiante->nombre}} Total horas: {{$gp->horas_realizadas}}</p>
-        </div>
-        
-        <div>
-        <table class="table-bordered container-fluid"   style=" heigth:auto; margin-top:250px; margin-left:15px; margin-right:17px;" >
-            <thead> 
-                    
-                    <tr>
-                        <th class="text-center"><strong>Institución / Organización</strong></th>
-                        <th class="text-center"><strong>Proyecto o actividad<br>realizada</strong></th>
-                        <th class="text-center"><strong>Periodo</strong></th>
-                        <th class="text-center"><strong>Horas</strong></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{$gp->proyecto->institucion->nombre}}</td>
-                        <td>{{$gp->proyecto->nombre}}</td>
-                        <td>{{$gp->fecha_inicio . " - " . $gp->fecha_fin}}</td>
-                        <td>{{$gp->horas_realizadas}}</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </tbody>
-        </table>
-        </div>
-        <div class="row">
-            <div> 
-                <p class="text-justify" style="margin-left:55px; margin-right:22px; margin-top:450px;">Fecha: {{$fecha}}  &nbsp;&nbsp;&nbsp;&nbsp; F.:________________________</p><p style="margin-left:420px; font-size:x-small; margin-top:-20px; backgroup-color: #DADFDD;">Nombre del Encargado(a)<br>de Práctica Profesional</p>
-                <img style="margin-left:650px; margin-top:-65px;" src="images/img_reportes/cuadro.fw.png">
+
         </div>
 
-        
-       
-        
-        
-        
-       
-        
-        {{-- <p style="font-size: 0.500em; margin-top: -25supx;">NOTA: Este documento debe ser presentado a mas tardar 5 días hábiles despúes de su retiro(No es válido si presenta tachadura, enmendedura y/o correciones),   *Campos NO obligatorios</p> --}}
-        
-        
-         <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-         <script src="{{asset('js/popper.js')}}"></script>
-         <script src="{{asset('js/bmd3.js')}}"></script>
-         <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+    </div>
 
-        
 </body>

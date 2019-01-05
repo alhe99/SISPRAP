@@ -115,7 +115,7 @@ Route::post('/recepcion/payArancel','PagoArancelController@payArancel');
 Route::get('/gestionproyectos','GestionProyectoController@index');
 Route::get('/gestionproyectos/constancias','GestionProyectoController@constancias');
 Route::get('/getMoreInfoGP/{id}','GestionProyectoController@getInfoGpById');
-Route::get('/getCostancia/{id}','GestionProyectoController@generateConstancia');
+Route::get('/getCostancia','GestionProyectoController@generateConstancia')->name('getConstancia');
 Route::get('/my_projects_now/{id}','GestionProyectoController@getGestionProyectoByStudent')->name('proyects_now');
 
 //Reportes GP

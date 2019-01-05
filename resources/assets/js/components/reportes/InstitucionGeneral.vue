@@ -89,18 +89,10 @@ import Switches from 'vue-switches';
             },
             sendParameterToMethod(){
                 let me = this;
-                me.loadSpinner = 1;
                 var url = "institucion/getInstituciones/" +this.proceso_id;
-                axios.post(url).then(function(response) {
-                var respuesta = response.data;
-                me.loadSpinner = 0;
-                me.viewPdfFromBase64(respuesta,'Instituciones generales');
-                me.downloadPdfFromBase64(respuesta,name);
+                window.open(url);
                 me.clearData();
-                })
-                .catch(function(error) {
-                console.log(error);
-                });
+        
             }
         },
         components: {

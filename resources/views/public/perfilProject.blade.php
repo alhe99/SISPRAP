@@ -151,7 +151,8 @@
           <div class="col-md-2 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="total_horas">Total de Horas*</label>
-              <input class="form-control" v-model="hrsRea" id="total_horas" maxlength="3" type="text" name="total_horas" >
+               <input class="form-control" value="{{Auth::user()->estudiante->proceso[0]->pivot->num_horas == null ? '' : Auth::user()->estudiante->proceso[0]->pivot->num_horas  }}"
+               id="total_horas" maxlength="3" type="text" name="total_horas">
             </div>
           </div>
         </div>
@@ -236,6 +237,7 @@
       validate: function(){
         let me = this;
         me.fechaI = $("#fecha_ini").val().trim();
+        me.hrsRea = $("#total_horas").val().trim();
         if(
          !(me.fechaI == "") ||
          !(me.hrsRea == "") ||
@@ -267,12 +269,13 @@
     }).then((result) => {
       if (result.value) {
         let me = this;
-          //$('#preloader').fadeIn();
+          $('#preloader').fadeIn();
           me.fechaI = $("#fecha_ini").val().trim();
           me.fechaFin = $("#fecha_fin").val().trim();
           me.studentId = $("#student_id").val().trim();
           me.projectId = $("#project_id").val().trim();
-
+          me.hrsRea = $("#total_horas").val().trim();
+          
           var url = route('save_perfil', {
             "fechaini": this.fechaI,
             "fechafin":this.fechaFin,
@@ -285,7 +288,7 @@
           axios.get(url).then(function(response) {
             var respuesta = response.data;
             me.downloadPdfFromBase64(respuesta);
-                          // $('#preloader').fadeOut();
+                          $('#preloader').fadeOut();
                           swal({
                             position: "center",
                             type: "success",
@@ -293,9 +296,8 @@
                             showConfirmButton: true,
                             width: '350px',
                           }).then(function(result){
-                            //window.location.href = route('proyects_now',[studen_id]);
+                            window.location.href = route('proyects_now',[studen_id]);
                           });
-                       // }
 
                      }).catch(function(error) {
                       console.log(error);
