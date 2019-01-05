@@ -296,8 +296,8 @@
              <div class="modal-footer">
               <div class="row">
                 <div class="col-md-12">
-                  <button type="button" @click="cerrarModalEnd()" class="button red">Cerrar</button>
-                  <button type="button" @click="deleteProy(idGP)" class="button info">Guardar</button>
+                  <button type="button" @click="cerrarModalEnd()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cerrar</button>
+                  <button type="button" @click="deleteProy(idGP)" class="button info"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
                 </div>
               </div>
             </div>

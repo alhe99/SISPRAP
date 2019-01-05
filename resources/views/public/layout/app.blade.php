@@ -201,7 +201,7 @@
 													<h6 class="card-title">Presiona en el botón para descargar</h6>
 												</div>
 												<div class="card-body">
-													<button type="button" class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
+													<button class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
 												</div>
 											</div>
 										</div>

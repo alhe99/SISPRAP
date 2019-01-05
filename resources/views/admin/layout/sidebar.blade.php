@@ -15,9 +15,7 @@
                     &nbsp;Mi Cuenta
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item"><i class="ti-settings"></i>
-                    &nbsp;Configuraciones
-                </a>
+                <a href="#" class="dropdown-item"><h5><i class="ti-settings"></i>&nbsp;Configuraciones</h5></a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                 class="dropdown-item"><i class="fa fa-power-off"></i>
@@ -48,7 +46,7 @@
             <ul aria-expanded="false" class="collapse ">
                 <li><button type="button" @click="menu=5" class="btn btn-link btn-colors">Control instituciones</button></li>
                 <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
-                    class="mdi mdi-clipboard-text"></i><span class="hide-menu">Hojas de supervisión
+                    class="mdi mdi-file-document"></i><span class="hide-menu">Hojas de supervisión
                     &nbsp;&nbsp;&nbsp;</span></a>
                     <ul aria-expanded="false" class="collapse ">
                         <li><button type="button" @click="menu=6" class="btn btn-link  btn-colors">General</button></li>
@@ -69,7 +67,7 @@
                 class="hide-menu">Reportes</span></a>
                 <ul aria-expanded="false" class="collapse ">
                     <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
-                        class="mdi mdi-clipboard-text"></i><span class="hide-menu">Reportes de SS-PP
+                        class="mdi mdi-clipboard-check"></i><span class="hide-menu">Reportes de SS-PP
                         &nbsp;&nbsp;&nbsp;</span></a>
                         <ul aria-expanded="false" class="collapse ">
                             <li><button type="button" @click="menu=16" class="btn btn-link  btn-colors">Inicio de
@@ -85,8 +83,8 @@
                         </ul>
                     </li>
                     <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
-                        class="mdi mdi-clipboard-text"></i><span class="hide-menu">Reportes por Institucion
-                        &nbsp;&nbsp;&nbsp;</span></a>
+                        class="mdi mdi-clipboard-check"></i><span class="hide-menu">Reportes por Institución
+                        </span></a>
                         <ul aria-expanded="false" class="collapse ">
                             <li><button type="button" @click="menu=11" class="btn btn-link  btn-colors">Informe
                             general</button></li>
@@ -135,16 +133,16 @@
             <div class="modal-body">
                 <div class="row ">
                     <div class="col-md-12">
-                     <mdc-textfield
-                     type="text"
-                     class="col-md-12"
-                     label="Nombre"
-                     helptext="(Ingrese el nombre del usuario a actualizar)"
-                     v-model="nombre"
-                     ></mdc-textfield>
-                 </div>
-             </div>
-             <div class="row ">
+                       <mdc-textfield
+                       type="text"
+                       class="col-md-12"
+                       label="Nombre"
+                       helptext="(Ingrese el nombre del usuario a actualizar)"
+                       v-model="nombre"
+                       ></mdc-textfield>
+                   </div>
+               </div>
+               <div class="row ">
                 <div class="col-md-12">
                     <mdc-textfield
                     type="text"
@@ -166,25 +164,25 @@
                                 type="text"
                                 class="col-md-12"
                                 label="contraseña"
-                                helptext="(Ingrese el nombre del la nueva contraseña)"
+                                helptext="(Ingrese la nueva contraseña)"
                                 ></mdc-textfield>
                             </div>
                         </div>
                         <div class="col-md-6" data-wow-delay=".1s">
                             <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-                             <mdc-textfield
-                             type="text"
-                             class="col-md-12"
-                             label="Confirmar contraseña"
-                             helptext="(Confirme su contraseña)"
-                             ></mdc-textfield>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="modal-footer">
+                               <mdc-textfield
+                               type="text"
+                               class="col-md-12"
+                               label="Confirmar contraseña"
+                               helptext="(Confirme su contraseña)"
+                               ></mdc-textfield>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="modal-footer">
         <div class="col-md-6 text-center">
             <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
         </div>

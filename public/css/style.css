@@ -5171,7 +5171,7 @@ Main sidebar
 
 .left-sidebar {
     position: absolute;
-    width: 240px;
+    width: 250px;
     height: 100%;
     top: 0px;
     z-index: 20;
@@ -5316,7 +5316,7 @@ sidebar navigation
 }
 .sidebar-nav {
     background: #fff;
-    padding: 15px;
+    padding: 1px;
 }
 .sidebar-nav ul {
     margin: 0px;
@@ -5341,7 +5341,7 @@ sidebar navigation
     color: #263238;
 }
 .sidebar-nav ul li ul {
-    padding-left: 5px;
+    padding-left: 15px;
     padding-top: 10px;
 }
 .sidebar-nav ul li ul li a {
@@ -5496,7 +5496,7 @@ When click on sidebar toggler and also for tablet
         width: 50px;
     }
     .mini-sidebar .sidebar-nav #sidebarnav>li:hover>a {
-        width: 260px;
+        width: 250px;
         background: #26c6da;
         color: #ffffff;
         border-color: #009efb;
@@ -5519,7 +5519,7 @@ When click on sidebar toggler and also for tablet
         position: fixed;
     }
     .mini-sidebar .left-sidebar, .mini-sidebar .sidebar-footer {
-        left: -240px;
+        left: -250px;
     }
     .mini-sidebar.show-sidebar .left-sidebar, .mini-sidebar.show-sidebar .sidebar-footer {
         left: 0px;
@@ -6721,7 +6721,7 @@ File: scss
         margin-left: 240px;
     }
     .footer {
-        left: 240px;
+        left: 250px;
     }
 }
 @media (max-width: 1023px) {
