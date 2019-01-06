@@ -109273,8 +109273,7 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-range h4"
                                     }),
                                     _vm._v(" Trimestral\n                  ")
                                   ],
@@ -109305,8 +109304,7 @@ var render = function() {
                                     }),
                                     _vm._v(" \n                    "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-check h4"
                                     }),
                                     _vm._v(" Mensual\n                  ")
                                   ],
@@ -109417,7 +109415,12 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Generar Reporte")]
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-package-down"
+                                      }),
+                                      _vm._v(" Generar Reporte")
+                                    ]
                                   )
                                 ]
                               )
@@ -109874,8 +109877,7 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-range h4"
                                     }),
                                     _vm._v(" Trimestral\n                  ")
                                   ],
@@ -109904,10 +109906,9 @@ var render = function() {
                                         expression: "mensual "
                                       }
                                     }),
-                                    _vm._v(" \n                    "),
+                                    _vm._v(" \n                   "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-check h4"
                                     }),
                                     _vm._v(" Mensual\n                  ")
                                   ],
@@ -110018,7 +110019,12 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Generar Reporte")]
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-package-down"
+                                      }),
+                                      _vm._v(" Generar Reporte")
+                                    ]
                                   )
                                 ]
                               )
