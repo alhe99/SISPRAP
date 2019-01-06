@@ -108979,6 +108979,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -108990,7 +109015,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       carreras: "",
       trimestre: "",
       arrayTrimestral: [{ value: [1, 2, 3], label: "Primer Trimestre" }, { value: [4, 5, 6], label: "Segundo Trimestre" }, { value: [7, 8, 9], label: "Tercer Trimestre" }, { value: [10, 11, 12], label: "Cuarto Trimestre" }],
-      arrayMeses: [{ value: 0, label: "--Todos--" }, { value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
+      arrayMeses: [{ value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
       arrayCarreras: [],
       tipoRepo: '',
       trimestral: false,
@@ -109028,14 +109053,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
-      if (this.mes[0].value == 0) {
-        this.anual = true;
+    },
+    anual: function anual() {
+      if (this.anual) {
         this.tipoRepo = 'A';
+        this.mes = [];
+        this.valuesMonth = [];
       } else {
         this.tipoRepo = 'M';
-        this.anual = true;
       }
     }
+
   },
   methods: {
     getCarreras: function getCarreras() {
@@ -109170,6 +109198,44 @@ var render = function() {
               _c("div", { staticClass: "panel panel-default" }, [
                 _c("div", { staticClass: "panel-body" }, [
                   _c("fieldset", [
+                    _c("div", { staticClass: "panel panel-default" }, [
+                      _c("div", { staticClass: "panel-body" }, [
+                        _c("div", { staticClass: "row md-radio" }, [
+                          _c("div", { staticClass: "col-md-12 text-center" }, [
+                            _vm.proceso_id == 1
+                              ? _c("h4", { staticClass: "font-weight-bold" }, [
+                                  _vm._v(
+                                    "Reporte De Estudiantes Que Han Iniciado Servicio Social"
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.proceso_id == 2
+                              ? _c("h4", { staticClass: "font-weight-bold" }, [
+                                  _vm._v(
+                                    "Reporte De Estudiantes Que Han Iniciado Práctica Profesional"
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.proceso_id != 0
+      ? _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "panel panel-default" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("fieldset", [
                     _c("legend", { staticClass: "text-center" }, [
                       _vm._v("Seleccione el tipo de informe")
                     ]),
@@ -109279,12 +109345,13 @@ var render = function() {
                                 ? _c("div", { staticClass: "row" }, [
                                     _c(
                                       "div",
-                                      { staticClass: "col-md-12" },
+                                      { staticClass: "col-md-10" },
                                       [
                                         _c("br"),
                                         _c("v-select", {
                                           attrs: {
                                             multiple: "",
+                                            disabled: _vm.anual == true,
                                             options: _vm.arrayMeses,
                                             placeholder: "Seleccione mes"
                                           },
@@ -109296,6 +109363,28 @@ var render = function() {
                                             expression: "mes"
                                           }
                                         })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-2" },
+                                      [
+                                        _c("br"),
+                                        _c(
+                                          "checkbox",
+                                          {
+                                            model: {
+                                              value: _vm.anual,
+                                              callback: function($$v) {
+                                                _vm.anual = $$v
+                                              },
+                                              expression: "anual"
+                                            }
+                                          },
+                                          [_vm._v("Reporte Anual")]
+                                        )
                                       ],
                                       1
                                     )
@@ -109316,7 +109405,9 @@ var render = function() {
                                         type: "button",
                                         id: "btnGenerar",
                                         disabled:
-                                          _vm.mes == "" && _vm.trimestre == "",
+                                          _vm.mes == "" &&
+                                          _vm.trimestre == "" &&
+                                          _vm.anual == false,
                                         "data-toggle": "tooltip",
                                         title: "Generar Reporte"
                                       },
@@ -109489,6 +109580,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -109500,7 +109617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       carreras: "",
       trimestre: "",
       arrayTrimestral: [{ value: [1, 2, 3], label: "Primer Trimestre" }, { value: [4, 5, 6], label: "Segundo Trimestre" }, { value: [7, 8, 9], label: "Tercer Trimestre" }, { value: [10, 11, 12], label: "Cuarto Trimestre" }],
-      arrayMeses: [{ value: 0, label: "--Todos--" }, { value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
+      arrayMeses: [{ value: 1, label: "Enero" }, { value: 2, label: "Febrero" }, { value: 3, label: "Marzo" }, { value: 4, label: "Abril" }, { value: 5, label: "Mayo" }, { value: 6, label: "Junio" }, { value: 7, label: "Julio" }, { value: 8, label: "Agosto" }, { value: 9, label: "Septiembre" }, { value: 10, label: "Octubre" }, { value: 11, label: "Noviembre" }, { value: 12, label: "Diciembre" }],
       arrayCarreras: [],
       tipoRepo: '',
       trimestral: false,
@@ -109538,8 +109655,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
-      if (this.mes[0].value == 0) this.anual = true;
-      this.tipoRepo = 'A';
+    },
+    anual: function anual() {
+      if (this.anual) {
+        this.tipoRepo = 'A';
+        this.mes = [];
+        this.valuesMonth = [];
+      } else {
+        this.tipoRepo = 'M';
+      }
     }
   },
   methods: {
@@ -109675,6 +109799,44 @@ var render = function() {
               _c("div", { staticClass: "panel panel-default" }, [
                 _c("div", { staticClass: "panel-body" }, [
                   _c("fieldset", [
+                    _c("div", { staticClass: "panel panel-default" }, [
+                      _c("div", { staticClass: "panel-body" }, [
+                        _c("div", { staticClass: "row md-radio" }, [
+                          _c("div", { staticClass: "col-md-12 text-center" }, [
+                            _vm.proceso_id == 1
+                              ? _c("h4", { staticClass: "font-weight-bold" }, [
+                                  _vm._v(
+                                    "Reporte De Estudiantes Que Están Pendientes de Iniciar Servicio Social"
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.proceso_id == 2
+                              ? _c("h4", { staticClass: "font-weight-bold" }, [
+                                  _vm._v(
+                                    "Reporte De Estudiantes Que Están Pendientes de Iniciar Práctica Profesional"
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.proceso_id != 0
+      ? _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "panel panel-default" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("fieldset", [
                     _c("legend", { staticClass: "text-center" }, [
                       _vm._v("Seleccione el tipo de informe")
                     ]),
@@ -109784,12 +109946,13 @@ var render = function() {
                                 ? _c("div", { staticClass: "row" }, [
                                     _c(
                                       "div",
-                                      { staticClass: "col-md-12" },
+                                      { staticClass: "col-md-10" },
                                       [
                                         _c("br"),
                                         _c("v-select", {
                                           attrs: {
                                             multiple: "",
+                                            disabled: _vm.anual == true,
                                             options: _vm.arrayMeses,
                                             placeholder: "Seleccione mes"
                                           },
@@ -109801,6 +109964,28 @@ var render = function() {
                                             expression: "mes"
                                           }
                                         })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-2" },
+                                      [
+                                        _c("br"),
+                                        _c(
+                                          "checkbox",
+                                          {
+                                            model: {
+                                              value: _vm.anual,
+                                              callback: function($$v) {
+                                                _vm.anual = $$v
+                                              },
+                                              expression: "anual"
+                                            }
+                                          },
+                                          [_vm._v("Reporte Anual")]
+                                        )
                                       ],
                                       1
                                     )
@@ -109821,7 +110006,9 @@ var render = function() {
                                         type: "button",
                                         id: "btnGenerar",
                                         disabled:
-                                          _vm.mes == "" && _vm.trimestre == "",
+                                          _vm.mes == "" &&
+                                          _vm.trimestre == "" &&
+                                          _vm.anual == false,
                                         "data-toggle": "tooltip",
                                         title: "Generar Reporte"
                                       },
