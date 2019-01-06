@@ -2512,11 +2512,24 @@ ul.recent-post li .post-text span {
     position: absolute;
     margin-right: 15px;
     color: #FFF;
-    font-size: 25px;
+    font-size: 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transition: .3s;
 }
-
+.BF4 {
+    background: #009688;
+    margin-bottom: 170px;
+    transition: 0.9s;
+    width: 46px;
+    height: 46px;
+    color: #FFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: scale(0);
+}
 .BF2 {
     background: #673AB7;
     margin-bottom: 62px;
@@ -2549,21 +2562,6 @@ ul.recent-post li .post-text span {
     transform: scale(0);
 }
 
-.BF4 {
-    background: #009688;
-    margin-bottom: 170px;
-    transition: 0.9s;
-    width: 46px;
-    height: 46px;
-    color: #FFF;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    font-size: 24px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    /* margin-right:-45px; */
-    transform: scale(0);
-}
 .BF5 {
  background: #2196F3;
     margin-bottom: 225px;

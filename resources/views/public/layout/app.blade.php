@@ -99,63 +99,67 @@
 	<br><br>
 	<div class="Notificaciones">
 		<div class="contenedorBF">
-			<button class="btn BF1" style="border-radius: 50px">
-				<span><i class="fas fa-plus fa-sm text-center"></i></span>
-			</button>
-			<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" data-toggle="modal" data-target="#exampleModal1" style="border-radius: 50px;">
-				<i class="far fa-user fa-sm"></i>
-			</button>
-			<button class="btn BF3 hint--left" data-hint="Chat con el administrador" style="border-radius: 50px">
-				<i class="far fa-comments fa-sm"></i>
-			</button>
-			<button class="btn BF4 hint--left" data-hint="Notificaciones" data-toggle="modal" data-target=".docs-example-modal-lg" style="border-radius: 50px"><i class="far fa-bell fa">
+			<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
 				@if (count(Auth::user()->estudiante->preinscripciones) != 0)
 				@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-				<span class="badge badge-danger">1</span>
+				<span class="badge badge-primary">1</span>
 				@endif
 				@endif
 			</i>
 		</button>
-		<button class="btn BF5 hint--left" data-hint="Descargar documentos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px">
-			<i class="far fa-folder-open fa-sm"></i>
+		<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" data-toggle="modal" data-target="#exampleModal1" style="border-radius: 50px; cursor: pointer;">
+			<i class="far fa-user fa-sm"></i>
 		</button>
-
-	</div>
-	<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Panel de Notificaciones</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="row ">
-					<div class="col-md-12 ">
-						&nbsp;
-						@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-						@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-						<h6>
-							<i class="fas fa-check">
-							</i> Tu solicitud al proyecto  Ha sido aceptada!
-							<a href="{{route('show_perfil')}}" onclick="perfilProy()">
-								<strong>
-									Puedes iniciar con tu proceso ahora!!
-								</strong>
-							</a>
+		<button class="btn BF3 hint--left" data-hint="Chat con el administrador" style="border-radius: 50px; cursor: pointer;">
+			<i class="far fa-comments fa-sm"></i>
+		</button>
+		<button class="btn BF4 hint--left" data-hint="Notificaciones" data-toggle="modal" data-target=".docs-example-modal-lg" style="border-radius: 50px; cursor: pointer;"><i class="far fa-bell fa">
+			@if (count(Auth::user()->estudiante->preinscripciones) != 0)
+			@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+			<span class="badge badge-danger">1</span>
+			@endif
+			@endif
+		</i>
+	</button>
+	<button class="btn BF5 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px;cursor: pointer;">
+		<i class="far fa-folder-open fa-sm"></i>
+	</button>
+</div>
+<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Panel de Notificaciones</h5>
+			<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="row ">
+				<div class="col-md-12 ">
+					&nbsp;
+					@if (count(Auth::user()->estudiante->preinscripciones) != 0)
+					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+					<h6>
+						<i class="fas fa-check">
+						</i> Tu solicitud al proyecto  Ha sido aceptada!
+						<a href="{{route('show_perfil')}}" onclick="perfilProy()">
+							<strong>
+								Puedes iniciar con tu proceso ahora!!
+							</strong>
 						</a>
-					</h6>
-					@endif
-					@endif
-				</div>
+					</a>
+				</h6>
+				@endif
+				@endif
 			</div>
 		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-primary"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
-		</div>
 	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" style="cursor: pointer;"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
+	</div>
+</div>
 </div>
 </div>
 <div class="modal" id="exampleModal2" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -163,69 +167,62 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Desacarga tus documentos</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<section class="welcome-section section-padding section-dark">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 col-lg-12 col-xs-12">
-								<div class="Material-tab">
-									<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#business" role="tab"><i class="far fa-user"></i></br>Perfil del proyecto</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#startup" role="tab"><i class="far fa-list-alt"></i></br>Control de proyecto</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#agency" role="tab"><i class="fa fa-calendar-alt"></i></br>Control de asistencia</a>
-										</li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane fade show active" id="business" role="tabpanel" >
-											<div class="card text-center">
-												<div class="card-header">
-													<h6 class="card-title">Presiona en el botón para descargar</h6>
-												</div>
-												<div class="card-body">
-													<button type="button" class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
-												</div>
-											</div>
+				<div class="row">
+					<div class="col-md-12 col-lg-12 col-xs-12">
+						<div class="Material-tab">
+							<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#business" role="tab"><i class="far fa-user"></i></br>Perfil del proyecto</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#startup" role="tab"><i class="far fa-list-alt"></i></br>Control de proyecto</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#agency" role="tab"><i class="fa fa-calendar-alt"></i></br>Control de asistencia</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane fade show active" id="business" role="tabpanel" >
+									<div class="card text-center">
+										<div class="card-header">
+											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
-										<div class="tab-pane fade" id="startup" role="tabpanel" >
-											<div class="card text-center">
-												<div class="card-header">
-													<h6 class="card-title">Presiona en el botón para descargar</h6>
-												</div>
-												<div class="card-body">
-													<button class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
-												</div>
-											</div>
+										<div class="card-body">
+											<button type="button" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
 										</div>
-										<div  class="tab-pane fade" id="agency" role="tabpanel">
-											<div class="card text-center">
-												<div class="card-header">
-													<h6 class="card-title">Presiona en el botón para descargar</h6>
-												</div>
-												<div class="card-body">
-													<button type="button" class="btn btn-primary btn-sm text-white btn-lg"><i class="mdi mdi-check-all " ></i>&nbsp;Descargar</button>
-												</div>
-											</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="startup" role="tabpanel" >
+									<div class="card text-center">
+										<div class="card-header">
+											<h6 class="card-title">Presiona en el botón para descargar</h6>
+										</div>
+										<div class="card-body">
+											<button class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
+										</div>
+									</div>
+								</div>
+								<div  class="tab-pane fade" id="agency" role="tabpanel">
+									<div class="card text-center">
+										<div class="card-header">
+											<h6 class="card-title">Presiona en el botón para descargar</h6>
+										</div>
+										<div class="card-body">
+											<button type="button" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all " ></i>&nbsp;Descargar</button>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</section>
-			</div>
-			<div class="modal-footer" style="margin-left: 150px;">
-				<div class="" >
-					<button type="button" class="btn btn-danger btn-sm text-white btn-block btn-lg" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box " ></i>&nbsp;Cancelar</button>
 				</div>
+				<br>
+				<button type="button" class="btn btn-danger btn-sm ml-auto d-flex text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box" ></i>&nbsp;Cancelar</button>
 			</div>
 		</div>
 	</div>
@@ -235,7 +232,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Actualiza tus datos</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
@@ -258,7 +255,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<button class="btn btn-outline-info text-center btn-lg btn-block" type="button" data-toggle="collapse" style="display: block; margin-left: auto; margin-right: auto;" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
+						<button class="btn btn-outline-info text-center btn-lg btn-block" type="button" data-toggle="collapse" style="display: block; margin-left: auto; margin-right: auto; cursor:pointer;" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
 							Cambiar contraseña
 						</button>
 						<div class="row">
@@ -280,10 +277,10 @@
 			</div>
 			<div class="modal-footer">
 				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-primary btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
+					<button type="button" class="btn btn-primary btn-block" style="cursor: pointer;" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
 				</div>
 				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-danger btn-block text-white" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+					<button type="button" class="btn btn-danger btn-block text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
 				</div>
 			</div>
 		</div>
@@ -350,7 +347,7 @@
 			<div class="modal-content">
 				<div class="modal-header text-center">
 					<h5 class="modal-title text-center" id="exampleModalLabel">{{Auth::user()->estudiante->nombre ." ".Auth::user()->estudiante->apellido }}</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -361,8 +358,8 @@
 					<i class="fas fa-question fa-3x"></i>
 				</div>
 				<div class="modal-body text-center">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar session</button>
+					<button type="button" class="btn btn-secondary" style="cursor: pointer;" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar session</button>
 				</div>
 			</div>
 		</div>
