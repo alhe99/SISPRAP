@@ -575,7 +575,7 @@ public function getPendientesIniProcessReporte(Request $request){
     return $pdf->stream('Pendientes de Inicio.pdf');
         // return $data;
 
-}else if($request->tipoRepo == 'A'){
+ }else if($request->tipoRepo == 'A'){
 
     $arrayMeses = explode(",", "1,2,3,4,5,6,7,8,9,10,11,12");
     $data = array();
@@ -648,7 +648,10 @@ public function getPendientesIniProcessReporte(Request $request){
     $pdf->setOption('margin-right',20);
     return $pdf->stream('Pendientes de Inicio.pdf');
   }
+}
 
+public function getPendientesFinProcessReporte(){
+    return "Yess";
 }
 
 public function generateConstancia(Request $request){
