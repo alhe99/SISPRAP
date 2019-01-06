@@ -78,8 +78,6 @@
                             de finalización</button></li>
                             <li><button type="button" @click="menu=19" class="btn btn-link btn-colors">Procesos
                             culminados</button></li>
-                            <li><button type="button" @click="menu=20" class="btn btn-link btn-colors">Informe
-                            general</button></li>
                         </ul>
                     </li>
                     <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
