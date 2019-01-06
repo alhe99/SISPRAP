@@ -99,6 +99,7 @@ Route::get('institucion/regSupervision','InstitucionController@regSupervision')-
 
 Route::get('/gestionProy/reportes/initialprocess','GestionProyectoController@getInitialProcessReporte')->name('reporteIniProd');
 Route::get('/gestionProy/reportes/pendienteInicio', 'GestionProyectoController@getPendientesIniProcessReporte')->name('reportePenIni');
+Route::get('/gestionProy/reportes/pendienteFin', 'GestionProyectoController@getPendientesFinProcessReporte')->name('reportePenFin');
 
 //metodo de carrerActividadProyecto
 
