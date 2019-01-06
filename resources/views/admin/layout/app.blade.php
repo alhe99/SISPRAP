@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logo-favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
     @if (Auth::user()->rol_id == 1)
     <title>SISPRAP || Admin</title>
     @elseif(Auth::user()->rol_id == 2)

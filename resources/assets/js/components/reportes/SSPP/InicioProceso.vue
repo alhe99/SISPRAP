@@ -139,9 +139,13 @@ export default {
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
-      if(this.mes[0].value == 0)
-        this.anual =true;
+      if(this.mes[0].value == 0){
+        this.anual = true;
         this.tipoRepo = 'A';
+      }else{
+       this.tipoRepo = 'M';
+       this.anual = true;
+      }
     }
   },
   methods: {
@@ -151,9 +155,9 @@ export default {
       axios
       .get(url)
       .then(function(response) {
-      var respuesta = response.data;
-                  me.arrayCarreras = respuesta;
-                })
+        var respuesta = response.data;
+        me.arrayCarreras = respuesta;
+      })
       .catch(function(error) {
         console.log(error);
       });
@@ -166,21 +170,21 @@ export default {
     sendParameterToMethod() {
       let me = this;
       if(me.trimestral == true)
-         var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
-      else if(me.mensual == true)
-        var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
-      else if(me.anual == true)
-        var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo})
-      window.open(url);
-      me.clearData();
-    },
+       var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
+     else if(me.mensual == true)
+      var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
+    else if(me.anual == true)
+      var url = route('reporteIniProd',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo})
+    window.open(url);
+    me.clearData();
   },
-  components: {
-    Switches,
-  },
-  mounted() {
-    this.getCarreras();
-  }
+},
+components: {
+  Switches,
+},
+mounted() {
+  this.getCarreras();
+}
 
 }
 </script>

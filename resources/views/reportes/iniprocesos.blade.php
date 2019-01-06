@@ -6,13 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Estudiantes que Iniciarion Procesos</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
     <style>
-    .bg-header{
-     background-color:#F8EFB6
-     }
-     .font-normal{
-         font-weight: normal;
-     }
+    .bg-header{background-color:#F8EFB6}
+    .font-normal{font-weight: normal;}
+    table{width:100%;page-break-inside: avoid;}
 </style>
 
 </head>
@@ -44,7 +42,7 @@
         @if ($tipo == 'T')
         {{-- TABLA PARA MESES INDIVIDUALES --}}
         @foreach ($mensuales[0] as $item)
-        <table class="col-md-12" border cellpadding="7">
+        <table border cellpadding="7">
             <thead class="font-weight-bold text-center bg-header">
                 <tr>
                     <td colspan="4">{{$item[0]}}</td>
@@ -72,10 +70,10 @@
                     <th class="text-center">{{ $item[1]['totalMined'] + $item[1]['totalOtros'] }}</th>
                 </tr>
             </tbody>
-        </table><br><br>
+        </table><br>
         @endforeach
         {{-- TABLA PARA CONSOLIDADO FINAL --}}
-        <table class="col-md-12" border cellpadding="7">
+        <table border cellpadding="7">
             <thead class="font-weight-bold text-center bg-header">
                 <tr>
                     <td colspan="4">{{"CONSOLIDADO ".$consolidado[0]}}</td>
@@ -106,7 +104,7 @@
         </table>
         @elseif($tipo == 'M')
         @foreach ($mensuales as $item)
-        <br><br><table class="col-md-12" border cellpadding="4" style="margin-bottom: -17px;">
+        <table border cellpadding="4" style="margin-bottom: -17px;">
             <thead class="font-weight-bold text-center bg-header">
                 <tr>
                     <td colspan="4">{{ $item[0] }}</td>
@@ -134,11 +132,11 @@
                     <th class="text-center">{{ $item[1]['totalMined'] + $item[1]['totalOtros'] }}</th>
                 </tr>
             </tbody>
-        </table><br><br>
+        </table><br>
         @endforeach
         @elseif($tipo == 'A')
         @foreach ($mensuales as $item)
-        <br><br><table class="col-md-12" border cellpadding="4" style="margin-bottom: -17px;">
+        <table border cellpadding="4" style="margin-bottom: -17px;">
             <thead class="font-weight-bold text-center bg-header">
                 <tr>
                     <td colspan="4">{{ $item[0] }}</td>
@@ -169,7 +167,7 @@
         </table><br><br>
         @endforeach
         {{-- TABLA PARA CONSOLIDADO FINAL ANUAL  --}}
-        <table class="col-md-12" border cellpadding="7">
+        <table border cellpadding="7">
             <thead class="font-weight-bold text-center bg-header">
                 <tr>
                     <td colspan="4">{{"CONSOLIDADO DEL AÑO ".$consolidadoAnual[0]}}</td>
