@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Perfil de Proyecto</title>
-        <link rel="stylesheet" href="{{asset('css/bmdf.css')}}">
+        <link rel="stylesheet" href="file:///{{public_path('css/bmdf.css')}}">
         <style>
             .text-jus {
                 text-align: justify;
@@ -23,7 +23,7 @@
  <div>
         <table class="table-bordered container-fluid" cellpadding="0" cellspacing="0"  style="border-collapse: collapse; heigth:auto;" >
             <thead>
-            <img  src="{{asset('images/img_reportes/logopequeño.png')}}" style=" width: 50px; height:15px ; margin-top:-50px; position:absolute; " alt="">
+            <img  src="file:///{{public_path('images/img_reportes/logopequeño.png')}}" style=" width: 50px; height:15px ; margin-top:-50px; position:absolute; " alt="">
                     <tr>
 
                         {{--  <td style="background:  background-color: #fff;"></td>  --}}
@@ -67,7 +67,7 @@
             {{ $data }}
         <div class="row" style="margin-top: -460px;">
             <div> <br>
-            <img style="margin-top:-530px;" class="text-center img-fluid " src="{{asset('images/img_reportes/logoITCHA.png')}}" alt=""></div>
+            <img style="margin-top:-530px;" class="text-center img-fluid " src="file:///{{public_path('images/img_reportes/logoITCHA.png')}}" alt=""></div>
             <div>
                 <table style="margin-left: 60px; margin-right:7px; margin-top:-510px; " cellpadding="4" cellspacing="4" class="table-bordered container-fluid" style="border-collapse: collapse; heigth:auto;">
                     <tr style="width:35px;">
@@ -143,16 +143,16 @@
         <table width="575" style="margin-top: 15px;"   cellpadding="0" cellspacing="0" class="table table-bordered container-fluid" style="border: solid 1px #; ">
             <tr text-align="left" valign="middle">
                 <td style="font-size:xx-small;">Firma del estudiante que desarrolla el proyecto:<br><br><br>F.___________________________</td>
-        <td class="text-center" style="font-size:xx-small;">Firma y sello de aprobacion de la supervision de practica profesional ITCHA: <br>F.___________________ <img style="width:70px; heigth:70; margin-left:40px; margin-top:10px;" src="{{asset('images/img_reportes/circulo.png')}}" alt=""></td>
+        <td class="text-center" style="font-size:xx-small;">Firma y sello de aprobacion de la supervision de practica profesional ITCHA: <br>F.___________________ <img style="width:70px; heigth:70; margin-left:40px; margin-top:10px;" src="file:///{{public_path('images/img_reportes/circulo.png')}}" alt=""></td>
                 <td style="font-size:xx-small;">Fecha presentación:___________________<br><br>Factura #:___________________</td>
             </tr>
         </table>
         {{-- <p style="font-size: 0.500em; margin-top: -25supx;">NOTA: Este documento debe ser presentado a mas tardar 5 días hábiles despúes de su retiro(No es válido si presenta tachadura, enmendedura y/o correciones),   *Campos NO obligatorios</p> --}}
         <p style="font-size: xx-small; margin-top: 10px;">NOTA: Este documento debe ser presentado a mas tardar 5 días hábiles despúes de su retiro(No es válido si presenta tachadura, enmendedura y/o correciones),   *Campos NO obligatorios</p>
 
-        <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-        <script src="{{asset('js/popper.js')}}"></script>
-        <script src="{{asset('js/bootstrap-material-design.js')}}"></script>
+        <script src="file:///{{public_path('js/jquery-3.3.1.min.js')}}"></script>
+        <script src="file:///{{public_path('js/popper.js')}}"></script>
+        <script src="file:///{{public_path('js/bootstrap-material-design.js')}}"></script>
         <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
 

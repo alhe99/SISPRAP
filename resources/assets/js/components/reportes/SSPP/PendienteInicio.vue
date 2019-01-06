@@ -1,4 +1,4 @@
-<template>
+|<template>
   <div class="col-lg-12 col-md-12">
     <div class="row">
       <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
@@ -35,6 +35,29 @@
    <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-body">
+       <fieldset>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row md-radio">
+              <div class="col-md-12 text-center">
+                <h4 class="font-weight-bold" v-if="proceso_id == 1">Reporte De Estudiantes Que Están Pendientes de Iniciar Servicio Social</h4>
+                <h4 class="font-weight-bold" v-if="proceso_id == 2">Reporte De Estudiantes Que Están Pendientes de Iniciar Práctica Profesional</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="card"  v-if="proceso_id != 0">
+  <div class="card-body">
+   <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
         <fieldset>
           <legend class="text-center">Seleccione el tipo de informe</legend>
           <div class="panel panel-default">
@@ -57,12 +80,15 @@
                   </div>
                 </div>
                 <div v-if="mensual == true" class="row">
-                  <div class="col-md-12">
-                    <br><v-select multiple v-model="mes" :options="arrayMeses" placeholder="Seleccione mes"></v-select>
+                  <div class="col-md-10">
+                    <br><v-select multiple :disabled="anual==true" v-model="mes" :options="arrayMeses" placeholder="Seleccione mes"></v-select>
+                  </div>
+                  <div class="col-md-2">
+                    <br><checkbox  v-model="anual">Reporte Anual</checkbox>
                   </div>
                 </div>
                 <div class="col-md-12 text-center"><br>
-                  <button type="button" id="btnGenerar" :disabled="mes == '' && trimestre == ''" class="button secondary" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Reporte">Generar Reporte</button>
+                  <button type="button" id="btnGenerar" :disabled="mes == '' && trimestre == '' && anual == false" class="button secondary" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Reporte">Generar Reporte</button>
                 </div>
               </div>
             </div>
@@ -94,7 +120,6 @@ export default {
       {value: [10,11,12] ,label: "Cuarto Trimestre"},
       ],
       arrayMeses: [
-      {value: 0 ,label: "--Todos--"},
       {value: 1 ,label: "Enero"},
       {value: 2 ,label: "Febrero"},
       {value: 3 ,label: "Marzo"},
@@ -139,48 +164,55 @@ export default {
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
-      if(this.mes[0].value == 0)
-        this.anual =true;
+    },
+    anual: function(){
+      if (this.anual) {
         this.tipoRepo = 'A';
-    }
-  },
-  methods: {
-    getCarreras() {
-      let me = this;
-      var url = "carreras/GetCarreras";
-      axios
-      .get(url)
-      .then(function(response) {
+        this.mes = [];
+        this.valuesMonth = [];
+      }
+      else{
+       this.tipoRepo = 'M';
+     }
+   }
+ },
+ methods: {
+  getCarreras() {
+    let me = this;
+    var url = "carreras/GetCarreras";
+    axios
+    .get(url)
+    .then(function(response) {
       var respuesta = response.data;
-                  me.arrayCarreras = respuesta;
-                })
-      .catch(function(error) {
-        console.log(error);
-      });
-    },
-    clearData(){
-      this.trimestre = "";
-      this.mes = [];
-      this.valuesMonth = [];
-    },
-    sendParameterToMethod() {
-      let me = this;
-      if(me.trimestral == true)
-         var url = route('reportePenIni',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
-      else if(me.mensual == true)
-        var url = route('reportePenIni',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
-      else if(me.anual == true)
-        var url = route('reportePenIni',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo})
-      window.open(url);
-      me.clearData();
-    },
+      me.arrayCarreras = respuesta;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
   },
-  components: {
-    Switches,
+  clearData(){
+    this.trimestre = "";
+    this.mes = [];
+    this.valuesMonth = [];
   },
-  mounted() {
-    this.getCarreras();
-  }
+  sendParameterToMethod() {
+    let me = this;
+    if(me.trimestral == true)
+     var url = route('reportePenIni',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
+   else if(me.mensual == true)
+    var url = route('reportePenIni',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
+  else if(me.anual == true)
+    var url = route('reportePenIni',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo})
+  window.open(url);
+  me.clearData();
+},
+},
+components: {
+  Switches,
+},
+mounted() {
+  this.getCarreras();
+}
 
 }
 </script>

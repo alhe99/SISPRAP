@@ -2337,17 +2337,17 @@
     },
     {
         "name": "paragonie/sodium_compat",
-        "version": "v1.8.0",
-        "version_normalized": "1.8.0.0",
+        "version": "v1.8.1",
+        "version_normalized": "1.8.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/paragonie/sodium_compat.git",
-            "reference": "5e280b50cdaf8da4cc4810e0847a9618be29703d"
+            "reference": "57bb5ef079d3724148da3d5c99e30695ab17afda"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/5e280b50cdaf8da4cc4810e0847a9618be29703d",
-            "reference": "5e280b50cdaf8da4cc4810e0847a9618be29703d",
+            "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/57bb5ef079d3724148da3d5c99e30695ab17afda",
+            "reference": "57bb5ef079d3724148da3d5c99e30695ab17afda",
             "shasum": ""
         },
         "require": {
@@ -2361,7 +2361,7 @@
             "ext-libsodium": "PHP < 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security.",
             "ext-sodium": "PHP >= 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security."
         },
-        "time": "2018-11-29T22:33:39+00:00",
+        "time": "2019-01-03T21:00:55+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -3509,17 +3509,17 @@
     },
     {
         "name": "pusher/pusher-php-server",
-        "version": "v3.2.0",
-        "version_normalized": "3.2.0.0",
+        "version": "v3.3.0",
+        "version_normalized": "3.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pusher/pusher-http-php.git",
-            "reference": "4da4d208fe13fd2ff71ede5063a3456f23f38cf7"
+            "reference": "5eb4ea29db6d61484a64ae6b0c249aa9d1c84943"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/4da4d208fe13fd2ff71ede5063a3456f23f38cf7",
-            "reference": "4da4d208fe13fd2ff71ede5063a3456f23f38cf7",
+            "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/5eb4ea29db6d61484a64ae6b0c249aa9d1c84943",
+            "reference": "5eb4ea29db6d61484a64ae6b0c249aa9d1c84943",
             "shasum": ""
         },
         "require": {
@@ -3529,9 +3529,9 @@
             "psr/log": "^1.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.8 || ^5.7"
+            "phpunit/phpunit": "^4.8.35 || ^5.7"
         },
-        "time": "2018-08-13T14:57:32+00:00",
+        "time": "2019-01-03T11:08:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -5630,17 +5630,17 @@
     },
     {
         "name": "vlucas/phpdotenv",
-        "version": "v2.5.1",
-        "version_normalized": "2.5.1.0",
+        "version": "v2.5.2",
+        "version_normalized": "2.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/vlucas/phpdotenv.git",
-            "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e"
+            "reference": "cfd5dc225767ca154853752abc93aeec040fcf36"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
-            "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
+            "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/cfd5dc225767ca154853752abc93aeec040fcf36",
+            "reference": "cfd5dc225767ca154853752abc93aeec040fcf36",
             "shasum": ""
         },
         "require": {
@@ -5649,7 +5649,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4.8.35 || ^5.0"
         },
-        "time": "2018-07-29T20:33:41+00:00",
+        "time": "2018-10-30T17:29:25+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
