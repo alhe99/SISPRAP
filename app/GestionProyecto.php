@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class GestionProyecto extends Model
 {
     protected $table = 'gestion_proyectos';
-    
+
     protected $fillable = [
         'fecha_inicio',
         'fecha_fin',
@@ -42,4 +42,5 @@ class GestionProyecto extends Model
 
         return $this->belongsTo(Proyecto::class,'proyecto_id');
     }
+
 }

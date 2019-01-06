@@ -101,9 +101,9 @@
 		<div class="contenedorBF">
 			<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
 				@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-				@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-				<span class="badge badge-primary">1</span>
-				@endif
+					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+						<span class="badge badge-primary">1</span>
+					@endif
 				@endif
 			</i>
 		</button>
@@ -268,7 +268,7 @@ aria-hidden="true">
 							<div class="col-md-6" data-wow-delay=".1s">
 								<div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
 									<label class="control-label" for="estudiante_contraseña_conf">Confirmar contraseña</label>
-									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value=""> 
+									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
 								</div>
 							</div>
 						</div>
