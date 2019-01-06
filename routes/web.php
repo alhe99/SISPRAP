@@ -11,6 +11,7 @@ Route::get('/main', function () {
     return view('admin.index');
 })->name('main');
 
+
 Route::get('/institucion', 'InstitucionController@index');
 Route::post('/institucion/registrar', 'InstitucionController@store');
 Route::put('/institucion/actualizar', 'InstitucionController@update');

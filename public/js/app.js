@@ -112873,7 +112873,12 @@ var render = function() {
                                               }
                                             }
                                           },
-                                          [_vm._v("Cerrar")]
+                                          [
+                                            _c("i", {
+                                              staticClass: "mdi  mdi-close-box"
+                                            }),
+                                            _vm._v(" Cerrar")
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c(
@@ -112887,7 +112892,13 @@ var render = function() {
                                               }
                                             }
                                           },
-                                          [_vm._v("Guardar")]
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-content-save"
+                                            }),
+                                            _vm._v(" Guardar")
+                                          ]
                                         )
                                       ])
                                     ])
