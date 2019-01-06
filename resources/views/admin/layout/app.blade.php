@@ -127,7 +127,7 @@
                         </li> --}}
                         @endif
 
-                         <!-- ============================================================== -->
+                        <!-- ============================================================== -->
                         <!--End Messages -->
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
@@ -156,7 +156,14 @@
                                    {{-- <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
-                                   <li><button type="button" @click="menu=15" class="btn btn-link btn-field"><i class="ti-settings"></i> Configuraciones de Cuenta</button></li>
+                                   @if (Auth::user()->rol_id == 1)
+                                   <li><button type="button" @click="menu=15" class="btn btn-link btn-field"><i class="ti-settings"></i> Configuraciones</button></li>
+                                   @endif
+
+                                   @if (Auth::user()->rol_id == 2)
+                                   <li><button type="button" class="btn btn-link btn-field" data-toggle="modal" data-target="#exampleModal3"><i class="ti-settings"></i>&nbsp;Mi cuenta</button></li>
+                                   @endif
+                                   
                                    <li role="separator" class="divider"></li>
                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                                    </i> Cerrar sesion</a>
@@ -168,7 +175,68 @@
            </div>
        </nav>
    </header>
-   <div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal" id="exampleModal3" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center text-white" id="exampleModalLongTitle">Actualiza tus datos</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <h4>Nombre</h4>
+                        <input type="text" class="form-control" name="" value="">
+                        <span class="text-muted">Ingrese el nombre del usuario a actualizar</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-md-12">
+                       <h4>Usuario</h4>
+                       <input type="text" class="form-control" name="" value="">
+                       <span class="text-muted">Ingrese el nombre del usuario</span>
+                   </div>
+               </div>
+               <br>
+               <div class="row">
+                <div class="col-md-12">
+                    <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
+                        Cambiar contraseña
+                    </button>
+                    <div class="row">
+                        <div class="col-md-6" data-wow-delay=".1s">
+                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
+                                <h4>Contraseña</h4>
+                                <input type="text" class="form-control" name="hola" value="">
+                                <span class="text-muted">Ingrese la nueva contraseña</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-wow-delay=".1s">
+                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
+                             <h4>Confirmar contraseña</h4>
+                             <input type="text" class="form-control" name="" value="">
+                             <span class="text-muted">Confirme su contraseña</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="modal-footer">
+        <div class="col-md-6 text-center">
+            <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document" style="margin-top: 60px;">
         <div class="modal-content">
             <div class="modal-header">
@@ -178,14 +246,14 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                {{Auth::user()->nombre}}, ¿Esta seguro de cerrar Sesion?
+                {{Auth::user()->nombre}}, ¿Esta seguro de cerrar Sesión?
             </div>
             <div class="contenido text-center">
                 <i class="mdi mdi-help fa-4x"></i>
             </div>
             <div class="modal-body text-center">
                 <button type="button" class="button red" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar session</button>
+                <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</button>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
@@ -261,7 +329,7 @@
         </div>
     </div>
     <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-APAGE </footer>
-     <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
 </div>
 
 </div>

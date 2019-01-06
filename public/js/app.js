@@ -14856,10 +14856,10 @@ Vue.component('configuracion', __webpack_require__(18));
 Vue.component('inicioproceso', __webpack_require__(153));
 Vue.component('pendientesinicio', __webpack_require__(156));
 Vue.component('pendientefin', __webpack_require__(159));
-Vue.component('culminados', __webpack_require__(162));
+Vue.component('culminados', __webpack_require__(164));
 Vue.component('configuracion', __webpack_require__(18));
-Vue.component('gestproy', __webpack_require__(167));
-Vue.component('constancias', __webpack_require__(170));
+Vue.component('gestproy', __webpack_require__(169));
+Vue.component('constancias', __webpack_require__(172));
 
 var app = new Vue({
     el: '#app',
@@ -109273,8 +109273,7 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-range h4"
                                     }),
                                     _vm._v(" Trimestral\n                  ")
                                   ],
@@ -109305,8 +109304,7 @@ var render = function() {
                                     }),
                                     _vm._v(" \n                    "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-check h4"
                                     }),
                                     _vm._v(" Mensual\n                  ")
                                   ],
@@ -109417,7 +109415,12 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Generar Reporte")]
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-package-down"
+                                      }),
+                                      _vm._v(" Generar Reporte")
+                                    ]
                                   )
                                 ]
                               )
@@ -109874,8 +109877,7 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-range h4"
                                     }),
                                     _vm._v(" Trimestral\n                  ")
                                   ],
@@ -109904,10 +109906,9 @@ var render = function() {
                                         expression: "mensual "
                                       }
                                     }),
-                                    _vm._v(" \n                    "),
+                                    _vm._v(" \n                   "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-check h4"
                                     }),
                                     _vm._v(" Mensual\n                  ")
                                   ],
@@ -110018,7 +110019,12 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Generar Reporte")]
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-package-down"
+                                      }),
+                                      _vm._v(" Generar Reporte")
+                                    ]
                                   )
                                 ]
                               )
@@ -110054,9 +110060,9 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(160)
+var __vue_script__ = __webpack_require__(162)
 /* template */
-var __vue_template__ = __webpack_require__(161)
+var __vue_template__ = __webpack_require__(163)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -110095,7 +110101,9 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 160 */
+/* 160 */,
+/* 161 */,
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -110299,7 +110307,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -110475,8 +110483,7 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-range h4"
                                     }),
                                     _vm._v(" Trimestral\n                  ")
                                   ],
@@ -110505,12 +110512,11 @@ var render = function() {
                                         expression: "mensual "
                                       }
                                     }),
-                                    _vm._v(" \n                    "),
+                                    _vm._v(" \n                     "),
                                     _c("i", {
-                                      staticClass:
-                                        "mdi mdi-folder-multiple-image h4"
+                                      staticClass: "mdi mdi-calendar-check h4"
                                     }),
-                                    _vm._v(" Mensual\n                  ")
+                                    _vm._v("  Mensual\n                  ")
                                   ],
                                   1
                                 )
@@ -110619,7 +110625,12 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Generar Reporte")]
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-package-down"
+                                      }),
+                                      _vm._v(" Generar Reporte")
+                                    ]
                                   )
                                 ]
                               )
@@ -110649,19 +110660,19 @@ if (false) {
 }
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(163)
+  __webpack_require__(165)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(165)
+var __vue_script__ = __webpack_require__(167)
 /* template */
-var __vue_template__ = __webpack_require__(166)
+var __vue_template__ = __webpack_require__(168)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -110700,13 +110711,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(164);
+var content = __webpack_require__(166);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -110726,7 +110737,7 @@ if(false) {
 }
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -110740,7 +110751,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -110880,7 +110891,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -111048,15 +111059,15 @@ if (false) {
 }
 
 /***/ }),
-/* 167 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(168)
+var __vue_script__ = __webpack_require__(170)
 /* template */
-var __vue_template__ = __webpack_require__(169)
+var __vue_template__ = __webpack_require__(171)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -111095,7 +111106,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111701,7 +111712,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -113230,19 +113241,19 @@ if (false) {
 }
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(171)
+  __webpack_require__(173)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(173)
+var __vue_script__ = __webpack_require__(175)
 /* template */
-var __vue_template__ = __webpack_require__(174)
+var __vue_template__ = __webpack_require__(176)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -113281,13 +113292,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(172);
+var content = __webpack_require__(174);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -113307,7 +113318,7 @@ if(false) {
 }
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -113321,7 +113332,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -113581,7 +113592,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

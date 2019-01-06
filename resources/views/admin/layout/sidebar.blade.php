@@ -17,7 +17,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><h5><i class="ti-settings"></i>&nbsp;Configuraciones</h5></a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                <a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"
                 class="dropdown-item"><i class="fa fa-power-off"></i>
                 &nbsp;Cerrar Sesion
             </a>
@@ -78,8 +78,6 @@
                             de finalización</button></li>
                             <li><button type="button" @click="menu=19" class="btn btn-link btn-colors">Procesos
                             culminados</button></li>
-                            <li><button type="button" @click="menu=20" class="btn btn-link btn-colors">Informe
-                            general</button></li>
                         </ul>
                     </li>
                     <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
