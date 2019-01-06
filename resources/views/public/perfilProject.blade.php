@@ -275,7 +275,7 @@
           me.studentId = $("#student_id").val().trim();
           me.projectId = $("#project_id").val().trim();
           me.hrsRea = $("#total_horas").val().trim();
-          
+
           var url = route('save_perfil', {
             "fechaini": this.fechaI,
             "fechafin":this.fechaFin,

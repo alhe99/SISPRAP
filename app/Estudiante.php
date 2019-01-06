@@ -25,7 +25,8 @@ class Estudiante extends Model
         'supero_limite',
         'proyectos_por_proceso',
         'foto_name',
-        'no_proyectos'
+        'no_proyectos',
+        'proceso_actual'
     ];
 
     public function carrera(){

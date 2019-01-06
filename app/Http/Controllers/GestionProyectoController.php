@@ -218,14 +218,17 @@ public function closeProy(Request $request){
     $gp->estado = 'F';
     $gp->update();
 
-    if($request->horasFina == $gp->horas_a_realizar){
+    if($gp->horas_realizadas == $gp->horas_a_realizar){
         $a = $gp->estudiante_id;
         $e = Estudiante::findOrFail($a);
         $e->no_proyectos = 0;
         $e->update();
 
         $e->proceso()->detach(1);
-        $e->proceso()->attach(2);
+        if($e->proceso()->attach(2)){
+            $a->proceso_actual = 'P';
+        }
+
     }
 }
     //Funciones para reportes
@@ -320,7 +323,11 @@ public function getInitialProcessReporte(Request $request){
             'mes3' => $mes3,
         ];
 
-        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');;
+        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
         return $pdf->stream('Inicio Procesos.pdf');
 
     }else if($request->tipoRepo == 'M'){
@@ -354,6 +361,10 @@ public function getInitialProcessReporte(Request $request){
             array_push($data, $dataMensual);
         }
        $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $data,'tipo' => 'M','meses'=>$mesesSelectedArray,'procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
        return $pdf->stream('Inicio Procesos.pdf');
     }else if($request->tipoRepo == 'A'){
 
@@ -416,6 +427,10 @@ public function getInitialProcessReporte(Request $request){
 
         }
         $pdf = PDF::loadView('reportes.iniprocesos', ['mensuales' => $data,'consolidadoAnual'=>$dataAnual,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
         return $pdf->stream('Inicio Procesos.pdf');
     }
 }
@@ -451,17 +466,17 @@ public function getPendientesIniProcessReporte(Request $request){
 
         foreach($carrera as $carre){
 
-            $estudiantesM1 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+            $estudiantesM1 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-            })->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[0]])->get();
+            })->whereMonth('updated_at',$arrayTrimestre[0])->where('proceso_actual','P')->get();
 
             $estudiantesM2 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-            })->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[1]])->get();
+            })->whereMonth('updated_at',$arrayTrimestre[1])->where('proceso_actual','P')->get();
 
             $estudiantesM3 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-            })->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[2]])->get();
+            })->whereMonth('updated_at',$arrayTrimestre[2])->where('proceso_actual','P')->get();
 
             $c1[0] = $carre->nombre;
             $c1[1] = $estudiantesM1;
@@ -477,7 +492,7 @@ public function getPendientesIniProcessReporte(Request $request){
             $mes3[$carre->id] = $c3;
 
         }
-        //Sacando Consolidado por los 3 meses
+        // Sacando Consolidado por los 3 meses
         $data = [];
         $data[0] = $this->trimestres[implode($arrayTrimestre)];
         $totalFinal = 0;
@@ -502,9 +517,13 @@ public function getPendientesIniProcessReporte(Request $request){
         array_push($mensuales,$mes2);
         array_push($mensuales,$mes3);
 
-        $pdf = PDF::loadView('reportes.repeninicio', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');;
+        $pdf = PDF::loadView('reportes.repeninicio', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
         return $pdf->stream('Pendientes de Inicio.pdf');
-        /* return $mensuales; */
+         // return $mensuales;
 
     }else if($request->tipoRepo == 'M'){
         $arrayMeses = explode(",", $request->meses);

@@ -109028,8 +109028,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       for (var i = 0; i < this.mes.length; i++) {
         this.valuesMonth[i] = this.mes[i].value;
       }
-      if (this.mes[0].value == 0) this.anual = true;
-      this.tipoRepo = 'A';
+      if (this.mes[0].value == 0) {
+        this.anual = true;
+        this.tipoRepo = 'A';
+      } else {
+        this.tipoRepo = 'M';
+        this.anual = true;
+      }
     }
   },
   methods: {
