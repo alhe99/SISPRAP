@@ -17,7 +17,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><h5><i class="ti-settings"></i>&nbsp;Configuraciones</h5></a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                <a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"
                 class="dropdown-item"><i class="fa fa-power-off"></i>
                 &nbsp;Cerrar Sesion
             </a>

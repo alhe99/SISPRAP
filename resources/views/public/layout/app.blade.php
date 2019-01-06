@@ -352,14 +352,14 @@ aria-hidden="true">
 					</button>
 				</div>
 				<div class="modal-body text-center">
-					¿Esta seguro de cerrar Sesion?
+					¿Esta seguro de cerrar Sesión?
 				</div>
 				<div class="contenido text-center">
 					<i class="fas fa-question fa-3x"></i>
 				</div>
 				<div class="modal-body text-center">
 					<button type="button" class="btn btn-secondary" style="cursor: pointer;" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar session</button>
+					<button type="button" class="btn btn-primary" style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesión</button>
 				</div>
 			</div>
 		</div>
