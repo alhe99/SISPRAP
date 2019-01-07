@@ -213,7 +213,7 @@ aria-hidden="true">
 											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
 										<div class="card-body">
-											<button class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
+											<a href="{{ route('downloadCP') }} " class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
 										</div>
 									</div>
 								</div>
@@ -223,7 +223,7 @@ aria-hidden="true">
 											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
 										<div class="card-body">
-											<button type="button" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all " ></i>&nbsp;Descargar</button>
+											<a href="{{ route('downloadCA') }} " class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all " ></i>&nbsp;Descargar</a>
 										</div>
 									</div>
 								</div>

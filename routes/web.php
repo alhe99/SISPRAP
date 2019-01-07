@@ -87,6 +87,34 @@ Route::get('public/downloadPerfil',function(){
 
 })->name('downloadPerfil');
 
+Route::get('public/downloadCA',function(){
+
+    $proceso = Auth::user()->estudiante->proceso[0]->id;
+    $carnet = Auth::user()->estudiante->codCarnet;
+
+    if($proceso == 1)
+       $file= public_path('docs/perfil_ss/'.$carnet.'-SS-CA.pdf');
+    else
+        $file= public_path('docs/perfil_pp/'.$carnet.'-PP-CA.pdf');
+
+    return Response::download($file);
+
+})->name('downloadCA');
+
+Route::get('public/downloadCP',function(){
+
+    $proceso = Auth::user()->estudiante->proceso[0]->id;
+    $carnet = Auth::user()->estudiante->codCarnet;
+
+    if($proceso == 1)
+       $file= public_path('docs/perfil_ss/'.$carnet.'-SS-CP.pdf');
+    else
+        $file= public_path('docs/perfil_pp/'.$carnet.'-PP-CP.pdf');
+
+    return Response::download($file);
+
+})->name('downloadCP');
+
 //Notificaciones
 
 Route::post('notifications/get', 'NotificationController@get');

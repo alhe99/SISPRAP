@@ -211,7 +211,7 @@
       <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
     </div>
     <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-      <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>     
+      <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
     </div>
   </div><br>
 </form>

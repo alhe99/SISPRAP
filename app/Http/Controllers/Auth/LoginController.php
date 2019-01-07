@@ -64,8 +64,6 @@ class LoginController extends Controller
               }
               if(Auth::user()->estudiante->has('gestionProyecto')){
                  session(['permitir_download' => true]);
-              }else{
-                session(['permitir_download' => false]);
               }
                 session(['process_name' => Auth::user()->estudiante->proceso[0]->nombre]);
                 session(['process_id' => Auth::user()->estudiante->proceso[0]->id]);
