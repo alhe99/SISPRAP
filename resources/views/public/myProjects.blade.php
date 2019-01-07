@@ -48,17 +48,20 @@
                             <td class="text-center truncate">{!!$mp->actividades !!}</td>
                             <td class="text-center">{{substr($mp->preRegistration[0]->pivot->created_at,0,10)}}</td>
                             @if ($mp->preRegistration[0]->pivot->estado == "P")
-                            <td class="text-center"><h2 class="badge badge-primary">Preinscrito</h2></td>
+                              <td class="text-center"><h2 class="badge badge-primary">Preinscrito</h2></td>
                             @elseif($mp->preRegistration[0]->pivot->estado == "A")
-                            <td class="text-center"><h2 class="badge badge-success">Aprobado</h2></td>
+                                <td class="text-center"><h2 class="badge badge-success">Aprobado</h2></td>
                             @elseif($mp->preRegistration[0]->pivot->estado == "R")
                             <td class="text-center"><h2 class="badge badge-danger">Rechazado</h2></td>
                             @endif
                             <td class="text-center">
                                 <a href="{{route('viewProject', array($mp->proceso_id,$mp->slug))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información"><i class="fas fa-plus-circle"></i></a>
-                                <a href="#" @click.prevent="resetPreRegistration('{{Auth::user()->estudiante->id}}','{{$mp->id}}','{{session('process_id')}}')"
+                                @if ($mp->preRegistration[0]->pivot->estado != "A" )
+                                    <a href="#" @click.prevent="resetPreRegistration('{{Auth::user()->estudiante->id}}','{{$mp->id}}','{{session('process_id')}}')"
                                     class="btn btn-success" title="Eliminar"><i class="fas fa-trash"></i>
                                 </a>
+                                @endif
+
                             </td>
                         </tr>
                         @endforeach

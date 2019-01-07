@@ -270,7 +270,8 @@ public function getInitialProcessReporte(Request $request){
         $mes3[0] = $this->meses[$arrayTrimestre[2]];
         $collection1;$collection2;$collection3;
         $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
-        foreach($carrera as $key => $carre){
+
+        foreach($carrera as $carre){
 
             $totalMinedMes1 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId);
             $totalOtrosMes1 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId);
@@ -280,11 +281,15 @@ public function getInitialProcessReporte(Request $request){
                 "totalOtros"=> $totalOtrosMes1
             );
 
+
+
             $mes1[$carre->id+1] = $collection1 = new Collection([
                 "Carrera" => $carre->nombre,
                 "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId),
                 "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId)
             ]);
+
+
 
             $totalMinedMes2 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[1], $procesoId);
             $totalOtrosMes2 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[1], $procesoId);
@@ -308,12 +313,16 @@ public function getInitialProcessReporte(Request $request){
                 "totalOtros" => $totalOtrosMes3,
             );
 
+
             $mes3[$carre->id+1] = $collection2 = new Collection([
                 "Carrera" => $carre->nombre,
                 "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[2], $procesoId),
                 "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[2], $procesoId),
             ]);
+
         }
+
+
         //Sacando Consolidado por los 3 meses
         $data = [];
         $data[0] = $this->trimestres[implode($arrayTrimestre)];
@@ -340,6 +349,7 @@ public function getInitialProcessReporte(Request $request){
         $pdf->setOption('margin-left',20);
         $pdf->setOption('margin-right',20);
         return $pdf->stream('Reporte Inicio Procesos '.date('Y-m-d').'.pdf');
+        // return $mensuales;
 
     }else if($request->tipoRepo == 'M'){
         $arrayMeses = explode(",", $request->meses);

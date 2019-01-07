@@ -284,13 +284,15 @@ function getSupervisiones(Request $request){
 
 
     for ($i=0; $i < $instituciones->count() ; $i++) {
+        $test = 0;
 
         $arrayInstitucion[0] = $instituciones[$i]->nombre;
         foreach ($instituciones[$i]->proyectosInsti as $key => $value) {
-         $arrayInstitucion[1] = $key;
+
          if(!is_null($value->supervision)){
            if($proceso == 2){
                $carreraProy = Proyecto::findOrFail($value->id)->carre_proy[0]->nombre;
+               $arrayInstitucion[1] = $test += count($value);
                $arrayInstitucion[$key+2] = array(
                  "nombreProyecto" => $value->nombre,
                  "fechaSupervision" => $value->supervision["fecha"],
