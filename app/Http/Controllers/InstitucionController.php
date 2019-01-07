@@ -224,9 +224,17 @@ function getReportByMunicipio(Request $request){
     $ins = Institucion::with(['municipio.departamento'])->where('municipio_id',$request->muni_id)->where('estado',1)->get();
     $no_insti = Institucion::where('municipio_id',$request->muni_id)->where('estado',1)->count();
     $date = date('Y-m-d');
+    $municipio = Municipio::with('departamento')->findOrFail($request->muni_id);
+    $direccionSupervision = $municipio->nombre."/".$municipio->departamento->nombre;
 
-    $pdf = PDF::loadView('reportes.hojasupervigen',['instituciones'=>$ins,'total'=>$no_insti])->setOption('footer-center', 'Página [page] de [topage]');
-    return $pdf->stream('supervision-general '.$date.'.pdf');
+    $pdf = PDF::loadView('reportes.hojasupervigen',['instituciones'=>$ins,'total'=>$no_insti,'direccion'=>$direccionSupervision])->setOption('footer-center', 'Página [page] de [topage]');
+
+    $pdf->setOption('margin-top',20);
+    $pdf->setOption('margin-bottom',20);
+    $pdf->setOption('margin-left',20);
+    $pdf->setOption('margin-right',20);
+    return $pdf->stream('Hoja de Supervisión General '.$date.'.pdf');
+    // return $direccionSupervision;
 }
 
 function getReportInstituciones(Request $request){
