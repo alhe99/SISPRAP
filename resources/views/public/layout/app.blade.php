@@ -54,8 +54,8 @@
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{asset('manual/PerfilUsuario.pdf')}}">
-								MANUAL
+							<a class="nav-link" target="_black" href="{{asset('manual/MANUAL.pdf')}}">
+								<ins>MANUAL</ins>
 							</a>
 						</li>
 						<li class="nav-item dropdown active">
@@ -89,7 +89,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="{{asset('manual/MANUAL.pdf')}}" target="_black">
 						<ins>MANUAL</ins>
 					</a>
 				</li>
@@ -285,13 +285,29 @@ aria-hidden="true">
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<div class="col-md-6 text-center">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-6" data-wow-delay=".1s">
+								<div class="form-group">
+									<button type="button" class="btn btn-primary btn-block" style="cursor: pointer;" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
+								</div>
+							</div>
+							<div class="col-md-6" data-wow-delay=".1s">
+								<div class="form-group">
+									<button type="button" class="btn btn-danger btn-block text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{{-- 	<div class="col-md-6 text-center">
 					<button type="button" class="btn btn-primary btn-block" style="cursor: pointer;" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
 				</div>
 				<div class="col-md-6 text-center">
 					<button type="button" class="btn btn-danger btn-block text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>
