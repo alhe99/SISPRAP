@@ -53,6 +53,11 @@
 								MIS PROYECTOS
 							</a>
 						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="{{asset('manual/PerfilUsuario.pdf')}}">
+								MANUAL
+							</a>
+						</li>
 						<li class="nav-item dropdown active">
 							<a class="nav-link" href="#">
 								Bienvenido(a): {{Auth::user()->estudiante->nombre." ".Auth::user()->estudiante->apellido }}
@@ -84,6 +89,11 @@
 					</a>
 				</li>
 				<li>
+					<a href="">
+						<ins>MANUAL</ins>
+					</a>
+				</li>
+				<li>
 					<a href="#">
 						Bienvenido(a): {{Auth::user()->estudiante->nombre}}
 					</a>
@@ -101,9 +111,9 @@
 		<div class="contenedorBF">
 			<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
 				@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-						<span class="badge badge-primary">1</span>
-					@endif
+				@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+				<span class="badge badge-primary">1</span>
+				@endif
 				@endif
 			</i>
 		</button>
