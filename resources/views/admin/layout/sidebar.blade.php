@@ -7,9 +7,10 @@
             <div class="profile-img"> <img src="images/users/1.png" alt="user" /> </div>
             <!-- User profile text-->
             <div class="profile-text">
-                <a href="#" class="dropdown-toggle u-dropdown text-truncate" data-toggle="dropdown" role="button"
-                aria-haspopup="true" aria-expanded="true">{{Auth::user()->nombre }}
-            </a>
+                <a href="#" class="text-truncate" data-toggle="dropdown" role="button"
+                aria-haspopup="true" aria-expanded="true"><span class="dropdown-toggle u-dropdown" style="color: #B0BEC5;">
+                    {{Auth::user()->nombre }}</span>
+                </a>
             <div class="dropdown-menu" style="width:80%">
                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#exampleModal1"><i class="ti-user"></i>
                     &nbsp;Mi Cuenta
