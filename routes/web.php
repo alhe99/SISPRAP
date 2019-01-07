@@ -23,6 +23,14 @@ Route::get('GetInstitucion/', 'InstitucionController@GetInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
 
+//Rutas para sectores
+Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
+Route::get('getSectores/', 'SectorInstitucionController@getSectores');
+Route::get('/sector', 'SectorInstitucionController@index');
+Route::put('/sector/actualizar', 'SectorInstitucionController@update');
+Route::get('/sector/eliminar/{id}', 'SectorInstitucionController@delete');
+Route::get('/sector/validate','SectorInstitucionController@validateSector')->name('validateSector');
+
 
 Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
 Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');

@@ -617,7 +617,7 @@
                     return $("#nombre").on('keyup',function(){
                       //me.opcion = "";
                       me.validateIfExist($(this).val().trim(),me.proceso);
-                    }); 
+                    });
                   } */
                 },
                 watch: {
@@ -765,6 +765,7 @@ methods: {
   registrarInstitucion() {
     let me = this;
     me.loadSpinner = 1;
+
     var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
     axios.get(url).then(function(response) {
      var respuesta = response.data;
@@ -892,8 +893,8 @@ methods: {
   },
   validateIfExist(institucion,proceso_id){
     let me = this;
-   
-   
+
+
   },
   abrirModal(modelo, accion, data = []) {
     const el = document.body;
@@ -944,7 +945,7 @@ methods: {
                   this.tipoproceso_id = data.procesos[1].id; */
               }else{
                 this.tipoproceso_id = data.procesos[0].id;
-              } 
+              }
 
               this.nombre = data["nombre"];
               this.nombreUpd = data["nombre"];

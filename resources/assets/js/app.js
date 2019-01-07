@@ -66,6 +66,7 @@ Vue.component('culminados', require('./components/reportes/SSPP/ProcesoCulminado
 Vue.component('configuracion', require('./components/mantenimientos/configuracion.vue'));
 Vue.component('gestproy', require('./components/proyectos/GestionProyectos.vue'));
 Vue.component('constancias', require('./components/proyectos/Constancias.vue'));
+Vue.component('sectores', require('./components/instituciones/Sectores.vue'));
 
 
 const app = new Vue({

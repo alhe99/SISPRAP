@@ -154,4 +154,7 @@
 <template v-if="menu==19">
    <culminados></culminados>
 </template>
+<template v-if="menu==20">
+   <sectores></sectores>
+</template>
 @endsection

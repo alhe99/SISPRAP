@@ -101,11 +101,11 @@ class GestionProyectoController extends Controller
 
             if($gp->save())
             {
-
-                $pdf = PDF::loadView('public.reportes.rellenarperfil',['data'=>$collection])->setOption('footer-center', '');
+                $pdf = PDF::loadView('public.reportes.llenarPerfil',['data'=>$collection])->setOption('footer-center', '');
                 DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->student_id)->where('estado', 'F')->delete();
 
                 DB::commit();
+                // return $pdf->stream('Perfil de proyecto.pdf');
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
             }
         } catch (Exception $e) {
