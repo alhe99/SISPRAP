@@ -147,6 +147,7 @@ export default {
       this.trimestral = false;
       this.mensual = false;
       this.trimestre = "";
+      this.anual=false;
 
     },
     trimestral:function(){
@@ -194,6 +195,7 @@ export default {
     this.trimestre = "";
     this.mes = [];
     this.valuesMonth = [];
+    this.anual=false;
   },
   sendParameterToMethod() {
     let me = this;

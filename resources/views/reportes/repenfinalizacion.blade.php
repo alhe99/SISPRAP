@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Estudiantes Pendientes de Finalizar {{ strtolower($procesoTitulo) }}</title>
+    <title>Estudiantes Pendientes de Finalizar {{ ucfirst(strtolower($procesoTitulo)) }}</title>
     <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
     <style>
@@ -58,7 +58,7 @@
                 <td>{{ $item["nombre"]." ".$item["apellido"] }}</td>
                 <td>
                     @for ($m=0;$m < count($item["documentosEntregados"]);$m++)
-                            &#126;{{ $item["documentosEntregados"][$m]->nombre }}<br>
+                    &#126;{{ $item["documentosEntregados"][$m]->nombre }}<br>
                     @endfor
                 </td>
             </tr>
@@ -69,7 +69,7 @@
             </tr>
             @else
             <tr>
-                <td colspan="2" class="text-center">No hay estudiantes de finalizar proceso en esta carrera</td>
+                <td colspan="2" class="text-center">No hay estudiantes de pendientes de finalizar proceso en esta carrera</td>
             </tr>
             @endif
             @endfor
@@ -102,6 +102,7 @@
         </table>
 
         @elseif($tipo == 'M')
+
         {{-- TABLA PARA MESES INDIVIDUALES --}}
         @for ($i = 0; $i < count($mensuales) ; $i++)
         <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $mensuales[$i][0] }}&nbsp;</u></h6>
@@ -111,30 +112,38 @@
                 <td colspan="2">Carrera: {{ $mensuales[$i][$j][0] }}</td>
             </tr>
             <tr class="bg-header text-center font-weight-bold">
-                <td colspan="2">Nombre del Alumnos</td>
+                <td>Nombre del Alumnos</td>
+                <td>Documentos Pendientes</td>
             </tr>
             @for ($k = 1; $k < count($mensuales[$i][$j]);$k++)
             @if (count($mensuales[$i][$j][$k]) > 0)
-
             @foreach ($mensuales[$i][$j][$k] as $item)
             <tr>
-                <td colspan="2">{{ $item["nombre"]." ".$item["apellido"] }}</td>
+
+                <td>{{ $item["nombre"]." ".$item["apellido"] }}</td>
+                <td>
+                    @for ($m=0 ;$m < count($item["documentosRestantes"]);$m++)
+                    &#126;{{ $item["documentosRestantes"][$m]->nombre }}<br>
+                    @endfor
+                </td>
             </tr>
             @endforeach
             <tr class="font-weight-bold bg-header">
-                <td class="text-right">Total</td>
+                <td class="text-right">Total De Estudiantes Pendientes</td>
                 <td>{{ count($mensuales[$i][$j][$k]) }}</td>
             </tr>
             @else
             <tr>
-                <td colspan="2" class="text-center">No hay estudiantes pendientes de iniciar proceso en esta carrera</td>
+                <td colspan="2" class="text-center">No hay estudiantes de pendientes de finalizar proceso en esta carrera</td>
             </tr>
             @endif
             @endfor
         </table><br>
         @endfor
         @endfor
+
         @elseif($tipo == 'A')
+        {{-- TABLA PARA MESES INDIVIDUALES --}}
         {{-- TABLA PARA MESES INDIVIDUALES --}}
         @for ($i = 0; $i < count($consolidadoMensual) ; $i++)
         <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $consolidadoMensual[$i][0] }}&nbsp;</u></h6>
@@ -144,23 +153,29 @@
                 <td colspan="2">Carrera: {{ $consolidadoMensual[$i][$j][0] }}</td>
             </tr>
             <tr class="bg-header text-center font-weight-bold">
-                <td colspan="2">Nombre del Alumnos</td>
+                <td>Nombre del Alumnos</td>
+                <td>Documentos Pendientes</td>
             </tr>
             @for ($k = 1; $k < count($consolidadoMensual[$i][$j]);$k++)
             @if (count($consolidadoMensual[$i][$j][$k]) > 0)
-
             @foreach ($consolidadoMensual[$i][$j][$k] as $item)
             <tr>
-                <td colspan="2">{{ $item["nombre"]." ".$item["apellido"] }}</td>
+
+                <td>{{ $item["nombre"]." ".$item["apellido"] }}</td>
+                <td>
+                    @for ($m=0 ;$m < count($item["documentosRestantes"]);$m++)
+                    &#126;{{ $item["documentosRestantes"][$m]->nombre }}<br>
+                    @endfor
+                </td>
             </tr>
             @endforeach
             <tr class="font-weight-bold bg-header">
-                <td class="text-right">Total</td>
+                <td class="text-right">Total De Estudiantes Pendientes</td>
                 <td>{{ count($consolidadoMensual[$i][$j][$k]) }}</td>
             </tr>
             @else
             <tr>
-                <td colspan="2" class="text-center">No hay estudiantes pendientes de iniciar proceso en esta carrera</td>
+                <td colspan="2" class="text-center">No hay estudiantes de pendientes de finalizar proceso en esta carrera</td>
             </tr>
             @endif
             @endfor
@@ -168,10 +183,10 @@
         @endfor
         @endfor
         {{-- TABLA PARA CONSOLIDADO FINAL ANUAL  --}}
-        <table class="col-md-12" border cellpadding="7">
+         <table class="col-md-12" border cellpadding="7">
             <thead class="font-weight-bold text-center bg-header">
                 <tr>
-                    <td colspan="4">{{"CONSOLIDADO ANUAL ".$consolidadoAnual[0]}}</td>
+                    <td colspan="4">{{"CONSOLIDADO ".$consolidadoAnual[0]}}</td>
                 </tr>
                 <tr class="text-center">
                     <td>Carrera</td>
