@@ -110240,6 +110240,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.trimestral = false;
       this.mensual = false;
       this.trimestre = "";
+      this.anual = false;
     },
     trimestral: function trimestral() {
       if (this.trimestral == true) {
@@ -110288,6 +110289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.trimestre = "";
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
