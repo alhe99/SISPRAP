@@ -615,31 +615,31 @@ public function getPendientesIniProcessReporte(Request $request){
         $arrayMes[$carre->id+1] = $arrayMesEstudiante;
 
     }
-    $total = 0;
+        $total = 0;
 
-    array_push($dataMensual, $arrayMes);
- }
+        array_push($dataMensual, $arrayMes);
+    }
 
-     // Sacando Consolidado Anual
+         // Sacando Consolidado Anual
     $data = [];
     $data[0] = $anio;
     $totalFinal = 0;
     foreach ($carrera as $carre) {
 
-        //Obteniendo el total de resultados becados y otros
-    $estudiantes = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-    })->whereYear('updated_at',$anio)->where('proceso_actual','P')->count();
+            //Obteniendo el total de resultados becados y otros
+        $estudiantes = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+            $query->where('procesos_estudiantes.proceso_id', $procesoId);
+        })->whereYear('updated_at',$anio)->where('proceso_actual','P')->count();
 
-    $totalFinal += $estudiantes;
+        $totalFinal += $estudiantes;
 
-    $data[$carre->id+1] = array(
-       "Carrera" => $carre->nombre,
-       "total" => $estudiantes,
-   );
+        $data[$carre->id+1] = array(
+           "Carrera" => $carre->nombre,
+           "total" => $estudiantes,
+       );
 
-    $data[1] = $totalFinal;
-  }
+        $data[1] = $totalFinal;
+    }
     $mesesTitulo[0] = "ANUAL";
 
     $pdf = PDF::loadView('reportes.repeninicio', ['consolidadoMensual' => $dataMensual,'consolidadoAnual' => $data,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
@@ -658,294 +658,524 @@ public function getPendientesFinProcessReporte(Request $request){
  $mesesTitulo = "";
  $documentos = Documento::all();
 
- if($procesoId == 1)
+   if($procesoId == 1)
     $procesoTitulo = "SERVICIO SOCIAL";
- else if($procesoId == 2)
-    $procesoTitulo = "PRÁCTICA PROFESIONAL";
+    else if($procesoId == 2)
+        $procesoTitulo = "PRÁCTICA PROFESIONAL";
 
- if($request->tipoRepo == 'T'){
+    if($request->tipoRepo == 'T'){
 
-    $collection;
-    $arrayTrimestre = explode(",",$request->meses);
+        $collection;
+        $arrayTrimestre = explode(",",$request->meses);
 
-    //Sacando datos mensuales
-    $dataMensual = [];
-    $mes1 = [];$mes2 = [];$mes3 = [];
-    $total = 0;
+        //Sacando datos mensuales
+        $dataMensual = [];
+        $mes1 = [];$mes2 = [];$mes3 = [];
+        $total = 0;
 
-    $mes1[0] = $this->meses[$arrayTrimestre[0]];
-    $mes2[0] = $this->meses[$arrayTrimestre[1]];
-    $mes3[0] = $this->meses[$arrayTrimestre[2]];
+        $mes1[0] = $this->meses[$arrayTrimestre[0]];
+        $mes2[0] = $this->meses[$arrayTrimestre[1]];
+        $mes3[0] = $this->meses[$arrayTrimestre[2]];
 
-    $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
+        $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
 
-    $c1 = [];$c2 = [];$c3 = [];
+        $c1 = [];$c2 = [];$c3 = [];
 
-    foreach($carrera as $carre){
+        foreach($carrera as $carre){
 
-        $estudiantesM1 = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereMonth('updated_at',$arrayTrimestre[0])->where('proceso_actual','I')->get();
+            $estudiantesM1 = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereMonth('updated_at',$arrayTrimestre[0])->where('proceso_actual','I')->get();
 
-        $estudiantesM2 = $carre->estudiantes()->has('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereMonth('updated_at',$arrayTrimestre[1])->where('proceso_actual','I')->get();
+            $estudiantesM2 = $carre->estudiantes()->has('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereMonth('updated_at',$arrayTrimestre[1])->where('proceso_actual','I')->get();
 
-        $estudiantesM3 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereMonth('updated_at',$arrayTrimestre[2])->where('proceso_actual','I')->get();
+            $estudiantesM3 = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereMonth('updated_at',$arrayTrimestre[2])->where('proceso_actual','I')->get();
 
-        $estudiante = "";
-         foreach ($estudiantesM1 as $value) {
+            $estudiante = "";
+            foreach ($estudiantesM1 as $value) {
               $estudiante = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
               foreach ($estudiante->gestionProyecto as $item) {
                   $value->setAttribute("documentosEntregados",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
               }
-         }
+          }
 
-         $estudiante2 = "";
-         foreach ($estudiantesM2 as $value) {
+          $estudiante2 = "";
+          foreach ($estudiantesM2 as $value) {
               $estudiante2 = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
               foreach ($estudiante2->gestionProyecto as $item) {
                   $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
               }
-         }
+          }
 
-         $estudiante3 = "";
-         foreach ($estudiantesM3 as $value) {
+          $estudiante3 = "";
+          foreach ($estudiantesM3 as $value) {
               $estudiante3 = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
               foreach ($estudiante3->gestionProyecto as $item) {
                   $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
               }
-         }
-
-        $c1[0] = $carre->nombre;
-        $c1[1] = $estudiantesM1;
-
-
-        $c2[0] = $carre->nombre;
-        $c2[1] = $estudiantesM2;
-
-        $c3[0] = $carre->nombre;
-        $c3[1] = $estudiantesM3;
-
-        $mes1[$carre->id] = $c1;
-        $mes2[$carre->id] = $c2;
-        $mes3[$carre->id] = $c3;
-
-    }
-    // Sacando Consolidado por los 3 meses
-    $data = [];
-    $data[0] = $this->trimestres[implode($arrayTrimestre)];
-    $totalFinal = 0;
-    foreach ($carrera as $carre) {
-            //Obteniendo el total de resultados becados y otros
-        $estudiantes =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->count();
-
-        $totalFinal += $estudiantes;
-
-        $data[$carre->id+1] = array(
-         "Carrera" => $carre->nombre,
-         "total" => $estudiantes,
-        );
-        $data[1] = $totalFinal;
-    }
-
-
-    $mensuales = array();
-    array_push($mensuales,$mes1);
-    array_push($mensuales,$mes2);
-    array_push($mensuales,$mes3);
-
-    $pdf = PDF::loadView('reportes.repenfinalizacion', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
-    $pdf->setOption('margin-top',20);
-    $pdf->setOption('margin-bottom',20);
-    $pdf->setOption('margin-left',20);
-    $pdf->setOption('margin-right',20);
-    return $pdf->stream('Pendientes de Inicio.pdf');
-    // return $mensuales;
-
- }else if($request->tipoRepo == 'M'){
-
-    $arrayMeses = explode(",", $request->meses);
-    $dataMensual = [];
-    $data = array();
-    $total = 0;
-    $mesesTitulo = [];
-
-    $arrayMes = [];$arrayMesEstudiante = [];
-
-    for ($i=0; $i < count($arrayMeses) ; $i++) {
-
-        $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
-
-        for ($j=0; $j < $carrera->count() ; $j++) {
-
-         $total += $carrera[$j]->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carrera[$j]->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->count();
-
-     }
-
-
-     foreach($carrera as $carre){
-
-        $estudiantes = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->get();
-
-        $estudiantesDoc = "";
-        foreach ($estudiantes as $value) {
-            $estudiantesDoc = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
-          foreach ($estudiantesDoc->gestionProyecto as $item) {
-              $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
           }
+
+          $c1[0] = $carre->nombre;
+          $c1[1] = $estudiantesM1;
+
+
+          $c2[0] = $carre->nombre;
+          $c2[1] = $estudiantesM2;
+
+          $c3[0] = $carre->nombre;
+          $c3[1] = $estudiantesM3;
+
+          $mes1[$carre->id] = $c1;
+          $mes2[$carre->id] = $c2;
+          $mes3[$carre->id] = $c3;
+
+      }
+        // Sacando Consolidado por los 3 meses
+          $data = [];
+          $data[0] = $this->trimestres[implode($arrayTrimestre)];
+          $totalFinal = 0;
+          foreach ($carrera as $carre) {
+                    //Obteniendo el total de resultados becados y otros
+            $estudiantes =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->count();
+
+            $totalFinal += $estudiantes;
+
+            $data[$carre->id+1] = array(
+             "Carrera" => $carre->nombre,
+             "total" => $estudiantes,
+         );
+            $data[1] = $totalFinal;
         }
 
-        $arrayMesEstudiante[0] = $carre->nombre;
-        $arrayMesEstudiante[1] = $estudiantes;
 
-        $arrayMes[0] = $this->meses[$arrayMeses[$i]];
-        $arrayMes[1] = $total;
-        $arrayMes[$carre->id+1] = $arrayMesEstudiante;
+        $mensuales = array();
+        array_push($mensuales,$mes1);
+        array_push($mensuales,$mes2);
+        array_push($mensuales,$mes3);
 
-    }
-    $total = 0;
+        $pdf = PDF::loadView('reportes.repenfinalizacion', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
+        return $pdf->stream('Pendientes de Inicio.pdf');
+        // return $mensuales;
 
-    array_push($data, $arrayMes);
- }
+    }else if($request->tipoRepo == 'M'){
 
-    $pdf = PDF::loadView('reportes.repenfinalizacion', ['mensuales' => $data,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'M','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
-    $pdf->setOption('margin-top',20);
-    $pdf->setOption('margin-bottom',20);
-    $pdf->setOption('margin-left',20);
-    $pdf->setOption('margin-right',20);
-    return $pdf->stream('Reporte Pendientes de Finalización '.date('Y-m-d').'.pdf');
-    // return $data;
+        $arrayMeses = explode(",", $request->meses);
+        $dataMensual = [];
+        $data = array();
+        $total = 0;
+        $mesesTitulo = [];
 
-}else if($request->tipoRepo == 'A'){
+        $arrayMes = [];$arrayMesEstudiante = [];
 
-    $arrayMeses = explode(",", "1,2,3,4,5,6,7,8,9,10,11,12");
-    $data = array();
-    $mesesTitulo = "";
-    $anio = date('Y');
-    $dataMensual = array();
-    $total = 0;
-    $mesesTitulo = [];
+        for ($i=0; $i < count($arrayMeses) ; $i++) {
 
-    $arrayMes = [];$arrayMesEstudiante = [];
+            $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
 
-    for ($i=0; $i < count($arrayMeses) ; $i++) {
+            for ($j=0; $j < $carrera->count() ; $j++) {
 
-        $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
+             $total += $carrera[$j]->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carrera[$j]->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->count();
 
-        for ($j=0; $j < $carrera->count() ; $j++) {
-
-          $total += $carrera[$j]->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carrera[$j]->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-              $query->where('procesos_estudiantes.proceso_id', $procesoId);
-          })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->count();
-      }
+           }
 
 
-      foreach($carrera as $carre){
+         foreach($carrera as $carre){
 
-        $estudiantes = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-        })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->get();
+            $estudiantes = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->get();
 
-        $estudiantesDoc = "";
-        foreach ($estudiantes as $value) {
-            $estudiantesDoc = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
-            foreach ($estudiantesDoc->gestionProyecto as $item) {
-              $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
+            $estudiantesDoc = "";
+            foreach ($estudiantes as $value) {
+                $estudiantesDoc = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
+                foreach ($estudiantesDoc->gestionProyecto as $item) {
+                  $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
+              }
           }
-       }
 
-        $arrayMesEstudiante[0] = $carre->nombre;
-        $arrayMesEstudiante[1] = $estudiantes;
+          $arrayMesEstudiante[0] = $carre->nombre;
+          $arrayMesEstudiante[1] = $estudiantes;
 
-        $arrayMes[0] = $this->meses[$arrayMeses[$i]];
-        $arrayMes[1] = $total;
-        $arrayMes[$carre->id+1] = $arrayMesEstudiante;
+          $arrayMes[0] = $this->meses[$arrayMeses[$i]];
+          $arrayMes[1] = $total;
+          $arrayMes[$carre->id+1] = $arrayMesEstudiante;
 
-    }
-    $total = 0;
+          }
+          $total = 0;
 
-    array_push($dataMensual, $arrayMes);
-  }
+          array_push($data, $arrayMes);
+        }
 
-     // Sacando Consolidado Anual
-    $data = [];
-    $data[0] = $anio;
-    $totalFinal = 0;
-    foreach ($carrera as $carre) {
+        $pdf = PDF::loadView('reportes.repenfinalizacion', ['mensuales' => $data,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'M','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
+        return $pdf->stream('Reporte Pendientes de Finalización '.date('Y-m-d').'.pdf');
+            // return $data;
 
-        //Obteniendo el total de resultados becados y otros
-        $estudiantesCount = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+    }else if($request->tipoRepo == 'A'){
+
+        $arrayMeses = explode(",", "1,2,3,4,5,6,7,8,9,10,11,12");
+        $data = array();
+        $mesesTitulo = "";
+        $anio = date('Y');
+        $dataMensual = array();
+        $total = 0;
+        $mesesTitulo = [];
+
+        $arrayMes = [];$arrayMesEstudiante = [];
+
+        for ($i=0; $i < count($arrayMeses) ; $i++) {
+
+            $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
+
+            for ($j=0; $j < $carrera->count() ; $j++) {
+
+              $total += $carrera[$j]->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carrera[$j]->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                  $query->where('procesos_estudiantes.proceso_id', $procesoId);
+              })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->count();
+          }
+
+
+          foreach($carrera as $carre){
+
+            $estudiantes = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+            })->whereMonth('updated_at',$arrayMeses[$i])->where('proceso_actual','I')->get();
+
+            $estudiantesDoc = "";
+            foreach ($estudiantes as $value) {
+                $estudiantesDoc = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
+                foreach ($estudiantesDoc->gestionProyecto as $item) {
+                  $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
+              }
+          }
+
+          $arrayMesEstudiante[0] = $carre->nombre;
+          $arrayMesEstudiante[1] = $estudiantes;
+
+          $arrayMes[0] = $this->meses[$arrayMeses[$i]];
+          $arrayMes[1] = $total;
+          $arrayMes[$carre->id+1] = $arrayMesEstudiante;
+
+      }
+      $total = 0;
+
+      array_push($dataMensual, $arrayMes);
+        }
+
+             // Sacando Consolidado Anual
+        $data = [];
+        $data[0] = $anio;
+        $totalFinal = 0;
+        foreach ($carrera as $carre) {
+
+                //Obteniendo el total de resultados becados y otros
+            $estudiantesCount = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
               $query->where('procesos_estudiantes.proceso_id', $procesoId);
           })->whereYear('updated_at',$anio)->where('proceso_actual','I')->count();
 
-        $totalFinal += $estudiantesCount;
+            $totalFinal += $estudiantesCount;
 
-        $data[$carre->id+1] = array(
-           "Carrera" => $carre->nombre,
-           "total" => $estudiantesCount,
-        );
+            $data[$carre->id+1] = array(
+               "Carrera" => $carre->nombre,
+               "total" => $estudiantesCount,
+           );
 
         $data[1] = $totalFinal;
-    }
-    $mesesTitulo[0] = "ANUAL";
+        }
+        $mesesTitulo[0] = "ANUAL";
 
-    $pdf = PDF::loadView('reportes.repenfinalizacion', ['consolidadoMensual' => $dataMensual,'consolidadoAnual' => $data,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
-    $pdf->setOption('margin-top',20);
-    $pdf->setOption('margin-bottom',20);
-    $pdf->setOption('margin-left',20);
-    $pdf->setOption('margin-right',20);
-    return $pdf->stream('Reporte Pendientes de Finalización '.date('Y-m-d').'.pdf');
-    // return $data;
-  }
-
- }
-
-    public function generateConstancia(Request $request){
-
-        $estudianteId = $request->estudianteId;
-        $procesoId = $request->procesoId;
-        $date = date('Y-m-d');
-        $tituloProceso = "";
-        $totalHoras = 0;
-
-        if($procesoId == 1)
-            $tituloProceso = "Servicio Social";
-        else
-            $tituloProceso = "Práctica Profesional";
-
-        $estudiante = Estudiante::with([
-            'carrera',
-            'gestionProyecto',
-            'nivelAcademico',
-            'gestionProyecto.proyecto',
-            'gestionProyecto.proyecto.institucion',
-        ])->whereHas('gestionProyecto', function ($query) use ($procesoId) {
-            $query->where('tipo_gp', $procesoId);
-        })->find($estudianteId);
-
-
-        foreach ($estudiante->gestionProyecto as $value) {
-            $totalHoras += $value->horas_realizadas;
-            if($value->doesntHave('constancia_entreg')){
-
-                DB::table('constancias_entregadas')->insert(
-                    ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString()]
-                );
-
-            }
+        $pdf = PDF::loadView('reportes.repenfinalizacion', ['consolidadoMensual' => $dataMensual,'consolidadoAnual' => $data,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
+        return $pdf->stream('Reporte Pendientes de Finalización '.date('Y-m-d').'.pdf');
+            // return $data;
         }
 
-        $admin = User::select('nombre')->find(0);
-        $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'data'=>$estudiante, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
-        return $pdf->stream('Perfil de proyecto.pdf');
+}
+
+public function getProcesosCulminadosReporte(Request $request){
+    $carrera = Carrera::get();
+    $procesoId = $request->proceso_id;
+    $procesoTitulo = "";
+    $mesesTitulo = "";
+    $estudianteProceso = "";
+
+    if($procesoId == 1){
+        $procesoTitulo = "SERVICIO SOCIAL";
+        $estudianteProceso = "estado_ss";
+    }else if($procesoId == 2){
+        $procesoTitulo = "PRACTICA PROFESIONAL";
+        $estudianteProceso = "estado_pp";
     }
+
+    if($request->tipoRepo == 'T'){
+
+        $collection;
+        $arrayTrimestre = explode(",",$request->meses);
+        $totalMined = 0;$totalOtros = 0;$totalMinedMes1 = 0;$totalOtrosMes1 = 0;$totalMinedMes2 = 0;$totalOtrosMes2 = 0;$totalMinedMes3 = 0;
+        $totalOtrosMes3 = 0;
+
+        //Sacando datos mensuales
+        $dataMensual = [];
+        $mes1 = [];$mes2 = [];$mes3 = [];
+
+        $mes1[0] = $this->meses[$arrayTrimestre[0]];
+        $mes2[0] = $this->meses[$arrayTrimestre[1]];
+        $mes3[0] = $this->meses[$arrayTrimestre[2]];
+        $collection1;$collection2;$collection3;
+        $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
+
+        foreach($carrera as $carre){
+
+            // SUMA MES 1
+            $totalMinedMes1 += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[0])->count();
+
+            $totalOtrosMes1 += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[0])->count();
+
+            // DATOS MES 1
+
+            $estudiantesM1 = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id', $carre->id]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[0])->get();
+
+            // SUMA MES 2
+            $totalMinedMes2 += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[1])->count();
+
+            $totalOtrosMes2 += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[1])->count();
+
+            // DATOS MES 2
+            $estudiantesM2 = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id', $carre->id]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[1])->get();
+
+            // SUMA MES 4
+            $totalMinedMes3 += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[2])->count();
+
+            // DATOS MES 3
+            $totalOtrosMes3 += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[2])->count();
+
+            $estudiantesM3 = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id', $carre->id]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayTrimestre[2])->get();
+
+
+            $c1[0] = $carre->nombre;
+            $c1[1] = array('totalMined' => $totalMinedMes1,'totalOtros'=>$totalOtrosMes1);
+            $c1[2] = $estudiantesM1;
+            $totalMinedMes1 = 0;$totalOtrosMes1 = 0;
+
+
+            $c2[0] = $carre->nombre;
+            $c2[1] = array('totalMined' => $totalMinedMes2,'totalOtros'=>$totalOtrosMes2);
+            $c2[2] = $estudiantesM2;
+            $totalMinedMes2 = 0;$totalOtrosMes2 = 0;
+
+            $c3[0] = $carre->nombre;
+            $c3[1] = array('totalMined' => $totalMinedMes2,'totalOtros'=>$totalOtrosMes2);
+            $c3[2] = $estudiantesM3;
+            $totalMinedMes3 = 0;$totalOtrosMes3 = 0;
+
+            $mes1[$carre->id] = $c1;
+            $mes2[$carre->id] = $c2;
+            $mes3[$carre->id] = $c3;
+
+        }
+
+        // Sacando Consolidado por los 3 meses
+        $data = [];
+        $data[0] = $this->trimestres[implode($arrayTrimestre)];
+        $totalFinal = 0;
+        foreach ($carrera as $carre) {
+            //Obteniendo el total de resultados becados y otros
+            $estudiantes =  $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id',
+                $carre->id]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw('MONTH(updated_at)'), [$arrayTrimestre[0],
+                $arrayTrimestre[1],$arrayTrimestre[2]])->count();
+
+            $totalFinal += $estudiantes;
+
+            $data[$carre->id] = array(
+               "Carrera" => $carre->nombre,
+               "total" => $estudiantes,
+           );
+            $data[1] = $totalFinal;
+        }
+
+        $mensuales = array();
+        array_push($mensuales,$mes1);
+        array_push($mensuales,$mes2);
+        array_push($mensuales,$mes3);
+
+
+        $pdf = PDF::loadView('reportes.reprocesoculminado', ['mensuales' => $mensuales,'consolidado' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
+        return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
+        //return $mensuales;
+
+    }else if($request->tipoRepo == 'M'){
+
+        $arrayMeses = explode(",", $request->meses);
+        $data = array();
+        $arrayMes = [];
+        $arrayMesEstudiante = [];
+        $totalMined = 0;$totalOtros = 0;
+        $mesesTitulo = [];
+
+        for ($i=0; $i < count($arrayMeses) ; $i++) {
+
+          $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
+
+          foreach($carrera as $carre){
+
+             $totalMined += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',
+                $arrayMeses[$i])->count();
+
+             $totalOtros += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',
+                $arrayMeses[$i])->count();
+
+             $estudiantes = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id', $carre->id]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayMeses[$i])->get();
+
+              $arrayMesEstudiante[0] = $carre->nombre;
+              $arrayMesEstudiante[1] = array('totalMined' => $totalMined,'totalOtros' => $totalOtros);
+              $arrayMesEstudiante[2] = $estudiantes;
+              //Limpiando Variables de Suma
+              $totalMined = 0;$totalOtros = 0;
+
+              $arrayMes[0] = $this->meses[$arrayMeses[$i]];
+              $arrayMes[$carre->id] = $arrayMesEstudiante;
+
+          }
+
+          array_push($data, $arrayMes);
+        }
+
+        $pdf = PDF::loadView('reportes.reprocesoculminado', ['mensuales' => $data,'tipo' => 'M','meses'=>$mesesTitulo,'procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
+        return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
+        // return $mesesTitulo;
+
+
+    }else if($request->tipoRepo == 'A'){
+
+        $arrayMeses = explode(",", "1,2,3,4,5,6,7,8,9,10,11,12");
+        $dataMensual = array();
+        $totalMined = 0;
+        $totalOtros = 0;
+        $mesesTitulo = [];
+        $anio = date('Y');
+
+
+        for ($i=0; $i < count($arrayMeses) ; $i++) {
+
+          $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
+
+          foreach($carrera as $carre){
+
+             $totalMined += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',
+                $arrayMeses[$i])->count();
+
+             $totalOtros += $carre->estudiantes()->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',
+                $arrayMeses[$i])->count();
+
+             $estudiantes = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id', $carre->id]])->whereNotNull(trim($estudianteProceso))->whereMonth('updated_at',$arrayMeses[$i])->get();
+
+              $arrayMesEstudiante[0] = $carre->nombre;
+              $arrayMesEstudiante[1] = array('totalMined' => $totalMined,'totalOtros' => $totalOtros);
+              $arrayMesEstudiante[2] = $estudiantes;
+              //Limpiando Variables de Suma
+              $totalMined = 0;$totalOtros = 0;
+
+              $arrayMes[0] = $this->meses[$arrayMeses[$i]];
+              $arrayMes[$carre->id] = $arrayMesEstudiante;
+
+          }
+
+          array_push($dataMensual, $arrayMes);
+        }
+
+           // Sacando Consolidado por los 3 meses
+            $data = [];
+            $data[0] = $anio;
+            $totalFinal = 0;
+            foreach ($carrera as $carre) {
+                //Obteniendo el total de resultados becados y otros
+                $estudiantes =  $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['estado', true], ['carrera_id',
+                    $carre->id]])->whereNotNull(trim($estudianteProceso))->whereYear('updated_at',$anio)->count();
+
+                $totalFinal += $estudiantes;
+
+                $data[$carre->id] = array(
+                   "Carrera" => $carre->nombre,
+                   "total" => $estudiantes,
+                );
+
+                $data[1] = $totalFinal;
+            }
+
+            $mesesTitulo = "ANUAL";
+
+        }
+        $pdf = PDF::loadView('reportes.reprocesoculminado', ['mensuales' => $dataMensual,'consolidadoAnual'=>$data,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf->setOption('margin-top',20);
+        $pdf->setOption('margin-bottom',20);
+        $pdf->setOption('margin-left',20);
+        $pdf->setOption('margin-right',20);
+        return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
+        // return $data;
+}
+
+public function generateConstancia(Request $request){
+
+    $estudianteId = $request->estudianteId;
+    $procesoId = $request->procesoId;
+    $date = date('Y-m-d');
+    $tituloProceso = "";
+    $totalHoras = 0;
+
+    if($procesoId == 1)
+        $tituloProceso = "Servicio Social";
+    else
+        $tituloProceso = "Práctica Profesional";
+
+    $estudiante = Estudiante::with([
+        'carrera',
+        'gestionProyecto',
+        'nivelAcademico',
+        'gestionProyecto.proyecto',
+        'gestionProyecto.proyecto.institucion',
+    ])->whereHas('gestionProyecto', function ($query) use ($procesoId) {
+        $query->where('tipo_gp', $procesoId);
+    })->find($estudianteId);
+
+
+    foreach ($estudiante->gestionProyecto as $value) {
+        $totalHoras += $value->horas_realizadas;
+        if($value->doesntHave('constancia_entreg')){
+
+            DB::table('constancias_entregadas')->insert(
+                ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString()]
+            );
+
+        }
+    }
+
+    $admin = User::select('nombre')->find(0);
+    $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'data'=>$estudiante, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
+    return $pdf->stream('Perfil de proyecto.pdf');
+ }
 }
