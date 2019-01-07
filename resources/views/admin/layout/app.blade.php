@@ -163,7 +163,7 @@
                                    @if (Auth::user()->rol_id == 2)
                                    <li><button type="button" class="btn btn-link btn-field" data-toggle="modal" data-target="#exampleModal3"><i class="ti-settings"></i>&nbsp;Mi cuenta</button></li>
                                    @endif
-                                   
+
                                    <li role="separator" class="divider"></li>
                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                                    </i> Cerrar sesion</a>
@@ -328,7 +328,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-APAGE </footer>
+    <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-AGAPE </footer>
     <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
 </div>
 

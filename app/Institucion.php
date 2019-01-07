@@ -30,6 +30,6 @@ class Institucion extends Model
 
 
 
-    
-    
+
+
 }

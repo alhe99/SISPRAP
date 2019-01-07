@@ -16,6 +16,6 @@ class SupervisionProyecto extends Model
     }
     public function proyecto(){
 
-        return $this->belongsTo('App\Proyecto');
+        return $this->belongsTo(Proyecto::class,'proyecto_id');
     }
 }

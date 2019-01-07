@@ -23,6 +23,14 @@ Route::get('GetInstitucion/', 'InstitucionController@GetInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
 
+//Rutas para sectores
+Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
+Route::get('getSectores/', 'SectorInstitucionController@getSectores');
+Route::get('/sector', 'SectorInstitucionController@index');
+Route::put('/sector/actualizar', 'SectorInstitucionController@update');
+Route::get('/sector/eliminar/{id}', 'SectorInstitucionController@delete');
+Route::get('/sector/validate','SectorInstitucionController@validateSector')->name('validateSector');
+
 
 Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
 Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');
@@ -92,7 +100,7 @@ Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provi
 //RUTAS PARA REPORTES
 Route::get('institucion/getHojaSupervision','InstitucionController@getReportByMunicipio')->name('hojasupervigen');
 Route::get('institucion/reporteGen','InstitucionController@getReportInstituciones')->name('generalInstitucion');
-Route::get('institucion/getSupervisiones/{id}','InstitucionController@getSupervisiones')->name('supervisiones');
+Route::get('institucion/getSupervisiones','InstitucionController@getSupervisiones')->name('getReporteSupervisiones');
 Route::get('institucion/regSupervision','InstitucionController@regSupervision')->name('regSupervision');
 
 //Reportes GP
