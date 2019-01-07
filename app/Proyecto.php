@@ -29,7 +29,7 @@ class Proyecto extends Model
     public function institucion()
     {
 
-        return $this->belongsTo('App\Institucion', 'institucion_id');
+        return $this->belongsTo(Institucion::class, 'institucion_id');
     }
     public function tipoProceso()
     {
@@ -43,7 +43,7 @@ class Proyecto extends Model
     }
     public function supervision()
     {
-        return $this->hasOne(SupervisionProyecto::class, 'proyecto_id', 'id');
+        return $this->hasOne(SupervisionProyecto::class);
     }
     public function preRegistration()
     {

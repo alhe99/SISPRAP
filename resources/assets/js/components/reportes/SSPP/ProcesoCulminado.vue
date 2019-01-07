@@ -40,8 +40,8 @@
           <div class="panel-body">
             <div class="row md-radio">
               <div class="col-md-12 text-center">
-                <h4 class="font-weight-bold" v-if="proceso_id == 1">Reporte De Estudiantes Que Culiminaron Servicio Social</h4>
-                <h4 class="font-weight-bold" v-if="proceso_id == 2">Reporte De Estudiantes Que Culiminaron Finalizar Práctica Profesional</h4>
+                <h4 class="font-weight-bold" v-if="proceso_id == 1">Reporte De Estudiantes Que Culminaron Servicio Social</h4>
+                <h4 class="font-weight-bold" v-if="proceso_id == 2">Reporte De Estudiantes Que Culminaron Práctica Profesional</h4>
               </div>
             </div>
           </div>

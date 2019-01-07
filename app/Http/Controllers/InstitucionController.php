@@ -255,19 +255,55 @@ function getReportInstituciones(Request $request){
     return $pdf->stream('Reporte General de Instuciones '.$date.'.pdf');
 
 }
-function getSupervisiones($id){
-    $proceso = $id;
-    $supervision = SupervisionProyecto::whereHas('proyecto', function ($query) use ($proceso) {
-        $query->where('proceso_id', $proceso);
-    })->select('fecha','proyecto_id')->get();
-    $supv = SupervisionProyecto::where('estado','0')->count();
-    $proces = Institucion::findOrFail($id)->procesos()->select('nombre')->get();
+function getSupervisiones(Request $request){
+    $proceso = $request->proceso_id;
+    $arrayInstitucion = [];
+    $supervisiones = array();
+    $arrayProyectos = [];
 
-    $date = Carbon::now();
-    $date = $date->format('Y-m-d');
-    $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervision,'total' =>$supv, 'proceso' =>$proces])->setOption('footer-center', 'Página [page] de [topage]');
+    $instituciones = Institucion::has('proyectosInsti.supervision')->whereHas('procesos',function($query) use ($proceso){
+        $query->where('proceso_id',$proceso);
+    })->get();
 
-    return base64_encode($pdf->stream('supervisiones ' .Carbon::parse($date).'.pdf'));
+
+    for ($i=0; $i < $instituciones->count() ; $i++) {
+
+        $arrayInstitucion[0] = $instituciones[$i]->nombre;
+        foreach ($instituciones[$i]->proyectosInsti as $key => $value) {
+           $arrayInstitucion[1] = $key;
+           if(!is_null($value->supervision)){
+             if($proceso == 2){
+                 $carreraProy = Proyecto::findOrFail($value->id)->carre_proy[0]->nombre;
+                 $arrayInstitucion[$key+2] = array(
+                   "nombreProyecto" => $value->nombre,
+                   "fechaSupervision" => $value->supervision["fecha"],
+                   "carreraProyecto" => $carreraProy
+               );
+             }else{
+               $arrayInstitucion[$key+2] = array(
+                 "nombreProyecto" => $value->nombre,
+                 "fechaSupervision" => $value->supervision["fecha"],
+             );
+           }
+
+       }
+   }
+   array_push($supervisiones,$arrayInstitucion);
+ }
+    if($proceso == 1)
+     $process = "Servicio Social";
+    else
+     $process = "Práctica Profesional";
+
+    $date = date('Y-m-d');
+    $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervisiones, 'proceso' =>$process])->setOption('footer-center', 'Página [page] de [topage]');
+    $pdf->setOption('margin-top',20);
+    $pdf->setOption('margin-bottom',20);
+    $pdf->setOption('margin-left',20);
+    $pdf->setOption('margin-right',20);
+
+    return $pdf->stream('Reporte General de Supervisiones ' .$date.'.pdf');
+// return $supervisiones;
 }
 function regSupervision(){
 
