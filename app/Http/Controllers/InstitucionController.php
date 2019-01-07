@@ -18,10 +18,10 @@ class InstitucionController extends Controller
 
     public function index(Request $request)
     {
-     if (!$request->ajax()) return redirect('/');
-     $buscar = $request->buscar;
-     $proceso = $request->proceso;
-     if($buscar==''){
+       if (!$request->ajax()) return redirect('/');
+       $buscar = $request->buscar;
+       $proceso = $request->proceso;
+       if($buscar==''){
 
         $institucion = Institucion::with(['sectorInstitucion','municipio.departamento','procesos'])
         ->whereHas('procesos', function ($query) use ($proceso) {
@@ -102,13 +102,13 @@ public function activar(Request $request)
 }
 public function GetInstituciones($id)
 {
- $proceso = $id;
- $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
+   $proceso = $id;
+   $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
     $query->where('proceso_id', $proceso);
 })->where('instituciones.estado','1')->orderBy('instituciones.id','desc')->get();
 
- $data = [];
- foreach ($institucion as $key => $value) {
+   $data = [];
+   foreach ($institucion as $key => $value) {
     $data[$key] =[
         'value'   => $value->id,
         'label' => $value->nombre,
@@ -126,28 +126,28 @@ public function GetInstitucion(Request $request)
     $proceso = $request->proceso;
     if($buscar != ""){
 
-     $institucion = Institucion::findOrFail($id)->proyectosInsti()->where('nombre','like','%'.$buscar.'%')->where('proceso_id','=',$proceso)->paginate(5);
+       $institucion = Institucion::findOrFail($id)->proyectosInsti()->where('nombre','like','%'.$buscar.'%')->where('proceso_id','=',$proceso)->paginate(5);
 
- }else{
+   }else{
 
-     $institucion = Institucion::findOrFail($id)->proyectosInsti()->where('proceso_id','=',$proceso)->paginate(5);
+       $institucion = Institucion::findOrFail($id)->proyectosInsti()->where('proceso_id','=',$proceso)->paginate(5);
 
- }
+   }
 
- for ($i=0; $i <count($institucion); $i++) {
+   for ($i=0; $i <count($institucion); $i++) {
     $idEstado = Proyecto::findOrFail($institucion[$i]->id)->supervision()->select('estado')->get();
     $carrera = Proyecto::findOrFail($institucion[$i]->id)->carre_proy()->select('nombre')->get();
 
     if(sizeof($idEstado) > 0){
       for ($j=0; $j <count($idEstado) ; $j++) {
-       if($idEstado[$j]->estado == 0){
-         $institucion[$i]->setAttribute('supervision',0);
-     }elseif(count($idEstado[$j])==0 && $idEstado[$j]->estado == 1 ){
-       $institucion[$i]->setAttribute('supervision',1);
-   }
-}
+         if($idEstado[$j]->estado == 0){
+           $institucion[$i]->setAttribute('supervision',0);
+       }elseif(count($idEstado[$j])==0 && $idEstado[$j]->estado == 1 ){
+         $institucion[$i]->setAttribute('supervision',1);
+     }
+ }
 }else{
-   $institucion[$i]->setAttribute('supervision',1);
+ $institucion[$i]->setAttribute('supervision',1);
 }
 
 if($proceso == 2){
@@ -229,25 +229,30 @@ function getReportByMunicipio(Request $request){
     return $pdf->stream('supervision-general '.$date.'.pdf');
 }
 
-function getReportInstituciones($id){
-    $proceso = $id;
+function getReportInstituciones(Request $request){
+    $proceso = $request->proceso_id;
+
     $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
         $query->where('proceso_id', $proceso);
     })->where('instituciones.estado','1')->orderBy('instituciones.id','desc')->get();
 
     $inst = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
-         $query->where('proceso_id', $proceso);
-    })->where('instituciones.estado', '1')->orderBy('instituciones.id', 'desc')->count();
+       $query->where('proceso_id', $proceso);
+   })->where('instituciones.estado', '1')->orderBy('instituciones.id', 'desc')->count();
 
-    $proces = "";
+    $process = "";
     if($proceso == 1)
-        $proces = "Servicio Social";
+        $process = "Servicio Social";
     else
-        $proces = "Práctica Profesional";
-       
+        $process = "Práctica Profesional";
+
     $date = date('Y-m-d');
-    $pdf = PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $proces])->setOption('footer-center', 'Página [page] de [topage]');
-    return $pdf->stream('instituciones ' .Carbon::parse($date).'.pdf');
+    $pdf = PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $process])->setOption('footer-center', 'Página [page] de [topage]');
+    $pdf->setOption('margin-top',20);
+    $pdf->setOption('margin-bottom',20);
+    $pdf->setOption('margin-left',20);
+    $pdf->setOption('margin-right',20);
+    return $pdf->stream('Reporte General de Instuciones '.$date.'.pdf');
 
 }
 function getSupervisiones($id){

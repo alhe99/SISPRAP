@@ -106389,10 +106389,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(130)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(132)
@@ -106401,7 +106397,7 @@ var __vue_template__ = __webpack_require__(133)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -106436,46 +106432,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(131);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("01406c07", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-030ab2dc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InstitucionGeneral.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-030ab2dc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InstitucionGeneral.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 130 */,
+/* 131 */,
 /* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -106521,66 +106479,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            loadSpinner: 0,
-            proceso_id: 0
-        };
-    },
+  data: function data() {
+    return {
+      loadSpinner: 0,
+      proceso_id: 0
+    };
+  },
 
-    watch: {},
-    computed: {
-        validate: function validate() {
-            if (this.proceso_id == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+  watch: {},
+  computed: {
+    validate: function validate() {
+      if (this.proceso_id == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  methods: {
+    clearData: function clearData() {
+      var me = this;
+      me.proceso_id = 0;
+      $("#btnGenerar").prop('disabled', true);
     },
-    methods: {
-        clearData: function clearData() {
-            var me = this;
-            me.proceso_id = 0;
-            $("#btnGenerar").prop('disabled', true);
-        },
-        viewPdfFromBase64: function viewPdfFromBase64(base64, titlepdf) {
-            var objbuilder = '';
-            objbuilder += '<object width="100%" height="100%"data="data:application/pdf;base64,';
-            objbuilder += base64;
-            objbuilder += '" type="application/pdf" class="internal">';
-            objbuilder += '<embed src="data:application/pdf;base64,';
-            objbuilder += base64;
-            objbuilder += '" type="application/pdf"  />';
-            objbuilder += '</object>';
-
-            var win = window.open("#", "_blank");
-            win.document.write('<html><title>' + titlepdf + '</title><body style="margin-top:0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
-            win.document.write(objbuilder);
-            win.document.write('</body></html>');
-            layer = jQuery(win.document);
-        },
-        downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
-            var a = document.createElement("a");
-            var name = "Institucion por proceso ";
-            a.href = "data:application/octet-stream;base64," + base64;
-            a.download = name + ".pdf";
-            a.click();
-        },
-        sendParameterToMethod: function sendParameterToMethod() {
-            var me = this;
-            var url = "institucion/getInstituciones/" + this.proceso_id;
-            window.open(url);
-            me.clearData();
-        }
-    },
-    components: {
-        Switches: __WEBPACK_IMPORTED_MODULE_0_vue_switches___default.a
-    },
-    mounted: function mounted() {}
+    sendParameterToMethod: function sendParameterToMethod() {
+      var me = this;
+      var url = route('generalInstitucion', { 'proceso_id': me.proceso_id });
+      window.open(url);
+      me.clearData();
+    }
+  },
+  components: {
+    Switches: __WEBPACK_IMPORTED_MODULE_0_vue_switches___default.a
+  }
 });
 
 /***/ }),
@@ -106598,6 +106553,8 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "col-md-12" }, [
@@ -106605,7 +106562,7 @@ var render = function() {
             _c("div", { staticClass: "panel-body" }, [
               _c("fieldset", [
                 _c("legend", { staticClass: "text-center" }, [
-                  _vm._v("Seleccione un proceso para ver las instituciones")
+                  _vm._v("Seleccione un proceso para la generacion del reporte")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "panel panel-default" }, [
@@ -106703,7 +106660,38 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-body" }, [
+              _c("fieldset", [
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c("div", { staticClass: "panel-body" }, [
+                    _c("div", { staticClass: "row md-radio" }, [
+                      _c("div", { staticClass: "col-md-12 text-center" }, [
+                        _c("h4", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            "Reporte General De Instituciones Activas En El Sistema"
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

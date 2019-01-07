@@ -91,7 +91,7 @@ Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provi
 
 //RUTAS PARA REPORTES
 Route::get('institucion/getHojaSupervision','InstitucionController@getReportByMunicipio')->name('hojasupervigen');
-Route::get('institucion/getInstituciones/{id}','InstitucionController@getReportInstituciones')->name('reginst');
+Route::get('institucion/reporteGen','InstitucionController@getReportInstituciones')->name('generalInstitucion');
 Route::get('institucion/getSupervisiones/{id}','InstitucionController@getSupervisiones')->name('supervisiones');
 Route::get('institucion/regSupervision','InstitucionController@regSupervision')->name('regSupervision');
 
