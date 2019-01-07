@@ -52,7 +52,7 @@ class LoginController extends Controller
         if (Auth::attempt(['usuario' => $request->usuario, 'password' => $request->password, 'estado' => 1])) {
 
             session(['rol_id' => Auth::user()->rol_id]);
-            
+
             if (session('rol_id') == 3) {
 
                 if(count(Auth::user()->estudiante->preinscripciones) != 0){
@@ -62,10 +62,16 @@ class LoginController extends Controller
                         session(['provide_perfil' => false]);
                     }
               }
+              if(Auth::user()->estudiante->has('gestionProyecto')){
+                 session(['permitir_download' => true]);
+              }else{
+                session(['permitir_download' => false]);
+              }
                 session(['process_name' => Auth::user()->estudiante->proceso[0]->nombre]);
                 session(['process_id' => Auth::user()->estudiante->proceso[0]->id]);
                 session(['student_id' => Auth::user()->estudiante->id]);
-            
+
+
                 return redirect()->route('public');
 
             } else if (session('rol_id') == 1 ) {
@@ -76,8 +82,8 @@ class LoginController extends Controller
 
                 return redirect()->route('main');
             }
-            
-            
+
+
         } else {
 
             return back()->withErrors(['usuario' => trans('auth.failed')])->withInput(request(['usuario']));

@@ -105,7 +105,11 @@ class GestionProyectoController extends Controller
                 DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->student_id)->where('estado', 'F')->delete();
 
                 DB::commit();
-                // return $pdf->stream('Perfil de proyecto.pdf');
+                if ($proceso == 1) {
+                   $pdf->save(public_path('docs/perfil_ss/'.$carnet.'-SS.pdf'));
+                }else{
+                    $pdf->save(public_path('docs/perfil_pp/'.$carnet.'-PP.pdf'));
+                }
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
             }
         } catch (Exception $e) {

@@ -77,13 +77,12 @@ const app = new Vue({
     },
     created() {
         let me = this;
-        axios.post('notifications/get').then(function(response) {
-            me.notifications = response.data;
-
+        axios.post(this.ruta + '/notification/get').then(function(response) {
+           //console.log(response.data);
+           me.notifications=response.data;
         }).catch(function(error) {
             console.log(error);
         });
-
 
         var userId = 0;
 

@@ -73,6 +73,20 @@ Route::get('/perfil_proy', function () {
     return view('public.perfilProject');
 })->name('show_perfil');
 
+Route::get('public/downloadPerfil',function(){
+
+    $proceso = Auth::user()->estudiante->proceso[0]->id;
+    $carnet = Auth::user()->estudiante->codCarnet;
+
+    if($proceso == 1)
+       $file= public_path('docs/perfil_ss/'.$carnet.'-SS.pdf');
+    else
+        $file= public_path('docs/perfil_pp/'.$carnet.'-PP.pdf');
+
+    return Response::download($file);
+
+})->name('downloadPerfil');
+
 //Notificaciones
 
 Route::post('notifications/get', 'NotificationController@get');

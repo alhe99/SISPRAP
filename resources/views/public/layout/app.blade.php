@@ -203,7 +203,7 @@ aria-hidden="true">
 											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
 										<div class="card-body">
-											<button type="button" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</button>
+											<a {{ session('permitir_download') == false ? 'disabled' : '' }} href="{{ route('downloadPerfil') }} " class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
 										</div>
 									</div>
 								</div>
