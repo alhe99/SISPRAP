@@ -15,22 +15,22 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#business" role="tab"><i class="fas fa-list-ol"></i></br>Detalles del Proyecto</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#busines" role="tab"><i class="fas fa-list-ol"></i></br>Detalles del Proyecto</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#startup" role="tab"><i class="fas fa-list-ul"></i></br>Datos de la institución a realizar el proyecto</a>
+                                    <a class="nav-link" data-toggle="tab" href="#startu" role="tab"><i class="fas fa-list-ul"></i></br>Datos de la institución a realizar el proyecto</a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade show active" id="business" role="tabpanel">
+                                <div class="tab-pane fade show active" id="busines" role="tabpanel">
                                     <p class="text-capitalize"><strong style="font-weight:bold;">Nombre del Proyecto:</strong> {{$proyecto->nombre}}</p>
                                     <p><strong style="font-weight:bold;">Actividades a realizar:</strong> {!! $proyecto->actividades
                                         !!}
                                     </p>
                                     <p><strong style="font-weight:bold;">Horas a realizar:</strong> {{$proyecto->tipoProceso->horas}}</p>
                                 </div>
-                                <div class="tab-pane fade" id="startup" role="tabpanel">
+                                <div class="tab-pane fade" id="startu" role="tabpanel">
                                     <p><strong style="font-weight:bold;">Nombre:</strong> {{$proyecto->institucion->nombre}}</p>
                                     <p><strong style="font-weight:bold;">Dirección exacta:</strong> {{$proyecto->institucion->direccion}}</p>
                                     <p><strong style="font-weight:bold;">Sector de la empresa/institución:</strong> {{$proyecto->institucion->sectorInstitucion->sector}}</p>
