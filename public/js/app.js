@@ -106686,7 +106686,10 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Generar Reporte")]
+                  [
+                    _c("i", { staticClass: "mdi mdi-package-down" }),
+                    _vm._v(" Generar Reporte")
+                  ]
                 )
               ])
             ])
