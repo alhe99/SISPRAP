@@ -17,11 +17,11 @@ $('.BF1').hover(function(){
 $('.contenedorBF').mouseleave(function(){
   $('.BF4').removeClass('animacionVer');});
 
-$('.BF1').hover(function(){
-  $('.BF5').addClass('animacionVer');
-})
-$('.contenedorBF').mouseleave(function(){
-  $('.BF5').removeClass('animacionVer');});
+// $('.BF1').hover(function(){
+//   $('.BF5').addClass('animacionVer');
+// })
+// $('.contenedorBF').mouseleave(function(){
+//   $('.BF5').removeClass('animacionVer');});
 
 
 

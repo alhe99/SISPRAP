@@ -117,8 +117,8 @@
 				@endif
 			</i>
 		</button>
-		<button class="btn BF2 hint--left" data-hint="Información de tu cuenta" data-toggle="modal" data-target="#exampleModal1" style="border-radius: 50px; cursor: pointer;">
-			<i class="far fa-user fa-sm"></i>
+		<button class="btn BF2 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px; cursor: pointer;">
+			<i class="far fa-folder-open fa-sm"></i>
 		</button>
 		<button class="btn BF3 hint--left" data-hint="Chat con el administrador" style="border-radius: 50px; cursor: pointer;">
 			<i class="far fa-comments fa-sm"></i>
@@ -131,9 +131,9 @@
 			@endif
 		</i>
 	</button>
-	<button class="btn BF5 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px;cursor: pointer;">
+	{{-- <button class="btn BF5 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px;cursor: pointer;">
 		<i class="far fa-folder-open fa-sm"></i>
-	</button>
+	</button> --}}
 </div>
 <div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 aria-hidden="true">
@@ -187,7 +187,7 @@ aria-hidden="true">
 						<div class="Material-tab">
 							<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#business" role="tab"><i class="far fa-user"></i></br>Perfil del proyecto</a>
+									<a class="nav-link active" data-toggle="tab" href="#business" role="tab"><i class="far fa-user"></i></br>Perfil del proyecto</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" data-toggle="tab" href="#startup" role="tab"><i class="far fa-list-alt"></i></br>Control de proyecto</a>
@@ -237,7 +237,7 @@ aria-hidden="true">
 		</div>
 	</div>
 </div>
-<div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -302,17 +302,17 @@ aria-hidden="true">
 						</div>
 					</div>
 				</div>
-			{{-- 	<div class="col-md-6 text-center">
+				<div class="col-md-6 text-center">
 					<button type="button" class="btn btn-primary btn-block" style="cursor: pointer;" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
 				</div>
 				<div class="col-md-6 text-center">
 					<button type="button" class="btn btn-danger btn-block text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-				</div> --}}
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
+</div> --}}
 
 <section>
 	<div id="carouselExampleIndicators" class="carousel slide wow animated fadeInUp" data-ride="carousel">
