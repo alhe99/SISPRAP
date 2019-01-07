@@ -20,7 +20,6 @@ class Carrera extends Model
     }
 
     //Trimestral
-    
     public function getCountStudentsByMinedTrimestral(Array $data,$procesoId)
     {
         return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($data){
@@ -76,5 +75,5 @@ class Carrera extends Model
             $query->where('procesos_estudiantes.proceso_id',$procesoId);
         })->count();
     }
-    
+
 }
