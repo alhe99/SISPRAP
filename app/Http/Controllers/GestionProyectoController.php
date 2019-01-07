@@ -101,22 +101,22 @@ class GestionProyectoController extends Controller
 
             if($gp->save())
             {
-                $pdf = PDF::loadView('public.reportes.llenarPerfil',['data'=>$collection])->setOption('footer-center', '');
-                $pdf2 = PDF::loadView('public.reportes.controlasistencia',['data'=>$collection])->setOption('footer-center', '');
-                $pdf3 = PDF::loadView('public.reportes.controlproyecto',['data'=>$collection])->setOption('footer-center', '');
-                DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->student_id)->where('estado', 'F')->delete();
+                $perfil = PDF::loadView('public.reportes.llenarPerfil',['data'=>$collection])->setOption('footer-center', '');
+                // $controlAsistencia = PDF::loadView('public.reportes.controlasistencia',['data'=>$collection])->setOption('footer-center', '');
+                //$controlProyecto = PDF::loadView('public.reportes.controlproyecto',['data'=>$collection])->setOption('footer-center', '');
+               DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->student_id)->where('estado', 'F')->delete();
 
                 DB::commit();
                 if ($proceso == 1) {
-                   $pdf->save(public_path('docs/perfil_ss/'.$carnet.'-SS.pdf'));
-                   $pdf2->save(public_path('docs/perfil_ss/'.$carnet.'-SS-CA.pdf'));
-                   $pdf3->save(public_path('docs/perfil_ss/'.$carnet.'-SS-CP.pdf'));
+                   $perfil->save(public_path('docs/perfil_ss/'.$carnet.'-SS.pdf'));
+                   // $controlAsistencia->save(public_path('docs/perfil_ss/'.$carnet.'-SS-CA.pdf'));
+                   // $controlProyecto->save(public_path('docs/perfil_ss/'.$carnet.'-SS-CP.pdf'));
                 }else{
-                    $pdf->save(public_path('docs/perfil_pp/'.$carnet.'-PP.pdf'));
-                    $pdf2->save(public_path('docs/perfil_pp/'.$carnet.'-PP-CA.pdf'));
-                    $pdf3->save(public_path('docs/perfil_pp/'.$carnet.'-PP-CP.pdf'));
+                    $perfil->save(public_path('docs/perfil_pp/'.$carnet.'-PP.pdf'));
+                    // $controlAsistencia->save(public_path('docs/perfil_pp/'.$carnet.'-PP-CA.pdf'));
+                    // $controlProyecto->save(public_path('docs/perfil_pp/'.$carnet.'-PP-CP.pdf'));
                 }
-                return base64_encode($pdf->download('Perfil de proyecto.pdf'));
+                return base64_encode($perfil->download('Perfil de proyecto.pdf'));
             }
         } catch (Exception $e) {
           DB::rollBack();
