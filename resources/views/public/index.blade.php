@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="row">
   <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
-    <h2 align="center">¡Bienvenido al apartado de proyectos disponibles para tu proceso de {{session('process_name')}}!</h2>
+    <h2 align="center" style="font-size: 5vh;">¡Bienvenido al apartado de proyectos disponibles para tu proceso de {{session('process_name')}}!</h2>
   </div>
 </div><br> @if (Auth::user()->estudiante->supero_limite == 1)
 <div class="alert alert-success" role="alert">

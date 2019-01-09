@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="row">
     <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
-        <h1 class="section-title">INFORMACION DE PROYECTO {{$proyecto->nombre}}</h1>
+        <h1 class="section-title" style="text-transform: uppercase;">INFORMACION DE PROYECTO: {{$proyecto->nombre}}</h1>
     </div>
 </div>
 <div class="row">
