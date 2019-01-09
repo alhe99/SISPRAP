@@ -178,7 +178,7 @@
               <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
               <td v-text="item.pivot.created_at"></td>
               <td class="text-center">
-                <button type="button" class="button secondary " @click="aprobarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
+                <button type="button" class="button secondary " @click="aprobarProy(item.id,proyecto_selectd.value,item.proceso_actual)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
                 <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
               </td>
             </tr>
@@ -509,7 +509,14 @@ export default {
 
       }
     },
-    aprobarProy(estudiante_id,proyecto_id){
+    aprobarProy(estudiante_id,proyecto_id,proceso_actual){
+      if (proceso_actual == 'I') {
+       Swal({
+        type: 'error',
+        title: 'Alerta...',
+        text: "Este estudiante ya posee un proyecto en marcha!, Proceso de aceptar solictud denegado",
+      });
+     }else {
       swal({
         title: "Seguro de Aceptar Esta Solicitud?",
         type: "info",
@@ -547,50 +554,12 @@ export default {
           ) {
         }
       });
-    },
-    asignarProyecto(dataId){
-      swal({
-        title: "Dar accesso a que el estudiante(a) ingrese un proyecto externo al sistema",
-        type: "info",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "button blue",
-        cancelButtonClass: "button red",
-        buttonsStyling: false,
-        reverseButtons: true
-      }).then(result => {
-        if (result.value) {
-          let me = this;
-          me.loadSpinner = 1;
-          var dataP = 0;
-          var url = route('preregister', {"estudent_id": dataId,"project_id": dataP});
-          axios.get(url)
-          .then(function(response) {
-           me.getEstudianteByCarrer(1);
-           swal(
-            "Aprobado!",
-            "El Estudiante puede iniciar con su proceso",
-            "success"
-            );
-           me.loadSpinner = 0;
-         })
-          .catch(function(error) {
-            console.log(error);
-          });
-        } else if (
-
-          result.dismiss === swal.DismissReason.cancel
-          ) {
-        }
-      });
-    },
-    rechazarProy(estudiante_id,proyecto_id){
-     swal({
-      title: "Seguro de Rechazar Preincripcion?",
-      type: "warning",
+    }
+  },
+  asignarProyecto(dataId){
+    swal({
+      title: "Dar accesso a que el estudiante(a) ingrese un proyecto externo al sistema",
+      type: "info",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -604,13 +573,14 @@ export default {
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        var url = "/destroyPreregister/"+estudiante_id+"/"+proyecto_id;
+        var dataP = 0;
+        var url = route('preregister', {"estudent_id": dataId,"project_id": dataP});
         axios.get(url)
         .then(function(response) {
-         me.getPreregister(me.proyecto_selectd.value, 1, "");
+         me.getEstudianteByCarrer(1);
          swal(
-          "Rechazado!",
-          "Se ha eliminado la solicitud para este proyecto",
+          "Aprobado!",
+          "El Estudiante puede iniciar con su proceso",
           "success"
           );
          me.loadSpinner = 0;
@@ -624,7 +594,45 @@ export default {
         ) {
       }
     });
-  }
+  },
+  rechazarProy(estudiante_id,proyecto_id){
+   swal({
+    title: "Seguro de Rechazar Preincripcion?",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Aceptar!",
+    cancelButtonText: "Cancelar",
+    confirmButtonClass: "button blue",
+    cancelButtonClass: "button red",
+    buttonsStyling: false,
+    reverseButtons: true
+  }).then(result => {
+    if (result.value) {
+      let me = this;
+      me.loadSpinner = 1;
+      var url = "/destroyPreregister/"+estudiante_id+"/"+proyecto_id;
+      axios.get(url)
+      .then(function(response) {
+       me.getPreregister(me.proyecto_selectd.value, 1, "");
+       swal(
+        "Rechazado!",
+        "Se ha eliminado la solicitud para este proyecto",
+        "success"
+        );
+       me.loadSpinner = 0;
+     })
+      .catch(function(error) {
+        console.log(error);
+      });
+    } else if (
+
+      result.dismiss === swal.DismissReason.cancel
+      ) {
+    }
+  });
+}
 },
 components: {},
 mounted() {

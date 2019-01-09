@@ -102993,47 +102993,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     aprobarProy: function aprobarProy(estudiante_id, proyecto_id, proceso_actual) {
-      alert(proceso_actual);
-      // swal({
-      //   title: "Seguro de Aceptar Esta Solicitud?",
-      //   type: "info",
-      //   showCancelButton: true,
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "Aceptar!",
-      //   cancelButtonText: "Cancelar",
-      //   confirmButtonClass: "button blue",
-      //   cancelButtonClass: "button red",
-      //   buttonsStyling: false,
-      //   reverseButtons: true
-      // }).then(result => {
-      //   if (result.value) {
-      //     let me = this;
-      //     me.loadSpinner = 1;
-      //     var url = route('preregister', {"estudent_id": estudiante_id,"project_id": proyecto_id});
-      //     axios.get(url)
-      //     .then(function(response) {
-      //      me.getPreregister(me.proyecto_selectd.value, 1, "");
-      //      swal(
-      //       "Aprobado!",
-      //       "Has Probado la solicitud para este proyecto",
-      //       "success"
-      //       );
-      //      me.loadSpinner = 0;
-      //    })
-      //     .catch(function(error) {
-      //       console.log(error);
-      //       me.loadSpinner = 0;
-      //     });
-      //   } else if (
+      var _this = this;
 
-      //     result.dismiss === swal.DismissReason.cancel
-      //     ) {
-      //   }
-      // });
+      if (proceso_actual == 'I') {
+        Swal({
+          type: 'error',
+          title: 'Alerta...',
+          text: "Este estudiante ya posee un proyecto en marcha!, Proceso de aceptar solictud denegado"
+        });
+      } else {
+        swal({
+          title: "Seguro de Aceptar Esta Solicitud?",
+          type: "info",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Aceptar!",
+          cancelButtonText: "Cancelar",
+          confirmButtonClass: "button blue",
+          cancelButtonClass: "button red",
+          buttonsStyling: false,
+          reverseButtons: true
+        }).then(function (result) {
+          if (result.value) {
+            var me = _this;
+            me.loadSpinner = 1;
+            var url = route('preregister', { "estudent_id": estudiante_id, "project_id": proyecto_id });
+            axios.get(url).then(function (response) {
+              me.getPreregister(me.proyecto_selectd.value, 1, "");
+              swal("Aprobado!", "Has Probado la solicitud para este proyecto", "success");
+              me.loadSpinner = 0;
+            }).catch(function (error) {
+              console.log(error);
+              me.loadSpinner = 0;
+            });
+          } else if (result.dismiss === swal.DismissReason.cancel) {}
+        });
+      }
     },
     asignarProyecto: function asignarProyecto(dataId) {
-      var _this = this;
+      var _this2 = this;
 
       swal({
         title: "Dar accesso a que el estudiante(a) ingrese un proyecto externo al sistema",
@@ -103049,7 +103048,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this;
+          var me = _this2;
           me.loadSpinner = 1;
           var dataP = 0;
           var url = route('preregister', { "estudent_id": dataId, "project_id": dataP });
@@ -103064,7 +103063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     rechazarProy: function rechazarProy(estudiante_id, proyecto_id) {
-      var _this2 = this;
+      var _this3 = this;
 
       swal({
         title: "Seguro de Rechazar Preincripcion?",
@@ -103080,7 +103079,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this2;
+          var me = _this3;
           me.loadSpinner = 1;
           var url = "/destroyPreregister/" + estudiante_id + "/" + proyecto_id;
           axios.get(url).then(function (response) {

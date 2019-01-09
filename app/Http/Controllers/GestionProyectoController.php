@@ -270,6 +270,12 @@ public function closeProy(Request $request){
         $e->no_proyectos = 0;
         $e->update();
 
+        // if($e->no_proyectos == 1){
+        //       DB::table('preinscripciones_proyectos')->where([
+        //     ['estudiante_id', $gp->estudiante_id],
+        //     ['estado', 'F']])->orWhere('estado','P')->delete();
+        // }
+
         $e->proceso()->detach(1);
         if($e->proceso()->attach(2)){
             $a->proceso_actual = 'P';
@@ -1194,7 +1200,7 @@ return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
         // return $data;
 }
 
- public function generateConstancia(Request $request){
+public function generateConstancia(Request $request){
 
     $estudianteId = $request->estudianteId;
     $procesoId = $request->procesoId;
@@ -1232,36 +1238,36 @@ return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
     $admin = User::select('nombre')->find(0);
     $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'data'=>$estudiante, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
     return $pdf->stream('Perfil de proyecto.pdf');
- }
- public function downloadDocs(Request $request){
+}
+public function downloadDocs(Request $request){
     $procesoId = $request->procesoId;
     $codCarnet = $request->codCarnet;
     $tipoDoc = $request->tipoDoc;
 
     if ($procesoId == 1) {
       $ruta_img = public_path('docs/docs_ss/').$tipoDoc."SS-".$codCarnet.".jpg";
-    }
-    else{
-        $ruta_img = public_path('docs/docs_pp/').$tipoDoc."PP-".$codCarnet.".jpg";
-    }
+  }
+  else{
+    $ruta_img = public_path('docs/docs_pp/').$tipoDoc."PP-".$codCarnet.".jpg";
+}
 
-    $pdf = PDF::loadView('public.reportes.documents',['ruta'=>$ruta_img])->setOption('footer-center', '');
-    $pdf->setOption('margin-top',15);
-    $pdf->setOption('margin-bottom',0);
-    $pdf->setOption('margin-left',0);
-    $pdf->setOption('margin-right',0);
+$pdf = PDF::loadView('public.reportes.documents',['ruta'=>$ruta_img])->setOption('footer-center', '');
+$pdf->setOption('margin-top',15);
+$pdf->setOption('margin-bottom',0);
+$pdf->setOption('margin-left',0);
+$pdf->setOption('margin-right',0);
 
-    switch ($tipoDoc) {
-        case 'P':
-             return $pdf->download('Perfil de Proyecto.pdf');
-            break;
-        case 'CH':
-            return $pdf->download('Control de Asistencia.pdf');
-            break;
-        case 'CP':
-            return $pdf->download('Control de Proyecto.pdf');
-            break;
-    }
+switch ($tipoDoc) {
+    case 'P':
+    return $pdf->download('Perfil de Proyecto.pdf');
+    break;
+    case 'CH':
+    return $pdf->download('Control de Asistencia.pdf');
+    break;
+    case 'CP':
+    return $pdf->download('Control de Proyecto.pdf');
+    break;
+}
 
- }
+}
 }
