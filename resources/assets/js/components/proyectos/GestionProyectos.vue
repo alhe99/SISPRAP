@@ -213,7 +213,7 @@
                                 </div>
                               </td>
                               <td>
-                               <button type="button" :disabled="gpObj.documentos_entrega.length == 4" class="button blue" @click="abrirModalDoc()"><i class="mdi mdi-clipboard-text"></i>&nbsp;Administrar Documentos</button>
+                               <button type="button" :class="[gpObj.documentos_entrega.length == 4 ? 'disabled' : '']" :disabled="gpObj.documentos_entrega.length == 4" class="button blue" @click="abrirModalDoc()"><i class="mdi mdi-clipboard-text"></i>&nbsp;Administrar Documentos</button>
                              </td>
                            </tr>
                          </table>
@@ -297,7 +297,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" @click="cerrarModalEnd()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cerrar</button>
-                  <button type="button" @click="deleteProy(idGP)" class="button info"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
+                  <button type="button" @click="deleteProy(idGP)" class="button secondary"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
                 </div>
               </div>
             </div>
@@ -446,8 +446,8 @@ methods:{
       cancelButtonColor: "#d33",
       confirmButtonText: "Aceptar!",
       cancelButtonText: "Cancelar",
-      confirmButtonClass: "btn update",
-      cancelButtonClass: "btn edit",
+      confirmButtonClass: "button secondary",
+      cancelButtonClass: "button red",
       buttonsStyling: false,
       reverseButtons: true
     }).then(result => {
@@ -505,7 +505,7 @@ methods:{
     el.classList.add("abrirModal");
     this.modalEnd = 1;
 
-     $("#fechaFin").datepicker({
+    $("#fechaFin").datepicker({
       locale: 'es-es',
       maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
       format: 'yyyy-mm-dd',
@@ -588,8 +588,8 @@ methods:{
     cancelButtonColor: "#d33",
     confirmButtonText: "Aceptar!",
     cancelButtonText: "Cancelar",
-    confirmButtonClass: "btn update",
-    cancelButtonClass: "btn edit",
+    confirmButtonClass: "button secondary",
+    cancelButtonClass: "button red",
     buttonsStyling: false,
     reverseButtons: true
   }).then(result => {

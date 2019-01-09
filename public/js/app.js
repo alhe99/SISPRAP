@@ -104512,6 +104512,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -104546,6 +104559,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     proceso: function proceso() {
       this.getCarreras();
       this.carrera_selected = 0;
+      this.buscar = "";
     },
     carrera_selected: function carrera_selected() {
       this.getAllStudens(this.carrera_selected.value, this.proceso, 1, "");
@@ -104634,8 +104648,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button secondary",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
@@ -104906,61 +104920,134 @@ var render = function() {
                                 "th",
                                 { staticClass: "text-center" },
                                 [
-                                  [
-                                    _c("h4", [
-                                      item.pago_arancel.length != 0
-                                        ? _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "badge badge-pill badge-primary"
-                                            },
-                                            [_vm._v("Cancelado")]
-                                          )
-                                        : _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "badge badge-pill badge-danger"
-                                            },
-                                            [_vm._v("Pendiente")]
-                                          )
-                                    ])
-                                  ]
+                                  _vm.proceso == 1
+                                    ? [
+                                        _c("h4", [
+                                          item.pago_arancel.length != 0
+                                            ? _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-primary"
+                                                },
+                                                [_vm._v("Cancelado")]
+                                              )
+                                            : _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-danger"
+                                                },
+                                                [_vm._v("Pendiente")]
+                                              )
+                                        ])
+                                      ]
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.proceso == 2
+                                    ? [
+                                        _c("h4", [
+                                          item.pago_arancel[1] != undefined
+                                            ? _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-primary"
+                                                },
+                                                [_vm._v("Cancelado")]
+                                              )
+                                            : _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-danger"
+                                                },
+                                                [_vm._v("Pendiente")]
+                                              )
+                                        ])
+                                      ]
+                                    : _vm._e()
                                 ],
                                 2
                               ),
                               _vm._v(" "),
-                              _c("td", { staticClass: "text-center" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "button secondary ",
-                                    class: [
-                                      item.pago_arancel.length != 0
-                                        ? "disabled"
-                                        : ""
-                                    ],
-                                    attrs: {
-                                      type: "button",
-                                      disabled: item.pago_arancel.length != 0,
-                                      "data-toggle": "tooltip",
-                                      title: "Registrar Pago"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.abrirModal(item)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "mdi mdi-square-inc-cash"
-                                    }),
-                                    _vm._v(" Registrar Pago")
-                                  ]
-                                )
-                              ])
+                              _c(
+                                "td",
+                                { staticClass: "text-center" },
+                                [
+                                  _vm.proceso == 1
+                                    ? [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "button secondary ",
+                                            class: [
+                                              item.pago_arancel.length != 0
+                                                ? "disabled"
+                                                : ""
+                                            ],
+                                            attrs: {
+                                              type: "button",
+                                              disabled:
+                                                item.pago_arancel.length != 0,
+                                              "data-toggle": "tooltip",
+                                              title: "Registrar Pago"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.abrirModal(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-square-inc-cash"
+                                            }),
+                                            _vm._v(" Registrar Pago")
+                                          ]
+                                        )
+                                      ]
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.proceso == 2
+                                    ? [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "button secondary ",
+                                            class: [
+                                              item.pago_arancel[1] != undefined
+                                                ? "disabled"
+                                                : ""
+                                            ],
+                                            attrs: {
+                                              type: "button",
+                                              disabled:
+                                                item.pago_arancel[1] !=
+                                                undefined,
+                                              "data-toggle": "tooltip",
+                                              title: "Registrar Pago"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.abrirModal(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-square-inc-cash"
+                                            }),
+                                            _vm._v(" Registrar Pago")
+                                          ]
+                                        )
+                                      ]
+                                    : _vm._e()
+                                ],
+                                2
+                              )
                             ])
                           })
                         )
@@ -111822,8 +111909,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button secondary",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
@@ -111952,8 +112039,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button secondary",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
@@ -113022,6 +113109,13 @@ var render = function() {
                                                     {
                                                       staticClass:
                                                         "button blue",
+                                                      class: [
+                                                        _vm.gpObj
+                                                          .documentos_entrega
+                                                          .length == 4
+                                                          ? "disabled"
+                                                          : ""
+                                                      ],
                                                       attrs: {
                                                         type: "button",
                                                         disabled:
@@ -113405,7 +113499,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "button info",
+                                            staticClass: "button secondary",
                                             attrs: { type: "button" },
                                             on: {
                                               click: function($event) {
@@ -113607,6 +113701,10 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -114087,37 +114185,72 @@ var render = function() {
                                 { staticClass: "text-center" },
                                 [
                                   [
-                                    _c("h4", [
-                                      item.gestion_proyecto[0].constancia_entreg
-                                        .length != 0 &&
-                                      item.gestion_proyecto[0].constancia_entreg
-                                        .length != undefined
-                                        ? _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "badge badge-pill badge-primary"
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  "Entregada: " +
-                                                    item.gestion_proyecto[0]
-                                                      .constancia_entreg[0]
-                                                      .created_at
-                                                )
+                                    _vm.proceso == 1
+                                      ? _c("h4", [
+                                          item.gestion_proyecto[0]
+                                            .constancia_entreg.length != 0 &&
+                                          item.gestion_proyecto[0]
+                                            .constancia_entreg.length !=
+                                            undefined
+                                            ? _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-primary"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      "Entregada: " +
+                                                        item.gestion_proyecto[0]
+                                                          .constancia_entreg[0]
+                                                          .created_at
+                                                    )
+                                                  )
+                                                ]
                                               )
-                                            ]
-                                          )
-                                        : _c(
-                                            "span",
-                                            {
-                                              staticClass:
-                                                "badge badge-pill badge-danger"
-                                            },
-                                            [_vm._v("No Entregada")]
-                                          )
-                                    ])
+                                            : _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-danger"
+                                                },
+                                                [_vm._v("No Entregada")]
+                                              )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.proceso == 2
+                                      ? _c("h4", [
+                                          item.gestion_proyecto[1]
+                                            .constancia_entreg.length > 0
+                                            ? _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-primary"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      "Entregada: " +
+                                                        item.gestion_proyecto[1]
+                                                          .constancia_entreg[0]
+                                                          .created_at
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            : _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "badge badge-pill badge-danger"
+                                                },
+                                                [_vm._v("No Entregada")]
+                                              )
+                                        ])
+                                      : _vm._e()
                                   ]
                                 ],
                                 2

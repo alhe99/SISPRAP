@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -44,9 +43,9 @@ public function getStudentsToRecepcion(Request $request){
     $buscar = $request->buscar;
 
     $estu = Estudiante::with(['carrera','pagoArancel','proceso'])->whereHas('proceso', function ($query) use($process_id) {
-
         $query->where('procesos_estudiantes.proceso_id',$process_id);
-
+    })->orWhereHas('pagoArancel', function ($query) use($process_id) {
+        $query->where('pago_aranceles.proceso_id',$process_id);
     })->where('carrera_id',$carrera_id)->nombre($buscar)->paginate(8);
 
 

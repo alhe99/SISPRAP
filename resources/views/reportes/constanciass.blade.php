@@ -56,13 +56,13 @@
                         El (la) infrascrito(a) Encargado(a) de Práctica Profesional del Instituto Tecnológico de
                         Chalatenango /AGAPE (ITCHA/AGAPE), hace constar que de conformidad a la Ley de
                         Educación Superior, Capítulo I, Art. 19, literal C); el alumno(a) de la carrera:
-                        <u>{{ $data->carrera->nombre }}</u> ha realizado el {{ $proceso }} de acuerdo a lo que se detalla a
+                        <u>{{ $estudiante->carrera->nombre }}</u> ha realizado el {{ $proceso }} de acuerdo a lo que se detalla a
                         continuación:
                     </h4>
                 </div><br>
                 <div class="col-md-12">
-                    <h4 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $data->nombre." ".$data->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;Total
-                    horas: {{$totalHoras}}</h4>
+                    <h4 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $estudiante->nombre." ".$estudiante->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;Total
+                    horas: {{ $totalHoras }}</h4>
 
                 </div><br><br>
                 <div class="col-md-12">
@@ -82,7 +82,7 @@
                                 Horas
                             </td>
                         </tr>
-                        @foreach ($data->gestionProyecto as $item)
+                        @foreach ($proyectos as $item)
                         <tr>
                             <td height="50">{{ $item->proyecto->institucion->nombre }}</td>
                             <td height="50">{{ $item->proyecto->nombre }}</td>

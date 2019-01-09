@@ -176,7 +176,7 @@ class GestionProyectoController extends Controller
         })->whereHas('estudiante', function ($query) use ($carrera_id) {
             $query->where('carrera_id', $carrera_id);
 
-        })->paginate(8);
+        })->where('tipo_gp',$proceso)->paginate(8);
 
     } else {
 
@@ -189,7 +189,7 @@ class GestionProyectoController extends Controller
 
         })->whereHas('estudiante', function ($query) use ($carrera_id) {
             $query->where('carrera_id', $carrera_id);
-        })->paginate(8);
+        })->where('tipo_gp',$proceso)->paginate(8);
     }
 
     return [
@@ -209,22 +209,20 @@ public function constancias(Request $request)
     $buscar = $request->buscar;
     $proceso = $request->proceso_id;
     $carrera_id = $request->carre_id;
-
     if($proceso == 1){
         $gp = Estudiante::distinct('id')->with([
             'carrera',
             'gestionProyecto',
             'gestionProyecto.constancia_entreg',
             'nivelAcademico'
-        ])->nombre($buscar)->where('estado_ss',1)->paginate(8);
-
+        ])->nombre($buscar)->where('estado_ss',1)->where('carrera_id',$carrera_id)->paginate(8);
     }else if($proceso == 2){
         $gp = Estudiante::distinct('id')->with([
             'carrera',
             'gestionProyecto',
             'gestionProyecto.constancia_entreg',
             'nivelAcademico'
-        ])->nombre($buscar)->where('estado_pp', 2)->paginate(8);
+        ])->nombre($buscar)->where('estado_pp', 2)->where('carrera_id',$carrera_id)->paginate(8);
     }
     return [
         'pagination' => [
@@ -277,7 +275,7 @@ public function closeProy(Request $request){
         // }
 
         $e->proceso()->detach(1);
-        if($e->proceso()->attach(2)){
+        if($e->proceso()->attach(2,array('num_horas' => '160'))){
             $a->proceso_actual = 'P';
         }
 
@@ -1223,21 +1221,30 @@ public function generateConstancia(Request $request){
         $query->where('tipo_gp', $procesoId);
     })->find($estudianteId);
 
+    $proyectos =  [];
+    $proyectos = $estudiante->gestionProyecto()->where('tipo_gp',$procesoId)->get();
+    $infoEstudiante = $estudiante;
+
 
     foreach ($estudiante->gestionProyecto as $value) {
-        $totalHoras += $value->horas_realizadas;
-        if($value->doesntHave('constancia_entreg')){
+
+        if($value->constancia_entreg()->count() == 0){
 
             DB::table('constancias_entregadas')->insert(
                 ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString()]
-            );
+          );
 
         }
     }
+    foreach ($proyectos as $item) {
+
+        $totalHoras += $item->horas_realizadas;
+    }
 
     $admin = User::select('nombre')->find(0);
-    $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'data'=>$estudiante, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
+    $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'estudiante'=>$infoEstudiante,'proyectos' => $proyectos, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
     return $pdf->stream('Perfil de proyecto.pdf');
+
 }
 public function downloadDocs(Request $request){
     $procesoId = $request->procesoId;

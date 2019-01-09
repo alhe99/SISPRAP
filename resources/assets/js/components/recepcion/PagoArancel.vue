@@ -63,17 +63,30 @@
               <td v-text="item.nombre +' '+ item.apellido"></td>
               <th class="text-center" v-text="item.carrera.nombre"></th>
               <th class="text-center">
-               <template>
+               <template v-if="proceso==1">
                 <h4>
                   <span v-if="item.pago_arancel.length != 0" class="badge badge-pill badge-primary">Cancelado</span>
                   <span  v-else class="badge badge-pill badge-danger">Pendiente</span>
                 </h4>
               </template>
+              <template v-if="proceso==2">
+                <h4>
+                  <span v-if="item.pago_arancel[1] != undefined" class="badge badge-pill badge-primary">Cancelado</span>
+                  <span  v-else class="badge badge-pill badge-danger">Pendiente</span>
+                </h4>
+              </template>
             </th>
             <td class="text-center">
-              <button type="button"
-              :class="[item.pago_arancel.length != 0 ? 'disabled' : '']"
-              :disabled="item.pago_arancel.length != 0" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
+              <template v-if="proceso==1">
+                <button type="button"
+                :class="[item.pago_arancel.length != 0 ? 'disabled' : '']"
+                :disabled="item.pago_arancel.length != 0" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
+              </template>
+              <template v-if="proceso==2">
+                <button type="button"
+                :class="[item.pago_arancel[1] != undefined ? 'disabled' : '']"
+                :disabled="item.pago_arancel[1] != undefined" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
+              </template>
             </td>
           </tr>
         </tbody>
@@ -186,6 +199,7 @@
         proceso: function() {
           this.getCarreras();
           this.carrera_selected = 0;
+          this.buscar = "";
         },
         carrera_selected: function(){
           this.getAllStudens(this.carrera_selected.value,this.proceso,1,"")
@@ -278,8 +292,8 @@
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button secondary",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(result => {
