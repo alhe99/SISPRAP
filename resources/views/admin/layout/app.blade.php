@@ -49,16 +49,16 @@
                                     <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="light-logo" />
                                 </b>
                                 <!-- Logo text --><span>
-                                 <!-- dark Logo text -->
-                                 <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
-                                 <!-- Light Logo text -->
-                                 <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
-                             </a>
-                         </div>
-                         <!-- ============================================================== -->
-                         <!-- End Logo -->
-                         <!-- ============================================================== -->
-                         <div class="navbar-collapse">
+                                   <!-- dark Logo text -->
+                                   <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
+                                   <!-- Light Logo text -->
+                                   <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
+                               </a>
+                           </div>
+                           <!-- ============================================================== -->
+                           <!-- End Logo -->
+                           <!-- ============================================================== -->
+                           <div class="navbar-collapse">
                             <!-- ============================================================== -->
                             <!-- toggle and nav items -->
                             <!-- ============================================================== -->
@@ -143,21 +143,23 @@
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box text-center">
-                                           @if (Auth::user()->rol_id == 1)
-                                           <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
-                                           @elseif(Auth::user()->rol_id == 2)
-                                           <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
-                                           @endif
-                                           <div class="u-text text-center ">
-                                             <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
-                                         </div>
-                                     </li>
-                                     <li role="separator" class="divider"></li>
+                                         @if (Auth::user()->rol_id == 1)
+                                         <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
+                                         @elseif(Auth::user()->rol_id == 2)
+                                         <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
+                                         @endif
+                                         <div class="u-text text-center ">
+                                           <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
+                                       </div>
+                                   </li>
+                                   <li role="separator" class="divider"></li>
                                    {{-- <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
                                    @if (Auth::user()->rol_id == 1)
-                                   <li><button type="button" @click="menu=15" class="btn btn-link btn-field"><i class="ti-settings"></i> Configuraciones</button></li>
+                                   <li><a @click="menu=21" class="btn btn-field"><i class="mdi mdi-square-inc-cash"></i> Recepción</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li><a @click="menu=15" class="btn btn-field"><i class="ti-settings"></i> Configuraciones</a></li>
                                    @endif
 
                                    @if (Auth::user()->rol_id == 2)
@@ -195,13 +197,13 @@
                 <br>
                 <div class="row ">
                     <div class="col-md-12">
-                       <h4>Usuario</h4>
-                       <input type="text" class="form-control" name="" value="">
-                       <span class="text-muted">Ingrese el nombre del usuario</span>
-                   </div>
-               </div>
-               <br>
-               <div class="row">
+                     <h4>Usuario</h4>
+                     <input type="text" class="form-control" name="" value="">
+                     <span class="text-muted">Ingrese el nombre del usuario</span>
+                 </div>
+             </div>
+             <br>
+             <div class="row">
                 <div class="col-md-12">
                     <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
                         Cambiar contraseña
@@ -216,16 +218,16 @@
                         </div>
                         <div class="col-md-6" data-wow-delay=".1s">
                             <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-                             <h4>Confirmar contraseña</h4>
-                             <input type="text" class="form-control" name="" value="">
-                             <span class="text-muted">Confirme su contraseña</span>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="modal-footer">
+                               <h4>Confirmar contraseña</h4>
+                               <input type="text" class="form-control" name="" value="">
+                               <span class="text-muted">Confirme su contraseña</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="modal-footer">
         <div class="col-md-6 text-center">
             <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
         </div>

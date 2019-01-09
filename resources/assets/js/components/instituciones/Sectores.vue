@@ -4,20 +4,17 @@
           <div class="card-body">
              <div class="row">
                 <div class="col-md-6 col-sm-12 col-lg-6  ">
-                    <h3 class=" align-baseline font-weight-bold">Listado de sectores de instituciones</h3>
+                    <h2 class=" align-baseline font-weight-bold">Listado de sectores de instituciones</h2><br>
                 </div>
-                <div class="col-md-5 col-sm-12 col-lg-5">
-                    <div class="form-group row">
-                        <mdc-textfield type="text" class="col-md-12" @keyup="listarSectores(1,  buscar)"  label="Nombre del sector" v-model="buscar"></mdc-textfield>
-                    </div>
-                </div>
-                <div class="col-md-1 col-sm-1 col-lg-1 text-center">
-                    <div class="btn-group pull-xs-right">
-                        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más opciones">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="mw2">
-                            <button class="dropdown-item d-block menu" type="button" @click="abrirModal('sector','registrar')"><i class="mdi mdi-plus-box"></i> Registrar Nuevo Sector</button>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-11 ">
+                            <div class="form-group row">
+                                <mdc-textfield type="text" class="col-md-12" @keyup="listarSectores(1,  buscar)"  label="Nombre del sector" v-model="buscar"></mdc-textfield>
+                            </div>
+                        </div>
+                        <div class="col-md-1 text-center">
+                            <button class="button secondary" type="button" @click="abrirModal('sector','registrar')"><i class="mdi mdi-plus-box"></i></button>
                         </div>
                     </div>
                 </div>
@@ -34,15 +31,15 @@
             <thead class="thead-primary">
                 <tr>
                     <th>Nombre de sector</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-right" style="padding-right: 35px;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="sectores in arraySector" :key="sectores.id">
                     <td v-text="sectores.sector"></td>
-                    <td class="text-center">
-                        <button type="button" @click="abrirModal('sector','actualizar',sectores)" class="btn btn-primary " data-toggle="tooltip" title="Editar datos del sector"><i class="mdi mdi-border-color i-crud"></i></button>
-                        <button type="button" @click="deleteSector(sectores.id)" class="btn btn-primary " data-toggle="tooltip" title="Eliminar Sector"><i class="mdi mdi-delete i-crud"></i></button>
+                    <td class="text-right">
+                        <button type="button" @click="abrirModal('sector','actualizar',sectores)" class="button secondary" data-toggle="tooltip" title="Editar datos del sector"><i class="mdi mdi-border-color i-crud"></i></button>
+                        <button type="button" @click="deleteSector(sectores.id)" class="button red" data-toggle="tooltip" title="Eliminar Sector"><i class="mdi mdi-delete i-crud"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -92,7 +89,7 @@
             <div class="modal-footer">
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" :disabled="validate == true" v-if="tipoAccion==1" class="button blue" @click="registrarSector" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Sector</button>
+                        <button type="button secondary" :class="[sector == '' ? 'disabled' : '']"  :disabled="sector == ''" v-if="tipoAccion==1" class="button blue" @click="registrarSector" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Sector</button>
                         <button type="button" :disabled="validate == true" v-if="tipoAccion==2" class="button blue" @click="actualizarSector" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Sector</button>
                         <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
                     </div>

@@ -71,7 +71,9 @@
               </template>
             </th>
             <td class="text-center">
-              <button type="button" :disabled="item.pago_arancel.length != 0" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
+              <button type="button"
+              :class="[item.pago_arancel.length != 0 ? 'disabled' : '']"
+              :disabled="item.pago_arancel.length != 0" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
             </td>
           </tr>
         </tbody>

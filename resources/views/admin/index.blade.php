@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('contenido')
 <template v-if="menu==0">
-   <div class="col-lg-12 col-md-12">
+ <div class="col-lg-12 col-md-12">
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -70,26 +70,6 @@
     </div>
 </div>
 @endif
-
-{{--     <div class="col-lg-12 col-md-12">
-        <div class="row">
-            <div class="col-lg-4 col-md-4">
-                <div class="card  text-center">
-                   <img src="images/atajos/GESTIONES.png"  class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
-               </div>
-           </div>
-           <div class="col-lg-4 col-md-4">
-            <div class="card text-center">
-                <img src="images/atajos/PEINSCRIPCIONES.png"  class="img-fluid" alt="logo sisprap" tyle="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4">
-            <div class="card text-center">
-                <img src="images/atajos/PUBLICACIONES.png"  class="img-fluid" alt="logo sisprap" style="cursor:pointer;width: 400px; height: 210px; display: block; margin-left: auto; margin-right: auto;">
-            </div>
-        </div>
-    </div>
-</div> --}}
 </template>
 @if (Auth::user()->rol_id == 1)
 <template v-if="menu==1">
@@ -134,27 +114,30 @@
     <carrinst></carrinst>
 </template>
 <template v-if="menu==13">
-   <supervision></supervision>
+ <supervision></supervision>
 </template>
 <template v-if="menu==14">
-   <regsuperv></regsuperv>
+ <regsuperv></regsuperv>
 </template>
 <template v-if="menu==15">
-   <configuracion></configuracion>
+ <configuracion></configuracion>
 </template>
 <template v-if="menu==16">
-   <inicioproceso></inicioproceso>
+ <inicioproceso></inicioproceso>
 </template>
 <template v-if="menu==17">
-   <pendientesinicio></pendientesinicio>
+ <pendientesinicio></pendientesinicio>
 </template>
 <template v-if="menu==18">
-   <pendientefin></pendientefin>
+ <pendientefin></pendientefin>
 </template>
 <template v-if="menu==19">
-   <culminados></culminados>
+ <culminados></culminados>
 </template>
 <template v-if="menu==20">
-   <sectores></sectores>
+ <sectores></sectores>
+</template>
+<template v-if="menu==21">
+   <pagoarancel></pagoarancel>
 </template>
 @endsection

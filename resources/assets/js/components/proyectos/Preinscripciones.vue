@@ -36,10 +36,10 @@
     <div class="card" v-if="proceso != 0 ">
       <div class="card-body">
         <div class="row">
-            <div class="col-md-11">
-                <h2 class="text-center" v-if="proceso == 1">Proyectos de Servicio Social</h2>
-                <h2 class="text-center" v-if="proceso == 2">Proyectos de Práctica Profesional</h2>
-              </div>
+          <div class="col-md-11">
+            <h2 class="text-center" v-if="proceso == 1">Proyectos de Servicio Social</h2>
+            <h2 class="text-center" v-if="proceso == 2">Proyectos de Práctica Profesional</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -50,85 +50,189 @@
             <div class="row">
               <div class="col-md-11">
                 <!-- <h1 v-if="proceso == 1">Proyectos de Servicio Social</h1>
-                <h1 v-if="proceso == 2">Proyectos de Práctica Profesional</h1> -->
+                  <h1 v-if="proceso == 2">Proyectos de Práctica Profesional</h1> -->
+                </div>
+                <div class="col-md-1 col-sm-1 col-lg-1 text-right">
+                 <div class="btn-group pull-lg-right">
+                  <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más opciones">
+                    <i class="mdi mdi-dots-vertical"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="mw2">
+                    <button style="cursor: pointer;" class="dropdown-item d-block menu" @click="openModalProy" type="button"><i class="mdi mdi-bookmark-plus"></i> Asignación de proyecto</button>
+                    <!-- <button class="dropdown-item d-block menu" type="button"><i class="mdi mdi-delete-empty"></i> Instituciones Desactivadas</button> -->
+                  </div>
+                </div>
               </div>
-              <div class="col-md-1 col-sm-1 col-lg-1 text-right">
-               <div class="btn-group pull-lg-right">
-                <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más opciones">
-                  <i class="mdi mdi-dots-vertical"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="mw2">
-                  <button style="cursor: pointer;" class="dropdown-item d-block menu" @click="openModalProy" type="button"><i class="mdi mdi-bookmark-plus"></i> Asignación de proyecto</button>
-                  <!-- <button class="dropdown-item d-block menu" type="button"><i class="mdi mdi-delete-empty"></i> Instituciones Desactivadas</button> -->
+            </div>
+          </div>
+          <!--///////// MODAL PARA ASIGNAR PROYECTOS FUERA DEL SISTEMA /////////-->
+          <div class="modal fade" :class="{'mostrar' : modalP }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title text-white">Información del estudiante</h4>
+                  <button type="button" @click="cerrarModalP()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <fieldset>
+                  <legend class="text-center">Complete los datos requeridos</legend>
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label class="font-weight-bold">Seleccione Carrera*</label>
+                          <v-select v-model="carrera_proy_ind" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
+                        </div>
+                        <div class="col-md-12">
+                          <br><pulse-loader class="text-center" :loading="loader" ></pulse-loader>
+                        </div>
+                        <div v-if="arrayEstudianteP.length != 0" class="col-md-10 col-sm-12 col-lg-6">
+                          <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getEstudianteByCarrer(1,buscarP)"  label="Nombre del estudiante" v-model="buscarP"></mdc-textfield>
+                        </div>
+                        <div v-if="arrayEstudianteP.length != 0" class="col-md-12">
+                         <br><table class="table table-striped table-bordered table-mc-light-blue">
+                          <thead class="thead-primary">
+                            <tr>
+                              <th>Nombre Estudiante</th>
+                              <th>Año Academico</th>
+                              <th class="text-center">Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="item in arrayEstudianteP" :key="item.id">
+                              <td v-text="item.nombre +' '+ item.apellido"></td>
+                              <td>Pendiente...</td>
+                              <td class="text-center">
+                                <button type="button" class="button secondary" @click="asignarProyecto(item.id)" data-toggle="tooltip" title="Dar Acceso a que el alumno llene el perfil con un proyecto fuera del sistema"><i class="mdi mdi-check"></i>&nbsp;Proyecto externo</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <nav>
+                         <ul class="pagination">
+                          <li class="page-item" v-if="paginationP.current_page > 1">
+                            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaP(paginationP.current_page -1,buscarP)">Ant</a>
+                          </li>
+                          <li class="page-item" v-for="page in pagesNumberP" :key="page" :class="[page == isActivedP ? 'active' : '']">
+                            <a class="page-link" href="#" @click.prevent="cambiarPaginaP(page,buscarP)" v-text="page"></a>
+
+                            <li class="page-item" v-if="paginationP.current_page < paginationP.last_page">
+                              <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaP(paginationP.current_page + 1,buscarP)">Sig</a>
+                            </li>
+                            <small v-show="arrayEstudianteP.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayEstudianteP.length + ' de ' + paginationP.total + ' registros)'"></small>
+                          </ul>
+                        </nav>
+                      </div>
+                      <div v-if="arrayEstudianteP.length == 0 && carrera_proy_ind != 0 " class="col-md-12">
+                        <div class="alert alert-warning" role="alert">
+                          <h4 class="font-weight-bold text-center">No hay registros</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="modal-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" @click="cerrarModalP()" class="btn btn-danger">Cerrar</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!--///////// MODAL PARA ASIGNAR PROYECTOS FUERA DEL SISTEMA /////////-->
-        <div class="modal fade" :class="{'mostrar' : modalP }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </div>
+      <!--///////// FIN DE MODAL PARA ASIGNAR PROYECTOS FUERA DEL SISTEMA /////////-->
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
+          </div>
+          <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
+            <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
+              <i slot="spinner" class="icon icon-spinner"></i>
+            </v-select>
+            <h6 v-if="contentProy == false" class="text-danger">No Hay Proyectos en esta institución</h6>
+          </div>
+        </div>
+      </div><br>
+
+      <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-10 col-sm-12 col-lg-6">
+        <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
+      </div>
+      <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
+        <br>
+        <table class="table table-striped table-bordered table-mc-light-blue">
+          <thead class="thead-primary">
+            <tr>
+              <th>Nombre Estudiante</th>
+              <th>Fecha preinscripción</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in arrayPreregister" :key="item.id">
+              <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
+              <td v-text="item.pivot.created_at"></td>
+              <td class="text-center">
+                <button type="button" class="button secondary " @click="aprobarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
+                <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+         <ul class="pagination">
+          <li class="page-item" v-if="pagination.current_page > 1">
+            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
+          </li>
+          <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+            <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
+
+            <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+              <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+            </li>
+            <small v-show="arrayPreregister.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"></small>
+          </ul>
+        </nav>
+        <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
+          <h4 class="font-weight-bold text-center">No hay Preincripciones en este proyecto ó la búsqueda no coincide</h4>
+        </div>
+        <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+        <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title text-white">Información del estudiante</h4>
-                <button type="button" @click="cerrarModalP()" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                <fieldset>
-                <legend class="text-center">Complete los datos requeridos</legend>
+                <legend class="text-center">Datos completos del estudiante</legend>
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-md-12">
-                        <label class="font-weight-bold">Seleccione Carrera*</label>
-                        <v-select v-model="carrera_proy_ind" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
-                      </div>
-                      <div class="col-md-12">
-                        <br><pulse-loader class="text-center" :loading="loader" ></pulse-loader>
-                      </div>
-                      <div v-if="arrayEstudianteP.length != 0" class="col-md-10 col-sm-12 col-lg-6">
-                        <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getEstudianteByCarrer(1,buscarP)"  label="Nombre del estudiante" v-model="buscarP"></mdc-textfield>
-                      </div>
-                      <div v-if="arrayEstudianteP.length != 0" class="col-md-12">
-                       <br><table class="table table-striped table-bordered table-mc-light-blue">
-                        <thead class="thead-primary">
-                          <tr>
-                            <th>Nombre Estudiante</th>
-                            <th>Año Academico</th>
-                            <th class="text-center">Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr v-for="item in arrayEstudianteP" :key="item.id">
-                            <td v-text="item.nombre +' '+ item.apellido"></td>
-                            <td>Pendiente...</td>
-                            <td class="text-center">
-                              <button type="button" class="button secondary" @click="asignarProyecto(item.id)" data-toggle="tooltip" title="Dar Acceso a que el alumno llene el perfil con un proyecto fuera del sistema"><i class="mdi mdi-check"></i>&nbsp;Proyecto externo</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <nav>
-                       <ul class="pagination">
-                        <li class="page-item" v-if="paginationP.current_page > 1">
-                          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaP(paginationP.current_page -1,buscarP)">Ant</a>
-                        </li>
-                        <li class="page-item" v-for="page in pagesNumberP" :key="page" :class="[page == isActivedP ? 'active' : '']">
-                          <a class="page-link" href="#" @click.prevent="cambiarPaginaP(page,buscarP)" v-text="page"></a>
-
-                          <li class="page-item" v-if="paginationP.current_page < paginationP.last_page">
-                            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaP(paginationP.current_page + 1,buscarP)">Sig</a>
-                          </li>
-                          <small v-show="arrayEstudianteP.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayEstudianteP.length + ' de ' + paginationP.total + ' registros)'"></small>
-                        </ul>
-                      </nav>
+                     <div class="col-md-8">
+                      <h5 class="font-weight-bold">Nombre:</h5><h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
+                      <h5 class="font-weight-bold">Carrera:</h5><h4>{{estudiante.carrer}}</h4>
+                      <h5 class="font-weight-bold">Fecha Nacimiento: </h5><h4>{{estudiante.fechaNac}}</h4>
+                      <h5 class="font-weight-bold">Género: </h5><h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
+                      <h5 class="font-weight-bold">Codigo de Carnet: </h5><h4>{{estudiante.codCarnet}}</h4>
+                      <h5 class="font-weight-bold">Dirección: </h5><h4>{{estudiante.direccion}}</h4>
                     </div>
-                    <div v-if="arrayEstudianteP.length == 0 && carrera_proy_ind != 0 " class="col-md-12">
-                      <div class="alert alert-warning" role="alert">
-                        <h4 class="font-weight-bold text-center">No hay registros</h4>
-                      </div>
+                    <div class="col-md-4">
+                      <template v-if="estudiante.foto_name == ''">
+                        <img v-if="estudiante.genero == 'M'" class="text-center img-fluid" :src="'images/avatarM.png'" alt="">
+                        <img v-else class="text-center img-fluid" :src="'images/avatarF.png'" alt="">
+                      </template>
+                      <template v-else>
+                        <img class="text-center img-fluid" :src="rutaIMG" alt="">
+                      </template>
                     </div>
                   </div>
                 </div>
@@ -138,119 +242,15 @@
           <div class="modal-footer">
             <div class="row">
               <div class="col-md-12">
-                <button type="button" @click="cerrarModalP()" class="btn btn-danger">Cerrar</button>
+                <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!--///////// FIN DE MODAL PARA ASIGNAR PROYECTOS FUERA DEL SISTEMA /////////-->
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6">
-          <v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
-        </div>
-        <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
-          <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
-            <i slot="spinner" class="icon icon-spinner"></i>
-          </v-select>
-          <h6 v-if="contentProy == false" class="text-danger">No Hay Proyectos en esta institución</h6>
-        </div>
-      </div>
-    </div><br>
-
-    <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-10 col-sm-12 col-lg-6">
-      <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
-    </div>
-    <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
-      <br>
-      <table class="table table-striped table-bordered table-mc-light-blue">
-        <thead class="thead-primary">
-          <tr>
-            <th>Nombre Estudiante</th>
-            <th>Fecha preinscripción</th>
-            <th class="text-center">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in arrayPreregister" :key="item.id">
-            <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
-            <td v-text="item.pivot.created_at"></td>
-            <td class="text-center">
-              <button type="button" class="button blue " @click="aprobarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
-              <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <nav>
-       <ul class="pagination">
-        <li class="page-item" v-if="pagination.current_page > 1">
-          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
-        </li>
-        <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-          <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
-
-          <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
-          </li>
-          <small v-show="arrayPreregister.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"></small>
-        </ul>
-      </nav>
-      <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
-        <h4 class="font-weight-bold text-center">No hay Preincripciones en este proyecto ó la búsqueda no coincide</h4>
-      </div>
-      <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
-      <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title text-white">Información del estudiante</h4>
-              <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="text-white">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-             <fieldset>
-              <legend class="text-center">Datos completos del estudiante</legend>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                   <div class="col-md-8">
-                    <h5 class="font-weight-bold">Nombre:</h5><h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
-                    <h5 class="font-weight-bold">Carrera:</h5><h4>{{estudiante.carrer}}</h4>
-                    <h5 class="font-weight-bold">Fecha Nacimiento: </h5><h4>{{estudiante.fechaNac}}</h4>
-                    <h5 class="font-weight-bold">Género: </h5><h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
-                    <h5 class="font-weight-bold">Codigo de Carnet: </h5><h4>{{estudiante.codCarnet}}</h4>
-                    <h5 class="font-weight-bold">Dirección: </h5><h4>{{estudiante.direccion}}</h4>
-                  </div>
-                  <div class="col-md-4">
-                    <template v-if="estudiante.foto_name == ''">
-                      <img v-if="estudiante.genero == 'M'" class="text-center img-fluid" :src="'images/avatarM.png'" alt="">
-                      <img v-else class="text-center img-fluid" :src="'images/avatarF.png'" alt="">
-                    </template>
-                    <template v-else>
-                      <img class="text-center img-fluid" :src="rutaIMG" alt="">
-                    </template>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-        <div class="modal-footer">
-          <div class="row">
-            <div class="col-md-12">
-              <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
   </div>
-  <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
-</div>
 </div>
 </div>
 </div>
@@ -511,15 +511,15 @@ export default {
     },
     aprobarProy(estudiante_id,proyecto_id){
       swal({
-        title: "Seguro de Aceptar este proyecto?",
+        title: "Seguro de Aceptar Esta Solicitud?",
         type: "info",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(result => {
@@ -557,8 +557,8 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(result => {
@@ -589,15 +589,15 @@ export default {
     },
     rechazarProy(estudiante_id,proyecto_id){
      swal({
-      title: "Seguro de Rechazar este proyecto?",
+      title: "Seguro de Rechazar Preincripcion?",
       type: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Aceptar!",
       cancelButtonText: "Cancelar",
-      confirmButtonClass: "btn update",
-      cancelButtonClass: "btn edit",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
       buttonsStyling: false,
       reverseButtons: true
     }).then(result => {

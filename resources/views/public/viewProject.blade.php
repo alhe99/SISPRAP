@@ -24,7 +24,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="busines" role="tabpanel">
-                                    <p class="text-capitalize"><strong style="font-weight:bold;">Nombre del Proyecto:</strong> {{$proyecto->nombre}}</p>
+                                    <p class="text-capitalize"><strong style="font-weight:bold;">Nombre del Proyecto: </strong> {{ strtoupper($proyecto->nombre)}}</p>
                                     <p><strong style="font-weight:bold;">Actividades a realizar:</strong> {!! $proyecto->actividades
                                         !!}
                                     </p>
@@ -83,8 +83,8 @@
         },
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
-               const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-               swal({
+             const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+             swal({
                 title: 'Esta seguro de Preinscribirte a este proyecto?',
                 text: "Una vez hecho espera la respuesta del administrador!",
                 type: 'warning',

@@ -102996,15 +102996,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       swal({
-        title: "Seguro de Aceptar este proyecto?",
+        title: "Seguro de Aceptar Esta Solicitud?",
         type: "info",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
@@ -103034,8 +103034,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
@@ -103058,15 +103058,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       swal({
-        title: "Seguro de Rechazar este proyecto?",
+        title: "Seguro de Rechazar Preincripcion?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Aceptar!",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
@@ -103793,7 +103793,7 @@ var render = function() {
                                 _c(
                                   "button",
                                   {
-                                    staticClass: "button blue ",
+                                    staticClass: "button secondary ",
                                     attrs: {
                                       type: "button",
                                       "data-toggle": "tooltip",
@@ -104501,6 +104501,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -104925,6 +104927,11 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass: "button secondary ",
+                                    class: [
+                                      item.pago_arancel.length != 0
+                                        ? "disabled"
+                                        : ""
+                                    ],
                                     attrs: {
                                       type: "button",
                                       disabled: item.pago_arancel.length != 0,
@@ -113580,7 +113587,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -114073,7 +114080,9 @@ var render = function() {
                                   [
                                     _c("h4", [
                                       item.gestion_proyecto[0].constancia_entreg
-                                        .length > 0
+                                        .length != 0 &&
+                                      item.gestion_proyecto[0].constancia_entreg
+                                        .length != undefined
                                         ? _c(
                                             "span",
                                             {
@@ -114443,9 +114452,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -114710,61 +114716,49 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-5 col-sm-12 col-lg-5" }, [
-            _c(
-              "div",
-              { staticClass: "form-group row" },
-              [
-                _c("mdc-textfield", {
-                  staticClass: "col-md-12",
-                  attrs: { type: "text", label: "Nombre del sector" },
-                  on: {
-                    keyup: function($event) {
-                      _vm.listarSectores(1, _vm.buscar)
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-11 " }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group row" },
+                  [
+                    _c("mdc-textfield", {
+                      staticClass: "col-md-12",
+                      attrs: { type: "text", label: "Nombre del sector" },
+                      on: {
+                        keyup: function($event) {
+                          _vm.listarSectores(1, _vm.buscar)
+                        }
+                      },
+                      model: {
+                        value: _vm.buscar,
+                        callback: function($$v) {
+                          _vm.buscar = $$v
+                        },
+                        expression: "buscar"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-1 text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button secondary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.abrirModal("sector", "registrar")
+                      }
                     }
                   },
-                  model: {
-                    value: _vm.buscar,
-                    callback: function($$v) {
-                      _vm.buscar = $$v
-                    },
-                    expression: "buscar"
-                  }
-                })
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-1 col-sm-1 col-lg-1 text-center" }, [
-            _c("div", { staticClass: "btn-group pull-xs-right" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "dropdown-menu dropdown-menu-right",
-                  attrs: { "aria-labelledby": "mw2" }
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "dropdown-item d-block menu",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.abrirModal("sector", "registrar")
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "mdi mdi-plus-box" }),
-                      _vm._v(" Registrar Nuevo Sector")
-                    ]
-                  )
-                ]
-              )
+                  [_c("i", { staticClass: "mdi mdi-plus-box" })]
+                )
+              ])
             ])
           ])
         ])
@@ -114786,7 +114780,7 @@ var render = function() {
               attrs: { id: "myTable" }
             },
             [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -114796,11 +114790,11 @@ var render = function() {
                       domProps: { textContent: _vm._s(sectores.sector) }
                     }),
                     _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
+                    _c("td", { staticClass: "text-right" }, [
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary ",
+                          staticClass: "button secondary",
                           attrs: {
                             type: "button",
                             "data-toggle": "tooltip",
@@ -114822,7 +114816,7 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary ",
+                          staticClass: "button red",
                           attrs: {
                             type: "button",
                             "data-toggle": "tooltip",
@@ -115059,9 +115053,10 @@ var render = function() {
                         "button",
                         {
                           staticClass: "button blue",
+                          class: [_vm.sector == "" ? "disabled" : ""],
                           attrs: {
-                            type: "button",
-                            disabled: _vm.validate == true,
+                            type: "button secondary",
+                            disabled: _vm.sector == "",
                             dense: ""
                           },
                           on: { click: _vm.registrarSector }
@@ -115123,30 +115118,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6 col-sm-12 col-lg-6  " }, [
-      _c("h3", { staticClass: " align-baseline font-weight-bold" }, [
+      _c("h2", { staticClass: " align-baseline font-weight-bold" }, [
         _vm._v("Listado de sectores de instituciones")
-      ])
+      ]),
+      _c("br")
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn bmd-btn-icon dropdown-toggle",
-        attrs: {
-          type: "button",
-          id: "mw2",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false",
-          title: "Más opciones"
-        }
-      },
-      [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
-    )
   },
   function() {
     var _vm = this
@@ -115156,7 +115132,14 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre de sector")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+        _c(
+          "th",
+          {
+            staticClass: "text-right",
+            staticStyle: { "padding-right": "35px" }
+          },
+          [_vm._v("Acciones")]
+        )
       ])
     ])
   }

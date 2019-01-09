@@ -373,12 +373,9 @@ public function getPreregistrationByProject(Request $request)
 
 public function getPreregisterProjects($estudent_id,$process_id){
 
-    $proyectos = Proyecto::with(['institucion', 'tipoProceso','preRegistration'])
-    ->whereHas('tipoProceso', function ($query) use ($process_id) {
+    $proyectos = Estudiante::whereHas('proceso', function ($query) use ($process_id) {
         $query->where('proceso_id', $process_id);
-    }) ->whereHas('preRegistration', function ($query) use ($estudent_id) {
-        $query->where('estudiante_id', $estudent_id)->where('preinscripciones_proyectos.estado','!=','F');
-    })->paginate(5);
+    })->find($estudent_id)->preinscripciones()->paginate(5);
 
     return view('public.myProjects', compact("proyectos"));
 }
@@ -413,10 +410,14 @@ public function aceptarPreregistration(Request $request){
 
    }
    else{
+
         $query =  DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->estudent_id)->where('proyecto_id',$request->project_id)->update(array('estado' => 'A'));
 
         if($query){
-            DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->estudent_id)->where('estado','P')->delete();
+            DB::table('preinscripciones_proyectos')->where([
+                ['estudiante_id', $request->estudent_id],
+                ['estado','P']
+            ])->orWhere('estado','R')->delete();
         }
 
         $p = Proyecto::findOrFail($request->project_id);

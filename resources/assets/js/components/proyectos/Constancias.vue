@@ -68,17 +68,17 @@
                     <td class="text-center">
                         <template>
                              <h4>
-                               <span v-if="item.gestion_proyecto[0].constancia_entreg.length > 0" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
+                               <span v-if="item.gestion_proyecto[0].constancia_entreg.length != 0 && item.gestion_proyecto[0].constancia_entreg.length != undefined " class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
                                <span v-else class="badge badge-pill badge-danger">No Entregada</span>
                             </h4>
                        </template>
-                     </td> 
+                     </td>
                     <td class="text-center">
                       <button type="button" style="cursor:pointer;" @click="saveDoc(item.id,proceso)" class="button blue" data-toggle="tooltip" title="Generar Constancia"><i class="mdi mdi-file-document-box i-crud"></i></button>
                   </td>
-                </tr> 
+                </tr>
               </tbody>
-            </table> 
+            </table>
            <nav>
               <ul class="pagination" >
                 <li class="page-item" v-if="pagination.current_page > 1">
@@ -91,11 +91,11 @@
                     <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
                   </li>
                   <small v-show="arrayStudents.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayStudents.length + ' de ' + pagination.total + ' registros)'"></small>
-                </ul> 
-              </nav> 
+                </ul>
+              </nav>
               <div v-if="arrayStudents.length == 0" class="alert alert-warning" role="alert">
                 <h4 class="font-weight-bold text-center">No hay registros disponibles</h4>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ export default {
         this.carrera_selected = 0;
       },
       carrera_selected: function(){
-          this.getGestionProy(this.carrera_selected.value,this.proceso,1,"")   
+          this.getGestionProy(this.carrera_selected.value,this.proceso,1,"")
       },
       gpObj:function(){
         if(this.gpObj.documentos_entrega.length == 4){
@@ -177,7 +177,7 @@ export default {
           }
           return pagesArray;
       },
-    }, 
+    },
     methods:{
     getCarreras() {
         let me = this;
@@ -204,7 +204,7 @@ export default {
             me.arrayStudents = respuesta.gp.data;
             me.pagination = respuesta.pagination;
             me.loadSpinner = 0;
-            
+
             })
             .catch(function(error) {
             console.log(error);
@@ -215,7 +215,7 @@ export default {
             let me = this;
             me.pagination.current_page = page;
             if (me.arrayStudents.length > 0) {
-                me.getGestionProy(me.carrera_selected.value,me.proceso,page,"");  
+                me.getGestionProy(me.carrera_selected.value,me.proceso,page,"");
             }
         },
     downloadPdfFromBase64(base64){
@@ -244,16 +244,16 @@ export default {
         if (result.value) {
          var url = route('getConstancia', {"estudianteId": gp_id,"procesoId": procesoId});
          window.open(url);
-         
-         me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");  
+
+         me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
         } else if (
           result.dismiss === swal.DismissReason.cancel
-           
+
         ) {
-           me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");  
+           me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
         }
-         me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");  
-      }); 
+         me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
+      });
     },
     mounted(){}
     },
@@ -275,7 +275,7 @@ export default {
   -o-transition: 0.3s;
   transition: 0.3s;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  border: none; 
+  border: none;
   font-size: 15px;
   text-align: center;
 }

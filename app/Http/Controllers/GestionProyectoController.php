@@ -104,9 +104,11 @@ class GestionProyectoController extends Controller
                 $perfil = PDF::loadView('public.reportes.llenarPerfil',['data'=>$collection])->setOption('footer-center', '');
                 // $controlAsistencia = PDF::loadView('public.reportes.controlasistencia',['data'=>$collection])->setOption('footer-center', '');
                 //$controlProyecto = PDF::loadView('public.reportes.controlproyecto',['data'=>$collection])->setOption('footer-center', '');
-               DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->student_id)->where('estado', 'F')->delete();
+               // DB::table('preinscripciones_proyectos')->where([
+               //  ['estudiante_id', $request->student_id],
+               //  ['estado', 'F']])->delete();
 
-                DB::commit();
+                // DB::commit();
                 if ($proceso == 1) {
                    $perfil->save(public_path('docs/perfil_ss/'.$carnet.'-SS.pdf'));
                    // $controlAsistencia->save(public_path('docs/perfil_ss/'.$carnet.'-SS-CA.pdf'));

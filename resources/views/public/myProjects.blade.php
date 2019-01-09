@@ -29,57 +29,51 @@
                     <thead>
                         <tr>
                             <th scope="row" class="text-center">No</th>
-                            <th class="th-lg text-center"><a>Proyecto</a></th>
-                            <th class="th-lg text-center">Descripción</a>
-                            </th>
-                            <th class="th-lg text-center">Fecha de preinscripción</a>
-                            </th>
-                            <th class="th-lg text-center">Estado</a>
-                            </th>
-                            <th class="th-lg text-center">Opciones</a>
-                            </th>
+                            <th class="th-lg text-center">Proyecto</th>
+                            <th class="th-lg text-center">Fecha de preinscripción</th>
+                            <th class="th-lg text-center">Estado</th>
+                            <th class="th-lg text-center">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($proyectos as $mp)
+                        @foreach ($proyectos as $preinscripcion)
                         <tr>
-                            <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                            <td class="text-capitalize">{{strtolower($mp->nombre)}}</td>
-                            <td class="text-center truncate">{!!$mp->actividades !!}</td>
-                            <td class="text-center">{{substr($mp->preRegistration[0]->pivot->created_at,0,10)}}</td>
-                            @if ($mp->preRegistration[0]->pivot->estado == "P")
-                              <td class="text-center"><h2 class="badge badge-primary">Preinscrito</h2></td>
-                            @elseif($mp->preRegistration[0]->pivot->estado == "A")
-                                <td class="text-center"><h2 class="badge badge-success">Aprobado</h2></td>
-                            @elseif($mp->preRegistration[0]->pivot->estado == "R")
-                            <td class="text-center"><h2 class="badge badge-danger">Rechazado</h2></td>
+                          <th scope="row" class="text-center">{{$loop->iteration}}</th>
+                          <td class="text-capitalize">{{strtolower($preinscripcion->nombre)}}</td>
+                          <td class="text-center">{{substr($preinscripcion->pivot->created_at,0,10)}}</td>
+                          @if ($preinscripcion->pivot->estado == "P")
+                          <td class="text-center"><h3 class="badge badge-primary">Preinscrito</h3></td>
+                          @elseif($preinscripcion->pivot->estado == "A" or $preinscripcion->pivot->estado == "F")
+                          <td class="text-center"><h3 class="badge badge-success">Aprobado</h3></td>
+                          @elseif($preinscripcion->pivot->estado == "R")
+                          <td class="text-center"><h3 class="badge badge-danger">Rechazado</h3></td>
+                          @endif
+                          <td class="text-center">
+                            <a href="{{route('viewProject', array($preinscripcion->proceso_id,$preinscripcion->slug))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información del proyecto"><i class="fas fa-plus-circle"></i></a>
+                            @if ($preinscripcion->pivot->estado != "A" && $preinscripcion->pivot->estado != "R" && $preinscripcion->pivot->estado != "F"  )
+                            <a href="#" @click.prevent="resetPreRegistration('{{Auth::user()->estudiante->id}}','{{$preinscripcion->id}}','{{session('process_id')}}')"
+                                class="btn btn-success" title="Eliminar"><i class="fas fa-trash"></i>
+                            </a>
                             @endif
-                            <td class="text-center">
-                                <a href="{{route('viewProject', array($mp->proceso_id,$mp->slug))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información"><i class="fas fa-plus-circle"></i></a>
-                                @if ($mp->preRegistration[0]->pivot->estado != "A" )
-                                    <a href="#" @click.prevent="resetPreRegistration('{{Auth::user()->estudiante->id}}','{{$mp->id}}','{{session('process_id')}}')"
-                                    class="btn btn-success" title="Eliminar"><i class="fas fa-trash"></i>
-                                </a>
-                                @endif
 
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-            </div>
-        </div>
-        <br>
-        <div class="col-md-12">
-            <a href="{{ route('public') }}" class="btn btn-secondary text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i> Ir a inicio</a>
-        </div>
-        <div class="d-flex justify-content-center">
-            {!! $proyectos->links() !!}
         </div>
     </div>
+    <br>
+    <div class="col-md-12">
+        <a href="{{ route('public') }}" class="btn btn-secondary text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i> Ir a inicio</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        {!! $proyectos->links() !!}
+    </div>
+</div>
 
-    @endif
+@endif
 </div>
 @endsection
 
