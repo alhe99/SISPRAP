@@ -176,7 +176,7 @@ aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Desacarga tus documentos</h5>
+				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Descargar documentos asociados a tu proceso</h5>
 				<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -202,9 +202,18 @@ aria-hidden="true">
 										<div class="card-header">
 											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
+										@if (Auth::user()->estudiante->proceso_actual == 'I')
 										<div class="card-body">
-											<a {{ session('permitir_download') == false ? 'disabled' : '' }} href="{{ route('downloadPerfil') }} " class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
+											<a href="{{route('downloadDocs',array("procesoId" => session('process_id'),
+											"codCarnet" => Auth::user()->estudiante->codCarnet,
+											"tipoDoc"=>'P')) }}"
+											class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
 										</div>
+										@elseif (session('downloadDocs') == false)
+										<div class="card-body">
+											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+										</div>
+										@endif
 									</div>
 								</div>
 								<div class="tab-pane fade" id="startup" role="tabpanel" >
@@ -212,9 +221,17 @@ aria-hidden="true">
 										<div class="card-header">
 											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
+										@if (Auth::user()->estudiante->proceso_actual == 'I')
 										<div class="card-body">
-											<a href="{{ route('downloadCP') }} " class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
+											<a href="{{route('downloadDocs',array("procesoId" => session('process_id'),
+											"codCarnet" => Auth::user()->estudiante->codCarnet,
+											"tipoDoc"=>'CP')) }}" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
 										</div>
+										@elseif (session('downloadDocs') == false)
+										<div class="card-body">
+											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+										</div>
+										@endif
 									</div>
 								</div>
 								<div  class="tab-pane fade" id="agency" role="tabpanel">
@@ -222,9 +239,17 @@ aria-hidden="true">
 										<div class="card-header">
 											<h6 class="card-title">Presiona en el botón para descargar</h6>
 										</div>
+										@if (Auth::user()->estudiante->proceso_actual == 'I')
 										<div class="card-body">
-											<a href="{{ route('downloadCA') }} " class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all " ></i>&nbsp;Descargar</a>
+											<a href="{{route('downloadDocs',array("procesoId" => session('process_id'),
+											"codCarnet" => Auth::user()->estudiante->codCarnet,
+											"tipoDoc"=>'CH')) }}" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
 										</div>
+										@elseif (session('downloadDocs') == false)
+										<div class="card-body">
+											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+										</div>
+										@endif
 									</div>
 								</div>
 							</div>

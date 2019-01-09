@@ -73,47 +73,7 @@ Route::get('/perfil_proy', function () {
     return view('public.perfilProject');
 })->name('show_perfil');
 
-Route::get('public/downloadPerfil',function(){
-
-    $proceso = Auth::user()->estudiante->proceso[0]->id;
-    $carnet = Auth::user()->estudiante->codCarnet;
-
-    if($proceso == 1)
-       $file= public_path('docs/perfil_ss/'.$carnet.'-SS.pdf');
-    else
-        $file= public_path('docs/perfil_pp/'.$carnet.'-PP.pdf');
-
-    return Response::download($file);
-
-})->name('downloadPerfil');
-
-Route::get('public/downloadCA',function(){
-
-    $proceso = Auth::user()->estudiante->proceso[0]->id;
-    $carnet = Auth::user()->estudiante->codCarnet;
-
-    if($proceso == 1)
-       $file= public_path('docs/perfil_ss/'.$carnet.'-SS-CA.pdf');
-    else
-        $file= public_path('docs/perfil_pp/'.$carnet.'-PP-CA.pdf');
-
-    return Response::download($file);
-
-})->name('downloadCA');
-
-Route::get('public/downloadCP',function(){
-
-    $proceso = Auth::user()->estudiante->proceso[0]->id;
-    $carnet = Auth::user()->estudiante->codCarnet;
-
-    if($proceso == 1)
-       $file= public_path('docs/perfil_ss/'.$carnet.'-SS-CP.pdf');
-    else
-        $file= public_path('docs/perfil_pp/'.$carnet.'-PP-CP.pdf');
-
-    return Response::download($file);
-
-})->name('downloadCP');
+Route::get('public/downloadDocs','GestionProyectoController@downloadDocs')->name('downloadDocs');
 
 //Notificaciones
 

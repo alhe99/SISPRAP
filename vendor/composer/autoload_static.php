@@ -109,6 +109,10 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
             'Intervention\\Image\\' => 19,
             'Illuminate\\' => 11,
         ),
+        'H' => 
+        array (
+            'Html2Text\\' => 10,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -329,6 +333,10 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Html2Text\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/soundasleep/html2text/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -517,6 +525,7 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'App\\Rol' => __DIR__ . '/../..' . '/app/Rol.php',
         'App\\SectorInstitucion' => __DIR__ . '/../..' . '/app/SectorInstitucion.php',
         'App\\SupervisionProyecto' => __DIR__ . '/../..' . '/app/SupervisionProyecto.php',
+        'App\\TextPainter' => __DIR__ . '/../..' . '/app/TextPainter.php',
         'App\\TipoBeca' => __DIR__ . '/../..' . '/app/TipoBeca.php',
         'App\\TipoProceso' => __DIR__ . '/../..' . '/app/TipoProceso.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
@@ -1433,6 +1442,8 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Html2Text\\Html2Text' => __DIR__ . '/..' . '/soundasleep/html2text/src/Html2Text.php',
+        'Html2Text\\Html2TextException' => __DIR__ . '/..' . '/soundasleep/html2text/src/Html2TextException.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',

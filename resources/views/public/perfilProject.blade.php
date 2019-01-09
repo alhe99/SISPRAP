@@ -296,7 +296,7 @@
                             showConfirmButton: true,
                             width: '350px',
                           }).then(function(result){
-                            window.location.href = route('proyects_now',[studen_id]);
+                            window.location.href = route('proyects_now',[me.studentId]);
                           });
 
                      }).catch(function(error) {
