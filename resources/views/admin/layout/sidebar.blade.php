@@ -7,8 +7,8 @@
             <div class="profile-img"> <img src="images/users/1.png" alt="user" /> </div>
             <!-- User profile text-->
             <div class="profile-text">
-                <a href="#" class="text-truncate" data-toggle="dropdown" role="button"
-                aria-haspopup="true" aria-expanded="true"><span class="dropdown-toggle u-dropdown" style="color: #B0BEC5;">
+                <a href="#" class="text-truncate dropdown-toggle u-dropdown" data-toggle="dropdown" role="button"
+                aria-haspopup="true" aria-expanded="true"><span class="" style="color: #B0BEC5;">
                     {{Auth::user()->nombre }}</span>
                 </a>
                 <div class="dropdown-menu" style="width:80%">
