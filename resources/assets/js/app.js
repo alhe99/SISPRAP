@@ -43,7 +43,9 @@ import VeeValidate, { Validator } from 'vee-validate';
 Vue.use(VeeValidate);
 Validator.localize('es', es);
 
-Vue.component('datables', require('datatables'));
+// import {RotateSquare2} from 'vue-loading-spinner';
+// Vue.use(RotateSquare2);
+
 Vue.component('pulse-loader', require('vue-spinner/src/PulseLoader.vue'));
 Vue.component('institucion', require('./components/instituciones/Institucion.vue'));
 Vue.component('publiproject', require('./components/proyectos/Publicacion.vue'));
@@ -80,23 +82,23 @@ const app = new Vue({
         axios.post(this.ruta + '/notification/get').then(function(response) {
            //console.log(response.data);
            me.notifications=response.data;
-        }).catch(function(error) {
-            console.log(error);
-        });
+       }).catch(function(error) {
+        console.log(error);
+    });
 
-        var userId = 0;
+       var userId = 0;
 
-        Echo.private('App.User.' + userId).notification((notification) => {
-            me.notifications.unshift(notification);
-            this.$toastr('add', {
-                title: 'Nueva Notificacion',
-                msg: 'Tienes una Nueva Preinscripción',
-                timeout: 5000,
-                position: 'toast-bottom-right',
-                type: 'success',
-                clickClose: true,
-                closeOnHover: false
-            });
+       Echo.private('App.User.' + userId).notification((notification) => {
+        me.notifications.unshift(notification);
+        this.$toastr('add', {
+            title: 'Nueva Notificacion',
+            msg: 'Tienes una Nueva Preinscripción',
+            timeout: 5000,
+            position: 'toast-bottom-right',
+            type: 'success',
+            clickClose: true,
+            closeOnHover: false
         });
-    }
+    });
+   }
 });

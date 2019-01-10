@@ -83,11 +83,12 @@
                       <div class="row">
                         <div class="col-md-12">
                           <label class="font-weight-bold">Seleccione Carrera*</label>
-                          <pulse-loader class="text-center" :loading="loadSpinner"</pulse-loader>
                           <v-select v-model="carrera_proy_ind" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
+                          <pulse-loader class="text-center" :loading="loader" ></pulse-loader>
                         </div>
                         <div class="col-md-12">
-                          <br><pulse-loader class="text-center" :loading="loader" ></pulse-loader>
+                          <br>
+
                         </div>
                         <div v-if="arrayEstudianteP.length != 0" class="col-md-10 col-sm-12 col-lg-6">
                           <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getEstudianteByCarrer(1,buscarP)"  label="Nombre del estudiante" v-model="buscarP"></mdc-textfield>
@@ -151,6 +152,7 @@
         <div class="row">
           <div class="col-md-6">
             <v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
+            <!-- <fade-loader :loading="true"></fade-loader> -->
           </div>
           <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
             <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
