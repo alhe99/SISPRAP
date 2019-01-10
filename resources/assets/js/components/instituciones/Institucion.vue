@@ -293,9 +293,9 @@
       <div class="modal-footer">
         <div class="row">
           <div class="col-md-12">
+            <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
             <button type="button" :disabled="validate == true" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Institución</button>
             <button type="button" :disabled="validate == true" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Institución</button>
-            <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
           </div>
         </div>
       </div>
@@ -459,8 +459,8 @@
                                                      <div class="modal-footer">
                                                       <div class="row">
                                                         <div class="col-md-12">
-                                                          <button type="button" class="button blue" @click="registrarSupervision()" dense>Registrar Supervisión</button>
                                                           <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
+                                                          <button type="button" class="button blue" @click="registrarSupervision()" dense>Registrar Supervisión</button>
                                                         </div>
                                                       </div>
                                                     </div>

@@ -119,7 +119,68 @@
     --}}
     <!-- End Bottom points-->
 </aside>
-<div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center text-white" id="exampleModalLongTitle">Actualiza tus datos</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <h4>Nombre</h4>
+                        <input type="text" class="form-control" name="" value="">
+                        <h6><span class="text-muted">Ingrese el nombre del usuario a actualizar</span></h6>
+                    </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-md-12">
+                     <h4>Usuario</h4>
+                     <input type="text" class="form-control" name="" value="">
+                     <h6><span class="text-muted">Ingrese el nombre del usuario</span></h6>
+                 </div>
+             </div>
+             <br>
+             <div class="row">
+                <div class="col-md-12">
+                    <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
+                        Cambiar contraseña
+                    </button>
+                    <div class="row">
+                        <div class="col-md-6" data-wow-delay=".1s">
+                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
+                                <h4>Contraseña</h4>
+                                <input type="text" class="form-control" name="hola" value="">
+                                <h6><span class="text-muted">Ingrese la nueva contraseña</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-wow-delay=".1s">
+                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
+                               <h4>Confirmar contraseña</h4>
+                               <input type="text" class="form-control" name="" value="">
+                               <h6><span class="text-muted">Confirme su contraseña</span></h6>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="modal-footer">
+         <div class="col-md-6 text-center">
+            <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{{-- <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
         <div class="modal-content">
             <div class="modal-header">
@@ -136,7 +197,7 @@
                      class="col-md-12"
                      label="Nombre"
                      helptext="(Ingrese el nombre del usuario a actualizar)"
-                     v-model="nombre"
+                     
                      ></mdc-textfield>
                  </div>
              </div>
@@ -190,5 +251,5 @@
     </div>
 </div>
 </div>
-</div>
+</div> --}}
 

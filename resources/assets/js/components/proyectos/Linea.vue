@@ -274,8 +274,8 @@
   <div class="modal-footer">
     <div class="row"> 
       <div class="col-md-12">
-        <mdc-button  @click="actualizarProyecto" dense>Actualizar Proyecto</mdc-button>
-        <button type="button" @click="cerrarModal()" class="btn btn-danger">Cancelar</button>
+        <button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+        <button  @click="actualizarProyecto" class="button blue" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto</button>
       </div>
     </div>
   </div>

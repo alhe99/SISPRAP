@@ -96669,6 +96669,23 @@ var render = function() {
                     _c("div", { staticClass: "modal-footer" }, [
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button red",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModal()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-close-box" }),
+                              _vm._v(" Cancelar")
+                            ]
+                          ),
+                          _vm._v(" "),
                           _vm.tipoAccion == 1
                             ? _c(
                                 "button",
@@ -96709,24 +96726,7 @@ var render = function() {
                                   _vm._v(" Actualizar Institución")
                                 ]
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "button red",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.cerrarModal()
-                                }
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "mdi mdi-close-box" }),
-                              _vm._v(" Cancelar")
-                            ]
-                          )
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -97873,6 +97873,30 @@ var render = function() {
                                                                   "button",
                                                                   {
                                                                     staticClass:
+                                                                      "button red",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.cerrarModalSuper()
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
                                                                       "button blue",
                                                                     attrs: {
                                                                       type:
@@ -97890,30 +97914,6 @@ var render = function() {
                                                                   [
                                                                     _vm._v(
                                                                       "Registrar Supervisión"
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "button",
-                                                                  {
-                                                                    staticClass:
-                                                                      "button red",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "button"
-                                                                    },
-                                                                    on: {
-                                                                      click: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.cerrarModalSuper()
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "Cancelar"
                                                                     )
                                                                   ]
                                                                 )
@@ -101389,35 +101389,37 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12" },
-                        [
-                          _c(
-                            "mdc-button",
-                            {
-                              attrs: { dense: "" },
-                              on: { click: _vm.actualizarProyecto }
-                            },
-                            [_vm._v("Actualizar Proyecto")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.cerrarModal()
-                                }
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button red",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.cerrarModal()
                               }
-                            },
-                            [_vm._v("Cancelar")]
-                          )
-                        ],
-                        1
-                      )
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "mdi mdi-close-box" }),
+                            _vm._v(" Cancelar")
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button blue",
+                            attrs: { dense: "" },
+                            on: { click: _vm.actualizarProyecto }
+                          },
+                          [
+                            _c("i", { staticClass: "mdi mdi-content-save" }),
+                            _vm._v(" Actualizar Proyecto")
+                          ]
+                        )
+                      ])
                     ])
                   ])
                 ])
@@ -101979,32 +101981,34 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
               _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12" },
-                  [
-                    _c(
-                      "mdc-button",
-                      { attrs: { dense: "" }, on: { click: _vm.permisos } },
-                      [_vm._v("Permisos")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.cerrarModal()
-                          }
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn red",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.cerrarModal()
                         }
-                      },
-                      [_vm._v("Cancelar")]
-                    )
-                  ],
-                  1
-                )
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-close-box" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn blue",
+                      attrs: { dense: "" },
+                      on: { click: _vm.permisos }
+                    },
+                    [_vm._v("Permisos")]
+                  )
+                ])
               ])
             ])
           ])
@@ -102114,30 +102118,30 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
               _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12" },
-                  [
-                    _c("mdc-button", { on: { click: _vm.saveRol } }, [
-                      _vm._v("Registrar Rol")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.cerrarModal2()
-                          }
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn red",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.cerrarModal2()
                         }
-                      },
-                      [_vm._v("Cancelar")]
-                    )
-                  ],
-                  1
-                )
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-close-box" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn blue", on: { click: _vm.saveRol } },
+                    [_vm._v("Registrar Rol")]
+                  )
+                ])
               ])
             ])
           ])
@@ -115190,6 +115194,23 @@ var render = function() {
             _c("div", { staticClass: "modal-footer" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button red",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.cerrarModal()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-close-box" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  ),
+                  _vm._v(" "),
                   _vm.tipoAccion == 1
                     ? _c(
                         "button",
@@ -115227,24 +115248,7 @@ var render = function() {
                           _vm._v(" Actualizar Sector")
                         ]
                       )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "button red",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.cerrarModal()
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "mdi mdi-close-box" }),
-                      _vm._v(" Cancelar")
-                    ]
-                  )
+                    : _vm._e()
                 ])
               ])
             ])

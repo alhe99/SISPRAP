@@ -58,8 +58,8 @@
   <div class="modal-footer">
     <div class="row"> 
       <div class="col-md-12">
-        <mdc-button  @click="permisos" dense>Permisos</mdc-button>
-        <button type="button" @click="cerrarModal()" class="btn btn-danger">Cancelar</button>
+        <button type="button" @click="cerrarModal()" class="btn red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+        <button  @click="permisos" class="btn blue" dense>Permisos</button>
       </div>
     </div>
   </div>
@@ -98,8 +98,8 @@
   <div class="modal-footer">
     <div class="row"> 
       <div class="col-md-12">
-        <mdc-button  @click="saveRol">Registrar Rol</mdc-button>
-        <button type="button" @click="cerrarModal2()" class="btn btn-danger">Cancelar</button>
+        <button type="button" @click="cerrarModal2()" class="btn red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+        <button  @click="saveRol" class="btn blue">Registrar Rol</button>
       </div>
     </div>
   </div>
