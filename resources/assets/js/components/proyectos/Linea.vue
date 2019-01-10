@@ -274,8 +274,8 @@
   <div class="modal-footer">
     <div class="row"> 
       <div class="col-md-12">
-        <mdc-button  @click="actualizarProyecto" dense>Actualizar Proyecto</mdc-button>
-        <button type="button" @click="cerrarModal()" class="btn btn-danger">Cancelar</button>
+        <button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+        <button  @click="actualizarProyecto" class="button blue" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto</button>
       </div>
     </div>
   </div>
@@ -426,6 +426,8 @@ export default {
 
   },
   methods: {
+
+    //limpiar la galeria de imagenes 
     clearGallery(){
         let me = this;
         const elem = me.$refs.imgUpload;
@@ -437,12 +439,15 @@ export default {
       this.image = "";
       this.addImage(file);
     },
+
+    //agregando una imagen
      addImage(file) {
             const img = new Image(),
                 reader = new FileReader();
             reader.onload = (e) => this.image = e.target.result;
             reader.readAsDataURL(file);
         },
+    //listado de proyectos por su proceso    
     listarProyecto(page, proceso, buscar) {
       let me = this;
       var url =
@@ -462,6 +467,8 @@ export default {
           console.log(error);
         });
     },
+
+    //listado de proyectos desactivados
     listarProyectoDes(page, proceso, buscar) {
       let me = this;
       var url ="/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -482,10 +489,8 @@ export default {
           console.log(error);
         });
     },
-    //CarrerasActividadesProy
 
-   
-    //fin..
+    //obtener carreras
     getCarreras() {
         let me = this;
         var url = "carreras/GetCarreras";
@@ -505,24 +510,7 @@ export default {
         this.arrayInstitucion = response.data;
       });
     },
-    //CarrerasActividadesProy
-    /*
-   getProyAct(id){
-      let me = this;
-      var url = 
-       "/proyecto/obtenerProyecto?id=" + id;
-      axios
-        .get(url)
-        .then(function(response) {
-          var respuesta = response.data;
-          me.arrayActividadesCarre = respuesta.actiCP.data;
-          me.searchEmpty();
-           })
-        .catch(function(error) {
-          console.log(error);
-        });
-   },*/
-    //fin..
+
     getInst() {
       axios.get("GetInst").then(response => {
         this.arrayInstitucion = response.data;

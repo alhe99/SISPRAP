@@ -79261,6 +79261,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      //declaracion de variables
       loadSpinner: 0,
       verCard: 1,
       institucion: [],
@@ -79321,6 +79322,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   computed: {
+    //paginacion
     isActived: function isActived() {
       return this.pagination.current_page;
     },
@@ -79365,11 +79367,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       return pagesArray;
     },
+    //verificar si no ha seleccionado un departamento
     watchDepa: function watchDepa() {
       if (this.departamento_id == null) {
         this.municipio_id = 0;
       }
     },
+
     validate: function validate() {
       if (this.nombre == "" || this.direccion == "" || this.departamento_id == 0 || this.municipio_id == 0 || this.sector_id == 0) {
         return true;
@@ -79413,6 +79417,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   },
   methods: {
+    //listado de instituciones por busqueda
     listarInstitucion: function listarInstitucion(page, proceso, buscar) {
       var me = this;
       var url = "/institucion?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -79430,6 +79435,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+    //listado de instituciones desactivadas
     listarInstitucionDes: function listarInstitucionDes(page, proceso, buscar) {
       var me = this;
       var url = "/institucion/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -79476,6 +79483,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.arrayDepartamentos = response.data;
       });
     },
+
+    //obtener todas las instituciones relacionadas a proyectos de SS o PP
     getProyectosInsti: function getProyectosInsti(id, page, buscar, proceso) {
       var me = this;
       var url = "/GetInstitucion?id=" + id + "&page=" + page + "&buscar=" + buscar + "&proceso=" + proceso;
@@ -81368,6 +81377,23 @@ var render = function() {
                     _c("div", { staticClass: "modal-footer" }, [
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button red",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModal()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-close-box" }),
+                              _vm._v(" Cancelar")
+                            ]
+                          ),
+                          _vm._v(" "),
                           _vm.tipoAccion == 1
                             ? _c(
                                 "button",
@@ -81408,24 +81434,7 @@ var render = function() {
                                   _vm._v(" Actualizar Institución")
                                 ]
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "button red",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.cerrarModal()
-                                }
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "mdi mdi-close-box" }),
-                              _vm._v(" Cancelar")
-                            ]
-                          )
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -82572,6 +82581,30 @@ var render = function() {
                                                                   "button",
                                                                   {
                                                                     staticClass:
+                                                                      "button red",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.cerrarModalSuper()
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
                                                                       "button blue",
                                                                     attrs: {
                                                                       type:
@@ -82589,30 +82622,6 @@ var render = function() {
                                                                   [
                                                                     _vm._v(
                                                                       "Registrar Supervisión"
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "button",
-                                                                  {
-                                                                    staticClass:
-                                                                      "button red",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "button"
-                                                                    },
-                                                                    on: {
-                                                                      click: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.cerrarModalSuper()
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "Cancelar"
                                                                     )
                                                                   ]
                                                                 )
@@ -83193,10 +83202,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+
+    //cambiar imagen
     changeImg: function changeImg(file) {
       this.image = "";
       this.addImage(file);
     },
+
+
+    //agregar imagen
     addImage: function addImage(file) {
       var _this = this;
 
@@ -83207,6 +83221,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
       reader.readAsDataURL(file);
     },
+
+
+    //limpiar galeria de imagenes
     clearGallery: function clearGallery() {
       var me = this;
       var elem = me.$refs.imgUpload;
@@ -83214,6 +83231,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.image = "";
       elem.reset();
     },
+
+
+    //validar si existe el nombre del proyecto
     validateIfExist: function validateIfExist(project) {
       var me = this;
       var url = "/proyecto/validatess/" + project;
@@ -83227,6 +83247,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
     },
+
+
+    //obtener carreras
     getCarreras: function getCarreras() {
       var me = this;
       var url = "carreras/GetCarreras";
@@ -83238,6 +83261,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //obtener todas las instituciones
     getInstituciones: function getInstituciones() {
       var me = this;
       var url = "GetInstituciones/" + this.proceso;
@@ -83248,6 +83274,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //registrar proyecto
     saveProyect: function saveProyect() {
       var me = this;
       this.loadSpinner = 1;
@@ -83286,6 +83315,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.exist = false;
       }
     },
+
+
+    //agregar elementos al arreglo de actvidades del proceso de practica profesional
     agregarActivi: function agregarActivi() {
       this.indiceCarre = this.indiceCarre + 1;
       var tituloStep = this.$refs.titleC;
@@ -84558,6 +84590,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   },
   methods: (_methods = {
+
+    //limpiar la galeria de imagenes 
     clearGallery: function clearGallery() {
       var me = this;
       var elem = me.$refs.imgUpload;
@@ -84569,6 +84603,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.image = "";
       this.addImage(file);
     },
+
+
+    //agregando una imagen
     addImage: function addImage(file) {
       var _this = this;
 
@@ -84579,6 +84616,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       reader.readAsDataURL(file);
     },
+
+    //listado de proyectos por su proceso    
     listarProyecto: function listarProyecto(page, proceso, buscar) {
       var me = this;
       var url = "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -84594,6 +84633,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(error);
       });
     },
+
+
+    //listado de proyectos desactivados
     listarProyectoDes: function listarProyectoDes(page, proceso, buscar) {
       var me = this;
       var url = "/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -84614,10 +84656,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
 
-    //CarrerasActividadesProy
 
-
-    //fin..
+    //obtener carreras
     getCarreras: function getCarreras() {
       var me = this;
       var url = "carreras/GetCarreras";
@@ -86088,35 +86128,37 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12" },
-                        [
-                          _c(
-                            "mdc-button",
-                            {
-                              attrs: { dense: "" },
-                              on: { click: _vm.actualizarProyecto }
-                            },
-                            [_vm._v("Actualizar Proyecto")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.cerrarModal()
-                                }
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button red",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.cerrarModal()
                               }
-                            },
-                            [_vm._v("Cancelar")]
-                          )
-                        ],
-                        1
-                      )
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "mdi mdi-close-box" }),
+                            _vm._v(" Cancelar")
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button blue",
+                            attrs: { dense: "" },
+                            on: { click: _vm.actualizarProyecto }
+                          },
+                          [
+                            _c("i", { staticClass: "mdi mdi-content-save" }),
+                            _vm._v(" Actualizar Proyecto")
+                          ]
+                        )
+                      ])
                     ])
                   ])
                 ])
@@ -86678,32 +86720,34 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
               _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12" },
-                  [
-                    _c(
-                      "mdc-button",
-                      { attrs: { dense: "" }, on: { click: _vm.permisos } },
-                      [_vm._v("Permisos")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.cerrarModal()
-                          }
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn red",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.cerrarModal()
                         }
-                      },
-                      [_vm._v("Cancelar")]
-                    )
-                  ],
-                  1
-                )
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-close-box" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn blue",
+                      attrs: { dense: "" },
+                      on: { click: _vm.permisos }
+                    },
+                    [_vm._v("Permisos")]
+                  )
+                ])
               ])
             ])
           ])
@@ -86813,30 +86857,30 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
               _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12" },
-                  [
-                    _c("mdc-button", { on: { click: _vm.saveRol } }, [
-                      _vm._v("Registrar Rol")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.cerrarModal2()
-                          }
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn red",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.cerrarModal2()
                         }
-                      },
-                      [_vm._v("Cancelar")]
-                    )
-                  ],
-                  1
-                )
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-close-box" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn blue", on: { click: _vm.saveRol } },
+                    [_vm._v("Registrar Rol")]
+                  )
+                ])
               ])
             ])
           ])
@@ -87584,6 +87628,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+
+    //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
     getProyectos: function getProyectos() {
       var me = this;
       //
@@ -87601,6 +87647,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //obtener los estudiantes que se han presinscito a un proyecto por carrera
     getEstudianteByCarrer: function getEstudianteByCarrer(page) {
       var me = this;
       var url = "stundentByCarrer?page=" + page + "&carrera_id=" + me.carrera_proy_ind.value + "&proceso_id=" + me.proceso + "&buscar=" + me.buscarP;
@@ -87614,6 +87663,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //obtener todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
       var url = "carreras/GetCarreras";
@@ -87624,6 +87676,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //listado de los estudiantes preinscritos a un proyecto en especifico
     getPreregister: function getPreregister(proyecto_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
@@ -87637,6 +87692,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //abrir el modal de proyectos externos
     openModalProy: function openModalProy() {
       var el = document.body;
       el.classList.add("abrirModal");
@@ -87650,6 +87708,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.carrera_proy_ind = 0;
       this.arrayEstudianteP = [];
     },
+
+
+    //obtener informacion del estudiante
     getMoreInfo: function getMoreInfo(id) {
       var me = this;
       me.loadSpinner = 1;
@@ -87695,6 +87756,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.getEstudianteByCarrer(page, "");
       }
     },
+
+
+    //aprobar la preinscripción
     aprobarProy: function aprobarProy(estudiante_id, proyecto_id, proceso_actual) {
       var _this = this;
 
@@ -87734,6 +87798,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       }
     },
+
+
+    //aprobar que el estudiante ingrese un proyecto externo
     asignarProyecto: function asignarProyecto(dataId) {
       var _this2 = this;
 
@@ -87765,6 +87832,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         } else if (result.dismiss === swal.DismissReason.cancel) {}
       });
     },
+
+
+    //rechazar la preinscripcion del estudiante
     rechazarProy: function rechazarProy(estudiante_id, proyecto_id) {
       var _this3 = this;
 
@@ -88032,6 +88102,11 @@ var render = function() {
                                       { staticClass: "font-weight-bold" },
                                       [_vm._v("Seleccione Carrera*")]
                                     ),
+                                    _vm._v(" "),
+                                    _c("pulse-loader", {
+                                      staticClass: "text-center",
+                                      attrs: { loading: _vm.loadSpinner }
+                                    }),
                                     _vm._v(" "),
                                     _c("v-select", {
                                       attrs: {
@@ -89309,6 +89384,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+
+    //obtener todas las carreras 
     getCarreras: function getCarreras() {
       var me = this;
       var url = "carreras/GetCarreras";
@@ -89319,6 +89396,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //obtener el listado de estudiantes por proceso
     getAllStudens: function getAllStudens(carrera_id, proceso_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
@@ -89339,6 +89419,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.getAllStudens(this.carrera_selected.value, this.proceso, page, "");
       }
     },
+
+
+    //guardar cambios del pago de arancel, automaticamente cambio de estado a cancelado
     savePayArancel: function savePayArancel(no_fac, estudiante_id, tipobeca_id, proceso_id) {
       var _this = this;
 
@@ -89386,6 +89469,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //guardar los cambios del pago del arancel
     savePay: function savePay() {
       var nofact = this.no_fact;
       var estudiante_id = this.estudiante.id;
@@ -96577,6 +96663,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+
+    //obtener todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
       me.loadSpinner = 1;
@@ -96590,6 +96678,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.loadSpinner = 0;
       });
     },
+
+
+    //obtener los documentos
     getDocuments: function getDocuments() {
       var me = this;
       var url = "getDocuments";
@@ -96600,6 +96691,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //cancelar un proyecto que ya se ha iniciado
     deleteProy: function deleteProy(idGp) {
       var _this = this;
 
@@ -96677,6 +96771,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.hrsFinal = 0;
       //$(".gj-icon").click();
     },
+
+
+    //obtener proyectos iniciados por su proceso
     getGestionProy: function getGestionProy(carrera_id, proceso_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
@@ -96698,6 +96795,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, page, "");
       }
     },
+
+
+    //obtener mas informacion del estudiante seleccionado por su id
     getMoreInfo: function getMoreInfo(id) {
       var me = this;
       me.loadSpinner = 1;
@@ -96711,6 +96811,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+
+    //obtener mas informacion del proyecto ya en proceso
     getMoreInfoGp: function getMoreInfoGp(id) {
       var me = this;
       me.loadSpinner = 1;
@@ -98590,6 +98693,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+
+    //obtener todas las carreras registradas
     getCarreras: function getCarreras() {
       var me = this;
       me.loadSpinner = 1;
@@ -98603,6 +98708,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.loadSpinner = 0;
       });
     },
+
+
+    //listado de los estudiantes por carrera que han finalizado un proceso en especifico
     getGestionProy: function getGestionProy(carrera_id, proceso_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
@@ -98624,6 +98732,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.getGestionProy(me.carrera_selected.value, me.proceso, page, "");
       }
     },
+
+
+    //descargar el pdf de la constancia
     downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
       var a = document.createElement("a");
       var name = "Constancia " + new Date(Date.now()).toLocaleString();
@@ -99896,6 +100007,23 @@ var render = function() {
             _c("div", { staticClass: "modal-footer" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button red",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.cerrarModal()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-close-box" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  ),
+                  _vm._v(" "),
                   _vm.tipoAccion == 1
                     ? _c(
                         "button",
@@ -99933,24 +100061,7 @@ var render = function() {
                           _vm._v(" Actualizar Sector")
                         ]
                       )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "button red",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.cerrarModal()
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "mdi mdi-close-box" }),
-                      _vm._v(" Cancelar")
-                    ]
-                  )
+                    : _vm._e()
                 ])
               ])
             ])

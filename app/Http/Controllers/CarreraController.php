@@ -11,6 +11,7 @@ class CarreraController extends Controller
         $this->middleware('guestVerify');
         
     }
+    
     public function GetCarreras()
     {
         //if (!$request->ajax()) return redirect('/');

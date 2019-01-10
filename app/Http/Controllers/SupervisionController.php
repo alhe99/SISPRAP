@@ -21,6 +21,7 @@ class SupervisionController extends Controller
     {  
     }
     
+    //registrar supervisiones
     public function store(Request $request)
     {
             try{
@@ -46,6 +47,7 @@ class SupervisionController extends Controller
               }  
     }
 
+    //obtener las supervisiones 
     public function GetSupervision($id)
     {
         $s = Proyecto::findOrFail($id)->supervision;

@@ -293,9 +293,9 @@
       <div class="modal-footer">
         <div class="row">
           <div class="col-md-12">
+            <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
             <button type="button" :disabled="validate == true" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Institución</button>
             <button type="button" :disabled="validate == true" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Institución</button>
-            <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
           </div>
         </div>
       </div>
@@ -459,8 +459,8 @@
                                                      <div class="modal-footer">
                                                       <div class="row">
                                                         <div class="col-md-12">
-                                                          <button type="button" class="button blue" @click="registrarSupervision()" dense>Registrar Supervisión</button>
                                                           <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
+                                                          <button type="button" class="button blue" @click="registrarSupervision()" dense>Registrar Supervisión</button>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -496,6 +496,7 @@
               export default {
                 data() {
                   return {
+                    //declaracion de variables
                     loadSpinner: 0,
                     verCard: 1,
                     institucion: [],
@@ -555,6 +556,7 @@
                   };
                 },
                 computed: {
+                  //paginacion
                   isActived: function() {
                     return this.pagination.current_page;
                   },
@@ -599,11 +601,13 @@
                     }
                     return pagesArray;
                   },
+                  //verificar si no ha seleccionado un departamento
                   watchDepa: function() {
                     if (this.departamento_id == null) {
                       this.municipio_id = 0;
                     }
                   },
+                  
                   validate: function(){
                     if((this.nombre == "") || (this.direccion == "") || (this.departamento_id == 0) || (this.municipio_id == 0) || (this.sector_id == 0))
                     {
@@ -648,6 +652,7 @@
 
 },
 methods: {
+  //listado de instituciones por busqueda
   listarInstitucion(page, proceso, buscar) {
     let me = this;
     var url =
@@ -675,6 +680,7 @@ methods: {
      console.log(error);
    });
   },
+  //listado de instituciones desactivadas
   listarInstitucionDes(page, proceso, buscar) {
     let me = this;
     var url ="/institucion/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -727,6 +733,7 @@ methods: {
       this.arrayDepartamentos = response.data;
     });
   },
+  //obtener todas las instituciones relacionadas a proyectos de SS o PP
   getProyectosInsti(id, page, buscar, proceso) {
     let me = this;
     var url =

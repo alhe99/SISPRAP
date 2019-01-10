@@ -158,6 +158,8 @@ class GestionProyectoController extends Controller
       }
 
   }
+
+  //listado de los estudiantes que ya estan realizado su proyecto
   public function index(Request $request)
   {
         //if (!$request->ajax()) {

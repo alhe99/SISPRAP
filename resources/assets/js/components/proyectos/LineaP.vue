@@ -263,8 +263,8 @@
 						<div class="modal-footer">
 							<div class="row">
 								<div class="col-md-12">
-									<button type="button" class="button blue"  @click="actualizarProyecto"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto</button>
 									<button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+									<button type="button" class="button blue"  @click="actualizarProyecto"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto</button>
 								</div>
 							</div>
 						</div>

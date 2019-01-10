@@ -89,9 +89,9 @@
             <div class="modal-footer">
                 <div class="row">
                     <div class="col-md-12">
+                        <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
                         <button type="button secondary" :class="[sector == '' ? 'disabled' : '']"  :disabled="sector == ''" v-if="tipoAccion==1" class="button blue" @click="registrarSector" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Sector</button>
                         <button type="button" :disabled="validate == true" v-if="tipoAccion==2" class="button blue" @click="actualizarSector" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Sector</button>
-                        <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
                     </div>
                 </div>
             </div>

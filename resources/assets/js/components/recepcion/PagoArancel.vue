@@ -247,6 +247,8 @@
       },
     },
     methods:{
+
+     //obtener todas las carreras 
      getCarreras() {
       let me = this;
       var url = "carreras/GetCarreras";
@@ -260,6 +262,8 @@
         console.log(error);
       });
     },
+
+    //obtener el listado de estudiantes por proceso
     getAllStudens(carrera_id,proceso_id,page,buscar) {
       let me = this;
       me.loadSpinner = 1;
@@ -282,6 +286,8 @@
         me.getAllStudens(this.carrera_selected.value,this.proceso,page,"");
       }
     },
+
+    //guardar cambios del pago de arancel, automaticamente cambio de estado a cancelado
     savePayArancel(no_fac,estudiante_id,tipobeca_id,proceso_id) {
       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
       swal({
@@ -327,6 +333,8 @@
         }
       });
     },
+
+    
     getBecas() {
       let me = this;
       var url = "/becas/getAll";
@@ -340,6 +348,8 @@
         console.log(error);
       });
     },
+
+    //guardar los cambios del pago del arancel
     savePay(){
       var nofact = this.no_fact;
       var estudiante_id = this.estudiante.id;
