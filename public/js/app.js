@@ -114603,6 +114603,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loadSpinner: 0,
             arraySector: [],
             sector: "",
+            sectorUpd: "",
             buscar: "",
             message: 0,
             search: 0,
@@ -114710,7 +114711,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
                 console.log(respuesta);
-                if (respuesta == 'existe') {
+                if (me.sector != me.sectorUpd && respuesta == 'existe') {
                     swal({
                         position: "center",
                         type: "warning",
@@ -114718,7 +114719,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         showConfirmButton: true,
                         timer: 5000
                     });
-                    me.nombre = "";
+                    me.sector = "";
                     me.loadSpinner = 0;
                     me.exist = false;
                 } else {
@@ -114777,6 +114778,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.sector_id = data["id"];
                                     this.sectores = data["id"];
                                     this.sector = data["sector"];
+                                    this.sectorUpd = data["sector"];
                                     break;
                                 }
                         }
@@ -114791,6 +114793,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.tipoAccion = 0;
             this.sector = "";
             this.sector_id = 0;
+            this.sectorUpd = "";
         },
         cambiarPagina: function cambiarPagina(page, buscar) {
             var me = this;
