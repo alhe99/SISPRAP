@@ -109,6 +109,7 @@ export default {
             loadSpinner: 0,
             arraySector: [],
             sector: "",
+            sectorUpd: "",
             buscar: "",
             message: 0,
             search: 0,
@@ -229,7 +230,7 @@ export default {
         axios.get(url).then(function(response) {
             var respuesta = response.data;
             console.log(respuesta);
-            if(respuesta == 'existe'){
+             if((me.sector != me.sectorUpd) && (respuesta == 'existe')){
                 swal({
                     position: "center",
                     type: "warning",
@@ -237,7 +238,7 @@ export default {
                     showConfirmButton: true,
                     timer: 5000
                 });
-                me.nombre = "";
+                me.sector = "";
                 me.loadSpinner = 0;
                 me.exist = false;
             }else {
@@ -294,6 +295,7 @@ export default {
                 this.sector_id = data["id"];
                 this.sectores = data["id"];
                 this.sector = data["sector"];
+                this.sectorUpd = data["sector"];
                 break;
             }
         }
@@ -308,6 +310,7 @@ cerrarModal() {
     this.tipoAccion = 0;
     this.sector = "";
     this.sector_id = 0;
+    this.sectorUpd = "";
 },
 cambiarPagina(page, buscar) {
     let me = this;
