@@ -103402,6 +103402,11 @@ var render = function() {
                                       [_vm._v("Seleccione Carrera*")]
                                     ),
                                     _vm._v(" "),
+                                    _c("pulse-loader", {
+                                      staticClass: "text-center",
+                                      attrs: { loading: _vm.loadSpinner }
+                                    }),
+                                    _vm._v(" "),
                                     _c("v-select", {
                                       attrs: {
                                         options: _vm.arrayCarreras,
