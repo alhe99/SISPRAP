@@ -1,87 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
-    @if (Auth::user()->rol_id == 1)
-    <title>SISPRAP || Admin</title>
-    @elseif(Auth::user()->rol_id == 2)
-    <title>SISPRAP || Recepción</title>
-    @endif
-    <!-- Bootstrap Core CSS -->
-    <link href="css/admintemplate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/table.css" rel="stylesheet">
-    <link href="css/radioBtn.css" rel="stylesheet">
-    <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">
-    <link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Id for Channel Notification -->
-    <meta name="userId" content="0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Favicon icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
+  @if (Auth::user()->rol_id == 1)
+  <title>SISPRAP || Admin</title>
+  @elseif(Auth::user()->rol_id == 2)
+  <title>SISPRAP || Recepción</title>
+  @endif
+  <!-- Bootstrap Core CSS -->
+  <link href="css/admintemplate.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/table.css" rel="stylesheet">
+  <link href="css/radioBtn.css" rel="stylesheet">
+  <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">
+  <link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- Id for Channel Notification -->
+  <meta name="userId" content="0">
 </head>
 
 <body class="fix-header fix-sidebar card-no-border ">
-    @routes
-    <div id="app">
-        <div class="preloader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-            </div>
-            <div id="main-wrapper">
+  @routes
+  <div id="app">
+    <div class="preloader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+      </div>
+      <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+          <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <!-- ============================================================== -->
+            <!-- Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-header">
+              <a class="navbar-brand">
+                <!-- Logo icon --><b>
+                  <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="dark-logo" />
+                  <!-- Light Logo icon -->
+                  <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="light-logo" />
+                </b>
+                <!-- Logo text --><span>
+                 <!-- dark Logo text -->
+                 <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
+                 <!-- Light Logo text -->
+                 <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
+               </a>
+             </div>
+             <!-- ============================================================== -->
+             <!-- End Logo -->
+             <!-- ============================================================== -->
+             <div class="navbar-collapse">
+              <!-- ============================================================== -->
+              <!-- toggle and nav items -->
+              <!-- ============================================================== -->
+              <ul class="navbar-nav mr-auto mt-md-0">
+                <!-- This is  -->
+                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                 <!-- ============================================================== -->
-                <!-- Topbar header - style you can find in pages.scss -->
+              </ul>
+              <!-- ============================================================== -->
+              <!-- User profile and search -->
+              <!-- ============================================================== -->
+              <ul class="navbar-nav my-lg-0">
                 <!-- ============================================================== -->
-                <header class="topbar">
-                    <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                        <!-- ============================================================== -->
-                        <!-- Logo -->
-                        <!-- ============================================================== -->
-                        <div class="navbar-header">
-                            <a class="navbar-brand">
-                                <!-- Logo icon --><b>
-                                    <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="dark-logo" />
-                                    <!-- Light Logo icon -->
-                                    <img src="images/logoITCHAL.png" style="cursor:pointer" @click="menu=0" height="50" alt="homepage" class="light-logo" />
-                                </b>
-                                <!-- Logo text --><span>
-                                   <!-- dark Logo text -->
-                                   <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" alt="homepage" class="dark-logo" />
-                                   <!-- Light Logo text -->
-                                   <img src="images/ITCHA.png" style="cursor:pointer" @click="menu=0" height="25" class="light-logo" alt="homepage" /></span>
-                               </a>
-                           </div>
-                           <!-- ============================================================== -->
-                           <!-- End Logo -->
-                           <!-- ============================================================== -->
-                           <div class="navbar-collapse">
-                            <!-- ============================================================== -->
-                            <!-- toggle and nav items -->
-                            <!-- ============================================================== -->
-                            <ul class="navbar-nav mr-auto mt-md-0">
-                                <!-- This is  -->
-                                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                                <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                                <!-- ============================================================== -->
-                            </ul>
-                            <!-- ============================================================== -->
-                            <!-- User profile and search -->
-                            <!-- ============================================================== -->
-                            <ul class="navbar-nav my-lg-0">
-                                <!-- ============================================================== -->
-                                <!-- Comment -->
-                                @if (Auth::user()->rol_id == 1)
-                                <!-- ============================================================== -->
-                                <notification :notifications="notifications"></notification>
-                                <!-- ============================================================== -->
-                                <!-- End Comment -->
-                                <!-- ============================================================== -->
-                                <!-- ============================================================== -->
-                                <!-- Messages -->
+                <!-- Comment -->
+                @if (Auth::user()->rol_id == 1)
+                <!-- ============================================================== -->
+                <notification :notifications="notifications"></notification>
+                <!-- ============================================================== -->
+                <!-- End Comment -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Messages -->
                         <!-- ==============================================================
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
@@ -134,25 +134,25 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            @if (Auth::user()->rol_id == 1)
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/1.png" alt="user" class="profile-pic" /></a>
-                            @elseif(Auth::user()->rol_id == 2)
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/recep.png" alt="user" class="profile-pic" /></a>
-                            @endif
-                            <div class="dropdown-menu dropdown-menu-right scale-up">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box text-center">
-                                         @if (Auth::user()->rol_id == 1)
-                                         <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
-                                         @elseif(Auth::user()->rol_id == 2)
-                                         <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
-                                         @endif
-                                         <div class="u-text text-center ">
-                                           <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
-                                       </div>
-                                   </li>
-                                   <li role="separator" class="divider"></li>
+                          @if (Auth::user()->rol_id == 1)
+                          <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/1.png" alt="user" class="profile-pic" /></a>
+                          @elseif(Auth::user()->rol_id == 2)
+                          <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/recep.png" alt="user" class="profile-pic" /></a>
+                          @endif
+                          <div class="dropdown-menu dropdown-menu-right scale-up">
+                            <ul class="dropdown-user">
+                              <li>
+                                <div class="dw-user-box text-center">
+                                 @if (Auth::user()->rol_id == 1)
+                                 <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
+                                 @elseif(Auth::user()->rol_id == 2)
+                                 <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
+                                 @endif
+                                 <div class="u-text text-center ">
+                                   <h4 class="text-center text-primary"><em>{{Auth::user()->nombre}}</em></h4>
+                                 </div>
+                               </li>
+                               <li role="separator" class="divider"></li>
                                    {{-- <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
@@ -169,127 +169,127 @@
                                    <li role="separator" class="divider"></li>
                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                                    </i> Cerrar sesion</a>
-                               </li>
-                           </ul>
+                                 </li>
+                               </ul>
+                             </div>
+                           </li>
+                         </ul>
                        </div>
-                   </li>
-               </ul>
-           </div>
-       </nav>
-   </header>
-   <div class="modal" id="exampleModal3" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title text-center text-white" id="exampleModalLongTitle">Actualiza tus datos</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row ">
-                    <div class="col-md-12">
-                        <h4>Nombre</h4>
-                        <input type="text" class="form-control" name="" value="">
-                        <span class="text-muted">Ingrese el nombre del usuario a actualizar</span>
-                    </div>
-                </div>
-                <br>
-                <div class="row ">
-                    <div class="col-md-12">
-                     <h4>Usuario</h4>
-                     <input type="text" class="form-control" name="" value="">
-                     <span class="text-muted">Ingrese el nombre del usuario</span>
-                 </div>
-             </div>
-             <br>
-             <div class="row">
-                <div class="col-md-12">
-                    <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
-                        Cambiar contraseña
-                    </button>
-                    <div class="row">
-                        <div class="col-md-6" data-wow-delay=".1s">
-                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
-                                <h4>Contraseña</h4>
-                                <input type="text" class="form-control" name="hola" value="">
-                                <span class="text-muted">Ingrese la nueva contraseña</span>
-                            </div>
+                     </nav>
+                   </header>
+                   <div class="modal" id="exampleModal3" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title text-center text-white" id="exampleModalLongTitle">Actualiza tus datos</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                        <div class="col-md-6" data-wow-delay=".1s">
-                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-                               <h4>Confirmar contraseña</h4>
-                               <input type="text" class="form-control" name="" value="">
-                               <span class="text-muted">Confirme su contraseña</span>
+                        <div class="modal-body">
+                          <div class="row ">
+                            <div class="col-md-12">
+                              <h4>Nombre</h4>
+                              <input type="text" class="form-control" name="" value="">
+                              <h6><span class="text-muted">Ingrese el nombre del usuario a actualizar</span></h6>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row ">
+                            <div class="col-md-12">
+                             <h4>Usuario</h4>
+                             <input type="text" class="form-control" name="" value="">
+                             <h6><span class="text-muted">Ingrese el nombre del usuario</span></h6>
                            </div>
+                         </div>
+                         <br>
+                         <div class="row">
+                          <div class="col-md-12">
+                            <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
+                              Cambiar contraseña
+                            </button>
+                            <div class="row">
+                              <div class="col-md-6" data-wow-delay=".1s">
+                                <div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
+                                  <h4>Contraseña</h4>
+                                  <input type="text" class="form-control" name="hola" value="">
+                                  <h6><span class="text-muted">Ingrese la nueva contraseña</span></h6>
+                                </div>
+                              </div>
+                              <div class="col-md-6" data-wow-delay=".1s">
+                                <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
+                                 <h4>Confirmar contraseña</h4>
+                                 <input type="text" class="form-control" name="" value="">
+                                 <h6><span class="text-muted">Confirme su contraseña</span></h6>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
                        </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-       <div class="modal-footer">
-        <div class="col-md-6 text-center">
-            <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
-        </div>
-        <div class="col-md-6 text-center">
-            <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-<div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="margin-top: 60px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                {{Auth::user()->nombre}}, ¿Esta seguro de cerrar Sesión?
-            </div>
-            <div class="contenido text-center">
-                <i class="mdi mdi-help fa-4x"></i>
-            </div>
-            <div class="modal-body text-center">
-                <button type="button" class="button red" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
+                     </div>
+                     <div class="modal-footer">
+                      <div class="col-md-6 text-center">
+                        <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+                      </div>
+                      <div class="col-md-6 text-center">
+                        <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="margin-top: 60px;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-center">
+                      {{Auth::user()->nombre}}, ¿Esta seguro de cerrar Sesión?
+                    </div>
+                    <div class="contenido text-center">
+                      <i class="mdi mdi-help fa-4x"></i>
+                    </div>
+                    <div class="modal-body text-center">
+                      <button type="button" class="button red" data-dismiss="modal">Cancelar</button>
+                      <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</button>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                      </form>
 
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ============================================================== -->
-<!-- End Topbar header -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
-@if (Auth::user()->rol_id == 1)
-@include('admin.layout.sidebar')
-@elseif(Auth::user()->rol_id == 2)
-@include('recepcion.layout.sidebar')
-@endif
-<!-- ============================================================== -->
-<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Page wrapper  -->
-<!-- ============================================================== -->
-<div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
-    <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ============================================================== -->
+              <!-- End Topbar header -->
+              <!-- ============================================================== -->
+              <!-- ============================================================== -->
+              <!-- Left Sidebar - style you can find in sidebar.scss  -->
+              <!-- ============================================================== -->
+              @if (Auth::user()->rol_id == 1)
+              @include('admin.layout.sidebar')
+              @elseif(Auth::user()->rol_id == 2)
+              @include('recepcion.layout.sidebar')
+              @endif
+              <!-- ============================================================== -->
+              <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+              <!-- ============================================================== -->
+              <!-- ============================================================== -->
+              <!-- Page wrapper  -->
+              <!-- ============================================================== -->
+              <div class="page-wrapper">
+                <!-- ============================================================== -->
+                <!-- Container fluid  -->
+                <!-- ============================================================== -->
+                <div class="container-fluid">
+                  <!-- ============================================================== -->
+                  <!-- Bread crumb and right sidebar toggle -->
+                  <!-- ============================================================== -->
+                  <br>
 {{--         <div class="row page-titles">
             <div class="col-md-7 col-4 align-self-center">
                 <div class="d-flex m-t-10 justify-content-end">
@@ -298,48 +298,48 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+          </div> --}}
 
-        <div class="row">
+          <div class="row">
 
             @yield('contenido')
 
-        </div>
+          </div>
 
-        <div class="right-sidebar">
+          <div class="right-sidebar">
             <div class="slimscrollright">
-                <div class="rpanel-title"> Personalización <span><i class="ti-close right-side-toggle"></i></span> </div>
-                <div class="r-panel-body">
-                    <ul id="themecolors" class="m-t-20">
-                        <li><b>Colores disponibles</b></li>
-                        <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                        <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                        <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                        <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
-                        <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                        <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                        <li class="d-block m-t-30"><b>Colores al menu lateral</b></li>
-                        <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
-                        <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                        <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                        <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                        <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
-                        <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
-                    </ul>
-                </div>
+              <div class="rpanel-title"> Personalización <span><i class="ti-close right-side-toggle"></i></span> </div>
+              <div class="r-panel-body">
+                <ul id="themecolors" class="m-t-20">
+                  <li><b>Colores disponibles</b></li>
+                  <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                  <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                  <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                  <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                  <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                  <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                  <li class="d-block m-t-30"><b>Colores al menu lateral</b></li>
+                  <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                  <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                  <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                  <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                  <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                  <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-AGAPE </footer>
-    <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-</div>
+        <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-AGAPE </footer>
+        <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+      </div>
 
-</div>
-</div>
-<script src="js/app.js"></script>
-<script src="js/admintemplate.js"></script>
-<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
-<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+  <script src="js/admintemplate.js"></script>
+  <script src='{{ asset('other/js/gijgo.min.js') }}'></script>
+  <script src='{{ asset('other/js/messages.es-es.js') }}'></script>
 </body>
 
 </html>

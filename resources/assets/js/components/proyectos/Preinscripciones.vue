@@ -83,6 +83,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <label class="font-weight-bold">Seleccione Carrera*</label>
+                          <pulse-loader class="text-center" :loading="loadSpinner"</pulse-loader>
                           <v-select v-model="carrera_proy_ind" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
                         </div>
                         <div class="col-md-12">
@@ -298,6 +299,7 @@ export default {
       buscarP: "",
       loader: false,
       rutaIMG:'',
+      // loadSpinner: true
     };
   },
   watch: {
