@@ -407,6 +407,8 @@ export default {
   },
 },
 methods:{
+
+  //obtener todas las carreras
   getCarreras() {
     let me = this;
     me.loadSpinner = 1;
@@ -423,6 +425,8 @@ methods:{
       me.loadSpinner = 0;
     });
   },
+
+  //obtener los documentos
   getDocuments() {
     let me = this;
     var url = "getDocuments";
@@ -436,6 +440,8 @@ methods:{
       console.log(error);
     });
   },
+
+  //cancelar un proyecto que ya se ha iniciado
   deleteProy(idGp){
     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
     swal({
@@ -523,6 +529,8 @@ methods:{
     //$(".gj-icon").click();
 
   },
+
+  //obtener proyectos iniciados por su proceso
   getGestionProy(carrera_id,proceso_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
@@ -546,6 +554,8 @@ methods:{
       me.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,page,"");
     }
   },
+
+  //obtener mas informacion del estudiante seleccionado por su id
   getMoreInfo(id) {
     let me = this;
     me.loadSpinner = 1;
@@ -559,6 +569,8 @@ methods:{
       console.log(error);
     });
   },
+
+  //obtener mas informacion del proyecto ya en proceso
   getMoreInfoGp(id) {
     let me = this;
     me.loadSpinner = 1;

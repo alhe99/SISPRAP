@@ -320,16 +320,22 @@
       },
     },
     methods: {
+
+      //cambiar imagen
       changeImg(file) {
         this.image = "";
         this.addImage(file);
       },
+
+      //agregar imagen
       addImage(file) {
         const img = new Image(),
         reader = new FileReader();
         reader.onload = e => (this.image = e.target.result);
         reader.readAsDataURL(file);
       },
+
+      //limpiar galeria de imagenes
       clearGallery() {
         let me = this;
         const elem = me.$refs.imgUpload;
@@ -337,6 +343,8 @@
         me.image = "";
         elem.reset();
       },
+
+      //validar si existe el nombre del proyecto
       validateIfExist(project){
         let me = this;
         var url = "/proyecto/validatess/" + project;
@@ -350,6 +358,8 @@
              }
         });
       },
+
+      //obtener carreras
       getCarreras() {
         let me = this;
         var url = "carreras/GetCarreras";
@@ -364,6 +374,8 @@
             console.log(error);
           });
       },
+
+      //obtener todas las instituciones
       getInstituciones() {
         let me = this;
         var url = "GetInstituciones/" + this.proceso;
@@ -377,6 +389,8 @@
             console.log(error);
           });
       },
+
+      //registrar proyecto
       saveProyect() {
         let me = this;
         this.loadSpinner = 1;
@@ -419,6 +433,8 @@
         }
       
       },
+
+      //agregar elementos al arreglo de actvidades del proceso de practica profesional
       agregarActivi() {
         this.indiceCarre = this.indiceCarre + 1;
         const tituloStep = this.$refs.titleC;

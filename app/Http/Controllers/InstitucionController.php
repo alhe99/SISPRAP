@@ -16,6 +16,7 @@ use PDF;
 class InstitucionController extends Controller
 {
 
+    //Devuelve el listado de instituciones por proceso
     public function index(Request $request)
     {
      if (!$request->ajax()) return redirect('/');
@@ -48,6 +49,8 @@ class InstitucionController extends Controller
         'institucion' => $institucion
     ];
 }
+
+//registrar instituciones
 public function store(Request $request)
 {
 
@@ -71,6 +74,7 @@ public function store(Request $request)
     }
 }
 
+//actualizar instituciones
 public function update(Request $request)
 {
 
@@ -95,6 +99,7 @@ public function update(Request $request)
     $institucion->save();
 
 }
+//cambiar de estado a una institucion para desactivarla
 public function desactivar(Request $request)
 {
     if(!$request->ajax()) return redirect('/');
@@ -102,6 +107,7 @@ public function desactivar(Request $request)
     $institucion->estado = '0';
     $institucion->save();
 }
+//cambiar de estado a una institucion para activarla
 public function activar(Request $request)
 {
     if(!$request->ajax()) return redirect('/');
@@ -109,6 +115,8 @@ public function activar(Request $request)
     $institucion->estado = '1';
     $institucion->save();
 }
+
+//listado de instituciones por su proceso y id
 public function GetInstituciones($id)
 {
  $proceso = $id;
@@ -127,6 +135,8 @@ public function GetInstituciones($id)
 return  response()->json($data);
 
 }
+
+//listado de instituciones relacionadas a los proyectos
 public function GetInstitucion(Request $request)
 {
 
@@ -179,6 +189,8 @@ return [
     'institucion' => $institucion
 ];
 }
+
+//listado de instituciones desactivadas
 public function getInstiDes(Request $request)
 {
       // if (!$request->ajax()) return redirect('/');
@@ -211,6 +223,8 @@ public function getInstiDes(Request $request)
 
 
 }
+
+//obtener todas las instituciones
 public function GetInst()
 {
         //if (!$request->ajax()) return redirect('/');
@@ -228,6 +242,8 @@ public function GetInst()
 }
 
     //FUNCIONES PARA REPORTES//
+
+//obtener instituciones por municipio    
 function getReportByMunicipio(Request $request){
 
     $ins = Institucion::with(['municipio.departamento'])->where('municipio_id',$request->muni_id)->where('estado',1)->get();
@@ -246,6 +262,7 @@ function getReportByMunicipio(Request $request){
     // return $direccionSupervision;
 }
 
+//obtener listado de instituciones por proceso
 function getReportInstituciones(Request $request){
     $proceso = $request->proceso_id;
 
@@ -272,6 +289,8 @@ function getReportInstituciones(Request $request){
     return $pdf->stream('Reporte General de Instuciones '.$date.'.pdf');
 
 }
+
+//obtener el listado de instituciones ya supervisadas
 function getSupervisiones(Request $request){
     $proceso = $request->proceso_id;
     $arrayInstitucion = [];
@@ -332,6 +351,7 @@ function regSupervision(){
     return base64_encode($pdf->stream('regsupervisiones' .Carbon::parse($date).'.pdf'))->setOption('footer-center', 'Página [page] de [topage]');
 }
 
+//validar el nombre de la instituciones
 public function validateInstitucion(Request $request){
 
     if(Institucion::where('nombre',$request->nombre)->whereHas('procesos',function($query) use($request){

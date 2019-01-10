@@ -183,6 +183,8 @@ export default {
   },
 },
 methods:{
+
+  //obtener todas las carreras registradas
   getCarreras() {
     let me = this;
     me.loadSpinner = 1;
@@ -199,6 +201,8 @@ methods:{
       me.loadSpinner = 0;
     });
   },
+
+  //listado de los estudiantes por carrera que han finalizado un proceso en especifico
   getGestionProy(carrera_id,proceso_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
@@ -222,6 +226,8 @@ methods:{
       me.getGestionProy(me.carrera_selected.value,me.proceso,page,"");
     }
   },
+
+  //descargar el pdf de la constancia
   downloadPdfFromBase64(base64){
    let a = document.createElement("a");
    var name = "Constancia " + new Date(Date.now()).toLocaleString();

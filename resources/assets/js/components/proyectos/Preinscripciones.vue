@@ -389,6 +389,8 @@ export default {
       },
     },
     methods: {
+
+      //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
      getProyectos() {
       let me = this;
       //
@@ -407,6 +409,8 @@ export default {
       console.log(error);
     });
    },
+
+   //obtener los estudiantes que se han presinscito a un proyecto por carrera
    getEstudianteByCarrer(page) {
     let me = this;
     var url = "stundentByCarrer?page="+page+"&carrera_id="+me.carrera_proy_ind.value+"&proceso_id="+me.proceso+"&buscar=" + me.buscarP;
@@ -421,6 +425,8 @@ export default {
       console.log(error);
     });
   },
+
+  //obtener todas las carreras
   getCarreras() {
     let me = this;
     var url = "carreras/GetCarreras";
@@ -434,6 +440,8 @@ export default {
       console.log(error);
     });
   },
+
+  //listado de los estudiantes preinscritos a un proyecto en especifico
   getPreregister(proyecto_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
@@ -449,6 +457,8 @@ export default {
       console.log(error);
     });
   },
+
+  //abrir el modal de proyectos externos
   openModalProy(){
     const el = document.body;
     el.classList.add("abrirModal");
@@ -462,6 +472,8 @@ export default {
     this.carrera_proy_ind = 0;
     this.arrayEstudianteP = [];
   },
+
+  //obtener informacion del estudiante
   getMoreInfo(id) {
     let me = this;
     me.loadSpinner = 1;
@@ -509,6 +521,8 @@ export default {
 
       }
     },
+
+    //aprobar la preinscripción
     aprobarProy(estudiante_id,proyecto_id,proceso_actual){
       if (proceso_actual == 'I') {
        Swal({
@@ -556,6 +570,8 @@ export default {
       });
     }
   },
+
+  //aprobar que el estudiante ingrese un proyecto externo
   asignarProyecto(dataId){
     swal({
       title: "Dar accesso a que el estudiante(a) ingrese un proyecto externo al sistema",
@@ -595,6 +611,8 @@ export default {
       }
     });
   },
+
+  //rechazar la preinscripcion del estudiante
   rechazarProy(estudiante_id,proyecto_id){
    swal({
     title: "Seguro de Rechazar Preincripcion?",

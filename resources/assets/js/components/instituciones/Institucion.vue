@@ -496,6 +496,7 @@
               export default {
                 data() {
                   return {
+                    //declaracion de variables
                     loadSpinner: 0,
                     verCard: 1,
                     institucion: [],
@@ -555,6 +556,7 @@
                   };
                 },
                 computed: {
+                  //paginacion
                   isActived: function() {
                     return this.pagination.current_page;
                   },
@@ -599,11 +601,13 @@
                     }
                     return pagesArray;
                   },
+                  //verificar si no ha seleccionado un departamento
                   watchDepa: function() {
                     if (this.departamento_id == null) {
                       this.municipio_id = 0;
                     }
                   },
+                  
                   validate: function(){
                     if((this.nombre == "") || (this.direccion == "") || (this.departamento_id == 0) || (this.municipio_id == 0) || (this.sector_id == 0))
                     {
@@ -648,6 +652,7 @@
 
 },
 methods: {
+  //listado de instituciones por busqueda
   listarInstitucion(page, proceso, buscar) {
     let me = this;
     var url =
@@ -675,6 +680,7 @@ methods: {
      console.log(error);
    });
   },
+  //listado de instituciones desactivadas
   listarInstitucionDes(page, proceso, buscar) {
     let me = this;
     var url ="/institucion/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
@@ -727,6 +733,7 @@ methods: {
       this.arrayDepartamentos = response.data;
     });
   },
+  //obtener todas las instituciones relacionadas a proyectos de SS o PP
   getProyectosInsti(id, page, buscar, proceso) {
     let me = this;
     var url =
