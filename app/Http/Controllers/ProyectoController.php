@@ -18,13 +18,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProyectoController extends Controller
 {
-    public function __construct()
-    {
-
-        //$this->middleware('guestVerify');
-
-    }
-
     //listado de proyectos por proceso y busqueda
     public function index(Request $request)
     {
@@ -64,6 +57,9 @@ class ProyectoController extends Controller
             $proyecto->fecha = Carbon::parse($date);
             $proyecto->actividades = $request->actividadSS;
             $proyecto->institucion_id = $request->institucion_id;
+            $proyecto->horas_realizar = $request->horas;
+            $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
+            $proyecto->tipo_proyecto = 'I';
             $proyecto->proceso_id = 1;
             if ($img_recv) {
                 $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
@@ -330,7 +326,7 @@ public function getProjectBySlug($process, $slug)
     return view('public.viewProject', compact("proyecto"));
 }
 
-//apartado de la publica, preinscripcion de proyectos 
+//apartado de la publica, preinscripcion de proyectos
 public function preRegistrationProject($estudent_id, $project_id)
 {
     $proyect = Proyecto::findOrFail($project_id);

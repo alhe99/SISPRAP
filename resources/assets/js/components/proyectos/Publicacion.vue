@@ -34,292 +34,312 @@
         <div class="row">
           <div class="col-md-12">
             <h3
-              class="text-center font-weight-bold"
-              v-if="proceso==1"
+            class="text-center font-weight-bold"
+            v-if="proceso==1"
             >Formulario de publicación para proyectos de Servicio Social</h3>
             <h3
-              class="text-center font-weight-bold"
-              v-if="proceso==2"
+            class="text-center font-weight-bold"
+            v-if="proceso==2"
             >Formulario de publicación para proyectos de Práctica Profesional</h3>
             <form>
               <div class="form-group row">
                 <mdc-textfield
-                  type="text"
-                  class="col-md-12"
-                  label="Nombre del proyecto"
-                  helptext="(Ingrese el nombre del proyecto a publicar)"
-                  v-model="nombre"
+                type="text"
+                class="col-md-12"
+                label="Nombre del proyecto"
+                helptext="(Ingrese el nombre del proyecto a publicar)"
+                v-model="nombre"
                 ></mdc-textfield>
               </div>
-              <div class="form-group row" v-if="proceso==2">
-                <div class="col-md-10 col-sm-10 col-lg-10">
-                  <v-select
-                    multiple
-                    ref="selectCarreras"
-                    v-model="carrerasProy"
-                    :options="arrayCarreras"
-                    placeholder="Seleccione una o mas carreras"
-                  ></v-select>
-                </div>
-                <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
+              <div class="row">
+                <mdc-textfield
+                type="text"
+                v-mask="'###'"
+                :min="0"
+                :max="300"
+                class="col-md-6"
+                label="Cantidad de horas a realizar:"
+                helptext="Detalle el numero de horas del proyecto"
+                v-model="catidadHoras"
+                ></mdc-textfield>
+                <mdc-textfield
+                type="text"
+                v-mask="'####'"
+                :min="0"
+                :max="300"
+                class="col-md-6"
+                label="Cantidad de alumnos para proyecto:"
+                helptext="Digite la cantidad"
+                v-model="cantidadVacantes"
+                ></mdc-textfield>
+            </div>
+            <div class="form-group row" v-if="proceso==2">
+              <div class="col-md-10 col-sm-10 col-lg-10">
+                <v-select
+                multiple
+                ref="selectCarreras"
+                v-model="carrerasProy"
+                :options="arrayCarreras"
+                placeholder="Seleccione una o mas carreras"
+                ></v-select>
               </div>
-              <div class="form-group row">
-                <div class="col-md-12 col-sm-12 col-lg-12">
-                  <label for="vEditorSS">Describa Actividades a Realizar:</label>
-                  <form-wizard
-                    v-if="proceso == 2 && carrerasProy.length != 0 "
-                    title="Actividades"
-                    subtitle="Detalle Actividades para cada carrera seleccionada"
-                    color="#6200ee"
-                  >
-                    <wizard-step
-                      slot-scope="props"
-                      slot="step"
-                      :tab="props.tab"
-                      :transition="props.transition"
-                      :index="props.index"
-                    ></wizard-step>
-                    <tab-content
-                      v-for="carreras in carrerasProy"
-                      :key="carreras.id"
-                      :title="carreras['label']"
-                      ref="titleC"
-                    >
-                      <vue-editor
-                        ref="editorPP"
-                        :disabled="disabledVE"
-                        v-model="actividadesCarre"
-                        :editorToolbar="toolBars"
-                      ></vue-editor>
-                    </tab-content>
-                    <mdc-button
-                      type="button"
-                      ref="myBtn"
-                      id="btnNextActi"
-                      raised
-                      slot="next"
-                      @click="agregarActivi"
-                      :disabled="actividadesCarre == ''"
-                    >Siguiente</mdc-button>
-                    <mdc-button
-                      type="button"
-                      ref="btnEnd"
-                      raised
-                      slot="finish"
-                      @click="agregarActivi"
-                      :disabled="actividadesCarre == ''"
-                    >Aceptar</mdc-button>
-                    
-                  </form-wizard>
-                  <vue-editor
-                    v-else-if="proceso == 1"
-                    v-model="actividadesCarre"
-                    :editorToolbar="toolBars"
-                    id="vEditorSS"
-                  ></vue-editor>
-                </div>
-                
+              <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12 col-sm-12 col-lg-12">
+                <label for="vEditorSS">Describa Actividades a Realizar:</label>
+                <form-wizard
+                v-if="proceso == 2 && carrerasProy.length != 0 "
+                title="Actividades"
+                subtitle="Detalle Actividades para cada carrera seleccionada"
+                color="#6200ee"
+                >
+                <wizard-step
+                slot-scope="props"
+                slot="step"
+                :tab="props.tab"
+                :transition="props.transition"
+                :index="props.index"
+                ></wizard-step>
+                <tab-content
+                v-for="carreras in carrerasProy"
+                :key="carreras.id"
+                :title="carreras['label']"
+                ref="titleC"
+                >
+                <vue-editor
+                ref="editorPP"
+                :disabled="disabledVE"
+                v-model="actividadesCarre"
+                :editorToolbar="toolBars"
+                ></vue-editor>
+              </tab-content>
+              <mdc-button
+              type="button"
+              ref="myBtn"
+              id="btnNextActi"
+              raised
+              slot="next"
+              @click="agregarActivi"
+              :disabled="actividadesCarre == ''"
+              >Siguiente</mdc-button>
+              <mdc-button
+              type="button"
+              ref="btnEnd"
+              raised
+              slot="finish"
+              @click="agregarActivi"
+              :disabled="actividadesCarre == ''"
+              >Aceptar</mdc-button>
+
+            </form-wizard>
+            <vue-editor
+            v-else-if="proceso == 1"
+            v-model="actividadesCarre"
+            :editorToolbar="toolBars"
+            id="vEditorSS"
+            ></vue-editor>
+          </div>
+
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <v-select
+            v-model="institucion"
+            :options="arrayInstituciones"
+            placeholder="Seleccione una Institución"
+            ></v-select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12 col-lg-12  col-sm-12">
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-lg-6">
+                <button
+                :disabled="switchImg ==true"
+                ref="btntest"
+                v-on:click="clearGallery()"
+                class="btn btn-primary font-weight-bold text-dark"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+                >
+                <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Predeterminadas
+              </button>
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6">
+              <div class="form-group text-right">
+                <switches
+                class="switch-md"
+                v-model="switchImg "
+                theme="bootstrap"
+                color="primary"
+                ></switches>
+                <label>Seleccionar Imagen De PC</label>
               </div>
-              <div class="form-group row">
-                <div class="col-md-12 col-sm-12 col-lg-12">
-                  <v-select
-                    v-model="institucion"
-                    :options="arrayInstituciones"
-                    placeholder="Seleccione una Institución"
-                  ></v-select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12 col-lg-12  col-sm-12">
-                  <div class="row">
-                    <div class="col-md-6 col-sm-12 col-lg-6">
-                      <button
-                        :disabled="switchImg ==true"
-                        ref="btntest"
-                        v-on:click="clearGallery()"
-                        class="btn btn-primary font-weight-bold text-dark"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#collapseExample"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-                      >
-                        <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Predeterminadas
-                      </button>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-lg-6">
-                      <div class="form-group text-right">
-                        <switches
-                          class="switch-md"
-                          v-model="switchImg "
-                          theme="bootstrap"
-                          color="primary"
-                        ></switches>
-                        <label>Seleccionar Imagen De PC</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    v-show="switchImg==false"
-                    class="collapse"
-                    ref="divCollapse"
-                    id="collapseExample"
-                  >
-                    <div class="card card-body">
-                      <div class="row" id="seccion">
-                        <div
-                          class="col-md-2 col-sm-12 col-lg-2"
-                          v-for="image in arrayImages"
-                          :key="image.id"
-                        >
-                          <input
-                            type="radio"
-                            :id="image"
-                            name="select"
-                            :value="image"
-                            v-model="imgGallery"
-                          >
-                          <label :for="image">
-                            <img
-                              class="text-center img-fluid"
-                              :src="'images/img_projects/' + image"
-                              alt=""
-                            >
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row" id="imageP" v-show="switchImg==true">
-                    <img-inputer
-                      class="col-md-12 col-sm-12 col-lg-12"
-                      ref="imgUpload"
-                      icon="img"
-                      bottom-text="Seleccionar nueva imagen"
-                      theme="material"
-                      accept="image/*"
-                      @onChange="changeImg"
-                      size="large"
-                      placeholder="Selecione una imagen de su computadora!"
-                    />
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <br>
-                      <button type="button" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
-                      <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
-                  </div>
-                </div>
-              </div>
-            </form>
+            </div>
+          </div>
+          <div
+          v-show="switchImg==false"
+          class="collapse"
+          ref="divCollapse"
+          id="collapseExample"
+          >
+          <div class="card card-body">
+            <div class="row" id="seccion">
+              <div
+              class="col-md-2 col-sm-12 col-lg-2"
+              v-for="image in arrayImages"
+              :key="image.id"
+              >
+              <input
+              type="radio"
+              :id="image"
+              name="select"
+              :value="image"
+              v-model="imgGallery"
+              >
+              <label :for="image">
+                <img
+                class="text-center img-fluid"
+                :src="'images/img_projects/' + image"
+                alt=""
+                >
+              </label>
+            </div>
           </div>
         </div>
       </div>
+      <div class="row" id="imageP" v-show="switchImg==true">
+        <img-inputer
+        class="col-md-12 col-sm-12 col-lg-12"
+        ref="imgUpload"
+        icon="img"
+        bottom-text="Seleccionar nueva imagen"
+        theme="material"
+        accept="image/*"
+        @onChange="changeImg"
+        size="large"
+        placeholder="Selecione una imagen de su computadora!"
+        />
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <br>
+          <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
+          <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
+      </div>
     </div>
   </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
 </template>
 <script>
-  import { VueEditor } from "vue2-editor";
-  import Switches from "vue-switches";
-  export default {
-    data() {
-      return {
-        loadSpinner: 0,
-        disabledVE: false,
-        actividadesCarre: "",
-        indiceCarre: 0,
-        actividadesProy: [],
-        proceso: 0,
-        switchImg: false,
-        imgGallery: "",
-        nombre: "",
-        arrayImages: [
-          "test.jpg",
-          "turismo.jpg",
-          "computacion.jpg",
-          "focos.jpg",
-          "herramienta.jpg",
-          "mercadeo.jpg"
-        ],
-        image: "",
-        exist: false,
-        carrerasProy: [],
-        arrayCarreras: [],
-        arrayInstituciones: [],
-        arrayActividades: [],
-        institucion: "",
-        toolBars: [
-          [{ header: [false, 1, 2, 3, 4, 5, 6] }],
-          [
-            { align: "" },
-            { align: "center" },
-            { align: "right" },
-            { align: "justify" }
-          ],
-          ["bold", "blockquote", "code-block"],
-          [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-          [{ indent: "-1" }, { indent: "+1" }],
-          [{ color: [] }]
-        ]
-      };
-    },
-    watch: {
-      switchImg: function() {
-        if (this.switchImg == true) {
-          this.imgGallery = "";
-        }
-      },
-      proceso: function() {
-        if (this.proceso != 0) {
-          this.validateIfExist("");
-          this.getInstituciones();
-          this.clearData();
-        }
-      },
-      indiceCarre: function() {
-        const tituloStep = this.$refs.titleC;
-        if (this.indiceCarre > tituloStep.length) {
-          this.indiceCarre = tituloStep.length;
-        }
-      },
-      actividadesProy: function() {
-        if (this.carrerasProy.length > 0) {
-          var ultimoObj = this.actividadesProy[this.actividadesProy.length - 1];
-          if (ultimoObj.actividades == "") {
-            this.actividadesProy.splice(this.actividadesProy.length - 1, 1);
-            this.indiceCarre = this.indiceCarre - 1;
-          }
-        }
-      },
-      carrerasProy: function() {
-        this.disabledVE = false;
-        if (this.carrerasProy.length > 1) {
-        if (this.carrerasProy.length -1 == this.actividadesProy.length) {
-               this.clickBtn();
-        }
-        }
-      },
-      nombre: function(){
-        this.validateIfExist(this.nombre);
+import { VueEditor } from "vue2-editor";
+import Switches from "vue-switches";
+export default {
+  data() {
+    return {
+      loadSpinner: 0,
+      disabledVE: false,
+      actividadesCarre: "",
+      indiceCarre: 0,
+      actividadesProy: [],
+      proceso: 0,
+      switchImg: false,
+      catidadHoras: 0,
+      cantidadVacantes: 0,
+      imgGallery: "",
+      nombre: "",
+      arrayImages: [
+      "test.jpg",
+      "turismo.jpg",
+      "computacion.jpg",
+      "focos.jpg",
+      "herramienta.jpg",
+      "mercadeo.jpg"
+      ],
+      image: "",
+      exist: false,
+      carrerasProy: [],
+      arrayCarreras: [],
+      arrayInstituciones: [],
+      arrayActividades: [],
+      institucion: "",
+      toolBars: [
+      [{ header: [false, 1, 2, 3, 4, 5, 6] }],
+      [
+      { align: "" },
+      { align: "center" },
+      { align: "right" },
+      { align: "justify" }
+      ],
+      ["bold", "blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ color: [] }]
+      ]
+    };
+  },
+  watch: {
+    switchImg: function() {
+      if (this.switchImg == true) {
+        this.imgGallery = "";
       }
     },
-    computed:{
-      validate: function(){
+    proceso: function() {
+      if (this.proceso != 0) {
+        this.getInstituciones();
+        this.clearData();
+      }
+    },
+    indiceCarre: function() {
+      const tituloStep = this.$refs.titleC;
+      if (this.indiceCarre > tituloStep.length) {
+        this.indiceCarre = tituloStep.length;
+      }
+    },
+    actividadesProy: function() {
+      if (this.carrerasProy.length > 0) {
+        var ultimoObj = this.actividadesProy[this.actividadesProy.length - 1];
+        if (ultimoObj.actividades == "") {
+          this.actividadesProy.splice(this.actividadesProy.length - 1, 1);
+          this.indiceCarre = this.indiceCarre - 1;
+        }
+      }
+    },
+    carrerasProy: function() {
+      this.disabledVE = false;
+      if (this.carrerasProy.length > 1) {
+        if (this.carrerasProy.length -1 == this.actividadesProy.length) {
+         this.clickBtn();
+       }
+     }
+   },
+ },
+ computed:{
+  validate: function(){
         //if((this.nombre == "") || (this.actividadesCarre == "") || (this.institucion == ""))
         if((this.nombre == "") || (this.institucion == ""))
         //if((this.nombre == "") || (this.actividadesCarre == "") || (this.institucion == ""))
-        {
-          return true;
-        }else{
-          return false;
-        }
-      },
+      {
+        return true;
+      }else{
+        return false;
+      }
     },
-    methods: {
+  },
+  methods: {
 
       //cambiar imagen
       changeImg(file) {
@@ -343,36 +363,20 @@
         me.image = "";
         elem.reset();
       },
-
-      //validar si existe el nombre del proyecto
-      validateIfExist(project){
-        let me = this;
-        var url = "/proyecto/validatess/" + project;
-        axios.get(url).then(function(response) {
-             var respuesta = response.data;
-             console.log(respuesta);
-             if(respuesta == true){
-                me.exist = true;
-             }else {
-               me.exist = false;
-             }
-        });
-      },
-
       //obtener carreras
       getCarreras() {
         let me = this;
         var url = "carreras/GetCarreras";
         axios
-          .get(url)
-          .then(function(response) {
-            var respuesta = response.data;
+        .get(url)
+        .then(function(response) {
+          var respuesta = response.data;
             //console.log(respuesta);
             me.arrayCarreras = respuesta;
           })
-          .catch(function(error) {
-            console.log(error);
-          });
+        .catch(function(error) {
+          console.log(error);
+        });
       },
 
       //obtener todas las instituciones
@@ -380,14 +384,14 @@
         let me = this;
         var url = "GetInstituciones/" + this.proceso;
         axios
-          .get(url)
-          .then(function(response) {
-            var respuesta = response.data;
-            me.arrayInstituciones = respuesta;
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
+        .get(url)
+        .then(function(response) {
+          var respuesta = response.data;
+          me.arrayInstituciones = respuesta;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       },
 
       //registrar proyecto
@@ -395,44 +399,47 @@
         let me = this;
         this.loadSpinner = 1;
         if(me.exist == false){
-            axios
-            .post("/proyecto/registrar", {
-              proceso_id: this.proceso,
-              nombre: this.nombre,
-              actividades: this.actividadesProy,
-              institucion_id: this.institucion.value,
-              imageG: this.imgGallery,
-              imagen: this.image,
-              actividadSS: this.actividadesCarre
-            })
-            .then(function(response) {
-              swal({
-                position: "center",
-                type: "success",
-                title: "¡Proyecto publicado correctamente!",
-                showConfirmButton: false,
-                timer: 1000
-              });
-              me.clearData();
-            })
-            .catch(error => {
-              me.loadSpinner = 0;
-              console.log(error.response.data.errors);
+          axios
+          .post("/proyecto/registrar", {
+            proceso_id: this.proceso,
+            nombre: this.nombre,
+            actividades: this.actividadesProy,
+            institucion_id: this.institucion.value,
+            imageG: this.imgGallery,
+            imagen: this.image,
+            actividadSS: this.actividadesCarre,
+            horas: this.catidadHoras,
+            cantidadAlumnos: this.cantidadVacantes
+          })
+          .then(function(response) {
+            swal({
+              position: "center",
+              type: "success",
+              title: "¡Proyecto publicado correctamente!",
+              showConfirmButton: false,
+              timer: 1000
             });
+            me.clearData();
+            console.log(response.data);
+          })
+          .catch(error => {
+            me.loadSpinner = 0;
+            console.log(error.response.data.errors);
+          });
         }else{
-           swal({
-                  position: "center",
-                  type: "warning",
-                  title: "Proyecto existente! Ingrese otro nombre",
-                  showConfirmButton: true,
-                  timer: 5000
-                });
-                me.nombre = "";
-                me.loadSpinner = 0;
-                me.exist = false;
-        }
-      
-      },
+         swal({
+          position: "center",
+          type: "warning",
+          title: "Proyecto existente! Ingrese otro nombre",
+          showConfirmButton: true,
+          timer: 5000
+        });
+         me.nombre = "";
+         me.loadSpinner = 0;
+         me.exist = false;
+       }
+
+     },
 
       //agregar elementos al arreglo de actvidades del proceso de practica profesional
       agregarActivi() {
@@ -465,6 +472,8 @@
         me.imgGallery = "";
         me.image = "";
         me.loadSpinner = 0;
+        me.cantidadVacantes = 0;
+        me.catidadHoras = 0;
         me.clearGallery();
         if (me.switchImg == true) {
           me.switchImg = false;
@@ -480,94 +489,9 @@
       Switches
     },
     mounted() {
-     
-      this.getCarreras();
-      this.getInstituciones();
+     this.getCarreras();
+     this.getInstituciones();
       //$("#btnGuardar").prop('disabled',true);
     }
   };
-</script>
-<style>
-.button {
-  display: inline-block;
-  margin: 0.3em;
-  padding: 1.0em 1em;
-  overflow: hidden;
-  position: relative;
-  text-decoration: none;
-  text-transform: capitalize;
-  border-radius: 3px;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  border: none; 
-  font-size: 15px;
-  text-align: center;
-}
-
-.button:hover {
-  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
-}
-
-.green {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.red {
-  background-color: #F44336;
-  color: white;
-}
-
-.blue {
-  background-color: #6200EC;
-  color: white;
-}
-
-.ripple {
-  position: absolute;
-  background: rgba(0,0,0,.25);
-  border-radius: 100%;
-  transform: scale(0.2);
-  opacity:0;
-  pointer-events: none;
-  -webkit-animation: ripple .75s ease-out;
-  -moz-animation: ripple .75s ease-out;
-  animation: ripple .75s ease-out;
-}
-
-@-webkit-keyframes ripple {
-  from {
-    opacity:1;
-  }
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes ripple {
-  from {
-    opacity:1;
-  }
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-@keyframes ripple {
-  from {
-    opacity:1;
-  }
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-
-</style>
+  </script>

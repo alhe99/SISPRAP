@@ -20,6 +20,10 @@ class Proyecto extends Model
         'proceso_id',
         'img',
         'estado',
+        'horas_realizar',
+        'cantidades_vacantes',
+        'estado_vacantes',
+        'tipo_proyecto'
     ];
 
     protected $cast = [
