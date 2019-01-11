@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('contenido')
 <template v-if="menu==0">
- <div class="col-lg-12 col-md-12">
+   <div class="col-lg-12 col-md-12">
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -114,30 +114,33 @@
     <carrinst></carrinst>
 </template>
 <template v-if="menu==13">
- <supervision></supervision>
+   <supervision></supervision>
 </template>
 <template v-if="menu==14">
- <regsuperv></regsuperv>
+   <regsuperv></regsuperv>
 </template>
 <template v-if="menu==15">
- <configuracion></configuracion>
+   <configuracion></configuracion>
 </template>
 <template v-if="menu==16">
- <inicioproceso></inicioproceso>
+   <inicioproceso></inicioproceso>
 </template>
 <template v-if="menu==17">
- <pendientesinicio></pendientesinicio>
+   <pendientesinicio></pendientesinicio>
 </template>
 <template v-if="menu==18">
- <pendientefin></pendientefin>
+   <pendientefin></pendientefin>
 </template>
 <template v-if="menu==19">
- <culminados></culminados>
+   <culminados></culminados>
 </template>
 <template v-if="menu==20">
- <sectores></sectores>
+   <sectores></sectores>
 </template>
 <template v-if="menu==21">
-   <pagoarancel></pagoarancel>
+ <pagoarancel></pagoarancel>
+</template>
+<template v-if="menu==22">
+ <solicitudes_aprobadas></solicitudes_aprobadas>
 </template>
 @endsection

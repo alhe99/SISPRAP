@@ -637,5 +637,5 @@ methods:{
 },
 mounted(){}
 },
-}
+};
 </script>

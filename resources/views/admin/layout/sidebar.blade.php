@@ -34,6 +34,7 @@
             <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-file-check"></i><span
                 class="hide-menu">Control Proyectos</span></a>
                 <ul aria-expanded="false" class="collapse ">
+                    <li><button type="button" @click="menu=22" class="btn btn-link btn-colors">Aprobaciones</button></li>
                     <li><button type="button" @click="menu=1" class="btn btn-link  btn-colors">Publicación de
                     proyectos</button></li>
                     <li><button type="button" @click="menu=2" class="btn btn-link btn-colors">Preinscripciones
@@ -200,7 +201,7 @@
                      class="col-md-12"
                      label="Nombre"
                      helptext="(Ingrese el nombre del usuario a actualizar)"
-                     
+
                      ></mdc-textfield>
                  </div>
              </div>
