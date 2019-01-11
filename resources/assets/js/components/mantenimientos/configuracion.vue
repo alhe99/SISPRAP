@@ -1,196 +1,197 @@
 <template>
   <div class="col-lg-12 col-md-12">
     <div class="card">
-          <div class="tabcontent">
-            <h2 class="text-center">Registro de Estudiantes</h2>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="text"
-                    name="estudiante"
-                    class="col-md-12"
-                    label="Nombre del Estudiante"
-                    helptext="(Ingrese el nombre del estudiante)"
-                    v-model="nombre"
-                    v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('estudiante')"
-                  >{{errors.first('estudiante')}}</div>
-                </div>
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="text"
-                    name="apellido"
-                    class="col-md-12"
-                    label="Apellido del Estudiante"
-                    helptext="(Ingrese el apellido del estudiante)"
-                    v-model="apellido"
-                    v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('apellido')"
-                  >{{errors.first('apellido')}}</div>
-                </div>
-                <div class="form-group row">&nbsp;&nbsp;
-                  <label>&nbsp;&nbsp;Fecha de Nacimiento</label>
-                  <div class="col-md-12 col-sm-12 col-lg-12">
-                    <datetime
-                      type="date"
-                      name=""
-                      :max-datetime="maxDatetime"
-                      v-model="date"
-                      value-zone="America/El_Salvador"
-                      input-class="form-control"
-                    ></datetime>
-                  </div>
-                </div>
-                <div class="row md-radio">
-                  <div class="col-md-6 text-center">
-                    <input id="radioSS" value="F" v-model="genero" type="radio" name="radioP">
-                    &nbsp;&nbsp;
-                    <label for="radioSS">Femenino</label>
-                  </div>
-                  <div class="col-md-6 text-center">
-                    <input id="radioPP" value="M" v-model="genero" type="radio" name="radioP">
-                    <label for="radioPP">Masculino</label>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="text"
-                    name="telefono"
-                    class="col-md-12"
-                    label="Telefono"
-                    helptext="(Ingrese número de telefono)"
-                    v-model="telefono"
-                    v-validate="'digits:8'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('telefono')"
-                  >{{errors.first('telefono')}}</div>
-                </div>
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="text"
-                    name="carnet"
-                    class="col-md-12"
-                    label="Carnet"
-                    helptext="(Ingrese el número de carnet)"
-                    v-model="carnet"
-                    v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('carnet')"
-                  >{{errors.first('carnet')}}</div>
-                </div>
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="password"
-                    name="contraseña"
-                    class="col-md-12"
-                    label="Password"
-                    helptext="(Ingrese el password)"
-                    v-model="password"
-                    v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('contraseña')"
-                  >{{errors.first('contraseña')}}</div>
-                </div>
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="text"
-                    name="correo"
-                    class="col-md-12"
-                    label="email"
-                    helptext="(Ingrese su correo electronico)"
-                    v-model="email"
-                    v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('correo')"
-                  >{{errors.first('correo')}}</div>
-                </div>
-                <div class="form-group row">
-                  <mdc-textfield
-                    type="text"
-                    name="direccion"
-                    class="col-md-12"
-                    label="Direccion"
-                    helptext="(Ingrese la dirección)"
-                    v-model="direccion"
-                    v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                    class="help-block alert-danger"
-                    v-show="errors.has('direccion')"
-                  >{{errors.first('direccion')}}</div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <v-select
-                      ref="selectCarreras"
-                      v-model="beca_id"
-                      :options="arrayBecas"
-                      placeholder="Seleccione un tipo de beca"
-                    ></v-select>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <br>
-                    <label for="carrera">Seleccione una carrera</label>
-                    <v-select
-                      ref="selectCarreras"
-                      v-model="carrerasProy"
-                      :options="arrayCarreras"
-                      placeholder="Seleccione una carrera"
-                    ></v-select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 col-xs-12 col-lg-12">
-                    <br>
-                    <label for="departamento">Seleccione un Departamento</label>
-                    <br>
-                    <v-select
-                      label="label"
-                      v-model="departamento_id"
-                      :onChange="watchDepa"
-                      placeholder="Seleccione un departamento"
-                      :options="arrayDepartamentos"
-                    ></v-select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 col-xs-12 col-lg-12" v-if="departamento_id !== null">
-                    <br>
-                    <label for="email">Seleccione un Municipio</label>
-                    <br>
-                    <v-select
-                      label="label"
-                      v-model="municipio_id"
-                      placeholder="Seleccione un municipio"
-                      :options="arrayMunicipios"
-                    ></v-select>
-                  </div>
-                </div>
-                <br>
-                <button class="btn btn blue" @click="saveEstudiante">
-                  <i class="mdi mdi-content-save-edit"></i>&nbsp;Registrar Estudiante
-                </button>
+      <div class="tabcontent">
+        <h2 class="text-center">Registro de Estudiantes</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="form-group row">
+              <mdc-textfield
+                type="text"
+                name="estudiante"
+                class="col-md-12"
+                label="Nombre del Estudiante"
+                helptext="(Ingrese el nombre del estudiante)"
+                v-model="nombre"
+                v-validate="'required'"
+              ></mdc-textfield>
+              <div
+                class="help-block alert-danger"
+                v-show="errors.has('estudiante')"
+              >{{errors.first('estudiante')}}</div>
+            </div>
+            <div class="form-group row">
+              <mdc-textfield
+                type="text"
+                name="apellido"
+                class="col-md-12"
+                label="Apellido del Estudiante"
+                helptext="(Ingrese el apellido del estudiante)"
+                v-model="apellido"
+                v-validate="'required'"
+              ></mdc-textfield>
+              <div
+                class="help-block alert-danger"
+                v-show="errors.has('apellido')"
+              >{{errors.first('apellido')}}</div>
+            </div>
+            <div class="form-group row">
+              &nbsp;&nbsp;
+              <label>&nbsp;&nbsp;Fecha de Nacimiento</label>
+              <div class="col-md-12 col-sm-12 col-lg-12">
+                <datetime
+                  type="date"
+                  name
+                  :max-datetime="maxDatetime"
+                  v-model="date"
+                  value-zone="America/El_Salvador"
+                  input-class="form-control"
+                ></datetime>
               </div>
             </div>
+            <div class="row md-radio">
+              <div class="col-md-6 text-center">
+                <input id="radioSS" value="F" v-model="genero" type="radio" name="radioP">
+                &nbsp;&nbsp;
+                <label for="radioSS">Femenino</label>
+              </div>
+              <div class="col-md-6 text-center">
+                <input id="radioPP" value="M" v-model="genero" type="radio" name="radioP">
+                <label for="radioPP">Masculino</label>
+              </div>
+            </div>
+            <div class="form-group row">
+              <mdc-textfield
+                type="text"
+                name="telefono"
+                class="col-md-6"
+                label="Telefono"
+                helptext="(Ingrese número de telefono)"
+                v-model="telefono"
+                v-validate="'digits:8'"
+              ></mdc-textfield>
+            
+              <mdc-textfield
+                type="text"
+                name="carnet"
+                class="col-md-6"
+                label="Carnet"
+                helptext="(Ingrese el número de carnet)"
+                v-model="carnet"
+                v-validate="'required'"
+              ></mdc-textfield>
+                <div
+                class="help-block alert-danger"
+                v-show="errors.has('telefono')"
+              >{{errors.first('telefono')}}</div>
+              <div
+                class="help-block alert-danger"
+                v-show="errors.has('carnet')"
+              >{{errors.first('carnet')}}</div>
+            </div>
+
+            <div class="form-group row">
+              <mdc-textfield
+                type="password"
+                name="contraseña"
+                class="col-md-12"
+                label="Password"
+                helptext="(Ingrese el password)"
+                v-model="password"
+                v-validate="'required'"
+              ></mdc-textfield>
+              <div
+                class="help-block alert-danger"
+                v-show="errors.has('contraseña')"
+              >{{errors.first('contraseña')}}</div>
+            </div>
+            <div class="form-group row">
+              <mdc-textfield
+                type="text"
+                name="correo"
+                class="col-md-12"
+                label="email"
+                helptext="(Ingrese su correo electronico)"
+                v-model="email"
+                v-validate="'required'"
+              ></mdc-textfield>
+              <div
+                class="help-block alert-danger"
+                v-show="errors.has('correo')"
+              >{{errors.first('correo')}}</div>
+            </div>
+            <div class="form-group row">
+              <mdc-textfield
+                type="text"
+                name="direccion"
+                class="col-md-12"
+                label="Direccion"
+                helptext="(Ingrese la dirección)"
+                v-model="direccion"
+                v-validate="'required'"
+              ></mdc-textfield>
+              <div
+                class="help-block alert-danger"
+                v-show="errors.has('direccion')"
+              >{{errors.first('direccion')}}</div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <v-select
+                  ref="selectCarreras"
+                  v-model="beca_id"
+                  :options="arrayBecas"
+                  placeholder="Seleccione un tipo de beca"
+                ></v-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <br>
+                <label for="carrera">Seleccione una carrera</label>
+                <v-select
+                  ref="selectCarreras"
+                  v-model="carrerasProy"
+                  :options="arrayCarreras"
+                  placeholder="Seleccione una carrera"
+                ></v-select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12 col-lg-12">
+                <br>
+                <label for="departamento">Seleccione un Departamento</label>
+                <br>
+                <v-select
+                  label="label"
+                  v-model="departamento_id"
+                  :onChange="watchDepa"
+                  placeholder="Seleccione un departamento"
+                  :options="arrayDepartamentos"
+                ></v-select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12 col-lg-12" v-if="departamento_id !== null">
+                <br>
+                <label for="email">Seleccione un Municipio</label>
+                <br>
+                <v-select
+                  label="label"
+                  v-model="municipio_id"
+                  placeholder="Seleccione un municipio"
+                  :options="arrayMunicipios"
+                ></v-select>
+              </div>
+            </div>
+            <br>
+            <button class="btn btn blue" @click="saveEstudiante">
+              <i class="mdi mdi-account-plus"></i>&nbsp;Registrar Estudiante
+            </button>
           </div>
         </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
