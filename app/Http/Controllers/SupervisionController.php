@@ -46,7 +46,14 @@ class SupervisionController extends Controller
                   DB::rollBack();
               }  
     }
+    //actualizacion de supervisiones
+    public function update(Request $request){
 
+        $supervision = Proyecto::findOrFail($request->id)->supervision;
+        $supervision->fecha = $request->fecha;
+        $supervision->observacion = $request->observacion;
+        $supervision->save();
+    }
     //obtener las supervisiones 
     public function GetSupervision($id)
     {
@@ -55,5 +62,13 @@ class SupervisionController extends Controller
         $s->setAttribute('imagenes',$i);
         return $s;
     }
-        
+
+    //imagenes de supervisiones
+    public function imgSuperv($id){
+
+        $s = supervisionProyecto::findOrFail($id);
+        $img = ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
+        return $img;
+    }
+       
 }

@@ -430,7 +430,7 @@
                                         <div class="file-input">
                                           <label for="file">Seleccione</label>
                                           <input type="file" id="file" @change="onInputChange" multiple>
-                                        </div>
+                                        </div>                                     
                                       </div>
                                       <div class="images-preview" v-show="images.length">
                                                           <!-- <div  class="img-wrapper" v-for="(image, index) in images" :key="index">
@@ -451,16 +451,16 @@
                                                                </div>
                                                              </div>
                                                            </div>
-
                                                          </div>
-                                                       </div>
-                                                       <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+                                                       </div>                                                      
+                                                       <!--<pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>-->
                                                      </div>
                                                      <div class="modal-footer">
                                                       <div class="row">
                                                         <div class="col-md-12">
                                                           <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
-                                                          <button type="button" class="button blue" @click="registrarSupervision()" dense>Registrar Supervisión</button>
+                                                          <button type="button" class="button blue" v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense>Registrar Supervisión</button>
+                                                          <button type="button" class="button blue" v-if="tipoAccion2 == 2" @click="actualizarSupervision()" dense>Actualizar Supervisión</button>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -499,9 +499,11 @@
                     //declaracion de variables
                     loadSpinner: 0,
                     verCard: 1,
+                    img: 0,
                     institucion: [],
                     arrayInstitucion: [],
                     arrayProyectos: [],
+                    arrayImages: [],
                     nombre: "",
                     direccion: "",
                     phone: "",
@@ -518,6 +520,7 @@
                     modal: 0,
                     tituloModal: "",
                     tipoAccion: 0,
+                    tipoAccion2: 0,
                     paginationInsti: {},
                     paginationInstiDes: {},
                     pagination: {
@@ -544,6 +547,7 @@
                     size: "20px",
                     date: "",
                     observacion: "",
+                    supervision_id: 0,
                     proyecto_id: 0,
                     modalsTitle: "",
                     modalID: 0,
@@ -607,7 +611,6 @@
                       this.municipio_id = 0;
                     }
                   },
-                  
                   validate: function(){
                     if((this.nombre == "") || (this.direccion == "") || (this.departamento_id == 0) || (this.municipio_id == 0) || (this.sector_id == 0))
                     {
@@ -616,7 +619,7 @@
                       return false;
                     }
                   },
-                 /*  removeOpcion: function(){
+                 /* removeOpcion: function(){
                     let me = this;
                     return $("#nombre").on('keyup',function(){
                       //me.opcion = "";
@@ -756,6 +759,21 @@ methods: {
       console.log(error);
     });
   },
+  //imagenes
+  getImg(id) {
+    let me = this;
+    var url = "imgSuperv/" + id;
+    me.loading = true;
+    axios.get(url).then(function(response) {
+      var respuesta = response.data;
+      me.arrayImages = respuesta;
+      me.loading = false;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  },
+  //termina
   getSupervision(id) {
     let me = this;
     var url = "GetSupervision/" + id;
@@ -875,7 +893,7 @@ methods: {
   },
   registrarSupervision() {
     let me = this;
-    me.loading = true;
+    //me.loading = true;
     axios
     .post("/proyecto/registrar/supervision", {
       proyecto_id: this.proyecto_id,
@@ -884,7 +902,7 @@ methods: {
       imagenes: this.images
     })
     .then(function(response) {
-      me.loading = false;
+      //me.loading = false;
       swal({
         position: "center",
         type: "success",
@@ -902,6 +920,36 @@ methods: {
     let me = this;
 
 
+  },
+  actualizarSupervision(){
+       let me = this;
+      axios
+        .put("/supervision/actualizar", {
+          id: this.proyecto_id,
+          fecha: this.date.substring(0, 10),
+          observacion: this.observacion,
+         
+        })
+        .then(function(response) {
+          swal({
+            position: "center",
+            type: "success",
+            title: "Supervision actualizado correctamente!",
+            showConfirmButton: false,
+            timer: 1000
+          });
+          me.cerrarModalSuper();
+        })
+        .catch(function(error) {
+          swal({
+            position: "center",
+            type: "warning",
+            title: "Ocurrio un error al actualizar el proyecto",
+            showConfirmButton: false,
+            timer: 1000
+          });
+          console.log(error);
+        });
   },
   abrirModal(modelo, accion, data = []) {
     const el = document.body;
@@ -972,7 +1020,7 @@ methods: {
       this.getMunicipios();
       this.getDepartamentos();
     },
-    abrirModalSuper(accion, id, nombre) {
+    abrirModalSuper(accion, id, nombre, data = []) {
       const el = document.body;
       el.classList.add("abrirModal");
       this.modal = 1;
@@ -981,11 +1029,14 @@ methods: {
       switch(accion){
         case 'registrar':
         this.titleMRS = 'Registrar supervisión en: ';
+        this.tipoAccion2 = 1;
 
         break;
         case 'actualizar':
         this.getSupervision(id);
         this.titleMRS = 'Actualizar supervisión de: ';
+        this.tipoAccion2 = 2;
+        
         break;
       }
     },
@@ -1014,6 +1065,7 @@ methods: {
       //this.supervision = {};
       this.modalsTitle = "";
       this.titleMRS = "";
+      this.tipoAccion2 = 0;
     },
     cerrarModal() {
       const el = document.body;
@@ -1228,6 +1280,7 @@ methods: {
   components: {},
   mounted() {
     this.maxDatetime;
+    this.getImg();
   }
 };
 </script>
