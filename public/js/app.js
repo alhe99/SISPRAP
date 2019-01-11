@@ -83139,10 +83139,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     proceso: function proceso() {
-      var me = this;
-      if (me.proceso != 0) {
-        me.getInstituciones();
-        me.clearData();
+      if (this.proceso != 0) {
+        this.getInstituciones();
+        this.clearData();
       }
     },
     indiceCarre: function indiceCarre() {
@@ -83249,19 +83248,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     //registrar proyecto
     saveProyect: function saveProyect() {
+      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       var me = this;
       this.loadSpinner = 1;
       if (me.exist == false) {
         axios.post("/proyecto/registrar", {
-          proceso_id: this.proceso,
-          nombre: this.nombre,
-          actividades: this.actividadesProy,
-          institucion_id: this.institucion.value,
-          imageG: this.imgGallery,
-          imagen: this.image,
-          actividadSS: this.actividadesCarre,
-          horas: this.catidadHoras,
-          cantidadAlumnos: this.cantidadVacantes
+          proceso_id: me.proceso,
+          nombre: me.nombre,
+          actividades: me.actividadesProy,
+          institucion_id: me.institucion.value,
+          imageG: me.imgGallery,
+          imagen: me.image,
+          actividadSS: me.actividadesCarre,
+          horas: me.catidadHoras,
+          cantidadAlumnos: me.cantidadVacantes
         }).then(function (response) {
           swal({
             position: "center",
@@ -83271,10 +83271,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             timer: 1000
           });
           me.clearData();
-          console.log(response.data);
         }).catch(function (error) {
           me.loadSpinner = 0;
-          console.log(error.response.data.errors);
+          toast({
+            type: 'danger',
+            title: 'Error! Intente Nuevamente'
+          });
         });
       } else {
         swal({
@@ -83714,7 +83716,7 @@ var render = function() {
                         attrs: {
                           type: "text",
                           min: 0,
-                          max: 300,
+                          max: 500,
                           label: "Cantidad de alumnos para proyecto:",
                           helptext: "Digite la cantidad"
                         },

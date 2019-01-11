@@ -235,7 +235,7 @@ public function getProjectsByCarrer(Request $request)
 
             $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                 $query->where('proceso_id', $tp);
-            })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+            })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D']])->get();
 
             for ($i=0; $i < count($pre_register) ; $i++) {
                $proyectos = $proyectos->except([$pre_register[$i]->id]);
@@ -245,7 +245,7 @@ public function getProjectsByCarrer(Request $request)
 
         $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
             $query->where('proceso_id', $tp);
-        })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+        })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D']])->get();
 
     }
 

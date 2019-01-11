@@ -66,7 +66,7 @@
                 type="text"
                 v-mask="'####'"
                 :min="0"
-                :max="300"
+                :max="500"
                 class="col-md-6"
                 label="Cantidad de alumnos para proyecto:"
                 helptext="Digite la cantidad"
@@ -298,10 +298,9 @@ export default {
       }
     },
     proceso: function() {
-      let me = this;
-      if (me.proceso != 0) {
-        me.getInstituciones();
-        me.clearData();
+      if (this.proceso != 0) {
+        this.getInstituciones();
+        this.clearData();
       }
     },
     indiceCarre: function() {
@@ -341,10 +340,10 @@ export default {
     },
     changeHours: function(){
       let me = this;
-      if (me.proceso==1) {me.catidadHoras=300}else{me.catidadHoras=160}
+      if (me.proceso==1){me.catidadHoras=300}else{me.catidadHoras=160}
     }
-  },
-  methods: {
+},
+methods: {
 
       //cambiar imagen
       changeImg(file) {
@@ -401,20 +400,21 @@ export default {
 
       //registrar proyecto
       saveProyect() {
+        const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
         let me = this;
         this.loadSpinner = 1;
         if(me.exist == false){
           axios
           .post("/proyecto/registrar", {
-            proceso_id: this.proceso,
-            nombre: this.nombre,
-            actividades: this.actividadesProy,
-            institucion_id: this.institucion.value,
-            imageG: this.imgGallery,
-            imagen: this.image,
-            actividadSS: this.actividadesCarre,
-            horas: this.catidadHoras,
-            cantidadAlumnos: this.cantidadVacantes
+            proceso_id: me.proceso,
+            nombre: me.nombre,
+            actividades: me.actividadesProy,
+            institucion_id: me.institucion.value,
+            imageG: me.imgGallery,
+            imagen: me.image,
+            actividadSS: me.actividadesCarre,
+            horas: me.catidadHoras,
+            cantidadAlumnos: me.cantidadVacantes
           })
           .then(function(response) {
             swal({
@@ -425,11 +425,13 @@ export default {
               timer: 1000
             });
             me.clearData();
-            console.log(response.data);
           })
           .catch(error => {
             me.loadSpinner = 0;
-            console.log(error.response.data.errors);
+            toast({
+              type: 'danger',
+              title: 'Error! Intente Nuevamente'
+            });
           });
         }else{
          swal({
