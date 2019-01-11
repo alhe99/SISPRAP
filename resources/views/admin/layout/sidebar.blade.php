@@ -34,6 +34,7 @@
             <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-file-check"></i><span
                 class="hide-menu">Control Proyectos</span></a>
                 <ul aria-expanded="false" class="collapse ">
+                    <li><button type="button" @click="menu=22" class="btn btn-link btn-colors">Aprobaciones</button></li>
                     <li><button type="button" @click="menu=1" class="btn btn-link  btn-colors">Publicación de
                     proyectos</button></li>
                     <li><button type="button" @click="menu=2" class="btn btn-link btn-colors">Preinscripciones
@@ -99,6 +100,9 @@
                 <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                     class="hide-menu"> Copias de seguridad</span></button>
                 </li>
+                <li><button type="button" class="btn btn-link btn-field"><i class="mdi mdi-alert-circle btn-i" style="color: #FF0000"></i>
+                    <span class="hide-menu" style="color: #B0BEC5;"> Manual de Usuario</span></button>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
@@ -119,7 +123,7 @@
     --}}
     <!-- End Bottom points-->
 </aside>
-   <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
         <div class="modal-content">
             <div class="modal-header">
@@ -197,7 +201,7 @@
                      class="col-md-12"
                      label="Nombre"
                      helptext="(Ingrese el nombre del usuario a actualizar)"
-                     
+
                      ></mdc-textfield>
                  </div>
              </div>

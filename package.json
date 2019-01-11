@@ -53,6 +53,7 @@
         "vue-spinner": "^1.0.3",
         "vue-switches": "^2.0.1",
         "vue-tabs-component": "^1.5.0",
+        "vue-the-mask": "^0.11.1",
         "vue-truncate-filter": "^1.1.7",
         "vue2-dropzone": "^3.5.2",
         "vue2-editor": "^2.6.6",
