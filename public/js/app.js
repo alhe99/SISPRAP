@@ -105305,25 +105305,6 @@ var render = function() {
                                   _c(
                                     "button",
                                     {
-                                      staticClass: "button blue",
-                                      attrs: { type: "button", id: "btnSave" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.savePay()
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "mdi mdi-content-save"
-                                      }),
-                                      _vm._v("Guardar Datos")
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
                                       staticClass: "button red",
                                       attrs: { type: "button" },
                                       on: {
@@ -105337,6 +105318,25 @@ var render = function() {
                                         staticClass: "mdi mdi-close-box"
                                       }),
                                       _vm._v("Cerrar")
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button blue",
+                                      attrs: { type: "button", id: "btnSave" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.savePay()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-content-save"
+                                      }),
+                                      _vm._v("Guardar Datos")
                                     ]
                                   )
                                 ])
@@ -106477,7 +106477,10 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Generar Hoja de Supervisión")]
+                            [
+                              _c("i", { staticClass: "mdi mdi-package-down" }),
+                              _vm._v(" Generar Hoja de Supervisión")
+                            ]
                           )
                         ])
                       ])
@@ -107158,7 +107161,10 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Generar Reporte")]
+                  [
+                    _c("i", { staticClass: "mdi mdi-package-down" }),
+                    _vm._v(" Generar Reporte")
+                  ]
                 )
               ])
             ])
@@ -107486,7 +107492,10 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Generar Reporte")]
+                  [
+                    _c("i", { staticClass: "mdi mdi-package-down" }),
+                    _vm._v(" Generar Reporte")
+                  ]
                 )
               ])
             ])
@@ -107868,7 +107877,10 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Generar Reporte")]
+                  [
+                    _c("i", { staticClass: "mdi mdi-package-down" }),
+                    _vm._v(" Generar Reporte")
+                  ]
                 )
               ])
             ])
