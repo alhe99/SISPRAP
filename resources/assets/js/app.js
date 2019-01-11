@@ -70,6 +70,7 @@ Vue.component('configuracion', require('./components/mantenimientos/configuracio
 Vue.component('gestproy', require('./components/proyectos/GestionProyectos.vue'));
 Vue.component('constancias', require('./components/proyectos/Constancias.vue'));
 Vue.component('sectores', require('./components/instituciones/Sectores.vue'));
+Vue.component('solicitudes_aprobadas', require('./components/proyectos/SolicitudesAprobadas.vue'));
 
 
 const app = new Vue({
