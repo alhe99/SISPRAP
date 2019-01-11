@@ -254,8 +254,8 @@
                       <i class="mdi mdi-help fa-4x"></i>
                     </div>
                     <div class="modal-body text-center">
-                      <button type="button" class="button red" data-dismiss="modal">Cancelar</button>
-                      <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</button>
+                      <button type="button" class="button red" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+                      <button type="button" class="button blue"  onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="mdi mdi-login"></i>&nbsp;Cerrar sesión</button>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                       </form>
