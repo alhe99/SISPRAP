@@ -28,7 +28,7 @@
                                     <p><strong style="font-weight:bold;">Actividades a realizar:</strong> {!! $proyecto->actividades
                                         !!}
                                     </p>
-                                    <p><strong style="font-weight:bold;">Horas a realizar:</strong> {{$proyecto->tipoProceso->horas}}</p>
+                                    <p><strong style="font-weight:bold;">Horas a realizar:</strong> {{$proyecto->horas_realizar}}</p>
                                 </div>
                                 <div class="tab-pane fade" id="startu" role="tabpanel">
                                     <p><strong style="font-weight:bold;">Nombre:</strong> {{$proyecto->institucion->nombre}}</p>
@@ -55,30 +55,30 @@
                             <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                         </div>
                         @elseif(Auth::user()->estudiante->preinscripciones->count() != 0)
-                            @if (
-                                Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "F" ||
-                                Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "A")
+                        @if (
+                            Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "F" ||
+                            Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "A")
                             <div class="col-md-6 text-center">
                                 <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @endif
-                        @else
-                        <div class="col-md-6 text-center">
-                            <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
-                              id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
-                          </div>
-                          @endif
-                          <div class="col-md-6 text-center">
-                            <br><a href="#" rel="nofollow" class="animated4 btn btn-info">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
+                            @else
+                            <div class="col-md-6 text-center">
+                                <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                  id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
+                              </div>
+                              @endif
+                              <div class="col-md-6 text-center">
+                                <br><a href="#" rel="nofollow" class="animated4 btn btn-info">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
+                            </div>
                         </div>
                     </div>
+                    <br>
+                    <a href="{{ url()->previous() }}"  class="btn btn-dark text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</a>
                 </div>
-                <br>
-                <a href="{{ url()->previous() }}"  class="btn btn-dark text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</a>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 </div>
 @endsection
 
@@ -91,8 +91,8 @@
         },
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
-               const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-               swal({
+             const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+             swal({
                 title: 'Esta seguro de Preinscribirte a este proyecto?',
                 text: "Una vez hecho espera la respuesta del administrador!",
                 type: 'warning',
