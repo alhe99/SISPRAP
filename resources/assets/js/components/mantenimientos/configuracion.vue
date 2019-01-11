@@ -15,11 +15,13 @@
                 v-model="nombre"
                 v-validate="'required'"
               ></mdc-textfield>
-              <div
+               <span
                 class="help-block alert-danger"
                 v-show="errors.has('estudiante')"
-              >{{errors.first('estudiante')}}</div>
+                style="margin-left: 16px;"
+              >{{errors.first('estudiante')}}</span>
             </div>
+     
             <div class="form-group row">
               <mdc-textfield
                 type="text"
@@ -30,14 +32,16 @@
                 v-model="apellido"
                 v-validate="'required'"
               ></mdc-textfield>
-              <div
+              <span
                 class="help-block alert-danger"
                 v-show="errors.has('apellido')"
-              >{{errors.first('apellido')}}</div>
+                style="margin-left: 16px;"
+              >{{errors.first('apellido')}}
+              </span>
             </div>
             <div class="form-group row">
               &nbsp;&nbsp;
-              <label>&nbsp;&nbsp;Fecha de Nacimiento</label>
+              <label style="margin-left: 5px;">Fecha de Nacimiento</label>
               <div class="col-md-12 col-sm-12 col-lg-12">
                 <datetime
                   type="date"
@@ -70,7 +74,6 @@
                 v-model="telefono"
                 v-validate="'digits:8'"
               ></mdc-textfield>
-            
               <mdc-textfield
                 type="text"
                 name="carnet"
@@ -80,15 +83,19 @@
                 v-model="carnet"
                 v-validate="'required'"
               ></mdc-textfield>
-                <div
-                class="help-block alert-danger"
-                v-show="errors.has('telefono')"
-              >{{errors.first('telefono')}}</div>
-              <div
-                class="help-block alert-danger"
-                v-show="errors.has('carnet')"
-              >{{errors.first('carnet')}}</div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="help-block alert-danger"
+                v-show="errors.has('telefono')"
+              >{{errors.first('telefono')}}</span>
+                </div>
+                 <div class="col-md-6">
+                    <span class="help-block alert-danger"
+                v-show="errors.has('carnet')"
+              >{{errors.first('carnet')}}</span>
+                </div>
+              </div>
 
             <div class="form-group row">
               <mdc-textfield
@@ -100,25 +107,27 @@
                 v-model="password"
                 v-validate="'required'"
               ></mdc-textfield>
-              <div
+               <span
                 class="help-block alert-danger"
                 v-show="errors.has('contraseña')"
-              >{{errors.first('contraseña')}}</div>
+                style="margin-left: 16px;"
+              >{{errors.first('contraseña')}}</span>
             </div>
             <div class="form-group row">
               <mdc-textfield
                 type="text"
                 name="correo"
                 class="col-md-12"
-                label="email"
+                label="Email"
                 helptext="(Ingrese su correo electronico)"
                 v-model="email"
                 v-validate="'required'"
               ></mdc-textfield>
-              <div
+              <span
                 class="help-block alert-danger"
                 v-show="errors.has('correo')"
-              >{{errors.first('correo')}}</div>
+                style="margin-left: 16px;"
+              >{{errors.first('correo')}}</span>
             </div>
             <div class="form-group row">
               <mdc-textfield
@@ -130,10 +139,11 @@
                 v-model="direccion"
                 v-validate="'required'"
               ></mdc-textfield>
-              <div
+              <span
                 class="help-block alert-danger"
                 v-show="errors.has('direccion')"
-              >{{errors.first('direccion')}}</div>
+                style="margin-left: 16px;"
+              >{{errors.first('direccion')}}</span>
             </div>
             <div class="form-group row">
               <div class="col-md-12">
