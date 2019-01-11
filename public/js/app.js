@@ -99802,7 +99802,7 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "button secondary",
+                          staticClass: "btn btn-primary ",
                           attrs: {
                             type: "button",
                             "data-toggle": "tooltip",
@@ -99824,7 +99824,7 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "button red",
+                          staticClass: "btn btn-primary ",
                           attrs: {
                             type: "button",
                             "data-toggle": "tooltip",
@@ -99836,7 +99836,11 @@ var render = function() {
                             }
                           }
                         },
-                        [_c("i", { staticClass: "mdi mdi-delete i-crud" })]
+                        [
+                          _c("i", {
+                            staticClass: "mdi mdi-delete-variant i-crud"
+                          })
+                        ]
                       )
                     ])
                   ])
