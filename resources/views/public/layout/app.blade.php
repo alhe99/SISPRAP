@@ -99,7 +99,7 @@
 					</a>
 					<ul class="dropdown">
 						<li>
-							<a href="{{ route('logout') }}"  data-target="#exampleModal">Cerrar Sesion</a>
+							<a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesion</a>
 						</li>
 					</ul>
 				</li>
@@ -409,8 +409,8 @@ aria-hidden="true">
 					<i class="fas fa-question fa-3x"></i>
 				</div>
 				<div class="modal-body text-center">
-					<button type="button" class="btn btn-secondary" style="cursor: pointer;" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesión</button>
+					<button type="button" class="btn btn-secondary" style="cursor: pointer;" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+					<button type="button" class="btn btn-primary" style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="mdi mdi-login"></i>&nbsp;Cerrar Sesión</button>
 				</div>
 			</div>
 		</div>

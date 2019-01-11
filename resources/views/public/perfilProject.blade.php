@@ -151,8 +151,8 @@
           <div class="col-md-2 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="total_horas">Total de Horas*</label>
-               <input class="form-control" value="{{Auth::user()->estudiante->proceso[0]->pivot->num_horas == null ? '' : Auth::user()->estudiante->proceso[0]->pivot->num_horas  }}"
-               id="total_horas" maxlength="3" type="text" name="total_horas">
+              <input class="form-control" value="{{Auth::user()->estudiante->proceso[0]->pivot->num_horas == null ? '' : Auth::user()->estudiante->proceso[0]->pivot->num_horas  }}"
+              id="total_horas" maxlength="3" type="text" name="total_horas">
             </div>
           </div>
         </div>
@@ -178,43 +178,36 @@
     </div>
     <div class="row">
       <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <div class="form-group control-label">
+        <div class="form-group control-floating">
           <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
           <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
         </div>
       </div>
       <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <div class="form-group control-label">
-          <label class="control-label" for="fecha_fin">Fecha Finalización</label>
-          <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_fin" disabled  name="fecha_fin" >
+        <div class="form-group control-floating">
+          <label class="control-label" for="tel_supervisor">Teléfono del supervisor*</label>
+          <input class="form-control" v-model="telSuper" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
         </div>
       </div>
     </div>
-
     <div class="row">
-      <div class="col-md-8 wow animated fadeInRight" data-wow-delay=".1s">
+      <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
         <div class="form-group label-floating">
           <label class="control-label"  for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
           <input class="form-control" v-model="nameSuper" id="name_supervisor" type="text" name="name_supervisor" >
         </div>
       </div>
-      <div class="col-md-4 wow animated fadeInRight" data-wow-delay=".1s">
-       <div class="form-group label-floating">
-        <label class="control-label" for="tel_supervisor">Teléfono del supervisor*</label>
-        <input class="form-control" v-model="telSuper" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
+    </div>
+    <br>
+    <div class="row text-center">
+      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
       </div>
-    </div>
-  </div>
-  <br>
-  <div class="row text-center">
-    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-      <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
-    </div>
-    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-      <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
-    </div>
-  </div><br>
-</form>
+      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+      </div>
+    </div><br>
+  </form>
 </div>
 </div>
 </div>
@@ -269,45 +262,45 @@
     }).then((result) => {
       if (result.value) {
         let me = this;
-          $('#preloader').fadeIn();
-          me.fechaI = $("#fecha_ini").val().trim();
-          me.fechaFin = $("#fecha_fin").val().trim();
-          me.studentId = $("#student_id").val().trim();
-          me.projectId = $("#project_id").val().trim();
-          me.hrsRea = $("#total_horas").val().trim();
+        $('#preloader').fadeIn();
+        me.fechaI = $("#fecha_ini").val().trim();
+        me.fechaFin = $("#fecha_fin").val().trim();
+        me.studentId = $("#student_id").val().trim();
+        me.projectId = $("#project_id").val().trim();
+        me.hrsRea = $("#total_horas").val().trim();
 
-          var url = route('save_perfil', {
-            "fechaini": this.fechaI,
-            "fechafin":this.fechaFin,
-            "hrsreal":this.hrsRea,
-            "student_id":this.studentId,
-            "proyecto_id":this.projectId,
-            "super_name":this.nameSuper,
-            "super_cell":this.telSuper });
+        var url = route('save_perfil', {
+          "fechaini": this.fechaI,
+          "fechafin":this.fechaFin,
+          "hrsreal":this.hrsRea,
+          "student_id":this.studentId,
+          "proyecto_id":this.projectId,
+          "super_name":this.nameSuper,
+          "super_cell":this.telSuper });
 
-          axios.get(url).then(function(response) {
-            var respuesta = response.data;
-            me.downloadPdfFromBase64(respuesta);
-                          $('#preloader').fadeOut();
-                          swal({
-                            position: "center",
-                            type: "success",
-                            title: "Datos Guardados Correctamente",
-                            showConfirmButton: true,
-                            width: '350px',
-                          }).then(function(result){
-                            window.location.href = route('proyects_now',[me.studentId]);
-                          });
+        axios.get(url).then(function(response) {
+          var respuesta = response.data;
+          me.downloadPdfFromBase64(respuesta);
+          $('#preloader').fadeOut();
+          swal({
+            position: "center",
+            type: "success",
+            title: "Datos Guardados Correctamente",
+            showConfirmButton: true,
+            width: '350px',
+          }).then(function(result){
+            window.location.href = route('proyects_now',[me.studentId]);
+          });
 
-                     }).catch(function(error) {
-                      console.log(error);
-                      toast({
-                        type: 'danger',
-                        title: 'Error! Intente Nuevamente'
-                      });
-                    });
-                   }
-                 })
+        }).catch(function(error) {
+          console.log(error);
+          toast({
+            type: 'danger',
+            title: 'Error! Intente Nuevamente'
+          });
+        });
+      }
+    })
   }
 },
 mounted(){

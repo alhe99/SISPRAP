@@ -24,7 +24,7 @@
                             </div>
                         </fieldset>
                          <div class="col-md-12 text-center"><br>
-                            <button type="button" id="btnGenerar" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión">Generar Reporte</button>
+                            <button type="button" id="btnGenerar" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
                         </div>
                     </div>
                 </div>

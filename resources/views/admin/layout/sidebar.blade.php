@@ -99,6 +99,9 @@
                 <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                     class="hide-menu"> Copias de seguridad</span></button>
                 </li>
+                <li><button type="button" class="btn btn-link btn-field"><i class="mdi mdi-alert-circle btn-i" style="color: #FF0000"></i>
+                    <span class="hide-menu" style="color: #B0BEC5;"> MANUAL</span></button>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
@@ -119,7 +122,7 @@
     --}}
     <!-- End Bottom points-->
 </aside>
-   <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
         <div class="modal-content">
             <div class="modal-header">

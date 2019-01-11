@@ -43,7 +43,7 @@
                      <v-select ref="selectMuni" label="label" v-model="municipio_id"  placeholder="Seleccione un municipio"  :options="arrayMunicipios"></v-select>
                    </div>
                    <div class="col-md-12 text-center"><br>
-                    <button type="button" id="btnGenerar" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión">Generar Hoja de Supervisión</button>
+                    <button type="button" id="btnGenerar" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión"><i class="mdi mdi-package-down"></i>&nbsp;Generar Hoja de Supervisión</button>
                   </div>
                 </div>
               </div>
