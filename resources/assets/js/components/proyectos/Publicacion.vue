@@ -12,11 +12,11 @@
                     <div class="panel-body">
                       <div class="row md-radio">
                         <div class="col-md-6 text-center">
-                          <input id="radioSS" value="1" v-model="proceso" type="radio" name="radioP">
+                          <input id="radioSS" value="1" v-model="proceso" :onChange="changeHours" type="radio" name="radioP">
                           <label for="radioSS">Servicio Social</label>
                         </div>
                         <div class="col-md-6 text-center">
-                          <input id="radioPP" value="2" v-model="proceso" type="radio" name="radioP">
+                          <input id="radioPP" value="2" v-model="proceso" :onChange="changeHours" type="radio" name="radioP">
                           <label for="radioPP">Práctica Profesional</label>
                         </div>
                       </div>
@@ -72,172 +72,172 @@
                 helptext="Digite la cantidad"
                 v-model="cantidadVacantes"
                 ></mdc-textfield>
-            </div>
-            <div class="form-group row" v-if="proceso==2">
-              <div class="col-md-10 col-sm-10 col-lg-10">
-                <v-select
-                multiple
-                ref="selectCarreras"
-                v-model="carrerasProy"
-                :options="arrayCarreras"
-                placeholder="Seleccione una o mas carreras"
-                ></v-select>
               </div>
-              <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-12 col-sm-12 col-lg-12">
-                <label for="vEditorSS">Describa Actividades a Realizar:</label>
-                <form-wizard
-                v-if="proceso == 2 && carrerasProy.length != 0 "
-                title="Actividades"
-                subtitle="Detalle Actividades para cada carrera seleccionada"
-                color="#6200ee"
-                >
-                <wizard-step
-                slot-scope="props"
-                slot="step"
-                :tab="props.tab"
-                :transition="props.transition"
-                :index="props.index"
-                ></wizard-step>
-                <tab-content
-                v-for="carreras in carrerasProy"
-                :key="carreras.id"
-                :title="carreras['label']"
-                ref="titleC"
-                >
-                <vue-editor
-                ref="editorPP"
-                :disabled="disabledVE"
-                v-model="actividadesCarre"
-                :editorToolbar="toolBars"
-                ></vue-editor>
-              </tab-content>
-              <mdc-button
-              type="button"
-              ref="myBtn"
-              id="btnNextActi"
-              raised
-              slot="next"
-              @click="agregarActivi"
-              :disabled="actividadesCarre == ''"
-              >Siguiente</mdc-button>
-              <mdc-button
-              type="button"
-              ref="btnEnd"
-              raised
-              slot="finish"
-              @click="agregarActivi"
-              :disabled="actividadesCarre == ''"
-              >Aceptar</mdc-button>
-
-            </form-wizard>
-            <vue-editor
-            v-else-if="proceso == 1"
-            v-model="actividadesCarre"
-            :editorToolbar="toolBars"
-            id="vEditorSS"
-            ></vue-editor>
-          </div>
-
-        </div>
-        <div class="form-group row">
-          <div class="col-md-12 col-sm-12 col-lg-12">
-            <v-select
-            v-model="institucion"
-            :options="arrayInstituciones"
-            placeholder="Seleccione una Institución"
-            ></v-select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-md-12 col-lg-12  col-sm-12">
-            <div class="row">
-              <div class="col-md-6 col-sm-12 col-lg-6">
-                <button
-                :disabled="switchImg ==true"
-                ref="btntest"
-                v-on:click="clearGallery()"
-                class="btn btn-primary font-weight-bold text-dark"
+              <div class="form-group row" v-if="proceso==2">
+                <div class="col-md-10 col-sm-10 col-lg-10">
+                  <v-select
+                  multiple
+                  ref="selectCarreras"
+                  v-model="carrerasProy"
+                  :options="arrayCarreras"
+                  placeholder="Seleccione una o mas carreras"
+                  ></v-select>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
+                  <label for="vEditorSS">Describa Actividades a Realizar:</label>
+                  <form-wizard
+                  v-if="proceso == 2 && carrerasProy.length != 0 "
+                  title="Actividades"
+                  subtitle="Detalle Actividades para cada carrera seleccionada"
+                  color="#6200ee"
+                  >
+                  <wizard-step
+                  slot-scope="props"
+                  slot="step"
+                  :tab="props.tab"
+                  :transition="props.transition"
+                  :index="props.index"
+                  ></wizard-step>
+                  <tab-content
+                  v-for="carreras in carrerasProy"
+                  :key="carreras.id"
+                  :title="carreras['label']"
+                  ref="titleC"
+                  >
+                  <vue-editor
+                  ref="editorPP"
+                  :disabled="disabledVE"
+                  v-model="actividadesCarre"
+                  :editorToolbar="toolBars"
+                  ></vue-editor>
+                </tab-content>
+                <mdc-button
                 type="button"
-                data-toggle="collapse"
-                data-target="#collapseExample"
-                aria-expanded="false"
-                aria-controls="collapseExample"
-                >
-                <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Predeterminadas
-              </button>
+                ref="myBtn"
+                id="btnNextActi"
+                raised
+                slot="next"
+                @click="agregarActivi"
+                :disabled="actividadesCarre == ''"
+                >Siguiente</mdc-button>
+                <mdc-button
+                type="button"
+                ref="btnEnd"
+                raised
+                slot="finish"
+                @click="agregarActivi"
+                :disabled="actividadesCarre == ''"
+                >Aceptar</mdc-button>
+
+              </form-wizard>
+              <vue-editor
+              v-else-if="proceso == 1"
+              v-model="actividadesCarre"
+              :editorToolbar="toolBars"
+              id="vEditorSS"
+              ></vue-editor>
             </div>
-            <div class="col-md-6 col-sm-12 col-lg-6">
-              <div class="form-group text-right">
-                <switches
-                class="switch-md"
-                v-model="switchImg "
-                theme="bootstrap"
-                color="primary"
-                ></switches>
-                <label>Seleccionar Imagen De PC</label>
+
+          </div>
+          <div class="form-group row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <v-select
+              v-model="institucion"
+              :options="arrayInstituciones"
+              placeholder="Seleccione una Institución"
+              ></v-select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-12 col-lg-12  col-sm-12">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-lg-6">
+                  <button
+                  :disabled="switchImg ==true"
+                  ref="btntest"
+                  v-on:click="clearGallery()"
+                  class="btn btn-primary font-weight-bold text-dark"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseExample"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                  >
+                  <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Predeterminadas
+                </button>
+              </div>
+              <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="form-group text-right">
+                  <switches
+                  class="switch-md"
+                  v-model="switchImg "
+                  theme="bootstrap"
+                  color="primary"
+                  ></switches>
+                  <label>Seleccionar Imagen De PC</label>
+                </div>
+              </div>
+            </div>
+            <div
+            v-show="switchImg==false"
+            class="collapse"
+            ref="divCollapse"
+            id="collapseExample"
+            >
+            <div class="card card-body">
+              <div class="row" id="seccion">
+                <div
+                class="col-md-2 col-sm-12 col-lg-2"
+                v-for="image in arrayImages"
+                :key="image.id"
+                >
+                <input
+                type="radio"
+                :id="image"
+                name="select"
+                :value="image"
+                v-model="imgGallery"
+                >
+                <label :for="image">
+                  <img
+                  class="text-center img-fluid"
+                  :src="'images/img_projects/' + image"
+                  alt=""
+                  >
+                </label>
               </div>
             </div>
           </div>
-          <div
-          v-show="switchImg==false"
-          class="collapse"
-          ref="divCollapse"
-          id="collapseExample"
-          >
-          <div class="card card-body">
-            <div class="row" id="seccion">
-              <div
-              class="col-md-2 col-sm-12 col-lg-2"
-              v-for="image in arrayImages"
-              :key="image.id"
-              >
-              <input
-              type="radio"
-              :id="image"
-              name="select"
-              :value="image"
-              v-model="imgGallery"
-              >
-              <label :for="image">
-                <img
-                class="text-center img-fluid"
-                :src="'images/img_projects/' + image"
-                alt=""
-                >
-              </label>
-            </div>
+        </div>
+        <div class="row" id="imageP" v-show="switchImg==true">
+          <img-inputer
+          class="col-md-12 col-sm-12 col-lg-12"
+          ref="imgUpload"
+          icon="img"
+          bottom-text="Seleccionar nueva imagen"
+          theme="material"
+          accept="image/*"
+          @onChange="changeImg"
+          size="large"
+          placeholder="Selecione una imagen de su computadora!"
+          />
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <br>
+            <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
+            <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
           </div>
         </div>
-      </div>
-      <div class="row" id="imageP" v-show="switchImg==true">
-        <img-inputer
-        class="col-md-12 col-sm-12 col-lg-12"
-        ref="imgUpload"
-        icon="img"
-        bottom-text="Seleccionar nueva imagen"
-        theme="material"
-        accept="image/*"
-        @onChange="changeImg"
-        size="large"
-        placeholder="Selecione una imagen de su computadora!"
-        />
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <br>
-          <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
-          <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
+        <div class="row">
+          <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 </div>
 </div>
 </div>
@@ -298,9 +298,10 @@ export default {
       }
     },
     proceso: function() {
-      if (this.proceso != 0) {
-        this.getInstituciones();
-        this.clearData();
+      let me = this;
+      if (me.proceso != 0) {
+        me.getInstituciones();
+        me.clearData();
       }
     },
     indiceCarre: function() {
@@ -338,6 +339,10 @@ export default {
         return false;
       }
     },
+    changeHours: function(){
+      let me = this;
+      if (me.proceso==1) {me.catidadHoras=300}else{me.catidadHoras=160}
+    }
   },
   methods: {
 
