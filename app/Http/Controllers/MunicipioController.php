@@ -14,7 +14,6 @@ class MunicipioController extends Controller
     }
    public function GetDepartamentos()
     {
-        //if (!$request->ajax()) return redirect('/');
         $Departamentos = Departamento::all();
         $data = [];
         $data[0] = [];
@@ -27,9 +26,10 @@ class MunicipioController extends Controller
         }
         return  response()->json($data);
     }
+
+    //obtener todos los municipios relacionados al departamento seleccionado por id
     public function GetMunicipios($id)
     {
-        //if (!$request->ajax()) return redirect('/');
         $Municipios = Municipio::where('departamento_id',$id)->get();
         $data = [];
         $data[0] = [];

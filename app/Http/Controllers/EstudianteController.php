@@ -6,6 +6,7 @@ use App\Estudiante;
 
 class EstudianteController extends Controller
 {
+    //Registrar un estudiante
     public function store(Request $request)
     {
      $estudiante = new Estudiante();
@@ -29,6 +30,7 @@ class EstudianteController extends Controller
      $estudiante->save();
 }
 
+//obtener estudiantes por su id
 public function getStudentById($id){
 
     $e = Estudiante::findOrFail($id);
@@ -36,6 +38,8 @@ public function getStudentById($id){
     $e->setAttribute('direccion',$e->direccion.', '.$e->municipio->nombre.','.$e->municipio->departamento->nombre);
     return $e;
 }
+
+//apartado de la recepcion, listado de todos los estudiantes en general
 public function getStudentsToRecepcion(Request $request){
 
     $carrera_id = $request->carre_id;
@@ -62,6 +66,8 @@ public function getStudentsToRecepcion(Request $request){
     ];
 
 }
+
+//listado de los estudiantes que han pagado el arancel por proceso
 public function getStudentsHasPayArancel(Request $request){
 
     $carrera_id = $request->carre_id;
@@ -92,6 +98,7 @@ public function getStudentsHasPayArancel(Request $request){
     ];
 
 }
+//Devuelve todos los estudiantes por carrera y su proceso
 public function getStudensByCarrerAndProcess(Request $request){
 
     $carrera_id = $request->carrera_id;

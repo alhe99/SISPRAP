@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class SectorInstitucionController extends Controller
 {
+
+    //listado de los sectores registrados
     public function index(Request $request)
     {
        
@@ -34,12 +36,16 @@ class SectorInstitucionController extends Controller
             ];
 
 }
+
+//registrar sector 
     public function store(Request $request)
     {
         $sector = new SectorInstitucion();
         $sector->sector = $request->sector;
         $sector->save();
     }
+
+//actualizar sector
     public function update(Request $request)
     {
 
@@ -58,6 +64,8 @@ class SectorInstitucionController extends Controller
         $this->middleware('guestVerify');
         
     }
+
+    //listado de sectores
     public function selectSectores(Request $request){
 
         $sectores = SectorInstitucion::orderBy('sector','asc')->get();
@@ -83,6 +91,8 @@ class SectorInstitucionController extends Controller
         }
         return  response()->json($data);
     }
+
+    //validar nombre del sector ya existente
     public function validateSector(Request $request){
 
         if(SectorInstitucion::where('sector',$request->sector)->exists()){

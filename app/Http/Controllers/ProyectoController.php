@@ -24,10 +24,10 @@ class ProyectoController extends Controller
         //$this->middleware('guestVerify');
 
     }
+
+    //listado de proyectos por proceso y busqueda
     public function index(Request $request)
     {
-        //if (!$request->ajax())
-        //return redirect('/');
 
         $buscar = $request->buscar;
         $proceso = $request->proceso;
@@ -50,6 +50,7 @@ class ProyectoController extends Controller
         ];
     }
 
+    //registro de proyectos
     public function store(Request $request)
     {
         $date = Carbon::now();
@@ -105,6 +106,8 @@ class ProyectoController extends Controller
             break;
         }
     }
+
+    //actualizacion de proyecto
     public function update(Request $request)
     {
         $date = Carbon::now();
@@ -114,7 +117,6 @@ class ProyectoController extends Controller
             $proyecto = Proyecto::findOrFail($request->id);
             $img_recv = $request->imagen;
             $proyecto->nombre = $request->nombre;
-            $proyecto->descripcion = $request->descripcion;
             $proyecto->fecha = Carbon::parse($date);
             $proyecto->actividades = $request->actividades;
             $proyecto->institucion_id = $request->institucion_id;
@@ -133,7 +135,6 @@ class ProyectoController extends Controller
             $proyecto = Proyecto::findOrFail($request->id);
             $img_recv = $request->imagen;
             $proyecto->nombre = $request->nombre;
-            $proyecto->descripcion = $request->descripcion;
             $proyecto->fecha = Carbon::parse($date);
             $proyecto->actividades = $request->actividades;
             $proyecto->institucion_id = $request->institucion_id;
@@ -150,6 +151,8 @@ class ProyectoController extends Controller
             break;
         }
     }
+
+    //listado de proyectos por proceso y id
     public function GetProyectos($id)
     {
         $proceso = $id;
@@ -164,6 +167,8 @@ class ProyectoController extends Controller
         }
         return response()->json($data);
     }
+
+    //cambiar de estado para desactivar el proyecto
     public function desactivar(Request $request)
     {
         if (!$request->ajax())
@@ -172,17 +177,20 @@ class ProyectoController extends Controller
        $proyecto->estado = '0';
        $proyecto->save();
    }
+
+   //cambiar de estado para activar el proyecto
    public function activar(Request $request)
    {
-    if (!$request->ajax())
-      return redirect('/');
-  $proyecto = Proyecto::findOrFail($request->id);
-  $proyecto->estado = '1';
-  $proyecto->save();
+        if (!$request->ajax())
+        return redirect('/');
+        $proyecto = Proyecto::findOrFail($request->id);
+        $proyecto->estado = '1';
+        $proyecto->save();
 }
+
+//obtener proyectos desactivados
 public function getProyDes(Request $request)
 {
-        // if (!$request->ajax()) return redirect('/');
     $buscar = $request->buscar;
     $proceso = $request->proceso;
 
@@ -203,6 +211,8 @@ public function getProyDes(Request $request)
     ];
 
 }
+
+//listado de proyectos en base a su carrera y actividades por carrera
 public function obtenerProyecto(Request $request)
 {
 
@@ -273,6 +283,7 @@ return $result_paginate;
 
 }
 
+//listado de proyectos por proceso
 public function getProjectsByProcess(Request $request)
 {
     $process_id = $request->process_id;
@@ -305,7 +316,7 @@ public function getProjectsByProcess(Request $request)
     return response()->json($data);
 }
 
-
+//apartado de la publica, en la verificacion de la url solo se presenta el nombre del proyecto que el alumno ha seleccionado
 public function getProjectBySlug($process, $slug)
 {
     if ($process == 1) {
@@ -319,6 +330,7 @@ public function getProjectBySlug($process, $slug)
     return view('public.viewProject', compact("proyecto"));
 }
 
+//apartado de la publica, preinscripcion de proyectos 
 public function preRegistrationProject($estudent_id, $project_id)
 {
     $proyect = Proyecto::findOrFail($project_id);
@@ -345,6 +357,8 @@ public function preRegistrationProject($estudent_id, $project_id)
   }
   return $admin = User::Find(0);
 }
+
+//listado de estudiantes que se han preinscrito a un proyecto especificado
 public function getPreregistrationByProject(Request $request)
 {
     $proyect = Proyecto::findOrFail($request->project_id);
@@ -371,6 +385,7 @@ public function getPreregistrationByProject(Request $request)
 
 }
 
+//apartado publico, listado de preinscripciones por estudiante
 public function getPreregisterProjects($estudent_id,$process_id){
 
     $cuenta = Estudiante::whereHas('proceso', function ($query) use ($process_id) {
@@ -387,6 +402,8 @@ public function getPreregisterProjects($estudent_id,$process_id){
 
    return view('public.myProjects', compact("proyectos"));
 }
+
+//apartado publico, eliminar preinscripcion por estudiante
 public function deletePreRegistration($estudent_id, $project_id){
 
     $proyect = Proyecto::findOrFail($project_id);
@@ -396,11 +413,15 @@ public function deletePreRegistration($estudent_id, $project_id){
         return "false";
     }
 }
+
+//rechazar la solicitud del estudiante referente a la preinscripcion realizada
 public function rechazPreregistration($estudent_id,$project_id){
 
     DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->
     where('proyecto_id',$project_id)->update(array('estado' => 'R'));
 }
+
+//aprobar la preinscripcion del estudiante
 public function aceptarPreregistration(Request $request){
  $query;
  if($request->project_id == 0){
@@ -437,6 +458,8 @@ else{
 }
 
 }
+
+//dar acceso al llenado de perfil del proyecto al estudiante
 public function provideAccessToPerfil($estudent_id,$project_id){
 
     DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->

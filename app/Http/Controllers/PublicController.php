@@ -14,6 +14,8 @@ class PublicController extends Controller
         //$this->middleware('guestVerify');
 
     }
+
+    //listado de los proyectos que el estudiante se ha preinscrito, tomando la informacion de la carrera del estudiante y su proceso
     public function index(Request $request2)
     {
 
