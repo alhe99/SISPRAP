@@ -203,7 +203,7 @@
           </ul>
         </nav>
         <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
-          <h4 class="font-weight-bold text-center">No hay Preincripciones en este proyecto ó la búsqueda no coincide</h4>
+          <h4 class="font-weight-bold text-center">No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
         </div>
         <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
         <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

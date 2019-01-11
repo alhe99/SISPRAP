@@ -88737,7 +88737,7 @@ var render = function() {
                               { staticClass: "font-weight-bold text-center" },
                               [
                                 _vm._v(
-                                  "No hay Preincripciones en este proyecto ó la búsqueda no coincide"
+                                  "No hay Preinscripciones en este proyecto ó la búsqueda no coincide"
                                 )
                               ]
                             )
