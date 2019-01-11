@@ -50,6 +50,8 @@ Route::post('proyecto/registrar/supervision', 'SupervisionController@store');
 Route::get('/proyecto/obtenerProyecto', 'ProyectoController@obtenerProyecto');
 Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision');
+Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv');
+Route::put('/supervision/actualizar', 'SupervisionController@update');
 
 Route::get('/permiso', 'PermisoController@index');
 
@@ -214,7 +216,7 @@ Route::get('/test', function () {
     // $e->password = bcrypt('123');
     // $e->foto_name = "SS17001001".".JPG";
     // $e->save();
-
+/*
     $e = new App\Estudiante;
     $e->nombre = "Luis Alonso";
     $e->apellido = "Hernandez Orellana";
@@ -239,6 +241,13 @@ Route::get('/test', function () {
 
 
     return "True";
-    //return Auth::user()->estudiante->proceso[0]->id;
+    //return Auth::user()->estudiante->proceso[0]->id;*/
+
+    //obtener imagenes
+
+    $id = 3;
+    $supervision = App\Proyecto::findOrFail($id)->supervision;
+    $supervision->observacion = 'hola';
+    $supervision->save();
 
     });

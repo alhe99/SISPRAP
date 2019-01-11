@@ -79274,9 +79274,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //declaracion de variables
       loadSpinner: 0,
       verCard: 1,
+      img: 0,
       institucion: [],
       arrayInstitucion: [],
       arrayProyectos: [],
+      arrayImages: [],
       nombre: "",
       direccion: "",
       phone: "",
@@ -79293,6 +79295,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       modal: 0,
       tituloModal: "",
       tipoAccion: 0,
+      tipoAccion2: 0,
       paginationInsti: {},
       paginationInstiDes: {},
       pagination: {
@@ -79319,6 +79322,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       size: "20px",
       date: "",
       observacion: "",
+      supervision_id: 0,
       proyecto_id: 0,
       modalsTitle: "",
       modalID: 0,
@@ -79383,7 +79387,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.municipio_id = 0;
       }
     },
-
     validate: function validate() {
       if (this.nombre == "" || this.direccion == "" || this.departamento_id == 0 || this.municipio_id == 0 || this.sector_id == 0) {
         return true;
@@ -79391,7 +79394,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return false;
       }
     }
-    /*  removeOpcion: function(){
+    /* removeOpcion: function(){
        let me = this;
        return $("#nombre").on('keyup',function(){
          //me.opcion = "";
@@ -79512,6 +79515,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+
+    //imagenes
+    getImg: function getImg(id) {
+      var me = this;
+      var url = "imgSuperv/" + id;
+      me.loading = true;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayImages = respuesta;
+        me.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+
+    //termina
     getSupervision: function getSupervision(id) {
       var me = this;
       var url = "GetSupervision/" + id;
@@ -79625,14 +79644,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     registrarSupervision: function registrarSupervision() {
       var me = this;
-      me.loading = true;
+      //me.loading = true;
       axios.post("/proyecto/registrar/supervision", {
         proyecto_id: this.proyecto_id,
         observacion: this.observacion,
         fecha: this.date.substring(0, 10),
         imagenes: this.images
       }).then(function (response) {
-        me.loading = false;
+        //me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -79647,6 +79666,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     validateIfExist: function validateIfExist(institucion, proceso_id) {
       var me = this;
+    },
+    actualizarSupervision: function actualizarSupervision() {
+      var me = this;
+      axios.put("/supervision/actualizar", {
+        id: this.proyecto_id,
+        fecha: this.date.substring(0, 10),
+        observacion: this.observacion
+
+      }).then(function (response) {
+        swal({
+          position: "center",
+          type: "success",
+          title: "Supervision actualizado correctamente!",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        me.cerrarModalSuper();
+      }).catch(function (error) {
+        swal({
+          position: "center",
+          type: "warning",
+          title: "Ocurrio un error al actualizar el proyecto",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        console.log(error);
+      });
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -79723,6 +79769,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getDepartamentos();
     },
     abrirModalSuper: function abrirModalSuper(accion, id, nombre) {
+      var data = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+
       var el = document.body;
       el.classList.add("abrirModal");
       this.modal = 1;
@@ -79731,11 +79779,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       switch (accion) {
         case 'registrar':
           this.titleMRS = 'Registrar supervisión en: ';
+          this.tipoAccion2 = 1;
 
           break;
         case 'actualizar':
           this.getSupervision(id);
           this.titleMRS = 'Actualizar supervisión de: ';
+          this.tipoAccion2 = 2;
+
           break;
       }
     },
@@ -79764,6 +79815,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //this.supervision = {};
       this.modalsTitle = "";
       this.titleMRS = "";
+      this.tipoAccion2 = 0;
     },
     cerrarModal: function cerrarModal() {
       var el = document.body;
@@ -79979,6 +80031,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {},
   mounted: function mounted() {
     this.maxDatetime;
+    this.getImg();
   }
 });
 
@@ -82551,20 +82604,8 @@ var render = function() {
                                                               ]
                                                             )
                                                           ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("pulse-loader", {
-                                                          staticClass:
-                                                            "text-center",
-                                                          attrs: {
-                                                            loading:
-                                                              _vm.loading,
-                                                            color: _vm.color,
-                                                            size: _vm.size
-                                                          }
-                                                        })
-                                                      ],
-                                                      1
+                                                        )
+                                                      ]
                                                     ),
                                                     _vm._v(" "),
                                                     _c(
@@ -82611,30 +82652,63 @@ var render = function() {
                                                                   ]
                                                                 ),
                                                                 _vm._v(" "),
-                                                                _c(
-                                                                  "button",
-                                                                  {
-                                                                    staticClass:
-                                                                      "button blue",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "button",
-                                                                      dense: ""
-                                                                    },
-                                                                    on: {
-                                                                      click: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.registrarSupervision()
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "Registrar Supervisión"
+                                                                _vm.tipoAccion2 ==
+                                                                1
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "button blue",
+                                                                        attrs: {
+                                                                          type:
+                                                                            "button",
+                                                                          dense:
+                                                                            ""
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            _vm.registrarSupervision()
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "Registrar Supervisión"
+                                                                        )
+                                                                      ]
                                                                     )
-                                                                  ]
-                                                                )
+                                                                  : _vm._e(),
+                                                                _vm._v(" "),
+                                                                _vm.tipoAccion2 ==
+                                                                2
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "button blue",
+                                                                        attrs: {
+                                                                          type:
+                                                                            "button",
+                                                                          dense:
+                                                                            ""
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            _vm.actualizarSupervision()
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "Actualizar Supervisión"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : _vm._e()
                                                               ]
                                                             )
                                                           ]
@@ -85151,6 +85225,12 @@ var render = function() {
                           domProps: { textContent: _vm._s(proyecto.nombre) }
                         }),
                         _vm._v(" "),
+                        _c("td", {
+                          domProps: {
+                            textContent: _vm._s(proyecto.institucion.nombre)
+                          }
+                        }),
+                        _vm._v(" "),
                         _vm.proceso == 2
                           ? _c("td", {
                               domProps: {
@@ -85160,12 +85240,6 @@ var render = function() {
                               }
                             })
                           : _vm._e(),
-                        _vm._v(" "),
-                        _c("td", {
-                          domProps: {
-                            textContent: _vm._s(proyecto.institucion.nombre)
-                          }
-                        }),
                         _vm._v(" "),
                         _c("td", {
                           domProps: { textContent: _vm._s(proyecto.fecha) }

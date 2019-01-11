@@ -66,8 +66,8 @@
          <tbody>
           <tr v-for="proyecto in arrayProyecto" :key="proyecto.id">
             <td v-text="proyecto.nombre"></td>
-            <td  v-if="proceso == 2" v-text="proyecto.carre_proy[0].nombre"></td>
             <td v-text="proyecto.institucion.nombre"></td>
+            <td  v-if="proceso == 2" v-text="proyecto.carre_proy[0].nombre"></td>
             <td v-text="proyecto.fecha"></td>
             <td>
               <button type="button" @click="abrirModal('proyecto','actualizar',proyecto)" class="btn btn-primary " data-toggle="tooltip" title="Editar datos del Proyecto"><i class="mdi mdi-border-color i-crud"></i></button>
