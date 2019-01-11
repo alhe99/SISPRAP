@@ -69,12 +69,10 @@ Route::get('stundentById/{id}','EstudianteController@getStudentById');
 Route::post('admin/registrar', 'EstudianteController@store');
 Route::get('stundentByCarrer','EstudianteController@getStudensByCarrerAndProcess');
 
-Route::get('/perfil_proy', function () {
-    return view('public.perfilProject');
-})->name('show_perfil');
+Route::get('/perfil_proy',function(){return view('public.perfilProject');})->name('show_perfil');
 
 Route::get('public/downloadDocs','GestionProyectoController@downloadDocs')->name('downloadDocs');
-
+Route::get('/proyectos/obtenerAprobados', 'ProyectoController@getAllAcepted')->name('allAcepted');
 //Notificaciones
 
 Route::post('notifications/get', 'NotificationController@get');
@@ -241,4 +239,4 @@ Route::get('/test', function () {
     return "True";
     //return Auth::user()->estudiante->proceso[0]->id;
 
-    });
+});

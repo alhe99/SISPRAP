@@ -177,11 +177,11 @@ class ProyectoController extends Controller
    //cambiar de estado para activar el proyecto
    public function activar(Request $request)
    {
-        if (!$request->ajax())
+    if (!$request->ajax())
         return redirect('/');
-        $proyecto = Proyecto::findOrFail($request->id);
-        $proyecto->estado = '1';
-        $proyecto->save();
+    $proyecto = Proyecto::findOrFail($request->id);
+    $proyecto->estado = '1';
+    $proyecto->save();
 }
 
 //obtener proyectos desactivados
@@ -391,12 +391,12 @@ public function getPreregisterProjects($estudent_id,$process_id){
     if($cuenta != 0 or $cuenta != null){
        $proyectos = Estudiante::whereHas('proceso', function ($query) use ($process_id) {
         $query->where('proceso_id', $process_id);
-       })->find($estudent_id)->preinscripciones()->paginate(5);
-    }else{
-        $proyectos = [];
-    }
+    })->find($estudent_id)->preinscripciones()->paginate(5);
+   }else{
+    $proyectos = [];
+}
 
-   return view('public.myProjects', compact("proyectos"));
+return view('public.myProjects', compact("proyectos"));
 }
 
 //apartado publico, eliminar preinscripcion por estudiante
@@ -469,6 +469,14 @@ public function provideAccessToPerfil($estudent_id,$project_id){
     User::FindOrFail($estudent_id)->notify(new NotifyPreRegisterProject($arrayData));
 
         //Enviar Notificacion Aqui
+}
+public function getAllAcepted(Request $request){
+    $proyectoId = 47;
+    $procesoId = 1;
+    $proyectos = Proyecto::proceso($procesoId)->preRegistration()->get();
+
+    return $proyectos;
+
 }
 public function ifProjectExist($nombre){
     if(Proyecto::where('nombre',$nombre)->where('proceso_id',1)->first()){
