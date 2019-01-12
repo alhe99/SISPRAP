@@ -54,16 +54,21 @@
                         <div class="col-md-6 text-center">
                             <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                         </div>
-                        @elseif(Auth::user()->estudiante->preinscripciones->count() != 0)
+                        @elseif(Auth::user()->estudiante->preinscripciones->count() > 0)
                         @if (
                             Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "F" ||
                             Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "A")
                             <div class="col-md-6 text-center">
                                 <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
-                            @endif
                             @else
                             <div class="col-md-6 text-center">
+                                <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                  id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
+                              </div>
+                              @endif
+                              @else
+                              <div class="col-md-6 text-center">
                                 <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>

@@ -45,7 +45,6 @@ class GestionProyectoController extends Controller
             DB::beginTransaction();
             $gp = new GestionProyecto();
             $gp->fecha_inicio = $request->fechaini; //Fecha Inicio
-            $gp->fecha_fin = $request->fechafin; //Fecha Fin
             $gp->horas_a_realizar = $request->hrsreal; //Total de Horas
             $gp->proyecto_id = $request->proyecto_id;
             $gp->estudiante_id = $request->student_id;
@@ -103,7 +102,6 @@ class GestionProyectoController extends Controller
                 $perfil->setText(Html2Text::convert($actividadesP),115,1300,20); //Actividades a realizar
                 $perfil->setText($request->hrsreal, 1465, 1210, 20); //Horas a Realizar del proyecto
                 $perfil->setText($request->fechaini, 135, 1625, 20); //Fecha de Inicio  del proyecto
-                $perfil->setText($request->fechafin, 400, 1625, 20); //Fecha de Finalizacion  del proyecto
                 $perfil->setText($request->super_name, 650, 1625, 20); //Supervisor del proyecto/Institucion
                 $perfil->setText($request->super_cell, 1390, 1625, 20); //Telefono Supervisor del proyecto/Institucion
                 // Guardando el perfil segun el proceso del estudiante

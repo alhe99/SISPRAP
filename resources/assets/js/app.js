@@ -81,7 +81,7 @@ const app = new Vue({
   },
   created() {
     let me = this;
-    axios.post(this.ruta + '/notification/get').then(function(response) {
+    axios.post(this.ruta + 'notifications/get').then(function(response) {
            //console.log(response.data);
            me.notifications=response.data;
          }).catch(function(error) {

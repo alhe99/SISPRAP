@@ -75,6 +75,7 @@ Route::get('/perfil_proy',function(){return view('public.perfilProject');})->nam
 
 Route::get('public/downloadDocs','GestionProyectoController@downloadDocs')->name('downloadDocs');
 Route::get('/proyectos/obtenerAprobados', 'ProyectoController@getAllAcepted')->name('allAcepted');
+Route::get('/proyectos/deleteAprobacion', 'ProyectoController@deleteProyectoAprobado')->name('deleteProyAceptted');
 //Notificaciones
 
 Route::post('notifications/get', 'NotificationController@get');

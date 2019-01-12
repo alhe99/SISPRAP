@@ -219,7 +219,6 @@
     el : '#form',
     data : {
       fechaI: "",
-      fechaFin: "",
       hrsRea: "",
       projectId: "",
       studentId: "",
@@ -264,14 +263,12 @@
         let me = this;
         $('#preloader').fadeIn();
         me.fechaI = $("#fecha_ini").val().trim();
-        me.fechaFin = $("#fecha_fin").val().trim();
         me.studentId = $("#student_id").val().trim();
         me.projectId = $("#project_id").val().trim();
         me.hrsRea = $("#total_horas").val().trim();
 
         var url = route('save_perfil', {
           "fechaini": this.fechaI,
-          "fechafin":this.fechaFin,
           "hrsreal":this.hrsRea,
           "student_id":this.studentId,
           "proyecto_id":this.projectId,
@@ -307,11 +304,6 @@ mounted(){
  $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
  $('#total_horas').mask('###', {reverse: true});
  $("#fecha_ini").datepicker({
-  locale: 'es-es',
-  minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-  format: 'yyyy-mm-dd'
-});
- $("#fecha_fin").datepicker({
   locale: 'es-es',
   minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
   format: 'yyyy-mm-dd'

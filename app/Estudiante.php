@@ -66,7 +66,7 @@ class Estudiante extends Model
 
     public function scopeNombre($query,$name){
         if($name)
-            return $query->where('nombre','LIKE',"%$name%");
+            return $query->where('nombre','LIKE',"%$name%")->orWhere('apellido','LIKE',"%$name%");
     }
     public function procesos(){
       /*   for ($i=0; $i < $this->proceso->count(); $i++) {  */

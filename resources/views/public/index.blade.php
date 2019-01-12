@@ -14,8 +14,8 @@
 </div>
 @elseif (Auth::user()->estudiante->no_proyectos == 2)
 <div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
-    <p>El limite de proyecto por proceso es de 2!</p>
+  <h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
+  <p>El limite de proyecto por proceso es de 2!</p>
 </div>
 
 @else
