@@ -79268,8 +79268,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -80282,30 +80280,18 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              institucion.direccion != null
+                              institucion.email != null
                                 ? _c("td", { staticClass: "text-center" }, [
                                     _vm._v(
                                       _vm._s(
                                         _vm._f("truncate")(
-                                          institucion.direccion,
+                                          institucion.email,
                                           15
                                         )
                                       )
                                     )
                                   ])
-                                : _c("td", {
-                                    staticClass: "text-center",
-                                    domProps: {
-                                      textContent: _vm._s(institucion.direccion)
-                                    }
-                                  }),
-                              _vm._v(" "),
-                              _c("td", {
-                                staticClass: "text-center",
-                                domProps: {
-                                  textContent: _vm._s(institucion.email)
-                                }
-                              }),
+                                : _c("td", { staticClass: "text-center" }),
                               _vm._v(" "),
                               _c("td", {
                                 staticClass: "text-center",
@@ -82855,8 +82841,6 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre de institución")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Dirección")]),
-        _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Email")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [
@@ -84657,8 +84641,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -84672,7 +84654,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			arrayCarreras: [],
 			arrayActivities: [],
 			nombreP: "",
-			actividadesP: "",
+			actividadesUpd: "",
+			hrsRealizar: 0,
+			vacantesProy: 0,
 			proyecto_id: 0,
 			institucionP: 0,
 			imagenP: "",
@@ -84766,17 +84750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		proceso: function proceso() {
 			this.listarProyecto(1, this.proceso, "");
-		},
-		carrerasProy: function carrerasProy() {
-			this.disabledVE = false;
-			if (this.carrerasProy.length >= 0) {}
-		},
-		carreActividad: function carreActividad() {
-			if (this.proyecto.length > 0) {
-				this.getProyecto(this.proyecto["id"]);
-			}
 		}
-
 	},
 	methods: {
 		clearGallery: function clearGallery() {
@@ -84785,11 +84759,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			me.imgGallery = "";
 			me.image = "";
 			elem.reset();
-		},
-		mytable: function mytable() {
-			$(function () {
-				$('#example').DataTable();
-			});
 		},
 		changeImg: function changeImg(file) {
 			this.image = "";
@@ -84814,7 +84783,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var respuesta = response.data;
 				me.arrayProyecto = respuesta.proyecto.data;
 				me.pagination = respuesta.pagination;
-				me.mytable();
 				me.loadSpinner = 0;
 				me.searchEmpty();
 			}).catch(function (error) {
@@ -84853,19 +84821,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
 			axios.put("/proyecto/actualizar", {
 				id: this.proyecto_id,
-				nombre: this.nombre,
-				descripcion: this.descripcion,
-				actividades: this.actividades,
-				institucion_id: this.institucion_id["value"],
-				estado: this.estado,
-				proceso_id: this.tipoproceso_id,
-				imagenG: this.imgGallery,
-				imagen: this.image
+				nombre: this.nombreP,
+				actividades: this.actividadesUpd,
+				institucion_id: this.institucionP.value,
+				estado: '1',
+				proceso_id: this.proceso,
+				tipoProyecto: 'I',
+				// imagenG: this.imgGallery,
+				// imagen: this.image,
+				hrsRealizar: this.hrsRealizar,
+				cantidadEstudiantes: this.vacantesProy
+
 			}).then(function (response) {
 				swal({
 					position: "center",
 					type: "success",
-					title: "Proyecto actualizado correctamente!",
+					title: "Datos del Proyecto actualizado correctamente!",
 					showConfirmButton: false,
 					timer: 1000
 				});
@@ -84906,19 +84877,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				//El proyecto a actualizar es de Serivio Social
 				case "1":
 					this.modal = 1;
+					this.proyecto_id = data.id;
 					me.nombreP = data.nombre;
-					me.actividadesP = data.actividades;
+					me.actividadesUpd = data.actividades;
 					me.institucionP = JSON.parse(inst);
+					me.hrsRealizar = data.horas_realizar;
+					me.vacantesProy = data.cantidades_vacantes;
 					me.getInst();
-					if (data.img != null) me.imgGallery = data.img;
+					if (me.arrayImages.includes(data.img)) {
+						$("#btnOpenGallery").click();
+						me.imgGallery = data.img;
+					} else {
+						me.image = data.img;
+						me.switchImg == true;
+					}
+
 					this.loadSpinner = 0;
 					break;
 				case "2":
+					this.modal = 1;
+					this.proyecto_id = data.id;
+					me.nombreP = data.nombre;
+					me.actividadesUpd = data.actividades;
+					me.institucionP = JSON.parse(inst);
+					me.hrsRealizar = data.horas_realizar;
+					me.vacantesProy = data.cantidades_vacantes;
+					me.getInst();
+					if (me.arrayImages.includes(data.img)) {
+						me.imgGallery = data.img;
+						$("#btnOpenGallery").click();
+					} else {
+						me.image = data.img;
+						me.switchImg == true;
+					}
+
+					this.loadSpinner = 0;
 
 					break;
 			}
-
-			console.log(data);
 		},
 		abrirModalID: function abrirModalID() {
 			var el = document.body;
@@ -84934,15 +84930,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.paginationProyDes = "";
 		},
 		cerrarModal: function cerrarModal() {
+			var me = this;
 			var el = document.body;
 			el.classList.remove("abrirModal");
 			this.modal = 0;
 			this.tituloModal = "";
 			this.nombreP = "";
-			this.actividadesP = "";
+			this.proyecto_id = 0;
+			this.actividadesUpd = "";
 			this.arrayInstitucion = [];
 			this.estado = 0;
 			this.errors = [];
+			this.imgGallery = "";
+			this.img = "";
+			if (me.switchImg == true) {
+				me.switchImg = false;
+			}
+			// const elem = me.$refs.divCollapse;
+			// if (elem.classList.contains("collapse")) {
+			// 	elem.classList.remove("show");
+			// }
 		},
 		cambiarPaginaPID: function cambiarPaginaPID(page, proceso, buscar) {
 			var me = this;
@@ -85155,6 +85162,32 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "col-md-5 col-sm-12 col-lg-5" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group row" },
+                  [
+                    _c("mdc-textfield", {
+                      staticClass: "col-md-12",
+                      attrs: { type: "text", label: "Nombre del proyecto" },
+                      on: {
+                        keyup: function($event) {
+                          _vm.listarProyecto(1, _vm.proceso, _vm.buscar)
+                        }
+                      },
+                      model: {
+                        value: _vm.buscar,
+                        callback: function($$v) {
+                          _vm.buscar = $$v
+                        },
+                        expression: "buscar"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "btn-group pull-xs-right" }, [
                 _vm._m(0),
                 _vm._v(" "),
@@ -85266,11 +85299,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [
-                                _c("i", {
-                                  staticClass: "mdi mdi-border-color i-crud"
-                                })
-                              ]
+                              [_c("i", { staticClass: "mdi mdi-border-color" })]
                             ),
                             _vm._v(" "),
                             [
@@ -85289,11 +85318,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [
-                                  _c("i", {
-                                    staticClass: "mdi mdi-delete i-crud"
-                                  })
-                                ]
+                                [_c("i", { staticClass: "mdi mdi-delete" })]
                               )
                             ]
                           ],
@@ -85825,55 +85850,162 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "modal-dialog modal-lg" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c("h4", { staticClass: "modal-title text-white" }, [
-                      _vm._v("Actualización de Datos")
+              _c(
+                "div",
+                {
+                  staticClass: "modal-dialog modal-lg",
+                  staticStyle: { "min-width": "1000px" }
+                },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", { staticClass: "modal-title text-white" }, [
+                        _vm._v("Actualización de Datos del Proyecto")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: {
+                            type: "button",
+                            "data-dismiss": "modal",
+                            "aria-label": "Close"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.cerrarModal()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-white",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("×")]
+                          )
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: {
-                          type: "button",
-                          "data-dismiss": "modal",
-                          "aria-label": "Close"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.cerrarModal()
-                          }
-                        }
-                      },
-                      [
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("div", { staticClass: "row" }, [
                         _c(
-                          "span",
-                          {
-                            staticClass: "text-white",
-                            attrs: { "aria-hidden": "true" }
-                          },
-                          [_vm._v("×")]
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "nombre" }
+                              },
+                              [_vm._v("Nombre del proyecto")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.nombreP,
+                                  expression: "nombreP"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "nombre",
+                                name: "nombre",
+                                autocomplete: "off"
+                              },
+                              domProps: { value: _vm.nombreP },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.nombreP = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.nombre
+                              ? _c("span", {
+                                  staticClass: "text-danger",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.errors.nombre[0])
+                                  }
+                                })
+                              : _vm._e()
+                          ]
                         )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12 col-xs-12 col-lg-12" },
-                        [
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6 col-xs-6 col-lg-6" },
+                          [
+                            _c("br"),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "hrsRealizar" }
+                              },
+                              [_vm._v("Horas a realizar")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.hrsRealizar,
+                                  expression: "hrsRealizar"
+                                },
+                                {
+                                  name: "mask",
+                                  rawName: "v-mask",
+                                  value: "###",
+                                  expression: "'###'"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                id: "hrsRealizar",
+                                name: "hrsRealizar",
+                                autocomplete: "off"
+                              },
+                              domProps: { value: _vm.hrsRealizar },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.hrsRealizar = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("br"),
                           _c(
                             "label",
                             {
                               staticClass: "font-weight-bold",
-                              attrs: { for: "nombre" }
+                              attrs: { for: "hrsRealizar" }
                             },
-                            [_vm._v("Nombre del proyecto")]
+                            [_vm._v("# Estudiantes en proyecto")]
                           ),
                           _vm._v(" "),
                           _c("input", {
@@ -85881,413 +86013,343 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.nombreP,
-                                expression: "nombreP"
+                                value: _vm.vacantesProy,
+                                expression: "vacantesProy"
+                              },
+                              {
+                                name: "mask",
+                                rawName: "v-mask",
+                                value: "####",
+                                expression: "'####'"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
-                              type: "text",
-                              id: "nombre",
-                              name: "nombre",
+                              type: "number",
+                              id: "vacantesProy",
+                              name: "vacantesProy",
                               autocomplete: "off"
                             },
-                            domProps: { value: _vm.nombreP },
+                            domProps: { value: _vm.vacantesProy },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.nombreP = $event.target.value
+                                _vm.vacantesProy = $event.target.value
                               }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.nombre
-                            ? _c("span", {
-                                staticClass: "text-danger",
-                                domProps: {
-                                  textContent: _vm._s(_vm.errors.nombre[0])
-                                }
-                              })
-                            : _vm._e()
-                        ]
-                      )
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12 col-sm-12 col-lg-12" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "" }
-                            },
-                            [_vm._v("Actividades:*")]
-                          ),
-                          _c("br"),
-                          _vm._v(" "),
-                          _vm.proceso == 2
-                            ? _c(
-                                "form-wizard",
-                                {
-                                  attrs: {
-                                    title: "Actividades",
-                                    subtitle:
-                                      "Detalle Actividades para cada carrera seleccionada",
-                                    color: "#6200ee"
-                                  }
-                                },
-                                [
-                                  _vm._l(_vm.arrayActivities, function(
-                                    proyecto
-                                  ) {
-                                    return _c(
-                                      "tab-content",
-                                      {
-                                        key: proyecto.id,
-                                        ref: "titleC",
-                                        refInFor: true,
-                                        attrs: { title: proyecto.Carrera }
-                                      },
-                                      [
-                                        _c("vue-editor", {
-                                          ref: "editorPP",
-                                          refInFor: true,
-                                          attrs: {
-                                            disabled: _vm.disabledVE,
-                                            editorToolbar: _vm.toolBars
-                                          },
-                                          model: {
-                                            value: _vm.actividades,
-                                            callback: function($$v) {
-                                              _vm.actividades = $$v
-                                            },
-                                            expression: "actividades"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "mdc-button",
-                                    {
-                                      ref: "myBtn",
-                                      attrs: {
-                                        slot: "next",
-                                        type: "button",
-                                        raised: ""
-                                      },
-                                      slot: "next"
-                                    },
-                                    [_vm._v("Siguiente")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "mdc-button",
-                                    {
-                                      ref: "btnEnd",
-                                      attrs: {
-                                        slot: "finish",
-                                        type: "button",
-                                        raised: ""
-                                      },
-                                      slot: "finish"
-                                    },
-                                    [_vm._v("Aceptar")]
-                                  )
-                                ],
-                                2
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.proceso == 1
-                            ? _c("vue-editor", {
-                                attrs: { editorToolbar: _vm.toolBars },
-                                model: {
-                                  value: _vm.actividadesP,
-                                  callback: function($$v) {
-                                    _vm.actividadesP = $$v
-                                  },
-                                  expression: "actividadesP"
-                                }
-                              })
-                            : _vm._e()
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12 col-xs-12 col-lg-12" },
-                        [
-                          _c("br"),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "font-weight-bold",
-                              attrs: { for: "" }
-                            },
-                            [_vm._v("Institución donde se realiza proyecto:*")]
-                          ),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c("v-select", {
-                            attrs: {
-                              label: "label",
-                              placeholder: "Seleccione una institución",
-                              options: _vm.arrayInstitucion
-                            },
-                            model: {
-                              value: _vm.institucionP,
-                              callback: function($$v) {
-                                _vm.institucionP = $$v
-                              },
-                              expression: "institucionP"
                             }
                           })
-                        ],
-                        1
-                      )
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c("div", { staticClass: "col-md-12 col-lg-12" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "font-weight-bold",
-                            attrs: { for: "" }
-                          },
-                          [_vm._v("Imagen:*")]
-                        ),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 col-sm-12 col-lg-6" },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  ref: "btntest",
-                                  staticClass:
-                                    "btn btn-primary font-weight-bold text-dark",
-                                  attrs: {
-                                    disabled: _vm.switchImg == true,
-                                    type: "button",
-                                    "data-toggle": "collapse",
-                                    "data-target": "#collapseExample",
-                                    "aria-expanded": "false",
-                                    "aria-controls": "collapseExample"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.clearGallery()
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "mdi mdi-folder-multiple-image h4"
-                                  }),
-                                  _vm._v(
-                                    " Seleccionar Imagen de Galeria Predeterminada\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 col-sm-12 col-lg-6" },
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "form-group text-right" },
-                                [
-                                  _c("switches", {
-                                    staticClass: "switch-md",
-                                    attrs: {
-                                      theme: "bootstrap",
-                                      color: "primary"
-                                    },
-                                    model: {
-                                      value: _vm.switchImg,
-                                      callback: function($$v) {
-                                        _vm.switchImg = $$v
-                                      },
-                                      expression: "switchImg "
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("label", [
-                                    _vm._v("Seleccionar Imagen De PC")
-                                  ])
-                                ],
-                                1
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
+                        ])
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "div",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.switchImg == false,
-                                expression: "switchImg==false"
-                              }
-                            ],
-                            staticClass: "collapse",
-                            attrs: { id: "collapseExample" }
-                          },
+                          { staticClass: "col-md-12 col-sm-12 col-lg-12" },
                           [
-                            _c("div", { staticClass: "card card-body" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  attrs: { id: "seccion" }
-                                },
-                                _vm._l(_vm.arrayImages, function(image) {
-                                  return _c(
-                                    "div",
-                                    {
-                                      key: image.id,
-                                      staticClass: "col-md-2 col-sm-12 col-lg-2"
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.imgGallery,
-                                            expression: "imgGallery"
-                                          }
-                                        ],
-                                        attrs: {
-                                          type: "radio",
-                                          id: image,
-                                          name: "select"
-                                        },
-                                        domProps: {
-                                          value: image,
-                                          checked: _vm._q(_vm.imgGallery, image)
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.imgGallery = image
-                                          }
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("label", { attrs: { for: image } }, [
-                                        _c("img", {
-                                          staticClass: "text-center img-fluid ",
-                                          attrs: {
-                                            src: "images/img_projects/" + image,
-                                            alt: ""
-                                          }
-                                        })
-                                      ])
-                                    ]
-                                  )
-                                })
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            directives: [
+                            _c(
+                              "label",
                               {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.switchImg == true,
-                                expression: "switchImg==true"
-                              }
-                            ],
-                            staticClass: "row",
-                            attrs: { id: "imageP" }
-                          },
-                          [
-                            _c("img-inputer", {
-                              staticClass: "col-md-12 col-sm-12 col-lg-12",
-                              attrs: {
-                                icon: "img",
-                                src: "images_proyect" + _vm.image,
-                                "bottom-text": "Seleccionar nueva imagen",
-                                theme: "material",
-                                accept: "image/*",
-                                size: "large",
-                                placeholder:
-                                  "Selecione una imagen de su computadora!"
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "" }
                               },
-                              on: { onChange: _vm.changeImg }
+                              [_vm._v("Actividades:*")]
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("vue-editor", {
+                              attrs: { editorToolbar: _vm.toolBars },
+                              model: {
+                                value: _vm.actividadesUpd,
+                                callback: function($$v) {
+                                  _vm.actividadesUpd = $$v
+                                },
+                                expression: "actividadesUpd"
+                              }
                             })
                           ],
                           1
                         )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
                         _c(
-                          "button",
-                          {
-                            staticClass: "button red",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                _vm.cerrarModal()
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "" }
+                              },
+                              [
+                                _vm._v(
+                                  "Institución donde se realiza proyecto:*"
+                                )
+                              ]
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("v-select", {
+                              attrs: {
+                                label: "label",
+                                placeholder: "Seleccione una institución",
+                                options: _vm.arrayInstitucion
+                              },
+                              model: {
+                                value: _vm.institucionP,
+                                callback: function($$v) {
+                                  _vm.institucionP = $$v
+                                },
+                                expression: "institucionP"
                               }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "mdi mdi-close-box" }),
-                            _vm._v(" Cancelar")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "button blue",
-                            attrs: { type: "button" },
-                            on: { click: _vm.actualizarProyecto }
-                          },
-                          [
-                            _c("i", { staticClass: "mdi mdi-content-save" }),
-                            _vm._v(" Actualizar Proyecto")
-                          ]
+                            })
+                          ],
+                          1
                         )
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c("div", { staticClass: "col-md-12 col-lg-12" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "" }
+                            },
+                            [_vm._v("Imagen:*")]
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-6 col-sm-12 col-lg-6" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    ref: "btntest",
+                                    staticClass:
+                                      "btn btn-primary font-weight-bold text-dark",
+                                    attrs: {
+                                      disabled: _vm.switchImg == true,
+                                      id: "btnOpenGallery",
+                                      type: "button",
+                                      "data-toggle": "collapse",
+                                      "data-target": "#collapseExample",
+                                      "aria-expanded": "false",
+                                      "aria-controls": "collapseExample"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.clearGallery()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass:
+                                        "mdi mdi-folder-multiple-image h4"
+                                    }),
+                                    _vm._v(
+                                      " Seleccionar Imagen de Galeria Predeterminada\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-6 col-sm-12 col-lg-6" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group text-right" },
+                                  [
+                                    _c("switches", {
+                                      staticClass: "switch-md",
+                                      attrs: {
+                                        theme: "bootstrap",
+                                        color: "primary"
+                                      },
+                                      model: {
+                                        value: _vm.switchImg,
+                                        callback: function($$v) {
+                                          _vm.switchImg = $$v
+                                        },
+                                        expression: "switchImg "
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("label", [
+                                      _vm._v("Seleccionar Imagen De PC")
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.switchImg == false,
+                                  expression: "switchImg==false"
+                                }
+                              ],
+                              staticClass: "collapse",
+                              attrs: { id: "collapseExample" }
+                            },
+                            [
+                              _c("div", { staticClass: "card card-body" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    attrs: { id: "seccion" }
+                                  },
+                                  _vm._l(_vm.arrayImages, function(image) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: image.id,
+                                        staticClass:
+                                          "col-md-2 col-sm-12 col-lg-2"
+                                      },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.imgGallery,
+                                              expression: "imgGallery"
+                                            }
+                                          ],
+                                          attrs: {
+                                            type: "radio",
+                                            id: image,
+                                            name: "select"
+                                          },
+                                          domProps: {
+                                            value: image,
+                                            checked: _vm._q(
+                                              _vm.imgGallery,
+                                              image
+                                            )
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              _vm.imgGallery = image
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("label", { attrs: { for: image } }, [
+                                          _c("img", {
+                                            staticClass:
+                                              "text-center img-fluid ",
+                                            attrs: {
+                                              src:
+                                                "images/img_projects/" + image,
+                                              alt: ""
+                                            }
+                                          })
+                                        ])
+                                      ]
+                                    )
+                                  })
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.switchImg == true,
+                                  expression: "switchImg==true"
+                                }
+                              ],
+                              staticClass: "row",
+                              attrs: { id: "imageP" }
+                            },
+                            [
+                              _c("img-inputer", {
+                                staticClass: "col-md-12 col-sm-12 col-lg-12",
+                                attrs: {
+                                  icon: "img",
+                                  src: "images_proyect" + _vm.image,
+                                  "bottom-text": "Seleccionar nueva imagen",
+                                  theme: "material",
+                                  accept: "image/*",
+                                  size: "large",
+                                  placeholder:
+                                    "Selecione una imagen de su computadora!"
+                                },
+                                on: { onChange: _vm.changeImg }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button red",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModal()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-close-box" }),
+                              _vm._v(" Cancelar")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button blue",
+                              attrs: { type: "button" },
+                              on: { click: _vm.actualizarProyecto }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-content-save" }),
+                              _vm._v(" Actualizar Proyecto")
+                            ]
+                          )
+                        ])
                       ])
                     ])
                   ])
-                ])
-              ])
+                ]
+              )
             ]
           )
         ])

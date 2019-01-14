@@ -80,6 +80,7 @@ class ProyectoController extends Controller
                         $proyecto = new Proyecto();
                         $proyecto->nombre = $request->nombre;
                         $proyecto->fecha = Carbon::parse($date);
+                        $proyecto->horas_realizar = $request->horas;
                         $proyecto->actividades = $obj['actividades'];
                         $proyecto->institucion_id = $request->institucion_id;
                         $proyecto->proceso_id = 2;
@@ -127,40 +128,44 @@ class ProyectoController extends Controller
             case 'I':
             switch ($request->proceso_id) {
                 case 1:
-                $proyecto = Proyecto::findOrFail($request->id);
-                $img_recv = $request->imagen;
+                $proyecto = Proyecto::find($request->id);
+                // $img_recv = $request->imagen;
                 $proyecto->nombre = $request->nombre;
-                $proyecto->fecha = Carbon::parse($date);
                 $proyecto->actividades = $request->actividades;
                 $proyecto->institucion_id = $request->institucion_id;
+                $proyecto->proceso_id = $request->proceso_id;
+                $proyecto->horas_realizar = $request->hrsRealizar;
+                $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
+                $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
-                if ($img_recv) {
-                    $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                    $proyecto->img = $name_img;
-                    Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
-                } else {
-                    $proyecto->img = $request->imagenG;
-                }
-                $proyecto->proceso_id = 1;
-                $proyecto->save();
+                // if ($img_recv) {
+                //     $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                //     $proyecto->img = $name_img;
+                //     Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
+                // } else {
+                //     $proyecto->img = $request->imagenG;
+                // }
+                $proyecto->update();
                 break;
                 case 2:
-                $proyecto = Proyecto::findOrFail($request->id);
-                $img_recv = $request->imagen;
+                $proyecto = Proyecto::find($request->id);
+                // $img_recv = $request->imagen;
                 $proyecto->nombre = $request->nombre;
-                $proyecto->fecha = Carbon::parse($date);
                 $proyecto->actividades = $request->actividades;
                 $proyecto->institucion_id = $request->institucion_id;
+                $proyecto->proceso_id = $request->proceso_id;
+                $proyecto->horas_realizar = $request->hrsRealizar;
+                $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
+                $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
-                if ($img_recv) {
-                    $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                    $proyecto->img = $name_img;
-                    Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
-                } else {
-                    $proyecto->img = $request->imagenG;
-                }
-                $proyecto->proceso_id = 2;
-                $proyecto->save();
+                // if ($img_recv) {
+                //     $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                //     $proyecto->img = $name_img;
+                //     Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
+                // } else {
+                //     $proyecto->img = $request->imagenG;
+                // }
+                $proyecto->update();
                 break;
             }
             break;
@@ -197,15 +202,15 @@ class ProyectoController extends Controller
     public function desactivar(Request $request)
     {
         if (!$request->ajax())
-         return redirect('/');
-     $proyecto = Proyecto::findOrFail($request->id);
-     $proyecto->estado = '0';
-     $proyecto->save();
- }
+           return redirect('/');
+       $proyecto = Proyecto::findOrFail($request->id);
+       $proyecto->estado = '0';
+       $proyecto->save();
+   }
 
    //cambiar de estado para activar el proyecto
- public function activar(Request $request)
- {
+   public function activar(Request $request)
+   {
     if (!$request->ajax())
         return redirect('/');
     $proyecto = Proyecto::findOrFail($request->id);
@@ -291,10 +296,10 @@ public function getProjectsByCarrer(Request $request)
             })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
             for ($i=0; $i < count($pre_register) ; $i++) {
-             $proyectos = $proyectos->except([$pre_register[$i]->id]);
-         }
+               $proyectos = $proyectos->except([$pre_register[$i]->id]);
+           }
 
-     }else{
+       }else{
 
         $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
             $query->where('proceso_id', $tp);
@@ -346,7 +351,7 @@ public function getProjectsByProcess(Request $request)
         if ($process_id == 1) {
 
             $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
-             $query->where('proceso_id', $process_id);
+               $query->where('proceso_id', $process_id);
            })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
 
 
@@ -361,8 +366,8 @@ public function getProjectsByProcess(Request $request)
         case 'E':
 
         $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
-           $query->where('proceso_id', $process_id);
-       })->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
+         $query->where('proceso_id', $process_id);
+     })->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
 
         break;
     }
@@ -440,12 +445,12 @@ public function getPreregistrationByProject(Request $request)
     $buscar = $request->buscar;
 
     if($request->project_id != 0)
-       if($buscar != "")
-           $projects = $proyect->preRegistration()->where('estudiantes.nombre', 'like', '%' . $buscar . '%')->where('preinscripciones_proyectos.estado','P')->where('estudiantes.estado','1')->orderBy('created_at','desc')->paginate(5);
-       else
-           $projects = $proyect->preRegistration()->where('estudiantes.estado',1)->where('preinscripciones_proyectos.estado','P')->orderBy('created_at','desc')->paginate(5);
+     if($buscar != "")
+         $projects = $proyect->preRegistration()->where('estudiantes.nombre', 'like', '%' . $buscar . '%')->where('preinscripciones_proyectos.estado','P')->where('estudiantes.estado','1')->orderBy('created_at','desc')->paginate(5);
+     else
+         $projects = $proyect->preRegistration()->where('estudiantes.estado',1)->where('preinscripciones_proyectos.estado','P')->orderBy('created_at','desc')->paginate(5);
 
-       return [
+     return [
         'pagination' => [
             'total' => $projects->total(),
             'current_page' => $projects->currentPage(),
@@ -467,10 +472,10 @@ public function getPreregisterProjects($estudent_id,$process_id){
     })->find($estudent_id)->preinscripciones()->count();
 
     if($cuenta != 0 or $cuenta != null){
-     $proyectos = Estudiante::whereHas('proceso', function ($query) use ($process_id) {
+       $proyectos = Estudiante::whereHas('proceso', function ($query) use ($process_id) {
         $query->where('proceso_id', $process_id);
     })->find($estudent_id)->preinscripciones()->paginate(5);
- }else{
+   }else{
     $proyectos = [];
 }
 
@@ -523,17 +528,17 @@ public function asignarProyectoExterno(Request $request){
 
     for ($i=0; $i < count($arrayEstudiante); $i++) {
 
-       $proyect = Proyecto::find($request->project_id);
-       $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','año_registro' => date('Y')));
+     $proyect = Proyecto::find($request->project_id);
+     $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','año_registro' => date('Y')));
 
-       $estudiante = Estudiante::findOrFail($arrayEstudiante[$i]);
-       if ($estudiante->proceso[0]->pago_arancel == 0) {
-          $arrayData = [
-            'msj' =>  "Se te ha asignado un proyecto,el siguiente paso es que apertures el expediente de tu proceso en recepción",
-            'fecha' => now()->toDateTimeString(),
-        ];
-        User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
-    }
+     $estudiante = Estudiante::findOrFail($arrayEstudiante[$i]);
+     if ($estudiante->proceso[0]->pago_arancel == 0) {
+      $arrayData = [
+        'msj' =>  "Se te ha asignado un proyecto,el siguiente paso es que apertures el expediente de tu proceso en recepción",
+        'fecha' => now()->toDateTimeString(),
+    ];
+    User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+}
 }
 }
 
