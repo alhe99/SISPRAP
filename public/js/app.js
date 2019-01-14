@@ -98259,8 +98259,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98394,17 +98392,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
+        confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
           var url = route('getConstancia', { "estudianteId": gp_id, "procesoId": procesoId });
           window.open(url);
-
           me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
         } else if (result.dismiss === swal.DismissReason.cancel) {
           me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
@@ -98625,15 +98622,6 @@ var render = function() {
                                 staticClass: "text-center",
                                 domProps: {
                                   textContent: _vm._s(item.carrera.nombre)
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("td", {
-                                staticClass: "text-center",
-                                domProps: {
-                                  textContent: _vm._s(
-                                    item.nivel_academico.nivel
-                                  )
                                 }
                               }),
                               _vm._v(" "),
@@ -98875,8 +98863,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nombre Estudiante")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Carrera")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Nivel Academico")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Entregada")]),
         _vm._v(" "),

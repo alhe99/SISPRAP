@@ -13,8 +13,8 @@
       line-height: 1.6;
   }
   .bg-header{
-   background-color:#F8EFB6
-}
+     background-color:#F8EFB6
+ }
 </style>
 </head>
 <body>
@@ -41,33 +41,32 @@
                             Título: Constancia de {{ $proceso }}
                         </td>
                         <td class="text-center font-weight-bold">
-                           FECHA DE REVISIÓN: <br> 14/07/2016
+                         FECHA DE REVISIÓN: <br> 14/07/2016
 
-                       </td>
-                   </tr>
-               </table><br><br>
+                     </td>
+                 </tr>
+             </table><br><br><br>
 
-               <h5 class="text-center font-weight-bold">INSTITUTO TECNOLOGICO DE CHALATENANGO ITCHA/AGAPE</h5><br>
-               <h5 class="text-center font-weight-bold"> CONSTANCIA DE {{ strtoupper($proceso) }}</h5><br><br>
+             <h5 class="text-center font-weight-bold">INSTITUTO TECNOLOGICO DE CHALATENANGO ITCHA/AGAPE</h5><br>
+             <h5 class="text-center font-weight-bold"> CONSTANCIA DE {{ strtoupper($proceso) }}</h5><br><br>
 
-               <div class="row">
+             <div class="row">
                 <div class="col-md-12">
-                    <h4 class=" text-jus">
+                    <h5 class=" text-jus">
                         El (la) infrascrito(a) Encargado(a) de Práctica Profesional del Instituto Tecnológico de
                         Chalatenango /AGAPE (ITCHA/AGAPE), hace constar que de conformidad a la Ley de
                         Educación Superior, Capítulo I, Art. 19, literal C); el alumno(a) de la carrera:
-                        <u>{{ $estudiante->carrera->nombre }}</u> ha realizado el {{ $proceso }} de acuerdo a lo que se detalla a
+                        {{ $estudiante->carrera->nombre }} ha realizado el {{ $proceso }} de acuerdo a lo que se detalla a
                         continuación:
                     </h4>
                 </div><br>
                 <div class="col-md-12">
-                    <h4 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $estudiante->nombre." ".$estudiante->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;Total
-                    horas: {{ $totalHoras }}</h4>
-
+                    <h5 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $estudiante->nombre." ".$estudiante->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total
+                    horas: {{ $totalHoras }}</h5>
                 </div><br><br>
                 <div class="col-md-12">
-                    <table class="col-md-12" border="1" cellpadding="2">
-                        <tr class="bg-header">
+                    <table class="col-md-12" border="1" cellpadding="7">
+                        <tr>
                             <td class="text-center font-weight-bold">
                                 Institución / Organización
                             </td>
@@ -84,7 +83,7 @@
                         </tr>
                         @foreach ($proyectos as $item)
                         <tr>
-                            <td height="50">{{ $item->proyecto->institucion->nombre }}</td>
+                            <td height="50" class="text-center">{{ $item->proyecto->institucion->nombre }}</td>
                             <td height="50">{{ $item->proyecto->nombre }}</td>
                             <td class="text-center" height="50">{{ $item->fecha_inicio." al ".$item->fecha_fin }}</td>
                             <td class="text-center" height="50">{{ $item->horas_realizadas }}</td>
@@ -95,27 +94,26 @@
                 <div class="col-md-12">
                     <table class="col-md-12"  cellpadding="15">
                         <tr>
-                            <td colspan="10">
-                                Fecha: <u>&nbsp;{{ $fecha }}&nbsp;</u>
+                            <td colspan="10" style="padding-top: 10px;">
+                                Fecha: <u>&nbsp;&nbsp;&nbsp;&nbsp;{{ $fecha }}&nbsp;&nbsp;&nbsp;&nbsp;</u>
                             </td>
-                                <td class="text-center">
-                                   <br><br> F: <u>&nbsp;{{ $admin->nombre }}&nbsp;</u> <br>
-                                    <span class="text-muted text-center">
-                                        Nombre del Encargado(a)<br>
-                                        de Práctica Profesional
-                                    </span>
-                                </td>
-                                <td>
-                                    <img  src="{{ asset('images/img_reportes/cuadro.png') }}">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                            <td class="text-center">
+                             <br>F:_______________________________ <br>
+                             <span class="text-muted text-center">
+                                Lic. {{ $admin->nombre }}
+                            </span>
+                        </td>
+                        <td>
+                            <img  src="{{ asset('images/img_reportes/cuadro.png') }}">
+                        </td>
+                    </tr>
+                </table>
             </div>
-
         </div>
-
     </div>
+
+</div>
+
+</div>
 
 </body>
