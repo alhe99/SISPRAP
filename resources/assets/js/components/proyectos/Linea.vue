@@ -36,11 +36,11 @@
 						<h3 class=" align-baseline font-weight-bold" v-if="proceso == 1" >Listado de proyectos de Servicio Social</h3>
 						<h3 class=" align-baseline font-weight-bold" v-if="proceso == 2">Listado de proyectos de Practica Profesional</h3>
 					</div>
-					<!-- <div class="col-md-5 col-sm-12 col-lg-5">
+					<div class="col-md-5 col-sm-12 col-lg-5">
 						<div class="form-group row">
 							<mdc-textfield type="text" class="col-md-12" @keyup="listarProyecto(1,proceso, buscar)"  label="Nombre del proyecto" v-model="buscar"></mdc-textfield>
 						</div>
-					</div> -->
+					</div>
 					<div class="btn-group pull-xs-right">
 						<button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="mdi mdi-dots-vertical"></i>
@@ -70,9 +70,9 @@
 								<td v-text="proyecto.institucion.nombre"></td>
 								<td class="text-center" v-text="proyecto.fecha"></td>
 								<td class="text-center">
-									<button type="button" @click="abrirModal('proyecto','actualizar',proyecto)" class="button blue" data-toggle="tooltip" title="Editar datos del Proyecto"><i class="mdi mdi-border-color i-crud"></i></button>
+									<button type="button" @click="abrirModal('proyecto','actualizar',proyecto)" class="button blue" data-toggle="tooltip" title="Editar datos del Proyecto"><i class="mdi mdi-border-color"></i></button>
 									<template >
-										<button type="button" @click="desactivarProyecto(proyecto.id)" class="button red" data-toggle="tooltip" title="Desactivar proyecto"><i class="mdi mdi-delete i-crud"></i></button>
+										<button type="button" @click="desactivarProyecto(proyecto.id)" class="button red" data-toggle="tooltip" title="Desactivar proyecto"><i class="mdi mdi-delete"></i></button>
 									</template>
 								</td>
 							</tr>
@@ -186,10 +186,10 @@
 					<!-- FIN DE MODAL PARA VER LOS PROYECTOS DESACTIVADOS-->
 					<!-- MODAL PARA ACTUALIZAR DATOS  -->
 					<div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-lg" >
+						<div class="modal-dialog modal-lg" style="min-width:1000px;" >
 							<div class="modal-content">
 								<div class="modal-header">
-									<h4 class="modal-title text-white">Actualización de Datos</h4>
+									<h4 class="modal-title text-white">Actualización de Datos del Proyecto</h4>
 									<button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true" class="text-white">&times;</span>
 									</button>
@@ -202,500 +202,515 @@
 											<span v-if="errors.nombre" class="text-danger" v-text="errors.nombre[0]" ></span>
 										</div>
 									</div><br>
+									<div class="row">
+										<div class="col-md-6 col-xs-6 col-lg-6">
+											<br><label  class="font-weight-bold" for="hrsRealizar">Horas a realizar</label>
+											<input type="number" v-model="hrsRealizar" id="hrsRealizar" name="hrsRealizar" class="form-control" autocomplete="off" v-mask="'###'">
+										</div>
+										<div class="col-md-6">
+											<br><label  class="font-weight-bold" for="hrsRealizar"># Estudiantes en proyecto</label>
+											<input type="number" v-model="vacantesProy" id="vacantesProy" name="vacantesProy" class="form-control" autocomplete="off" v-mask="'####'">
+										</div>
+									</div><br>
 									<div class="form-group row">
 										<div class="col-md-12 col-sm-12 col-lg-12">
 											<label for="" class="font-weight-bold">Actividades:*</label><br>
-											<form-wizard  v-if="proceso == 2"
-											title="Actividades"
-											subtitle="Detalle Actividades para cada carrera seleccionada"
-											color="#6200ee" >
-											<tab-content  v-for="proyecto in arrayActivities" :key="proyecto.id"
-											:title="proyecto.Carrera"
-											ref="titleC">
-											<vue-editor ref="editorPP" :disabled="disabledVE" v-model="actividades" :editorToolbar="toolBars"></vue-editor>
-										</tab-content>
-										<mdc-button type="button" ref="myBtn" raised slot="next">Siguiente</mdc-button>
-										<mdc-button type="button" ref="btnEnd" raised slot="finish">Aceptar</mdc-button>
-									</form-wizard>
-									<vue-editor v-if="proceso == 1"  v-model="actividadesP"  :editorToolbar="toolBars"></vue-editor>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 col-xs-12 col-lg-12">
-									<br><label  class="font-weight-bold" for="">Institución donde se realiza proyecto:*</label><br>
-									<v-select label="label" v-model="institucionP"  placeholder="Seleccione una institución" :options="arrayInstitucion"></v-select>
-								</div>
-							</div><br>
-							<div class="form-group row">
-								<div class="col-md-12 col-lg-12">
-									<label  class="font-weight-bold" for="">Imagen:*</label><br>
-									<div class="row">
-										<div class="col-md-6 col-sm-12 col-lg-6">
-											<button :disabled="switchImg ==true" ref="btntest" v-on:click="clearGallery()" class="btn btn-primary font-weight-bold text-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
-												<i class="mdi mdi-folder-multiple-image h4"></i> Seleccionar Imagen de Galeria Predeterminada
-											</button>
-										</div>
-										<div class="col-md-6 col-sm-12 col-lg-6">
-											<div class="form-group text-right">
-												<switches class="switch-md" v-model="switchImg " theme="bootstrap" color="primary" ></switches>
-												<label>Seleccionar Imagen De PC</label>
-											</div>
+											<vue-editor  v-model="actividadesUpd"  :editorToolbar="toolBars"></vue-editor>
 										</div>
 									</div>
-									<div v-show="switchImg==false" class="collapse" id="collapseExample">
-										<div class="card card-body">
-											<div class="row" id="seccion">
-												<div class="col-md-2 col-sm-12 col-lg-2" v-for="image in arrayImages" :key="image.id">
-													<input type="radio" :id="image" name="select" :value="image" v-model="imgGallery" >
-													<label :for="image">
-														<img class="text-center img-fluid " :src="'images/img_projects/' + image" alt="">
-													</label>
+									<div class="row">
+										<div class="col-md-12 col-xs-12 col-lg-12">
+											<br><label  class="font-weight-bold" for="">Institución donde se realiza proyecto:*</label><br>
+											<v-select label="label" v-model="institucionP"  placeholder="Seleccione una institución" :options="arrayInstitucion"></v-select>
+										</div>
+									</div><br>
+									<div class="form-group row">
+										<div class="col-md-12 col-lg-12">
+											<label  class="font-weight-bold" for="">Imagen:*</label><br>
+											<div class="row">
+												<div class="col-md-6 col-sm-12 col-lg-6">
+													<button :disabled="switchImg ==true" ref="btntest" v-on:click="clearGallery()" class="btn btn-primary font-weight-bold text-dark" id="btnOpenGallery" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+														<i class="mdi mdi-folder-multiple-image h4"></i> Seleccionar Imagen de Galeria Predeterminada
+													</button>
+												</div>
+												<div class="col-md-6 col-sm-12 col-lg-6">
+													<div class="form-group text-right">
+														<switches class="switch-md" v-model="switchImg " theme="bootstrap" color="primary" ></switches>
+														<label>Seleccionar Imagen De PC</label>
+													</div>
 												</div>
 											</div>
+											<div v-show="switchImg==false" class="collapse" id="collapseExample">
+												<div class="card card-body">
+													<div class="row" id="seccion">
+														<div class="col-md-2 col-sm-12 col-lg-2" v-for="image in arrayImages" :key="image.id">
+															<input type="radio" :id="image" name="select" :value="image" v-model="imgGallery" >
+															<label :for="image">
+																<img class="text-center img-fluid " :src="'images/img_projects/' + image" alt="">
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row" id="imageP" v-show="switchImg==true">
+												<img-inputer class="col-md-12 col-sm-12 col-lg-12" icon="img"  :src="'images_proyect' + image" bottom-text="Seleccionar nueva imagen" theme="material" accept="image/*" @onChange="changeImg" size="large" placeholder="Selecione una imagen de su computadora!"/>
+											</div>
 										</div>
 									</div>
-									<div class="row" id="imageP" v-show="switchImg==true">
-										<img-inputer class="col-md-12 col-sm-12 col-lg-12" icon="img"  :src="'images_proyect' + image" bottom-text="Seleccionar nueva imagen" theme="material" accept="image/*" @onChange="changeImg" size="large" placeholder="Selecione una imagen de su computadora!"/>
-									</div>
 								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<div class="row">
-								<div class="col-md-12">
-									<button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-									<button type="button" class="button blue"  @click="actualizarProyecto"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto</button>
+								<div class="modal-footer">
+									<div class="row">
+										<div class="col-md-12">
+											<button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+											<button type="button" class="button blue"  @click="actualizarProyecto"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
+				</div>
+				<div class="row">
+					<div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
+					</div>
 				</div>
 			</div>
-			<!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
-		</div>
-		<div class="row">
-			<div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
-			</div>
-		</div>
-	</div>
-</template>
-<script>
-import { VueEditor } from "vue2-editor";
-import Switches from 'vue-switches';
-export default {
-	data() {
-		return {
-			loadSpinner: 0,
-			arrayProyecto: [],
-			arrayInstitucion: [],
-			carrerasProy: [],
-			arrayCarreras: [],
-			arrayActivities: [],
-			nombreP: "",
-			actividadesP: "",
-			proyecto_id: 0,
-			institucionP: 0,
-			imagenP: "",
-			proceso: 0,
-			estado: 0,
-			buscar: "",
-			search: 0,
-			searchID: 0,
-			tipoproceso_id: 0,
-			switchImg : false,
-			imgGallery: "",
-			arrayImages: ["test.jpg","turismo.jpg","agro.jpg","focos.jpg","herramienta.jpg","mercadeo.jpg"],
-			files: "",
-			image: "",
-			toolBars: [
-			[{ header: [false, 1, 2, 3, 4, 5, 6] }],
-			[
-			{ align: "" },
-			{ align: "center" },
-			{ align: "right" },
-			{ align: "justify" }
-			],
-			["bold", "blockquote", "code-block"],
-			[{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-			[{ indent: "-1" }, { indent: "+1" }],
-			[{ color: [] }]
-			],
-			modal: 0,
-			modalID: 0,
-			arrayProyectosDes: [],
-			arrayActividadesCarre: [],
-			proyectoact: [],
-			buscarID: "",
-			carreras_id: 0,
-			paginationProyDes: {},
-			loading: false,
-			pagination: {
-				total: 0,
-				current_page: 0,
-				per_page: 0,
-				last_page: 0,
-				from: 0,
-				to: 0
+		</template>
+		<script>
+		import { VueEditor } from "vue2-editor";
+		import Switches from 'vue-switches';
+		export default {
+			data() {
+				return {
+					loadSpinner: 0,
+					arrayProyecto: [],
+					arrayInstitucion: [],
+					carrerasProy: [],
+					arrayCarreras: [],
+					arrayActivities: [],
+					nombreP: "",
+					actividadesUpd: "",
+					hrsRealizar: 0,
+					vacantesProy: 0,
+					proyecto_id: 0,
+					institucionP: 0,
+					imagenP: "",
+					proceso: 0,
+					estado: 0,
+					buscar: "",
+					search: 0,
+					searchID: 0,
+					tipoproceso_id: 0,
+					switchImg : false,
+					imgGallery: "",
+					arrayImages: ["test.jpg","turismo.jpg","agro.jpg","focos.jpg","herramienta.jpg","mercadeo.jpg"],
+					files: "",
+					image: "",
+					toolBars: [
+					[{ header: [false, 1, 2, 3, 4, 5, 6] }],
+					[
+					{ align: "" },
+					{ align: "center" },
+					{ align: "right" },
+					{ align: "justify" }
+					],
+					["bold", "blockquote", "code-block"],
+					[{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+					[{ indent: "-1" }, { indent: "+1" }],
+					[{ color: [] }]
+					],
+					modal: 0,
+					modalID: 0,
+					arrayProyectosDes: [],
+					arrayActividadesCarre: [],
+					proyectoact: [],
+					buscarID: "",
+					carreras_id: 0,
+					paginationProyDes: {},
+					loading: false,
+					pagination: {
+						total: 0,
+						current_page: 0,
+						per_page: 0,
+						last_page: 0,
+						from: 0,
+						to: 0
+					},
+					offset: 3,
+					color: "#533fd0",
+					size: "20px",
+					disabledVE: false,
+				};
 			},
-			offset: 3,
-			color: "#533fd0",
-			size: "20px",
-			disabledVE: false,
+			computed: {
+				isActived: function() {
+					return this.pagination.current_page;
+				},
+				isActivedPID: function() {
+					return this.paginationProyDes.current_page;
+				},
+				pagesNumber: function() {
+					if (!this.pagination.to) {
+						return [];
+					}
+					var from = this.pagination.current_page - this.offset;
+					if (from < 1) {
+						from = 1;
+					}
+					var to = from + this.offset * 2;
+					if (to >= this.pagination.last_page) {
+						to = this.pagination.last_page;
+					}
+					var pagesArray = [];
+					while (from <= to) {
+						pagesArray.push(from);
+						from++;
+					}
+					return pagesArray;
+				},
+				pagesNumberPID: function() {
+					if (!this.paginationProyDes.to) {
+						return [];
+					}
+					var from = this.paginationProyDes.current_page - this.offset;
+					if (from < 1) {
+						from = 1;
+					}
+					var to = from + this.offset * 2;
+					if (to >= this.paginationProyDes.last_page) {
+						to = this.paginationProyDes.last_page;
+					}
+					var pagesArray = [];
+					while (from <= to) {
+						pagesArray.push(from);
+						from++;
+					}
+					return pagesArray;
+				}
+			},
+			watch: {
+				switchImg: function(){
+					if(this.switchImg==true){
+						this.imgGallery = "";
+					}
+				},
+				proceso: function() {
+					this.listarProyecto(1, this.proceso, "");
+				},
+			},
+			methods: {
+				clearGallery(){
+					let me = this;
+					const elem = me.$refs.imgUpload;
+					me.imgGallery = "";
+					me.image = "";
+					elem.reset();
+				},
+				changeImg(file) {
+					this.image = "";
+					this.addImage(file);
+				},
+				addImage(file) {
+					const img = new Image(),
+					reader = new FileReader();
+					reader.onload = (e) => this.image = e.target.result;
+					reader.readAsDataURL(file);
+				},
+				listarProyecto(page, proceso, buscar) {
+					let me = this;
+					me.loadSpinner = 1;
+					me.arrayProyecto = [];
+					var url = "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+					axios.get(url).then(function(response) {
+						var respuesta = response.data;
+						me.arrayProyecto = respuesta.proyecto.data;
+						me.pagination = respuesta.pagination;
+						me.loadSpinner = 0;
+						me.searchEmpty();
+
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+				},
+				listarProyectoDes(page, proceso, buscar) {
+					let me = this;
+					var url ="/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+					me.loading = true;
+					axios.get(url).then(function(response) {
+						var respuesta = response.data;
+						me.arrayProyectosDes = respuesta.proyecto.data;
+						me.paginationProyDes = respuesta.pagination;
+						if (me.arrayProyectosDes.length == 0)
+							me.searchID = 1;
+						else
+							me.searchID = 0;
+
+						me.loading = false;
+					}).catch(function(error) {
+						console.log(error);
+					})
+				},
+				getInst() {
+					let me = this;
+					me.loadSpinner = 1;
+					var url = "GetInstituciones/" + this.proceso;
+					axios.get(url).then(function(response) {
+						var respuesta = response.data;
+						me.arrayInstitucion = respuesta;
+						me.loadSpinner = 0;
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+				},
+				actualizarProyecto() {
+					let me = this;
+					const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
+					axios.put("/proyecto/actualizar", {
+						id: this.proyecto_id,
+						nombre: this.nombreP,
+						actividades: this.actividadesUpd,
+						institucion_id: this.institucionP.value,
+						estado: '1',
+						proceso_id: this.proceso,
+						tipoProyecto: 'I',
+						// imagenG: this.imgGallery,
+						// imagen: this.image,
+						hrsRealizar: this.hrsRealizar,
+						cantidadEstudiantes: this.vacantesProy
+
+					})
+					.then(function(response) {
+						swal({
+							position: "center",
+							type: "success",
+							title: "Datos del Proyecto actualizado correctamente!",
+							showConfirmButton: false,
+							timer: 1000
+						});
+						me.cerrarModal();
+						me.listarProyecto(1, me.proceso, "");
+					})
+					.catch(function(error) {
+						toast({
+							type: 'danger',
+							title: 'Error! Intente Nuevamente'
+						});
+						console.log(error);
+					});
+				},
+				getProyAct(id){
+					let me = this;
+					var url =
+					"/proyecto/obtenerProyecto?id=" + id;
+					axios
+					.get(url)
+					.then(function(response) {
+						var respuesta = response.data;
+						me.arrayActivities = respuesta;
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+				},
+				abrirModal(modelo, accion, data = []) {
+					this.loadSpinner = 1;
+					let me = this;
+					const el = document.body;
+					el.classList.add("abrirModal");
+
+					var inst = JSON.stringify({
+						value: data.institucion.id,
+						label: data.institucion.nombre
+					});
+					//Cargando datos de proyecto en modal
+					switch(me.proceso){
+						//El proyecto a actualizar es de Serivio Social
+						case "1":
+						this.modal = 1;
+						this.proyecto_id = data.id;
+						me.nombreP = data.nombre;
+						me.actividadesUpd = data.actividades;
+						me.institucionP = JSON.parse(inst);
+						me.hrsRealizar = data.horas_realizar;
+						me.vacantesProy = data.cantidades_vacantes;
+						me.getInst();
+						if(me.arrayImages.includes(data.img)){
+							$("#btnOpenGallery").click();
+							me.imgGallery = data.img;
+						}else{
+							me.image = data.img;
+							me.switchImg==true;
+						}
+
+						this.loadSpinner = 0;
+						break;
+						case "2":
+						this.modal = 1;
+						this.proyecto_id = data.id;
+						me.nombreP = data.nombre;
+						me.actividadesUpd = data.actividades;
+						me.institucionP = JSON.parse(inst);
+						me.hrsRealizar = data.horas_realizar;
+						me.vacantesProy = data.cantidades_vacantes;
+						me.getInst();
+						if(me.arrayImages.includes(data.img)){
+							me.imgGallery = data.img;
+							$("#btnOpenGallery").click();
+						}else{
+							me.image = data.img;
+							me.switchImg==true;
+						}
+
+						this.loadSpinner = 0;
+
+						break;
+					}
+				},
+				abrirModalID() {
+					const el = document.body;
+					el.classList.add("abrirModal");
+					this.modalID = 1;
+					this.listarProyectoDes(1, this.proceso, "");
+				},
+				cerrarModalID() {
+					const el = document.body;
+					el.classList.remove("abrirModal");
+					this.modalID = 0;
+					this.arrayProyectosDes = [];
+					this.paginationProyDes = "";
+				},
+				cerrarModal() {
+					let me = this;
+					const el = document.body;
+					el.classList.remove("abrirModal");
+					this.modal = 0;
+					this.tituloModal = "";
+					this.nombreP = "";
+					this.proyecto_id = 0;
+					this.actividadesUpd = "";
+					this.arrayInstitucion = [];
+					this.estado = 0;
+					this.errors = [];
+					this.imgGallery = "";
+					this.img = "";
+					if (me.switchImg == true) {
+						me.switchImg = false;
+					}
+					// const elem = me.$refs.divCollapse;
+					// if (elem.classList.contains("collapse")) {
+					// 	elem.classList.remove("show");
+					// }
+				},
+				cambiarPaginaPID(page, proceso, buscar) {
+					let me = this;
+					me.paginationProyDes.current_page = page;
+					me.listarProyectoDes(page,this.proceso,"");
+				},
+				cambiarPagina(page, proceso, buscar) {
+					let me = this;
+					me.pagination.current_page = page;
+					me.listarProyecto(page, proceso, buscar);
+				},
+				desactivarProyecto(id) {
+					swal({
+						title: "Esta seguro de desactivar este Proyecto?",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#3085d6",
+						cancelButtonColor: "#d33",
+						confirmButtonText: "Aceptar!",
+						cancelButtonText: "Cancelar",
+						confirmButtonClass: "button blue",
+						cancelButtonClass: "button red",
+						buttonsStyling: false,
+						reverseButtons: true
+					}).then(result => {
+						if (result.value) {
+							let me = this;
+							me.loadSpinner = 1;
+							axios
+							.put("/proyecto/desactivar", {
+								id: id
+							})
+							.then(function(response) {
+								me.listarProyecto(1, me.proceso, "");
+								swal(
+									"Desactivado!",
+									"El Registro ha sido desactivado con exito",
+									"success"
+									);
+								me.loadSpinner = 0;
+							})
+							.catch(function(error) {
+								console.log(error);
+							});
+						} else if (
+          // Esto lo hace cuando se descativa el registro
+          result.dismiss === swal.DismissReason.cancel
+          ) {
+						}
+					});
+				},
+				activarProyecto(id) {
+					swal({
+						title: "Esta seguro de activar este Proyecto?",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#3085d6",
+						cancelButtonColor: "#d33",
+						confirmButtonText: "Aceptar!",
+						cancelButtonText: "Cancelar",
+						confirmButtonClass: "button blue",
+						cancelButtonClass: "button red",
+						buttonsStyling: false,
+						reverseButtons: true
+					}).then(result => {
+						if (result.value) {
+							let me = this;
+							me.loadSpinner = 1;
+							axios
+							.put("/proyecto/activar", {
+								id: id
+							})
+							.then(function(response) {
+								me.listarProyectoDes(1,me.proceso,"");
+								me.listarProyecto(1, me.proceso, "");
+								swal(
+									"Activada!",
+									"El proyecto ha sido activado con exito",
+									"success"
+									);
+								me.loadSpinner = 0;
+							})
+							.catch(function(error) {
+								console.log(error);
+							});
+						} else if (
+          // Esto lo hace cuando se descativa el registro
+          result.dismiss === swal.DismissReason.cancel
+          ) {
+						}
+					});
+				},
+				searchEmpty() {
+					let me = this;
+					if (me.arrayProyecto.length == 0) {
+						me.search = 1;
+					} else {
+						me.search = 0;
+					}
+					return me.search;
+				}
+			},
+			components: {
+				VueEditor,
+				Switches,
+			},
+			mounted() {
+				this.mytable();
+			}
 		};
-	},
-	computed: {
-		isActived: function() {
-			return this.pagination.current_page;
-		},
-		isActivedPID: function() {
-			return this.paginationProyDes.current_page;
-		},
-		pagesNumber: function() {
-			if (!this.pagination.to) {
-				return [];
-			}
-			var from = this.pagination.current_page - this.offset;
-			if (from < 1) {
-				from = 1;
-			}
-			var to = from + this.offset * 2;
-			if (to >= this.pagination.last_page) {
-				to = this.pagination.last_page;
-			}
-			var pagesArray = [];
-			while (from <= to) {
-				pagesArray.push(from);
-				from++;
-			}
-			return pagesArray;
-		},
-		pagesNumberPID: function() {
-			if (!this.paginationProyDes.to) {
-				return [];
-			}
-			var from = this.paginationProyDes.current_page - this.offset;
-			if (from < 1) {
-				from = 1;
-			}
-			var to = from + this.offset * 2;
-			if (to >= this.paginationProyDes.last_page) {
-				to = this.paginationProyDes.last_page;
-			}
-			var pagesArray = [];
-			while (from <= to) {
-				pagesArray.push(from);
-				from++;
-			}
-			return pagesArray;
-		}
-	},
-	watch: {
-		switchImg: function(){
-			if(this.switchImg==true){
-				this.imgGallery = "";
-			}
-		},
-		proceso: function() {
-			this.listarProyecto(1, this.proceso, "");
-		},
-		carrerasProy: function() {
-			this.disabledVE = false;
-			if(this.carrerasProy.length >= 0){
-
-			}
-		},
-		carreActividad: function() {
-			if (this.proyecto.length > 0) {
-				this.getProyecto(this.proyecto["id"]);
-			}
-		}
-
-	},
-	methods: {
-		clearGallery(){
-			let me = this;
-			const elem = me.$refs.imgUpload;
-			me.imgGallery = "";
-			me.image = "";
-			elem.reset();
-		},
-		mytable(){
-			$(function() {
-				$('#example').DataTable();
-			});
-		},
-		changeImg(file) {
-			this.image = "";
-			this.addImage(file);
-		},
-		addImage(file) {
-			const img = new Image(),
-			reader = new FileReader();
-			reader.onload = (e) => this.image = e.target.result;
-			reader.readAsDataURL(file);
-		},
-		listarProyecto(page, proceso, buscar) {
-			let me = this;
-			me.loadSpinner = 1;
-			me.arrayProyecto = [];
-			var url = "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
-			axios.get(url).then(function(response) {
-				var respuesta = response.data;
-				me.arrayProyecto = respuesta.proyecto.data;
-				me.pagination = respuesta.pagination;
-				me.mytable()
-				me.loadSpinner = 0;
-				me.searchEmpty();
-
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
-		listarProyectoDes(page, proceso, buscar) {
-			let me = this;
-			var url ="/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
-			me.loading = true;
-			axios.get(url).then(function(response) {
-				var respuesta = response.data;
-				me.arrayProyectosDes = respuesta.proyecto.data;
-				me.paginationProyDes = respuesta.pagination;
-				if (me.arrayProyectosDes.length == 0)
-					me.searchID = 1;
-				else
-					me.searchID = 0;
-
-				me.loading = false;
-			}).catch(function(error) {
-				console.log(error);
-			})
-		},
-		getInst() {
-			let me = this;
-			me.loadSpinner = 1;
-			var url = "GetInstituciones/" + this.proceso;
-			axios.get(url).then(function(response) {
-				var respuesta = response.data;
-				me.arrayInstitucion = respuesta;
-				me.loadSpinner = 0;
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
-		actualizarProyecto() {
-			let me = this;
-			const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
-			axios.put("/proyecto/actualizar", {
-				id: this.proyecto_id,
-				nombre: this.nombre,
-				descripcion: this.descripcion,
-				actividades: this.actividades,
-				institucion_id: this.institucion_id["value"],
-				estado: this.estado,
-				proceso_id: this.tipoproceso_id,
-				imagenG: this.imgGallery,
-				imagen: this.image,
-			})
-			.then(function(response) {
-				swal({
-					position: "center",
-					type: "success",
-					title: "Proyecto actualizado correctamente!",
-					showConfirmButton: false,
-					timer: 1000
-				});
-				me.cerrarModal();
-				me.listarProyecto(1, me.proceso, "");
-			})
-			.catch(function(error) {
-				toast({
-					type: 'danger',
-					title: 'Error! Intente Nuevamente'
-				});
-				console.log(error);
-			});
-		},
-		getProyAct(id){
-			let me = this;
-			var url =
-			"/proyecto/obtenerProyecto?id=" + id;
-			axios
-			.get(url)
-			.then(function(response) {
-				var respuesta = response.data;
-				me.arrayActivities = respuesta;
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		},
-		abrirModal(modelo, accion, data = []) {
-			this.loadSpinner = 1;
-			let me = this;
-			const el = document.body;
-			el.classList.add("abrirModal");
-
-			var inst = JSON.stringify({
-				value: data.institucion.id,
-				label: data.institucion.nombre
-			});
-	//Cargando datos de proyecto en modal
-	switch(me.proceso){
-		//El proyecto a actualizar es de Serivio Social
-		case "1":
-		this.modal = 1;
-		me.nombreP = data.nombre;
-		me.actividadesP = data.actividades;
-		me.institucionP = JSON.parse(inst);
-		me.getInst();
-		if(data.img != null)
-			me.imgGallery = data.img;
-		this.loadSpinner = 0;
-		break;
-		case "2":
-
-		break;
-	}
-
-	console.log(data);
-
-
-
-
-
-},
-abrirModalID() {
-	const el = document.body;
-	el.classList.add("abrirModal");
-	this.modalID = 1;
-	this.listarProyectoDes(1, this.proceso, "");
-},
-cerrarModalID() {
-	const el = document.body;
-	el.classList.remove("abrirModal");
-	this.modalID = 0;
-	this.arrayProyectosDes = [];
-	this.paginationProyDes = "";
-},
-cerrarModal() {
-	const el = document.body;
-	el.classList.remove("abrirModal");
-	this.modal = 0;
-	this.tituloModal = "";
-	this.nombreP = "";
-	this.actividadesP = "";
-	this.arrayInstitucion = [];
-	this.estado = 0;
-	this.errors = [];
-},
-cambiarPaginaPID(page, proceso, buscar) {
-	let me = this;
-	me.paginationProyDes.current_page = page;
-	me.listarProyectoDes(page,this.proceso,"");
-},
-cambiarPagina(page, proceso, buscar) {
-	let me = this;
-	me.pagination.current_page = page;
-	me.listarProyecto(page, proceso, buscar);
-},
-desactivarProyecto(id) {
-	swal({
-		title: "Esta seguro de desactivar este Proyecto?",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#3085d6",
-		cancelButtonColor: "#d33",
-		confirmButtonText: "Aceptar!",
-		cancelButtonText: "Cancelar",
-		confirmButtonClass: "button blue",
-		cancelButtonClass: "button red",
-		buttonsStyling: false,
-		reverseButtons: true
-	}).then(result => {
-		if (result.value) {
-			let me = this;
-			me.loadSpinner = 1;
-			axios
-			.put("/proyecto/desactivar", {
-				id: id
-			})
-			.then(function(response) {
-				me.listarProyecto(1, me.proceso, "");
-				swal(
-					"Desactivado!",
-					"El Registro ha sido desactivado con exito",
-					"success"
-					);
-				me.loadSpinner = 0;
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		} else if (
-          // Esto lo hace cuando se descativa el registro
-          result.dismiss === swal.DismissReason.cancel
-          ) {
-		}
-	});
-},
-activarProyecto(id) {
-	swal({
-		title: "Esta seguro de activar este Proyecto?",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#3085d6",
-		cancelButtonColor: "#d33",
-		confirmButtonText: "Aceptar!",
-		cancelButtonText: "Cancelar",
-		confirmButtonClass: "button blue",
-		cancelButtonClass: "button red",
-		buttonsStyling: false,
-		reverseButtons: true
-	}).then(result => {
-		if (result.value) {
-			let me = this;
-			me.loadSpinner = 1;
-			axios
-			.put("/proyecto/activar", {
-				id: id
-			})
-			.then(function(response) {
-				me.listarProyectoDes(1,me.proceso,"");
-				me.listarProyecto(1, me.proceso, "");
-				swal(
-					"Activada!",
-					"El proyecto ha sido activado con exito",
-					"success"
-					);
-				me.loadSpinner = 0;
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-		} else if (
-          // Esto lo hace cuando se descativa el registro
-          result.dismiss === swal.DismissReason.cancel
-          ) {
-		}
-	});
-},
-searchEmpty() {
-	let me = this;
-	if (me.arrayProyecto.length == 0) {
-		me.search = 1;
-	} else {
-		me.search = 0;
-	}
-	return me.search;
-}
-},
-components: {
-	VueEditor,
-	Switches,
-},
-mounted() {
-	this.mytable();
-}
-};
-</script>
+		</script>

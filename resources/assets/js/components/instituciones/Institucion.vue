@@ -61,7 +61,6 @@
         <thead class="thead-primary">
          <tr>
            <th>Nombre de institución</th>
-           <th>Dirección</th>
            <th class="text-center">Email</th>
            <th class="text-center">Sector perteneciente</th>
            <th class="text-center">Municipio</th>
@@ -71,9 +70,8 @@
        <tbody>
         <tr v-for="institucion in arrayInstitucion" :key="institucion.id">
           <td v-text="institucion.nombre"></td>
-          <td class="text-center" v-if="institucion.direccion  != null" >{{institucion.direccion | truncate(15)}}</td>
-          <td class="text-center" v-else v-text="institucion.direccion"></td>
-          <td class="text-center" v-text="institucion.email"></td>
+          <td class="text-center" v-if="institucion.email != null">{{institucion.email | truncate(15)}}</td>
+          <td class="text-center" v-else></td>
           <td class="text-center" v-text="institucion.sector_institucion.sector"></td>
           <td class="text-center" v-text="institucion.municipio.nombre"></td>
           <td class="text-center">
