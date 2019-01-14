@@ -73,11 +73,8 @@
           <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
         </div>
         <div class="col-md-6"><br>
-          <div v-if="proyecto_selectd.vacantes - proyecto_selectd.preinscripciones != 0" class="alert alert-primary font-weight-bold h6" role="alert">
-            Vacantes disponibles: {{ proyecto_selectd.vacantes - proyecto_selectd.preinscripciones }}
-          </div>
-          <div v-else class="alert alert-primary font-weight-bold h6" role="alert">
-            Número de vacantes completado
+          <div class="alert alert-primary font-weight-bold h6" role="alert">
+            Vacantes disponibles: {{ proyecto_selectd.vacantes - numeroSolicitudes }}
           </div>
         </div>
       </div>
@@ -214,30 +211,30 @@ export default {
       buscarP: "",
       loader: false,
       rutaIMG:'',
-      testObj:
-      {value: 1 ,label: "Primer Año"},
-      // loadSpinner: true
-    };
-  },
-  watch: {
-    proceso: function() {
-      const vselect = this.$refs.vselectProy;
-      this.getProyectos();
-      if(this.proceso == 2){
-       this.getCarreras();
-     }
-     this.proyecto_selectd = 0;
-     this.carrera_selected = 0;
-     vselect.disabled = false;
-     this.contentProy = true;
-   },
-   carrera_selected: function(){
-     this.proyecto_selectd = 0;
-     this.getProyectos();
+      numeroSolicitudes: 0,
+     // loadSpinner: true
+   };
+ },
+ watch: {
+  proceso: function() {
+    const vselect = this.$refs.vselectProy;
+    this.getProyectos();
+    if(this.proceso == 2){
+     this.getCarreras();
+   }
+   this.proyecto_selectd = 0;
+   this.carrera_selected = 0;
+   vselect.disabled = false;
+   this.contentProy = true;
+ },
+ carrera_selected: function(){
+   this.proyecto_selectd = 0;
+   this.getProyectos();
          //vselect.disabled = false;
        },
        proyecto_selectd: function(){
         this.getPreregister(this.proyecto_selectd.value,1,"");
+        this.getNumeroPreinscripciones()
       },
       arrayProyectos: function(){
         const vselect = this.$refs.vselectProy;
@@ -306,6 +303,22 @@ export default {
       console.log(error);
     });
    },
+    //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
+    getNumeroPreinscripciones() {
+      let me = this;
+      if(this.proceso == 1){
+        var url = "proyectos/getNumeroPreinscripciones?process_id="+this.proceso+"&proyectoId="+this.proyecto_selectd.value;
+      }else if(this.proceso == 2){
+        var url = "proyectos/getNumeroPreinscripciones?process_id="+this.proceso+"&proyectoId="+this.proyecto_selectd.value+"&carrera_id="+this.carrera_selected.value;
+      }
+      axios.get(url).then(function(response) {
+        var respuesta = response.data;
+        me.numeroSolicitudes = respuesta;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    },
   //obtener todas las carreras
   getCarreras() {
     let me = this;
@@ -482,6 +495,7 @@ export default {
             "success"
             );
           me.loadSpinner = 0;
+          me.getNumeroPreinscripciones()
         })
         .catch(function(error) {
           console.log(error);
@@ -492,7 +506,7 @@ export default {
         ) {
       }
     });
-}
+  }
 },
 components: {},
 mounted() {

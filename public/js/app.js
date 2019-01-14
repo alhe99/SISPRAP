@@ -87540,9 +87540,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -87582,7 +87579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       buscarP: "",
       loader: false,
       rutaIMG: '',
-      testObj: { value: 1, label: "Primer Año" }
+      numeroSolicitudes: 0
       // loadSpinner: true
     };
   },
@@ -87606,6 +87603,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     proyecto_selectd: function proyecto_selectd() {
       this.getPreregister(this.proyecto_selectd.value, 1, "");
+      this.getNumeroPreinscripciones();
     },
     arrayProyectos: function arrayProyectos() {
       var vselect = this.$refs.vselectProy;
@@ -87666,6 +87664,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var respuesta = response.data;
         me.arrayProyectos = respuesta;
         me.loadSpinner = 0;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+
+    //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
+    getNumeroPreinscripciones: function getNumeroPreinscripciones() {
+      var me = this;
+      if (this.proceso == 1) {
+        var url = "proyectos/getNumeroPreinscripciones?process_id=" + this.proceso + "&proyectoId=" + this.proyecto_selectd.value;
+      } else if (this.proceso == 2) {
+        var url = "proyectos/getNumeroPreinscripciones?process_id=" + this.proceso + "&proyectoId=" + this.proyecto_selectd.value + "&carrera_id=" + this.carrera_selected.value;
+      }
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.numeroSolicitudes = respuesta;
       }).catch(function (error) {
         console.log(error);
       });
@@ -87834,6 +87848,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.getPreregister(me.proyecto_selectd.value, 1, "");
             swal("Rechazado!", "Se ha eliminado la solicitud para este proyecto", "success");
             me.loadSpinner = 0;
+            me.getNumeroPreinscripciones();
           }).catch(function (error) {
             console.log(error);
           });
@@ -88104,40 +88119,24 @@ var render = function() {
                       _c("div", { staticClass: "col-md-6" }, [
                         _c("br"),
                         _vm._v(" "),
-                        _vm.proyecto_selectd.vacantes -
-                          _vm.proyecto_selectd.preinscripciones !=
-                        0
-                          ? _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "alert alert-primary font-weight-bold h6",
-                                attrs: { role: "alert" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n            Vacantes disponibles: " +
-                                    _vm._s(
-                                      _vm.proyecto_selectd.vacantes -
-                                        _vm.proyecto_selectd.preinscripciones
-                                    ) +
-                                    "\n          "
-                                )
-                              ]
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "alert alert-primary font-weight-bold h6",
+                            attrs: { role: "alert" }
+                          },
+                          [
+                            _vm._v(
+                              "\n            Vacantes disponibles: " +
+                                _vm._s(
+                                  _vm.proyecto_selectd.vacantes -
+                                    _vm.numeroSolicitudes
+                                ) +
+                                "\n          "
                             )
-                          : _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "alert alert-primary font-weight-bold h6",
-                                attrs: { role: "alert" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n            Número de vacantes completado\n          "
-                                )
-                              ]
-                            )
+                          ]
+                        )
                       ])
                     ])
                   ])

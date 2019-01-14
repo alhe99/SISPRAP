@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estudiante;
+use App\GestionProyecto;
 use App\Jobs\sendNotificationToAdmin;
 use App\Notifications\NotifyAcceptProjectToStudent;
 use App\Notifications\NotifyPreRegisterProject;
@@ -81,6 +82,7 @@ class ProyectoController extends Controller
                         $proyecto->nombre = $request->nombre;
                         $proyecto->fecha = Carbon::parse($date);
                         $proyecto->horas_realizar = $request->horas;
+                        $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
                         $proyecto->actividades = $obj['actividades'];
                         $proyecto->institucion_id = $request->institucion_id;
                         $proyecto->proceso_id = 2;
@@ -382,6 +384,39 @@ public function getProjectsByProcess(Request $request)
 
     }
     return response()->json($data);
+}
+// Funcion para obtener el numero de preinscipciones de un proyecto
+public function getNumeroPreinscripciones(Request $request){
+    $process_id = $request->process_id;
+    $carre_id = $request->carre_id;
+    $proyectoId = $request->proyectoId;
+    $totalVacantes = 0;
+
+    if ($process_id == 1) {
+
+        $proyectos = Proyecto::whereHas('tipoProceso', function ($query) use ($process_id) {
+           $query->where('proceso_id', $process_id);
+       })->select(DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudesHechas"))->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->find($proyectoId);
+
+        $sql = "SELECT COUNT(id) AS procesoMarcha FROM gestion_proyectos WHERE proyecto_id = :idProy AND tipo_gp = :idProceso";
+        $gestion = DB::select($sql, [ 'idProy' => $proyectoId,'idProceso' => $process_id ]);
+
+        $totalVacantes = $proyectos->solicitudesHechas + $gestion[0]->procesoMarcha;
+
+
+    } else if ($process_id == 2){
+
+        $proyectos = Proyecto::whereHas('carre_proy', function ($query) use ($carre_id) {
+            $query->where('carrera_id', $carre_id);
+        })->select(DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudesHechas"))->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->find($proyectoId);
+
+        $sql = "SELECT COUNT(id) AS procesoMarcha FROM gestion_proyectos WHERE proyecto_id = :idProy AND tipo_gp = :idProceso";
+        $gestion = DB::select($sql, [ 'idProy' => $proyectoId,'idProceso' => $process_id ]);
+
+        $totalVacantes = $proyectos->solicitudesHechas + $gestion[0]->procesoMarcha;
+
+    }
+    return $totalVacantes;
 }
 
 //apartado de la publica, en la verificacion de la url solo se presenta el nombre del proyecto que el alumno ha seleccionado
