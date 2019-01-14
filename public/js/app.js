@@ -98318,6 +98318,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98689,72 +98691,35 @@ var render = function() {
                                 { staticClass: "text-center" },
                                 [
                                   [
-                                    _vm.proceso == 1
-                                      ? _c("h4", [
-                                          item.gestion_proyecto[0]
-                                            .constancia_entreg.length != 0 &&
-                                          item.gestion_proyecto[0]
-                                            .constancia_entreg.length !=
-                                            undefined
-                                            ? _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-primary"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      "Entregada: " +
-                                                        item.gestion_proyecto[0]
-                                                          .constancia_entreg[0]
-                                                          .created_at
-                                                    )
-                                                  )
-                                                ]
+                                    _c("h4", [
+                                      item.gestion_proyecto[0]
+                                        .constancia_entreg[0] != undefined
+                                        ? _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-primary"
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  "Entregada: " +
+                                                    item.gestion_proyecto[0]
+                                                      .constancia_entreg[0]
+                                                      .created_at
+                                                )
                                               )
-                                            : _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-danger"
-                                                },
-                                                [_vm._v("No Entregada")]
-                                              )
-                                        ])
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.proceso == 2
-                                      ? _c("h4", [
-                                          item.gestion_proyecto[1]
-                                            .constancia_entreg.length > 0
-                                            ? _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-primary"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      "Entregada: " +
-                                                        item.gestion_proyecto[1]
-                                                          .constancia_entreg[0]
-                                                          .created_at
-                                                    )
-                                                  )
-                                                ]
-                                              )
-                                            : _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-danger"
-                                                },
-                                                [_vm._v("No Entregada")]
-                                              )
-                                        ])
-                                      : _vm._e()
+                                            ]
+                                          )
+                                        : _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-danger"
+                                            },
+                                            [_vm._v("No Entregada")]
+                                          )
+                                    ])
                                   ]
                                 ],
                                 2

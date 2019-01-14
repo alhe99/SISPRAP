@@ -65,14 +65,16 @@
               <td class="text-center" v-text="item.carrera.nombre"></td>
               <td class="text-center">
                 <template>
-                 <h4 v-if="proceso==1">
-                   <span v-if="item.gestion_proyecto[0].constancia_entreg.length != 0 && item.gestion_proyecto[0].constancia_entreg.length != undefined " class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
+
+                 <h4>
+                   <span v-if="item.gestion_proyecto[0].constancia_entreg[0] != undefined" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
                    <span v-else class="badge badge-pill badge-danger">No Entregada</span>
                  </h4>
-                 <h4 v-if="proceso==2">
+
+                 <!-- <h4 v-if="proceso==2">
                   <span v-if="item.gestion_proyecto[1].constancia_entreg.length > 0" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[1].constancia_entreg[0].created_at}}</span>
                    <span v-else class="badge badge-pill badge-danger">No Entregada</span>
-                 </h4>
+                 </h4> -->
                </template>
              </td>
              <td class="text-center">

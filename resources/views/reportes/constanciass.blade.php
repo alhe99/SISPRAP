@@ -61,7 +61,7 @@
                     </h4>
                 </div><br>
                 <div class="col-md-12">
-                    <h5 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $estudiante->nombre." ".$estudiante->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total
+                    <h5 class="text-left">Alumno(a): &nbsp;&nbsp; <u>{{ $estudiante->nombre." ".$estudiante->apellido }}</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total
                     horas: {{ $totalHoras }}</h5>
                 </div><br><br>
                 <div class="col-md-12">
