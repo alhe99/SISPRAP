@@ -61,6 +61,7 @@ class GestionProyectoController extends Controller
                 $telefono = Auth::user()->estudiante->telefono;
                 $carrera = Auth::user()->estudiante->carrera->nombre;
                 $email = Auth::user()->estudiante->email;
+                $numeroFactura = Auth::user()->estudiante->pagoArancel()->where('proceso_id',$proceso)->get();
 
             //Informacion de la institucion
                 $nombreI = Auth::user()->estudiante->preinscripciones[0]->institucion->nombre;
@@ -85,30 +86,31 @@ class GestionProyectoController extends Controller
                 if ($proceso == 1) {$perfil->setText("x",790,362,20);}else{$perfil->setText("x",1200,362,20);}//Proceso Verifcando la posicion
                 $perfil->setText($nombre,450,490,20);//Nombre de Alumno
                 $perfil->setText($apellido,450,550,20);//Apellido de Alumno
-                $perfil->setText($carnet,1155,490,20);//Carnet de Alumno
-                $perfil->setText($telefono,1200,550,20);//Telefono de Alumno
+                $perfil->setText($carnet,1210,490,20);//Carnet de Alumno
+                $perfil->setText($telefono,1260,550,20);//Telefono de Alumno
                 $perfil->setText($carrera,450,605,20);//Carrera de Alumno
-                $perfil->setText($email,1135,607,20);//Email de Alumno
+                $perfil->setText($email,1200,607,20);//Email de Alumno
 
                 $perfil->setText($nombreI,120,775,20); //Nombre de la Institucion
                 $perfil->setText($sectorI,1150,805,20); //Sector de la Institucion
                 $perfil->setText($direccionI,120,900,20); //Direccion de la Institucion
                 $perfil->setText($municipioI,120,990,20); //Municipio de la Institucion
-                $perfil->setText($departamentoI,445,990,20); //Departamento de la Institucion
+                $perfil->setText($departamentoI,485,990,20); //Departamento de la Institucion
                 $perfil->setText($emailI,820,990,20); //Email de la Institucion
                 $perfil->setText($telefonoI,1350,990,20); //Telefono de la Institucion
 
                 $perfil->setText($nombreP, 115, 1175, 20); //Nombre del Proyecto
-                $perfil->setText(Html2Text::convert($actividadesP),115,1300,20); //Actividades a realizar
+                $perfil->setText(Html2Text::convert($actividadesP),120,1300,20); //Actividades a realizar
                 $perfil->setText($request->hrsreal, 1465, 1210, 20); //Horas a Realizar del proyecto
                 $perfil->setText($request->fechaini, 135, 1625, 20); //Fecha de Inicio  del proyecto
                 $perfil->setText($request->super_name, 650, 1625, 20); //Supervisor del proyecto/Institucion
                 $perfil->setText($request->super_cell, 1390, 1625, 20); //Telefono Supervisor del proyecto/Institucion
+                $perfil->setText($numeroFactura[0]->no_factura,1235,1860,20); //Numero de factura de pago de arancel de proceso
                 // Guardando el perfil segun el proceso del estudiante
                 if ($proceso == 1) {$perfil->save(public_path('docs/docs_ss/')."PSS-".$carnet);}
                 else{$perfil->save(public_path('docs/docs_pp/')."PPP-".$carnet);}
 
-                //PROCESO PARA CONTROL DE HORAS
+                // //PROCESO PARA CONTROL DE HORAS
                 $nombre_completo = $nombre." ".$apellido;
                 $control_horas = new TextPainter(public_path('images/controles/control-horas.jpg'),'',public_path('fonts/arial.ttf'), 10);
                 $control_horas->setTextColor(0,0,0);
@@ -122,7 +124,7 @@ class GestionProyectoController extends Controller
                 if ($proceso == 1) {$control_horas->save(public_path('docs/docs_ss/')."CHSS-".$carnet);}
                 else{$control_horas->save(public_path('docs/docs_pp/')."CHPP-".$carnet);}
 
-                //PROCESO PARA CONTROL DE PROYECTO
+                // //PROCESO PARA CONTROL DE PROYECTO
                 $control_proy = new TextPainter(public_path('images/controles/control-proyecto.jpg'),'',public_path('fonts/arial.ttf'), 10);
                 $control_proy->setTextColor(0,0,0);
                 if ($proceso == 1) {$control_proy->setText("x",472,498,30);}else{$control_proy->setText("x",944,500,30);}//Proceso
@@ -150,6 +152,7 @@ class GestionProyectoController extends Controller
 
                 DB::commit();
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
+                // return $pdf->stream('Perfil de proyecto.pdf');
             }
         } catch (Exception $e) {
           DB::rollBack();
