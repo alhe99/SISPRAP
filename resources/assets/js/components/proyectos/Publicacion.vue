@@ -36,20 +36,27 @@
             <h3
             class="text-center font-weight-bold"
             v-if="proceso==1"
-            >Formulario de publicación para proyectos de Servicio Social</h3>
+            >Formulario para publicación proyectos  de Servicio Social</h3>
             <h3
             class="text-center font-weight-bold"
             v-if="proceso==2"
-            >Formulario de publicación para proyectos de Práctica Profesional</h3>
+            >Formulario para publicación proyectos  de Práctica Profesional</h3>
             <form>
-              <div class="form-group row">
-                <mdc-textfield
-                type="text"
-                class="col-md-12"
-                label="Nombre del proyecto"
-                helptext="(Ingrese el nombre del proyecto a publicar)"
-                v-model="nombre"
-                ></mdc-textfield>
+              <div class="form-group" style="margin-left: -12px;">
+                <div class="row">
+                  <div class="col-md-10">
+                    <mdc-textfield
+                    type="text"
+                    class="col-md-12"
+                    label="Nombre del proyecto"
+                    helptext="(Ingrese el nombre del proyecto a publicar)"
+                    v-model="nombre"
+                    ></mdc-textfield>
+                  </div>
+                  <div class="col-md-2"><br>
+                    <checkbox v-model="proyectoExterno">Proyecto Externo</checkbox>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <mdc-textfield
@@ -58,6 +65,7 @@
                 :min="0"
                 :max="300"
                 class="col-md-6"
+                :class="[proyectoExterno == true ? 'col-md-12' : 'col-md-6']"
                 label="Cantidad de horas a realizar:"
                 helptext="Detalle el numero de horas del proyecto"
                 v-model="catidadHoras"
@@ -67,13 +75,14 @@
                 v-mask="'####'"
                 :min="0"
                 :max="500"
+                v-show="proyectoExterno == false"
                 class="col-md-6"
                 label="Cantidad de alumnos para proyecto:"
                 helptext="Digite la cantidad"
                 v-model="cantidadVacantes"
                 ></mdc-textfield>
               </div>
-              <div class="form-group row" v-if="proceso==2">
+              <div class="form-group row" v-if="proceso==2 && proyectoExterno == false">
                 <div class="col-md-10 col-sm-10 col-lg-10">
                   <v-select
                   multiple
@@ -134,7 +143,7 @@
 
               </form-wizard>
               <vue-editor
-              v-else-if="proceso == 1"
+              v-else-if="proceso == 1 || proyectoExterno == true"
               v-model="actividadesCarre"
               :editorToolbar="toolBars"
               id="vEditorSS"
@@ -151,7 +160,7 @@
               ></v-select>
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row" v-if="proyectoExterno == false">
             <div class="col-md-12 col-lg-12  col-sm-12">
               <div class="row">
                 <div class="col-md-6 col-sm-12 col-lg-6">
@@ -225,19 +234,18 @@
           placeholder="Selecione una imagen de su computadora!"
           />
         </div>
-        <div class="row">
-          <div class="col-md-3">
-            <br>
-            <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
-            <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
-        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
+        <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
       </div>
     </div>
   </form>
+  <div class="row">
+    <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
+  </div>
 </div>
 </div>
 </div>
@@ -260,6 +268,7 @@ export default {
       catidadHoras: 0,
       cantidadVacantes: 0,
       imgGallery: "",
+      proyectoExterno: false,
       nombre: "",
       arrayImages: [
       "test.jpg",
@@ -402,52 +411,44 @@ methods: {
       saveProyect() {
         const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
         let me = this;
+        var tipoProyecto = 'I';
+        if (me.proyectoExterno) {tipoProyecto = 'E';};
         this.loadSpinner = 1;
-        if(me.exist == false){
-          axios
-          .post("/proyecto/registrar", {
-            proceso_id: me.proceso,
-            nombre: me.nombre,
-            actividades: me.actividadesProy,
-            institucion_id: me.institucion.value,
-            imageG: me.imgGallery,
-            imagen: me.image,
-            actividadSS: me.actividadesCarre,
-            horas: me.catidadHoras,
-            cantidadAlumnos: me.cantidadVacantes
-          })
-          .then(function(response) {
-            swal({
-              position: "center",
-              type: "success",
-              title: "¡Proyecto publicado correctamente!",
-              showConfirmButton: false,
-              timer: 1000
-            });
-            me.clearData();
-          })
-          .catch(error => {
-            me.loadSpinner = 0;
-            toast({
-              type: 'danger',
-              title: 'Error! Intente Nuevamente'
-            });
+        axios
+        .post("/proyecto/registrar", {
+          proceso_id: me.proceso,
+          nombre: me.nombre,
+          actividades: me.actividadesProy,
+          institucion_id: me.institucion.value,
+          imageG: me.imgGallery,
+          imagen: me.image,
+          actividadSS: me.actividadesCarre,
+          horas: me.catidadHoras,
+          cantidadAlumnos: me.cantidadVacantes,
+          tipoProyecto: tipoProyecto
+        })
+        .then(function(response) {
+          swal({
+            position: "center",
+            type: "success",
+            title: "¡Proyecto publicado correctamente!",
+            showConfirmButton: false,
+            timer: 1000
           });
-        }else{
-         swal({
-          position: "center",
-          type: "warning",
-          title: "Proyecto existente! Ingrese otro nombre",
-          showConfirmButton: true,
-          timer: 5000
+          if(tipoProyecto == 'I')
+            me.clearData();
+          else
+            me.clearDataExternos()
+        })
+        .catch(error => {
+          me.loadSpinner = 0;
+          toast({
+            type: 'danger',
+            title: 'Error! Intente Nuevamente'
+          });
         });
-         me.nombre = "";
-         me.loadSpinner = 0;
-         me.exist = false;
-       }
 
-     },
-
+      },
       //agregar elementos al arreglo de actvidades del proceso de practica profesional
       agregarActivi() {
         this.indiceCarre = this.indiceCarre + 1;
@@ -481,6 +482,11 @@ methods: {
         me.loadSpinner = 0;
         me.cantidadVacantes = 0;
         me.catidadHoras = 0;
+        // me.proyectoExterno = false;
+        if(me.proceso==1)
+          me.catidadHoras = 300;
+        else
+          me.catidadHoras = 160;
         me.clearGallery();
         if (me.switchImg == true) {
           me.switchImg = false;
@@ -489,15 +495,28 @@ methods: {
         if (elem.classList.contains("collapse")) {
           elem.classList.remove("show");
         }
-      }
-    },
-    components: {
-      VueEditor,
-      Switches
-    },
-    mounted() {
-     this.getCarreras();
-     this.getInstituciones();
+      },
+      clearDataExternos(){
+       let me = this;
+       me.nombre = "";
+       me.actividadesCarre = "";
+       me.institucion = "";
+       me.loadSpinner = 0;
+       me.proyectoExterno = false;
+       if(me.proceso==1)
+        me.catidadHoras = 300;
+      else
+        me.catidadHoras = 160;
+
+    }
+  },
+  components: {
+    VueEditor,
+    Switches
+  },
+  mounted() {
+   this.getCarreras();
+   this.getInstituciones();
       //$("#btnGuardar").prop('disabled',true);
     }
   };

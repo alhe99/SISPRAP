@@ -45,6 +45,7 @@ Route::put('/proyecto/actualizar', 'ProyectoController@update');
 Route::get('GetProyectos/{id}', 'ProyectoController@GetProyectos');
 Route::put('/proyecto/desactivar', 'ProyectoController@desactivar');
 Route::get('/proyecto/desactivadas', 'ProyectoController@getProyDes');
+Route::get('/proyecto/desactivados/externos', 'ProyectoController@getProyDesExternos');
 Route::put('/proyecto/activar', 'ProyectoController@activar');
 Route::post('proyecto/registrar/supervision', 'SupervisionController@store');
 Route::get('/proyecto/obtenerProyecto', 'ProyectoController@obtenerProyecto');
@@ -52,6 +53,8 @@ Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision');
 Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv');
 Route::put('/supervision/actualizar', 'SupervisionController@update');
+Route::get('proyectos/externos', 'ProyectoController@getExternalProjects');
+Route::get('proyectos/externos/asignar', 'ProyectoController@asignarProyectoExterno')->name('asinarProyectoExterno');
 
 Route::get('/permiso', 'PermisoController@index');
 
@@ -130,7 +133,7 @@ Route::get('/gestionproyectos/constancias','GestionProyectoController@constancia
 Route::get('/getMoreInfoGP/{id}','GestionProyectoController@getInfoGpById');
 Route::get('/getCostancia','GestionProyectoController@generateConstancia')->name('getConstancia');
 Route::get('/my_projects_now/{id}','GestionProyectoController@getGestionProyectoByStudent')->name('proyects_now');
-
+Route::get('/gestionproyectos/delete','GestionProyectoController@deleteProyectoEnMarcha')->name('deleteGestionProyecto');
 //Reportes GP
 
 Route::get('/gestionProy/reportes/initialprocess/{pId}','GestionProyectoController@getInitialProcessReporte');

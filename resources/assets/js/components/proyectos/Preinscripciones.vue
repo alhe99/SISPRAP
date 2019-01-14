@@ -48,136 +48,140 @@
         <div class="row">
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-11">
-                <!-- <h1 v-if="proceso == 1">Proyectos de Servicio Social</h1>
-                  <h1 v-if="proceso == 2">Proyectos de Práctica Profesional</h1> -->
-                </div>
-                <div class="col-md-1 col-sm-1 col-lg-1 text-right">
-                 <div class="btn-group pull-lg-right">
-                  <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más opciones">
-                    <i class="mdi mdi-dots-vertical"></i>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="mw2">
-                    <button style="cursor: pointer;" class="dropdown-item d-block menu" @click="openModalProy" type="button"><i class="mdi mdi-bookmark-plus"></i> Asignación de proyecto</button>
-                    <!-- <button class="dropdown-item d-block menu" type="button"><i class="mdi mdi-delete-empty"></i> Instituciones Desactivadas</button> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="row">
               <div class="col-md-6">
-                <v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
-                <!-- <fade-loader :loading="true"></fade-loader> -->
-              </div>
-              <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
-                <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
-                  <i slot="spinner" class="icon icon-spinner"></i>
-                </v-select>
-                <h6 v-if="contentProy == false" class="text-danger">No Hay Proyectos en esta institución</h6>
-              </div>
+                <v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera">
+                 <span slot="no-options">
+                  No hay datos disponibles
+                </span>
+              </v-select>
+              <!-- <fade-loader :loading="true"></fade-loader> -->
             </div>
-          </div><br>
-
-          <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-10 col-sm-12 col-lg-6">
-            <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
+            <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
+              <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
+               <span slot="no-options">
+                No hay datos disponibles
+              </span>
+            </v-select>
+            <h6 v-if="contentProy == false" class="text-danger">No hay proyectos disponibles para esta carrera</h6>
           </div>
-          <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
-            <br>
-            <table class="table table-striped table-bordered table-mc-light-blue">
-              <thead class="thead-primary">
-                <tr>
-                  <th>Nombre Estudiante</th>
-                  <th>Fecha preinscripción</th>
-                  <th class="text-center">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in arrayPreregister" :key="item.id">
-                  <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
-                  <td v-text="item.pivot.created_at"></td>
-                  <td class="text-center">
-                    <button type="button" class="button secondary " @click="aprobarProy(item.id,proyecto_selectd.value,item.proceso_actual)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
-                    <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <nav>
-             <ul class="pagination">
-              <li class="page-item" v-if="pagination.current_page > 1">
-                <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
-              </li>
-              <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
+        </div>
+      </div><br>
 
-                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                  <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
-                </li>
-                <small v-show="arrayPreregister.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"></small>
-              </ul>
-            </nav>
-            <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
-              <h4 class="font-weight-bold text-center">No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
+      <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-12 col-sm-12 col-lg-12">
+       <div class="row">
+         <div class="col-md-6">
+          <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
+        </div>
+        <div class="col-md-6"><br>
+          <div v-if="proyecto_selectd.vacantes - proyecto_selectd.preinscripciones != 0" class="alert alert-primary font-weight-bold h6" role="alert">
+            Vacantes disponibles: {{ proyecto_selectd.vacantes - proyecto_selectd.preinscripciones }}
+          </div>
+          <div v-else class="alert alert-primary font-weight-bold h6" role="alert">
+            Número de vacantes completado
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
+      <br>
+      <table class="table table-striped table-bordered table-mc-light-blue">
+        <thead class="thead-primary">
+          <tr>
+            <th>Nombre Estudiante</th>
+            <th>Fecha preinscripción</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in arrayPreregister" :key="item.id">
+            <td><button type="button" @click="getMoreInfo(item.id)" class="btn btn-link text-capitalize h4" style="font-size: 16px">{{item.nombre +" "+ item.apellido}}</button></td>
+            <td v-text="item.pivot.created_at"></td>
+            <td class="text-center">
+              <button type="button" class="button secondary " @click="aprobarProy(item.id,proyecto_selectd.value,item.proceso_actual)" data-toggle="tooltip" title="Aprobar Proyecto"><i class="mdi mdi-check"></i>&nbsp;Aprobar</button>
+              <button type="button" class="button red " @click="rechazarProy(item.id,proyecto_selectd.value)" data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-close"></i>&nbsp;Rechazar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <nav>
+       <ul class="pagination">
+        <li class="page-item" v-if="pagination.current_page > 1">
+          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
+        </li>
+        <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+          <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
+
+          <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+          </li>
+          <small v-show="arrayPreregister.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"></small>
+        </ul>
+      </nav>
+      <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
+        <h4 class="font-weight-bold text-center">No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
+      </div>
+      <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+      <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-white">Información del estudiante</h4>
+              <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white">&times;</span>
+              </button>
             </div>
-            <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
-            <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title text-white">Información del estudiante</h4>
-                    <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true" class="text-white">&times;</span>
-                    </button>
+            <div class="modal-body">
+             <fieldset>
+              <legend class="text-center">Datos completos del estudiante</legend>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                   <div class="col-md-8">
+                    <h5 class="font-weight-bold">Nombre:</h5><h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
+                    <h5 class="font-weight-bold">Carrera:</h5><h4>{{estudiante.carrer}}</h4>
+                    <h5 class="font-weight-bold">Fecha Nacimiento: </h5><h4>{{estudiante.fechaNac}}</h4>
+                    <h5 class="font-weight-bold">Género: </h5><h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
+                    <h5 class="font-weight-bold">Codigo de Carnet: </h5><h4>{{estudiante.codCarnet}}</h4>
+                    <h5 class="font-weight-bold">Dirección: </h5><h4>{{estudiante.direccion}}</h4>
                   </div>
-                  <div class="modal-body">
-                   <fieldset>
-                    <legend class="text-center">Datos completos del estudiante</legend>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <div class="row">
-                         <div class="col-md-8">
-                          <h5 class="font-weight-bold">Nombre:</h5><h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
-                          <h5 class="font-weight-bold">Carrera:</h5><h4>{{estudiante.carrer}}</h4>
-                          <h5 class="font-weight-bold">Fecha Nacimiento: </h5><h4>{{estudiante.fechaNac}}</h4>
-                          <h5 class="font-weight-bold">Género: </h5><h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
-                          <h5 class="font-weight-bold">Codigo de Carnet: </h5><h4>{{estudiante.codCarnet}}</h4>
-                          <h5 class="font-weight-bold">Dirección: </h5><h4>{{estudiante.direccion}}</h4>
-                        </div>
-                        <div class="col-md-4">
-                          <template v-if="estudiante.foto_name == ''">
-                            <img v-if="estudiante.genero == 'M'" class="text-center img-fluid" :src="'images/avatarM.png'" alt="">
-                            <img v-else class="text-center img-fluid" :src="'images/avatarF.png'" alt="">
-                          </template>
-                          <template v-else>
-                            <img class="text-center img-fluid" :src="rutaIMG" alt="">
-                          </template>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="modal-footer">
-                <div class="row">
-                  <div class="col-md-12">
-                    <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
+                  <div class="col-md-4">
+                    <template v-if="estudiante.foto_name == ''">
+                      <img v-if="estudiante.genero == 'M'" class="text-center img-fluid" :src="'images/avatarM.png'" alt="">
+                      <img v-else class="text-center img-fluid" :src="'images/avatarF.png'" alt="">
+                    </template>
+                    <template v-else>
+                      <img class="text-center img-fluid" :src="rutaIMG" alt="">
+                    </template>
                   </div>
                 </div>
               </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
             </div>
           </div>
         </div>
-        <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
       </div>
     </div>
   </div>
+  <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+</div>
+</div>
+</div>
 </div>
 </div>
 </template>
 <script>
 export default {
+  props: {
+    value: {
+      default: null
+    },
+  },
   data() {
     return {
       buscar: "",
@@ -210,6 +214,8 @@ export default {
       buscarP: "",
       loader: false,
       rutaIMG:'',
+      testObj:
+      {value: 1 ,label: "Primer Año"},
       // loadSpinner: true
     };
   },
@@ -240,76 +246,55 @@ export default {
             vselect.disabled = true;
             this.contentProy = false;
           }else{
-            vselect.disabled = false;
-            this.contentProy = true;
-          }
-        }
-      },
-      carrera_proy_ind: function(){
-        this.getEstudianteByCarrer(1);
-      },
-      estudiante: function(){
-        if(this.estudiante.codCarnet.length > 7)
-          this.rutaIMG =  "http://portal.itcha.edu.sv/fotos/alumnos/"+ this.estudiante.foto_name;
-        else
-          this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.estudiante.foto_name;
+           this.$refs.vselect.toggleLoading(true);
+           vselect.disabled = false;
+           this.contentProy = true;
+         }
+       }
+     },
+     estudiante: function(){
+      if(this.estudiante.codCarnet.length > 7)
+        this.rutaIMG =  "http://portal.itcha.edu.sv/fotos/alumnos/"+ this.estudiante.foto_name;
+      else
+        this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.estudiante.foto_name;
+    }
+  },
+  computed: {
+    isActived: function() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function() {
+      if (!this.pagination.to) {
+        return [];
       }
+      var from = this.pagination.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
     },
-    computed: {
-      isActived: function() {
-        return this.pagination.current_page;
-      },
-      isActivedP: function() {
-        return this.paginationP.current_page;
-      },
-      pagesNumber: function() {
-        if (!this.pagination.to) {
-          return [];
-        }
-        var from = this.pagination.current_page - this.offset;
-        if (from < 1) {
-          from = 1;
-        }
-        var to = from + this.offset * 2;
-        if (to >= this.pagination.last_page) {
-          to = this.pagination.last_page;
-        }
-        var pagesArray = [];
-        while (from <= to) {
-          pagesArray.push(from);
-          from++;
-        }
-        return pagesArray;
-      },
-      pagesNumberP: function() {
-        if (!this.paginationP.to) {
-          return [];
-        }
-        var from = this.paginationP.current_page - this.offsetP;
-        if (from < 1) {
-          from = 1;
-        }
-        var to = from + this.offsetP * 2;
-        if (to >= this.paginationP.last_page) {
-          to = this.paginationP.last_page;
-        }
-        var pagesArray = [];
-        while (from <= to) {
-          pagesArray.push(from);
-          from++;
-        }
-        return pagesArray;
-      },
-    },
-    methods: {
+    testProp: function(){
+      return  this.value = this.proyecto_selectd;
+    }
+  },
+  methods: {
       //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
       getProyectos() {
         let me = this;
       //
       if(this.proceso == 1){
-        var url = "GetProjectsByProcess?process_id=" + this.proceso;
+        var url = "GetProjectsByProcess?process_id=" + this.proceso+"&tipoProyecto=I";
       }else if(this.proceso == 2){
-       var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value;
+       var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value+"&tipoProyecto=I";
      }
      axios.get(url).then(function(response) {
       me.loadSpinner = 1;
@@ -321,23 +306,6 @@ export default {
       console.log(error);
     });
    },
-
-   //obtener los estudiantes que se han presinscito a un proyecto por carrera
-   getEstudianteByCarrer(page) {
-    let me = this;
-    var url = "stundentByCarrer?page="+page+"&carrera_id="+me.carrera_proy_ind.value+"&proceso_id="+me.proceso+"&buscar=" + me.buscarP;
-    me.loader = true;
-    axios.get(url).then(function(response) {
-      me.loader = false;
-      var respuesta = response.data;
-      me.arrayEstudianteP = respuesta.estudiantes.data;
-      me.paginationP = respuesta.pagination;
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  },
-
   //obtener todas las carreras
   getCarreras() {
     let me = this;
@@ -482,12 +450,14 @@ export default {
       });
     }
   },
-
-  //aprobar que el estudiante ingrese un proyecto externo
-  asignarProyecto(dataId){
+  //rechazar la preinscripcion del estudiante
+  rechazarProy(estudiante_id,proyecto_id){
+    // const vselect = this.$refs.vselectProy._props.value;
+    // this.$refs.vselectProy._props.value = this.testObj
+    //console.log(vselect);
     swal({
-      title: "Dar accesso a que el estudiante(a) ingrese un proyecto externo al sistema",
-      type: "info",
+      title: "Seguro de Rechazar Preincripcion?",
+      type: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -501,18 +471,18 @@ export default {
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        var dataP = 0;
-        var url = route('preregister', {"estudent_id": dataId,"project_id": dataP});
+        var url = "/destroyPreregister/"+estudiante_id+"/"+proyecto_id;
         axios.get(url)
         .then(function(response) {
-         me.getEstudianteByCarrer(1);
-         swal(
-          "Aprobado!",
-          "El Estudiante puede iniciar con su proceso",
-          "success"
-          );
-         me.loadSpinner = 0;
-       })
+          me.getProyectos();
+          me.getPreregister(me.proyecto_selectd.value, 1, "");
+          swal(
+            "Rechazado!",
+            "Se ha eliminado la solicitud para este proyecto",
+            "success"
+            );
+          me.loadSpinner = 0;
+        })
         .catch(function(error) {
           console.log(error);
         });
@@ -522,46 +492,6 @@ export default {
         ) {
       }
     });
-  },
-
-  //rechazar la preinscripcion del estudiante
-  rechazarProy(estudiante_id,proyecto_id){
-   swal({
-    title: "Seguro de Rechazar Preincripcion?",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Aceptar!",
-    cancelButtonText: "Cancelar",
-    confirmButtonClass: "button blue",
-    cancelButtonClass: "button red",
-    buttonsStyling: false,
-    reverseButtons: true
-  }).then(result => {
-    if (result.value) {
-      let me = this;
-      me.loadSpinner = 1;
-      var url = "/destroyPreregister/"+estudiante_id+"/"+proyecto_id;
-      axios.get(url)
-      .then(function(response) {
-       me.getPreregister(me.proyecto_selectd.value, 1, "");
-       swal(
-        "Rechazado!",
-        "Se ha eliminado la solicitud para este proyecto",
-        "success"
-        );
-       me.loadSpinner = 0;
-     })
-      .catch(function(error) {
-        console.log(error);
-      });
-    } else if (
-
-      result.dismiss === swal.DismissReason.cancel
-      ) {
-    }
-  });
 }
 },
 components: {},
@@ -571,118 +501,3 @@ mounted() {
     }
   };
   </script>
-  <style>
-  .loading {
-    position: fixed;
-    z-index: 999;
-    overflow: show;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-  }
-
-  /* Transparent Overlay */
-  .loading:before {
-    content: '';
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.3);
-  }
-
-  /* :not(:required) hides these rules from IE9 and below */
-  .loading:not(:required) {
-    /* hide "loading..." text */
-    font: 0/0 a;
-    color: transparent;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
-  }
-
-  .loading:not(:required):after {
-    content: '';
-    display: block;
-    font-size: 10px;
-    width: 50px;
-    height: 50px;
-    margin-top: -0.5em;
-    border: 5px solid #533fd0;
-    border-radius: 100%;
-    border-bottom-color: transparent;
-    -webkit-animation: spinner 1s linear 0s infinite;
-    animation: spinner 1s linear 0s infinite;
-  }
-  @-webkit-keyframes spinner {
-    0% {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  @-moz-keyframes spinner {
-    0% {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  @-o-keyframes spinner {
-    0% {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes spinner {
-    0% {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-
-  </style>

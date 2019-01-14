@@ -8415,7 +8415,7 @@ input[type=checkbox]:not(:disabled)~.lever:active:after, input[type=checkbox]:no
 
 .loading {
     position: fixed;
-    z-index: 999;
+    z-index: 1000000;
     overflow: show;
     margin: auto;
     top: 0;

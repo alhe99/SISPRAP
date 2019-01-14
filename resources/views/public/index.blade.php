@@ -17,7 +17,11 @@
   <h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
   <p>El limite de proyecto por proceso es de 2!</p>
 </div>
-
+@elseif (Auth::user()->estudiante->estado_pp == 2)
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Has completado exitosamente tus procesos!</h4>
+  <p>Puedes retirar tu constancia de finalización cuando el encargado de tu procesos te lo indique</p>
+</div>
 @else
 <div class="row">
   <div class="col-md-12 col-lg-12 col-xl-12 wow animated fadeInUp" data-wow-delay=".3s">

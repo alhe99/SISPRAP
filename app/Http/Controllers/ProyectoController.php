@@ -25,9 +25,9 @@ class ProyectoController extends Controller
         $buscar = $request->buscar;
         $proceso = $request->proceso;
 
-        $proyecto = Proyecto::distinct('nombre')->with(['institucion', 'tipoProceso','carre_proy'])->whereHas('tipoProceso', function ($query) use ($proceso) {
+        $proyecto = Proyecto::with(['institucion', 'tipoProceso','carre_proy'])->whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->nombre($buscar)->where('proyectos.estado', '1')
+        })->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','I']])
         ->orderBy('proyectos.id', 'desc')->paginate(10);
 
         return [
@@ -43,62 +43,78 @@ class ProyectoController extends Controller
         ];
     }
 
-    //registro de proyectos
+    //Publicacion de proyectos verificando proceso y tipo de proyecto
     public function store(Request $request)
     {
-        $date = Carbon::now();
-        $date = $date->format('Y-m-d');
+        $date = date('Y-m-d');
+        switch ($request->tipoProyecto) {
+            case 'I':
+            switch ($request->proceso_id) {
+                case 1:
+                $img_recv = $request->imagen;
+                $proyecto = new Proyecto();
+                $proyecto->nombre = $request->nombre;
+                $proyecto->fecha = Carbon::parse($date);
+                $proyecto->actividades = $request->actividadSS;
+                $proyecto->institucion_id = $request->institucion_id;
+                $proyecto->horas_realizar = $request->horas;
+                $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
+                $proyecto->tipo_proyecto = 'I';
+                $proyecto->proceso_id = 1;
+                if ($img_recv) {
+                    $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                    $proyecto->img = $name_img;
+                    Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
+                } else {
+                    $proyecto->img = $request->imageG;
+                }
+                $proyecto->estado = 1;
+                $proyecto->save();
+                break;
+                case 2:
+                try {
+                    for ($i = 0; $i < count($request->actividades); $i++) {
+                        DB::beginTransaction();
+                        $obj = $request->actividades[$i];
+                        $img_recv = $request->imagen;
+                        $proyecto = new Proyecto();
+                        $proyecto->nombre = $request->nombre;
+                        $proyecto->fecha = Carbon::parse($date);
+                        $proyecto->actividades = $obj['actividades'];
+                        $proyecto->institucion_id = $request->institucion_id;
+                        $proyecto->proceso_id = 2;
+                        if ($img_recv) {
+                            $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                            $proyecto->img = $name_img;
+                            Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
+                        } else {
+                            $proyecto->img = $request->imageG;
+                        }
+                        $proyecto->estado = 1;
+                        $proyecto->save();
 
-        switch ($request->proceso_id) {
-            case 1:
-            $img_recv = $request->imagen;
+                        $proyecto->carre_proy()->attach($obj['carrera_id']);
+                        DB::commit();
+                    }
+                } catch (Exception $e) {
+                    DB::rollBack();
+                }
+                break;
+            }
+            break;
+            case 'E':
             $proyecto = new Proyecto();
             $proyecto->nombre = $request->nombre;
-            $proyecto->fecha = Carbon::parse($date);
+            $proyecto->fecha = $date;
             $proyecto->actividades = $request->actividadSS;
             $proyecto->institucion_id = $request->institucion_id;
             $proyecto->horas_realizar = $request->horas;
-            $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
-            $proyecto->tipo_proyecto = 'I';
-            $proyecto->proceso_id = 1;
-            if ($img_recv) {
-                $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                $proyecto->img = $name_img;
-                Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
-            } else {
-                $proyecto->img = $request->imageG;
-            }
+            $proyecto->cantidades_vacantes = null;
+            $proyecto->tipo_proyecto = 'E';
+            $proyecto->proceso_id = $request->proceso_id;
             $proyecto->estado = 1;
+            $proyecto->año_registro = date('Y');
             $proyecto->save();
-            break;
-            case 2:
-            try {
-                for ($i = 0; $i < count($request->actividades); $i++) {
-                    DB::beginTransaction();
-                    $obj = $request->actividades[$i];
-                    $img_recv = $request->imagen;
-                    $proyecto = new Proyecto();
-                    $proyecto->nombre = $request->nombre;
-                    $proyecto->fecha = Carbon::parse($date);
-                    $proyecto->actividades = $obj['actividades'];
-                    $proyecto->institucion_id = $request->institucion_id;
-                    $proyecto->proceso_id = 2;
-                    if ($img_recv) {
-                        $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                        $proyecto->img = $name_img;
-                        Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
-                    } else {
-                        $proyecto->img = $request->imageG;
-                    }
-                    $proyecto->estado = 1;
-                    $proyecto->save();
-
-                    $proyecto->carre_proy()->attach($obj['carrera_id']);
-                    DB::commit();
-                }
-            } catch (Exception $e) {
-                DB::rollBack();
-            }
             break;
         }
     }
@@ -106,44 +122,57 @@ class ProyectoController extends Controller
     //actualizacion de proyecto
     public function update(Request $request)
     {
-        $date = Carbon::now();
-        $date = $date->format('Y-m-d');
-        switch ($request->proceso_id) {
-            case 1:
-            $proyecto = Proyecto::findOrFail($request->id);
-            $img_recv = $request->imagen;
-            $proyecto->nombre = $request->nombre;
-            $proyecto->fecha = Carbon::parse($date);
-            $proyecto->actividades = $request->actividades;
-            $proyecto->institucion_id = $request->institucion_id;
-            $proyecto->estado = $request->estado;
-            if ($img_recv) {
-                $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                $proyecto->img = $name_img;
-                Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
-            } else {
-                $proyecto->img = $request->imagenG;
+        $date = date('Y-m-d');
+        switch ($request->tipoProyecto) {
+            case 'I':
+            switch ($request->proceso_id) {
+                case 1:
+                $proyecto = Proyecto::findOrFail($request->id);
+                $img_recv = $request->imagen;
+                $proyecto->nombre = $request->nombre;
+                $proyecto->fecha = Carbon::parse($date);
+                $proyecto->actividades = $request->actividades;
+                $proyecto->institucion_id = $request->institucion_id;
+                $proyecto->estado = $request->estado;
+                if ($img_recv) {
+                    $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                    $proyecto->img = $name_img;
+                    Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
+                } else {
+                    $proyecto->img = $request->imagenG;
+                }
+                $proyecto->proceso_id = 1;
+                $proyecto->save();
+                break;
+                case 2:
+                $proyecto = Proyecto::findOrFail($request->id);
+                $img_recv = $request->imagen;
+                $proyecto->nombre = $request->nombre;
+                $proyecto->fecha = Carbon::parse($date);
+                $proyecto->actividades = $request->actividades;
+                $proyecto->institucion_id = $request->institucion_id;
+                $proyecto->estado = $request->estado;
+                if ($img_recv) {
+                    $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                    $proyecto->img = $name_img;
+                    Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
+                } else {
+                    $proyecto->img = $request->imagenG;
+                }
+                $proyecto->proceso_id = 2;
+                $proyecto->save();
+                break;
             }
-            $proyecto->proceso_id = 1;
-            $proyecto->save();
             break;
-            case 2:
+            case 'E':
             $proyecto = Proyecto::findOrFail($request->id);
-            $img_recv = $request->imagen;
             $proyecto->nombre = $request->nombre;
-            $proyecto->fecha = Carbon::parse($date);
             $proyecto->actividades = $request->actividades;
             $proyecto->institucion_id = $request->institucion_id;
-            $proyecto->estado = $request->estado;
-            if ($img_recv) {
-                $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                $proyecto->img = $name_img;
-                Image::make($request->imagen)->save(public_path('images_proyect/') . $name_img);
-            } else {
-                $proyecto->img = $request->imagenG;
-            }
-            $proyecto->proceso_id = 2;
-            $proyecto->save();
+            $proyecto->horas_realizar = $request->horasRealizar;
+            $proyecto->proceso_id = $request->procesoId;
+            $proyecto->tipo_proyecto = 'E';
+            $proyecto->update();
             break;
         }
     }
@@ -184,7 +213,7 @@ class ProyectoController extends Controller
     $proyecto->save();
 }
 
-//obtener proyectos desactivados
+//obtener proyectos desactivados INTERNOS
 public function getProyDes(Request $request)
 {
     $buscar = $request->buscar;
@@ -192,7 +221,7 @@ public function getProyDes(Request $request)
 
     $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
         $query->where('proceso_id', $proceso);
-    })->where('proyectos.estado', '=', '0')->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
+    })->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','I']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
 
     return [
         'pagination' => [
@@ -204,6 +233,30 @@ public function getProyDes(Request $request)
             'to' => $proyecto->lastItem(),
         ],
         'proyecto' => $proyecto,
+    ];
+
+}
+
+// Obtener proyectos desactivados EXTERNOS
+public function getProyDesExternos(Request $request)
+{
+    $buscar = $request->buscar;
+    $proceso = $request->proceso;
+
+    $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
+        $query->where('proceso_id', $proceso);
+    })->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','E']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
+
+    return [
+        'pagination' => [
+            'total' => $proyecto->total(),
+            'current_page' => $proyecto->currentPage(),
+            'per_page' => $proyecto->perPage(),
+            'last_page' => $proyecto->lastPage(),
+            'from' => $proyecto->firstItem(),
+            'to' => $proyecto->lastItem(),
+        ],
+        'proyectos' => $proyecto,
     ];
 
 }
@@ -235,7 +288,7 @@ public function getProjectsByCarrer(Request $request)
 
             $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                 $query->where('proceso_id', $tp);
-            })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D']])->get();
+            })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
             for ($i=0; $i < count($pre_register) ; $i++) {
              $proyectos = $proyectos->except([$pre_register[$i]->id]);
@@ -245,7 +298,7 @@ public function getProjectsByCarrer(Request $request)
 
         $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
             $query->where('proceso_id', $tp);
-        })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D']])->get();
+        })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
     }
 
@@ -256,7 +309,7 @@ public function getProjectsByCarrer(Request $request)
 
         $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
             $query->where('carrera_id', $carre_id);
-        })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+        })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
         for ($i=0; $i < count($pre_register) ; $i++) {
 
@@ -268,7 +321,7 @@ public function getProjectsByCarrer(Request $request)
 
         $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
             $query->where('carrera_id', $carre_id);
-        })->nombre($buscar)->orderby('id', 'desc')->where('estado',1)->get();
+        })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
     }
 
@@ -284,28 +337,42 @@ public function getProjectsByProcess(Request $request)
 {
     $process_id = $request->process_id;
     $carre_id = $request->carre_id;
+    $tipoProyecto = $request->tipoProyecto;
     $data = [];
     $data[0] = [];
 
-    if ($process_id == 1) {
+    switch ($tipoProyecto) {
+        case 'I':
+        if ($process_id == 1) {
+
+            $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
+             $query->where('proceso_id', $process_id);
+           })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
+
+
+        } else if ($process_id == 2){
+
+            $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
+                $query->where('carrera_id', $carre_id);
+            })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
+
+        }
+        break;
+        case 'E':
 
         $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
            $query->where('proceso_id', $process_id);
-       })->orderby('id','desc')->where('estado',1)->get();
+       })->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
 
-
-    } else if ($process_id == 2){
-
-        $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
-            $query->where('carrera_id', $carre_id);
-        })->orderby('id', 'desc')->where('estado',1)->get();
-
+        break;
     }
 
     foreach ($proyectos as $key => $value) {
         $data[$key+1] =[
             'value'   => $value->id,
             'label' => $value->nombre,
+            'vacantes' => $value->cantidades_vacantes,
+            'preinscripciones' => $value->solicitudes
         ];
 
     }
@@ -317,11 +384,22 @@ public function getProjectBySlug($process, $slug)
 {
     if ($process == 1) {
 
-        $proyecto = Proyecto::with(["tipoProceso", "institucion.sectorInstitucion"])->where('proceso_id', $process)->where('slug',$slug)->firstOrFail();
+        $proyecto = Proyecto::with(["tipoProceso", "institucion.sectorInstitucion"])->where(
+            [
+                ['proceso_id', $process],
+                ['slug',$slug],['estado',1],
+                ['proyectos.tipo_proyecto','I']
+            ])->firstOrFail();
 
     } else if ($process == 2) {
 
-        $proyecto = Proyecto::with(["carre_proy", "tipoProceso", "institucion.sectorInstitucion"])->where('proceso_id', $process)->where('slug',$slug)->firstOrFail();
+        $proyecto = Proyecto::with(["carre_proy", "tipoProceso", "institucion.sectorInstitucion"])->where(
+            [
+                ['proceso_id', $process],
+                ['slug',$slug],['estado',1],
+                ['proyectos.tipo_proyecto','I']
+
+            ])->firstOrFail();
     }
     return view('public.viewProject', compact("proyecto"));
 }
@@ -381,7 +459,7 @@ public function getPreregistrationByProject(Request $request)
 
 }
 
-//apartado publico, listado de preinscripciones por estudiante
+    //apartado publico, listado de preinscripciones por estudiante
 public function getPreregisterProjects($estudent_id,$process_id){
 
     $cuenta = Estudiante::whereHas('proceso', function ($query) use ($process_id) {
@@ -419,22 +497,6 @@ public function rechazPreregistration($estudent_id,$project_id){
 
 //aprobar la preinscripcion del estudiante
 public function aceptarPreregistration(Request $request){
-   $query;
-   if($request->project_id == 0){
-     $proyect = Proyecto::find(0);
-     $proyect->preRegistration()->attach($request->estudent_id,array('estado' => 'A','tipo_proyecto' => 'E'));
-
-     $estudiante = Estudiante::findOrFail($request->estudent_id);
-     if ($estudiante->proceso[0]->pago_arancel == 0) {
-      $arrayData = [
-        'msj' =>  "Se te ha asignado un proyecto,el siguiente paso es que apertures el expediente de tu proceso en recepción",
-        'fecha' => now()->toDateTimeString(),
-    ];
-    User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
-}
-
-}
-else{
 
     $query =  DB::table('preinscripciones_proyectos')->where('estudiante_id', $request->estudent_id)->where('proyecto_id',$request->project_id)->update(array('estado' => 'A'));
 
@@ -451,8 +513,28 @@ else{
         'fecha' => now()->toDateTimeString(),
     ];
     User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+
 }
 
+ //Asignacion de proyectos de tipo externo a uno o mas estudiantes del estudiante
+public function asignarProyectoExterno(Request $request){
+
+    $arrayEstudiante = explode(',',$request->estudent_id);
+
+    for ($i=0; $i < count($arrayEstudiante); $i++) {
+
+       $proyect = Proyecto::find($request->project_id);
+       $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','año_registro' => date('Y')));
+
+       $estudiante = Estudiante::findOrFail($arrayEstudiante[$i]);
+       if ($estudiante->proceso[0]->pago_arancel == 0) {
+          $arrayData = [
+            'msj' =>  "Se te ha asignado un proyecto,el siguiente paso es que apertures el expediente de tu proceso en recepción",
+            'fecha' => now()->toDateTimeString(),
+        ];
+        User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+    }
+}
 }
 
 //dar acceso al llenado de perfil del proyecto al estudiante
@@ -475,7 +557,7 @@ public function getAllAcepted(Request $request){
     $proyectoId = $request->proyectoId;
     $buscar = $request->buscar;
     $proyectos = Proyecto::find($proyectoId)->preRegistration()->whereHas('preinscripciones',function($query){
-        $query->where('preinscripciones_proyectos.estado','A');
+        $query->where('preinscripciones_proyectos.estado','A')->orWhere('preinscripciones_proyectos.estado','F');
     })->nombre($buscar)->paginate(10);
 
     return [
@@ -498,6 +580,27 @@ public function deleteProyectoAprobado(Request $request){
     $preinscripcion = Estudiante::find($estudianteId)->preinscripciones()->whereHas('preRegistration',function($query){
         $query->where('preinscripciones_proyectos.estado','A')->orWhere('preinscripciones_proyectos.estado','F');
     })->detach();
+}
+// Funcion que obtiene los proyectos externos
+public function getExternalProjects(Request $request){
+    $buscar = $request->buscar;
+    $proceso = $request->proceso;
+    $proyecto = Proyecto::with(['institucion', 'tipoProceso'])->whereHas('tipoProceso', function ($query) use ($proceso) {
+        $query->where('proceso_id', $proceso);
+    })->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','E']])
+    ->orderBy('proyectos.id', 'desc')->paginate(10);
+
+    return [
+        'pagination' => [
+            'total' => $proyecto->total(),
+            'current_page' => $proyecto->currentPage(),
+            'per_page' => $proyecto->perPage(),
+            'last_page' => $proyecto->lastPage(),
+            'from' => $proyecto->firstItem(),
+            'to' => $proyecto->lastItem(),
+        ],
+        'proyectos' => $proyecto,
+    ];
 }
 public function ifProjectExist($nombre){
     if(Proyecto::where('nombre',$nombre)->where('proceso_id',1)->first()){

@@ -71,9 +71,9 @@
                     <td class="text-center">
                       <button type="button" @click="provideAccess(item.id,item.preinscripciones[0].id)" class="button info btn-sm" ><i class="mdi mdi-share"></i>&nbsp;Dar Acceso</button>
                   </td>
-                </tr> 
+                </tr>
               </tbody>
-            </table> 
+            </table>
             <nav>
               <ul class="pagination" >
                 <li class="page-item" v-if="pagination.current_page > 1">
@@ -86,8 +86,8 @@
                     <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
                   </li>
                   <small v-show="arrayStudents.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayStudents.length + ' de ' + pagination.total + ' registros)'"></small>
-                </ul> 
-              </nav> 
+                </ul>
+              </nav>
               <div v-if="arrayStudents.length == 0" class="alert alert-warning" role="alert">
                 <h4 class="font-weight-bold text-center">No hay registros disponibles</h4>
               </div>
@@ -125,7 +125,7 @@ export default {
         this.carrera_selected = 0;
       },
       carrera_selected: function(){
-          this.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,1,"")   
+          this.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,1,"")
       },
     },
     computed:{
@@ -151,7 +151,7 @@ export default {
           }
           return pagesArray;
       },
-    }, 
+    },
     methods:{
     getCarreras() {
         let me = this;
@@ -175,7 +175,7 @@ export default {
             me.arrayStudents = respuesta.estudiante.data;
             me.pagination = respuesta.pagination;
             me.loadSpinner = 0;
-            
+
             })
             .catch(function(error) {
             console.log(error);
@@ -210,10 +210,10 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
+        confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(result => {
@@ -265,7 +265,7 @@ export default {
   -o-transition: 0.3s;
   transition: 0.3s;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  border: none; 
+  border: none;
   font-size: 15px;
   text-align: center;
 }

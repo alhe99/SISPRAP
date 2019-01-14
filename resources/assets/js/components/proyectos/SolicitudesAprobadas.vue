@@ -38,7 +38,7 @@
 				<div class="row">
 					<div class="col-md-11">
 						<h2 class="text-center font-weight-bold" v-if="proceso == 1">Listado de alumnos con proyectos aprobados de Servicio Social</h2>
-						<h2 class="text-center font-weight-bold" v-if="proceso == 2">Listado de alumnosn aprobados de proyectos de Práctica Profesional</h2>
+						<h2 class="text-center font-weight-bold" v-if="proceso == 2">Listado de alumnos con proyectos aprobados de  Práctica Profesional</h2>
 					</div>
 				</div>
 			</div>
@@ -47,16 +47,24 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-6">
-								<v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
-								<!-- <fade-loader :loading="true"></fade-loader> -->
+						<div class="row" v-if="proceso==1">
+							<div class="col-md-10">
+								<v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto"></v-select>
 							</div>
-							<div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
-								<v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
-									<i slot="spinner" class="icon icon-spinner"></i>
-								</v-select>
-								<h6 v-if="contentProy == false" class="text-danger">No Hay Proyectos en esta institución</h6>
+							<div class="col-md-2">
+								<checkbox v-model="proyectoExterno">Proyectos Externos</checkbox>
+							</div>
+						</div>
+						<div class="row" v-else>
+							<div class="col-md-5" v-if="proyectoExterno == false">
+								<v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera"></v-select>
+							</div>
+							<div class="col-md-5" :class="[proyectoExterno ? 'col-md-10':'col-md-5']">
+								<v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto"></v-select>
+								<h6 v-if="contentProy == false && proyectoExterno == false" class="text-danger">No hay proyectos en esta carrera</h6>
+							</div>
+							<div class="col-md-2">
+								<checkbox v-model="proyectoExterno" :value="E">Proyectos Externos</checkbox>
 							</div>
 						</div>
 					</div><br>
@@ -196,6 +204,8 @@
 				buscarP: "",
 				loader: false,
 				rutaIMG:'',
+				proyectoExterno: false,
+				valueTipoProyectos: 'I'
       // loadSpinner: true
   };
 },
@@ -210,6 +220,8 @@ watch: {
 		this.carrera_selected = 0;
 		vselect.disabled = false;
 		this.contentProy = true;
+		this.proyectoExterno = false;
+		this.valueTipoProyectos = 'I';
 	},
 	carrera_selected: function(){
 		this.proyecto_selectd = 0;
@@ -235,18 +247,33 @@ watch: {
      	this.getEstudianteByCarrer(1);
      },
      estudiante: function(){
-     	if(this.estudiante.codCarnet.length > 7)
+     	if(this.estudiante.codCarnet.length > 7){
      		this.rutaIMG =  "http://portal.itcha.edu.sv/fotos/alumnos/"+ this.estudiante.foto_name;
-     	else
+     	}else{
      		this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.estudiante.foto_name;
+     		this.testImg(this.estudiante.foto_name);
+     	}
+     },
+     proyectoExterno: function(){
+     	const vselect = this.$refs.vselectProy;
+     	if(this.proyectoExterno){
+     		this.valueTipoProyectos = 'E';
+     	}else {
+     		this.valueTipoProyectos = 'I';
+     	}
+     	this.getProyectos();
+     	this.proyecto_selectd = 0;
+     	this.carrera_selected = 0;
+     	vselect.disabled = false;
+     	this.contentProy = true;
+     	this.arrayPreregister = [];
      }
+
+
  },
  computed: {
  	isActived: function() {
  		return this.pagination.current_page;
- 	},
- 	isActivedP: function() {
- 		return this.paginationP.current_page;
  	},
  	pagesNumber: function() {
  		if (!this.pagination.to) {
@@ -275,9 +302,9 @@ watch: {
       	let me = this;
       //
       if(this.proceso == 1){
-      	var url = "GetProjectsByProcess?process_id=" + this.proceso;
+      	var url = "GetProjectsByProcess?process_id=" + this.proceso+"&tipoProyecto="+this.valueTipoProyectos;
       }else if(this.proceso == 2){
-      	var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value;
+      	var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value+"&tipoProyecto="+this.valueTipoProyectos;
       }
       axios.get(url).then(function(response) {
       	me.loadSpinner = 1;
@@ -289,7 +316,6 @@ watch: {
       	console.log(error);
       });
   },
-
   //obtener todas las carreras
   getCarreras() {
   	let me = this;
@@ -299,6 +325,7 @@ watch: {
   	.then(function(response) {
   		var respuesta = response.data;
   		me.arrayCarreras = respuesta;
+
   	})
   	.catch(function(error) {
   		console.log(error);
@@ -398,7 +425,7 @@ watch: {
   			.then(function(response) {
   				me.getSolicitudesAprobados(me.proyecto_selectd.value, 1, "");
   				swal(
-  					"Rechazado!",
+  					"Eliminada",
   					"Se ha eliminado la solicitud aprobada para este proyecto",
   					"success"
   					);
