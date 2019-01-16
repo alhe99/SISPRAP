@@ -453,7 +453,12 @@
                                                              </div>
                                                            </div>
                                                          </div>
+<<<<<<< HEAD
+                                                        
+                                                       </div>                                                 
+=======
                                                        </div>
+>>>>>>> 4484754312cca366d268a5f495685767fb3d663f
                                                        <!--<pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>-->
                                                      </div>
                                                      <div class="modal-footer">
@@ -760,21 +765,6 @@
       console.log(error);
     });
   },
-  //imagenes
-  getImg(id) {
-    let me = this;
-    var url = "imgSuperv/" + id;
-    me.loading = true;
-    axios.get(url).then(function(response) {
-      var respuesta = response.data;
-      me.arrayImages = respuesta;
-      me.loading = false;
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  },
-  //termina
   getSupervision(id) {
     let me = this;
     var url = "GetSupervision/" + id;
@@ -894,7 +884,7 @@
   },
   registrarSupervision() {
     let me = this;
-    //me.loading = true;
+    me.loading = true;
     axios
     .post("/proyecto/registrar/supervision", {
       proyecto_id: this.proyecto_id,
@@ -903,7 +893,7 @@
       imagenes: this.images
     })
     .then(function(response) {
-      //me.loading = false;
+      me.loading = false;
       swal({
         position: "center",
         type: "success",
@@ -923,12 +913,64 @@
 
   },
   actualizarSupervision(){
+<<<<<<< HEAD
+       let me = this;
+       me.loading = true;
+      axios
+        .put("/supervision/actualizar", {
+          id: this.proyecto_id,
+          fecha: this.date.substring(0, 10),
+          observacion: this.observacion,
+         
+        })
+        .then(function(response) {
+          me.loading = false;
+          swal({
+            position: "center",
+            type: "success",
+            title: "Supervision actualizado correctamente!",
+            showConfirmButton: false,
+            timer: 1000
+          });
+          me.cerrarModalSuper();
+        })
+        .catch(function(error) {
+          swal({
+            position: "center",
+            type: "warning",
+            title: "Ocurrio un error al actualizar el proyecto",
+            showConfirmButton: false,
+            timer: 1000
+          });
+          console.log(error);
+        });
+  },
+  abrirModal(modelo, accion, data = []) {
+    const el = document.body;
+    el.classList.add("abrirModal");
+    switch (modelo) {
+      case "institucion": {
+        switch (accion) {
+          case "registrar": {
+            this.modal = 1;
+            this.tipoproceso_id = this.proceso;
+            this.nombre = "";
+            this.direccion = "";
+            this.phone = "";
+            this.email = "";
+            this.municipio_id = 0;
+            this.departamento_id = { value: 1, label: "Chalatenango" };
+            this.sector_id = 0;
+            this.tipoAccion = 1;
+            this.tituloModal = "Registrar Institución";
+=======
    let me = this;
    axios
    .put("/supervision/actualizar", {
     id: this.proyecto_id,
     fecha: this.date.substring(0, 10),
     observacion: this.observacion,
+>>>>>>> 4484754312cca366d268a5f495685767fb3d663f
 
   })
    .then(function(response) {
@@ -1017,6 +1059,22 @@
           }
         }
       }
+<<<<<<< HEAD
+      this.getSectores();
+      this.getMunicipios();
+      this.getDepartamentos();
+    },
+    abrirModalSuper(accion, id, nombre) {
+      const el = document.body;
+      el.classList.add("abrirModal");
+      this.modal = 1;
+      this.proyecto_id = id;
+      this.modalsTitle = nombre;
+      switch(accion){
+        case 'registrar':
+        this.titleMRS = 'Registrar supervisión en: ';
+        this.tipoAccion2 = 1;
+=======
     }
     this.getSectores();
     this.getMunicipios();
@@ -1032,6 +1090,7 @@
       case 'registrar':
       this.titleMRS = 'Registrar supervisión en: ';
       this.tipoAccion2 = 1;
+>>>>>>> 4484754312cca366d268a5f495685767fb3d663f
 
       break;
       case 'actualizar':
