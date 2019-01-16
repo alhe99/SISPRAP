@@ -15,8 +15,8 @@ class AddHorasToProyectosTable extends Migration
     {
         Schema::table('proyectos', function (Blueprint $table) {
             $table->integer('horas_realizar')->nullable(false)->after('proceso_id');
-            $table->integer('cantidades_vacantes')->nullable(false)->after('horas_realizar');
-            $table->char('estado_vacantes',1)->nullable(false)->after('cantidades_vacantes')->default('D');
+            $table->integer('cantidades_vacantes')->nullable(true)->after('horas_realizar');
+            $table->char('estado_vacantes',1)->nullable(true)->after('cantidades_vacantes')->default('D');
             $table->char('tipo_proyecto',1)->default('I')->nullable(false)->after('estado_vacantes');
         });
 

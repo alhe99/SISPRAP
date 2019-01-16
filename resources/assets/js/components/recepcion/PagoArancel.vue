@@ -248,7 +248,7 @@
     },
     methods:{
 
-     //obtener todas las carreras 
+     //obtener todas las carreras
      getCarreras() {
       let me = this;
       var url = "carreras/GetCarreras";
@@ -317,6 +317,7 @@
               );
             me.loadSpinner = 0;
             me.cerrarModal();
+            me.buscar="";
           })
           .catch(function(error) {
             me.loadSpinner = 0;
@@ -334,7 +335,7 @@
       });
     },
 
-    
+
     getBecas() {
       let me = this;
       var url = "/becas/getAll";

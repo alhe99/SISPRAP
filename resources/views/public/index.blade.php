@@ -14,10 +14,14 @@
 </div>
 @elseif (Auth::user()->estudiante->no_proyectos == 2)
 <div class="alert alert-success" role="alert">
-<h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
-    <p>El limite de proyecto por proceso es de 2!</p>
+  <h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
+  <p>El limite de proyecto por proceso es de 2!</p>
 </div>
-
+@elseif (Auth::user()->estudiante->estado_pp == 2)
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Has completado exitosamente tus procesos!</h4>
+  <p>Puedes retirar tu constancia de finalización cuando el encargado de tu procesos te lo indique</p>
+</div>
 @else
 <div class="row">
   <div class="col-md-12 col-lg-12 col-xl-12 wow animated fadeInUp" data-wow-delay=".3s">
@@ -46,21 +50,21 @@
 <div class="row">
   @foreach ($proyectos as $p)
   <div class="col-md-6 col-lg-4 col-xl-4 card-group wow animated fadeInUp"  onclick="redirectToCard('{{session('process_id')}}','{{$p->slug}}')" data-wow-delay=".3s">
-    <article class="single-blog-post" >
+    <article class="single-blog-post" style="width: 100%;">
       <div class="featured-image">
         <a href="#">
           @if ($p->img == null)
           @if (session('process_id') == 1)
-          <img src="/images/img_projects/SS.png" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
+          <img src="/images/img_projects/SS.png" alt="{{$p->nombre}}" >
           @elseif(session('process_id') == 2)
-          <img src="/images/img_projects/PP.png" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
+          <img src="/images/img_projects/PP.png" alt="{{$p->nombre}}">
           @endif
           @else
-          <img src="/images/img_projects/{{$p->img}}" alt="{{$p->nombre}}" style="width: 100%;display: block;margin-left: auto;margin-right: auto;">
+          <img src="/images/img_projects/{{$p->img}}" class="img-fluid" alt="{{$p->nombre}}" {{--  style="width: 100%; display: block;margin-left: auto;margin-right: auto;height:200px;" --}}>
           @endif
         </a>
       </div>
-      <div class="post-meta">
+      <div class="meta-tags">
         <h2 class="subtitle">{{strtolower($p->nombre)}}</h2>
         <p class="truncate">{!!substr($p->actividades,0,125)!!}</p>
       </div>

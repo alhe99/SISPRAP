@@ -61,7 +61,6 @@
         <thead class="thead-primary">
          <tr>
            <th>Nombre de institución</th>
-           <th>Dirección</th>
            <th class="text-center">Email</th>
            <th class="text-center">Sector perteneciente</th>
            <th class="text-center">Municipio</th>
@@ -71,9 +70,8 @@
        <tbody>
         <tr v-for="institucion in arrayInstitucion" :key="institucion.id">
           <td v-text="institucion.nombre"></td>
-          <td class="text-center" v-if="institucion.direccion  != null" >{{institucion.direccion | truncate(15)}}</td>
-          <td class="text-center" v-else v-text="institucion.direccion"></td>
-          <td class="text-center" v-text="institucion.email"></td>
+          <td class="text-center" v-if="institucion.email != null">{{institucion.email | truncate(15)}}</td>
+          <td class="text-center" v-else></td>
           <td class="text-center" v-text="institucion.sector_institucion.sector"></td>
           <td class="text-center" v-text="institucion.municipio.nombre"></td>
           <td class="text-center">
@@ -243,6 +241,9 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-md-12"><br>
+            <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+          </div>
           <div class="col-md-12 col-xs-12 col-lg-12">
             <br><label for="nombre">Nombre de la institución*</label>
             <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" autocomplete="off">
@@ -259,14 +260,14 @@
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
             <br><label for="phone">Teléfono</label>
-            <input type="number" v-model="phone" name="phone" id="phone" class="form-control" required>
+            <input type="text" v-mask="'########'" v-model="phone" name="phone" id="phone" class="form-control" required>
             <!-- <span v-if="errors.phone" class="text-danger" v-text="errors.phone[0]"></span> -->
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
             <br><label for="email">Correo Electrónico</label>
-            <input type="email"  v-model="email" name="email" id="email" class="form-control" autocomplete="off">
+            <input type="email" v-model="email" name="email" id="email" class="form-control" autocomplete="off">
             <!-- <span v-if="errors.email" class="text-danger" v-text="errors.email[0]"></span> -->
             <!-- <span>{{ errors.first('email') v-validate="'email'" data-vv-as="email" }}</span> -->
           </div>
@@ -294,8 +295,8 @@
         <div class="row">
           <div class="col-md-12">
             <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-            <button type="button" :disabled="validate == true" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Institución</button>
-            <button type="button" :disabled="validate == true" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Institución</button>
+            <button type="button" :disabled="validate == true" :class="[validate == true ? 'disabled' : '']" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Institución</button>
+            <button type="button" :disabled="validate == true" :class="[validate == true ? 'disabled' : '']" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Institución</button>
           </div>
         </div>
       </div>
@@ -430,7 +431,7 @@
                                         <div class="file-input">
                                           <label for="file">Seleccione</label>
                                           <input type="file" id="file" @change="onInputChange" multiple>
-                                        </div>                                     
+                                        </div>
                                       </div>
                                       <div class="images-preview" v-show="images.length">
                                                           <!-- <div  class="img-wrapper" v-for="(image, index) in images" :key="index">
@@ -452,8 +453,12 @@
                                                              </div>
                                                            </div>
                                                          </div>
+<<<<<<< HEAD
                                                         
                                                        </div>                                                 
+=======
+                                                       </div>
+>>>>>>> 4484754312cca366d268a5f495685767fb3d663f
                                                        <!--<pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>-->
                                                      </div>
                                                      <div class="modal-footer">
@@ -654,8 +659,8 @@
             // }
           },
 
-},
-methods: {
+        },
+        methods: {
   //listado de instituciones por busqueda
   listarInstitucion(page, proceso, buscar) {
     let me = this;
@@ -775,80 +780,31 @@ methods: {
   },
   registrarInstitucion() {
     let me = this;
-    me.loadSpinner = 1;
+    me.loading = true;
 
     var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
     axios.get(url).then(function(response) {
      var respuesta = response.data;
      console.log(respuesta);
      if(respuesta == 'existe'){
-        swal({
-          position: "center",
-          type: "warning",
-          title: "Institución existente! Ingrese otro nombre",
-          showConfirmButton: true,
-          timer: 5000
-        });
-        me.nombre = "";
-        me.loadSpinner = 0;
-        me.exist = false;
-      }else {
-        axios.post("/institucion/registrar", {
-          nombre: me.nombre,
-          direccion: me.direccion,
-          telefono: me.phone,
-          email: me.email,
-          sector_institucion_id: me.sector_id["value"],
-          municipio_id: me.municipio_id["value"],
-          proceso_id: me.tipoproceso_id
-        })
-        .then(function(response) {
-          me.loadSpinner = 0;
-          swal({
-            position: "center",
-            type: "success",
-            title: "¡Institución agregada correctamente!",
-            showConfirmButton: false,
-            timer: 1000
-          });
-          me.cerrarModal();
-          me.listarInstitucion(1, me.proceso, "");
-        })
-        .catch(error => {
-          me.loadSpinner = 0;
-          console.log(error);
-        });
-      }
- });
-  },
-  actualizarInstitucion() {
-    let me = this;
-    me.loadSpinner = 1;
-   var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
-    axios.get(url).then(function(response) {
-     var respuesta = response.data;
-     console.log(respuesta);
-     if((me.nombre != me.nombreUpd) && (respuesta == 'existe')){
-        swal({
+      swal({
         position: "center",
         type: "warning",
         title: "Institución existente! Ingrese otro nombre",
         showConfirmButton: true,
         timer: 5000
-        });
-        me.loadSpinner = 0;
-        me.exist = false;
-     }else{
-       axios
-      .put("/institucion/actualizar", {
-        id: me.institucion_id,
+      });
+      me.nombre = "";
+      me.loading = false;
+      me.exist = false;
+    }else {
+      axios.post("/institucion/registrar", {
         nombre: me.nombre,
         direccion: me.direccion,
         telefono: me.phone,
         email: me.email,
         sector_institucion_id: me.sector_id["value"],
         municipio_id: me.municipio_id["value"],
-        estado: me.estado,
         proceso_id: me.tipoproceso_id
       })
       .then(function(response) {
@@ -856,26 +812,75 @@ methods: {
         swal({
           position: "center",
           type: "success",
-          title: "¡Institución actualizada correctamente!",
+          title: "¡Institución agregada correctamente!",
           showConfirmButton: false,
           timer: 1000
         });
         me.cerrarModal();
         me.listarInstitucion(1, me.proceso, "");
       })
-      .catch(function(error) {
-        swal({
-          position: "center",
-          type: "warning",
-          title: "Ocurrio un error al actualizar una institucion",
-          showConfirmButton: false,
-          timer: 1000
-        });
-        me.loadSpinner = 0;
+      .catch(error => {
+        me.loading = false;
         console.log(error);
       });
-     }
+    }
+  });
+  },
+  actualizarInstitucion() {
+    let me = this;
+    me.loading = true;
+    var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
+    axios.get(url).then(function(response) {
+     var respuesta = response.data;
+     console.log(respuesta);
+     if((me.nombre != me.nombreUpd) && (respuesta == 'existe')){
+      swal({
+        position: "center",
+        type: "warning",
+        title: "Institución existente! Ingrese otro nombre",
+        showConfirmButton: true,
+        timer: 5000
+      });
+      me.loading = false;
+      me.exist = false;
+    }else{
+     axios
+     .put("/institucion/actualizar", {
+      id: me.institucion_id,
+      nombre: me.nombre,
+      direccion: me.direccion,
+      telefono: me.phone,
+      email: me.email,
+      sector_institucion_id: me.sector_id["value"],
+      municipio_id: me.municipio_id["value"],
+      estado: me.estado,
+      proceso_id: me.tipoproceso_id
+    })
+     .then(function(response) {
+      me.loadSpinner = 0;
+      swal({
+        position: "center",
+        type: "success",
+        title: "¡Institución actualizada correctamente!",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      me.cerrarModal();
+      me.listarInstitucion(1, me.proceso, "");
+    })
+     .catch(function(error) {
+      swal({
+        position: "center",
+        type: "warning",
+        title: "Ocurrio un error al actualizar una institucion",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      me.loading = false;
+      console.log(error);
     });
+   }
+ });
   },
   registrarSupervision() {
     let me = this;
@@ -908,6 +913,7 @@ methods: {
 
   },
   actualizarSupervision(){
+<<<<<<< HEAD
        let me = this;
        me.loading = true;
       axios
@@ -957,10 +963,59 @@ methods: {
             this.sector_id = 0;
             this.tipoAccion = 1;
             this.tituloModal = "Registrar Institución";
+=======
+   let me = this;
+   axios
+   .put("/supervision/actualizar", {
+    id: this.proyecto_id,
+    fecha: this.date.substring(0, 10),
+    observacion: this.observacion,
+>>>>>>> 4484754312cca366d268a5f495685767fb3d663f
 
-            break;
-          }
-          case "actualizar": {
+  })
+   .then(function(response) {
+    swal({
+      position: "center",
+      type: "success",
+      title: "Supervision actualizado correctamente!",
+      showConfirmButton: false,
+      timer: 1000
+    });
+    me.cerrarModalSuper();
+  })
+   .catch(function(error) {
+    swal({
+      position: "center",
+      type: "warning",
+      title: "Ocurrio un error al actualizar el proyecto",
+      showConfirmButton: false,
+      timer: 1000
+    });
+    console.log(error);
+  });
+ },
+ abrirModal(modelo, accion, data = []) {
+  const el = document.body;
+  el.classList.add("abrirModal");
+  switch (modelo) {
+    case "institucion": {
+      switch (accion) {
+        case "registrar": {
+          this.modal = 1;
+          this.loading = false;
+          this.tipoproceso_id = this.proceso;
+          this.nombre = "";
+          this.direccion = "";
+          this.phone = "";
+          this.email = "";
+          this.municipio_id = 0;
+          this.departamento_id = { value: 3, label: "Chalatenango" };
+          this.sector_id = 0;
+          this.tipoAccion = 1;
+          this.tituloModal = "Registrar Institución";
+          break;
+        }
+        case "actualizar": {
               //Para obtener el departamento primero lo converti a JSON por el formato que pide vue-select y luego lo converti
               // a objeto mismo proceso con sector institucion y con municipios
               var depa = JSON.stringify({
@@ -977,33 +1032,34 @@ methods: {
               });
               //Asignando los datos traidos a los controles del formulario
               this.modal = 1;
+              this.loading = false;
               this.tituloModal = "Actualizar Institución";
               this.tipoAccion = 2;
               this.institucion_id = data["id"];
               this.idSector = data.sector_institucion;
 
-               if(data.procesos.length > 1){
-                  this.tipoproceso_id = 3;
+              if(data.procesos.length > 1){
+                this.tipoproceso_id = 3;
                /*  else if(this.proceso == 2)
-                  this.tipoproceso_id = data.procesos[1].id; */
-              }else{
-                this.tipoproceso_id = data.procesos[0].id;
-              }
-
-              this.nombre = data["nombre"];
-              this.nombreUpd = data["nombre"];
-              this.direccion = data["direccion"];
-              this.phone = data["telefono"];
-              this.email = data["email"];
-              this.departamento_id = JSON.parse(depa);
-              this.municipio_id = JSON.parse(muni);
-              this.sector_id = JSON.parse(sect);
-              this.estado = data["estado"];
-              break;
+               this.tipoproceso_id = data.procesos[1].id; */
+             }else{
+              this.tipoproceso_id = data.procesos[0].id;
             }
+
+            this.nombre = data["nombre"];
+            this.nombreUpd = data["nombre"];
+            this.direccion = data["direccion"];
+            this.phone = data["telefono"];
+            this.email = data["email"];
+            this.departamento_id = JSON.parse(depa);
+            this.municipio_id = JSON.parse(muni);
+            this.sector_id = JSON.parse(sect);
+            this.estado = data["estado"];
+            break;
           }
         }
       }
+<<<<<<< HEAD
       this.getSectores();
       this.getMunicipios();
       this.getDepartamentos();
@@ -1018,35 +1074,52 @@ methods: {
         case 'registrar':
         this.titleMRS = 'Registrar supervisión en: ';
         this.tipoAccion2 = 1;
+=======
+    }
+    this.getSectores();
+    this.getMunicipios();
+    this.getDepartamentos();
+  },
+  abrirModalSuper(accion, id, nombre, data = []) {
+    const el = document.body;
+    el.classList.add("abrirModal");
+    this.modal = 1;
+    this.proyecto_id = id;
+    this.modalsTitle = nombre;
+    switch(accion){
+      case 'registrar':
+      this.titleMRS = 'Registrar supervisión en: ';
+      this.tipoAccion2 = 1;
+>>>>>>> 4484754312cca366d268a5f495685767fb3d663f
 
-        break;
-        case 'actualizar':
-        this.getSupervision(id);
-        this.titleMRS = 'Actualizar supervisión de: ';
-        this.tipoAccion2 = 2;
-        
-        break;
-      }
-    },
-    abrirModalID() {
-      const el = document.body;
-      el.classList.add("abrirModal");
-      this.modalID = 1;
-      this.listarInstitucionDes(1, this.proceso, "");
-    },
-    cerrarModalID() {
-      const el = document.body;
-      el.classList.remove("abrirModal");
-      this.modalID = 0;
-      this.arrayInstitucionDes = [];
-      this.paginationInstiDes = "";
-    },
-    cerrarModalSuper() {
-      const el = document.body;
-      el.classList.remove("abrirModal");
-      this.modal = 0;
-      this.date = "";
-      this.descripcion = "";
+      break;
+      case 'actualizar':
+      this.getSupervision(id);
+      this.titleMRS = 'Actualizar supervisión de: ';
+      this.tipoAccion2 = 2;
+
+      break;
+    }
+  },
+  abrirModalID() {
+    const el = document.body;
+    el.classList.add("abrirModal");
+    this.modalID = 1;
+    this.listarInstitucionDes(1, this.proceso, "");
+  },
+  cerrarModalID() {
+    const el = document.body;
+    el.classList.remove("abrirModal");
+    this.modalID = 0;
+    this.arrayInstitucionDes = [];
+    this.paginationInstiDes = "";
+  },
+  cerrarModalSuper() {
+    const el = document.body;
+    el.classList.remove("abrirModal");
+    this.modal = 0;
+    this.date = "";
+    this.descripcion = "";
       //this.proyecto_id = 0;
       //this.images = [];
       //this.files = [];
@@ -1075,8 +1148,9 @@ methods: {
       this.institucion_id = 0;
       this.estado = 0;
       this.departamento_id = 0;
-     // this.errors = [];
+      // this.errors = [];
       this.nombreUpd = "";
+      this.loading = true;
    },
    cambiarPagina(page, proceso, buscar) {
     let me = this;

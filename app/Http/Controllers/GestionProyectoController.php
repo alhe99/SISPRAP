@@ -45,7 +45,6 @@ class GestionProyectoController extends Controller
             DB::beginTransaction();
             $gp = new GestionProyecto();
             $gp->fecha_inicio = $request->fechaini; //Fecha Inicio
-            $gp->fecha_fin = $request->fechafin; //Fecha Fin
             $gp->horas_a_realizar = $request->hrsreal; //Total de Horas
             $gp->proyecto_id = $request->proyecto_id;
             $gp->estudiante_id = $request->student_id;
@@ -62,6 +61,7 @@ class GestionProyectoController extends Controller
                 $telefono = Auth::user()->estudiante->telefono;
                 $carrera = Auth::user()->estudiante->carrera->nombre;
                 $email = Auth::user()->estudiante->email;
+                $numeroFactura = Auth::user()->estudiante->pagoArancel()->where('proceso_id',$proceso)->get();
 
             //Informacion de la institucion
                 $nombreI = Auth::user()->estudiante->preinscripciones[0]->institucion->nombre;
@@ -84,33 +84,33 @@ class GestionProyectoController extends Controller
                 $perfil = new TextPainter(public_path('images/controles/perfil.jpg'),'',public_path('fonts/arial.ttf'), 10);
                 $perfil->setTextColor(0,0,0);
                 if ($proceso == 1) {$perfil->setText("x",790,362,20);}else{$perfil->setText("x",1200,362,20);}//Proceso Verifcando la posicion
-                $perfil->setText($nombre,450,490,20);//Nombre de Alumno
-                $perfil->setText($apellido,450,550,20);//Apellido de Alumno
-                $perfil->setText($carnet,1155,490,20);//Carnet de Alumno
-                $perfil->setText($telefono,1200,550,20);//Telefono de Alumno
-                $perfil->setText($carrera,450,605,20);//Carrera de Alumno
-                $perfil->setText($email,1135,607,20);//Email de Alumno
+                $perfil->setText($nombre,385,490,20);//Nombre de Alumno
+                $perfil->setText($apellido,385,550,20);//Apellido de Alumno
+                $perfil->setText($carnet,1115,490,20);//Carnet de Alumno
+                $perfil->setText($telefono,1160,550,20);//Telefono de Alumno
+                $perfil->setText($carrera,385,605,20);//Carrera de Alumno
+                $perfil->setText($email,1100,607,20);//Email de Alumno
 
                 $perfil->setText($nombreI,120,775,20); //Nombre de la Institucion
                 $perfil->setText($sectorI,1150,805,20); //Sector de la Institucion
                 $perfil->setText($direccionI,120,900,20); //Direccion de la Institucion
                 $perfil->setText($municipioI,120,990,20); //Municipio de la Institucion
-                $perfil->setText($departamentoI,445,990,20); //Departamento de la Institucion
-                $perfil->setText($emailI,820,990,20); //Email de la Institucion
+                $perfil->setText($departamentoI,650,990,20); //Departamento de la Institucion
+                $perfil->setText($emailI,920,990,20); //Email de la Institucion
                 $perfil->setText($telefonoI,1350,990,20); //Telefono de la Institucion
 
                 $perfil->setText($nombreP, 115, 1175, 20); //Nombre del Proyecto
-                $perfil->setText(Html2Text::convert($actividadesP),115,1300,20); //Actividades a realizar
+                $perfil->setText(Html2Text::convert($actividadesP),120,1300,20); //Actividades a realizar
                 $perfil->setText($request->hrsreal, 1465, 1210, 20); //Horas a Realizar del proyecto
                 $perfil->setText($request->fechaini, 135, 1625, 20); //Fecha de Inicio  del proyecto
-                $perfil->setText($request->fechafin, 400, 1625, 20); //Fecha de Finalizacion  del proyecto
                 $perfil->setText($request->super_name, 650, 1625, 20); //Supervisor del proyecto/Institucion
                 $perfil->setText($request->super_cell, 1390, 1625, 20); //Telefono Supervisor del proyecto/Institucion
+                $perfil->setText($numeroFactura[0]->no_factura,1235,1860,20); //Numero de factura de pago de arancel de proceso
                 // Guardando el perfil segun el proceso del estudiante
                 if ($proceso == 1) {$perfil->save(public_path('docs/docs_ss/')."PSS-".$carnet);}
                 else{$perfil->save(public_path('docs/docs_pp/')."PPP-".$carnet);}
 
-                //PROCESO PARA CONTROL DE HORAS
+                // // //PROCESO PARA CONTROL DE HORAS
                 $nombre_completo = $nombre." ".$apellido;
                 $control_horas = new TextPainter(public_path('images/controles/control-horas.jpg'),'',public_path('fonts/arial.ttf'), 10);
                 $control_horas->setTextColor(0,0,0);
@@ -124,7 +124,7 @@ class GestionProyectoController extends Controller
                 if ($proceso == 1) {$control_horas->save(public_path('docs/docs_ss/')."CHSS-".$carnet);}
                 else{$control_horas->save(public_path('docs/docs_pp/')."CHPP-".$carnet);}
 
-                //PROCESO PARA CONTROL DE PROYECTO
+                // // //PROCESO PARA CONTROL DE PROYECTO
                 $control_proy = new TextPainter(public_path('images/controles/control-proyecto.jpg'),'',public_path('fonts/arial.ttf'), 10);
                 $control_proy->setTextColor(0,0,0);
                 if ($proceso == 1) {$control_proy->setText("x",472,498,30);}else{$control_proy->setText("x",944,500,30);}//Proceso
@@ -152,6 +152,7 @@ class GestionProyectoController extends Controller
 
                 DB::commit();
                 return base64_encode($pdf->download('Perfil de proyecto.pdf'));
+                // return $pdf->stream('Perfil de proyecto.pdf');
             }
         } catch (Exception $e) {
           DB::rollBack();
@@ -214,17 +215,20 @@ public function constancias(Request $request)
     if($proceso == 1){
         $gp = Estudiante::distinct('id')->with([
             'carrera',
-            'gestionProyecto',
             'gestionProyecto.constancia_entreg',
-            'nivelAcademico'
-        ])->nombre($buscar)->where('estado_ss',1)->where('carrera_id',$carrera_id)->paginate(8);
+            'gestionProyecto'=> function($query){
+                $query->where('gestion_proyectos.tipo_gp',1)->get();
+            }
+        ])->nombre($buscar)->where('estado_ss',1)->where('carrera_id',$carrera_id)->paginate(10);
+
     }else if($proceso == 2){
         $gp = Estudiante::distinct('id')->with([
             'carrera',
-            'gestionProyecto',
             'gestionProyecto.constancia_entreg',
-            'nivelAcademico'
-        ])->nombre($buscar)->where('estado_pp', 2)->where('carrera_id',$carrera_id)->paginate(8);
+            'gestionProyecto'=> function($query){
+                $query->where('gestion_proyectos.tipo_gp',2)->get();
+            }
+        ])->nombre($buscar)->where('estado_pp', 2)->where('carrera_id',$carrera_id)->paginate(10);
     }
     return [
         'pagination' => [
@@ -268,6 +272,9 @@ public function closeProy(Request $request){
         $a = $gp->estudiante_id;
         $e = Estudiante::findOrFail($a);
         $e->no_proyectos = 0;
+        if ($e->nivel_academico_id == 1) {
+            $e->nivel_academico_id = 2;
+        }
         $e->update();
 
         // if($e->no_proyectos == 1){
@@ -1215,13 +1222,14 @@ public function generateConstancia(Request $request){
 
     $estudiante = Estudiante::with([
         'carrera',
-        'gestionProyecto',
         'nivelAcademico',
         'gestionProyecto.proyecto',
         'gestionProyecto.proyecto.institucion',
-    ])->whereHas('gestionProyecto', function ($query) use ($procesoId) {
-        $query->where('tipo_gp', $procesoId);
-    })->find($estudianteId);
+        'gestionProyecto' => function($query) use($procesoId){
+            $query->where('gestion_proyectos.tipo_gp',$procesoId)->get();
+        }
+
+    ])->find($estudianteId);
 
     $proyectos =  [];
     $proyectos = $estudiante->gestionProyecto()->where('tipo_gp',$procesoId)->get();
@@ -1233,8 +1241,8 @@ public function generateConstancia(Request $request){
         if($value->constancia_entreg()->count() == 0){
 
             DB::table('constancias_entregadas')->insert(
-                ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString()]
-          );
+                ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString(),'año_registro'=>date('Y')]
+            );
 
         }
     }
@@ -1246,6 +1254,7 @@ public function generateConstancia(Request $request){
     $admin = User::select('nombre')->find(0);
     $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'estudiante'=>$infoEstudiante,'proyectos' => $proyectos, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
     return $pdf->stream('Perfil de proyecto.pdf');
+    return $estudiante;
 
 }
 public function downloadDocs(Request $request){
@@ -1278,5 +1287,15 @@ switch ($tipoDoc) {
     break;
 }
 
+}
+public function deleteProyectoEnMarcha(Request $request){
+
+   $gp = GestionProyecto::findOrFail($request->gestionId);
+
+   $estudiante = Estudiante::findOrFail($gp->estudiante_id);
+   $estudiante->proceso_actual = 'P';
+   $estudiante->update();
+
+   $gp->delete();
 }
 }

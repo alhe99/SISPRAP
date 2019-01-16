@@ -143,4 +143,7 @@
 <template v-if="menu==22">
  <solicitudes_aprobadas></solicitudes_aprobadas>
 </template>
+<template v-if="menu==23">
+ <proyectos_externos></proyectos_externos>
+</template>
 @endsection

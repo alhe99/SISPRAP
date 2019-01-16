@@ -279,16 +279,19 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12">
-                    <label for="obs">Seleccione Fecha de Finalización de Proyecto: </label>
-                    <input placeholder="aaaa-mm-dd" id="fechaFin" name="fechaFin" class="form-control" >
+                    <label for="obs" class="font-weight-bold">Seleccione Fecha de Finalización de Proyecto: </label>
+                    <input placeholder="aaaa-mm-dd" v-mask="'####-##-##'" id="fechaFin" name="fechaFin" class="form-control" >
                   </div><br>
                   <div class="col-md-12"><br>
-                   <label for="obs">Total de Horas Realizadas en el proyecto: </label>
+                   <label for="obs" class="font-weight-bold">Total de Horas Realizadas en el proyecto: </label>
                    <input type="number" min="0" max="300" class="form-control" v-model="hrsFinal">
                  </div>
                  <div class="col-md-12"><br>
-                   <label for="obs">Observación Final: </label>
+                   <label for="obs" class="font-weight-bold">Observación Final: </label>
                    <textarea name="obs" class="form-control"  v-model="obsFinal" rows="5"></textarea>
+                 </div>
+                 <div class="col-md-12">
+                   <checkbox v-model="eliminarProyecto" class="font-weight-bold">No contar horas al proceso (eliminar proyecto)</checkbox>
                  </div>
                </div>
              </div>
@@ -296,7 +299,9 @@
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" @click="cerrarModalEnd()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cerrar</button>
-                  <button type="button" @click="deleteProy(idGP)" class="button secondary"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
+                  <button type="button" v-if="eliminarProyecto" @click="deleteProy(idGP)" class="button secondary"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
+                  <button type="button" v-else @click="cancelProy(idGP)" class="button secondary"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
+
                 </div>
               </div>
             </div>
@@ -351,12 +356,14 @@ export default {
       rutaIMG:'',
       valuesDoc: [],
       arrayDocEntreg: [],
+      eliminarProyecto: false
     }
   },
   watch:{
     proceso: function() {
       this.getCarreras();
       this.carrera_selected = 0;
+      this.eliminarProyecto = false;
     },
     carrera_selected: function(){
       this.getGestionProy(this.carrera_selected.value,this.proceso,1,"")
@@ -404,6 +411,12 @@ export default {
     }
     return pagesArray;
   },
+  validateFinProy: function(){
+    if($("fechaFin").val() == '')
+      return true;
+    else
+      return false;
+  }
 },
 methods:{
 
@@ -441,7 +454,7 @@ methods:{
   },
 
   //cancelar un proyecto que ya se ha iniciado
-  deleteProy(idGp){
+  cancelProy(idGp){
     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
     swal({
       title: "¿Desea Guardar los cambios?",
@@ -451,7 +464,7 @@ methods:{
       cancelButtonColor: "#d33",
       confirmButtonText: "Aceptar!",
       cancelButtonText: "Cancelar",
-      confirmButtonClass: "button secondary",
+      confirmButtonClass: "button blue",
       cancelButtonClass: "button red",
       buttonsStyling: false,
       reverseButtons: true
@@ -461,6 +474,14 @@ methods:{
         me.loadSpinner = 1;
         var fechaFin = $("#fechaFin").val().trim();
         var url = route('close_proyect', {"gestionId": idGp,"fechaFin": fechaFin,"horasRea":me.hrsFinal,"obsFinal" : me.obsFinal});
+        if (fechaFin < me.gpObj.fecha_inicio) {
+         Swal({
+          type: 'error',
+          title: 'Alerta...',
+          text: "La fecha de finalización no puede ser menor a la fecha de inicio",
+        });
+         me.loadSpinner = 0;
+       }else {
         axios.get(url)
         .then(function(response) {
           me.getMoreInfoGp(me.idGP);
@@ -480,12 +501,63 @@ methods:{
             title: 'Error! Intente Nuevamente'
           });
         });
-      } else if (
+      }
+    }
+    else if (
+
+      result.dismiss === swal.DismissReason.cancel
+      ) {
+    }
+});
+  },
+  //cancelar un proyecto que ya se ha iniciado
+  deleteProy(idGp){
+    const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
+    swal({
+      title: "¿Desea Guardar los datos?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar!",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(result => {
+      if (result.value) {
+        let me = this;
+        me.loadSpinner = 1;
+        var url = route('deleteGestionProyecto', {"gestionId": idGp});
+        axios.get(url)
+        .then(function(response) {
+          me.getMoreInfoGp(me.idGP);
+          swal(
+            "Hecho!",
+            "Proyecto Elimnado Correctamente",
+            "success"
+            );
+          me.loadSpinner = 0;
+          me.cerrarModalEnd();
+          me.getBack();
+          me.getGestionProy(me.carrera_selected.value,me.proceso,1,"")
+        })
+        .catch(function(error) {
+          me.loadSpinner = 0;
+          console.log(error);
+          toast({
+            type: 'danger',
+            title: 'Error! Intente Nuevamente'
+          });
+        });
+      }
+      else if (
 
         result.dismiss === swal.DismissReason.cancel
         ) {
       }
-    });
+  });
   },
   abrirModalDoc() {
     const el = document.body;
@@ -504,6 +576,7 @@ methods:{
   getBack(){
     this.showANotherCard = false;
     this.arrayDocEntreg = [];
+    this.getGestionProy(this.carrera_selected.value,this.proceso,1,"")
   },
   abrirModalEnd() {
     const el = document.body;
@@ -524,7 +597,8 @@ methods:{
     this.modalEnd = 0;
     this.fechaFin= '';
     this.obsFinal= '';
-    this.hrsFinal= 0;
+    $("#fechaFin").val('');
+    this.eliminarProyecto = false;
     //$(".gj-icon").click();
 
   },

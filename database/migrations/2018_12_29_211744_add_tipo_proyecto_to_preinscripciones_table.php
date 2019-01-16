@@ -14,7 +14,7 @@ class AddTipoProyectoToPreinscripcionesTable extends Migration
     public function up()
     {
         Schema::table('preinscripciones_proyectos', function (Blueprint $table) {
-             $table->char('tipo_proyecto',1)->default("I"); //I = Proyecto Interno, E = Proyecto Externo
+             // $table->char('tipo_proyecto',1)->default("I"); //I = Proyecto Interno, E = Proyecto Externo
         });
     }
 

@@ -35,12 +35,15 @@
                 class="hide-menu">Control Proyectos</span></a>
                 <ul aria-expanded="false" class="collapse ">
                     <li><button type="button" @click="menu=22" class="btn btn-link btn-colors">Aprobaciones</button></li>
+                    <li><button type="button" @click="menu=4" class="btn btn-link btn-colors">Gestión proyectos</button></li>
+                    <li><button type="button" @click="menu=3" class="btn btn-link btn-colors">Proyectos Internos</button></li>
+                    <li><button type="button" @click="menu=23" class="btn btn-link  btn-colors">Proyectos Externos</button></li>
                     <li><button type="button" @click="menu=1" class="btn btn-link  btn-colors">Publicación de
                     proyectos</button></li>
                     <li><button type="button" @click="menu=2" class="btn btn-link btn-colors">Preinscripciones
                     proyectos</button></li>
-                    <li><button type="button" @click="menu=3" class="btn btn-link btn-colors">Proyectos en linea</button></li>
-                    <li><button type="button" @click="menu=4" class="btn btn-link btn-colors">Gestión proyectos</button></li>
+
+
                 </ul>
             </li>
             <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-city"></i><span
@@ -143,13 +146,13 @@
                 <br>
                 <div class="row ">
                     <div class="col-md-12">
-                     <h4>Usuario</h4>
-                     <input type="text" class="form-control" name="" value="">
-                     <h6><span class="text-muted">Ingrese el nombre del usuario</span></h6>
-                 </div>
-             </div>
-             <br>
-             <div class="row">
+                       <h4>Usuario</h4>
+                       <input type="text" class="form-control" name="" value="">
+                       <h6><span class="text-muted">Ingrese el nombre del usuario</span></h6>
+                   </div>
+               </div>
+               <br>
+               <div class="row">
                 <div class="col-md-12">
                     <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
                         Cambiar contraseña
@@ -164,23 +167,23 @@
                         </div>
                         <div class="col-md-6" data-wow-delay=".1s">
                             <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-                               <h4>Confirmar contraseña</h4>
-                               <input type="text" class="form-control" name="" value="">
-                               <h6><span class="text-muted">Confirme su contraseña</span></h6>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-       <div class="modal-footer">
-         <div class="col-md-6 text-center">
-            <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-        </div>
-        <div class="col-md-6 text-center">
-            <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
-        </div>
+                             <h4>Confirmar contraseña</h4>
+                             <input type="text" class="form-control" name="" value="">
+                             <h6><span class="text-muted">Confirme su contraseña</span></h6>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="modal-footer">
+       <div class="col-md-6 text-center">
+        <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
     </div>
+    <div class="col-md-6 text-center">
+        <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
+    </div>
+</div>
 </div>
 </div>
 </div>

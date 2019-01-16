@@ -15,19 +15,19 @@ class EstudianteController extends Controller
      $estudiante->fechaNac = $request->fecha;
      if($request->genero == 'F')
         $estudiante->genero = 'F';
-     else
+    else
        $estudiante->genero = 'M';
-     $estudiante->telefono = $request->telefono;
-     $estudiante->codCarnet = $request->codcarnet;
-     $estudiante->password = $request->password;
-     $estudiante->email = $request->email;
-     $estudiante->direccion = $request->direccion;
-     $estudiante->tipo_beca_id = $request->beca_id;
-     $estudiante->carrera_id = $request->carrera_id;
-     $estudiante->municipio_id = $request->municipio_id;
-     $estudiante->no_proyectos = 0;
-     $estudiante->estado = 1;
-     $estudiante->save();
+   $estudiante->telefono = $request->telefono;
+   $estudiante->codCarnet = $request->codcarnet;
+   $estudiante->password = $request->password;
+   $estudiante->email = $request->email;
+   $estudiante->direccion = $request->direccion;
+   $estudiante->tipo_beca_id = $request->beca_id;
+   $estudiante->carrera_id = $request->carrera_id;
+   $estudiante->municipio_id = $request->municipio_id;
+   $estudiante->no_proyectos = 0;
+   $estudiante->estado = 1;
+   $estudiante->save();
 }
 
 //obtener estudiantes por su id
@@ -103,22 +103,16 @@ public function getStudensByCarrerAndProcess(Request $request){
 
     $carrera_id = $request->carrera_id;
     $proceso_id = $request->proceso_id;
+    $nivelAcad = $request->nivelAcad;
     $nombre = $request->buscar;
 
     $estudiantes = Estudiante::with(['carrera','nivelAcademico'])->whereHas('carrera', function ($query) use($carrera_id) {
-
         $query->where('id',$carrera_id);
-
     })->whereHas('proceso', function ($query) use($proceso_id) {
-
         $query->where('procesos_estudiantes.proceso_id',$proceso_id);
-
     })->whereDoesntHave('preinscripciones', function ($query) {
-
-        $query->where('preinscripciones_proyectos.estado','A')->where('preinscripciones_proyectos.proyecto_id',0);
-
-    })->nombre($nombre)->paginate(5);
-
+        $query->where('preinscripciones_proyectos.estado','A')->orWhere('preinscripciones_proyectos.estado','F');
+    })->where('nivel_academico_id',$nivelAcad)->nombre($nombre)->paginate(5);
     return [
         'pagination' => [
             'total' => $estudiantes->total(),

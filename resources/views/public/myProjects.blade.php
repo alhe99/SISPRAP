@@ -27,6 +27,7 @@
             <div class="table-responsive">
                 <table class="table table-striped  mb-0">
                     <thead>
+                        @if ($proyectos[0]->tipo_proyecto == 'I')
                         <tr>
                             <th scope="row" class="text-center">No</th>
                             <th class="th-lg text-center">Proyecto</th>
@@ -34,6 +35,14 @@
                             <th class="th-lg text-center">Estado</th>
                             <th class="th-lg text-center">Opciones</th>
                         </tr>
+                        @else
+                        <tr>
+                            <th scope="row" class="text-center">No</th>
+                            <th class="th-lg text-center">Proyecto</th>
+                            <th class="th-lg text-center">Fecha de asignación</th>
+                            <th class="th-lg text-center">Estado</th>
+                        </tr>
+                        @endif
                     </thead>
                     <tbody>
                         @foreach ($proyectos as $preinscripcion)
@@ -48,6 +57,7 @@
                           @elseif($preinscripcion->pivot->estado == "R")
                           <td class="text-center"><h3 class="badge badge-danger">Rechazado</h3></td>
                           @endif
+                          @if ($preinscripcion->tipo_proyecto == 'I')
                           <td class="text-center">
                             <a href="{{route('viewProject', array($preinscripcion->proceso_id,$preinscripcion->slug))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información del proyecto"><i class="fas fa-plus-circle"></i></a>
                             @if ($preinscripcion->pivot->estado != "A" && $preinscripcion->pivot->estado != "R" && $preinscripcion->pivot->estado != "F"  )
@@ -55,8 +65,8 @@
                                 class="btn btn-success" title="Eliminar"><i class="fas fa-trash"></i>
                             </a>
                             @endif
-
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

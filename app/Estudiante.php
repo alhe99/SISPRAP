@@ -55,7 +55,7 @@ class Estudiante extends Model
     }
     public function preinscripciones(){
 
-        return $this->belongsToMany(Proyecto::class, 'preinscripciones_proyectos','estudiante_id','proyecto_id')->withPivot(['estado','id','tipo_proyecto'])->withTimestamps();
+        return $this->belongsToMany(Proyecto::class, 'preinscripciones_proyectos','estudiante_id','proyecto_id')->withPivot(['estado','id','año_registro'])->withTimestamps();
     }
 
     public function pagoArancel(){
@@ -66,7 +66,7 @@ class Estudiante extends Model
 
     public function scopeNombre($query,$name){
         if($name)
-            return $query->where('nombre','LIKE',"%$name%");
+            return $query->where('nombre','LIKE',"%$name%")->orWhere('apellido','LIKE',"%$name%");
     }
     public function procesos(){
       /*   for ($i=0; $i < $this->proceso->count(); $i++) {  */

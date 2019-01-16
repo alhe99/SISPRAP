@@ -55,7 +55,6 @@
               <tr>
                 <th>Nombre Estudiante</th>
                 <th class="text-center">Carrera</th>
-                <th class="text-center">Nivel Academico</th>
                 <th class="text-center">Entregada</th>
                 <th class="text-center">Acciones</th>
               </tr>
@@ -64,17 +63,18 @@
              <tr v-for="item in arrayStudents" :key="item.id">
               <td v-text="item.nombre +' '+ item.apellido"></td>
               <td class="text-center" v-text="item.carrera.nombre"></td>
-              <td class="text-center" v-text="item.nivel_academico.nivel"></td>
               <td class="text-center">
                 <template>
-                 <h4 v-if="proceso==1">
-                   <span v-if="item.gestion_proyecto[0].constancia_entreg.length != 0 && item.gestion_proyecto[0].constancia_entreg.length != undefined " class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
+
+                 <h4>
+                   <span v-if="item.gestion_proyecto[0].constancia_entreg[0] != undefined" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
                    <span v-else class="badge badge-pill badge-danger">No Entregada</span>
                  </h4>
-                 <h4 v-if="proceso==2">
+
+                 <!-- <h4 v-if="proceso==2">
                   <span v-if="item.gestion_proyecto[1].constancia_entreg.length > 0" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[1].constancia_entreg[0].created_at}}</span>
                    <span v-else class="badge badge-pill badge-danger">No Entregada</span>
-                 </h4>
+                 </h4> -->
                </template>
              </td>
              <td class="text-center">
@@ -244,17 +244,16 @@ methods:{
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Aceptar!",
+    confirmButtonText: "Aceptar",
     cancelButtonText: "Cancelar",
-    confirmButtonClass: "btn update",
-    cancelButtonClass: "btn edit",
+    confirmButtonClass: "button blue",
+    cancelButtonClass: "button red",
     buttonsStyling: false,
     reverseButtons: true
   }).then(result => {
     if (result.value) {
      var url = route('getConstancia', {"estudianteId": gp_id,"procesoId": procesoId});
      window.open(url);
-
      me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
    } else if (
     result.dismiss === swal.DismissReason.cancel

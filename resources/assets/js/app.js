@@ -71,7 +71,7 @@ Vue.component('gestproy', require('./components/proyectos/GestionProyectos.vue')
 Vue.component('constancias', require('./components/proyectos/Constancias.vue'));
 Vue.component('sectores', require('./components/instituciones/Sectores.vue'));
 Vue.component('solicitudes_aprobadas', require('./components/proyectos/SolicitudesAprobadas.vue'));
-
+Vue.component('proyectos_externos', require('./components/proyectos/ProyectosExternos.vue'));
 
 const app = new Vue({
   el: '#app',
@@ -81,8 +81,7 @@ const app = new Vue({
   },
   created() {
     let me = this;
-    axios.post(this.ruta + '/notification/get').then(function(response) {
-           //console.log(response.data);
+    axios.post('notifications/get').then(function(response) {
            me.notifications=response.data;
          }).catch(function(error) {
           console.log(error);
