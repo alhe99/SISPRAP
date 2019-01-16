@@ -527,23 +527,24 @@
 					});
 					//Cargando datos de proyecto en modal
 					switch(me.proceso){
-						//El proyecto a actualizar es de Serivio Social
+						//El proyecto a actualizar es de Servicio Social
 						case "1":
 						this.modal = 1;
 						this.proyecto_id = data.id;
 						me.nombreP = data.nombre;
+						if(me.arrayImages.indexOf(data.img) != -1){
+							$("#btnOpenGallery").click();
+							me.imgGallery = data.img;
+							// alert("Tiene La Imagen");
+						}else{
+							me.image = data.img;
+							me.switchImg==true;
+						}
 						me.actividadesUpd = data.actividades;
 						me.institucionP = JSON.parse(inst);
 						me.hrsRealizar = data.horas_realizar;
 						me.vacantesProy = data.cantidades_vacantes;
 						me.getInst();
-						if(me.arrayImages.includes(data.img)){
-							$("#btnOpenGallery").click();
-							me.imgGallery = data.img;
-						}else{
-							me.image = data.img;
-							me.switchImg==true;
-						}
 
 						this.loadSpinner = 0;
 						break;
@@ -553,7 +554,7 @@
 						me.nombreP = data.nombre;
 						me.actividadesUpd = data.actividades;
 						me.institucionP = JSON.parse(inst);
-						me.hrsRealizar = data.horas_realizar;
+						me.hrsRealizar = data.horas_realizarr;
 						me.vacantesProy = data.cantidades_vacantes;
 						me.getInst();
 						if(me.arrayImages.includes(data.img)){

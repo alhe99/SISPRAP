@@ -126,12 +126,16 @@ class ProyectoController extends Controller
     public function update(Request $request)
     {
         $date = date('Y-m-d');
+        $cantidad = $request->cantidadEstudiantes;
         switch ($request->tipoProyecto) {
             case 'I':
             switch ($request->proceso_id) {
                 case 1:
                 $proyecto = Proyecto::find($request->id);
                 // $img_recv = $request->imagen;
+                if ($cantidad > $proyecto->cantidades_vacantes ) {
+                    $proyecto->estado_vacantes = 'D';
+                }
                 $proyecto->nombre = $request->nombre;
                 $proyecto->actividades = $request->actividades;
                 $proyecto->institucion_id = $request->institucion_id;
@@ -140,6 +144,7 @@ class ProyectoController extends Controller
                 $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
+
                 // if ($img_recv) {
                 //     $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
                 //     $proyecto->img = $name_img;
@@ -152,6 +157,9 @@ class ProyectoController extends Controller
                 case 2:
                 $proyecto = Proyecto::find($request->id);
                 // $img_recv = $request->imagen;
+                if ($cantidad > $proyecto->cantidades_vacantes ) {
+                    $proyecto->estado_vacantes = 'D';
+                }
                 $proyecto->nombre = $request->nombre;
                 $proyecto->actividades = $request->actividades;
                 $proyecto->institucion_id = $request->institucion_id;
@@ -160,6 +168,8 @@ class ProyectoController extends Controller
                 $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
+
+
                 // if ($img_recv) {
                 //     $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
                 //     $proyecto->img = $name_img;
