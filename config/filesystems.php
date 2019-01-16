@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => 'C:\Users\KeniaPaiz\Documents\backup',
         ],
         'images' => [
             'driver' => 'local',
