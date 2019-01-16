@@ -145,6 +145,9 @@ Route::get('/closeProyect','GestionProyectoController@closeProy')->name('close_p
 Route::post('sector/registrar','SectorInstitucionController@store');
 Route::post('admin/registrar', 'EstudianteController@store');
 
+//Backup
+Route::get('/backup','BackupController@backup');
+
 Route::get('/test', function () {
 
     /*$id= 36;
@@ -245,9 +248,9 @@ Route::get('/test', function () {
 
     //obtener imagenes
 
-    $id = 3;
-    $supervision = App\Proyecto::findOrFail($id)->supervision;
-    $supervision->observacion = 'hola';
-    $supervision->save();
+    $id = 4;
+    $s = App\Proyecto::findOrFail($id)->supervision;
+    $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
+    return $img;
 
     });

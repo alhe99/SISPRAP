@@ -452,7 +452,8 @@
                                                              </div>
                                                            </div>
                                                          </div>
-                                                       </div>                                                      
+                                                        
+                                                       </div>                                                 
                                                        <!--<pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>-->
                                                      </div>
                                                      <div class="modal-footer">
@@ -759,21 +760,6 @@ methods: {
       console.log(error);
     });
   },
-  //imagenes
-  getImg(id) {
-    let me = this;
-    var url = "imgSuperv/" + id;
-    me.loading = true;
-    axios.get(url).then(function(response) {
-      var respuesta = response.data;
-      me.arrayImages = respuesta;
-      me.loading = false;
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  },
-  //termina
   getSupervision(id) {
     let me = this;
     var url = "GetSupervision/" + id;
@@ -893,7 +879,7 @@ methods: {
   },
   registrarSupervision() {
     let me = this;
-    //me.loading = true;
+    me.loading = true;
     axios
     .post("/proyecto/registrar/supervision", {
       proyecto_id: this.proyecto_id,
@@ -902,7 +888,7 @@ methods: {
       imagenes: this.images
     })
     .then(function(response) {
-      //me.loading = false;
+      me.loading = false;
       swal({
         position: "center",
         type: "success",
@@ -923,6 +909,7 @@ methods: {
   },
   actualizarSupervision(){
        let me = this;
+       me.loading = true;
       axios
         .put("/supervision/actualizar", {
           id: this.proyecto_id,
@@ -931,6 +918,7 @@ methods: {
          
         })
         .then(function(response) {
+          me.loading = false;
           swal({
             position: "center",
             type: "success",
@@ -1020,7 +1008,7 @@ methods: {
       this.getMunicipios();
       this.getDepartamentos();
     },
-    abrirModalSuper(accion, id, nombre, data = []) {
+    abrirModalSuper(accion, id, nombre) {
       const el = document.body;
       el.classList.add("abrirModal");
       this.modal = 1;

@@ -66,9 +66,10 @@ class SupervisionController extends Controller
     //imagenes de supervisiones
     public function imgSuperv($id){
 
-        $s = supervisionProyecto::findOrFail($id);
+        $s = Proyecto::findOrFail($id)->supervision;
         $img = ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
         return $img;
+
     }
        
 }

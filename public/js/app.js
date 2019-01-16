@@ -79267,6 +79267,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -79515,22 +79516,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
-
-    //imagenes
-    getImg: function getImg(id) {
-      var me = this;
-      var url = "imgSuperv/" + id;
-      me.loading = true;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayImages = respuesta;
-        me.loading = false;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-
-    //termina
     getSupervision: function getSupervision(id) {
       var me = this;
       var url = "GetSupervision/" + id;
@@ -79644,14 +79629,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     registrarSupervision: function registrarSupervision() {
       var me = this;
-      //me.loading = true;
+      me.loading = true;
       axios.post("/proyecto/registrar/supervision", {
         proyecto_id: this.proyecto_id,
         observacion: this.observacion,
         fecha: this.date.substring(0, 10),
         imagenes: this.images
       }).then(function (response) {
-        //me.loading = false;
+        me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -79669,12 +79654,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     actualizarSupervision: function actualizarSupervision() {
       var me = this;
+      me.loading = true;
       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
         observacion: this.observacion
 
       }).then(function (response) {
+        me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -79769,8 +79756,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getDepartamentos();
     },
     abrirModalSuper: function abrirModalSuper(accion, id, nombre) {
-      var data = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-
       var el = document.body;
       el.classList.add("abrirModal");
       this.modal = 1;
@@ -96380,7 +96365,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
