@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => 'C:\Users\KeniaPaiz\Documents\backup',
         ],
         'images' => [
             'driver' => 'local',
@@ -65,6 +65,13 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
+        ],
+
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'app_secret' => env('DROPBOX_SECRET'),
+            'token' => env('DROPBOX_TOKEN'),
+    
         ],
 
     ],

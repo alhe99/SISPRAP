@@ -192,22 +192,28 @@
     </div>
     <div class="row">
       <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
-        <div class="form-group label-floating">
-          <label class="control-label"  for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
-          <input class="form-control" v-model="nameSuper" id="name_supervisor" type="text" name="name_supervisor" >
-        </div>
+        <div class="form-group mdl-selectfield">
+         <label class="control-label"  for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
+         <select class="custom-select show-tick col-md-6" data-style="btn-primary">
+          <option value="">Seleccione el nombre del supervisor</option>
+          <option value="1">Hola</option>
+          <option value="2">Amiguito</option>
+          <option value="3">Alonso</option>
+        </select>
+        <div class="invalid-feedback">Example invalid custom select feedback</div>
       </div>
     </div>
-    <br>
-    <div class="row text-center">
-      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
-      </div>
-      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
-      </div>
-    </div><br>
-  </form>
+  </div>
+  <br>
+  <div class="row text-center">
+    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+      <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
+    </div>
+    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+      <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+    </div>
+  </div><br>
+</form>
 </div>
 </div>
 </div>
