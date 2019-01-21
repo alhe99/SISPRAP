@@ -248,7 +248,7 @@
                       </button>
                     </div>
                     <div class="modal-body text-center">
-                      {{Auth::user()->nombre}}, ¿Esta seguro de cerrar Sesión?
+                      {{Auth::user()->nombre}}, ¿Esta seguro(a) de cerrar Sesión?
                     </div>
                     <div class="contenido text-center">
                       <i class="mdi mdi-help fa-4x"></i>
@@ -259,7 +259,6 @@
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                       </form>
-
                     </div>
                   </div>
                 </div>

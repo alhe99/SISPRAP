@@ -156,22 +156,12 @@
             </div>
           </div>
         </div>
-   {{--      <div class="row">
-          <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
-           <div class="form-group label-floating">
-            <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
-            <textarea class="form-control" rows="12" id="message" name="proyecto_acti" id="proyecto_acti" disabled required data-error="Write your message">
-              {{strip_tags(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
-            </textarea>
-          </div>
-        </div>
-      </div> --}}
       <div class="row">
-        <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".2s">
-         <div class="form-group label-floating">
+        <div class="col-md-12" data-wow-delay=".2s">
+         <div class="form-group">
           <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
-          <textarea class="form-control-sm col-md-12" rows="6" id="message" name="proyecto_acti" id="proyecto_acti" disabled required data-error="Write your message">
-            {{strip_tags(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
+          <textarea class="form-control-sm col-md-12" rows="6" name="proyecto_acti" id="proyecto_acti" disabled >
+            {{\Html2Text\Html2Text::convert(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
           </textarea>
         </div>
       </div>
@@ -185,8 +175,8 @@
       </div>
       <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
         <div class="form-group control-floating">
-          <label class="control-label" for="tel_supervisor">Teléfono del supervisor*</label>
-          <input class="form-control" v-model="telSuper" id="tel_supervisor" maxlength="9" type="text" name="tel_supervisor" >
+          <label class="control-label" for="tel_supervisor">Teléfono del supervisor</label>
+          <input class="form-control" v-model="telSuper" disabled id="tel_supervisor" maxlength="9" disabled type="text" name="tel_supervisor" >
         </div>
       </div>
     </div>
@@ -194,13 +184,13 @@
       <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
         <div class="form-group mdl-selectfield">
          <label class="control-label"  for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
-         <select class="custom-select show-tick col-md-6" data-style="btn-primary">
-          <option value="">Seleccione el nombre del supervisor</option>
-          <option value="1">Hola</option>
-          <option value="2">Amiguito</option>
-          <option value="3">Alonso</option>
+         <select v-model="selectSuper" id="selectSupervisores" class="custom-select show-tick col-md-6" data-style="btn-primary">
+          <option value="" selected disabled>Seleccione el nombre del supervisor</option>
+            @foreach (Auth::user()->estudiante->preinscripciones[0]->institucion->supervisores()->get() as $item)
+              <option value="{{ $item->nombre.";".$item->no_telefono }}">{{ $loop->iteration." - ".$item->nombre }}</option>
+            @endforeach
         </select>
-        <div class="invalid-feedback">Example invalid custom select feedback</div>
+        <small class="text-center text-primary font-weight-bold">*Selecciona del listado de supervisores el que estara a cargo de proceso</small>
       </div>
     </div>
   </div>
@@ -228,8 +218,9 @@
       hrsRea: "",
       projectId: "",
       studentId: "",
-      nameSuper: "",
+      selectSuper: "",
       telSuper: "",
+      nombreSupervisor: ""
     },
     computed:{
       validate: function(){
@@ -244,6 +235,14 @@
           return false;
       }else{return true;}
     },
+  },
+  watch:{
+    selectSuper: function(){
+      var data = $("#selectSupervisores").val().trim();
+      data = data.split(";");
+      this.telSuper = data[1];
+      this.nombreSupervisor = data[0];
+    }
   },
   methods : {
     downloadPdfFromBase64(base64){
@@ -278,7 +277,7 @@
           "hrsreal":this.hrsRea,
           "student_id":this.studentId,
           "proyecto_id":this.projectId,
-          "super_name":this.nameSuper,
+          "super_name":this.nombreSupervisor,
           "super_cell":this.telSuper });
 
         axios.get(url).then(function(response) {

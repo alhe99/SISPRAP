@@ -16,7 +16,6 @@ class CreateDocumentosTable extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',150)->nullable(false);
-            $table->integer('proceso_id')->unsigned();
         });
     }
 

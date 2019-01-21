@@ -2,64 +2,64 @@
     <div class="col-lg-12 col-md-12">
         <div class="card">
           <div class="card-body">
-             <div class="row">
-                <div class="col-md-6 col-sm-12 col-lg-6  ">
-                    <h2 class=" align-baseline font-weight-bold">Listado de sectores de instituciones</h2><br>
-                </div>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-11 ">
-                            <div class="form-group row">
-                                <mdc-textfield type="text" class="col-md-12" @keyup="listarSectores(1,  buscar)"  label="Nombre del sector" v-model="buscar"></mdc-textfield>
-                            </div>
+           <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-6  ">
+                <h2 class=" align-baseline font-weight-bold">Listado de sectores de instituciones</h2><br>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11 ">
+                        <div class="form-group row">
+                            <mdc-textfield type="text" class="col-md-12" @keyup="listarSectores(1,  buscar)"  label="Nombre del sector" v-model="buscar"></mdc-textfield>
                         </div>
-                        <div class="col-md-1 text-center">
-                            <button class="button secondary" type="button" @click="abrirModal('sector','registrar')"><i class="mdi mdi-plus-box"></i></button>
-                        </div>
+                    </div>
+                    <div class="col-md-1 text-center">
+                        <button class="button secondary" type="button" @click="abrirModal('sector','registrar')"><i class="mdi mdi-plus-box"></i></button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
-          </div>
-      </div>
-      <!--tabla de sectores-->
-      <div class="col-md-12 col-lg-12 col-sm-12">
-        <div class="table-responsive">
-           <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
-            <thead class="thead-primary">
-                <tr>
-                    <th>Nombre de sector</th>
-                    <th class="text-right" style="padding-right: 35px;">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="sectores in arraySector" :key="sectores.id">
-                    <td v-text="sectores.sector"></td>
-                    <td class="text-right">
-                        <button type="button" @click="abrirModal('sector','actualizar',sectores)" class="btn btn-primary " data-toggle="tooltip" title="Editar datos del sector"><i class="mdi mdi-border-color i-crud"></i></button>
-                        <button type="button" @click="deleteSector(sectores.id)" class="btn btn-primary " data-toggle="tooltip" title="Eliminar Sector"><i class="mdi mdi-delete-variant i-crud"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <nav>
-            <ul class="pagination">
-                <li class="page-item" v-if="pagination.current_page > 1">
-                    <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1, buscar)">Ant</a>
-                </li>
-                <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                    <a class="page-link" href="#" @click.prevent="cambiarPagina(page, buscar)" v-text="page"></a>
-
-                    <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                        <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
-                    </li>
-                    <small v-show="arraySector.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arraySector.length + ' de ' + pagination.total + ' registros)'"></small>
-                </ul>
-            </nav>
-        </div>
     </div>
+    <div class="row">
+      <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
+      </div>
+  </div>
+  <!--tabla de sectores-->
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="table-responsive">
+     <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
+        <thead class="thead-primary">
+            <tr>
+                <th>Nombre de sector</th>
+                <th class="text-right" style="padding-right: 35px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="sectores in arraySector" :key="sectores.id">
+                <td v-text="sectores.sector"></td>
+                <td class="text-right">
+                    <button type="button" @click="abrirModal('sector','actualizar',sectores)" class="btn btn-primary " data-toggle="tooltip" title="Editar datos del sector"><i class="mdi mdi-border-color i-crud"></i></button>
+                    <button type="button" @click="deleteSector(sectores.id)" class="btn btn-primary " data-toggle="tooltip" title="Eliminar Sector"><i class="mdi mdi-delete-variant i-crud"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" v-if="pagination.current_page > 1">
+                <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1, buscar)">Ant</a>
+            </li>
+            <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                <a class="page-link" href="#" @click.prevent="cambiarPagina(page, buscar)" v-text="page"></a>
+
+                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                    <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+                </li>
+                <small v-show="arraySector.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arraySector.length + ' de ' + pagination.total + ' registros)'"></small>
+            </ul>
+        </nav>
+    </div>
+</div>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-lg-12">
@@ -184,10 +184,10 @@ export default {
             });
         },
         registrarSector(){
-         let me = this;
-         this.loadSpinner = 1;
-         var url = route('validateSector',{"sector": me.sector});
-         axios.get(url).then(function(response) {
+           let me = this;
+           this.loadSpinner = 1;
+           var url = route('validateSector',{"sector": me.sector});
+           axios.get(url).then(function(response) {
             var respuesta = response.data;
             console.log(respuesta);
             if(respuesta == 'existe'){
@@ -222,15 +222,15 @@ export default {
                 });
             }
         });
-     },
-     actualizarSector(){
+       },
+       actualizarSector(){
         let me = this;
         var url = route('validateSector',{"sector": me.sector});
         me.loadSpinner = 1;
         axios.get(url).then(function(response) {
             var respuesta = response.data;
             console.log(respuesta);
-             if((me.sector != me.sectorUpd) && (respuesta == 'existe')){
+            if((me.sector != me.sectorUpd) && (respuesta == 'existe')){
                 swal({
                     position: "center",
                     type: "warning",

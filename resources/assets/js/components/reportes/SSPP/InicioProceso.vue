@@ -87,7 +87,7 @@
                   </div>
                 </div>
                 <div class="col-md-12 text-center"><br>
-                  <button type="button" id="btnGenerar" :disabled="mes == '' && trimestre == '' && anual == false" class="button secondary" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Reporte"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
+                  <button type="button" id="btnGenerar" :class="[mes == '' && trimestre == '' && anual == false ? 'disabled' : '']" :disabled="mes == '' && trimestre == '' && anual == false" class="button secondary" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Reporte"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
                 </div>
               </div>
             </div>
@@ -152,12 +152,14 @@ export default {
       if (this.trimestral == true) {this.tipoRepo = 'T';}
       else {this.tipoRepo = '';}
       this.trimestre = "";
+      this.anual = false;
     },
     mensual:function(){
       if (this.mensual == true) {this.tipoRepo = 'M';}
       else {this.tipoRepo = '';}
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     mes:function(){
       for (var i = 0; i < this.mes.length; i++) {
@@ -194,6 +196,7 @@ export default {
     this.trimestre = "";
     this.mes = [];
     this.valuesMonth = [];
+    this.anual = false;
   },
   sendParameterToMethod() {
     let me = this;

@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
-    public function __construct()
-    {
-
-        //$this->middleware('guestVerify');
-
-    }
-
     //listado de los proyectos que el estudiante se ha preinscrito, tomando la informacion de la carrera del estudiante y su proceso
     public function index(Request $request2)
     {
@@ -29,7 +22,6 @@ class PublicController extends Controller
         $proyectos = app(\App\Http\Controllers\ProyectoController::class)->getProjectsByCarrer($request);
         $data_search = $request2->buscar;
         return view('public.index', compact(['proyectos','data_search']));
-
     }
     public function create()
     {

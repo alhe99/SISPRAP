@@ -19,61 +19,81 @@ class Carrera extends Model
         return $this->hasMany(Proyecto::class);
     }
 
+    //******* REPORTE DE ESTUDIANTES QUE HAN INCIADO SU PROCESO *******//
+
     //Trimestral
-    public function getCountStudentsByMinedTrimestral(Array $data,$procesoId)
+    public function getCountStudentsByMinedTrimestral(Array $data,$procesoId,$anio)
     {
-        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($data){
-            $query->whereMonth('created_at',$data[0])->orWhereMonth('created_at',$data[1])->orWhereMonth('created_at',$data[2])->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',1)->whereHas('proceso', function ($query) use($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id',$procesoId);
-        })->count();
+        switch ($procesoId) {
+            case 1:
+                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
+            break;
+            case 2:
+                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
+            break;
+        }
     }
 
-    public function getCountStudentsByOtherBecaTrimestral(Array $data,$procesoId)
+    public function getCountStudentsByOtherBecaTrimestral(Array $data,$procesoId,$anio)
     {
-        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use ($data){
-            $query->whereMonth('created_at',$data[0])->orWhereMonth('created_at',$data[1])->orWhereMonth('created_at',$data[2])->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',2)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id',$procesoId);
-        })->count();
+         switch ($procesoId) {
+            case 1:
+                return $this->estudiantes()->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
+            break;
+            case 2:
+                return $this->estudiantes()->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
+            break;
+        }
     }
 
     //Mes Individual
-    public function getCountStudentsByMinedMensual($mes,$procesoId)
+    public function getCountStudentsByMinedMensual($mes,$procesoId,$anio)
     {
-        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($mes){
-            $query->whereMonth('created_at',$mes)->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',1)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id',$procesoId);
-        })->count();
+        switch ($procesoId) {
+            case 1:
+                return $this->estudiantes()->whereMonth('fecha_inicio_ss',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+            break;
+            case 2:
+                return $this->estudiantes()->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+                break;
+        }
     }
 
-    public function getCountStudentsByOtherBecaMensual($mes,$procesoId)
+    public function getCountStudentsByOtherBecaMensual($mes,$procesoId,$anio)
     {
-        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($mes){
-            $query->whereMonth('created_at',$mes)->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',2)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id',$procesoId);
-        })->count();
+        switch ($procesoId) {
+            case 1:
+                return $this->estudiantes()->whereMonth('fecha_inicio_ss',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+            break;
+            case 2:
+                return $this->estudiantes()->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+            break;
+        }
     }
 
     //Reporte Anual
     public function getCountStudentsByMinedYear($year,$procesoId)
     {
-        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($year){
-            $query->whereYear('created_at',$year)->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',1)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id',$procesoId);
-        })->count();
+        switch ($procesoId) {
+            case 1:
+                return $this->estudiantes()->whereYear('fecha_inicio_ss',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',1],['estado',true]])->count();
+            break;
+            case 2:
+                return $this->estudiantes()->whereYear('fecha_inicio_pp',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',1],['estado',true]])->count();
+            break;
+        }
     }
 
     public function getCountStudentsByOtherBecaYear($year,$procesoId)
     {
-        return $this->estudiantes()->whereHas('gestionProyecto',function($query) use($year){
-            $query->whereYear('created_at',$year)->where('estado','=','I')->orWhere('estado','=','P');
-        })->where('tipo_beca_id',2)->where('estado',true)->whereHas('proceso', function ($query) use($procesoId) {
-            $query->where('procesos_estudiantes.proceso_id',$procesoId);
-        })->count();
+       switch ($procesoId) {
+            case 1:
+                return $this->estudiantes()->whereYear('fecha_inicio_ss',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',2],['estado',true]])->count();
+            break;
+            case 2:
+                return $this->estudiantes()->whereYear('fecha_inicio_pp',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',2],['estado',true]])->count();
+            break;
+        }
     }
 
 }

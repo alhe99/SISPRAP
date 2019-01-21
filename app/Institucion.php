@@ -27,9 +27,14 @@ class Institucion extends Model
 
         return $this->hasMany(Proyecto::class);
     }
+    public function supervisores(){
 
+        return $this->hasMany(Supervisor::class);
+    }
 
-
-
-
+    //QueryScopes
+    public function scopeNombre($query,$name){
+        if($name)
+            return $query->where('nombre','LIKE',"%$name%");
+    }
 }

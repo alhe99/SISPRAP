@@ -6,12 +6,7 @@ use Illuminate\Http\Request;
 
 class CarreraController extends Controller
 {
-    public function __construct(){
 
-        $this->middleware('guestVerify');
-        
-    }
-    
     public function GetCarreras()
     {
         //if (!$request->ajax()) return redirect('/');
@@ -20,9 +15,9 @@ class CarreraController extends Controller
         foreach ($Carreras as $key => $value) {
             $data[$key] =[
                 'value'   => $value->id,
-                'label' => $value->nombre,  
+                'label' => $value->nombre,
             ];
-   
+
         }
         return  response()->json($data);
     }

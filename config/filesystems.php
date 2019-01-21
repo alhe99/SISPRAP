@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => 'C:\Users\KeniaPaiz\Documents\backup',
+            'root' => 'C:\Users\HP-PAVLION\Documents',
         ],
         'images' => [
             'driver' => 'local',
@@ -71,7 +71,7 @@ return [
             'driver' => 'dropbox',
             'app_secret' => env('DROPBOX_SECRET'),
             'token' => env('DROPBOX_TOKEN'),
-    
+
         ],
 
     ],

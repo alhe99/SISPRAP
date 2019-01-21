@@ -11,7 +11,7 @@ class SectorInstitucionController extends Controller
     //listado de los sectores registrados
     public function index(Request $request)
     {
-       
+
             if (!$request->ajax()) return redirect('/');
             $buscar = $request->buscar;
             if($buscar==''){
@@ -34,10 +34,9 @@ class SectorInstitucionController extends Controller
                 ],
                 'sectores' => $sector
             ];
+    }
 
-}
-
-//registrar sector 
+    //registrar sector
     public function store(Request $request)
     {
         $sector = new SectorInstitucion();
@@ -45,24 +44,19 @@ class SectorInstitucionController extends Controller
         $sector->save();
     }
 
-//actualizar sector
+    //actualizar sector
     public function update(Request $request)
     {
 
         $sector = SectorInstitucion::findOrFail($request->id);
         $sector->sector = $request->sector;
-        $sector->save();
-
+        $sector->update();
     }
+
     public function delete($id){
 
         $sector = SectorInstitucion::findOrFail($id);
         $sector->delete();
-    }
-    public function __construct(){
-
-        $this->middleware('guestVerify');
-        
     }
 
     //listado de sectores
@@ -74,11 +68,12 @@ class SectorInstitucionController extends Controller
         foreach ($sectores as $key => $value) {
             $data[$key+1] =[
                 'value'   => $value->id,
-                'label' => $value->sector,  
+                'label' => $value->sector,
             ];
         }
         return  response()->json($data);
     }
+
     public function getSectores(){
 
         $sector = SectorInstitucion::select('id', 'sector')->orderBy('id','desc')->get();
@@ -91,8 +86,7 @@ class SectorInstitucionController extends Controller
         }
         return  response()->json($data);
     }
-
-    //validar nombre del sector ya existente
+    //Validar nombre del sector ya existente
     public function validateSector(Request $request){
 
         if(SectorInstitucion::where('sector',$request->sector)->exists()){

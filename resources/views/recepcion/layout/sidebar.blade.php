@@ -6,7 +6,7 @@
             <!-- User profile image -->
             <div class="profile-img"> <img src="images/users/recep.png" alt="user" /> </div>
             <!-- User profile text-->
-            <div class="profile-text"> <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{Auth::user()->nombre}}</a>
+            <div class="profile-text"> <a href="#" class="text-truncate" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{Auth::user()->nombre}}</a>
             </div>
         </div>
         <!-- End User profile text-->

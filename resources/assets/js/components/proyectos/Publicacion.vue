@@ -266,7 +266,7 @@ export default {
       proceso: 0,
       switchImg: false,
       catidadHoras: 0,
-      cantidadVacantes: 0,
+      cantidadVacantes: 1,
       imgGallery: "",
       proyectoExterno: false,
       nombre: "",
@@ -275,8 +275,9 @@ export default {
       "turismo.jpg",
       "computacion.jpg",
       "focos.jpg",
-      "herramienta.jpg",
-      "mercadeo.jpg"
+      "herramienta.png",
+      "mercadeo.jpg",
+      "agro.jpg"
       ],
       image: "",
       exist: false,

@@ -19,9 +19,16 @@ Route::put('/institucion/desactivar', 'InstitucionController@desactivar');
 Route::put('/institucion/activar', 'InstitucionController@activar');
 Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
-Route::get('GetInstitucion/', 'InstitucionController@GetInstitucion');
+Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
+
+Route::get('institucion/supervisor/index', 'SupervisorController@index')->name('getSupervisores');
+Route::post('institucion/supervisor/save', 'SupervisorController@store')->name('saveSupervisor');
+Route::get('/institucion/supervisor/validate','SupervisorController@validateSupervisor')->name('validateSupervisor');
+Route::put('/institucion/supervisor/eliminar/{id}', 'SupervisorController@delete');
+Route::put('institucion/supervisor/update', 'SupervisorController@update')->name('updSupervisor');
+
 
 //Rutas para sectores
 Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
