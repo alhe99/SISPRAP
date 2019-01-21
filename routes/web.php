@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
 echo "<pre>{$query->time}</pre>";
@@ -10,6 +11,7 @@ echo "<pre>{$query->time}</pre>";
 Route::get('/main', function () {
     return view('admin.index');
 })->name('main');
+
 
 
 Route::get('/institucion', 'InstitucionController@index');
@@ -160,6 +162,14 @@ Route::get('/backup','BackupController@backup');
 
 Route::get('/test', function () {
 
+    $test = "2019-01-21SS5c4605667c309.jpeg";
+    if(file_exists(public_path('images/img_projects/').$test))
+    {
+        unlink(public_path('images/img_projects/').$test);
+    }
+    // unlink(public_path('images/img_projects/').$test);
+     // return "hecho";
+
     /*$id= 36;
 
     $proy = App\Proyecto::findOrFail($id);
@@ -258,9 +268,9 @@ Route::get('/test', function () {
 
     //obtener imagenes
 
-    $id = 4;
-    $s = App\Proyecto::findOrFail($id)->supervision;
-    $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
-    return $img;
+    // $id = 4;
+    // $s = App\Proyecto::findOrFail($id)->supervision;
+    // $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
+    // return $img;
 
 });

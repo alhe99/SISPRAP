@@ -11,10 +11,12 @@ use App\Notifications\NotifyStudentGoToRecep;
 use App\Proyecto;
 use App\User;
 use Carbon\Carbon;
+use File;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProyectoController extends Controller
@@ -142,13 +144,13 @@ class ProyectoController extends Controller
                 $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
-                $proyecto->img = $request->imageG;
 
                 if ($img_recv) {
                     if($request->imagen != $proyecto->img){
-                        if (\File::exists(public_path('images/img_projects/'). $proyecto->img)) {
-                            unlink(public_path('images/img_projects/'). $proyecto->img);
-                        }
+                         if(file_exists(public_path('images/img_projects/').$proyecto->img))
+                         {
+                            unlink(public_path('images/img_projects/').$proyecto->img);
+                         }
                     }
                     $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
                     $proyecto->img = $name_img;
@@ -171,10 +173,11 @@ class ProyectoController extends Controller
                 $proyecto->estado = $request->estado;
 
                 if ($img_recv) {
-                    if($request->imagen != $proyecto->img){
-                        if (\File::exists(public_path('images/img_projects/'). $proyecto->img)) {
-                            unlink(public_path('images/img_projects/'). $proyecto->img);
-                        }
+                   if($request->imagen != $proyecto->img){
+                         if(file_exists(public_path('images/img_projects/').$proyecto->img))
+                         {
+                            unlink(public_path('images/img_projects/').$proyecto->img);
+                         }
                     }
                     $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
                     $proyecto->img = $name_img;
