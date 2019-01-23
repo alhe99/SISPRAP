@@ -79349,13 +79349,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -80016,7 +80009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         swal({
           position: "center",
           type: "warning",
-          title: "Ocurrio un error al actualizar el proyecto",
+          title: "Ocurrio un error al actualizar la supervision",
           showConfirmButton: false,
           timer: 1000
         });
@@ -80138,7 +80131,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       el.classList.remove("abrirModal");
       this.modal = 0;
       this.date = "";
-      this.descripcion = "";
+      this.observacion = "";
+      this.images = "";
       //this.proyecto_id = 0;
       //this.images = [];
       //this.files = [];
@@ -83031,115 +83025,57 @@ var render = function() {
                                                           ]
                                                         ),
                                                         _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group"
-                                                          },
-                                                          [
-                                                            _c(
+                                                        _vm.tipoAccion2 == 1
+                                                          ? _c(
                                                               "div",
                                                               {
                                                                 staticClass:
-                                                                  "uploader",
-                                                                class: {
-                                                                  dragging:
-                                                                    _vm.isDragging
-                                                                },
-                                                                on: {
-                                                                  dragenter:
-                                                                    _vm.OnDragEnter,
-                                                                  dragleave:
-                                                                    _vm.OnDragLeave,
-                                                                  dragover: function(
-                                                                    $event
-                                                                  ) {
-                                                                    $event.preventDefault()
-                                                                  },
-                                                                  drop:
-                                                                    _vm.onDrop
-                                                                }
+                                                                  "form-group"
                                                               },
                                                               [
                                                                 _c(
                                                                   "div",
                                                                   {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "show",
-                                                                        rawName:
-                                                                          "v-show",
-                                                                        value:
-                                                                          _vm
-                                                                            .images
-                                                                            .length,
-                                                                        expression:
-                                                                          "images.length"
-                                                                      }
-                                                                    ],
                                                                     staticClass:
-                                                                      "upload-control"
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "label",
-                                                                      {
-                                                                        attrs: {
-                                                                          for:
-                                                                            "file"
-                                                                        }
+                                                                      "uploader",
+                                                                    class: {
+                                                                      dragging:
+                                                                        _vm.isDragging
+                                                                    },
+                                                                    on: {
+                                                                      dragenter:
+                                                                        _vm.OnDragEnter,
+                                                                      dragleave:
+                                                                        _vm.OnDragLeave,
+                                                                      dragover: function(
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
                                                                       },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "Seleccione una o mas imagenes"
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "div",
-                                                                  {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "show",
-                                                                        rawName:
-                                                                          "v-show",
-                                                                        value: !_vm
-                                                                          .images
-                                                                          .length,
-                                                                        expression:
-                                                                          "!images.length"
-                                                                      }
-                                                                    ]
+                                                                      drop:
+                                                                        _vm.onDrop
+                                                                    }
                                                                   },
                                                                   [
-                                                                    _c("i", {
-                                                                      staticClass:
-                                                                        "fa fa-cloud-upload"
-                                                                    }),
-                                                                    _vm._v(" "),
-                                                                    _c("p", [
-                                                                      _vm._v(
-                                                                        "Arrastre sus imagenes aqui!"
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("div", [
-                                                                      _vm._v(
-                                                                        "o"
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
                                                                     _c(
                                                                       "div",
                                                                       {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
                                                                         staticClass:
-                                                                          "file-input"
+                                                                          "upload-control"
                                                                       },
                                                                       [
                                                                         _c(
@@ -83152,7 +83088,46 @@ var render = function() {
                                                                           },
                                                                           [
                                                                             _vm._v(
-                                                                              "Seleccione"
+                                                                              "Seleccione una o mas imagenes"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value: !_vm
+                                                                              .images
+                                                                              .length,
+                                                                            expression:
+                                                                              "!images.length"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-cloud-upload"
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "p",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Arrastre sus imagenes aqui!"
                                                                             )
                                                                           ]
                                                                         ),
@@ -83160,123 +83135,132 @@ var render = function() {
                                                                           " "
                                                                         ),
                                                                         _c(
-                                                                          "input",
+                                                                          "div",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "o"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
                                                                           {
-                                                                            attrs: {
-                                                                              type:
-                                                                                "file",
-                                                                              id:
-                                                                                "file",
-                                                                              multiple:
-                                                                                ""
-                                                                            },
-                                                                            on: {
-                                                                              change:
-                                                                                _vm.onInputChange
-                                                                            }
-                                                                          }
+                                                                            staticClass:
+                                                                              "file-input"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "label",
+                                                                              {
+                                                                                attrs: {
+                                                                                  for:
+                                                                                    "file"
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "Seleccione"
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "input",
+                                                                              {
+                                                                                attrs: {
+                                                                                  type:
+                                                                                    "file",
+                                                                                  id:
+                                                                                    "file",
+                                                                                  multiple:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  change:
+                                                                                    _vm.onInputChange
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
                                                                         )
                                                                       ]
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "div",
-                                                                  {
-                                                                    directives: [
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
                                                                       {
-                                                                        name:
-                                                                          "show",
-                                                                        rawName:
-                                                                          "v-show",
-                                                                        value:
-                                                                          _vm
-                                                                            .images
-                                                                            .length,
-                                                                        expression:
-                                                                          "images.length"
-                                                                      }
-                                                                    ],
-                                                                    staticClass:
-                                                                      "images-preview"
-                                                                  },
-                                                                  _vm._l(
-                                                                    _vm.images,
-                                                                    function(
-                                                                      image,
-                                                                      index
-                                                                    ) {
-                                                                      return _c(
-                                                                        "div",
-                                                                        {
-                                                                          key: index,
-                                                                          staticClass:
-                                                                            "img-wrapper"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "button",
-                                                                            {
-                                                                              staticClass:
-                                                                                "remove",
-                                                                              on: {
-                                                                                click: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  _vm.removeImage(
-                                                                                    index
-                                                                                  )
-                                                                                }
-                                                                              }
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "i",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "mdi mdi-close-circle"
-                                                                                }
-                                                                              )
-                                                                            ]
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
-                                                                            "img",
-                                                                            {
-                                                                              attrs: {
-                                                                                src: image,
-                                                                                alt:
-                                                                                  "Imagen " +
-                                                                                  index
-                                                                              }
-                                                                            }
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "images-preview"
+                                                                      },
+                                                                      _vm._l(
+                                                                        _vm.images,
+                                                                        function(
+                                                                          image,
+                                                                          index
+                                                                        ) {
+                                                                          return _c(
                                                                             "div",
                                                                             {
+                                                                              key: index,
                                                                               staticClass:
-                                                                                "details"
+                                                                                "img-wrapper"
                                                                             },
                                                                             [
                                                                               _c(
-                                                                                "span",
+                                                                                "button",
                                                                                 {
                                                                                   staticClass:
-                                                                                    "name",
-                                                                                  domProps: {
-                                                                                    textContent: _vm._s(
-                                                                                      _vm
-                                                                                        .files[
+                                                                                    "remove",
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      _vm.removeImage(
                                                                                         index
-                                                                                      ]
-                                                                                        .name
-                                                                                    )
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "i",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mdi mdi-close-circle"
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "img",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    src: image,
+                                                                                    alt:
+                                                                                      "Imagen " +
+                                                                                      index
                                                                                   }
                                                                                 }
                                                                               ),
@@ -83284,204 +83268,184 @@ var render = function() {
                                                                                 " "
                                                                               ),
                                                                               _c(
-                                                                                "span",
+                                                                                "div",
                                                                                 {
                                                                                   staticClass:
-                                                                                    "size",
-                                                                                  domProps: {
-                                                                                    textContent: _vm._s(
-                                                                                      _vm.getFileSize(
-                                                                                        _vm
-                                                                                          .files[
-                                                                                          index
-                                                                                        ]
-                                                                                          .size
-                                                                                      )
-                                                                                    )
-                                                                                  }
-                                                                                }
+                                                                                    "details"
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "name",
+                                                                                      domProps: {
+                                                                                        textContent: _vm._s(
+                                                                                          _vm
+                                                                                            .files[
+                                                                                            index
+                                                                                          ]
+                                                                                            .name
+                                                                                        )
+                                                                                      }
+                                                                                    }
+                                                                                  ),
+                                                                                  _vm._v(
+                                                                                    " "
+                                                                                  ),
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "size",
+                                                                                      domProps: {
+                                                                                        textContent: _vm._s(
+                                                                                          _vm.getFileSize(
+                                                                                            _vm
+                                                                                              .files[
+                                                                                              index
+                                                                                            ]
+                                                                                              .size
+                                                                                          )
+                                                                                        )
+                                                                                      }
+                                                                                    }
+                                                                                  )
+                                                                                ]
                                                                               )
                                                                             ]
                                                                           )
-                                                                        ]
+                                                                        }
                                                                       )
-                                                                    }
-                                                                  )
+                                                                    )
+                                                                  ]
                                                                 )
                                                               ]
                                                             )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "row"
-                                                          },
-                                                          [
-                                                            _c(
+                                                          : _c(
                                                               "div",
                                                               {
                                                                 staticClass:
-                                                                  "col-md-6 col-sm-12 col-lg-6"
+                                                                  "form-group"
                                                               },
                                                               [
                                                                 _c(
-                                                                  "button",
-                                                                  {
-                                                                    ref:
-                                                                      "btntest",
-                                                                    staticClass:
-                                                                      "btn btn-primary font-weight-bold text-dark",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "button",
-                                                                      "data-toggle":
-                                                                        "collapse",
-                                                                      "data-target":
-                                                                        "#collapseExample",
-                                                                      "aria-expanded":
-                                                                        "false",
-                                                                      "aria-controls":
-                                                                        "collapseExample"
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _c("i", {
-                                                                      staticClass:
-                                                                        "mdi mdi-folder-multiple-image h4"
-                                                                    }),
-                                                                    _vm._v(
-                                                                      " Imágenes Supervisadas\n                                                "
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
                                                                   "div",
                                                                   {
-                                                                    ref:
-                                                                      "divCollapse",
                                                                     staticClass:
-                                                                      "collapse",
-                                                                    attrs: {
-                                                                      id:
-                                                                        "collapseExample"
-                                                                    }
+                                                                      "row"
                                                                   },
                                                                   [
                                                                     _c(
                                                                       "div",
                                                                       {
                                                                         staticClass:
-                                                                          "card card-body"
+                                                                          "col-md-6 col-sm-12 col-lg-6"
                                                                       },
                                                                       [
+                                                                        _vm._m(
+                                                                          8
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
                                                                         _c(
                                                                           "div",
                                                                           {
-                                                                            directives: [
-                                                                              {
-                                                                                name:
-                                                                                  "show",
-                                                                                rawName:
-                                                                                  "v-show",
-                                                                                value:
-                                                                                  _vm
-                                                                                    .arrayImagesUpd
-                                                                                    .length,
-                                                                                expression:
-                                                                                  "arrayImagesUpd.length"
-                                                                              }
-                                                                            ],
+                                                                            ref:
+                                                                              "divCollapse",
                                                                             staticClass:
-                                                                              "row images-preview",
+                                                                              "collapse",
                                                                             attrs: {
                                                                               id:
-                                                                                "seccion"
+                                                                                "collapseExample"
                                                                             }
                                                                           },
-                                                                          _vm._l(
-                                                                            _vm.arrayImagesUpd,
-                                                                            function(
-                                                                              image,
-                                                                              index
-                                                                            ) {
-                                                                              return _c(
-                                                                                "div",
-                                                                                {
-                                                                                  key: index,
-                                                                                  staticClass:
-                                                                                    "col-md-6 col-sm-12 col-lg-6 img-wrapper"
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "label",
-                                                                                    {
-                                                                                      attrs: {
-                                                                                        for: (image,
-                                                                                        index)
+                                                                          [
+                                                                            _c(
+                                                                              "div",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "card card-body"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "div",
+                                                                                  {
+                                                                                    directives: [
+                                                                                      {
+                                                                                        name:
+                                                                                          "show",
+                                                                                        rawName:
+                                                                                          "v-show",
+                                                                                        value:
+                                                                                          _vm
+                                                                                            .arrayImagesUpd
+                                                                                            .length,
+                                                                                        expression:
+                                                                                          "arrayImagesUpd.length"
                                                                                       }
-                                                                                    },
-                                                                                    [
-                                                                                      _c(
-                                                                                        "button",
+                                                                                    ],
+                                                                                    staticClass:
+                                                                                      "row images-preview",
+                                                                                    attrs: {
+                                                                                      id:
+                                                                                        "seccion"
+                                                                                    }
+                                                                                  },
+                                                                                  _vm._l(
+                                                                                    _vm.arrayImagesUpd,
+                                                                                    function(
+                                                                                      image,
+                                                                                      index
+                                                                                    ) {
+                                                                                      return _c(
+                                                                                        "div",
                                                                                         {
+                                                                                          key: index,
                                                                                           staticClass:
-                                                                                            "remove",
-                                                                                          on: {
-                                                                                            click: function(
-                                                                                              $event
-                                                                                            ) {
-                                                                                              _vm.removeImage(
-                                                                                                index
-                                                                                              )
-                                                                                            }
-                                                                                          }
+                                                                                            "col-md-6 col-sm-12 col-lg-6 img-wrapper"
                                                                                         },
                                                                                         [
                                                                                           _c(
-                                                                                            "i",
+                                                                                            "label",
                                                                                             {
-                                                                                              staticClass:
-                                                                                                "mdi mdi-close-circle"
-                                                                                            }
+                                                                                              attrs: {
+                                                                                                for: (image,
+                                                                                                index)
+                                                                                              }
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "img",
+                                                                                                {
+                                                                                                  attrs: {
+                                                                                                    src:
+                                                                                                      "images_superv/" +
+                                                                                                      image.img,
+                                                                                                    alt:
+                                                                                                      "Imagen " +
+                                                                                                      index
+                                                                                                  }
+                                                                                                }
+                                                                                              )
+                                                                                            ]
                                                                                           )
                                                                                         ]
-                                                                                      ),
-                                                                                      _vm._v(
-                                                                                        " "
-                                                                                      ),
-                                                                                      _c(
-                                                                                        "img",
-                                                                                        {
-                                                                                          staticClass:
-                                                                                            "text-center img-fluid",
-                                                                                          attrs: {
-                                                                                            src:
-                                                                                              "images_superv/" +
-                                                                                              image.img,
-                                                                                            alt:
-                                                                                              "Imagen " +
-                                                                                              index
-                                                                                          }
-                                                                                        }
                                                                                       )
-                                                                                    ]
+                                                                                    }
                                                                                   )
-                                                                                ]
-                                                                              )
-                                                                            }
-                                                                          )
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
                                                                         )
                                                                       ]
                                                                     )
                                                                   ]
                                                                 )
                                                               ]
-                                                            )
-                                                          ]
-                                                        ),
+                                                            ),
                                                         _vm._v(" "),
                                                         _c("pulse-loader", {
                                                           staticClass:
@@ -83826,6 +83790,32 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "btn btn-primary h5 font-weight-bold text-dark text-capitalize",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#collapseExample",
+          "aria-expanded": "false",
+          "aria-controls": "collapseExample"
+        }
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-playlist-plus i-crud",
+          staticStyle: { "margin-bottom": "-10px" }
+        }),
+        _vm._v(" Imagenes")
+      ]
+    )
   }
 ]
 render._withStripped = true

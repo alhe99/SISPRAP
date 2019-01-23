@@ -518,7 +518,7 @@
                                          <datetime type="date" :max-datetime="maxDatetime" v-model="date" value-zone="America/El_Salvador" input-class="form-control" placeholder="Fecha en la que fue realizada la supervisión"></datetime>
                                        </div>
                                      </div>
-                                     <div class="form-group">
+                                    <div v-if="tipoAccion2 == 1" class="form-group">
                                          <div class="uploader"
                                          @dragenter="OnDragEnter"
                                          @dragleave="OnDragLeave"
@@ -550,19 +550,10 @@
                                         </div>
                                        </div>
                                        <!--images con supervision-->
+                                       <div v-else class="form-group">
                                        <div class="row">
                                           <div class="col-md-6 col-sm-12 col-lg-6">
-                                                <button
-                                                    ref="btntest"
-                                                    class="btn btn-primary font-weight-bold text-dark"
-                                                    type="button"
-                                                    data-toggle="collapse"
-                                                    data-target="#collapseExample"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapseExample"
-                                                    >
-                                                    <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Supervisadas
-                                                </button>
+                                                <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Imagenes</button>
                                                 <div
                                                     class="collapse"
                                                     ref="divCollapse"
@@ -574,8 +565,8 @@
                                                           class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
                                                                  v-for="(image, index) in arrayImagesUpd" :key="index">
                                                                   <label :for="(image, index)">
-                                                              <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
-                                                            <img  class="text-center img-fluid" :src="'images_superv/'+image.img" :alt="`Imagen ${index}`"> 
+                                                              <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
+                                                            <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`"> 
                                                                   </label>   
                                                         </div>
                                                       </div>
@@ -583,6 +574,8 @@
                                                 </div>
                                           </div>
                                       </div>
+                                       </div>
+
                                      <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
                                    </div>
                                    <div class="modal-footer">
@@ -1325,7 +1318,7 @@
         swal({
           position: "center",
           type: "warning",
-          title: "Ocurrio un error al actualizar el proyecto",
+          title: "Ocurrio un error al actualizar la supervision",
           showConfirmButton: false,
           timer: 1000
         });
@@ -1440,7 +1433,8 @@
         el.classList.remove("abrirModal");
         this.modal = 0;
         this.date = "";
-        this.descripcion = "";
+        this.observacion = "";
+        this.images = "";
           //this.proyecto_id = 0;
           //this.images = [];
           //this.files = [];
