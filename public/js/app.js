@@ -80263,7 +80263,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       swal({
         title: "Esta seguro de activar esta Institucion?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -86458,7 +86458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       swal({
         title: "Esta seguro de desactivar este Proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -86491,7 +86491,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       swal({
         title: "Esta seguro de activar este Proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -89370,7 +89370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //console.log(vselect);
       swal({
         title: "Seguro de Rechazar Preincripcion?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -90556,7 +90556,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
       swal({
         title: "Segura que desea guardar los datos?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -91536,7 +91536,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       swal({
         title: "¿Dar acceso a que este estudiante llene perfil del proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -98104,7 +98104,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       swal({
         title: "¿Desea Guardar los cambios?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -98153,7 +98153,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       swal({
         title: "¿Desea Guardar los datos?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -98214,7 +98214,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         locale: 'es-es',
         maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
         format: 'yyyy-mm-dd'
-
       });
     },
     cerrarModalEnd: function cerrarModalEnd() {
@@ -98295,7 +98294,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       swal({
         title: "¿Desea Guardar los datos?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -100299,7 +100298,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       swal({
         title: "¿ Desea Generar Constancia?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -101144,7 +101143,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             swal({
                 title: "Esta seguro de eliminar este Sector?",
-                type: "warning",
+                type: "question",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
@@ -102203,7 +102202,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       swal({
         title: "Seguro de eliminar esta solicitud aprobada?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -104090,7 +104089,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       swal({
         title: "Esta seguro de desactivar este Proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -104123,7 +104122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       swal({
         title: "Esta seguro de activar este Proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",

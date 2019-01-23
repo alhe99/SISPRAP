@@ -547,7 +547,7 @@ export default {
     eliminarSolicitud(estudiante_id, proyecto_id) {
       swal({
         title: "Seguro de eliminar esta solicitud aprobada?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",

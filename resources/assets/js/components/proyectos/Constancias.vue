@@ -244,7 +244,7 @@ methods:{
   const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
   swal({
     title: "¿ Desea Generar Constancia?",
-    type: "warning",
+    type: "question",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",

@@ -475,7 +475,7 @@ export default {
     //console.log(vselect);
     swal({
       title: "Seguro de Rechazar Preincripcion?",
-      type: "warning",
+      type: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
