@@ -43,7 +43,11 @@
       <div class="modal-body">
         <div class="form-group row">
           <div class="col-md-12 col-sm-12 col-lg-12">
-              <v-select v-model="roles" :options="arrayRol" placeholder="Seleccione una Rol"></v-select>
+              <v-select v-model="roles" :options="arrayRol" placeholder="Seleccione una Rol">
+                <span slot="no-options">
+               No hay datos disponibles
+             </span>
+              </v-select>
           </div>
           </div>
         <div class="row">

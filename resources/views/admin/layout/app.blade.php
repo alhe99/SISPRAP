@@ -157,15 +157,14 @@
                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li> --}}
                                    <li role="separator" class="divider"></li>
                                    @if (Auth::user()->rol_id == 1)
-                                   <li><a @click="menu=21" class="btn btn-field"><i class="mdi mdi-square-inc-cash"></i> Recepción</a></li>
                                    <li role="separator" class="divider"></li>
-                                   <li><a @click="menu=15" class="btn btn-field"><i class="ti-settings"></i> Configuraciones</a></li>
+                                   <li><a style="cursor: pointer;" @click="menu=21"><i class="mdi mdi-square-inc-cash"></i> Recepción</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li><a style="cursor: pointer;" @click="menu=15" ><i class="mdi mdi-plus-circle mdi-18px"></i> Más opciones</a></li>
                                    @endif
-
                                    @if (Auth::user()->rol_id == 2)
                                    <li><button type="button" class="btn btn-link btn-field" data-toggle="modal" data-target="#exampleModal3"><i class="ti-settings"></i>&nbsp;Mi cuenta</button></li>
                                    @endif
-
                                    <li role="separator" class="divider"></li>
                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                                    </i> Cerrar sesion</a>

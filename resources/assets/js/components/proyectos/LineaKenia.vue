@@ -235,7 +235,11 @@
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
-           <br><v-select label="label" v-model="institucion_id" placeholder="Seleccione una institución" :options="arrayInstitucion"></v-select>
+           <br><v-select label="label" v-model="institucion_id" placeholder="Seleccione una institución" :options="arrayInstitucion">
+             <span slot="no-options">
+               No hay datos disponibles
+             </span>
+           </v-select>
          </div>
        </div><br>
        <div class="form-group row">

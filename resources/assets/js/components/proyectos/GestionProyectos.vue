@@ -37,7 +37,11 @@
       <div class="card-body">
        <div class="row">
          <div class="col-md-12">
-           <v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione Una Carrera Para ver el listado de estudiantes"></v-select>
+           <v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione Una Carrera Para ver el listado de estudiantes">
+             <span slot="no-options">
+               No hay datos disponibles
+             </span>
+           </v-select>
          </div>
        </div>
        <div class="row" v-if="carrera_selected != 0 && carrera_selected != null">
@@ -129,7 +133,7 @@
               <br><br><h5><strong>Num Carnet: </strong> {{gpObj.estudiante.codCarnet}}</h5><br>
               <div v-show="gpObj.estado != 'F'" class="row">
                 <div class="col-md-12">
-                  <button type="button" :disabled="gpObj.estado == 'F'" @click="abrirModalEnd()" class="button secondary">{{textoBtn}}</button>
+                  <button type="button" :disabled="gpObj.estado == 'F'" @click="abrirModalEnd()" class="button secondary"><i class="mdi  mdi-close-box"></i>&nbsp;{{textoBtn}}</button>
                 </div>
               </div>
             </div>

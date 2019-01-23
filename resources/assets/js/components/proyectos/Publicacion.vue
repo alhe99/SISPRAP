@@ -90,7 +90,9 @@
                   v-model="carrerasProy"
                   :options="arrayCarreras"
                   placeholder="Seleccione una o mas carreras"
-                  ></v-select>
+                  ><span slot="no-options">
+               No hay datos disponibles
+             </span></v-select>
                 </div>
                 <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
               </div>
@@ -157,7 +159,9 @@
               v-model="institucion"
               :options="arrayInstituciones"
               placeholder="Seleccione una Institución"
-              ></v-select>
+              ><span slot="no-options">
+               No hay datos disponibles
+             </span></v-select>
             </div>
           </div>
           <div class="form-group row" v-if="proyectoExterno == false">
