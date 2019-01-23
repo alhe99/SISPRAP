@@ -78728,15 +78728,5098 @@ exports.push([module.i, "\n.uploader[data-v-f70e4106] {\n  width: 100%;\n  backg
 
 /***/ }),
 /* 87 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: C:/laragon/www/SISPRAP/resources/assets/js/components/instituciones/Institucion.vue: Unexpected token (1247:0)\n\n\u001b[0m \u001b[90m 1245 | \u001b[39m\u001b[90m//\u001b[39m\n \u001b[90m 1246 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1247 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m      | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 1248 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\n \u001b[90m 1249 | \u001b[39m  data() {\n \u001b[90m 1250 | \u001b[39m    \u001b[36mreturn\u001b[39m {\u001b[0m\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //declaracion de variables
+      loadSpinner: 0,
+      verCard: 1,
+      img: 0,
+      institucion: [],
+      arrayInstitucion: [],
+      arrayProyectos: [],
+      arrayImages: [],
+      arrayImag: [],
+      nombre: "",
+      direccion: "",
+      phone: "",
+      tipoproceso_id: 0,
+      infoInsti: 0,
+      estado: 0,
+      email: "",
+      sector_id: 0,
+      institucion_id: 0,
+      buscar: "",
+      message: 0,
+      search: 0,
+      searchID: 0,
+      modal: 0,
+      tituloModal: "",
+      tipoAccion: 0,
+      tipoAccion2: 0,
+      paginationInsti: {},
+      paginationInstiDes: {},
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      offset: 3,
+      arraySectores: [],
+      arrayDepartamentos: [],
+      departamento_id: 0,
+      arrayMunicipios: [],
+      municipio_id: 0,
+      proceso: 0,
+      isDragging: false,
+      dragCount: 0,
+      files: [],
+      images: [],
+      imgS: [],
+      loading: false,
+      color: "#533fd0",
+      size: "20px",
+      date: "",
+      observacion: "",
+      supervision_id: 0,
+      proyecto_id: 0,
+      modalsTitle: "",
+      modalID: 0,
+      arrayInstitucionDes: [],
+      buscarID: "",
+      titleMRS: "",
+      supervision: {},
+      maxDatetime: new Date().toISOString().substring(0, 10),
+      nombreUpd: "",
+      modalSupervisores: 0,
+      tituloModalSupervisores: "",
+      nombreSupervisor: "",
+      telefonoSupervisor: "",
+      institucionSelected: 0,
+      arraySupervisores: [],
+      supervisor_id: 0,
+      updSupervisor: false,
+      nombreSupervisorUpd: "",
+      verProyectosExternos: false,
+      tipoProyectos: 'I',
+      arrayImagesUpd: []
+    };
+  },
+
+  computed: {
+    //paginacion
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    isActivedPID: function isActivedPID() {
+      return this.paginationInstiDes.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+      var from = this.pagination.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberPID: function pagesNumberPID() {
+      if (!this.paginationInstiDes.to) {
+        return [];
+      }
+      var from = this.paginationInstiDes.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.paginationInstiDes.last_page) {
+        to = this.paginationInstiDes.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    //verificar si no ha seleccionado un departamento
+    watchDepa: function watchDepa() {
+      if (this.departamento_id == null) {
+        this.municipio_id = 0;
+      }
+    },
+    validate: function validate() {
+      if (this.nombre == "" || this.direccion == "" || this.departamento_id == 0 || this.municipio_id == 0 || this.sector_id == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    /* removeOpcion: function(){
+       let me = this;
+       return $("#nombre").on('keyup',function(){
+         //me.opcion = "";
+         me.validateIfExist($(this).val().trim(),me.proceso);
+       });
+     } */
+  },
+  watch: {
+    verProyectosExternos: function verProyectosExternos() {
+      if (this.verProyectosExternos) {
+        this.tipoProyectos = 'E';
+      } else {
+        this.tipoProyectos = 'I';
+      }
+    },
+    departamento_id: function departamento_id() {
+      this.getMunicipios();
+
+      if (this.tipoAccion == 1) {
+        this.municipio_id = 0;
+      }
+    },
+    proceso: function proceso() {
+      this.listarInstitucion(1, this.proceso, "");
+      this.buscar = "";
+    },
+    infoInsti: function infoInsti() {
+      if (this.institucion.length > 0) {
+        this.getProyectosInsti(this.institucion["id"], 1, "", this.proceso);
+      }
+    },
+    supervision: function supervision() {
+      // if(this.supervision != {})
+      // {
+      this.observacion = this.supervision["observacion"];
+      this.date = this.supervision["fecha"];
+      this.arrayImagesUpd = this.supervision["imagenes"];
+      // }
+    }
+
+  },
+  methods: {
+    //listado de instituciones por busqueda
+    listarInstitucion: function listarInstitucion(page, proceso, buscar) {
+      var me = this;
+      var url = "/institucion?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      me.loadSpinner = 1;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayInstitucion = respuesta.institucion.data;
+        me.paginationInsti = respuesta.pagination;
+        me.pagination = me.paginationInsti;
+        //Por si no devuelve datos
+        me.loadSpinner = 0;
+        me.searchEmpty();
+      }).catch(function (error) {
+        me.loadSpinner = 0;
+        console.log(error);
+      });
+    },
+
+    //listado de instituciones desactivadas
+    listarInstitucionDes: function listarInstitucionDes(page, proceso, buscar) {
+      var me = this;
+      var url = "/institucion/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      me.loading = true;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayInstitucionDes = respuesta.institucion.data;
+        me.paginationInstiDes = respuesta.pagination;
+        //Por si no devuelve datos
+        if (me.arrayInstitucionDes.length == 0) {
+          me.searchID = 1;
+        } else {
+          me.searchID = 0;
+        }
+        me.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    getSectores: function getSectores() {
+      var me = this;
+      var url = "sector/selectSectores";
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySectores = respuesta;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    getSupervisores: function getSupervisores() {
+      var me = this;
+      me.loadSpinner = 1;
+      var url = route("getSupervisores", { "institucion_id": me.institucionSelected });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySupervisores = respuesta;
+        me.loadSpinner = 0;
+      }).catch(function (error) {
+        console.log(error);
+        me.loadSpinner = 0;
+      });
+    },
+    getMunicipios: function getMunicipios() {
+      var me = this;
+      var url = "GetMunicipios/" + this.departamento_id["value"];
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayMunicipios = respuesta;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    getDepartamentos: function getDepartamentos() {
+      var _this = this;
+
+      axios.get("GetDepartamentos").then(function (response) {
+        _this.arrayDepartamentos = response.data;
+      });
+    },
+
+    //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
+    getProyectosInsti: function getProyectosInsti(id, page, buscar, proceso) {
+      var me = this;
+      var url = "getProyectosByInstitucion?id=" + id + "&page=" + page + "&buscar=" + buscar + "&proceso=" + proceso + "&tipoProyecto=" + me.tipoProyectos;
+      me.loadSpinner = 1;
+      me.pagination = "";
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayProyectos = respuesta.proyectos.data;
+        me.pagination = respuesta.pagination;
+        //Por si no devuelve datos
+        me.loadSpinner = 0;
+        me.searchEmpty();
+      }).catch(function (error) {
+        me.loadSpinner = 0;
+        console.log(error);
+      });
+    },
+
+    //imagenes
+    getImg: function getImg(id) {
+      var me = this;
+      var url = "imgSuperv/" + id;
+      me.loading = true;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayImages = respuesta;
+        me.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+
+    //termina
+    getSupervision: function getSupervision(id) {
+      var me = this;
+      var url = "GetSupervision/" + id;
+      me.loading = true;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.supervision = respuesta;
+        me.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    registrarInstitucion: function registrarInstitucion() {
+      var me = this;
+      me.loading = true;
+
+      var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        console.log(respuesta);
+        if (respuesta == 'existe') {
+          swal({
+            position: "center",
+            type: "warning",
+            title: "Institución existente! Ingrese otro nombre",
+            showConfirmButton: true,
+            timer: 5000
+          });
+          me.nombre = "";
+          me.loading = false;
+          me.exist = false;
+        } else {
+          axios.post("/institucion/registrar", {
+            nombre: me.nombre,
+            direccion: me.direccion,
+            telefono: me.phone,
+            email: me.email,
+            sector_institucion_id: me.sector_id["value"],
+            municipio_id: me.municipio_id["value"],
+            proceso_id: me.tipoproceso_id
+          }).then(function (response) {
+            me.loadSpinner = 0;
+            swal({
+              position: "center",
+              type: "success",
+              title: "¡Institución agregada correctamente!",
+              showConfirmButton: false,
+              timer: 1000
+            });
+            me.cerrarModal();
+            me.listarInstitucion(1, me.proceso, "");
+          }).catch(function (error) {
+            me.loading = false;
+            console.log(error);
+          });
+        }
+      });
+    },
+    actualizarInstitucion: function actualizarInstitucion() {
+      var me = this;
+      me.loading = true;
+      var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        console.log(respuesta);
+        if (me.nombre != me.nombreUpd && respuesta == 'existe') {
+          swal({
+            position: "center",
+            type: "warning",
+            title: "Institución existente! Ingrese otro nombre",
+            showConfirmButton: true,
+            timer: 5000
+          });
+          me.loading = false;
+          me.exist = false;
+        } else {
+          axios.put("/institucion/actualizar", {
+            id: me.institucion_id,
+            nombre: me.nombre,
+            direccion: me.direccion,
+            telefono: me.phone,
+            email: me.email,
+            sector_institucion_id: me.sector_id["value"],
+            municipio_id: me.municipio_id["value"],
+            estado: me.estado,
+            proceso_id: me.tipoproceso_id
+          }).then(function (response) {
+            me.loadSpinner = 0;
+            swal({
+              position: "center",
+              type: "success",
+              title: "¡Institución actualizada correctamente!",
+              showConfirmButton: false,
+              timer: 1000
+            });
+            me.cerrarModal();
+            me.listarInstitucion(1, me.proceso, "");
+          }).catch(function (error) {
+            swal({
+              position: "center",
+              type: "warning",
+              title: "Ocurrio un error al actualizar una institucion",
+              showConfirmButton: false,
+              timer: 1000
+            });
+            me.loading = false;
+            console.log(error);
+          });
+        }
+      });
+    },
+    registrarSupervisor: function registrarSupervisor() {
+      var me = this;
+      swal({
+        title: "Esta seguro de guardar los datos?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          me.loadSpinner = 1;
+          var urlSave = route('saveSupervisor', { "nombre": me.nombreSupervisor, "telefono": me.telefonoSupervisor, "institucion_id": me.institucionSelected });
+          var urlValidate = route('validateSupervisor', { "nombre": me.nombreSupervisor });
+          axios.get(urlValidate).then(function (response) {
+            var respuesta = response.data;
+            if (respuesta == 'existe') {
+              swal({
+                position: "center",
+                type: "warning",
+                title: "Supervisor existente! Ingrese otro nombre!",
+                showConfirmButton: true,
+                timer: 5000
+              });
+              me.nombreSupervisor = "";
+              me.loadSpinner = 0;
+            } else {
+              axios.post(urlSave).then(function (response) {
+                swal({
+                  position: "center",
+                  type: "success",
+                  title: "¡Supervisor registrado correctamente!",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                me.nombreSupervisor = "";
+                me.telefonoSupervisor = "";
+                me.loadSpinner = 0;
+                me.updSupervisor = false;
+                me.getSupervisores();
+                var elem = me.$refs.divCollapse;
+                if (elem.classList.contains("collapse")) {
+                  elem.classList.remove("show");
+                }
+              }).catch(function (error) {
+                me.loadSpinner = 0;
+                swal({
+                  position: "center",
+                  type: "warning",
+                  title: "Ocurrio un error al procesar los datos",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                console.log(error.response.data.errors);
+              });
+            }
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    actualizarSupervisor: function actualizarSupervisor() {
+      var me = this;
+      swal({
+        title: "Esta seguro de guardar los datos?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          me.loadSpinner = 1;
+          var urlValidate = route('validateSupervisor', { "nombre": me.nombreSupervisor });
+          axios.get(urlValidate).then(function (response) {
+            var respuesta = response.data;
+            if (me.nombreSupervisor != me.nombreSupervisorUpd && respuesta == 'existe') {
+              swal({
+                position: "center",
+                type: "warning",
+                title: "Supervisor existente! Ingrese otro nombre!",
+                showConfirmButton: true,
+                timer: 5000
+              });
+              me.nombreSupervisor = me.nombreSupervisorUpd;
+              me.loadSpinner = 0;
+            } else {
+              axios.put("institucion/supervisor/update", {
+                id: me.supervisor_id,
+                nombre: me.nombreSupervisor,
+                telefono: me.telefonoSupervisor
+              }).then(function (response) {
+                swal({
+                  position: "center",
+                  type: "success",
+                  title: "¡Supervisor actualizado correctamente!",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                me.nombreSupervisor = "";
+                me.telefonoSupervisor = "";
+                me.nombreSupervisorUpd = "";
+                me.loadSpinner = 0;
+                me.updSupervisor = false;
+                me.getSupervisores();
+                var elem = me.$refs.divCollapse;
+                if (elem.classList.contains("collapse")) {
+                  elem.classList.remove("show");
+                }
+              }).catch(function (error) {
+                me.loadSpinner = 0;
+                swal({
+                  position: "center",
+                  type: "warning",
+                  title: "Ocurrio un error al procesar los datos",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                console.log(error.response.data.errors);
+              });
+            }
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    deleteSupervisor: function deleteSupervisor(id) {
+      var _this2 = this;
+
+      swal({
+        title: "Esta seguro de eliminar este Supervisor(a)?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          me.loadSpinner = 1;
+          axios.put("/institucion/supervisor/eliminar/" + id).then(function (response) {
+            me.getSupervisores();
+            swal("Eliminado!", "El Registro ha sido eliminado con exito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    editarSupervisor: function editarSupervisor() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      var me = this;
+      var elem = me.$refs.divCollapse;
+      elem.classList.add("show");
+      me.supervisor_id = data.id;
+      me.nombreSupervisor = data.nombre;
+      me.telefonoSupervisor = data.no_telefono;
+      me.updSupervisor = true;
+      me.nombreSupervisorUpd = data.nombre;
+    },
+    openModalSupervisores: function openModalSupervisores() {
+      var institucion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modalSupervisores = 1;
+      this.tituloModalSupervisores = institucion.nombre;
+      this.institucionSelected = institucion.id;
+      this.getSupervisores();
+    },
+    cerrarModalSupervisores: function cerrarModalSupervisores() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalSupervisores = 0;
+      this.tituloModalSupervisores = "";
+      this.institucionSelected = 0;
+      this.arraySupervisores = [];
+      this.updSupervisor = false;
+      this.supervisor_id = 0;
+      this.nombreSupervisor = "";
+      this.telefonoSupervisor = "";
+      this.nombreSupervisorUpd = "";
+    },
+    registrarSupervision: function registrarSupervision() {
+      var me = this;
+      //me.loading = true;
+      axios.post("/proyecto/registrar/supervision", {
+        proyecto_id: this.proyecto_id,
+        observacion: this.observacion,
+        fecha: this.date.substring(0, 10),
+        imagenes: this.images
+      }).then(function (response) {
+        //me.loading = false;
+        swal({
+          position: "center",
+          type: "success",
+          title: "¡Supervisión realizada correctamente!",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        me.clearDatos();
+      }).catch(function (error) {
+        console.log(error.response.data.errors);
+      });
+    },
+    validateIfExist: function validateIfExist(institucion, proceso_id) {
+      var me = this;
+    },
+    actualizarSupervision: function actualizarSupervision() {
+      var me = this;
+      axios.put("/supervision/actualizar", {
+        id: this.proyecto_id,
+        fecha: this.date.substring(0, 10),
+        observacion: this.observacion,
+        imagenes: this.images
+
+      }).then(function (response) {
+        swal({
+          position: "center",
+          type: "success",
+          title: "Supervision actualizado correctamente!",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        me.cerrarModalSuper();
+      }).catch(function (error) {
+        swal({
+          position: "center",
+          type: "warning",
+          title: "Ocurrio un error al actualizar la supervision",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        console.log(error);
+      });
+    },
+    abrirModal: function abrirModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      var el = document.body;
+      el.classList.add("abrirModal");
+      switch (modelo) {
+        case "institucion":
+          {
+            switch (accion) {
+              case "registrar":
+                {
+                  this.modal = 1;
+                  this.loading = false;
+                  this.tipoproceso_id = this.proceso;
+                  this.nombre = "";
+                  this.direccion = "";
+                  this.phone = "";
+                  this.email = "";
+                  this.municipio_id = 0;
+                  this.departamento_id = { value: 3, label: "Chalatenango" };
+                  this.sector_id = 0;
+                  this.tipoAccion = 1;
+                  this.tituloModal = "Registrar Institución";
+                  break;
+                }
+              case "actualizar":
+                {
+                  //Para obtener el departamento primero lo converti a JSON por el formato que pide vue-select y luego lo converti
+                  // a objeto mismo proceso con sector institucion y con municipios
+                  var depa = JSON.stringify({
+                    value: data.municipio.departamento["id"],
+                    label: data.municipio.departamento["nombre"]
+                  });
+                  var muni = JSON.stringify({
+                    value: data.municipio["id"],
+                    label: data.municipio["nombre"]
+                  });
+                  var sect = JSON.stringify({
+                    value: data.sector_institucion["id"],
+                    label: data.sector_institucion["sector"]
+                  });
+                  //Asignando los datos traidos a los controles del formulario
+                  this.modal = 1;
+                  this.loading = false;
+                  this.tituloModal = "Actualizar Institución";
+                  this.tipoAccion = 2;
+                  this.institucion_id = data["id"];
+                  this.idSector = data.sector_institucion;
+
+                  if (data.procesos.length > 1) {
+                    this.tipoproceso_id = 3;
+                    /*  else if(this.proceso == 2)
+                    this.tipoproceso_id = data.procesos[1].id; */
+                  } else {
+                    this.tipoproceso_id = data.procesos[0].id;
+                  }
+
+                  this.nombre = data["nombre"];
+                  this.nombreUpd = data["nombre"];
+                  this.direccion = data["direccion"];
+                  this.phone = data["telefono"];
+                  this.email = data["email"];
+                  this.departamento_id = JSON.parse(depa);
+                  this.municipio_id = JSON.parse(muni);
+                  this.sector_id = JSON.parse(sect);
+                  this.estado = data["estado"];
+                  break;
+                }
+            }
+          }
+      }
+      this.getSectores();
+      this.getMunicipios();
+      this.getDepartamentos();
+    },
+    abrirModalSuper: function abrirModalSuper(accion, id, nombre) {
+      var data = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modal = 1;
+      this.proyecto_id = id;
+      this.modalsTitle = nombre;
+      switch (accion) {
+        case 'registrar':
+          this.titleMRS = 'Registrar supervisión en: ';
+          this.tipoAccion2 = 1;
+
+          break;
+        case 'actualizar':
+          this.getSupervision(id);
+          this.titleMRS = 'Actualizar supervisión de: ';
+          this.tipoAccion2 = 2;
+
+          break;
+      }
+    },
+    abrirModalID: function abrirModalID() {
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modalID = 1;
+      this.listarInstitucionDes(1, this.proceso, "");
+    },
+    cerrarModalID: function cerrarModalID() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalID = 0;
+      this.arrayInstitucionDes = [];
+      this.paginationInstiDes = "";
+    },
+    cerrarModalSuper: function cerrarModalSuper() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modal = 0;
+      this.date = "";
+      this.observacion = "";
+      this.images = "";
+      //this.proyecto_id = 0;
+      //this.images = [];
+      //this.files = [];
+      //this.supervision = {};
+      this.modalsTitle = "";
+      this.titleMRS = "";
+      this.tipoAccion2 = 0;
+    },
+    cerrarModal: function cerrarModal() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modal = 0;
+      this.tituloModal = "";
+      this.tipoproceso_id = 0;
+      this.tipoAccion = 0;
+      this.nombre = "";
+      this.direccion = "";
+      this.phone = "";
+      this.email = "";
+      this.arrayMunicipios = [];
+      this.arrayDepartamentos = [];
+      this.arraySectores = [];
+      this.municipio_id = 0;
+      this.sector_id = 0;
+      this.departamento_id = 0;
+      this.institucion_id = 0;
+      this.estado = 0;
+      this.departamento_id = 0;
+      // this.errors = [];
+      this.nombreUpd = "";
+      this.loading = true;
+    },
+    cambiarPagina: function cambiarPagina(page, proceso, buscar) {
+      var me = this;
+      //Actualiza la pagina actual
+      me.pagination.current_page = page;
+      //Envia la pericion para visualizar los datos
+      if (me.arrayProyectos.length > 0) {
+        me.getProyectosInsti(me.institucion["id"], page, "", this.proceso);
+      } else {
+        me.listarInstitucion(page, proceso, buscar);
+      }
+    },
+    cambiarPaginaPID: function cambiarPaginaPID(page, proceso, buscar) {
+      var me = this;
+      //Actualiza la pagina actual
+      me.paginationInstiDes.current_page = page;
+      //Envia la pericion para visualizar los datos
+      me.listarInstitucionDes(page, this.proceso, "");
+    },
+    searchEmpty: function searchEmpty() {
+      var me = this;
+      //Aqui hice la verificacion si hay o no datos para mostrar mensaje
+      if (me.arrayInstitucion.length == 0) {
+        me.search = 1;
+      } else {
+        me.search = 0;
+      }
+      return me.search;
+    },
+    desactivarInstitucion: function desactivarInstitucion(id) {
+      var _this3 = this;
+
+      swal({
+        title: "Esta seguro de desactivar esta Institucion?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this3;
+          me.loadSpinner = 1;
+          axios.put("/institucion/desactivar", {
+            id: id
+          }).then(function (response) {
+            me.listarInstitucion(1, me.proceso, "");
+            swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    activarInstitucion: function activarInstitucion(id) {
+      var _this4 = this;
+
+      swal({
+        title: "Esta seguro de activar esta Institucion?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar!",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "btn update",
+        cancelButtonClass: "btn edit",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this4;
+          me.loadSpinner = 1;
+          axios.put("/institucion/activar", {
+            id: id
+          }).then(function (response) {
+            me.listarInstitucionDes(1, me.proceso, "");
+            me.listarInstitucion(1, me.proceso, "");
+            swal("Activada!", "La Institucion ha sido activada con exito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    verMasInfo: function verMasInfo() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      this.institucion = data;
+      this.infoInsti = this.institucion["id"];
+      this.getProyectosInsti(this.infoInsti, 1, "", this.proceso);
+      this.verCard = 2;
+      this.buscar = "";
+    },
+    back: function back() {
+      this.loadSpinner = 1;
+      this.institucion = [];
+      this.arrayProyectos = [];
+      this.infoInsti = 0;
+      this.pagination = this.paginationInsti;
+      this.verCard = 1;
+      this.buscar = "";
+      this.loadSpinner = 0;
+    },
+    OnDragEnter: function OnDragEnter(e) {
+      e.preventDefault();
+      this.dragCount++;
+      this.isDragging = true;
+      return false;
+    },
+    OnDragLeave: function OnDragLeave(e) {
+      e.preventDefault();
+      this.dragCount--;
+
+      if (this.dragCount <= 0) this.isDragging = false;
+    },
+    onInputChange: function onInputChange(e) {
+      var _this5 = this;
+
+      var files = e.target.files;
+      Array.from(files).forEach(function (file) {
+        return _this5.addImage(file);
+      });
+    },
+    onDrop: function onDrop(e) {
+      var _this6 = this;
+
+      e.preventDefault();
+      e.stopPropagation();
+      this.isDragging = false;
+      var files = e.dataTransfer.files;
+      Array.from(files).forEach(function (file) {
+        return _this6.addImage(file);
+      });
+    },
+    addImage: function addImage(file) {
+      var _this7 = this;
+
+      if (!file.type.match("image.*")) {
+        return;
+      }
+      this.loading = true;
+      this.files.push(file);
+      var img = new Image(),
+          reader = new FileReader();
+      reader.onload = function (e) {
+        return _this7.images.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      this.loading = false;
+    },
+    getFileSize: function getFileSize(size) {
+      var fSExt = ["Bytes", "KB", "MB", "GB"];
+      var i = 0;
+      while (size > 900) {
+        size /= 1024;
+        i++;
+      }
+      return Math.round(size * 100) / 100 + " " + fSExt[i];
+    },
+    removeImage: function removeImage(index) {
+      this.loading = true;
+      this.files.splice(index, 1);
+      this.images.splice(index, 1);
+      this.arrayImagesUpd.splice(index, 1);
+      this.loading = false;
+    },
+    clearDatos: function clearDatos() {
+      this.getProyectosInsti(this.infoInsti, 1, "", this.proceso);
+      this.date = "";
+      this.observacion = "";
+      this.proyecto_id = 0;
+      this.images = [];
+      this.files = [];
+      this.cerrarModalSuper();
+    }
+  },
+  components: {},
+  mounted: function mounted() {
+    this.maxDatetime;
+    this.getImg();
+  }
+});
 
 /***/ }),
 /* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-lg-12 col-md-12" },
+    [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.verCard == 1,
+              expression: "verCard == 1"
+            }
+          ],
+          staticClass: "card"
+        },
+        [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c("div", { staticClass: "panel-body" }, [
+                    _c("fieldset", [
+                      _c("legend", { staticClass: "text-center" }, [
+                        _vm._v(
+                          "Seleccione un proceso para ver las instituciones"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "panel panel-default" }, [
+                        _c("div", { staticClass: "panel-body" }, [
+                          _c("div", { staticClass: "row md-radio" }, [
+                            _c("div", { staticClass: "col-md-6 text-center" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.proceso,
+                                    expression: "proceso"
+                                  }
+                                ],
+                                attrs: {
+                                  id: "radioSS",
+                                  value: "1",
+                                  type: "radio",
+                                  name: "radioP"
+                                },
+                                domProps: { checked: _vm._q(_vm.proceso, "1") },
+                                on: {
+                                  change: function($event) {
+                                    _vm.proceso = "1"
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "radioSS" } }, [
+                                _vm._v("Servicio Social")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-center" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.proceso,
+                                    expression: "proceso"
+                                  }
+                                ],
+                                attrs: {
+                                  id: "radioPP",
+                                  value: "2",
+                                  type: "radio",
+                                  name: "radioP"
+                                },
+                                domProps: { checked: _vm._q(_vm.proceso, "2") },
+                                on: {
+                                  change: function($event) {
+                                    _vm.proceso = "2"
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "radioPP" } }, [
+                                _vm._v("Práctica Profesional")
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm.proceso !== 0 && _vm.verCard == 1
+        ? _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6 col-sm-12 col-lg-6  " }, [
+                  _vm.proceso == 1
+                    ? _c(
+                        "h3",
+                        { staticClass: " align-baseline font-weight-bold" },
+                        [_vm._v("Listado de instituciones de Servicio Social")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.proceso == 2
+                    ? _c(
+                        "h3",
+                        { staticClass: " align-baseline font-weight-bold" },
+                        [
+                          _vm._v(
+                            "Listado de instituciones de Practica Profesional"
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-5 col-sm-12 col-lg-5" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group row" },
+                    [
+                      _c("mdc-textfield", {
+                        staticClass: "col-md-12",
+                        attrs: {
+                          type: "text",
+                          label: "Nombre de la institución"
+                        },
+                        on: {
+                          keyup: function($event) {
+                            _vm.listarInstitucion(1, _vm.proceso, _vm.buscar)
+                          }
+                        },
+                        model: {
+                          value: _vm.buscar,
+                          callback: function($$v) {
+                            _vm.buscar = $$v
+                          },
+                          expression: "buscar"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-1 col-sm-1 col-lg-1 text-center" },
+                  [
+                    _c("div", { staticClass: "btn-group pull-xs-right" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu dropdown-menu-right",
+                          attrs: { "aria-labelledby": "mw2" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item d-block menu",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.abrirModal("institucion", "registrar")
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-plus-box" }),
+                              _vm._v(" Registrar Institución")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item d-block menu",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.abrirModalID()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-delete-empty" }),
+                              _vm._v(" Instituciones Desactivadas")
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12 col-lg-12 col-sm-12" }, [
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-striped table-bordered table-mc-light-blue",
+                        attrs: { id: "myTable" }
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.arrayInstitucion, function(institucion) {
+                            return _c("tr", { key: institucion.id }, [
+                              _c("td", {
+                                domProps: {
+                                  textContent: _vm._s(institucion.nombre)
+                                }
+                              }),
+                              _vm._v(" "),
+                              institucion.email != null
+                                ? _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("truncate")(
+                                          institucion.email,
+                                          15
+                                        )
+                                      )
+                                    )
+                                  ])
+                                : _c("td", { staticClass: "text-center" }),
+                              _vm._v(" "),
+                              _c("td", {
+                                staticClass: "text-center",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    institucion.sector_institucion.sector
+                                  )
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("td", {
+                                staticClass: "text-center",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    institucion.municipio.nombre
+                                  )
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "text-center" },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button blue",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Editar datos de la institución"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.abrirModal(
+                                            "institucion",
+                                            "actualizar",
+                                            institucion
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-border-color"
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  institucion.estado
+                                    ? [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "button red",
+                                            attrs: {
+                                              type: "button",
+                                              "data-toggle": "tooltip",
+                                              title: "Desactivar institución"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.desactivarInstitucion(
+                                                  institucion.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-delete-variant"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button dark",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Supervisores"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.openModalSupervisores(institucion)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "mdi mdi-eye" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button secondary ",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Ver más información"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.verMasInfo(institucion)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-playlist-plus"
+                                      })
+                                    ]
+                                  )
+                                ],
+                                2
+                              )
+                            ])
+                          })
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("nav", [
+                      _c(
+                        "ul",
+                        { staticClass: "pagination" },
+                        [
+                          _vm.pagination.current_page > 1
+                            ? _c("li", { staticClass: "page-item" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "page-link font-weight-bold",
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.cambiarPagina(
+                                          _vm.pagination.current_page - 1,
+                                          _vm.proceso,
+                                          _vm.buscar
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Ant")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(_vm.pagesNumber, function(page) {
+                            return _c(
+                              "li",
+                              {
+                                key: page,
+                                staticClass: "page-item",
+                                class: [page == _vm.isActived ? "active" : ""]
+                              },
+                              [
+                                _c("a", {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" },
+                                  domProps: { textContent: _vm._s(page) },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.cambiarPagina(
+                                        page,
+                                        _vm.proceso,
+                                        _vm.buscar
+                                      )
+                                    }
+                                  }
+                                })
+                              ]
+                            )
+                          }),
+                          _vm.pagination.current_page < _vm.pagination.last_page
+                            ? _c("li", { staticClass: "page-item" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "page-link font-weight-bold",
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.cambiarPagina(
+                                          _vm.pagination.current_page + 1,
+                                          _vm.proceso,
+                                          _vm.buscar
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Sig")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("small", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.arrayInstitucion.length != 0,
+                                expression: "arrayInstitucion.length != 0"
+                              }
+                            ],
+                            staticClass: "text-muted pagination-count",
+                            domProps: {
+                              textContent: _vm._s(
+                                "(Mostrando " +
+                                  _vm.arrayInstitucion.length +
+                                  " de " +
+                                  _vm.pagination.total +
+                                  " registros)"
+                              )
+                            }
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12 col-sm-12 col-lg-12" }, [
+                  _c("div", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.search == 1,
+                        expression: "search == 1"
+                      }
+                    ],
+                    staticClass:
+                      "alert alert-primary h6 font-weight-bold text-center",
+                    attrs: { role: "alert" },
+                    domProps: {
+                      textContent: _vm._s(
+                        "No se encontraron resultados o No hay registros"
+                      )
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                class: { mostrar: _vm.modalSupervisores },
+                attrs: {
+                  role: "dialog",
+                  "aria-labelledby": "exampleModalLabel",
+                  "aria-hidden": "true"
+                }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", { staticClass: "modal-title text-white" }, [
+                        _vm._v(
+                          _vm._s(
+                            "Supervisores de " + _vm.tituloModalSupervisores
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: {
+                            type: "button",
+                            "data-dismiss": "modal",
+                            "aria-label": "Close"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.cerrarModalSupervisores()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-white",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("×")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          ref: "divCollapse",
+                          staticClass: "collapse",
+                          attrs: { id: "collapseExample" }
+                        },
+                        [
+                          _c("fieldset", [
+                            _c("div", { staticClass: "panel panel-default" }, [
+                              _c("div", { staticClass: "panel-body" }, [
+                                _c("div", { staticClass: "row m-1" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 form-group" },
+                                    [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "font-weight-bold",
+                                          attrs: { for: "" }
+                                        },
+                                        [_vm._v("Ingrese Nombre*")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nombreSupervisor,
+                                            expression: "nombreSupervisor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: {
+                                          value: _vm.nombreSupervisor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nombreSupervisor =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 form-group" },
+                                    [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "font-weight-bold",
+                                          attrs: { for: "" }
+                                        },
+                                        [_vm._v("Ingrese Teléfono")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "mask",
+                                            rawName: "v-mask",
+                                            value: "########",
+                                            expression: "'########'"
+                                          },
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.telefonoSupervisor,
+                                            expression: "telefonoSupervisor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: {
+                                          value: _vm.telefonoSupervisor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.telefonoSupervisor =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 text-right" },
+                                    [
+                                      !_vm.updSupervisor
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "button blue text-right",
+                                              class: [
+                                                _vm.nombreSupervisor == ""
+                                                  ? "disabled"
+                                                  : ""
+                                              ],
+                                              attrs: {
+                                                type: "button",
+                                                disabled:
+                                                  _vm.nombreSupervisor == ""
+                                              },
+                                              on: {
+                                                click: _vm.registrarSupervisor
+                                              }
+                                            },
+                                            [_vm._v("Guardar Datos")]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.updSupervisor
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "button blue text-right",
+                                              class: [
+                                                _vm.nombreSupervisor == ""
+                                                  ? "disabled"
+                                                  : ""
+                                              ],
+                                              attrs: {
+                                                type: "button",
+                                                disabled:
+                                                  _vm.nombreSupervisor == ""
+                                              },
+                                              on: {
+                                                click: _vm.actualizarSupervisor
+                                              }
+                                            },
+                                            [_vm._v("Actualizar Información")]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("fieldset", [
+                        _c("div", { staticClass: "panel panel-default" }, [
+                          _c("div", { staticClass: "panel-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _vm._m(3),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("div", { staticClass: "table-responsive" }, [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "table table-striped table-bordered table-mc-light-blue",
+                                      attrs: { id: "myTable" }
+                                    },
+                                    [
+                                      _vm._m(4),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tbody",
+                                        _vm._l(_vm.arraySupervisores, function(
+                                          item
+                                        ) {
+                                          return _vm.arraySupervisores.length >
+                                            0
+                                            ? _c("tr", { key: item.id }, [
+                                                _c("th", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      item.nombre
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("th", {
+                                                  staticClass: "text-center",
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      item.no_telefono == null
+                                                        ? "------"
+                                                        : item.no_telefono
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "th",
+                                                  {
+                                                    staticClass: "text-center"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "button blue",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-toggle":
+                                                            "tooltip",
+                                                          title:
+                                                            "Editar Supervisor"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.editarSupervisor(
+                                                              item
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "mdi mdi-border-color"
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "button red",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-toggle":
+                                                            "tooltip",
+                                                          title:
+                                                            "Eliminar Supervisor"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.deleteSupervisor(
+                                                              item.id
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "mdi mdi-delete"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            : _vm._e()
+                                        })
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm.arraySupervisores.length == 0
+                                  ? _c("div", { staticClass: "row" }, [
+                                      _vm._m(5)
+                                    ])
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModalSupervisores()
+                                }
+                              }
+                            },
+                            [_vm._v("Cerrar")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                class: { mostrar: _vm.modalID },
+                attrs: {
+                  role: "dialog",
+                  "aria-labelledby": "exampleModalLabel",
+                  "aria-hidden": "true"
+                }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", { staticClass: "modal-title text-white" }, [
+                        _vm._v("Instituciones Desactivadas")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: {
+                            type: "button",
+                            "data-dismiss": "modal",
+                            "aria-label": "Close"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.cerrarModalID()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-white",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("×")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "bmd-form-group bmd-collapse-inline pull-xs-right"
+                        },
+                        [
+                          _vm._m(6),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "collapse",
+                              attrs: { id: "collapse-search" }
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.buscarID,
+                                    expression: "buscarID"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  "data-toggle": "tooltip",
+                                  title: "Buscar Registros",
+                                  type: "text",
+                                  id: "search",
+                                  placeholder:
+                                    "Ingrese Nombre de la Institución/Empresa"
+                                },
+                                domProps: { value: _vm.buscarID },
+                                on: {
+                                  keyup: function($event) {
+                                    _vm.listarInstitucionDes(
+                                      1,
+                                      _vm.proceso,
+                                      _vm.buscarID
+                                    )
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.buscarID = $event.target.value
+                                  }
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-lg-12 col-sm-12" },
+                          [
+                            _c("div", { staticClass: "table-responsive" }, [
+                              _c(
+                                "table",
+                                {
+                                  staticClass:
+                                    "table table-striped table-bordered table-mc-light-blue"
+                                },
+                                [
+                                  _vm._m(7),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tbody",
+                                    _vm._l(_vm.arrayInstitucionDes, function(
+                                      instituciondes
+                                    ) {
+                                      return _c(
+                                        "tr",
+                                        { key: instituciondes.id },
+                                        [
+                                          _c("td", {
+                                            domProps: {
+                                              textContent: _vm._s(
+                                                instituciondes.nombre
+                                              )
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("td", {
+                                            domProps: {
+                                              textContent: _vm._s(
+                                                instituciondes.telefono
+                                              )
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("td", {
+                                            domProps: {
+                                              textContent: _vm._s(
+                                                instituciondes.email
+                                              )
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              [
+                                                _c("h4", [
+                                                  instituciondes.estado == 0
+                                                    ? _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "badge badge-pill badge-danger"
+                                                        },
+                                                        [_vm._v("Desactivada")]
+                                                      )
+                                                    : _vm._e()
+                                                ])
+                                              ]
+                                            ],
+                                            2
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-primary",
+                                                    attrs: {
+                                                      type: "button",
+                                                      "data-toggle": "tooltip",
+                                                      title:
+                                                        "Activar institución"
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.activarInstitucion(
+                                                          instituciondes.id
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "mdi mdi-check-circle i-crud"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ],
+                                            2
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("nav", [
+                                _c(
+                                  "ul",
+                                  { staticClass: "pagination" },
+                                  [
+                                    _vm.paginationInstiDes.current_page > 1
+                                      ? _c("li", { staticClass: "page-item" }, [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "page-link font-weight-bold",
+                                              attrs: { href: "#" },
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.cambiarPaginaPID(
+                                                    _vm.paginationInstiDes
+                                                      .current_page - 1,
+                                                    _vm.proceso,
+                                                    _vm.buscar
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v("Ant")]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.pagesNumberPID, function(page) {
+                                      return _c(
+                                        "li",
+                                        {
+                                          key: page,
+                                          staticClass: "page-item",
+                                          class: [
+                                            page == _vm.isActivedPID
+                                              ? "active"
+                                              : ""
+                                          ]
+                                        },
+                                        [
+                                          _c("a", {
+                                            staticClass: "page-link",
+                                            attrs: { href: "#" },
+                                            domProps: {
+                                              textContent: _vm._s(page)
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.cambiarPaginaPID(
+                                                  page,
+                                                  _vm.proceso,
+                                                  _vm.buscar
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    }),
+                                    _vm.paginationInstiDes.current_page <
+                                    _vm.paginationInstiDes.last_page
+                                      ? _c("li", { staticClass: "page-item" }, [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "page-link font-weight-bold",
+                                              attrs: { href: "#" },
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.cambiarPaginaPID(
+                                                    _vm.paginationInstiDes
+                                                      .current_page + 1,
+                                                    _vm.proceso,
+                                                    _vm.buscar
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v("Sig")]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c("small", {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value:
+                                            _vm.arrayInstitucionDes.length != 0,
+                                          expression:
+                                            "arrayInstitucionDes.length != 0"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "text-muted pagination-count",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          "(Mostrando " +
+                                            _vm.arrayInstitucionDes.length +
+                                            " de " +
+                                            _vm.paginationInstiDes.total +
+                                            " registros)"
+                                        )
+                                      }
+                                    })
+                                  ],
+                                  2
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "col-md-12 col-sm-12 col-lg-12"
+                                },
+                                [
+                                  _c("div", {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.searchID == 1,
+                                        expression: "searchID == 1"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "alert alert-primary h6 font-weight-bold text-center",
+                                    attrs: { role: "alert" },
+                                    domProps: {
+                                      textContent: _vm._s(
+                                        "No se encontraron resultados o No hay registros"
+                                      )
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("pulse-loader", {
+                                    staticClass: "text-center",
+                                    attrs: {
+                                      loading: _vm.loading,
+                                      color: _vm.color,
+                                      size: _vm.size
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModalID()
+                                }
+                              }
+                            },
+                            [_vm._v("Cerrar")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                class: { mostrar: _vm.modal },
+                attrs: {
+                  role: "dialog",
+                  "aria-labelledby": "exampleModalLabel",
+                  "aria-hidden": "true"
+                }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", {
+                        staticClass: "modal-title text-white",
+                        domProps: { textContent: _vm._s(_vm.tituloModal) }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: {
+                            type: "button",
+                            "data-dismiss": "modal",
+                            "aria-label": "Close"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.cerrarModal()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-white",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("×")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "panel panel-default" }, [
+                            _c("div", { staticClass: "panel-body" }, [
+                              _c("fieldset", [
+                                _c("legend", { staticClass: "text-center" }, [
+                                  _vm._v(
+                                    "Seleccione Tipo de proceso de la institución"
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "panel panel-default" },
+                                  [
+                                    _c("div", { staticClass: "panel-body" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "row md-radio" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-md-4 text-center"
+                                            },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.tipoproceso_id,
+                                                    expression: "tipoproceso_id"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  id: "ss",
+                                                  value: "1",
+                                                  type: "radio",
+                                                  name: "radiosP",
+                                                  required: ""
+                                                },
+                                                domProps: {
+                                                  checked: _vm._q(
+                                                    _vm.tipoproceso_id,
+                                                    "1"
+                                                  )
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    _vm.tipoproceso_id = "1"
+                                                  }
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                { attrs: { for: "ss" } },
+                                                [_vm._v("Servicio Social")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-md-4 text-center"
+                                            },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.tipoproceso_id,
+                                                    expression: "tipoproceso_id"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  id: "pp",
+                                                  value: "2",
+                                                  type: "radio",
+                                                  name: "radiosP",
+                                                  required: ""
+                                                },
+                                                domProps: {
+                                                  checked: _vm._q(
+                                                    _vm.tipoproceso_id,
+                                                    "2"
+                                                  )
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    _vm.tipoproceso_id = "2"
+                                                  }
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "d-inline",
+                                                  attrs: { for: "pp" }
+                                                },
+                                                [_vm._v("Práctica Profesional")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-md-4 text-center"
+                                            },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.tipoproceso_id,
+                                                    expression: "tipoproceso_id"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  id: "a",
+                                                  value: "3",
+                                                  type: "radio",
+                                                  name: "ambos",
+                                                  required: ""
+                                                },
+                                                domProps: {
+                                                  checked: _vm._q(
+                                                    _vm.tipoproceso_id,
+                                                    "3"
+                                                  )
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    _vm.tipoproceso_id = "3"
+                                                  }
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                { attrs: { for: "a" } },
+                                                [_vm._v("Ambos")]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12" },
+                          [
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("pulse-loader", {
+                              staticClass: "text-center",
+                              attrs: {
+                                loading: _vm.loading,
+                                color: _vm.color,
+                                size: _vm.size
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c("label", { attrs: { for: "nombre" } }, [
+                              _vm._v("Nombre de la institución*")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.nombre,
+                                  expression: "nombre"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "nombre",
+                                name: "nombre",
+                                autocomplete: "off"
+                              },
+                              domProps: { value: _vm.nombre },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.nombre = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c("label", { attrs: { for: "direccion" } }, [
+                              _vm._v("Dirección exacta*")
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.direccion,
+                                  expression: "direccion"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "direccion",
+                                name: "direccion",
+                                rows: "3"
+                              },
+                              domProps: { value: _vm.direccion },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.direccion = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c("label", { attrs: { for: "phone" } }, [
+                              _vm._v("Teléfono")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "mask",
+                                  rawName: "v-mask",
+                                  value: "########",
+                                  expression: "'########'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.phone,
+                                  expression: "phone"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "phone",
+                                id: "phone",
+                                required: ""
+                              },
+                              domProps: { value: _vm.phone },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.phone = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c("label", { attrs: { for: "email" } }, [
+                              _vm._v("Correo Electrónico")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.email,
+                                  expression: "email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "email",
+                                name: "email",
+                                id: "email",
+                                autocomplete: "off"
+                              },
+                              domProps: { value: _vm.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.email = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c("label", { attrs: { for: "email" } }, [
+                              _vm._v("Seleccione un Departamento* ")
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _c("v-select", {
+                              attrs: {
+                                label: "label",
+                                onChange: _vm.watchDepa,
+                                placeholder: "Seleccione un departamento",
+                                options: _vm.arrayDepartamentos
+                              },
+                              model: {
+                                value: _vm.departamento_id,
+                                callback: function($$v) {
+                                  _vm.departamento_id = $$v
+                                },
+                                expression: "departamento_id"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _vm.departamento_id !== null
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                              [
+                                _c("br"),
+                                _c("label", { attrs: { for: "email" } }, [
+                                  _vm._v("Seleccione un Municipio*")
+                                ]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _c("v-select", {
+                                  attrs: {
+                                    label: "label",
+                                    placeholder: "Seleccione un municipio",
+                                    options: _vm.arrayMunicipios
+                                  },
+                                  model: {
+                                    value: _vm.municipio_id,
+                                    callback: function($$v) {
+                                      _vm.municipio_id = $$v
+                                    },
+                                    expression: "municipio_id"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                          [
+                            _c("br"),
+                            _c("label", { attrs: { for: "email" } }, [
+                              _vm._v("Seleccione un Sector de la Institución*")
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _c("v-select", {
+                              attrs: {
+                                label: "label",
+                                placeholder:
+                                  "Seleccione un sector de la institucion",
+                                options: _vm.arraySectores
+                              },
+                              model: {
+                                value: _vm.sector_id,
+                                callback: function($$v) {
+                                  _vm.sector_id = $$v
+                                },
+                                expression: "sector_id"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button red",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModal()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "mdi mdi-close-box" }),
+                              _vm._v(" Cancelar")
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.tipoAccion == 1
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "button blue",
+                                  class: [
+                                    _vm.validate == true ? "disabled" : ""
+                                  ],
+                                  attrs: {
+                                    type: "button",
+                                    disabled: _vm.validate == true,
+                                    dense: ""
+                                  },
+                                  on: { click: _vm.registrarInstitucion }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-content-save"
+                                  }),
+                                  _vm._v(" Guardar Institución")
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.tipoAccion == 2
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "button blue",
+                                  class: [
+                                    _vm.validate == true ? "disabled" : ""
+                                  ],
+                                  attrs: {
+                                    type: "button",
+                                    disabled: _vm.validate == true,
+                                    dense: ""
+                                  },
+                                  on: { click: _vm.actualizarInstitucion }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-content-save"
+                                  }),
+                                  _vm._v(" Actualizar Institución")
+                                ]
+                              )
+                            : _vm._e()
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _vm.loadSpinner == 1
+          ? _c("div", { staticClass: "col-md-12 loading text-center" })
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.verCard == 2,
+                expression: "verCard == 2"
+              }
+            ],
+            staticClass: "row"
+          },
+          [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "panel panel-default" }, [
+                        _c("div", { staticClass: "panel-body" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c("fieldset", [
+                                _c(
+                                  "legend",
+                                  {
+                                    staticClass:
+                                      "text-center font-weight-bold h5"
+                                  },
+                                  [_vm._v("Datos completos de la institución")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "panel panel-default" },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "panel-body",
+                                        attrs: { id: "info" }
+                                      },
+                                      [
+                                        _c("h5", [
+                                          _c("strong", [_vm._v("Nombre: ")]),
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(
+                                                _vm.institucion["nombre"]
+                                              ) +
+                                              " "
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("h5", [
+                                          _c("strong", [_vm._v("Dirección: ")]),
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.institucion["direccion"]
+                                            ) + " "
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("h5", [
+                                          _c("strong", [_vm._v("Telefono: ")]),
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.institucion["telefono"]
+                                            ) + " "
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _vm._l(
+                                          _vm.institucion.sector_institucion,
+                                          function(sector) {
+                                            return _c(
+                                              "div",
+                                              { key: sector.id },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    directives: [
+                                                      {
+                                                        name: "show",
+                                                        rawName: "v-show",
+                                                        value:
+                                                          sector.length > 4,
+                                                        expression:
+                                                          "sector.length > 4"
+                                                      }
+                                                    ]
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        "Sector de la institucion: "
+                                                      )
+                                                    ]),
+                                                    _vm._v(" " + _vm._s(sector))
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                        _vm._v(" "),
+                                        _c("h5", [
+                                          _c("strong", [_vm._v("Correo: ")]),
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-link text-lowercase",
+                                              attrs: {
+                                                href:
+                                                  "mailto:" +
+                                                  _vm.institucion["email"],
+                                                id: "link-email"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(_vm.institucion["email"])
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "col-md-6 col-sm-12 col-lg-6  "
+                                  },
+                                  [
+                                    _c(
+                                      "h3",
+                                      {
+                                        staticClass:
+                                          " align-baseline font-weight-bold"
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Proyectos de la institucion " +
+                                            _vm._s(_vm.institucion["nombre"])
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "col-md-6 col-sm-12 col-lg-6"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group row" },
+                                      [
+                                        _c("mdc-textfield", {
+                                          staticClass: "col-md-12",
+                                          attrs: {
+                                            type: "text",
+                                            label:
+                                              "Buscar por Nombre del proyecto"
+                                          },
+                                          on: {
+                                            keyup: function($event) {
+                                              _vm.getProyectosInsti(
+                                                _vm.institucion.id,
+                                                1,
+                                                _vm.buscar,
+                                                _vm.proceso
+                                              )
+                                            }
+                                          },
+                                          model: {
+                                            value: _vm.buscar,
+                                            callback: function($$v) {
+                                              _vm.buscar = $$v
+                                            },
+                                            expression: "buscar"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "col-md-12 col-lg-12 col-sm-12"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "table-responsive" },
+                                      [
+                                        _c(
+                                          "table",
+                                          {
+                                            staticClass:
+                                              "table table-striped table-bordered table-mc-light-blue"
+                                          },
+                                          [
+                                            _c(
+                                              "thead",
+                                              { staticClass: "thead-primary" },
+                                              [
+                                                _c("tr", [
+                                                  _c("th", [
+                                                    _vm._v(
+                                                      "Nombre del proyecto"
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Fecha de publicación"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm.proceso == 2
+                                                    ? _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-center"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Carrera del proyecto"
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Estado Supervisión"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [_vm._v("Acciones")]
+                                                  )
+                                                ])
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "tbody",
+                                              _vm._l(
+                                                _vm.arrayProyectos,
+                                                function(proyecto) {
+                                                  return _c(
+                                                    "tr",
+                                                    { key: proyecto.id },
+                                                    [
+                                                      _c("td", {
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            proyecto.nombre
+                                                          )
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c("td", {
+                                                        staticClass:
+                                                          "text-center",
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            proyecto.created_at.substring(
+                                                              0,
+                                                              10
+                                                            )
+                                                          )
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _vm.proceso == 2
+                                                        ? _c("td", {
+                                                            staticClass:
+                                                              "text-center",
+                                                            domProps: {
+                                                              textContent: _vm._s(
+                                                                proyecto
+                                                                  .carre_proy[0]
+                                                                  .nombre
+                                                              )
+                                                            }
+                                                          })
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center"
+                                                        },
+                                                        [
+                                                          [
+                                                            _c("h4", [
+                                                              proyecto.supervision !=
+                                                                null ||
+                                                              proyecto.supervision !=
+                                                                undefined
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge h1 badge-pill badge-primary"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Supervisado"
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge badge-pill badge-danger"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "No Supervisado"
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                            ])
+                                                          ]
+                                                        ],
+                                                        2
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center"
+                                                        },
+                                                        [
+                                                          proyecto.supervision ==
+                                                            null ||
+                                                          proyecto.supervision ==
+                                                            undefined
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-primary text-capitalize",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button",
+                                                                    "data-toggle":
+                                                                      "tooltip",
+                                                                    title:
+                                                                      "Registrar nueva supervisión a este proyecto"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.abrirModalSuper(
+                                                                        "registrar",
+                                                                        proyecto.id,
+                                                                        proyecto.nombre
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "mdi mdi-folder-plus h4"
+                                                                  }),
+                                                                  _vm._v(
+                                                                    "\n                                   Registrar Supervisión\n                                  "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          proyecto.supervision !=
+                                                            null ||
+                                                          proyecto.supervision !=
+                                                            undefined
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-primary text-capitalize",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button",
+                                                                    "data-toggle":
+                                                                      "tooltip",
+                                                                    title:
+                                                                      "Editar datos de la supervisión realizada"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.abrirModalSuper(
+                                                                        "actualizar",
+                                                                        proyecto.id,
+                                                                        proyecto.nombre
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "mdi mdi-border-color h4"
+                                                                  }),
+                                                                  _vm._v(
+                                                                    "\n                                  Editar Supervisión\n                                  "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                }
+                                              )
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("nav", [
+                                          _c(
+                                            "ul",
+                                            { staticClass: "pagination" },
+                                            [
+                                              _vm.pagination.current_page > 1
+                                                ? _c(
+                                                    "li",
+                                                    {
+                                                      staticClass: "page-item"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticClass:
+                                                            "page-link font-weight-bold",
+                                                          attrs: { href: "#" },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              $event.preventDefault()
+                                                              _vm.cambiarPagina(
+                                                                _vm.pagination
+                                                                  .current_page -
+                                                                  1,
+                                                                _vm.proceso,
+                                                                _vm.buscar
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [_vm._v("Ant")]
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _vm._l(_vm.pagesNumber, function(
+                                                page
+                                              ) {
+                                                return _c(
+                                                  "li",
+                                                  {
+                                                    key: page,
+                                                    staticClass: "page-item",
+                                                    class: [
+                                                      page == _vm.isActived
+                                                        ? "active"
+                                                        : ""
+                                                    ]
+                                                  },
+                                                  [
+                                                    _c("a", {
+                                                      staticClass: "page-link",
+                                                      attrs: { href: "#" },
+                                                      domProps: {
+                                                        textContent: _vm._s(
+                                                          page
+                                                        )
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          $event.preventDefault()
+                                                          _vm.cambiarPagina(
+                                                            page,
+                                                            _vm.proceso,
+                                                            _vm.buscar
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              }),
+                                              _vm.pagination.current_page <
+                                              _vm.pagination.last_page
+                                                ? _c(
+                                                    "li",
+                                                    {
+                                                      staticClass: "page-item"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticClass:
+                                                            "page-link font-weight-bold",
+                                                          attrs: { href: "#" },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              $event.preventDefault()
+                                                              _vm.cambiarPagina(
+                                                                _vm.pagination
+                                                                  .current_page +
+                                                                  1,
+                                                                _vm.proceso,
+                                                                _vm.buscar
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [_vm._v("Sig")]
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _c("small", {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value:
+                                                      _vm.arrayProyectos
+                                                        .length != 0,
+                                                    expression:
+                                                      "arrayProyectos.length != 0"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "text-muted pagination-count",
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    "(Mostrando " +
+                                                      _vm.arrayProyectos
+                                                        .length +
+                                                      " de " +
+                                                      _vm.pagination.total +
+                                                      " registros)"
+                                                  )
+                                                }
+                                              })
+                                            ],
+                                            2
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "modal fade",
+                                            class: { mostrar: _vm.modal },
+                                            attrs: {
+                                              role: "dialog",
+                                              "aria-labelledby":
+                                                "exampleModalLabel",
+                                              "aria-hidden": "true"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "modal-dialog modal-lg"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "modal-content"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "modal-header"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "h4",
+                                                          {
+                                                            staticClass:
+                                                              "modal-title text-white"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm._f(
+                                                                  "truncate"
+                                                                )(
+                                                                  _vm.titleMRS +
+                                                                    _vm.modalsTitle,
+                                                                  55
+                                                                )
+                                                              )
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "close",
+                                                            attrs: {
+                                                              type: "button",
+                                                              "data-dismiss":
+                                                                "modal",
+                                                              "aria-label":
+                                                                "Close"
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.cerrarModalSuper()
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "text-white",
+                                                                attrs: {
+                                                                  "aria-hidden":
+                                                                    "true"
+                                                                }
+                                                              },
+                                                              [_vm._v("×")]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "modal-body"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "form-group"
+                                                          },
+                                                          [
+                                                            _c("textarea", {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    _vm.observacion,
+                                                                  expression:
+                                                                    "observacion"
+                                                                }
+                                                              ],
+                                                              staticClass:
+                                                                "form-control",
+                                                              attrs: {
+                                                                name:
+                                                                  "observacion",
+                                                                id:
+                                                                  "observacion",
+                                                                placeholder:
+                                                                  "Observación",
+                                                                rows: "10"
+                                                              },
+                                                              domProps: {
+                                                                value:
+                                                                  _vm.observacion
+                                                              },
+                                                              on: {
+                                                                input: function(
+                                                                  $event
+                                                                ) {
+                                                                  if (
+                                                                    $event
+                                                                      .target
+                                                                      .composing
+                                                                  ) {
+                                                                    return
+                                                                  }
+                                                                  _vm.observacion =
+                                                                    $event.target.value
+                                                                }
+                                                              }
+                                                            })
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "form-group row"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "col-md-12 col-sm-6 col-lg-12"
+                                                              },
+                                                              [
+                                                                _c("datetime", {
+                                                                  attrs: {
+                                                                    type:
+                                                                      "date",
+                                                                    "max-datetime":
+                                                                      _vm.maxDatetime,
+                                                                    "value-zone":
+                                                                      "America/El_Salvador",
+                                                                    "input-class":
+                                                                      "form-control",
+                                                                    placeholder:
+                                                                      "Fecha en la que fue realizada la supervisión"
+                                                                  },
+                                                                  model: {
+                                                                    value:
+                                                                      _vm.date,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.date = $$v
+                                                                    },
+                                                                    expression:
+                                                                      "date"
+                                                                  }
+                                                                })
+                                                              ],
+                                                              1
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _vm.tipoAccion2 == 1
+                                                          ? _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "form-group"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "uploader",
+                                                                    class: {
+                                                                      dragging:
+                                                                        _vm.isDragging
+                                                                    },
+                                                                    on: {
+                                                                      dragenter:
+                                                                        _vm.OnDragEnter,
+                                                                      dragleave:
+                                                                        _vm.OnDragLeave,
+                                                                      dragover: function(
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                      },
+                                                                      drop:
+                                                                        _vm.onDrop
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "upload-control"
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "label",
+                                                                          {
+                                                                            attrs: {
+                                                                              for:
+                                                                                "file"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Seleccione una o mas imagenes"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value: !_vm
+                                                                              .images
+                                                                              .length,
+                                                                            expression:
+                                                                              "!images.length"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-cloud-upload"
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "p",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Arrastre sus imagenes aqui!"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "o"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "file-input"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "label",
+                                                                              {
+                                                                                attrs: {
+                                                                                  for:
+                                                                                    "file"
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "Seleccione"
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "input",
+                                                                              {
+                                                                                attrs: {
+                                                                                  type:
+                                                                                    "file",
+                                                                                  id:
+                                                                                    "file",
+                                                                                  multiple:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  change:
+                                                                                    _vm.onInputChange
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "images-preview"
+                                                                      },
+                                                                      _vm._l(
+                                                                        _vm.images,
+                                                                        function(
+                                                                          image,
+                                                                          index
+                                                                        ) {
+                                                                          return _c(
+                                                                            "div",
+                                                                            {
+                                                                              key: index,
+                                                                              staticClass:
+                                                                                "img-wrapper"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "button",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "remove",
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      _vm.removeImage(
+                                                                                        index
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "i",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mdi mdi-close-circle"
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "img",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    src: image,
+                                                                                    alt:
+                                                                                      "Imagen " +
+                                                                                      index
+                                                                                  }
+                                                                                }
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "details"
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "name",
+                                                                                      domProps: {
+                                                                                        textContent: _vm._s(
+                                                                                          _vm
+                                                                                            .files[
+                                                                                            index
+                                                                                          ]
+                                                                                            .name
+                                                                                        )
+                                                                                      }
+                                                                                    }
+                                                                                  ),
+                                                                                  _vm._v(
+                                                                                    " "
+                                                                                  ),
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "size",
+                                                                                      domProps: {
+                                                                                        textContent: _vm._s(
+                                                                                          _vm.getFileSize(
+                                                                                            _vm
+                                                                                              .files[
+                                                                                              index
+                                                                                            ]
+                                                                                              .size
+                                                                                          )
+                                                                                        )
+                                                                                      }
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        }
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          : _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "form-group"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "row"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        staticClass:
+                                                                          "col-md-6 col-sm-12 col-lg-6"
+                                                                      },
+                                                                      [
+                                                                        _vm._m(
+                                                                          8
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            ref:
+                                                                              "divCollapse",
+                                                                            staticClass:
+                                                                              "collapse",
+                                                                            attrs: {
+                                                                              id:
+                                                                                "collapseExample"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "div",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "card card-body"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "div",
+                                                                                  {
+                                                                                    directives: [
+                                                                                      {
+                                                                                        name:
+                                                                                          "show",
+                                                                                        rawName:
+                                                                                          "v-show",
+                                                                                        value:
+                                                                                          _vm
+                                                                                            .arrayImagesUpd
+                                                                                            .length,
+                                                                                        expression:
+                                                                                          "arrayImagesUpd.length"
+                                                                                      }
+                                                                                    ],
+                                                                                    staticClass:
+                                                                                      "row images-preview",
+                                                                                    attrs: {
+                                                                                      id:
+                                                                                        "seccion"
+                                                                                    }
+                                                                                  },
+                                                                                  _vm._l(
+                                                                                    _vm.arrayImagesUpd,
+                                                                                    function(
+                                                                                      image,
+                                                                                      index
+                                                                                    ) {
+                                                                                      return _c(
+                                                                                        "div",
+                                                                                        {
+                                                                                          key: index,
+                                                                                          staticClass:
+                                                                                            "col-md-6 col-sm-12 col-lg-6 img-wrapper"
+                                                                                        },
+                                                                                        [
+                                                                                          _c(
+                                                                                            "label",
+                                                                                            {
+                                                                                              attrs: {
+                                                                                                for: (image,
+                                                                                                index)
+                                                                                              }
+                                                                                            },
+                                                                                            [
+                                                                                              _c(
+                                                                                                "img",
+                                                                                                {
+                                                                                                  attrs: {
+                                                                                                    src:
+                                                                                                      "images_superv/" +
+                                                                                                      image.img,
+                                                                                                    alt:
+                                                                                                      "Imagen " +
+                                                                                                      index
+                                                                                                  }
+                                                                                                }
+                                                                                              )
+                                                                                            ]
+                                                                                          )
+                                                                                        ]
+                                                                                      )
+                                                                                    }
+                                                                                  )
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            ),
+                                                        _vm._v(" "),
+                                                        _c("pulse-loader", {
+                                                          staticClass:
+                                                            "text-center",
+                                                          attrs: {
+                                                            loading:
+                                                              _vm.loading,
+                                                            color: _vm.color,
+                                                            size: _vm.size
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "modal-footer"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass: "row"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "col-md-12"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "button red",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.cerrarModalSuper()
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _vm.tipoAccion2 ==
+                                                                1
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "button blue",
+                                                                        attrs: {
+                                                                          type:
+                                                                            "button",
+                                                                          dense:
+                                                                            ""
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            _vm.registrarSupervision()
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "Registrar Supervisión"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : _vm._e(),
+                                                                _vm._v(" "),
+                                                                _vm.tipoAccion2 ==
+                                                                2
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "button blue",
+                                                                        attrs: {
+                                                                          type:
+                                                                            "button",
+                                                                          dense:
+                                                                            ""
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            _vm.actualizarSupervision()
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "Actualizar Supervisión"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : _vm._e()
+                                                              ]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.arrayProyectos.length == 0
+                                ? _c("div", { staticClass: "row" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "col-md-12 col-sm-12 col-lg-12"
+                                      },
+                                      [
+                                        _c("div", {
+                                          staticClass:
+                                            "alert alert-warning h6 font-weight-bold text-center",
+                                          attrs: { role: "alert" },
+                                          domProps: {
+                                            textContent: _vm._s(
+                                              "No existen proyectos registrados en esta institución"
+                                            )
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-primary text-capitalize  font-weight-bold",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "tooltip",
+                                id: "back",
+                                title: "Regresar"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.back()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "mdi mdi-chevron-double-left"
+                              }),
+                              _vm._v("Regresar")
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn bmd-btn-icon dropdown-toggle",
+        attrs: {
+          type: "button",
+          id: "mw2",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+          title: "Más opciones"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre de institución")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Sector")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Municipio")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "btn btn-primary h5 font-weight-bold text-dark text-capitalize",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#collapseExample",
+          "aria-expanded": "false",
+          "aria-controls": "collapseExample"
+        }
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-playlist-plus i-crud",
+          staticStyle: { "margin-bottom": "-10px" }
+        }),
+        _vm._v(" Agregar Supervisores")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 mt-3" }, [
+      _c("h4", { staticClass: "align-baseline font-weight-bold" }, [
+        _vm._v("Listado de Supervisores Registrados")
+      ]),
+      _c("br")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Teléfono")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 text-center" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "alert font-weight-bold alert-warning h6 text-center col-md-12",
+          attrs: { role: "alert" }
+        },
+        [
+          _vm._v(
+            "\n                      No hay supervisores registrados en esta institución\n                    "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn bmd-btn-icon",
+        attrs: {
+          for: "search",
+          "data-toggle": "collapse",
+          "data-target": "#collapse-search",
+          "aria-expanded": "false",
+          "aria-controls": "collapse-search"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-magnify" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre de institucion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "btn btn-primary h5 font-weight-bold text-dark text-capitalize",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#collapseExample",
+          "aria-expanded": "false",
+          "aria-controls": "collapseExample"
+        }
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-playlist-plus i-crud",
+          staticStyle: { "margin-bottom": "-10px" }
+        }),
+        _vm._v(" Imagenes")
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -88441,7 +93524,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
 
 // exports
 
@@ -88452,8 +93535,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -88987,10 +94068,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-lg-12 col-md-12" }, [
-    _c(
-      "div",
-      { staticClass: "container col-md-12", attrs: { id: "tabs" } },
-      [
+    _c("div", { staticClass: "container col-md-12", attrs: { id: "tabs" } }, [
+      _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "tabs" }, [
           _c(
             "a",
@@ -89041,782 +94120,779 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("dir", { staticClass: "card col-md-12" }, [
-          _c("div", { staticClass: "content" }, [
-            _vm.activetab === 1
-              ? _c("div", { staticClass: "tabcontent" }, [
-                  _c("h2", { staticClass: "text-center" }, [
-                    _vm._v("Registro de Sector de Instituciones")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "panel panel-default" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm.activetab === 1
+            ? _c("div", { staticClass: "tabcontent" }, [
+                _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Registro de Sector de Instituciones")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c(
+                    "div",
+                    { staticClass: "panel-body" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "form-group row" },
+                        [
+                          _c("mdc-textfield", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required",
+                                expression: "'required'"
+                              }
+                            ],
+                            staticClass: "col-md-12",
+                            attrs: {
+                              type: "text",
+                              name: "nombre",
+                              label: "Nombre del sector de Institucion",
+                              helptext: "(Ingrese el nombre del sector)"
+                            },
+                            model: {
+                              value: _vm.sector,
+                              callback: function($$v) {
+                                _vm.sector = $$v
+                              },
+                              expression: "sector"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.errors.has("nombre"),
+                                  expression: "errors.has('nombre')"
+                                }
+                              ],
+                              staticClass: "help-block alert-danger"
+                            },
+                            [_vm._v(_vm._s(_vm.errors.first("nombre")))]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("mdc-button", { on: { click: _vm.saveSector } }, [
+                        _vm._v("Registrar Sector")
+                      ])
+                    ],
+                    1
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.activetab === 2
+            ? _c("div", { staticClass: "tabcontent" }, [
+                _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Registro de Estudiantes")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c("div", { staticClass: "panel-body" }, [
                     _c(
                       "div",
-                      { staticClass: "panel-body" },
+                      { staticClass: "form-group row" },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "form-group row" },
-                          [
-                            _c("mdc-textfield", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required",
-                                  expression: "'required'"
-                                }
-                              ],
-                              staticClass: "col-md-12",
-                              attrs: {
-                                type: "text",
-                                name: "nombre",
-                                label: "Nombre del sector de Institucion",
-                                helptext: "(Ingrese el nombre del sector)"
-                              },
-                              model: {
-                                value: _vm.sector,
-                                callback: function($$v) {
-                                  _vm.sector = $$v
-                                },
-                                expression: "sector"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.errors.has("nombre"),
-                                    expression: "errors.has('nombre')"
-                                  }
-                                ],
-                                staticClass: "help-block alert-danger"
-                              },
-                              [_vm._v(_vm._s(_vm.errors.first("nombre")))]
-                            )
+                        _c("mdc-textfield", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required",
+                              expression: "'required'"
+                            }
                           ],
-                          1
-                        ),
+                          staticClass: "col-md-12",
+                          attrs: {
+                            type: "text",
+                            name: "estudiante",
+                            label: "Nombre del Estudiante",
+                            helptext: "(Ingrese el nombre del estudiante)"
+                          },
+                          model: {
+                            value: _vm.nombre,
+                            callback: function($$v) {
+                              _vm.nombre = $$v
+                            },
+                            expression: "nombre"
+                          }
+                        }),
                         _vm._v(" "),
-                        _c("mdc-button", { on: { click: _vm.saveSector } }, [
-                          _vm._v("Registrar Sector")
-                        ])
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("estudiante"),
+                                expression: "errors.has('estudiante')"
+                              }
+                            ],
+                            staticClass: "help-block alert-danger",
+                            staticStyle: { "margin-left": "16px" }
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("estudiante")))]
+                        )
                       ],
                       1
-                    )
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.activetab === 2
-              ? _c("div", { staticClass: "tabcontent" }, [
-                  _c("h2", { staticClass: "text-center" }, [
-                    _vm._v("Registro de Estudiantes")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "panel panel-default" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-group row" },
-                        [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-12",
-                            attrs: {
-                              type: "text",
-                              name: "estudiante",
-                              label: "Nombre del Estudiante",
-                              helptext: "(Ingrese el nombre del estudiante)"
-                            },
-                            model: {
-                              value: _vm.nombre,
-                              callback: function($$v) {
-                                _vm.nombre = $$v
-                              },
-                              expression: "nombre"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group row" },
+                      [
+                        _c("mdc-textfield", {
+                          directives: [
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("estudiante"),
-                                  expression: "errors.has('estudiante')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger",
-                              staticStyle: { "margin-left": "16px" }
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("estudiante")))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group row" },
-                        [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-12",
-                            attrs: {
-                              type: "text",
-                              name: "apellido",
-                              label: "Apellido del Estudiante",
-                              helptext: "(Ingrese el apellido del estudiante)"
-                            },
-                            model: {
-                              value: _vm.apellido,
-                              callback: function($$v) {
-                                _vm.apellido = $$v
-                              },
-                              expression: "apellido"
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required",
+                              expression: "'required'"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("apellido"),
-                                  expression: "errors.has('apellido')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger",
-                              staticStyle: { "margin-left": "16px" }
+                          ],
+                          staticClass: "col-md-12",
+                          attrs: {
+                            type: "text",
+                            name: "apellido",
+                            label: "Apellido del Estudiante",
+                            helptext: "(Ingrese el apellido del estudiante)"
+                          },
+                          model: {
+                            value: _vm.apellido,
+                            callback: function($$v) {
+                              _vm.apellido = $$v
                             },
-                            [_vm._v(_vm._s(_vm.errors.first("apellido")))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _vm._v("\n                    \n                  "),
-                        _c("label", { staticStyle: { "margin-left": "5px" } }, [
-                          _vm._v("Fecha de Nacimiento")
-                        ]),
+                            expression: "apellido"
+                          }
+                        }),
                         _vm._v(" "),
                         _c(
-                          "div",
-                          { staticClass: "col-md-12 col-sm-12 col-lg-12" },
-                          [
-                            _c("datetime", {
-                              attrs: {
-                                type: "date",
-                                name: "",
-                                "max-datetime": _vm.maxDatetime,
-                                "value-zone": "America/El_Salvador",
-                                "input-class": "form-control"
-                              },
-                              model: {
-                                value: _vm.date,
-                                callback: function($$v) {
-                                  _vm.date = $$v
-                                },
-                                expression: "date"
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("apellido"),
+                                expression: "errors.has('apellido')"
                               }
-                            })
-                          ],
-                          1
+                            ],
+                            staticClass: "help-block alert-danger",
+                            staticStyle: { "margin-left": "16px" }
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("apellido")))]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row md-radio" }, [
-                        _c("div", { staticClass: "col-md-6 text-center" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.genero,
-                                expression: "genero"
-                              }
-                            ],
-                            attrs: {
-                              id: "radioSS",
-                              value: "F",
-                              type: "radio",
-                              name: "radioP"
-                            },
-                            domProps: { checked: _vm._q(_vm.genero, "F") },
-                            on: {
-                              change: function($event) {
-                                _vm.genero = "F"
-                              }
-                            }
-                          }),
-                          _vm._v(
-                            "\n                      \n                    "
-                          ),
-                          _c("label", { attrs: { for: "radioSS" } }, [
-                            _vm._v("Femenino")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6 text-center" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.genero,
-                                expression: "genero"
-                              }
-                            ],
-                            attrs: {
-                              id: "radioPP",
-                              value: "M",
-                              type: "radio",
-                              name: "radioP"
-                            },
-                            domProps: { checked: _vm._q(_vm.genero, "M") },
-                            on: {
-                              change: function($event) {
-                                _vm.genero = "M"
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "radioPP" } }, [
-                            _vm._v("Masculino")
-                          ])
-                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _vm._v("\n                    \n                  "),
+                      _c("label", { staticStyle: { "margin-left": "5px" } }, [
+                        _vm._v("Fecha de Nacimiento")
                       ]),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "form-group row" },
+                        { staticClass: "col-md-12 col-sm-12 col-lg-12" },
                         [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "digits:8",
-                                expression: "'digits:8'"
-                              }
-                            ],
-                            staticClass: "col-md-6",
+                          _c("datetime", {
                             attrs: {
-                              type: "text",
-                              name: "telefono",
-                              label: "Telefono",
-                              helptext: "(Ingrese número de telefono)"
+                              type: "date",
+                              name: "",
+                              "max-datetime": _vm.maxDatetime,
+                              "value-zone": "America/El_Salvador",
+                              "input-class": "form-control"
                             },
                             model: {
-                              value: _vm.telefono,
+                              value: _vm.date,
                               callback: function($$v) {
-                                _vm.telefono = $$v
+                                _vm.date = $$v
                               },
-                              expression: "telefono"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-6",
-                            attrs: {
-                              type: "text",
-                              name: "carnet",
-                              label: "Carnet",
-                              helptext: "(Ingrese el número de carnet)"
-                            },
-                            model: {
-                              value: _vm.carnet,
-                              callback: function($$v) {
-                                _vm.carnet = $$v
-                              },
-                              expression: "carnet"
+                              expression: "date"
                             }
                           })
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c(
-                            "span",
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row md-radio" }, [
+                      _c("div", { staticClass: "col-md-6 text-center" }, [
+                        _c("input", {
+                          directives: [
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("telefono"),
-                                  expression: "errors.has('telefono')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger"
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("telefono")))]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("carnet"),
-                                  expression: "errors.has('carnet')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger"
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("carnet")))]
-                          )
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.genero,
+                              expression: "genero"
+                            }
+                          ],
+                          attrs: {
+                            id: "radioSS",
+                            value: "F",
+                            type: "radio",
+                            name: "radioP"
+                          },
+                          domProps: { checked: _vm._q(_vm.genero, "F") },
+                          on: {
+                            change: function($event) {
+                              _vm.genero = "F"
+                            }
+                          }
+                        }),
+                        _vm._v(
+                          "\n                      \n                    "
+                        ),
+                        _c("label", { attrs: { for: "radioSS" } }, [
+                          _vm._v("Femenino")
                         ])
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group row" },
-                        [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-12",
-                            attrs: {
-                              type: "password",
-                              name: "contraseña",
-                              label: "Password",
-                              helptext: "(Ingrese el password)"
-                            },
-                            model: {
-                              value: _vm.password,
-                              callback: function($$v) {
-                                _vm.password = $$v
-                              },
-                              expression: "password"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
+                      _c("div", { staticClass: "col-md-6 text-center" }, [
+                        _c("input", {
+                          directives: [
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("contraseña"),
-                                  expression: "errors.has('contraseña')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger",
-                              staticStyle: { "margin-left": "16px" }
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("contraseña")))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group row" },
-                        [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-12",
-                            attrs: {
-                              type: "text",
-                              name: "correo",
-                              label: "Email",
-                              helptext: "(Ingrese su correo electronico)"
-                            },
-                            model: {
-                              value: _vm.email,
-                              callback: function($$v) {
-                                _vm.email = $$v
-                              },
-                              expression: "email"
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.genero,
+                              expression: "genero"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("correo"),
-                                  expression: "errors.has('correo')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger",
-                              staticStyle: { "margin-left": "16px" }
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("correo")))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group row" },
-                        [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-12",
-                            attrs: {
-                              type: "text",
-                              name: "direccion",
-                              label: "Direccion",
-                              helptext: "(Ingrese la dirección)"
-                            },
-                            model: {
-                              value: _vm.direccion,
-                              callback: function($$v) {
-                                _vm.direccion = $$v
-                              },
-                              expression: "direccion"
+                          ],
+                          attrs: {
+                            id: "radioPP",
+                            value: "M",
+                            type: "radio",
+                            name: "radioP"
+                          },
+                          domProps: { checked: _vm._q(_vm.genero, "M") },
+                          on: {
+                            change: function($event) {
+                              _vm.genero = "M"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("direccion"),
-                                  expression: "errors.has('direccion')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger",
-                              staticStyle: { "margin-left": "16px" }
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("direccion")))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12" },
-                          [
-                            _c(
-                              "v-select",
-                              {
-                                ref: "selectCarreras",
-                                attrs: {
-                                  options: _vm.arrayBecas,
-                                  placeholder: "Seleccione un tipo de beca"
-                                },
-                                model: {
-                                  value: _vm.beca_id,
-                                  callback: function($$v) {
-                                    _vm.beca_id = $$v
-                                  },
-                                  expression: "beca_id"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    attrs: { slot: "no-options" },
-                                    slot: "no-options"
-                                  },
-                                  [_vm._v("No hay datos disponibles")]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12" },
-                          [
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "carrera" } }, [
-                              _vm._v("Seleccione una carrera")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "v-select",
-                              {
-                                ref: "selectCarreras",
-                                attrs: {
-                                  options: _vm.arrayCarreras,
-                                  placeholder: "Seleccione una carrera"
-                                },
-                                model: {
-                                  value: _vm.carrerasProy,
-                                  callback: function($$v) {
-                                    _vm.carrerasProy = $$v
-                                  },
-                                  expression: "carrerasProy"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    attrs: { slot: "no-options" },
-                                    slot: "no-options"
-                                  },
-                                  [_vm._v("No hay datos disponibles")]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 col-xs-12 col-lg-12" },
-                          [
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: "departamento" } }, [
-                              _vm._v("Seleccione un Departamento")
-                            ]),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "v-select",
-                              {
-                                attrs: {
-                                  label: "label",
-                                  onChange: _vm.watchDepa,
-                                  placeholder: "Seleccione un departamento",
-                                  options: _vm.arrayDepartamentos
-                                },
-                                model: {
-                                  value: _vm.departamento_id,
-                                  callback: function($$v) {
-                                    _vm.departamento_id = $$v
-                                  },
-                                  expression: "departamento_id"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    attrs: { slot: "no-options" },
-                                    slot: "no-options"
-                                  },
-                                  [_vm._v("No hay datos disponibles")]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _vm.departamento_id !== null
-                          ? _c(
-                              "div",
-                              { staticClass: "col-md-12 col-xs-12 col-lg-12" },
-                              [
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("label", { attrs: { for: "email" } }, [
-                                  _vm._v("Seleccione un Municipio")
-                                ]),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c(
-                                  "v-select",
-                                  {
-                                    attrs: {
-                                      label: "label",
-                                      placeholder: "Seleccione un municipio",
-                                      options: _vm.arrayMunicipios
-                                    },
-                                    model: {
-                                      value: _vm.municipio_id,
-                                      callback: function($$v) {
-                                        _vm.municipio_id = $$v
-                                      },
-                                      expression: "municipio_id"
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "span",
-                                      {
-                                        attrs: { slot: "no-options" },
-                                        slot: "no-options"
-                                      },
-                                      [_vm._v("No hay datos disponibles")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e()
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn blue",
-                          on: { click: _vm.saveEstudiante }
-                        },
-                        [
-                          _c("i", { staticClass: "mdi mdi-account-plus" }),
-                          _vm._v(" Registrar Estudiante\n                ")
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.activetab === 3
-              ? _c("div", { staticClass: "tabcontent" }, [
-                  _c("h2", { staticClass: "text-center" }, [
-                    _vm._v("Registro de Sector de Instituciones")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "panel panel-default" }, [
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "radioPP" } }, [
+                          _vm._v("Masculino")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "panel-body" },
+                      { staticClass: "form-group row" },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "form-group row" },
-                          [
-                            _c("mdc-textfield", {
-                              directives: [
-                                {
-                                  name: "validate",
-                                  rawName: "v-validate",
-                                  value: "required",
-                                  expression: "'required'"
-                                }
-                              ],
-                              staticClass: "col-md-12",
-                              attrs: {
-                                type: "text",
-                                name: "nombre",
-                                label: "Nombre del sector de Institucion",
-                                helptext: "(Ingrese el nombre del sector)"
-                              },
-                              model: {
-                                value: _vm.sector,
-                                callback: function($$v) {
-                                  _vm.sector = $$v
-                                },
-                                expression: "sector"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.errors.has("nombre"),
-                                    expression: "errors.has('nombre')"
-                                  }
-                                ],
-                                staticClass: "help-block alert-danger"
-                              },
-                              [_vm._v(_vm._s(_vm.errors.first("nombre")))]
-                            )
+                        _c("mdc-textfield", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "digits:8",
+                              expression: "'digits:8'"
+                            }
                           ],
-                          1
-                        ),
+                          staticClass: "col-md-6",
+                          attrs: {
+                            type: "text",
+                            name: "telefono",
+                            label: "Telefono",
+                            helptext: "(Ingrese número de telefono)"
+                          },
+                          model: {
+                            value: _vm.telefono,
+                            callback: function($$v) {
+                              _vm.telefono = $$v
+                            },
+                            expression: "telefono"
+                          }
+                        }),
                         _vm._v(" "),
-                        _c("mdc-button", { on: { click: _vm.saveSector } }, [
-                          _vm._v("Registrar Sector")
-                        ])
+                        _c("mdc-textfield", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required",
+                              expression: "'required'"
+                            }
+                          ],
+                          staticClass: "col-md-6",
+                          attrs: {
+                            type: "text",
+                            name: "carnet",
+                            label: "Carnet",
+                            helptext: "(Ingrese el número de carnet)"
+                          },
+                          model: {
+                            value: _vm.carnet,
+                            callback: function($$v) {
+                              _vm.carnet = $$v
+                            },
+                            expression: "carnet"
+                          }
+                        })
                       ],
                       1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("telefono"),
+                                expression: "errors.has('telefono')"
+                              }
+                            ],
+                            staticClass: "help-block alert-danger"
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("telefono")))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("carnet"),
+                                expression: "errors.has('carnet')"
+                              }
+                            ],
+                            staticClass: "help-block alert-danger"
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("carnet")))]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group row" },
+                      [
+                        _c("mdc-textfield", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required",
+                              expression: "'required'"
+                            }
+                          ],
+                          staticClass: "col-md-12",
+                          attrs: {
+                            type: "password",
+                            name: "contraseña",
+                            label: "Password",
+                            helptext: "(Ingrese el password)"
+                          },
+                          model: {
+                            value: _vm.password,
+                            callback: function($$v) {
+                              _vm.password = $$v
+                            },
+                            expression: "password"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("contraseña"),
+                                expression: "errors.has('contraseña')"
+                              }
+                            ],
+                            staticClass: "help-block alert-danger",
+                            staticStyle: { "margin-left": "16px" }
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("contraseña")))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group row" },
+                      [
+                        _c("mdc-textfield", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required",
+                              expression: "'required'"
+                            }
+                          ],
+                          staticClass: "col-md-12",
+                          attrs: {
+                            type: "text",
+                            name: "correo",
+                            label: "Email",
+                            helptext: "(Ingrese su correo electronico)"
+                          },
+                          model: {
+                            value: _vm.email,
+                            callback: function($$v) {
+                              _vm.email = $$v
+                            },
+                            expression: "email"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("correo"),
+                                expression: "errors.has('correo')"
+                              }
+                            ],
+                            staticClass: "help-block alert-danger",
+                            staticStyle: { "margin-left": "16px" }
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("correo")))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group row" },
+                      [
+                        _c("mdc-textfield", {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required",
+                              expression: "'required'"
+                            }
+                          ],
+                          staticClass: "col-md-12",
+                          attrs: {
+                            type: "text",
+                            name: "direccion",
+                            label: "Direccion",
+                            helptext: "(Ingrese la dirección)"
+                          },
+                          model: {
+                            value: _vm.direccion,
+                            callback: function($$v) {
+                              _vm.direccion = $$v
+                            },
+                            expression: "direccion"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("direccion"),
+                                expression: "errors.has('direccion')"
+                              }
+                            ],
+                            staticClass: "help-block alert-danger",
+                            staticStyle: { "margin-left": "16px" }
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("direccion")))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12" },
+                        [
+                          _c(
+                            "v-select",
+                            {
+                              ref: "selectCarreras",
+                              attrs: {
+                                options: _vm.arrayBecas,
+                                placeholder: "Seleccione un tipo de beca"
+                              },
+                              model: {
+                                value: _vm.beca_id,
+                                callback: function($$v) {
+                                  _vm.beca_id = $$v
+                                },
+                                expression: "beca_id"
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { slot: "no-options" },
+                                  slot: "no-options"
+                                },
+                                [_vm._v("No hay datos disponibles")]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12" },
+                        [
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "carrera" } }, [
+                            _vm._v("Seleccione una carrera")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-select",
+                            {
+                              ref: "selectCarreras",
+                              attrs: {
+                                options: _vm.arrayCarreras,
+                                placeholder: "Seleccione una carrera"
+                              },
+                              model: {
+                                value: _vm.carrerasProy,
+                                callback: function($$v) {
+                                  _vm.carrerasProy = $$v
+                                },
+                                expression: "carrerasProy"
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { slot: "no-options" },
+                                  slot: "no-options"
+                                },
+                                [_vm._v("No hay datos disponibles")]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                        [
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "departamento" } }, [
+                            _vm._v("Seleccione un Departamento")
+                          ]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "v-select",
+                            {
+                              attrs: {
+                                label: "label",
+                                onChange: _vm.watchDepa,
+                                placeholder: "Seleccione un departamento",
+                                options: _vm.arrayDepartamentos
+                              },
+                              model: {
+                                value: _vm.departamento_id,
+                                callback: function($$v) {
+                                  _vm.departamento_id = $$v
+                                },
+                                expression: "departamento_id"
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { slot: "no-options" },
+                                  slot: "no-options"
+                                },
+                                [_vm._v("No hay datos disponibles")]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _vm.departamento_id !== null
+                        ? _c(
+                            "div",
+                            { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                            [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "email" } }, [
+                                _vm._v("Seleccione un Municipio")
+                              ]),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "v-select",
+                                {
+                                  attrs: {
+                                    label: "label",
+                                    placeholder: "Seleccione un municipio",
+                                    options: _vm.arrayMunicipios
+                                  },
+                                  model: {
+                                    value: _vm.municipio_id,
+                                    callback: function($$v) {
+                                      _vm.municipio_id = $$v
+                                    },
+                                    expression: "municipio_id"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "no-options" },
+                                      slot: "no-options"
+                                    },
+                                    [_vm._v("No hay datos disponibles")]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn blue",
+                        on: { click: _vm.saveEstudiante }
+                      },
+                      [
+                        _c("i", { staticClass: "mdi mdi-account-plus" }),
+                        _vm._v(" Registrar Estudiante\n        ")
+                      ]
                     )
                   ])
                 ])
-              : _vm._e()
-          ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.activetab === 3
+            ? _c("div", { staticClass: "tabcontent" }, [
+                _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Registro de Sector de Instituciones")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c(
+                    "div",
+                    { staticClass: "panel-body" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "form-group row" },
+                        [
+                          _c("mdc-textfield", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required",
+                                expression: "'required'"
+                              }
+                            ],
+                            staticClass: "col-md-12",
+                            attrs: {
+                              type: "text",
+                              name: "nombre",
+                              label: "Nombre del sector de Institucion",
+                              helptext: "(Ingrese el nombre del sector)"
+                            },
+                            model: {
+                              value: _vm.sector,
+                              callback: function($$v) {
+                                _vm.sector = $$v
+                              },
+                              expression: "sector"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.errors.has("nombre"),
+                                  expression: "errors.has('nombre')"
+                                }
+                              ],
+                              staticClass: "help-block alert-danger"
+                            },
+                            [_vm._v(_vm._s(_vm.errors.first("nombre")))]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("mdc-button", { on: { click: _vm.saveSector } }, [
+                        _vm._v("Registrar Sector")
+                      ])
+                    ],
+                    1
+                  )
+                ])
+              ])
+            : _vm._e()
         ])
-      ],
-      1
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
