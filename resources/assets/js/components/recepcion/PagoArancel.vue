@@ -63,29 +63,24 @@
               <td v-text="item.nombre +' '+ item.apellido"></td>
               <th class="text-center" v-text="item.carrera.nombre"></th>
               <th class="text-center">
-               <template v-if="proceso==1">
+               <template>
                 <h4>
                   <span v-if="item.pago_arancel.length != 0" class="badge badge-pill badge-primary">Cancelado</span>
                   <span  v-else class="badge badge-pill badge-danger">Pendiente</span>
                 </h4>
               </template>
-              <template v-if="proceso==2">
+     <!--          <template v-if="proceso==2">
                 <h4>
                   <span v-if="item.pago_arancel[1] != undefined" class="badge badge-pill badge-primary">Cancelado</span>
                   <span  v-else class="badge badge-pill badge-danger">Pendiente</span>
                 </h4>
-              </template>
+              </template> -->
             </th>
             <td class="text-center">
-              <template v-if="proceso==1">
+              <template>
                 <button type="button"
                 :class="[item.pago_arancel.length != 0 ? 'disabled' : '']"
                 :disabled="item.pago_arancel.length != 0" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
-              </template>
-              <template v-if="proceso==2">
-                <button type="button"
-                :class="[item.pago_arancel[1] != undefined ? 'disabled' : '']"
-                :disabled="item.pago_arancel[1] != undefined" class="button secondary " @click="abrirModal(item)" data-toggle="tooltip" title="Registrar Pago"><i class="mdi mdi-square-inc-cash"></i> Registrar Pago</button>
               </template>
             </td>
           </tr>
@@ -139,6 +134,7 @@
                                   <mdc-textfield type="text"
                                   class="col-md-12"
                                   id="txtNoFact"
+                                  v-mask="'####'"
                                   label="Ingrese Número de Factura"
                                   v-model="no_fact"
                                   helptext="(Dato deacuerdo si es becado o no)" ></mdc-textfield>
@@ -152,7 +148,7 @@
                         <div class="row">
                           <div class="col-md-12">
                             <button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>Cerrar</button>
-                            <button type="button" id="btnSave" @click="savePay()" class="button blue"><i class="mdi mdi-content-save"></i>Guardar Datos</button>
+                            <button type="button" :disabled="no_fact == ''" :class="[no_fact == '' ? 'disabled' : '']" id="btnSave" @click="savePay()" class="button blue"><i class="mdi mdi-content-save"></i>Guardar Datos</button>
                           </div>
                         </div>
                       </div>
@@ -214,13 +210,6 @@
             this.no_fact = "";
           }
         },
-        no_fact:function(){
-          if(this.no_fact == ""){
-            $("#btnSave").prop('disabled',true);
-          }else{
-            $("#btnSave").prop('disabled',false);
-          }
-        }
       },
       computed:{
        isActived: function() {
@@ -247,7 +236,6 @@
       },
     },
     methods:{
-
      //obtener todas las carreras
      getCarreras() {
       let me = this;
@@ -262,9 +250,9 @@
         console.log(error);
       });
     },
-
     //obtener el listado de estudiantes por proceso
     getAllStudens(carrera_id,proceso_id,page,buscar) {
+      const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
       let me = this;
       me.loadSpinner = 1;
       var url = "/recepcion/getAllStudents?carre_id="+ carrera_id +"&proceso_id=" + proceso_id + "&page=" + page +"&buscar=" + buscar;
@@ -276,6 +264,11 @@
 
       })
       .catch(function(error) {
+        console.log(error);
+        toast({
+          type: 'danger',
+          title: 'Error al cargar los datos! Intente Nuevamente'
+        });
         console.log(error);
       });
     },
@@ -334,22 +327,6 @@
         }
       });
     },
-
-
-    getBecas() {
-      let me = this;
-      var url = "/becas/getAll";
-      axios
-      .get(url)
-      .then(function(response) {
-        var respuesta = response.data;
-        me.arrayBecas = respuesta;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    },
-
     //guardar los cambios del pago del arancel
     savePay(){
       var nofact = this.no_fact;
@@ -374,99 +351,5 @@
       this.no_fact = "";
     },
   },
-  components: {
-    Switches
-  },
-}
+};
 </script>
-<style>
-.button {
-  display: inline-block;
-  margin: 0.3em;
-  padding: 1.0em 1em;
-  overflow: hidden;
-  position: relative;
-  text-decoration: none;
-  text-transform: capitalize;
-  border-radius: 3px;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  border: none;
-  font-size: 15px;
-  text-align: center;
-}
-
-.button:hover {
-  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
-}
-
-.green {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.red {
-  background-color: #F44336;
-  color: white;
-}
-
-.blue {
-  background-color: #6200EC;
-  color: white;
-}
-.secondary {
-  background-color: #6c757d;
-  color: white;
-}
-.info {
-  background-color: #03a9f4;
-  color: white;
-}
-.ripple {
-  position: absolute;
-  background: rgba(0,0,0,.25);
-  border-radius: 100%;
-  transform: scale(0.2);
-  opacity:0;
-  pointer-events: none;
-  -webkit-animation: ripple .75s ease-out;
-  -moz-animation: ripple .75s ease-out;
-  animation: ripple .75s ease-out;
-}
-
-@-webkit-keyframes ripple {
-  from {
-    opacity:1;
-  }
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes ripple {
-  from {
-    opacity:1;
-  }
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-@keyframes ripple {
-  from {
-    opacity:1;
-  }
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-</style>
-

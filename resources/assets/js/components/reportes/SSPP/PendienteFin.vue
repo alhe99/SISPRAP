@@ -67,11 +67,11 @@
                 <div class="row">
                   <div class="col-md-6 col-sm-12 col-lg-6 text-center">&nbsp;
                     <switches :disabled="mensual == true" class="switch-md" v-model="trimestral " theme="bootstrap" color="primary"></switches>
-                   <i class="mdi mdi-calendar-range h4"></i> Trimestral
+                    <i class="mdi mdi-calendar-range h4"></i> Trimestral
                   </div>
                   <div class="col-md-6 col-sm-12 col-lg-6 text-center">
                     <switches :disabled="trimestral == true" class="switch-md" v-model="mensual " theme="bootstrap" color="primary"></switches>&nbsp;
-                     <i class="mdi mdi-calendar-check h4"></i>  Mensual
+                    <i class="mdi mdi-calendar-check h4"></i>  Mensual
                   </div>
                 </div>
                 <div v-if="trimestral == true" class="row">
@@ -88,7 +88,7 @@
                   </div>
                 </div>
                 <div class="col-md-12 text-center"><br>
-                  <button type="button" id="btnGenerar" :disabled="mes == '' && trimestre == '' && anual == false" class="button secondary" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Reporte"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
+                  <button type="button" id="btnGenerar" :class="[mes == '' && trimestre == '' && anual == false ? 'disabled' : '']" :disabled="mes == '' && trimestre == '' && anual == false" class="button secondary" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Reporte"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
                 </div>
               </div>
             </div>
@@ -160,6 +160,7 @@ export default {
       else {this.tipoRepo = '';}
       this.mes = [];
       this.valuesMonth = [];
+
     },
     mes:function(){
       for (var i = 0; i < this.mes.length; i++) {

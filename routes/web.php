@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
 echo "<pre>{$query->time}</pre>";
@@ -12,6 +13,7 @@ Route::get('/main', function () {
 })->name('main');
 
 
+
 Route::get('/institucion', 'InstitucionController@index');
 Route::post('/institucion/registrar', 'InstitucionController@store');
 Route::put('/institucion/actualizar', 'InstitucionController@update');
@@ -19,9 +21,16 @@ Route::put('/institucion/desactivar', 'InstitucionController@desactivar');
 Route::put('/institucion/activar', 'InstitucionController@activar');
 Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
-Route::get('GetInstitucion/', 'InstitucionController@GetInstitucion');
+Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
+
+Route::get('institucion/supervisor/index', 'SupervisorController@index')->name('getSupervisores');
+Route::post('institucion/supervisor/save', 'SupervisorController@store')->name('saveSupervisor');
+Route::get('/institucion/supervisor/validate','SupervisorController@validateSupervisor')->name('validateSupervisor');
+Route::put('/institucion/supervisor/eliminar/{id}', 'SupervisorController@delete');
+Route::put('institucion/supervisor/update', 'SupervisorController@update')->name('updSupervisor');
+
 
 //Rutas para sectores
 Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
@@ -153,6 +162,14 @@ Route::get('/backup','BackupController@backup');
 
 Route::get('/test', function () {
 
+    $test = "2019-01-21SS5c4605667c309.jpeg";
+    if(file_exists(public_path('images/img_projects/').$test))
+    {
+        unlink(public_path('images/img_projects/').$test);
+    }
+    // unlink(public_path('images/img_projects/').$test);
+     // return "hecho";
+
     /*$id= 36;
 
     $proy = App\Proyecto::findOrFail($id);
@@ -251,9 +268,9 @@ Route::get('/test', function () {
 
     //obtener imagenes
 
-    $id = 4;
-    $s = App\Proyecto::findOrFail($id)->supervision;
-    $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
-    return $img;
+    // $id = 4;
+    // $s = App\Proyecto::findOrFail($id)->supervision;
+    // $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
+    // return $img;
 
 });

@@ -26,8 +26,11 @@ class Estudiante extends Model
         'proyectos_por_proceso',
         'foto_name',
         'no_proyectos',
-        'proceso_actual'
+        'proceso_actual',
+        'fecha_registro',
+        'ultimo_cambio'
     ];
+    public $timestamps = false;
 
     public function carrera(){
 
@@ -55,7 +58,7 @@ class Estudiante extends Model
     }
     public function preinscripciones(){
 
-        return $this->belongsToMany(Proyecto::class, 'preinscripciones_proyectos','estudiante_id','proyecto_id')->withPivot(['estado','id','año_registro'])->withTimestamps();
+        return $this->belongsToMany(Proyecto::class, 'preinscripciones_proyectos','estudiante_id','proyecto_id')->withPivot(['estado','id','fecha_registro'])->withTimestamps();
     }
 
     public function pagoArancel(){
@@ -67,10 +70,5 @@ class Estudiante extends Model
     public function scopeNombre($query,$name){
         if($name)
             return $query->where('nombre','LIKE',"%$name%")->orWhere('apellido','LIKE',"%$name%");
-    }
-    public function procesos(){
-      /*   for ($i=0; $i < $this->proceso->count(); $i++) {  */
-            return $this->distinct()->get();
-       /*  } */
     }
 }

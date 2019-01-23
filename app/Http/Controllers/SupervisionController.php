@@ -12,15 +12,11 @@ use Illuminate\Http\Request;
 
 class SupervisionController extends Controller
 {
-    public function __construct(){
 
-        $this->middleware('guestVerify');
-        
-    }
     public function index(Request $request)
-    {  
+    {
     }
-    
+
     //registrar supervisiones
     public function store(Request $request)
     {
@@ -31,20 +27,20 @@ class SupervisionController extends Controller
                   $supervision->observacion = $request->observacion;
                   $supervision->estado = 0;
                   Proyecto::findOrFail($request->proyecto_id)->supervision()->save($supervision);
-                  
-                  for ($i=0;$i<count($request->imagenes);$i++) { 
-                      
+
+                  for ($i=0;$i<count($request->imagenes);$i++) {
+
                     $imgSuper = new ImgSupervision();
                     $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
-                    $imgSuper->img = $name_img;    
+                    $imgSuper->img = $name_img;
                     Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
                     SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
 
                   }
-                  DB::commit();   
+                  DB::commit();
               }catch (Exception $e){
                   DB::rollBack();
-              }  
+              }
     }
     //actualizacion de supervisiones
     public function update(Request $request){
@@ -54,7 +50,7 @@ class SupervisionController extends Controller
         $supervision->observacion = $request->observacion;
         $supervision->save();
     }
-    //obtener las supervisiones 
+    //obtener las supervisiones
     public function GetSupervision($id)
     {
         $s = Proyecto::findOrFail($id)->supervision;
@@ -69,7 +65,6 @@ class SupervisionController extends Controller
         $s = Proyecto::findOrFail($id)->supervision;
         $img = ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
         return $img;
-
     }
-       
+
 }

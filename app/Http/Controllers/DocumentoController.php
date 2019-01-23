@@ -28,6 +28,5 @@ class DocumentoController extends Controller
         for ($i=0; $i < count($arraydoc); $i++) {
             $e->documentos_entrega()->attach($arraydoc[$i],['observacion'=>$request->observacion,'estado'=>true]);
         }
-         // return count($arraydoc);
     }
 }

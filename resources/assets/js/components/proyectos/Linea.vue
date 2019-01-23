@@ -240,7 +240,7 @@
 													</div>
 												</div>
 											</div>
-											<div v-show="switchImg==false" class="collapse" id="collapseExample">
+											<div v-show="!switchImg" class="collapse" id="collapseExample">
 												<div class="card card-body">
 													<div class="row" id="seccion">
 														<div class="col-md-2 col-sm-12 col-lg-2" v-for="image in arrayImages" :key="image.id">
@@ -253,7 +253,7 @@
 												</div>
 											</div>
 											<div class="row" id="imageP" v-show="switchImg==true">
-												<img-inputer class="col-md-12 col-sm-12 col-lg-12" icon="img"  :src="'images_proyect' + image" bottom-text="Seleccionar nueva imagen" theme="material" accept="image/*" @onChange="changeImg" size="large" placeholder="Selecione una imagen de su computadora!"/>
+												<img-inputer ref="imgUpload" class="col-md-12 col-sm-12 col-lg-12" icon="img"  :src="'images_proyect' + image" bottom-text="Seleccionar nueva imagen" theme="material" accept="image/*" @onChange="changeImg" size="large" placeholder="Selecione una imagen de su computadora!"/>
 											</div>
 										</div>
 									</div>
@@ -304,7 +304,15 @@
 					tipoproceso_id: 0,
 					switchImg : false,
 					imgGallery: "",
-					arrayImages: ["test.jpg","turismo.jpg","agro.jpg","focos.jpg","herramienta.jpg","mercadeo.jpg"],
+					arrayImages: [
+					"test.jpg",
+					"turismo.jpg",
+					"computacion.jpg",
+					"focos.jpg",
+					"herramienta.png",
+					"mercadeo.jpg",
+					"agro.jpg"
+					],
 					files: "",
 					image: "",
 					toolBars: [
@@ -476,8 +484,8 @@
 						estado: '1',
 						proceso_id: this.proceso,
 						tipoProyecto: 'I',
-						// imagenG: this.imgGallery,
-						// imagen: this.image,
+						imagenG: this.imgGallery,
+						imagen: this.image,
 						hrsRealizar: this.hrsRealizar,
 						cantidadEstudiantes: this.vacantesProy
 
@@ -516,44 +524,51 @@
 					});
 				},
 				abrirModal(modelo, accion, data = []) {
-					this.loadSpinner = 1;
 					let me = this;
+					me.loadSpinner = 1;
 					const el = document.body;
 					el.classList.add("abrirModal");
+					const vueImgInputer = me.$refs.imgUpload;
 
 					var inst = JSON.stringify({
 						value: data.institucion.id,
 						label: data.institucion.nombre
 					});
 					//Cargando datos de proyecto en modal
+					//PENDIENTE CARGA DE IMAGEN EXTERNA EN VUEIMG-INPUTER INVESTIGAR COMO SACAR EL PATH COMPLETO DE LA APP
 					switch(me.proceso){
-						//El proyecto a actualizar es de Serivio Social
+						//El proyecto a actualizar es de Servicio Social
 						case "1":
-						this.modal = 1;
-						this.proyecto_id = data.id;
+						me.modal = 1;
+						me.proyecto_id = data.id;
 						me.nombreP = data.nombre;
+						if(me.arrayImages.indexOf(data.img) != -1){
+							$("#btnOpenGallery").click();
+							me.imgGallery = data.img;
+						}else{
+							me.image = data.img;
+							var url = window.location.origin+"/images/img_projects/"+me.image;
+							vueImgInputer.imgSrc = url;
+							me.switchImg = true;
+
+						}
 						me.actividadesUpd = data.actividades;
 						me.institucionP = JSON.parse(inst);
 						me.hrsRealizar = data.horas_realizar;
 						me.vacantesProy = data.cantidades_vacantes;
 						me.getInst();
-						if(me.arrayImages.includes(data.img)){
-							$("#btnOpenGallery").click();
-							me.imgGallery = data.img;
-						}else{
-							me.image = data.img;
-							me.switchImg==true;
-						}
 
-						this.loadSpinner = 0;
+						me.loadSpinner = 0;
+						// console.log(vueImgInputer.imgSrc());
+
 						break;
 						case "2":
-						this.modal = 1;
-						this.proyecto_id = data.id;
+						me.modal = 1;
+						me.proyecto_id = data.id;
 						me.nombreP = data.nombre;
 						me.actividadesUpd = data.actividades;
 						me.institucionP = JSON.parse(inst);
-						me.hrsRealizar = data.horas_realizar;
+						me.hrsRealizar = data.horas_realizarr;
 						me.vacantesProy = data.cantidades_vacantes;
 						me.getInst();
 						if(me.arrayImages.includes(data.img)){
@@ -561,10 +576,10 @@
 							$("#btnOpenGallery").click();
 						}else{
 							me.image = data.img;
-							me.switchImg==true;
-						}
+							me.switchImg = true;
 
-						this.loadSpinner = 0;
+						}
+						me.loadSpinner = 0;
 
 						break;
 					}

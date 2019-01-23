@@ -15,6 +15,7 @@ class AddNoProyectosToEstudiantesTable extends Migration
     {
         Schema::table('estudiantes', function (Blueprint $table) {
             $table->integer('no_proyectos')->nullable(false)->default(0);
+            $table->date('ultimo_cambio')->after('fecha_inicio_pp')->nullable(true);
         });
     }
 

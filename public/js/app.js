@@ -261,13 +261,13 @@ function toComment(sourceMap) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(93)
+  __webpack_require__(91)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(95)
+var __vue_script__ = __webpack_require__(93)
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(94)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -14710,13 +14710,13 @@ module.exports = "/fonts/vendor/vue-img-inputer/dist/iconfont.eot?50c39a176b3f06
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(143)
+  __webpack_require__(137)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(145)
+var __vue_script__ = __webpack_require__(139)
 /* template */
-var __vue_template__ = __webpack_require__(146)
+var __vue_template__ = __webpack_require__(140)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -14845,29 +14845,29 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_13_vue_the_mask___default.a);
 
 Vue.component('pulse-loader', __webpack_require__(78));
 Vue.component('institucion', __webpack_require__(84));
-Vue.component('publiproject', __webpack_require__(91));
-Vue.component('lineaproject', __webpack_require__(98));
-Vue.component('usuarios', __webpack_require__(101));
-Vue.component('notification', __webpack_require__(104));
-Vue.component('preregister', __webpack_require__(107));
-Vue.component('pagoarancel', __webpack_require__(110));
-Vue.component('pagoaranceladmin', __webpack_require__(115));
-Vue.component('hojasupervgeneral', __webpack_require__(120));
-Vue.component('general', __webpack_require__(125));
-Vue.component('supervision', __webpack_require__(128));
-Vue.component('carrinst', __webpack_require__(133));
-Vue.component('regsuperv', __webpack_require__(138));
+Vue.component('publiproject', __webpack_require__(89));
+Vue.component('lineaproject', __webpack_require__(96));
+Vue.component('usuarios', __webpack_require__(99));
+Vue.component('notification', __webpack_require__(102));
+Vue.component('preregister', __webpack_require__(105));
+Vue.component('pagoarancel', __webpack_require__(108));
+Vue.component('pagoaranceladmin', __webpack_require__(111));
+Vue.component('hojasupervgeneral', __webpack_require__(116));
+Vue.component('general', __webpack_require__(119));
+Vue.component('supervision', __webpack_require__(122));
+Vue.component('carrinst', __webpack_require__(127));
+Vue.component('regsuperv', __webpack_require__(132));
 Vue.component('configuracion', __webpack_require__(18));
-Vue.component('inicioproceso', __webpack_require__(147));
-Vue.component('pendientesinicio', __webpack_require__(150));
-Vue.component('pendientefin', __webpack_require__(153));
-Vue.component('culminados', __webpack_require__(156));
+Vue.component('inicioproceso', __webpack_require__(141));
+Vue.component('pendientesinicio', __webpack_require__(144));
+Vue.component('pendientefin', __webpack_require__(147));
+Vue.component('culminados', __webpack_require__(150));
 Vue.component('configuracion', __webpack_require__(18));
-Vue.component('gestproy', __webpack_require__(159));
-Vue.component('constancias', __webpack_require__(162));
-Vue.component('sectores', __webpack_require__(167));
-Vue.component('solicitudes_aprobadas', __webpack_require__(170));
-Vue.component('proyectos_externos', __webpack_require__(173));
+Vue.component('gestproy', __webpack_require__(153));
+Vue.component('constancias', __webpack_require__(156));
+Vue.component('sectores', __webpack_require__(161));
+Vue.component('solicitudes_aprobadas', __webpack_require__(164));
+Vue.component('proyectos_externos', __webpack_require__(167));
 
 var app = new Vue({
   el: '#app',
@@ -78643,13 +78643,12 @@ var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(85)
-  __webpack_require__(87)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(89)
+var __vue_script__ = __webpack_require__(87)
 /* template */
-var __vue_template__ = __webpack_require__(90)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -78729,50 +78728,137 @@ exports.push([module.i, "\n.uploader[data-v-f70e4106] {\n  width: 100%;\n  backg
 
 /***/ }),
 /* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(88);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("36e05121", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f70e4106\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Institucion.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f70e4106\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./Institucion.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -79334,7 +79420,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       titleMRS: "",
       supervision: {},
       maxDatetime: new Date().toISOString().substring(0, 10),
-      nombreUpd: ""
+      nombreUpd: "",
+      modalSupervisores: 0,
+      tituloModalSupervisores: "",
+      nombreSupervisor: "",
+      telefonoSupervisor: "",
+      institucionSelected: 0,
+      arraySupervisores: [],
+      supervisor_id: 0,
+      updSupervisor: false,
+      nombreSupervisorUpd: "",
+      verProyectosExternos: false,
+      tipoProyectos: 'I',
+      arrayImagesUpd: []
     };
   },
 
@@ -79406,6 +79504,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
      } */
   },
   watch: {
+    verProyectosExternos: function verProyectosExternos() {
+      if (this.verProyectosExternos) {
+        this.tipoProyectos = 'E';
+      } else {
+        this.tipoProyectos = 'I';
+      }
+    },
     departamento_id: function departamento_id() {
       this.getMunicipios();
 
@@ -79427,7 +79532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // {
       this.observacion = this.supervision["observacion"];
       this.date = this.supervision["fecha"];
-      //this.images = this.supervision["imagenes"];
+      this.arrayImagesUpd = this.supervision["imagenes"];
       // }
     }
 
@@ -79482,6 +79587,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+    getSupervisores: function getSupervisores() {
+      var me = this;
+      me.loadSpinner = 1;
+      var url = route("getSupervisores", { "institucion_id": me.institucionSelected });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arraySupervisores = respuesta;
+        me.loadSpinner = 0;
+      }).catch(function (error) {
+        console.log(error);
+        me.loadSpinner = 0;
+      });
+    },
     getMunicipios: function getMunicipios() {
       var me = this;
       var url = "GetMunicipios/" + this.departamento_id["value"];
@@ -79500,15 +79618,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
-    //obtener todas las instituciones relacionadas a proyectos de SS o PP
+    //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
     getProyectosInsti: function getProyectosInsti(id, page, buscar, proceso) {
       var me = this;
-      var url = "/GetInstitucion?id=" + id + "&page=" + page + "&buscar=" + buscar + "&proceso=" + proceso;
+      var url = "getProyectosByInstitucion?id=" + id + "&page=" + page + "&buscar=" + buscar + "&proceso=" + proceso + "&tipoProyecto=" + me.tipoProyectos;
       me.loadSpinner = 1;
       me.pagination = "";
       axios.get(url).then(function (response) {
         var respuesta = response.data;
-        me.arrayProyectos = respuesta.institucion.data;
+        me.arrayProyectos = respuesta.proyectos.data;
         me.pagination = respuesta.pagination;
         //Por si no devuelve datos
         me.loadSpinner = 0;
@@ -79526,7 +79644,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
-        me.arrayImag = respuesta;
+        me.arrayImages = respuesta;
         me.loading = false;
       }).catch(function (error) {
         console.log(error);
@@ -79644,6 +79762,211 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           });
         }
       });
+    },
+    registrarSupervisor: function registrarSupervisor() {
+      var me = this;
+      swal({
+        title: "Esta seguro de guardar los datos?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          me.loadSpinner = 1;
+          var urlSave = route('saveSupervisor', { "nombre": me.nombreSupervisor, "telefono": me.telefonoSupervisor, "institucion_id": me.institucionSelected });
+          var urlValidate = route('validateSupervisor', { "nombre": me.nombreSupervisor });
+          axios.get(urlValidate).then(function (response) {
+            var respuesta = response.data;
+            if (respuesta == 'existe') {
+              swal({
+                position: "center",
+                type: "warning",
+                title: "Supervisor existente! Ingrese otro nombre!",
+                showConfirmButton: true,
+                timer: 5000
+              });
+              me.nombreSupervisor = "";
+              me.loadSpinner = 0;
+            } else {
+              axios.post(urlSave).then(function (response) {
+                swal({
+                  position: "center",
+                  type: "success",
+                  title: "¡Supervisor registrado correctamente!",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                me.nombreSupervisor = "";
+                me.telefonoSupervisor = "";
+                me.loadSpinner = 0;
+                me.updSupervisor = false;
+                me.getSupervisores();
+                var elem = me.$refs.divCollapse;
+                if (elem.classList.contains("collapse")) {
+                  elem.classList.remove("show");
+                }
+              }).catch(function (error) {
+                me.loadSpinner = 0;
+                swal({
+                  position: "center",
+                  type: "warning",
+                  title: "Ocurrio un error al procesar los datos",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                console.log(error.response.data.errors);
+              });
+            }
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    actualizarSupervisor: function actualizarSupervisor() {
+      var me = this;
+      swal({
+        title: "Esta seguro de guardar los datos?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          me.loadSpinner = 1;
+          var urlValidate = route('validateSupervisor', { "nombre": me.nombreSupervisor });
+          axios.get(urlValidate).then(function (response) {
+            var respuesta = response.data;
+            if (me.nombreSupervisor != me.nombreSupervisorUpd && respuesta == 'existe') {
+              swal({
+                position: "center",
+                type: "warning",
+                title: "Supervisor existente! Ingrese otro nombre!",
+                showConfirmButton: true,
+                timer: 5000
+              });
+              me.nombreSupervisor = me.nombreSupervisorUpd;
+              me.loadSpinner = 0;
+            } else {
+              axios.put("institucion/supervisor/update", {
+                id: me.supervisor_id,
+                nombre: me.nombreSupervisor,
+                telefono: me.telefonoSupervisor
+              }).then(function (response) {
+                swal({
+                  position: "center",
+                  type: "success",
+                  title: "¡Supervisor actualizado correctamente!",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                me.nombreSupervisor = "";
+                me.telefonoSupervisor = "";
+                me.nombreSupervisorUpd = "";
+                me.loadSpinner = 0;
+                me.updSupervisor = false;
+                me.getSupervisores();
+                var elem = me.$refs.divCollapse;
+                if (elem.classList.contains("collapse")) {
+                  elem.classList.remove("show");
+                }
+              }).catch(function (error) {
+                me.loadSpinner = 0;
+                swal({
+                  position: "center",
+                  type: "warning",
+                  title: "Ocurrio un error al procesar los datos",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                console.log(error.response.data.errors);
+              });
+            }
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    deleteSupervisor: function deleteSupervisor(id) {
+      var _this2 = this;
+
+      swal({
+        title: "Esta seguro de eliminar este Supervisor(a)?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          me.loadSpinner = 1;
+          axios.put("/institucion/supervisor/eliminar/" + id).then(function (response) {
+            me.getSupervisores();
+            swal("Eliminado!", "El Registro ha sido eliminado con exito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    editarSupervisor: function editarSupervisor() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      var me = this;
+      var elem = me.$refs.divCollapse;
+      elem.classList.add("show");
+      me.supervisor_id = data.id;
+      me.nombreSupervisor = data.nombre;
+      me.telefonoSupervisor = data.no_telefono;
+      me.updSupervisor = true;
+      me.nombreSupervisorUpd = data.nombre;
+    },
+    openModalSupervisores: function openModalSupervisores() {
+      var institucion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modalSupervisores = 1;
+      this.tituloModalSupervisores = institucion.nombre;
+      this.institucionSelected = institucion.id;
+      this.getSupervisores();
+    },
+    cerrarModalSupervisores: function cerrarModalSupervisores() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalSupervisores = 0;
+      this.tituloModalSupervisores = "";
+      this.institucionSelected = 0;
+      this.arraySupervisores = [];
+      this.updSupervisor = false;
+      this.supervisor_id = 0;
+      this.nombreSupervisor = "";
+      this.telefonoSupervisor = "";
+      this.nombreSupervisorUpd = "";
     },
     registrarSupervision: function registrarSupervision() {
       var me = this;
@@ -79874,23 +80197,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return me.search;
     },
     desactivarInstitucion: function desactivarInstitucion(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       swal({
         title: "Esta seguro de desactivar esta Institucion?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
+        confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn update",
-        cancelButtonClass: "btn edit",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this2;
+          var me = _this3;
           me.loadSpinner = 1;
           axios.put("/institucion/desactivar", {
             id: id
@@ -79908,7 +80231,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     activarInstitucion: function activarInstitucion(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       swal({
         title: "Esta seguro de activar esta Institucion?",
@@ -79924,7 +80247,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this3;
+          var me = _this4;
           me.loadSpinner = 1;
           axios.put("/institucion/activar", {
             id: id
@@ -79974,26 +80297,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.dragCount <= 0) this.isDragging = false;
     },
     onInputChange: function onInputChange(e) {
-      var _this4 = this;
+      var _this5 = this;
 
       var files = e.target.files;
       Array.from(files).forEach(function (file) {
-        return _this4.addImage(file);
+        return _this5.addImage(file);
       });
     },
     onDrop: function onDrop(e) {
-      var _this5 = this;
+      var _this6 = this;
 
       e.preventDefault();
       e.stopPropagation();
       this.isDragging = false;
       var files = e.dataTransfer.files;
       Array.from(files).forEach(function (file) {
-        return _this5.addImage(file);
+        return _this6.addImage(file);
       });
     },
     addImage: function addImage(file) {
-      var _this6 = this;
+      var _this7 = this;
 
       if (!file.type.match("image.*")) {
         return;
@@ -80003,7 +80326,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var img = new Image(),
           reader = new FileReader();
       reader.onload = function (e) {
-        return _this6.images.push(e.target.result);
+        return _this7.images.push(e.target.result);
       };
       reader.readAsDataURL(file);
       this.loading = false;
@@ -80041,7 +80364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 90 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -80320,7 +80643,7 @@ var render = function() {
                                   _c(
                                     "button",
                                     {
-                                      staticClass: "btn btn-primary ",
+                                      staticClass: "button blue",
                                       attrs: {
                                         type: "button",
                                         "data-toggle": "tooltip",
@@ -80338,8 +80661,7 @@ var render = function() {
                                     },
                                     [
                                       _c("i", {
-                                        staticClass:
-                                          "mdi mdi-border-color i-crud"
+                                        staticClass: "mdi mdi-border-color"
                                       })
                                     ]
                                   ),
@@ -80349,7 +80671,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "btn btn-primary ",
+                                            staticClass: "button red",
                                             attrs: {
                                               type: "button",
                                               "data-toggle": "tooltip",
@@ -80366,42 +80688,35 @@ var render = function() {
                                           [
                                             _c("i", {
                                               staticClass:
-                                                "mdi mdi-delete-variant i-crud"
+                                                "mdi mdi-delete-variant"
                                             })
                                           ]
                                         )
                                       ]
-                                    : [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "btn btn-primary",
-                                            attrs: {
-                                              type: "button",
-                                              "data-toggle": "tooltip",
-                                              title: "Activar institución"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.activarInstitucion(
-                                                  institucion.id
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "mdi mdi-check-circle i-crud"
-                                            })
-                                          ]
-                                        )
-                                      ],
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _c(
                                     "button",
                                     {
-                                      staticClass: "btn btn-primary ",
+                                      staticClass: "button dark",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Supervisores"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.openModalSupervisores(institucion)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "mdi mdi-eye" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button secondary ",
                                       attrs: {
                                         type: "button",
                                         "data-toggle": "tooltip",
@@ -80415,8 +80730,7 @@ var render = function() {
                                     },
                                     [
                                       _c("i", {
-                                        staticClass:
-                                          "mdi mdi-playlist-plus i-crud"
+                                        staticClass: "mdi mdi-playlist-plus"
                                       })
                                     ]
                                   )
@@ -80563,6 +80877,375 @@ var render = function() {
               "div",
               {
                 staticClass: "modal fade",
+                class: { mostrar: _vm.modalSupervisores },
+                attrs: {
+                  role: "dialog",
+                  "aria-labelledby": "exampleModalLabel",
+                  "aria-hidden": "true"
+                }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", { staticClass: "modal-title text-white" }, [
+                        _vm._v(
+                          _vm._s(
+                            "Supervisores de " + _vm.tituloModalSupervisores
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: {
+                            type: "button",
+                            "data-dismiss": "modal",
+                            "aria-label": "Close"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.cerrarModalSupervisores()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-white",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [_vm._v("×")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          ref: "divCollapse",
+                          staticClass: "collapse",
+                          attrs: { id: "collapseExample" }
+                        },
+                        [
+                          _c("fieldset", [
+                            _c("div", { staticClass: "panel panel-default" }, [
+                              _c("div", { staticClass: "panel-body" }, [
+                                _c("div", { staticClass: "row m-1" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 form-group" },
+                                    [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "font-weight-bold",
+                                          attrs: { for: "" }
+                                        },
+                                        [_vm._v("Ingrese Nombre*")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nombreSupervisor,
+                                            expression: "nombreSupervisor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: {
+                                          value: _vm.nombreSupervisor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nombreSupervisor =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 form-group" },
+                                    [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "font-weight-bold",
+                                          attrs: { for: "" }
+                                        },
+                                        [_vm._v("Ingrese Teléfono")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "mask",
+                                            rawName: "v-mask",
+                                            value: "########",
+                                            expression: "'########'"
+                                          },
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.telefonoSupervisor,
+                                            expression: "telefonoSupervisor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: {
+                                          value: _vm.telefonoSupervisor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.telefonoSupervisor =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-12 text-right" },
+                                    [
+                                      !_vm.updSupervisor
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "button blue text-right",
+                                              class: [
+                                                _vm.nombreSupervisor == ""
+                                                  ? "disabled"
+                                                  : ""
+                                              ],
+                                              attrs: {
+                                                type: "button",
+                                                disabled:
+                                                  _vm.nombreSupervisor == ""
+                                              },
+                                              on: {
+                                                click: _vm.registrarSupervisor
+                                              }
+                                            },
+                                            [_vm._v("Guardar Datos")]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.updSupervisor
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "button blue text-right",
+                                              class: [
+                                                _vm.nombreSupervisor == ""
+                                                  ? "disabled"
+                                                  : ""
+                                              ],
+                                              attrs: {
+                                                type: "button",
+                                                disabled:
+                                                  _vm.nombreSupervisor == ""
+                                              },
+                                              on: {
+                                                click: _vm.actualizarSupervisor
+                                              }
+                                            },
+                                            [_vm._v("Actualizar Información")]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("fieldset", [
+                        _c("div", { staticClass: "panel panel-default" }, [
+                          _c("div", { staticClass: "panel-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _vm._m(3),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("div", { staticClass: "table-responsive" }, [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticClass:
+                                        "table table-striped table-bordered table-mc-light-blue",
+                                      attrs: { id: "myTable" }
+                                    },
+                                    [
+                                      _vm._m(4),
+                                      _vm._v(" "),
+                                      _c(
+                                        "tbody",
+                                        _vm._l(_vm.arraySupervisores, function(
+                                          item
+                                        ) {
+                                          return _vm.arraySupervisores.length >
+                                            0
+                                            ? _c("tr", { key: item.id }, [
+                                                _c("th", {
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      item.nombre
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c("th", {
+                                                  staticClass: "text-center",
+                                                  domProps: {
+                                                    textContent: _vm._s(
+                                                      item.no_telefono == null
+                                                        ? "------"
+                                                        : item.no_telefono
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "th",
+                                                  {
+                                                    staticClass: "text-center"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "button blue",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-toggle":
+                                                            "tooltip",
+                                                          title:
+                                                            "Editar Supervisor"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.editarSupervisor(
+                                                              item
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "mdi mdi-border-color"
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "button red",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-toggle":
+                                                            "tooltip",
+                                                          title:
+                                                            "Eliminar Supervisor"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.deleteSupervisor(
+                                                              item.id
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "mdi mdi-delete"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            : _vm._e()
+                                        })
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm.arraySupervisores.length == 0
+                                  ? _c("div", { staticClass: "row" }, [
+                                      _vm._m(5)
+                                    ])
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModalSupervisores()
+                                }
+                              }
+                            },
+                            [_vm._v("Cerrar")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
                 class: { mostrar: _vm.modalID },
                 attrs: {
                   role: "dialog",
@@ -80614,7 +81297,7 @@ var render = function() {
                             "bmd-form-group bmd-collapse-inline pull-xs-right"
                         },
                         [
-                          _vm._m(2),
+                          _vm._m(6),
                           _vm._v(" "),
                           _c(
                             "span",
@@ -80677,7 +81360,7 @@ var render = function() {
                                     "table table-striped table-bordered table-mc-light-blue"
                                 },
                                 [
-                                  _vm._m(3),
+                                  _vm._m(7),
                                   _vm._v(" "),
                                   _c(
                                     "tbody",
@@ -81796,31 +82479,25 @@ var render = function() {
                                                       )
                                                     : _vm._e(),
                                                   _vm._v(" "),
-                                                  _vm.proceso == 2
-                                                    ? _c(
-                                                        "th",
-                                                        {
-                                                          staticClass:
-                                                            "text-center"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "Estado Supervisión"
-                                                          )
-                                                        ]
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Estado Supervisión"
                                                       )
-                                                    : _vm._e(),
+                                                    ]
+                                                  ),
                                                   _vm._v(" "),
-                                                  _vm.proceso == 2
-                                                    ? _c(
-                                                        "th",
-                                                        {
-                                                          staticClass:
-                                                            "text-center"
-                                                        },
-                                                        [_vm._v("Acciones")]
-                                                      )
-                                                    : _vm._e()
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [_vm._v("Acciones")]
+                                                  )
                                                 ])
                                               ]
                                             ),
@@ -81861,144 +82538,147 @@ var render = function() {
                                                               "text-center",
                                                             domProps: {
                                                               textContent: _vm._s(
-                                                                proyecto.carrera
+                                                                proyecto
+                                                                  .carre_proy[0]
                                                                   .nombre
                                                               )
                                                             }
                                                           })
                                                         : _vm._e(),
                                                       _vm._v(" "),
-                                                      _vm.proceso == 2
-                                                        ? _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-center"
-                                                            },
-                                                            [
-                                                              [
-                                                                _c("h4", [
-                                                                  proyecto.supervision ==
-                                                                  0
-                                                                    ? _c(
-                                                                        "span",
-                                                                        {
-                                                                          staticClass:
-                                                                            "badge h1 badge-pill badge-primary"
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "Supervisado"
-                                                                          )
-                                                                        ]
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center"
+                                                        },
+                                                        [
+                                                          [
+                                                            _c("h4", [
+                                                              proyecto.supervision !=
+                                                                null ||
+                                                              proyecto.supervision !=
+                                                                undefined
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge h1 badge-pill badge-primary"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Supervisado"
                                                                       )
-                                                                    : _c(
-                                                                        "span",
-                                                                        {
-                                                                          staticClass:
-                                                                            "badge badge-pill badge-danger"
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "No Supervisado"
-                                                                          )
-                                                                        ]
+                                                                    ]
+                                                                  )
+                                                                : _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge badge-pill badge-danger"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "No Supervisado"
                                                                       )
-                                                                ])
-                                                              ]
-                                                            ],
-                                                            2
-                                                          )
-                                                        : _vm._e(),
+                                                                    ]
+                                                                  )
+                                                            ])
+                                                          ]
+                                                        ],
+                                                        2
+                                                      ),
                                                       _vm._v(" "),
-                                                      _vm.proceso == 2
-                                                        ? _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-center"
-                                                            },
-                                                            [
-                                                              proyecto.supervision ==
-                                                              1
-                                                                ? _c(
-                                                                    "button",
-                                                                    {
-                                                                      staticClass:
-                                                                        "btn btn-primary text-capitalize",
-                                                                      attrs: {
-                                                                        type:
-                                                                          "button",
-                                                                        "data-toggle":
-                                                                          "tooltip",
-                                                                        title:
-                                                                          "Registrar nueva supervisión a este proyecto"
-                                                                      },
-                                                                      on: {
-                                                                        click: function(
-                                                                          $event
-                                                                        ) {
-                                                                          _vm.abrirModalSuper(
-                                                                            "registrar",
-                                                                            proyecto.id,
-                                                                            proyecto.nombre
-                                                                          )
-                                                                        }
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _c("i", {
-                                                                        staticClass:
-                                                                          "mdi mdi-folder-plus h4"
-                                                                      }),
-                                                                      _vm._v(
-                                                                        "Registrar Supervisión"
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center"
+                                                        },
+                                                        [
+                                                          proyecto.supervision ==
+                                                            null ||
+                                                          proyecto.supervision ==
+                                                            undefined
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-primary text-capitalize",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button",
+                                                                    "data-toggle":
+                                                                      "tooltip",
+                                                                    title:
+                                                                      "Registrar nueva supervisión a este proyecto"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.abrirModalSuper(
+                                                                        "registrar",
+                                                                        proyecto.id,
+                                                                        proyecto.nombre
                                                                       )
-                                                                    ]
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "mdi mdi-folder-plus h4"
+                                                                  }),
+                                                                  _vm._v(
+                                                                    "\n                                   Registrar Supervisión\n                                  "
                                                                   )
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              proyecto.supervision ==
-                                                              0
-                                                                ? _c(
-                                                                    "button",
-                                                                    {
-                                                                      staticClass:
-                                                                        "btn btn-primary text-capitalize",
-                                                                      attrs: {
-                                                                        type:
-                                                                          "button",
-                                                                        "data-toggle":
-                                                                          "tooltip",
-                                                                        title:
-                                                                          "Editar datos de la supervisión realizada"
-                                                                      },
-                                                                      on: {
-                                                                        click: function(
-                                                                          $event
-                                                                        ) {
-                                                                          _vm.abrirModalSuper(
-                                                                            "actualizar",
-                                                                            proyecto.id,
-                                                                            proyecto.nombre
-                                                                          )
-                                                                        }
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _c("i", {
-                                                                        staticClass:
-                                                                          "mdi mdi-border-color h4"
-                                                                      }),
-                                                                      _vm._v(
-                                                                        "Editar Supervisión"
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          proyecto.supervision !=
+                                                            null ||
+                                                          proyecto.supervision !=
+                                                            undefined
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-primary text-capitalize",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button",
+                                                                    "data-toggle":
+                                                                      "tooltip",
+                                                                    title:
+                                                                      "Editar datos de la supervisión realizada"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.abrirModalSuper(
+                                                                        "actualizar",
+                                                                        proyecto.id,
+                                                                        proyecto.nombre
                                                                       )
-                                                                    ]
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "mdi mdi-border-color h4"
+                                                                  }),
+                                                                  _vm._v(
+                                                                    "\n                                  Editar Supervisión\n                                  "
                                                                   )
-                                                                : _vm._e()
-                                                            ]
-                                                          )
-                                                        : _vm._e()
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
                                                     ]
                                                   )
                                                 }
@@ -82347,115 +83027,57 @@ var render = function() {
                                                           ]
                                                         ),
                                                         _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group"
-                                                          },
-                                                          [
-                                                            _c(
+                                                        _vm.tipoAccion2 == 1
+                                                          ? _c(
                                                               "div",
                                                               {
                                                                 staticClass:
-                                                                  "uploader",
-                                                                class: {
-                                                                  dragging:
-                                                                    _vm.isDragging
-                                                                },
-                                                                on: {
-                                                                  dragenter:
-                                                                    _vm.OnDragEnter,
-                                                                  dragleave:
-                                                                    _vm.OnDragLeave,
-                                                                  dragover: function(
-                                                                    $event
-                                                                  ) {
-                                                                    $event.preventDefault()
-                                                                  },
-                                                                  drop:
-                                                                    _vm.onDrop
-                                                                }
+                                                                  "form-group"
                                                               },
                                                               [
                                                                 _c(
                                                                   "div",
                                                                   {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "show",
-                                                                        rawName:
-                                                                          "v-show",
-                                                                        value:
-                                                                          _vm
-                                                                            .images
-                                                                            .length,
-                                                                        expression:
-                                                                          "images.length"
-                                                                      }
-                                                                    ],
                                                                     staticClass:
-                                                                      "upload-control"
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "label",
-                                                                      {
-                                                                        attrs: {
-                                                                          for:
-                                                                            "file"
-                                                                        }
+                                                                      "uploader",
+                                                                    class: {
+                                                                      dragging:
+                                                                        _vm.isDragging
+                                                                    },
+                                                                    on: {
+                                                                      dragenter:
+                                                                        _vm.OnDragEnter,
+                                                                      dragleave:
+                                                                        _vm.OnDragLeave,
+                                                                      dragover: function(
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
                                                                       },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "Seleccione una o mas imagenes"
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "div",
-                                                                  {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "show",
-                                                                        rawName:
-                                                                          "v-show",
-                                                                        value: !_vm
-                                                                          .images
-                                                                          .length,
-                                                                        expression:
-                                                                          "!images.length"
-                                                                      }
-                                                                    ]
+                                                                      drop:
+                                                                        _vm.onDrop
+                                                                    }
                                                                   },
                                                                   [
-                                                                    _c("i", {
-                                                                      staticClass:
-                                                                        "fa fa-cloud-upload"
-                                                                    }),
-                                                                    _vm._v(" "),
-                                                                    _c("p", [
-                                                                      _vm._v(
-                                                                        "Arrastre sus imagenes aqui!"
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("div", [
-                                                                      _vm._v(
-                                                                        "o"
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
                                                                     _c(
                                                                       "div",
                                                                       {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
                                                                         staticClass:
-                                                                          "file-input"
+                                                                          "upload-control"
                                                                       },
                                                                       [
                                                                         _c(
@@ -82468,7 +83090,46 @@ var render = function() {
                                                                           },
                                                                           [
                                                                             _vm._v(
-                                                                              "Seleccione"
+                                                                              "Seleccione una o mas imagenes"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value: !_vm
+                                                                              .images
+                                                                              .length,
+                                                                            expression:
+                                                                              "!images.length"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-cloud-upload"
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "p",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Arrastre sus imagenes aqui!"
                                                                             )
                                                                           ]
                                                                         ),
@@ -82476,123 +83137,132 @@ var render = function() {
                                                                           " "
                                                                         ),
                                                                         _c(
-                                                                          "input",
+                                                                          "div",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "o"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
                                                                           {
-                                                                            attrs: {
-                                                                              type:
-                                                                                "file",
-                                                                              id:
-                                                                                "file",
-                                                                              multiple:
-                                                                                ""
-                                                                            },
-                                                                            on: {
-                                                                              change:
-                                                                                _vm.onInputChange
-                                                                            }
-                                                                          }
+                                                                            staticClass:
+                                                                              "file-input"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "label",
+                                                                              {
+                                                                                attrs: {
+                                                                                  for:
+                                                                                    "file"
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "Seleccione"
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "input",
+                                                                              {
+                                                                                attrs: {
+                                                                                  type:
+                                                                                    "file",
+                                                                                  id:
+                                                                                    "file",
+                                                                                  multiple:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  change:
+                                                                                    _vm.onInputChange
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
                                                                         )
                                                                       ]
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "div",
-                                                                  {
-                                                                    directives: [
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
                                                                       {
-                                                                        name:
-                                                                          "show",
-                                                                        rawName:
-                                                                          "v-show",
-                                                                        value:
-                                                                          _vm
-                                                                            .images
-                                                                            .length,
-                                                                        expression:
-                                                                          "images.length"
-                                                                      }
-                                                                    ],
-                                                                    staticClass:
-                                                                      "images-preview"
-                                                                  },
-                                                                  _vm._l(
-                                                                    _vm.images,
-                                                                    function(
-                                                                      image,
-                                                                      index
-                                                                    ) {
-                                                                      return _c(
-                                                                        "div",
-                                                                        {
-                                                                          key: index,
-                                                                          staticClass:
-                                                                            "img-wrapper"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "button",
-                                                                            {
-                                                                              staticClass:
-                                                                                "remove",
-                                                                              on: {
-                                                                                click: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  _vm.removeImage(
-                                                                                    index
-                                                                                  )
-                                                                                }
-                                                                              }
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "i",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "mdi mdi-close-circle"
-                                                                                }
-                                                                              )
-                                                                            ]
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
-                                                                            "img",
-                                                                            {
-                                                                              attrs: {
-                                                                                src: image,
-                                                                                alt:
-                                                                                  "Imagen " +
-                                                                                  index
-                                                                              }
-                                                                            }
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "images-preview"
+                                                                      },
+                                                                      _vm._l(
+                                                                        _vm.images,
+                                                                        function(
+                                                                          image,
+                                                                          index
+                                                                        ) {
+                                                                          return _c(
                                                                             "div",
                                                                             {
+                                                                              key: index,
                                                                               staticClass:
-                                                                                "details"
+                                                                                "img-wrapper"
                                                                             },
                                                                             [
                                                                               _c(
-                                                                                "span",
+                                                                                "button",
                                                                                 {
                                                                                   staticClass:
-                                                                                    "name",
-                                                                                  domProps: {
-                                                                                    textContent: _vm._s(
-                                                                                      _vm
-                                                                                        .files[
+                                                                                    "remove",
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      _vm.removeImage(
                                                                                         index
-                                                                                      ]
-                                                                                        .name
-                                                                                    )
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "i",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mdi mdi-close-circle"
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "img",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    src: image,
+                                                                                    alt:
+                                                                                      "Imagen " +
+                                                                                      index
                                                                                   }
                                                                                 }
                                                                               ),
@@ -82600,35 +83270,322 @@ var render = function() {
                                                                                 " "
                                                                               ),
                                                                               _c(
-                                                                                "span",
+                                                                                "div",
                                                                                 {
                                                                                   staticClass:
-                                                                                    "size",
-                                                                                  domProps: {
-                                                                                    textContent: _vm._s(
-                                                                                      _vm.getFileSize(
-                                                                                        _vm
-                                                                                          .files[
-                                                                                          index
-                                                                                        ]
-                                                                                          .size
+                                                                                    "details"
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "name",
+                                                                                      domProps: {
+                                                                                        textContent: _vm._s(
+                                                                                          _vm
+                                                                                            .files[
+                                                                                            index
+                                                                                          ]
+                                                                                            .name
+                                                                                        )
+                                                                                      }
+                                                                                    }
+                                                                                  ),
+                                                                                  _vm._v(
+                                                                                    " "
+                                                                                  ),
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "size",
+                                                                                      domProps: {
+                                                                                        textContent: _vm._s(
+                                                                                          _vm.getFileSize(
+                                                                                            _vm
+                                                                                              .files[
+                                                                                              index
+                                                                                            ]
+                                                                                              .size
+                                                                                          )
+                                                                                        )
+                                                                                      }
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        }
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          : _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "form-group"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "uploader",
+                                                                    class: {
+                                                                      dragging:
+                                                                        _vm.isDragging
+                                                                    },
+                                                                    on: {
+                                                                      dragenter:
+                                                                        _vm.OnDragEnter,
+                                                                      dragleave:
+                                                                        _vm.OnDragLeave,
+                                                                      dragover: function(
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                      },
+                                                                      drop:
+                                                                        _vm.onDrop
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .arrayImagesUpd
+                                                                                .length,
+                                                                            expression:
+                                                                              "arrayImagesUpd.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "upload-control"
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "label",
+                                                                          {
+                                                                            attrs: {
+                                                                              for:
+                                                                                "file"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Seleccione una o mas imagenes"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value: !_vm
+                                                                              .arrayImagesUpd
+                                                                              .length,
+                                                                            expression:
+                                                                              "!arrayImagesUpd.length"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-cloud-upload"
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "p",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Arrastre sus imagenes aqui!"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "o"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "file-input"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "label",
+                                                                              {
+                                                                                attrs: {
+                                                                                  for:
+                                                                                    "file"
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "Seleccione"
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "input",
+                                                                              {
+                                                                                attrs: {
+                                                                                  type:
+                                                                                    "file",
+                                                                                  id:
+                                                                                    "file",
+                                                                                  multiple:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  change:
+                                                                                    _vm.onInputChange
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .arrayImagesUpd
+                                                                                .length,
+                                                                            expression:
+                                                                              "arrayImagesUpd.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "images-preview"
+                                                                      },
+                                                                      _vm._l(
+                                                                        _vm.arrayImagesUpd,
+                                                                        function(
+                                                                          image,
+                                                                          index
+                                                                        ) {
+                                                                          return _c(
+                                                                            "div",
+                                                                            {
+                                                                              key: index,
+                                                                              staticClass:
+                                                                                "img-wrapper"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "button",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "remove",
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      _vm.removeImage(
+                                                                                        index
                                                                                       )
-                                                                                    )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "i",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mdi mdi-close-circle"
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "img",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    src:
+                                                                                      "images_superv/" +
+                                                                                      image.img,
+                                                                                    alt:
+                                                                                      "Imagen " +
+                                                                                      index
                                                                                   }
                                                                                 }
                                                                               )
                                                                             ]
                                                                           )
-                                                                        ]
+                                                                        }
                                                                       )
-                                                                    }
-                                                                  )
+                                                                    )
+                                                                  ]
                                                                 )
                                                               ]
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
+                                                            ),
+                                                        _vm._v(" "),
+                                                        _c("pulse-loader", {
+                                                          staticClass:
+                                                            "text-center",
+                                                          attrs: {
+                                                            loading:
+                                                              _vm.loading,
+                                                            color: _vm.color,
+                                                            size: _vm.size
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
                                                     ),
                                                     _vm._v(" "),
                                                     _c(
@@ -82845,14 +83802,83 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Email")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [
-          _vm._v("Sector perteneciente")
-        ]),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Sector")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Municipio")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "btn btn-primary h5 font-weight-bold text-dark text-capitalize",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#collapseExample",
+          "aria-expanded": "false",
+          "aria-controls": "collapseExample"
+        }
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-playlist-plus i-crud",
+          staticStyle: { "margin-bottom": "-10px" }
+        }),
+        _vm._v(" Agregar Supervisores")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 mt-3" }, [
+      _c("h4", { staticClass: "align-baseline font-weight-bold" }, [
+        _vm._v("Listado de Supervisores Registrados")
+      ]),
+      _c("br")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Teléfono")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 text-center" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "alert font-weight-bold alert-warning h6 text-center col-md-12",
+          attrs: { role: "alert" }
+        },
+        [
+          _vm._v(
+            "\n                      No hay supervisores registrados en esta institución\n                    "
+          )
+        ]
+      )
     ])
   },
   function() {
@@ -82903,15 +83929,15 @@ if (false) {
 }
 
 /***/ }),
-/* 91 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(92)
+var __vue_script__ = __webpack_require__(90)
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(95)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -82950,7 +83976,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83227,11 +84253,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       proceso: 0,
       switchImg: false,
       catidadHoras: 0,
-      cantidadVacantes: 0,
+      cantidadVacantes: 1,
       imgGallery: "",
       proyectoExterno: false,
       nombre: "",
-      arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.jpg", "mercadeo.jpg"],
+      arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.png", "mercadeo.jpg", "agro.jpg"],
       image: "",
       exist: false,
       carrerasProy: [],
@@ -83461,13 +84487,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 93 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(94);
+var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -83487,7 +84513,7 @@ if(false) {
 }
 
 /***/ }),
-/* 94 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -83501,7 +84527,7 @@ exports.push([module.i, "/**\n * Default\n */\n/**\n * Bulma\n */\n/**\n * Boots
 
 
 /***/ }),
-/* 95 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83600,7 +84626,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 96 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -83646,7 +84672,7 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -84308,15 +85334,15 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(99)
+var __vue_script__ = __webpack_require__(97)
 /* template */
-var __vue_template__ = __webpack_require__(100)
+var __vue_template__ = __webpack_require__(98)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -84355,7 +85381,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84670,7 +85696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			tipoproceso_id: 0,
 			switchImg: false,
 			imgGallery: "",
-			arrayImages: ["test.jpg", "turismo.jpg", "agro.jpg", "focos.jpg", "herramienta.jpg", "mercadeo.jpg"],
+			arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.png", "mercadeo.jpg", "agro.jpg"],
 			files: "",
 			image: "",
 			toolBars: [[{ header: [false, 1, 2, 3, 4, 5, 6] }], [{ align: "" }, { align: "center" }, { align: "right" }, { align: "justify" }], ["bold", "blockquote", "code-block"], [{ list: "ordered" }, { list: "bullet" }, { list: "check" }], [{ indent: "-1" }, { indent: "+1" }], [{ color: [] }]],
@@ -84829,8 +85855,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				estado: '1',
 				proceso_id: this.proceso,
 				tipoProyecto: 'I',
-				// imagenG: this.imgGallery,
-				// imagen: this.image,
+				imagenG: this.imgGallery,
+				imagen: this.image,
 				hrsRealizar: this.hrsRealizar,
 				cantidadEstudiantes: this.vacantesProy
 
@@ -84865,44 +85891,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		abrirModal: function abrirModal(modelo, accion) {
 			var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
-			this.loadSpinner = 1;
 			var me = this;
+			me.loadSpinner = 1;
 			var el = document.body;
 			el.classList.add("abrirModal");
+			var vueImgInputer = me.$refs.imgUpload;
 
 			var inst = JSON.stringify({
 				value: data.institucion.id,
 				label: data.institucion.nombre
 			});
 			//Cargando datos de proyecto en modal
+			//PENDIENTE CARGA DE IMAGEN EXTERNA EN VUEIMG-INPUTER INVESTIGAR COMO SACAR EL PATH COMPLETO DE LA APP
 			switch (me.proceso) {
-				//El proyecto a actualizar es de Serivio Social
+				//El proyecto a actualizar es de Servicio Social
 				case "1":
-					this.modal = 1;
-					this.proyecto_id = data.id;
+					me.modal = 1;
+					me.proyecto_id = data.id;
 					me.nombreP = data.nombre;
+					if (me.arrayImages.indexOf(data.img) != -1) {
+						$("#btnOpenGallery").click();
+						me.imgGallery = data.img;
+					} else {
+						me.image = data.img;
+						var url = window.location.origin + "/images/img_projects/" + me.image;
+						vueImgInputer.imgSrc = url;
+						me.switchImg = true;
+					}
 					me.actividadesUpd = data.actividades;
 					me.institucionP = JSON.parse(inst);
 					me.hrsRealizar = data.horas_realizar;
 					me.vacantesProy = data.cantidades_vacantes;
 					me.getInst();
-					if (me.arrayImages.includes(data.img)) {
-						$("#btnOpenGallery").click();
-						me.imgGallery = data.img;
-					} else {
-						me.image = data.img;
-						me.switchImg == true;
-					}
 
-					this.loadSpinner = 0;
+					me.loadSpinner = 0;
+					// console.log(vueImgInputer.imgSrc());
+
 					break;
 				case "2":
-					this.modal = 1;
-					this.proyecto_id = data.id;
+					me.modal = 1;
+					me.proyecto_id = data.id;
 					me.nombreP = data.nombre;
 					me.actividadesUpd = data.actividades;
 					me.institucionP = JSON.parse(inst);
-					me.hrsRealizar = data.horas_realizar;
+					me.hrsRealizar = data.horas_realizarr;
 					me.vacantesProy = data.cantidades_vacantes;
 					me.getInst();
 					if (me.arrayImages.includes(data.img)) {
@@ -84910,10 +85942,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						$("#btnOpenGallery").click();
 					} else {
 						me.image = data.img;
-						me.switchImg == true;
+						me.switchImg = true;
 					}
-
-					this.loadSpinner = 0;
+					me.loadSpinner = 0;
 
 					break;
 			}
@@ -85050,7 +86081,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 100 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -86207,8 +87238,8 @@ var render = function() {
                                 {
                                   name: "show",
                                   rawName: "v-show",
-                                  value: _vm.switchImg == false,
-                                  expression: "switchImg==false"
+                                  value: !_vm.switchImg,
+                                  expression: "!switchImg"
                                 }
                               ],
                               staticClass: "collapse",
@@ -86294,6 +87325,7 @@ var render = function() {
                             },
                             [
                               _c("img-inputer", {
+                                ref: "imgUpload",
                                 staticClass: "col-md-12 col-sm-12 col-lg-12",
                                 attrs: {
                                   icon: "img",
@@ -86430,15 +87462,15 @@ if (false) {
 }
 
 /***/ }),
-/* 101 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(102)
+var __vue_script__ = __webpack_require__(100)
 /* template */
-var __vue_template__ = __webpack_require__(103)
+var __vue_template__ = __webpack_require__(101)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -86477,7 +87509,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 102 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86718,7 +87750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -87077,15 +88109,15 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(105)
+var __vue_script__ = __webpack_require__(103)
 /* template */
-var __vue_template__ = __webpack_require__(106)
+var __vue_template__ = __webpack_require__(104)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -87124,7 +88156,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 105 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87196,7 +88228,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 106 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -87316,15 +88348,15 @@ if (false) {
 }
 
 /***/ }),
-/* 107 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(108)
+var __vue_script__ = __webpack_require__(106)
 /* template */
-var __vue_template__ = __webpack_require__(109)
+var __vue_template__ = __webpack_require__(107)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -87363,7 +88395,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 108 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87866,7 +88898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 109 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -88603,23 +89635,19 @@ if (false) {
 }
 
 /***/ }),
-/* 110 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(111)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(113)
+var __vue_script__ = __webpack_require__(109)
 /* template */
-var __vue_template__ = __webpack_require__(114)
+var __vue_template__ = __webpack_require__(110)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -88654,57 +89682,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(112);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("1f463570", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-210cd2d0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PagoArancel.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-210cd2d0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PagoArancel.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 113 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_switches__);
-//
-//
-//
-//
 //
 //
 //
@@ -88916,13 +89900,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         $("#txtNoFact").removeClass("mdc-text-field--disabled");
         this.no_fact = "";
       }
-    },
-    no_fact: function no_fact() {
-      if (this.no_fact == "") {
-        $("#btnSave").prop('disabled', true);
-      } else {
-        $("#btnSave").prop('disabled', false);
-      }
     }
   },
   computed: {
@@ -88950,7 +89927,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
-
     //obtener todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
@@ -88963,9 +89939,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
-
     //obtener el listado de estudiantes por proceso
     getAllStudens: function getAllStudens(carrera_id, proceso_id, page, buscar) {
+      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
       var me = this;
       me.loadSpinner = 1;
       var url = "/recepcion/getAllStudents?carre_id=" + carrera_id + "&proceso_id=" + proceso_id + "&page=" + page + "&buscar=" + buscar;
@@ -88975,6 +89951,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.pagination = respuesta.pagination;
         me.loadSpinner = 0;
       }).catch(function (error) {
+        console.log(error);
+        toast({
+          type: 'danger',
+          title: 'Error al cargar los datos! Intente Nuevamente'
+        });
         console.log(error);
       });
     },
@@ -89026,17 +90007,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         } else if (result.dismiss === swal.DismissReason.cancel) {}
       });
     },
-    getBecas: function getBecas() {
-      var me = this;
-      var url = "/becas/getAll";
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayBecas = respuesta;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-
 
     //guardar los cambios del pago del arancel
     savePay: function savePay() {
@@ -89063,14 +90033,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.beca_selected = 0;
       this.no_fact = "";
     }
-  },
-  components: {
-    Switches: __WEBPACK_IMPORTED_MODULE_0_vue_switches___default.a
   }
 });
 
 /***/ }),
-/* 114 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -89276,53 +90243,27 @@ var render = function() {
                                 "th",
                                 { staticClass: "text-center" },
                                 [
-                                  _vm.proceso == 1
-                                    ? [
-                                        _c("h4", [
-                                          item.pago_arancel.length != 0
-                                            ? _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-primary"
-                                                },
-                                                [_vm._v("Cancelado")]
-                                              )
-                                            : _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-danger"
-                                                },
-                                                [_vm._v("Pendiente")]
-                                              )
-                                        ])
-                                      ]
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.proceso == 2
-                                    ? [
-                                        _c("h4", [
-                                          item.pago_arancel[1] != undefined
-                                            ? _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-primary"
-                                                },
-                                                [_vm._v("Cancelado")]
-                                              )
-                                            : _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-pill badge-danger"
-                                                },
-                                                [_vm._v("Pendiente")]
-                                              )
-                                        ])
-                                      ]
-                                    : _vm._e()
+                                  [
+                                    _c("h4", [
+                                      item.pago_arancel.length != 0
+                                        ? _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-primary"
+                                            },
+                                            [_vm._v("Cancelado")]
+                                          )
+                                        : _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge badge-pill badge-danger"
+                                            },
+                                            [_vm._v("Pendiente")]
+                                          )
+                                    ])
+                                  ]
                                 ],
                                 2
                               ),
@@ -89331,76 +90272,37 @@ var render = function() {
                                 "td",
                                 { staticClass: "text-center" },
                                 [
-                                  _vm.proceso == 1
-                                    ? [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "button secondary ",
-                                            class: [
-                                              item.pago_arancel.length != 0
-                                                ? "disabled"
-                                                : ""
-                                            ],
-                                            attrs: {
-                                              type: "button",
-                                              disabled:
-                                                item.pago_arancel.length != 0,
-                                              "data-toggle": "tooltip",
-                                              title: "Registrar Pago"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.abrirModal(item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "mdi mdi-square-inc-cash"
-                                            }),
-                                            _vm._v(" Registrar Pago")
-                                          ]
-                                        )
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "button secondary ",
+                                        class: [
+                                          item.pago_arancel.length != 0
+                                            ? "disabled"
+                                            : ""
+                                        ],
+                                        attrs: {
+                                          type: "button",
+                                          disabled:
+                                            item.pago_arancel.length != 0,
+                                          "data-toggle": "tooltip",
+                                          title: "Registrar Pago"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.abrirModal(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "mdi mdi-square-inc-cash"
+                                        }),
+                                        _vm._v(" Registrar Pago")
                                       ]
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.proceso == 2
-                                    ? [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "button secondary ",
-                                            class: [
-                                              item.pago_arancel[1] != undefined
-                                                ? "disabled"
-                                                : ""
-                                            ],
-                                            attrs: {
-                                              type: "button",
-                                              disabled:
-                                                item.pago_arancel[1] !=
-                                                undefined,
-                                              "data-toggle": "tooltip",
-                                              title: "Registrar Pago"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.abrirModal(item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "mdi mdi-square-inc-cash"
-                                            }),
-                                            _vm._v(" Registrar Pago")
-                                          ]
-                                        )
-                                      ]
-                                    : _vm._e()
+                                    )
+                                  ]
                                 ],
                                 2
                               )
@@ -89622,6 +90524,14 @@ var render = function() {
                                           { staticClass: "col-md-12" },
                                           [
                                             _c("mdc-textfield", {
+                                              directives: [
+                                                {
+                                                  name: "mask",
+                                                  rawName: "v-mask",
+                                                  value: "####",
+                                                  expression: "'####'"
+                                                }
+                                              ],
                                               staticClass: "col-md-12",
                                               attrs: {
                                                 type: "text",
@@ -89675,7 +90585,14 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "button blue",
-                                      attrs: { type: "button", id: "btnSave" },
+                                      class: [
+                                        _vm.no_fact == "" ? "disabled" : ""
+                                      ],
+                                      attrs: {
+                                        type: "button",
+                                        disabled: _vm.no_fact == "",
+                                        id: "btnSave"
+                                      },
                                       on: {
                                         click: function($event) {
                                           _vm.savePay()
@@ -89732,19 +90649,19 @@ if (false) {
 }
 
 /***/ }),
-/* 115 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(116)
+  __webpack_require__(112)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(118)
+var __vue_script__ = __webpack_require__(114)
 /* template */
-var __vue_template__ = __webpack_require__(119)
+var __vue_template__ = __webpack_require__(115)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -89783,13 +90700,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 116 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(117);
+var content = __webpack_require__(113);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -89809,7 +90726,7 @@ if(false) {
 }
 
 /***/ }),
-/* 117 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -89823,15 +90740,13 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 118 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_switches__);
-//
-//
 //
 //
 //
@@ -90070,7 +90985,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 119 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -90277,13 +91192,6 @@ var render = function() {
                               _c("th", {
                                 staticClass: "text-center",
                                 domProps: {
-                                  textContent: _vm._s(item.carrera.nombre)
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("th", {
-                                staticClass: "text-center",
-                                domProps: {
                                   textContent: _vm._s(
                                     item.pago_arancel[0].no_factura
                                   )
@@ -90465,8 +91373,6 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre Estudiante")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Carrera")]),
-        _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("# Factura")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Fecha de Pago")]),
@@ -90492,23 +91398,19 @@ if (false) {
 }
 
 /***/ }),
-/* 120 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(121)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(123)
+var __vue_script__ = __webpack_require__(117)
 /* template */
-var __vue_template__ = __webpack_require__(124)
+var __vue_template__ = __webpack_require__(118)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -90543,51 +91445,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(122);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("1d5eec3d", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b98a24a8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HojaSupervGeneral.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b98a24a8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HojaSupervGeneral.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 123 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -90655,8 +91525,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       arrayDepartamentos: [],
       departamento_id: 0,
       arrayMunicipios: [],
-      municipio_id: 0,
-      loadSpinner: 0
+      municipio_id: [],
+      loadSpinner: 0,
+      municipios_selected: []
     };
   },
 
@@ -90669,17 +91540,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.departamento_id == null) {
         vselect.disabled = true;
         this.municipio_id = 0;
-        $("#btnGenerar").prop('disabled', true);
       }
       this.getMunicipios();
       this.municipio_id = 0;
       if (this.departamento_id == 1 || this.departamento_id == null) {
-        this.municipio_id = 0;
+        this.municipio_id = [];
       }
     },
     municipio_id: function municipio_id() {
-      if (this.municipio_id != 0) {
-        $("#btnGenerar").prop('disabled', false);
+      var me = this;
+      for (var i = 0; i < me.municipio_id.length; i++) {
+        me.municipios_selected[i] = me.municipio_id[i].value;
       }
     }
   },
@@ -90704,14 +91575,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     clearData: function clearData() {
       var me = this;
       var vselect = this.$refs.selectMuni;
-      me.municipio_id = 0;
+      me.municipio_id = [];
       me.departamento_id = 0;
       vselect.disabled = true;
-      $("#btnGenerar").prop('disabled', true);
+      me.municipios_selected = [];
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
-      var url = route('hojasupervigen', { "muni_id": me.municipio_id.value });
+      var url = route('hojasupervigen', { "muni_id": me.municipios_selected });
       window.open(url);
       me.clearData();
     }
@@ -90719,15 +91590,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var vselect = this.$refs.selectMuni;
     this.getDepartamentos();
-    if (this.municipio_id == 0) {
-      $("#btnGenerar").prop('disabled', true);
-    }
     vselect.disabled = true;
   }
 });
 
 /***/ }),
-/* 124 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -90765,20 +91633,37 @@ var render = function() {
                           [
                             _c("br"),
                             _vm._v(" "),
-                            _c("v-select", {
-                              attrs: {
-                                label: "label",
-                                placeholder: "Seleccione un departamento",
-                                options: _vm.arrayDepartamentos
-                              },
-                              model: {
-                                value: _vm.departamento_id,
-                                callback: function($$v) {
-                                  _vm.departamento_id = $$v
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  label: "label",
+                                  placeholder: "Seleccione un departamento",
+                                  options: _vm.arrayDepartamentos
                                 },
-                                expression: "departamento_id"
-                              }
-                            })
+                                model: {
+                                  value: _vm.departamento_id,
+                                  callback: function($$v) {
+                                    _vm.departamento_id = $$v
+                                  },
+                                  expression: "departamento_id"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    attrs: { slot: "no-options" },
+                                    slot: "no-options"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                        No hay resultados\n                      "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
                           ],
                           1
                         ),
@@ -90789,21 +91674,39 @@ var render = function() {
                           [
                             _c("br"),
                             _vm._v(" "),
-                            _c("v-select", {
-                              ref: "selectMuni",
-                              attrs: {
-                                label: "label",
-                                placeholder: "Seleccione un municipio",
-                                options: _vm.arrayMunicipios
-                              },
-                              model: {
-                                value: _vm.municipio_id,
-                                callback: function($$v) {
-                                  _vm.municipio_id = $$v
+                            _c(
+                              "v-select",
+                              {
+                                ref: "selectMuni",
+                                attrs: {
+                                  multiple: "",
+                                  label: "label",
+                                  placeholder: "Seleccione un municipio",
+                                  options: _vm.arrayMunicipios
                                 },
-                                expression: "municipio_id"
-                              }
-                            })
+                                model: {
+                                  value: _vm.municipio_id,
+                                  callback: function($$v) {
+                                    _vm.municipio_id = $$v
+                                  },
+                                  expression: "municipio_id"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    attrs: { slot: "no-options" },
+                                    slot: "no-options"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                        No hay resultados\n                      "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
                           ],
                           1
                         ),
@@ -90815,8 +91718,14 @@ var render = function() {
                             "button",
                             {
                               staticClass: "button blue",
+                              class: [
+                                _vm.municipios_selected.length == 0
+                                  ? "disabled"
+                                  : ""
+                              ],
                               attrs: {
                                 type: "button",
+                                disabled: _vm.municipios_selected.length == 0,
                                 id: "btnGenerar",
                                 "data-toggle": "tooltip",
                                 title: "Generar Hoja de Supervisión"
@@ -90885,15 +91794,15 @@ if (false) {
 }
 
 /***/ }),
-/* 125 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(126)
+var __vue_script__ = __webpack_require__(120)
 /* template */
-var __vue_template__ = __webpack_require__(127)
+var __vue_template__ = __webpack_require__(121)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -90932,7 +91841,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 126 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91037,7 +91946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 127 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -91203,19 +92112,19 @@ if (false) {
 }
 
 /***/ }),
-/* 128 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(129)
+  __webpack_require__(123)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(131)
+var __vue_script__ = __webpack_require__(125)
 /* template */
-var __vue_template__ = __webpack_require__(132)
+var __vue_template__ = __webpack_require__(126)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -91254,13 +92163,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 129 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(130);
+var content = __webpack_require__(124);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -91280,7 +92189,7 @@ if(false) {
 }
 
 /***/ }),
-/* 130 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -91294,7 +92203,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 131 */
+/* 125 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91400,7 +92309,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 132 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -91564,19 +92473,19 @@ if (false) {
 }
 
 /***/ }),
-/* 133 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(134)
+  __webpack_require__(128)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(136)
+var __vue_script__ = __webpack_require__(130)
 /* template */
-var __vue_template__ = __webpack_require__(137)
+var __vue_template__ = __webpack_require__(131)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -91615,13 +92524,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 134 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(135);
+var content = __webpack_require__(129);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -91641,7 +92550,7 @@ if(false) {
 }
 
 /***/ }),
-/* 135 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -91655,7 +92564,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 136 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91773,7 +92682,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 137 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -91866,19 +92775,19 @@ if (false) {
 }
 
 /***/ }),
-/* 138 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(139)
+  __webpack_require__(133)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(141)
+var __vue_script__ = __webpack_require__(135)
 /* template */
-var __vue_template__ = __webpack_require__(142)
+var __vue_template__ = __webpack_require__(136)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -91917,13 +92826,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 139 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(140);
+var content = __webpack_require__(134);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -91943,7 +92852,7 @@ if(false) {
 }
 
 /***/ }),
-/* 140 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -91957,7 +92866,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 141 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92091,7 +93000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 142 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -92251,13 +93160,13 @@ if (false) {
 }
 
 /***/ }),
-/* 143 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(144);
+var content = __webpack_require__(138);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -92277,7 +93186,7 @@ if(false) {
 }
 
 /***/ }),
-/* 144 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -92291,7 +93200,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 145 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92754,7 +93663,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 146 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -93354,15 +94263,15 @@ if (false) {
 }
 
 /***/ }),
-/* 147 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(148)
+var __vue_script__ = __webpack_require__(142)
 /* template */
-var __vue_template__ = __webpack_require__(149)
+var __vue_template__ = __webpack_require__(143)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -93401,7 +94310,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 148 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93547,6 +94456,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.tipoRepo = '';
       }
       this.trimestre = "";
+      this.anual = false;
     },
     mensual: function mensual() {
       if (this.mensual == true) {
@@ -93556,6 +94466,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     mes: function mes() {
       for (var i = 0; i < this.mes.length; i++) {
@@ -93588,6 +94499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.trimestre = "";
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
@@ -93605,7 +94517,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 149 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -93907,6 +94819,13 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "button secondary",
+                                      class: [
+                                        _vm.mes == "" &&
+                                        _vm.trimestre == "" &&
+                                        _vm.anual == false
+                                          ? "disabled"
+                                          : ""
+                                      ],
                                       attrs: {
                                         type: "button",
                                         id: "btnGenerar",
@@ -93958,15 +94877,15 @@ if (false) {
 }
 
 /***/ }),
-/* 150 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(151)
+var __vue_script__ = __webpack_require__(145)
 /* template */
-var __vue_template__ = __webpack_require__(152)
+var __vue_template__ = __webpack_require__(146)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -94005,7 +94924,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 151 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94144,6 +95063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.trimestral = false;
       this.mensual = false;
       this.trimestre = "";
+      this.anual = false;
     },
     trimestral: function trimestral() {
       if (this.trimestral == true) {
@@ -94152,6 +95072,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.tipoRepo = '';
       }
       this.trimestre = "";
+      this.anual = false;
     },
     mensual: function mensual() {
       if (this.mensual == true) {
@@ -94161,6 +95082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     mes: function mes() {
       for (var i = 0; i < this.mes.length; i++) {
@@ -94192,6 +95114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.trimestre = "";
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
@@ -94209,7 +95132,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 152 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -94414,7 +95337,7 @@ var render = function() {
                                         expression: "mensual "
                                       }
                                     }),
-                                    _vm._v(" \n                   "),
+                                    _vm._v(" \n                    "),
                                     _c("i", {
                                       staticClass: "mdi mdi-calendar-check h4"
                                     }),
@@ -94511,6 +95434,13 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "button secondary",
+                                      class: [
+                                        _vm.mes == "" &&
+                                        _vm.trimestre == "" &&
+                                        _vm.anual == false
+                                          ? "disabled"
+                                          : ""
+                                      ],
                                       attrs: {
                                         type: "button",
                                         id: "btnGenerar",
@@ -94562,15 +95492,15 @@ if (false) {
 }
 
 /***/ }),
-/* 153 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(154)
+var __vue_script__ = __webpack_require__(148)
 /* template */
-var __vue_template__ = __webpack_require__(155)
+var __vue_template__ = __webpack_require__(149)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -94609,7 +95539,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 154 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94815,7 +95745,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 155 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95020,7 +95950,7 @@ var render = function() {
                                         expression: "mensual "
                                       }
                                     }),
-                                    _vm._v(" \n                     "),
+                                    _vm._v(" \n                    "),
                                     _c("i", {
                                       staticClass: "mdi mdi-calendar-check h4"
                                     }),
@@ -95117,6 +96047,13 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "button secondary",
+                                      class: [
+                                        _vm.mes == "" &&
+                                        _vm.trimestre == "" &&
+                                        _vm.anual == false
+                                          ? "disabled"
+                                          : ""
+                                      ],
                                       attrs: {
                                         type: "button",
                                         id: "btnGenerar",
@@ -95168,15 +96105,15 @@ if (false) {
 }
 
 /***/ }),
-/* 156 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(157)
+var __vue_script__ = __webpack_require__(151)
 /* template */
-var __vue_template__ = __webpack_require__(158)
+var __vue_template__ = __webpack_require__(152)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95215,7 +96152,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 157 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95363,6 +96300,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.tipoRepo = '';
       }
       this.trimestre = "";
+      this.anual = false;
     },
     mensual: function mensual() {
       if (this.mensual == true) {
@@ -95372,6 +96310,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.mes = [];
       this.valuesMonth = [];
+      this.anual = false;
     },
     mes: function mes() {
       for (var i = 0; i < this.mes.length; i++) {
@@ -95421,7 +96360,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 158 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95723,6 +96662,13 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "button secondary",
+                                      class: [
+                                        _vm.mes == "" &&
+                                        _vm.trimestre == "" &&
+                                        _vm.anual == false
+                                          ? "disabled"
+                                          : ""
+                                      ],
                                       attrs: {
                                         type: "button",
                                         id: "btnGenerar",
@@ -95774,15 +96720,15 @@ if (false) {
 }
 
 /***/ }),
-/* 159 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(160)
+var __vue_script__ = __webpack_require__(154)
 /* template */
-var __vue_template__ = __webpack_require__(161)
+var __vue_template__ = __webpack_require__(155)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95821,7 +96767,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 160 */
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -96505,7 +97451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 161 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -98114,19 +99060,19 @@ if (false) {
 }
 
 /***/ }),
-/* 162 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(163)
+  __webpack_require__(157)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(165)
+var __vue_script__ = __webpack_require__(159)
 /* template */
-var __vue_template__ = __webpack_require__(166)
+var __vue_template__ = __webpack_require__(160)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -98165,13 +99111,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 163 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(164);
+var content = __webpack_require__(158);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -98191,7 +99137,7 @@ if(false) {
 }
 
 /***/ }),
-/* 164 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -98205,7 +99151,7 @@ exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.
 
 
 /***/ }),
-/* 165 */
+/* 159 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98476,7 +99422,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 166 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -98906,15 +99852,15 @@ if (false) {
 }
 
 /***/ }),
-/* 167 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(168)
+var __vue_script__ = __webpack_require__(162)
 /* template */
-var __vue_template__ = __webpack_require__(169)
+var __vue_template__ = __webpack_require__(163)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -98953,7 +99899,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 168 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99316,7 +100262,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 169 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -99771,15 +100717,15 @@ if (false) {
 }
 
 /***/ }),
-/* 170 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(171)
+var __vue_script__ = __webpack_require__(165)
 /* template */
-var __vue_template__ = __webpack_require__(172)
+var __vue_template__ = __webpack_require__(166)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -99818,7 +100764,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 171 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100264,7 +101210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 172 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -100976,15 +101922,15 @@ if (false) {
 }
 
 /***/ }),
-/* 173 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(174)
+var __vue_script__ = __webpack_require__(168)
 /* template */
-var __vue_template__ = __webpack_require__(175)
+var __vue_template__ = __webpack_require__(169)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -101023,7 +101969,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 174 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101850,7 +102796,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 175 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

@@ -15,8 +15,6 @@ class AddNivelAcademicoToEstudiantesTable extends Migration
     {
         Schema::table('estudiantes', function (Blueprint $table) {
             $table->integer('nivel_academico_id')->unsigned()->after('carrera_id');
-            $table->timestamps();
-
         });
     }
 

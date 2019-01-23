@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class MunicipioController extends Controller
 {
-    public function __construct(){
-
-        $this->middleware('guestVerify');
-        
-    }
    public function GetDepartamentos()
     {
         $Departamentos = Departamento::all();
@@ -20,9 +15,9 @@ class MunicipioController extends Controller
         foreach ($Departamentos as $key => $value) {
             $data[$key+1] =[
                 'value'   => $value->id,
-                'label' => $value->nombre,  
+                'label' => $value->nombre,
             ];
-   
+
         }
         return  response()->json($data);
     }
