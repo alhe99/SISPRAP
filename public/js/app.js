@@ -79349,6 +79349,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -80357,7 +80388,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {},
   mounted: function mounted() {
     this.maxDatetime;
-    this.getImg();
   }
 });
 
@@ -83329,6 +83359,245 @@ var render = function() {
                                                                   "form-group"
                                                               },
                                                               [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "uploader",
+                                                                    class: {
+                                                                      dragging:
+                                                                        _vm.isDragging
+                                                                    },
+                                                                    on: {
+                                                                      dragenter:
+                                                                        _vm.OnDragEnter,
+                                                                      dragleave:
+                                                                        _vm.OnDragLeave,
+                                                                      dragover: function(
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                      },
+                                                                      drop:
+                                                                        _vm.onDrop
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "upload-control"
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "label",
+                                                                          {
+                                                                            attrs: {
+                                                                              for:
+                                                                                "file"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Seleccione una o mas imagenes"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value: !_vm
+                                                                              .images
+                                                                              .length,
+                                                                            expression:
+                                                                              "!images.length"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-cloud-upload"
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "p",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Arrastre sus imagenes aqui!"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "o"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "file-input"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "label",
+                                                                              {
+                                                                                attrs: {
+                                                                                  for:
+                                                                                    "file"
+                                                                                }
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "Seleccione"
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "input",
+                                                                              {
+                                                                                attrs: {
+                                                                                  type:
+                                                                                    "file",
+                                                                                  id:
+                                                                                    "file",
+                                                                                  multiple:
+                                                                                    ""
+                                                                                },
+                                                                                on: {
+                                                                                  change:
+                                                                                    _vm.onInputChange
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "show",
+                                                                            rawName:
+                                                                              "v-show",
+                                                                            value:
+                                                                              _vm
+                                                                                .images
+                                                                                .length,
+                                                                            expression:
+                                                                              "images.length"
+                                                                          }
+                                                                        ],
+                                                                        staticClass:
+                                                                          "images-preview"
+                                                                      },
+                                                                      _vm._l(
+                                                                        _vm.images,
+                                                                        function(
+                                                                          image,
+                                                                          index
+                                                                        ) {
+                                                                          return _c(
+                                                                            "div",
+                                                                            {
+                                                                              key: index,
+                                                                              staticClass:
+                                                                                "img-wrapper"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "button",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "remove",
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      _vm.removeImage(
+                                                                                        index
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "i",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mdi mdi-close-circle"
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "img",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    src: image,
+                                                                                    alt:
+                                                                                      "Imagen " +
+                                                                                      index
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        }
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
                                                                 _c(
                                                                   "div",
                                                                   {
