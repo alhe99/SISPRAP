@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'app_year' => env('APP_YEAR'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

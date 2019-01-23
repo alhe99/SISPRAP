@@ -21,7 +21,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProyectoController extends Controller
 {
-    //listado de proyectos por proceso y busqueda
+     //listado de proyectos por proceso y busqueda
     public function index(Request $request)
     {
 
@@ -535,6 +535,15 @@ class ProyectoController extends Controller
 
         DB::table('preinscripciones_proyectos')->where('estudiante_id', $estudent_id)->
         where('proyecto_id',$project_id)->update(array('estado' => 'R'));
+    }
+
+    //rechazar todas las solicitudes a un proyecto
+    public function deleteAllPreregistration($project_id)
+    {
+        DB::table('preinscripciones_proyectos')->where([
+            ['proyecto_id', $project_id],
+            ['estado','!=','A']
+        ])->update(array('estado' => 'R'));
     }
 
     //aprobar la preinscripcion del estudiante

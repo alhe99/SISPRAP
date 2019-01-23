@@ -28,9 +28,9 @@
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
             <p class="text-center font-weight-bold"><u>INFORME DE ESTUDIANTES CON PROCESOS CULMINADOS DE {{ $procesoTitulo }} DE {{ $anio}}</u></p><br>
             @if ($tipo == 'M')
-            <p class="text-center font-weight-bold"><u>MESES: {{ implode(",", $meses) }}</u></strong></p>
+            <p class="text-center font-weight-bold"><u>MES(ES): {{ implode(", ", $meses) }}</u></strong></p>
             @elseif($tipo == 'T')
-            <p class="text-center font-weight-bold"><u>MESES: {{ $meses }}</u></strong></p>
+            <p class="text-center font-weight-bold"><u>MES(ES): {{ $meses }}</u></strong></p>
             @elseif($tipo == 'A')
             <p class="text-center font-weight-bold"><u>INFORME ANUAL</u></strong></p>
             @endif
@@ -109,6 +109,7 @@
                         <td>Carrera</td>
                         <td>Becados Mined</td>
                         <td>Otros</td>
+                        <td>Total</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,16 +122,15 @@
                         <th class="font-normal">{{$consolidadoByNivel[$i][$j]['Carrera']}}</th>
                         <th class="text-center font-normal">{{$consolidadoByNivel[$i][$j]['totalBecaMined']}}</th>
                         <th class="text-center font-normal">{{$consolidadoByNivel[$i][$j]['totalOtraBeca']}}</th>
+                        <th class="text-center font-normal">{{$consolidadoByNivel[$i][$j]['totalBecaMined']+$consolidadoByNivel[$i][$j]['totalOtraBeca']}}</th>
                     </tr>
                     @endfor
                     <tr class="bg-header font-weight-bold">
                         <td class="text-right" rowspan="2">Total:</td>
                         <td class="text-center">{{ $cuentaMined }}</td>
                         <td class="text-center">{{ $cuentaOtros }}</td>
+                        <td class="text-center">{{ $cuentaMined + $cuentaOtros }}</td>
                     </tr>
-                    <tr class="bg-header font-weight-bold text-center">
-                       <td colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                   </tr>
                 </tbody>
             </table><br>
            @endif
@@ -146,6 +146,7 @@
                     <td>Carrera</td>
                     <td>Becados Mined</td>
                     <td>Otros</td>
+                    <td>Total</td>
                 </tr>
             </thead>
             <tbody>
@@ -160,6 +161,7 @@
                 <tr>
                     <th class="font-normal">{{$consolidadoGeneral[$i]['Carrera']}}</th>
                     <th class="text-center font-normal">{{$consolidadoGeneral[$i]['totalMined']}}</th>
+                    <th class="text-center font-normal">{{$consolidadoGeneral[$i]['totalMined']+$consolidadoGeneral[$i]['totalOtraBeca']}}</th>
                     <th class="text-center font-normal">{{$consolidadoGeneral[$i]['totalOtraBeca']}}</th>
                 </tr>
                 @endfor
@@ -167,10 +169,8 @@
                     <td class="text-right" rowspan="2">Total:</td>
                     <td class="text-center">{{ $cuentaMined }}</td>
                     <td class="text-center">{{ $cuentaOtros }}</td>
+                    <td  class="text-center">{{ $cuentaMined + $cuentaOtros }}</td>
                 </tr>
-                <tr class="bg-header font-weight-bold text-center">
-                   <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-               </tr>
             </tbody>
         </table>
         {{-- FIN DE TABLA PARA CONSOLIDADO FINAL GENERAL --}}
@@ -247,6 +247,7 @@
                         <td>Carrera</td>
                         <td>Becados Mined</td>
                         <td>Otros</td>
+                        <td>Total</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -259,16 +260,15 @@
                         <th class="font-normal">{{$consolidadoMensuales[$i][$j]['Carrera']}}</th>
                         <th class="text-center font-normal">{{$consolidadoMensuales[$i][$j]['totalBecaMined']}}</th>
                         <th class="text-center font-normal">{{$consolidadoMensuales[$i][$j]['totalOtraBeca']}}</th>
+                        <th class="text-center font-normal">{{$consolidadoMensuales[$i][$j]['totalBecaMined']+$consolidadoMensuales[$i][$j]['totalOtraBeca']}}</th>
                     </tr>
                     @endfor
                     <tr class="bg-header font-weight-bold">
                         <td class="text-right" rowspan="2">Total:</td>
                         <td class="text-center">{{ $cuentaMined }}</td>
                         <td class="text-center">{{ $cuentaOtros }}</td>
+                        <td class="text-center">{{ $cuentaMined + $cuentaOtros }}</td>
                     </tr>
-                    <tr class="bg-header font-weight-bold text-center">
-                       <td colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                   </tr>
                 </tbody>
             </table><br>
            @endif
@@ -347,6 +347,7 @@
                         <td>Carrera</td>
                         <td>Becados Mined</td>
                         <td>Otros</td>
+                        <td>Total</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -359,16 +360,15 @@
                         <th class="font-normal">{{$consolidadoByNivel[$i][$j]['Carrera']}}</th>
                         <th class="text-center font-normal">{{$consolidadoByNivel[$i][$j]['totalBecaMined']}}</th>
                         <th class="text-center font-normal">{{$consolidadoByNivel[$i][$j]['totalOtraBeca']}}</th>
+                        <th class="text-center font-normal">{{$consolidadoByNivel[$i][$j]['totalBecaMined']+$consolidadoByNivel[$i][$j]['totalOtraBeca']}}</th>
                     </tr>
                     @endfor
                     <tr class="bg-header font-weight-bold">
                         <td class="text-right" rowspan="2">Total:</td>
                         <td class="text-center">{{ $cuentaMined }}</td>
                         <td class="text-center">{{ $cuentaOtros }}</td>
+                        <td class="text-center">{{ $cuentaMined + $cuentaOtros }}</td>
                     </tr>
-                    <tr class="bg-header font-weight-bold text-center">
-                       <td colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                   </tr>
                 </tbody>
             </table><br>
            @endif
@@ -384,6 +384,7 @@
                     <td>Carrera</td>
                     <td>Becados Mined</td>
                     <td>Otros</td>
+                    <td>Total</td>
                 </tr>
             </thead>
             <tbody>
@@ -399,16 +400,15 @@
                     <th class="font-normal">{{$consolidadoGeneralByAnio[$i]['Carrera']}}</th>
                     <th class="text-center font-normal">{{$consolidadoGeneralByAnio[$i]['totalBecaMined']}}</th>
                     <th class="text-center font-normal">{{$consolidadoGeneralByAnio[$i]['totalOtraBeca']}}</th>
+                    <th class="text-center font-normal">{{$consolidadoGeneralByAnio[$i]['totalBecaMined']+$consolidadoGeneralByAnio[$i]['totalOtraBeca']}}</th>
                 </tr>
                 @endfor
                 <tr class="bg-header font-weight-bold">
                     <td class="text-right" rowspan="2">Total:</td>
                     <td class="text-center">{{ $cuentaMined }}</td>
                     <td class="text-center">{{ $cuentaOtros }}</td>
+                    <td class="text-center">{{ $cuentaMined + $cuentaOtros }}</td>
                 </tr>
-                <tr class="bg-header font-weight-bold text-center">
-                   <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-               </tr>
             </tbody>
         </table>
         {{-- FIN DE TABLA PARA CONSOLIDADO FINAL GENERAL ANUAL --}}

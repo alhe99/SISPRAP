@@ -970,16 +970,20 @@
                                           <span aria-hidden="true" class="text-white">&times;</span>
                                         </button>
                                       </div>
-                                      <div class="modal-body">
-                                        <div class="form-group">
-                                          <textarea
-                                            name="observacion"
-                                            v-model="observacion"
-                                            id="observacion"
-                                            class="form-control"
-                                            placeholder="Observación"
-                                            rows="10"
-                                          ></textarea>
+                                      <div class="form-group row">
+                                        <div class="col-md-12 col-sm-6 col-lg-12">
+                                         <datetime type="date" :max-datetime="maxDatetime" v-model="date" value-zone="America/El_Salvador" input-class="form-control" placeholder="Fecha en la que fue realizada la supervisión"></datetime>
+                                       </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <div class="uploader"
+                                         @dragenter="OnDragEnter"
+                                         @dragleave="OnDragLeave"
+                                         @dragover.prevent
+                                         @drop="onDrop"
+                                         :class="{ dragging: isDragging }">
+                                         <div class="upload-control" v-show="images.length">
+                                          <label for="file">Seleccione una o mas imagenes</label>
                                         </div>
                                         <div class="form-group row">
                                           <div class="col-md-12 col-sm-6 col-lg-12">
@@ -993,138 +997,60 @@
                                             ></datetime>
                                           </div>
                                         </div>
-                                        <div v-if="tipoAccion2 == 1" class="form-group">
-                                          <div
-                                            class="uploader"
-                                            @dragenter="OnDragEnter"
-                                            @dragleave="OnDragLeave"
-                                            @dragover.prevent
-                                            @drop="onDrop"
-                                            :class="{ dragging: isDragging }"
-                                          >
-                                            <div class="upload-control" v-show="images.length">
-                                              <label for="file">Seleccione una o mas imagenes</label>
-                                            </div>
-                                            <div v-show="!images.length">
-                                              <i class="fa fa-cloud-upload"></i>
-                                              <p>Arrastre sus imagenes aqui!</p>
-                                              <div>o</div>
-                                              <div class="file-input">
-                                                <label for="file">Seleccione</label>
-                                                <input
-                                                  type="file"
-                                                  id="file"
-                                                  @change="onInputChange"
-                                                  multiple
-                                                >
-                                              </div>
-                                            </div>
-                                            <div class="images-preview" v-show="images.length">
-                                              <div
-                                                class="img-wrapper"
-                                                v-for="(image, index) in images"
-                                                :key="index"
-                                              >
-                                                <button class="remove" @click="removeImage(index)">
-                                                  <i class="mdi mdi-close-circle"></i>
-                                                </button>
-                                                <img :src="image" :alt="`Imagen ${index}`">
-                                                <div class="details">
-                                                  <span class="name" v-text="files[index].name"></span>
-                                                  <span
-                                                    class="size"
-                                                    v-text="getFileSize(files[index].size)"
-                                                  ></span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div v-else class="form-group">
-                                          <div
-                                            class="uploader"
-                                            @dragenter="OnDragEnter"
-                                            @dragleave="OnDragLeave"
-                                            @dragover.prevent
-                                            @drop="onDrop"
-                                            :class="{ dragging: isDragging }"
-                                          >
-                                            <div
-                                              class="upload-control"
-                                              v-show="arrayImagesUpd.length"
-                                            >
-                                              <label for="file">Seleccione una o mas imagenes</label>
-                                            </div>
-                                            <div v-show="!arrayImagesUpd.length">
-                                              <i class="fa fa-cloud-upload"></i>
-                                              <p>Arrastre sus imagenes aqui!</p>
-                                              <div>o</div>
-                                              <div class="file-input">
-                                                <label for="file">Seleccione</label>
-                                                <input
-                                                  type="file"
-                                                  id="file"
-                                                  @change="onInputChange"
-                                                  multiple
-                                                >
-                                              </div>
-                                            </div>
-                                            <div
-                                              class="images-preview"
-                                              v-show="arrayImagesUpd.length"
-                                            >
-                                              <div
-                                                class="img-wrapper"
-                                                v-for="(image, index) in arrayImagesUpd"
-                                                :key="index"
-                                              >
-                                                <button class="remove" @click="removeImage(index)">
-                                                  <i class="mdi mdi-close-circle"></i>
-                                                </button>
-                                                <img
-                                                  :src="'images_superv/'+image.img"
-                                                  :alt="`Imagen ${index}`"
-                                                >
-                                                <!-- YA TRAE LAS IMAGENES,PENSAR COMO AGREGAR MAS SIN DAÑAR EL ARRAY ORIGINAL -->
-                                                <!--  <div class="details">
+                                        <div class="images-preview" v-show="images.length">
+                                            <div class="img-wrapper" v-for="(image, index) in images" :key="index">
+                                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                                             <img  :src="image" :alt="`Imagen ${index}`">
+                                             <div class="details">
                                                <span class="name" v-text="files[index].name"></span>
                                                <span class="size" v-text="getFileSize(files[index].size)"></span>
-                                                </div>-->
-                                              </div>
-                                            </div>
-                                          </div>
+                                             </div>
+                                           </div>
+                                         </div>
                                         </div>
-                                        <pulse-loader
-                                          class="text-center"
-                                          :loading="loading"
-                                          :color="color"
-                                          :size="size"
-                                        ></pulse-loader>
+                                       </div>
+                                       <!--images con supervision-->
+                                       <div class="row">
+                                          <div class="col-md-6 col-sm-12 col-lg-6">
+                                                <button
+                                                    ref="btntest"
+                                                    class="btn btn-primary font-weight-bold text-dark"
+                                                    type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapseExample"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapseExample"
+                                                    >
+                                                    <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Supervisadas
+                                                </button>
+                                                <div
+                                                    class="collapse"
+                                                    ref="divCollapse"
+                                                    id="collapseExample"
+                                                    >
+                                                    <div class="card card-body">
+                                                        <div class="row images-preview" id="seccion" v-show="arrayImagesUpd.length">
+                                                          <div
+                                                          class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
+                                                                 v-for="(image, index) in arrayImagesUpd" :key="index">
+                                                                  <label :for="(image, index)">
+                                                              <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                                                            <img  class="text-center img-fluid" :src="'images_superv/'+image.img" :alt="`Imagen ${index}`"> 
+                                                                  </label>   
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                          </div>
                                       </div>
-                                      <div class="modal-footer">
-                                        <div class="row">
-                                          <div class="col-md-12">
-                                            <button
-                                              type="button"
-                                              class="button red"
-                                              @click="cerrarModalSuper()"
-                                            >Cancelar</button>
-                                            <button
-                                              type="button"
-                                              class="button blue"
-                                              v-if="tipoAccion2 == 1"
-                                              @click="registrarSupervision()"
-                                              dense
-                                            >Registrar Supervisión</button>
-                                            <button
-                                              type="button"
-                                              class="button blue"
-                                              v-if="tipoAccion2 == 2"
-                                              @click="actualizarSupervision()"
-                                              dense
-                                            >Actualizar Supervisión</button>
-                                          </div>
-                                        </div>
+                                     <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+                                   </div>
+                                   <div class="modal-footer">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
+                                        <button type="button" class="button blue" v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense>Registrar Supervisión</button>
+                                        <button type="button" class="button blue" v-if="tipoAccion2 == 2" @click="actualizarSupervision()" dense>Actualizar Supervisión</button>
                                       </div>
                                     </div>
                                   </div>
@@ -1170,150 +1096,147 @@
                 <!--FIN DE DIV PARA TABLA,REGISTRO,BUSQUEDA DE INSTITUCIONES-->
               </template>
               <script>
-export default {
-  data() {
-    return {
-      //declaracion de variables
-      loadSpinner: 0,
-      verCard: 1,
-      img: 0,
-      institucion: [],
-      arrayInstitucion: [],
-      arrayProyectos: [],
-      arrayImages: [],
-      nombre: "",
-      direccion: "",
-      phone: "",
-      tipoproceso_id: 0,
-      infoInsti: 0,
-      estado: 0,
-      email: "",
-      sector_id: 0,
-      institucion_id: 0,
-      buscar: "",
-      message: 0,
-      search: 0,
-      searchID: 0,
-      modal: 0,
-      tituloModal: "",
-      tipoAccion: 0,
-      tipoAccion2: 0,
-      paginationInsti: {},
-      paginationInstiDes: {},
-      pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
-      },
-      offset: 3,
-      arraySectores: [],
-      arrayDepartamentos: [],
-      departamento_id: 0,
-      arrayMunicipios: [],
-      municipio_id: 0,
-      proceso: 0,
-      isDragging: false,
-      dragCount: 0,
-      files: [],
-      images: [],
-      loading: false,
-      color: "#533fd0",
-      size: "20px",
-      date: "",
-      observacion: "",
-      supervision_id: 0,
-      proyecto_id: 0,
-      modalsTitle: "",
-      modalID: 0,
-      arrayInstitucionDes: [],
-      buscarID: "",
-      titleMRS: "",
-      supervision: {},
-      maxDatetime: new Date().toISOString().substring(0, 10),
-      nombreUpd: "",
-      modalSupervisores: 0,
-      tituloModalSupervisores: "",
-      nombreSupervisor: "",
-      telefonoSupervisor: "",
-      institucionSelected: 0,
-      arraySupervisores: [],
-      supervisor_id: 0,
-      updSupervisor: false,
-      nombreSupervisorUpd: "",
-      verProyectosExternos: false,
-      tipoProyectos: "I",
-      arrayImagesUpd: []
-    };
-  },
-  computed: {
-    //paginacion
-    isActived: function() {
-      return this.pagination.current_page;
-    },
-    isActivedPID: function() {
-      return this.paginationInstiDes.current_page;
-    },
-    pagesNumber: function() {
-      if (!this.pagination.to) {
-        return [];
-      }
-      var from = this.pagination.current_page - this.offset;
-      if (from < 1) {
-        from = 1;
-      }
-      var to = from + this.offset * 2;
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page;
-      }
-      var pagesArray = [];
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-      return pagesArray;
-    },
-    pagesNumberPID: function() {
-      if (!this.paginationInstiDes.to) {
-        return [];
-      }
-      var from = this.paginationInstiDes.current_page - this.offset;
-      if (from < 1) {
-        from = 1;
-      }
-      var to = from + this.offset * 2;
-      if (to >= this.paginationInstiDes.last_page) {
-        to = this.paginationInstiDes.last_page;
-      }
-      var pagesArray = [];
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-      return pagesArray;
-    },
-    //verificar si no ha seleccionado un departamento
-    watchDepa: function() {
-      if (this.departamento_id == null) {
-        this.municipio_id = 0;
-      }
-    },
-    validate: function() {
-      if (
-        this.nombre == "" ||
-        this.direccion == "" ||
-        this.departamento_id == 0 ||
-        this.municipio_id == 0 ||
-        this.sector_id == 0
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    /* removeOpcion: function(){
+              export default {
+                data() {
+                  return {
+                    //declaracion de variables
+                    loadSpinner: 0,
+                    verCard: 1,
+                    img: 0,
+                    institucion: [],
+                    arrayInstitucion: [],
+                    arrayProyectos: [],
+                    arrayImages: [],
+                    arrayImag:[],
+                    nombre: "",
+                    direccion: "",
+                    phone: "",
+                    tipoproceso_id: 0,
+                    infoInsti: 0,
+                    estado: 0,
+                    email: "",
+                    sector_id: 0,
+                    institucion_id: 0,
+                    buscar: "",
+                    message: 0,
+                    search: 0,
+                    searchID: 0,
+                    modal: 0,
+                    tituloModal: "",
+                    tipoAccion: 0,
+                    tipoAccion2: 0,
+                    paginationInsti: {},
+                    paginationInstiDes: {},
+                    pagination: {
+                      total: 0,
+                      current_page: 0,
+                      per_page: 0,
+                      last_page: 0,
+                      from: 0,
+                      to: 0
+                    },
+                    offset: 3,
+                    arraySectores: [],
+                    arrayDepartamentos: [],
+                    departamento_id: 0,
+                    arrayMunicipios: [],
+                    municipio_id: 0,
+                    proceso: 0,
+                    isDragging: false,
+                    dragCount: 0,
+                    files: [],
+                    images: [],
+                    imgS: [],
+                    loading: false,
+                    color: "#533fd0",
+                    size: "20px",
+                    date: "",
+                    observacion: "",
+                    supervision_id: 0,
+                    proyecto_id: 0,
+                    modalsTitle: "",
+                    modalID: 0,
+                    arrayInstitucionDes: [],
+                    buscarID: "",
+                    titleMRS: "",
+                    supervision: {},
+                    maxDatetime:  new Date().toISOString().substring(0, 10),
+                    nombreUpd: "",
+                    modalSupervisores: 0,
+                    tituloModalSupervisores: "",
+                    nombreSupervisor : "",
+                    telefonoSupervisor : "",
+                    institucionSelected: 0,
+                    arraySupervisores : [],
+                    supervisor_id:0,
+                    updSupervisor : false,
+                    nombreSupervisorUpd : "",
+                    verProyectosExternos: false,
+                    tipoProyectos: 'I',
+                    arrayImagesUpd: [],
+                  };
+                },
+                computed: {
+                  //paginacion
+                  isActived: function() {
+                    return this.pagination.current_page;
+                  },
+                  isActivedPID: function() {
+                    return this.paginationInstiDes.current_page;
+                  },
+                  pagesNumber: function() {
+                    if (!this.pagination.to) {
+                      return [];
+                    }
+                    var from = this.pagination.current_page - this.offset;
+                    if (from < 1) {
+                      from = 1;
+                    }
+                    var to = from + this.offset * 2;
+                    if (to >= this.pagination.last_page) {
+                      to = this.pagination.last_page;
+                    }
+                    var pagesArray = [];
+                    while (from <= to) {
+                      pagesArray.push(from);
+                      from++;
+                    }
+                    return pagesArray;
+                  },
+                  pagesNumberPID: function() {
+                    if (!this.paginationInstiDes.to) {
+                      return [];
+                    }
+                    var from = this.paginationInstiDes.current_page - this.offset;
+                    if (from < 1) {
+                      from = 1;
+                    }
+                    var to = from + this.offset * 2;
+                    if (to >= this.paginationInstiDes.last_page) {
+                      to = this.paginationInstiDes.last_page;
+                    }
+                    var pagesArray = [];
+                    while (from <= to) {
+                      pagesArray.push(from);
+                      from++;
+                    }
+                    return pagesArray;
+                  },
+                  //verificar si no ha seleccionado un departamento
+                  watchDepa: function() {
+                    if (this.departamento_id == null) {
+                      this.municipio_id = 0;
+                    }
+                  },
+                  validate: function(){
+                    if((this.nombre == "") || (this.direccion == "") || (this.departamento_id == 0) || (this.municipio_id == 0) || (this.sector_id == 0))
+                    {
+                      return true;
+                    }else{
+                      return false;
+                    }
+                  },
+                 /* removeOpcion: function(){
                     let me = this;
                     return $("#nombre").on('keyup',function(){
                       //me.opcion = "";
@@ -1887,37 +1810,38 @@ export default {
         .catch(error => {
           console.log(error.response.data.errors);
         });
-    },
-    validateIfExist(institucion, proceso_id) {
-      let me = this;
-    },
-    actualizarSupervision() {
-      let me = this;
-      axios
-        .put("/supervision/actualizar", {
-          id: this.proyecto_id,
-          fecha: this.date.substring(0, 10),
-          observacion: this.observacion
-        })
-        .then(function(response) {
-          swal({
-            position: "center",
-            type: "success",
-            title: "Supervision actualizado correctamente!",
-            showConfirmButton: false,
-            timer: 1000
-          });
-          me.cerrarModalSuper();
-        })
-        .catch(function(error) {
-          swal({
-            position: "center",
-            type: "warning",
-            title: "Ocurrio un error al actualizar el proyecto",
-            showConfirmButton: false,
-            timer: 1000
-          });
-          console.log(error);
+      },
+      validateIfExist(institucion,proceso_id){
+        let me = this;
+
+      },
+      actualizarSupervision(){
+       let me = this;
+       axios
+       .put("/supervision/actualizar", {
+        id: this.proyecto_id,
+        fecha: this.date.substring(0, 10),
+        observacion: this.observacion,
+        imagenes: this.images,
+
+      })
+       .then(function(response) {
+        swal({
+          position: "center",
+          type: "success",
+          title: "Supervision actualizado correctamente!",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        me.cerrarModalSuper();
+      })
+       .catch(function(error) {
+        swal({
+          position: "center",
+          type: "warning",
+          title: "Ocurrio un error al actualizar el proyecto",
+          showConfirmButton: false,
+          timer: 1000
         });
     },
     abrirModal(modelo, accion, data = []) {
@@ -2146,29 +2070,171 @@ export default {
       }).then(result => {
         if (result.value) {
           let me = this;
-          me.loadSpinner = 1;
-          axios
-            .put("/institucion/activar", {
-              id: id
-            })
-            .then(function(response) {
-              me.listarInstitucionDes(1, me.proceso, "");
-              me.listarInstitucion(1, me.proceso, "");
-              swal(
-                "Activada!",
-                "La Institucion ha sido activada con exito",
-                "success"
-              );
-              me.loadSpinner = 0;
-            })
-            .catch(function(error) {
-              me.loadSpinner = 0;
-              console.log(error);
-            });
-        } else if (
-          // Esto lo hace cuando se descativa el registro
-          result.dismiss === swal.DismissReason.cancel
-        ) {
+          //Aqui hice la verificacion si hay o no datos para mostrar mensaje
+          if (me.arrayInstitucion.length == 0) {
+            me.search = 1;
+          } else {
+            me.search = 0;
+          }
+          return me.search;
+        },
+        desactivarInstitucion(id) {
+          swal({
+            title: "Esta seguro de desactivar esta Institucion?",
+            type: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+            confirmButtonClass: "button blue",
+            cancelButtonClass: "button red",
+            buttonsStyling: false,
+            reverseButtons: true
+          }).then(result => {
+            if (result.value) {
+              let me = this;
+              me.loadSpinner = 1;
+              axios.put("/institucion/desactivar", {
+                id: id
+              })
+              .then(function(response) {
+                me.listarInstitucion(1, me.proceso, "");
+                swal(
+                  "Desactivado!",
+                  "El Registro ha sido desactivado con exito",
+                  "success"
+                  );
+                me.loadSpinner = 0;
+              })
+              .catch(function(error) {
+                me.loadSpinner = 0;
+                console.log(error);
+              });
+            } else if (
+              // Esto lo hace cuando se descativa el registro
+              result.dismiss === swal.DismissReason.cancel
+              ) {
+            }
+          });
+        },
+        activarInstitucion(id) {
+          swal({
+            title: "Esta seguro de activar esta Institucion?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar!",
+            cancelButtonText: "Cancelar",
+            confirmButtonClass: "btn update",
+            cancelButtonClass: "btn edit",
+            buttonsStyling: false,
+            reverseButtons: true
+          }).then(result => {
+            if (result.value) {
+              let me = this;
+              me.loadSpinner = 1;
+              axios.put("/institucion/activar", {
+                id: id
+              })
+              .then(function(response) {
+                me.listarInstitucionDes(1,me.proceso,"");
+                me.listarInstitucion(1, me.proceso, "");
+                swal(
+                  "Activada!",
+                  "La Institucion ha sido activada con exito",
+                  "success"
+                  );
+                me.loadSpinner = 0;
+              })
+              .catch(function(error) {
+                me.loadSpinner = 0;
+                console.log(error);
+              });
+            } else if (
+              // Esto lo hace cuando se descativa el registro
+              result.dismiss === swal.DismissReason.cancel
+              ) {
+            }
+          });
+        },
+        verMasInfo(data = []) {
+          this.institucion = data;
+          this.infoInsti = this.institucion["id"];
+          this.getProyectosInsti(this.infoInsti, 1, "", this.proceso);
+          this.verCard = 2;
+          this.buscar = "";
+        },
+        back() {
+          this.loadSpinner = 1;
+          this.institucion = [];
+          this.arrayProyectos = [];
+          this.infoInsti = 0;
+          this.pagination = this.paginationInsti;
+          this.verCard = 1;
+          this.buscar = "";
+          this.loadSpinner = 0;
+        },
+        OnDragEnter(e) {
+          e.preventDefault();
+          this.dragCount++;
+          this.isDragging = true;
+          return false;
+        },
+        OnDragLeave(e) {
+          e.preventDefault();
+          this.dragCount--;
+
+          if (this.dragCount <= 0) this.isDragging = false;
+        },
+        onInputChange(e) {
+          const files = e.target.files;
+          Array.from(files).forEach(file => this.addImage(file));
+        },
+        onDrop(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.isDragging = false;
+          const files = e.dataTransfer.files;
+          Array.from(files).forEach(file => this.addImage(file));
+        },
+        addImage(file) {
+          if (!file.type.match("image.*")) {
+            return;
+          }
+          this.loading = true;
+          this.files.push(file);
+          const img = new Image(),
+          reader = new FileReader();
+          reader.onload = e => this.images.push(e.target.result);
+          reader.readAsDataURL(file);
+          this.loading = false;
+        },
+        getFileSize(size) {
+          const fSExt = ["Bytes", "KB", "MB", "GB"];
+          let i = 0;
+          while (size > 900) {
+            size /= 1024;
+            i++;
+          }
+          return `${Math.round(size * 100) / 100} ${fSExt[i]}`;
+        },
+        removeImage(index) {
+          this.loading = true;
+          this.files.splice(index, 1);
+          this.images.splice(index, 1);
+          this.arrayImagesUpd.splice(index, 1);
+          this.loading = false;
+        },
+        clearDatos() {
+          this.getProyectosInsti(this.infoInsti, 1, "", this.proceso);
+          this.date = "";
+          this.observacion = "";
+          this.proyecto_id = 0;
+          this.images = [];
+          this.files = [];
+          this.cerrarModalSuper();
         }
       });
     },

@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use PDF;
 use \Html2Text\Html2Text as Html2Text;
+use env;
 
 class GestionProyectoController extends Controller
 {
+    public $anio;
+
     public $meses = array(
      "1" => "ENERO",
      "2" => "FEBRERO",
@@ -33,13 +36,18 @@ class GestionProyectoController extends Controller
      "10" => "OCTUBRE",
      "11" => "NOVIEMBRE",
      "12" => "DICIEMBRE");
+
     public $trimestres = array(
         "123" => 'PRIMER TRIMESTRE',
         "456" => 'SEGUNDO TRIMESTRE',
         "789" => 'TERCER TRIMESTRE',
         "101112" => 'CUARTO TRIMESTRE');
 
-    public $anio = 2019;
+     public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
+
     //Metodo que guarda los datos del perfil del proyecto y descarga el pdf y guarda los otros documentos relacionados al proceso
     public function initGestionProyecto(Request $request){
 
@@ -1846,7 +1854,7 @@ class GestionProyectoController extends Controller
             if($value->constancia_entreg()->count() == 0){
 
                 DB::table('constancias_entregadas')->insert(
-                    ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString(),'fecha_registro'=>date('Y')]
+                    ['gestion_proyecto_id' => $value->id,'created_at' => Carbon::now()->toDateTimeString(),'fecha_registro'=>date('Y-m-d')]
                 );
 
             }
