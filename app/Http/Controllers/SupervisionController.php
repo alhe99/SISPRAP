@@ -48,6 +48,15 @@ class SupervisionController extends Controller
         $supervision = Proyecto::findOrFail($request->id)->supervision;
         $supervision->fecha = $request->fecha;
         $supervision->observacion = $request->observacion;
+        for ($i=0;$i<count($request->imagenes);$i++) {
+
+            $imgSuper = new ImgSupervision();
+            $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
+            $imgSuper->img = $name_img;
+            Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
+            SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
+
+          }
         $supervision->save();
     }
     //obtener las supervisiones

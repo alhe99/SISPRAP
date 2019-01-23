@@ -518,7 +518,7 @@
                                          <datetime type="date" :max-datetime="maxDatetime" v-model="date" value-zone="America/El_Salvador" input-class="form-control" placeholder="Fecha en la que fue realizada la supervisión"></datetime>
                                        </div>
                                      </div>
-                                     <div v-if="tipoAccion2 == 1" class="form-group">
+                                     <div class="form-group">
                                          <div class="uploader"
                                          @dragenter="OnDragEnter"
                                          @dragleave="OnDragLeave"
@@ -549,38 +549,40 @@
                                          </div>
                                         </div>
                                        </div>
-                                     <div v-else class="form-group">
-                                               <div class="uploader"
-                                         @dragenter="OnDragEnter"
-                                         @dragleave="OnDragLeave"
-                                         @dragover.prevent
-                                         @drop="onDrop"
-                                         :class="{ dragging: isDragging }">
-                                         <div class="upload-control" v-show="arrayImagesUpd.length">
-                                          <label for="file">Seleccione una o mas imagenes</label>
-                                        </div>
-                                        <div v-show="!arrayImagesUpd.length">
-                                          <i class="fa fa-cloud-upload"></i>
-                                          <p>Arrastre sus imagenes aqui!</p>
-                                          <div>o</div>
-                                          <div class="file-input">
-                                            <label for="file">Seleccione</label>
-                                            <input type="file" id="file" @change="onInputChange" multiple>
+                                       <!--images con supervision-->
+                                       <div class="row">
+                                          <div class="col-md-6 col-sm-12 col-lg-6">
+                                                <button
+                                                    ref="btntest"
+                                                    class="btn btn-primary font-weight-bold text-dark"
+                                                    type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapseExample"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapseExample"
+                                                    >
+                                                    <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Supervisadas
+                                                </button>
+                                                <div
+                                                    class="collapse"
+                                                    ref="divCollapse"
+                                                    id="collapseExample"
+                                                    >
+                                                    <div class="card card-body">
+                                                        <div class="row images-preview" id="seccion" v-show="arrayImagesUpd.length">
+                                                          <div
+                                                          class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
+                                                                 v-for="(image, index) in arrayImagesUpd" :key="index">
+                                                                  <label :for="(image, index)">
+                                                              <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                                                            <img  class="text-center img-fluid" :src="'images_superv/'+image.img" :alt="`Imagen ${index}`"> 
+                                                                  </label>   
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
                                           </div>
-                                        </div>
-                                        <div class="images-preview" v-show="arrayImagesUpd.length">
-                                            <div class="img-wrapper" v-for="(image, index) in arrayImagesUpd" :key="index">
-                                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
-                                             <img  :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
-                                             <!-- YA TRAE LAS IMAGENES,PENSAR COMO AGREGAR MAS SIN DAÑAR EL ARRAY ORIGINAL -->
-                                            <!--  <div class="details">
-                                               <span class="name" v-text="files[index].name"></span>
-                                               <span class="size" v-text="getFileSize(files[index].size)"></span>
-                                             </div> -->
-                                           </div>
-                                         </div>
-                                        </div>
-                                     </div>
+                                      </div>
                                      <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
                                    </div>
                                    <div class="modal-footer">
@@ -632,6 +634,7 @@
                     arrayInstitucion: [],
                     arrayProyectos: [],
                     arrayImages: [],
+                    arrayImag:[],
                     nombre: "",
                     direccion: "",
                     phone: "",
@@ -670,6 +673,7 @@
                     dragCount: 0,
                     files: [],
                     images: [],
+                    imgS: [],
                     loading: false,
                     color: "#533fd0",
                     size: "20px",
@@ -1304,6 +1308,7 @@
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
         observacion: this.observacion,
+        imagenes: this.images,
 
       })
        .then(function(response) {
@@ -1643,6 +1648,7 @@
           this.loading = true;
           this.files.splice(index, 1);
           this.images.splice(index, 1);
+          this.arrayImagesUpd.splice(index, 1);
           this.loading = false;
         },
         clearDatos() {
