@@ -311,7 +311,6 @@ class GestionProyectoController extends Controller
                 );
 
 
-
                 $mes1[$carre->id+1] = $collection1 = new Collection([
                     "Carrera" => $carre->nombre,
                     "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId,$this->anio),
