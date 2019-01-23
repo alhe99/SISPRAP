@@ -36,6 +36,7 @@ class GestionProyectoController extends Controller
      "10" => "OCTUBRE",
      "11" => "NOVIEMBRE",
      "12" => "DICIEMBRE");
+
     public $trimestres = array(
         "123" => 'PRIMER TRIMESTRE',
         "456" => 'SEGUNDO TRIMESTRE',

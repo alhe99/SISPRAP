@@ -28,9 +28,9 @@
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
             <p class="text-center font-weight-bold"><u>INFORME DE ESTUDIANTES CON PROCESOS CULMINADOS DE {{ $procesoTitulo }} DE {{ $anio}}</u></p><br>
             @if ($tipo == 'M')
-            <p class="text-center font-weight-bold"><u>MESES: {{ implode(",", $meses) }}</u></strong></p>
+            <p class="text-center font-weight-bold"><u>MES(ES): {{ implode(",", $meses) }}</u></strong></p>
             @elseif($tipo == 'T')
-            <p class="text-center font-weight-bold"><u>MESES: {{ $meses }}</u></strong></p>
+            <p class="text-center font-weight-bold"><u>MES(ES): {{ $meses }}</u></strong></p>
             @elseif($tipo == 'A')
             <p class="text-center font-weight-bold"><u>INFORME ANUAL</u></strong></p>
             @endif

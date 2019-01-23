@@ -29,7 +29,7 @@ class Carrera extends Model
                 return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
             break;
             case 2:
-                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
+                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereY|ear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
             break;
         }
     }
