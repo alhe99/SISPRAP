@@ -551,6 +551,37 @@
                                        </div>
                                        <!--images con supervision-->
                                        <div v-else class="form-group">
+                                           
+                                        <div class="uploader"
+                                         @dragenter="OnDragEnter"
+                                         @dragleave="OnDragLeave"
+                                         @dragover.prevent
+                                         @drop="onDrop"
+                                         :class="{ dragging: isDragging }">
+                                         <div class="upload-control" v-show="images.length">
+                                          <label for="file">Seleccione una o mas imagenes</label>
+                                        </div>
+                                        <div v-show="!images.length">
+                                          <i class="fa fa-cloud-upload"></i>
+                                          <p>Arrastre sus imagenes aqui!</p>
+                                          <div>o</div>
+                                          <div class="file-input">
+                                            <label for="file">Seleccione</label>
+                                            <input type="file" id="file" @change="onInputChange" multiple>
+                                          </div>
+                                        </div>
+                                        <div class="images-preview" v-show="images.length">
+                                            <div class="img-wrapper" v-for="(image, index) in images" :key="index">
+                                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                                             <img  :src="image" :alt="`Imagen ${index}`">
+                                             <!-- YA TRAE LAS IMAGENES,PENSAR COMO AGREGAR MAS SIN DAÑAR EL ARRAY ORIGINAL -->
+                                            <!--  <div class="details">
+                                               <span class="name" v-text="files[index].name"></span>
+                                               <span class="size" v-text="getFileSize(files[index].size)"></span>
+                                             </div> -->
+                                           </div>
+                                         </div>
+                                        </div>
                                        <div class="row">
                                           <div class="col-md-6 col-sm-12 col-lg-6">
                                                 <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Imagenes</button>
@@ -1658,7 +1689,6 @@
       components: {},
       mounted() {
         this.maxDatetime;
-        this.getImg();
       }
     };
     </script>
