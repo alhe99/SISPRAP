@@ -30,7 +30,7 @@
             {{-- TRAER EL PROCESO PARA TERMINAR ESTE TITULO --}}
             <p class="text-center font-weight-bold"><u>INFORME DE ALUMNOS QUE HAN INICIADO {{ $procesoTitulo }} DE {{ $anio}}</u></p><br>
             @if ($tipo == 'M')
-            <p class="text-center font-weight-bold"><u>MES(ES): {{ implode(",", $meses) }}</u></strong></p>
+            <p class="text-center font-weight-bold"><u>MES(ES): {{ implode(", ", $meses) }}</u></strong></p>
             @elseif($tipo == 'T')
             <p class="text-center font-weight-bold"><u>MES(ES): {{ $meses }}</u></strong></p>
             @elseif($tipo == 'A')
