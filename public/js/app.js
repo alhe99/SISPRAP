@@ -79280,6 +79280,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       arrayInstitucion: [],
       arrayProyectos: [],
       arrayImages: [],
+      arrayImag: [],
       nombre: "",
       direccion: "",
       phone: "",
@@ -79318,6 +79319,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       dragCount: 0,
       files: [],
       images: [],
+      imgS: [],
       loading: false,
       color: "#533fd0",
       size: "20px",
@@ -79425,7 +79427,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // {
       this.observacion = this.supervision["observacion"];
       this.date = this.supervision["fecha"];
-      // this.images = this.supervision["imagenes"];
+      //this.images = this.supervision["imagenes"];
       // }
     }
 
@@ -79524,7 +79526,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
-        me.arrayImages = respuesta;
+        me.arrayImag = respuesta;
         me.loading = false;
       }).catch(function (error) {
         console.log(error);
