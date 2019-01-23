@@ -93793,7 +93793,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
 
 // exports
 
@@ -93804,16 +93804,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -94338,56 +94328,58 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-lg-12 col-md-12" }, [
     _c("div", { staticClass: "container col-md-12", attrs: { id: "tabs" } }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "tabs" }, [
-          _c(
-            "a",
-            {
-              class: [_vm.activetab === 1 ? "active" : ""],
-              on: {
-                click: function($event) {
-                  _vm.activetab = 1
-                }
+      _c("div", { staticClass: "tabs" }, [
+        _c(
+          "a",
+          {
+            class: [_vm.activetab === 1 ? "active" : ""],
+            on: {
+              click: function($event) {
+                _vm.activetab = 1
               }
-            },
-            [
-              _c("i", { staticClass: "mdi mdi-format-list-bulleted mdi-18px" }),
-              _vm._v(" Carreras")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              class: [_vm.activetab === 2 ? "active" : ""],
-              on: {
-                click: function($event) {
-                  _vm.activetab = 2
-                }
+            }
+          },
+          [
+            _c("i", { staticClass: "mdi mdi-format-list-bulleted mdi-18px" }),
+            _vm._v(" Carreras")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            class: [_vm.activetab === 2 ? "active" : ""],
+            on: {
+              click: function($event) {
+                _vm.activetab = 2
               }
-            },
-            [
-              _c("i", { staticClass: "mdi mdi-face mdi-18px" }),
-              _vm._v(" Estudiantes")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              class: [_vm.activetab === 3 ? "active" : ""],
-              on: {
-                click: function($event) {
-                  _vm.activetab = 3
-                }
+            }
+          },
+          [
+            _c("i", { staticClass: "mdi mdi-face mdi-18px" }),
+            _vm._v(" Estudiantes")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            class: [_vm.activetab === 3 ? "active" : ""],
+            on: {
+              click: function($event) {
+                _vm.activetab = 3
               }
-            },
-            [
-              _c("i", { staticClass: "mdi mdi-settings mdi-18px" }),
-              _vm._v(" Configuraciones")
-            ]
-          )
-        ]),
+            }
+          },
+          [
+            _c("i", { staticClass: "mdi mdi-settings mdi-18px" }),
+            _vm._v(" Configuraciones")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card col-md-12" }, [
+        _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [
           _vm.activetab === 1
@@ -94566,7 +94558,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._v("\n                    \n                  "),
+                      _vm._v("\n                      \n                    "),
                       _c("label", { staticStyle: { "margin-left": "5px" } }, [
                         _vm._v("Fecha de Nacimiento")
                       ]),
@@ -94621,7 +94613,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(
-                          "\n                      \n                    "
+                          "\n                        \n                      "
                         ),
                         _c("label", { attrs: { for: "radioSS" } }, [
                           _vm._v("Femenino")
@@ -95083,7 +95075,7 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "mdi mdi-account-plus" }),
-                        _vm._v(" Registrar Estudiante\n        ")
+                        _vm._v(" Registrar Estudiante\n          ")
                       ]
                     )
                   ])
@@ -95093,73 +95085,45 @@ var render = function() {
           _vm._v(" "),
           _vm.activetab === 3
             ? _c("div", { staticClass: "tabcontent" }, [
-                _c("h2", { staticClass: "text-center" }, [
-                  _vm._v("Registro de Sector de Instituciones")
-                ]),
+                _c("h2", { staticClass: "text-center" }, [_vm._v("Año")]),
                 _vm._v(" "),
                 _c("div", { staticClass: "panel panel-default" }, [
-                  _c(
-                    "div",
-                    { staticClass: "panel-body" },
-                    [
-                      _c(
-                        "div",
-                        { staticClass: "form-group row" },
-                        [
-                          _c("mdc-textfield", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              }
-                            ],
-                            staticClass: "col-md-12",
-                            attrs: {
-                              type: "text",
-                              name: "nombre",
-                              label: "Nombre del sector de Institucion",
-                              helptext: "(Ingrese el nombre del sector)"
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                      [
+                        _c("br"),
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Seleccione año")
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("v-select", {
+                          attrs: {
+                            label: "label",
+                            onChange: _vm.watchDepa,
+                            placeholder: "Seleccione año",
+                            options: _vm.arrayDepartamentos
+                          },
+                          model: {
+                            value: _vm.departamento_id,
+                            callback: function($$v) {
+                              _vm.departamento_id = $$v
                             },
-                            model: {
-                              value: _vm.sector,
-                              callback: function($$v) {
-                                _vm.sector = $$v
-                              },
-                              expression: "sector"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("nombre"),
-                                  expression: "errors.has('nombre')"
-                                }
-                              ],
-                              staticClass: "help-block alert-danger"
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("nombre")))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("mdc-button", { on: { click: _vm.saveSector } }, [
-                        _vm._v("Registrar Sector")
-                      ])
-                    ],
-                    1
-                  )
+                            expression: "departamento_id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
                 ])
               ])
             : _vm._e()
-        ])
+        ]),
+        _vm._v(" "),
+        _c("br")
       ])
     ])
   ])
