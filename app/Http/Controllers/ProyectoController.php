@@ -21,7 +21,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProyectoController extends Controller
 {
-    //listado de proyectos por proceso y busqueda
+     //listado de proyectos por proceso y busqueda
     public function index(Request $request)
     {
 
@@ -344,7 +344,7 @@ class ProyectoController extends Controller
 
         $projects_ids = $proyectos->pluck('id');
         $result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(9);
-        return $gestion;
+        return $result_paginate;
     }
 
     //listado de proyectos por proceso
