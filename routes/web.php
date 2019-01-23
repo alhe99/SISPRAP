@@ -111,6 +111,7 @@ Route::get('/destroyPreregister/{sId}/{pId}','ProyectoController@rechazPreregist
 Route::get('acceptPreregister','ProyectoController@aceptarPreregistration')->name("preregister");
 Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepcion');
 Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provideAccessToPerfil');
+Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistration');
 
 
 //RUTAS PARA REPORTES

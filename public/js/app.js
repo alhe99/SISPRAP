@@ -88572,6 +88572,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -88886,6 +88891,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           });
         } else if (result.dismiss === swal.DismissReason.cancel) {}
       });
+    },
+
+    //eliminar todas las preinscripciones de un proyecto
+    deleteAllPreinscripciones: function deleteAllPreinscripciones() {
+      var _this3 = this;
+
+      swal({
+        title: "Seguro de Rechazar Todas Las Preincripciones?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar!",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this3;
+          me.loadSpinner = 1;
+          var url = "/deleteAllPreregister/" + me.proyecto_selectd.value;
+          axios.get(url).then(function (response) {
+            me.getProyectos();
+            me.getPreregister(me.proyecto_selectd.value, 1, "");
+            swal("Rechazado!", "Se ha eliminado todas las solicitudes pendientes para este proyecto", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            console.log(error);
+          });
+        } else if (result.dismiss === swal.DismissReason.cancel) {}
+      });
     }
   },
   components: {},
@@ -89049,7 +89087,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                  No hay datos disponibles\n                "
+                                    "\n                    No hay datos disponibles\n                  "
                                   )
                                 ]
                               )
@@ -89092,7 +89130,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                No hay datos disponibles\n              "
+                                "\n                  No hay datos disponibles\n                "
                               )
                             ]
                           )
@@ -89148,7 +89186,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("br"),
                         _vm._v(" "),
                         _c(
@@ -89160,16 +89198,52 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n            Vacantes disponibles: " +
+                              "\n              Vacantes disponibles: " +
                                 _vm._s(
                                   _vm.proyecto_selectd.vacantes -
                                     _vm.numeroSolicitudes
                                 ) +
-                                "\n          "
+                                "\n            "
                             )
                           ]
                         )
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-md-2 text-right",
+                          staticStyle: { "margin-top": "-10px" }
+                        },
+                        [
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button red btn-block ",
+                              class: [
+                                _vm.arrayPreregister.length == 0
+                                  ? "disabled"
+                                  : ""
+                              ],
+                              attrs: {
+                                type: "button",
+                                disabled: _vm.arrayPreregister.length == 0,
+                                "data-toggle": "tooltip",
+                                title: "Rechazar proyecto"
+                              },
+                              on: { click: _vm.deleteAllPreinscripciones }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "mdi mdi-delete-sweep mdi-18px"
+                              }),
+                              _vm._v(" Rechazar Todas")
+                            ]
+                          )
+                        ]
+                      )
                     ])
                   ])
                 : _vm._e(),
@@ -89178,102 +89252,106 @@ var render = function() {
                 ? _c("div", { staticClass: "col-md-12 col-lg-12 col-sm-12" }, [
                     _c("br"),
                     _vm._v(" "),
-                    _c(
-                      "table",
-                      {
-                        staticClass:
-                          "table table-striped table-bordered table-mc-light-blue"
-                      },
-                      [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.arrayPreregister, function(item) {
-                            return _c("tr", { key: item.id }, [
-                              _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-link text-capitalize h4",
-                                    staticStyle: { "font-size": "16px" },
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.getMoreInfo(item.id)
+                    _c("div", { staticClass: "table-responsive" }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass:
+                            "table table-striped table-bordered table-mc-light-blue"
+                        },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.arrayPreregister, function(item) {
+                              return _c("tr", { key: item.id }, [
+                                _c("td", [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-link text-capitalize h4",
+                                      staticStyle: { "font-size": "16px" },
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.getMoreInfo(item.id)
+                                        }
                                       }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(item.nombre + " " + item.apellido)
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", {
-                                domProps: {
-                                  textContent: _vm._s(item.pivot.created_at)
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-center" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "button secondary ",
-                                    attrs: {
-                                      type: "button",
-                                      "data-toggle": "tooltip",
-                                      title: "Aprobar Proyecto"
                                     },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.aprobarProy(
-                                          item.id,
-                                          _vm.proyecto_selectd.value,
-                                          item.proceso_actual
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          item.nombre + " " + item.apellido
                                         )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", { staticClass: "mdi mdi-check" }),
-                                    _vm._v(" Aprobar")
-                                  ]
-                                ),
+                                      )
+                                    ]
+                                  )
+                                ]),
                                 _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "button red ",
-                                    attrs: {
-                                      type: "button",
-                                      "data-toggle": "tooltip",
-                                      title: "Rechazar proyecto"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.rechazarProy(
-                                          item.id,
-                                          _vm.proyecto_selectd.value
-                                        )
+                                _c("td", {
+                                  domProps: {
+                                    textContent: _vm._s(item.pivot.created_at)
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-center" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button secondary ",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Aprobar Proyecto"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.aprobarProy(
+                                            item.id,
+                                            _vm.proyecto_selectd.value,
+                                            item.proceso_actual
+                                          )
+                                        }
                                       }
-                                    }
-                                  },
-                                  [
-                                    _c("i", { staticClass: "mdi mdi-close" }),
-                                    _vm._v(" Rechazar")
-                                  ]
-                                )
+                                    },
+                                    [
+                                      _c("i", { staticClass: "mdi mdi-check" }),
+                                      _vm._v(" Aprobar")
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button red ",
+                                      attrs: {
+                                        type: "button",
+                                        "data-toggle": "tooltip",
+                                        title: "Rechazar proyecto"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.rechazarProy(
+                                            item.id,
+                                            _vm.proyecto_selectd.value
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", { staticClass: "mdi mdi-close" }),
+                                      _vm._v(" Rechazar")
+                                    ]
+                                  )
+                                ])
                               ])
-                            ])
-                          })
-                        )
-                      ]
-                    ),
+                            })
+                          )
+                        ]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("nav", [
                       _c(
