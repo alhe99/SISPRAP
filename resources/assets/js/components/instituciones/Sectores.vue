@@ -38,8 +38,8 @@
             <tr v-for="sectores in arraySector" :key="sectores.id">
                 <td v-text="sectores.sector"></td>
                 <td class="text-right">
-                    <button type="button" @click="abrirModal('sector','actualizar',sectores)" class="btn btn-primary " data-toggle="tooltip" title="Editar datos del sector"><i class="mdi mdi-border-color i-crud"></i></button>
-                    <button type="button" @click="deleteSector(sectores.id)" class="btn btn-primary " data-toggle="tooltip" title="Eliminar Sector"><i class="mdi mdi-delete-variant i-crud"></i></button>
+                    <button type="button" @click="abrirModal('sector','actualizar',sectores)" class="button blue" data-toggle="tooltip" title="Editar datos del sector"><i class="mdi mdi-border-color"></i></button>
+                    <button type="button" @click="deleteSector(sectores.id)" class="button red" data-toggle="tooltip" title="Eliminar Sector"><i class="mdi mdi-delete"></i></button>
                 </td>
             </tr>
         </tbody>

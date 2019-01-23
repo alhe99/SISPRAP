@@ -50,7 +50,7 @@
 <div class="row">
   @foreach ($proyectos as $p)
   <div class="col-md-6 col-lg-4 col-xl-4 card-group wow animated fadeInUp"  onclick="redirectToCard('{{session('process_id')}}','{{$p->slug}}')" data-wow-delay=".3s">
-    <article class="single-blog-post" style="width: 100%;">
+    <article class="single-blog-post" style="width: 100%; cursor: pointer;">
       <div class="featured-image">
         <a href="#">
           @if ($p->img == null)
@@ -66,7 +66,7 @@
       </div>
       <div class="meta-tags">
         <h2 class="subtitle">{{strtolower($p->nombre)}}</h2>
-        <p class="truncate">{!!substr($p->actividades,0,125)!!}</p>
+        {{-- <p class="truncate">{!!substr($p->actividades,0,125)!!}</p> --}}
       </div>
       <div class="meta-tags">
         <span class="comments"><i class="mdi mdi-calendar-check"></i>Publicación: {{substr($p->created_at,0,10)}}</span>

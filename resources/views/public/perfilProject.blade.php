@@ -43,8 +43,8 @@
         <div class="row">
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
-              <label class="control-label" for="estudiante_telefono">Teléfono*</label>
-              <input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="{{Auth::user()->estudiante->telefono}}" disabled >
+              <label class="control-label" for="estudiante_telefono" >Teléfono*</label>
+              <input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" disabled value="{{Auth::user()->estudiante->telefono}}" disabled >
 
             </div>
           </div>
@@ -114,9 +114,9 @@
             <div class="form-group label-floating">
               <label class="control-label" for="institucion_tel">Teléfono*</label>
               @if (Auth::user()->estudiante->preinscripciones[0]->institucion->telefono == null)
-              <input class="form-control" id="institucion_tel" type="text" name="institucion_tel">
+              <input class="form-control" id="institucion_tel" type="text" name="institucion_tel" disabled>
               @else
-              <input class="form-control" id="institucion_tel" type="text" name="institucion_tel" value="{{Auth::user()->estudiante->preinscripciones[0]->institucion->telefono}}" disabled  >
+              <input class="form-control" id="institucion_tel" type="text" name="institucion_tel" disabled value="{{Auth::user()->estudiante->preinscripciones[0]->institucion->telefono}}" disabled  >
               @endif
 
             </div>
@@ -125,7 +125,7 @@
             <div class="form-group label-floating">
               <label class="control-label" for="institucion_email">Correo electrónico</label>
               @if (Auth::user()->estudiante->preinscripciones[0]->institucion->email == null)
-              <input class="form-control" id="institucion_email" type="text" name="institucion_email">
+              <input class="form-control" id="institucion_email" type="text" name="institucion_email" disabled>
               @else
               <input class="form-control" id="institucion_email" type="text" name="institucion_email" value="{{Auth::user()->estudiante->preinscripciones[0]->institucion->email}}" disabled >
               @endif
@@ -160,7 +160,7 @@
         <div class="col-md-12" data-wow-delay=".2s">
          <div class="form-group">
           <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
-          <textarea class="form-control-sm col-md-12" rows="6" name="proyecto_acti" id="proyecto_acti" disabled >
+          <textarea class="form-control-sm col-md-12" rows="5" name="proyecto_acti" id="proyecto_acti" disabled >
             {{\Html2Text\Html2Text::convert(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
           </textarea>
         </div>
@@ -190,7 +190,7 @@
               <option value="{{ $item->nombre.";".$item->no_telefono }}">{{ $loop->iteration." - ".$item->nombre }}</option>
             @endforeach
         </select>
-        <small class="text-center text-primary font-weight-bold">*Selecciona del listado de supervisores el que estara a cargo de proceso</small>
+        <small class="text-center text-danger font-weight-bold">*Selecciona del listado de supervisores el que estara a cargo de proceso</small>
       </div>
     </div>
   </div>

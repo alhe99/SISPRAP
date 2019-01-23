@@ -51,7 +51,9 @@
                 <ul aria-expanded="false" class="collapse ">
                     <li><button type="button" @click="menu=5" class="btn btn-link btn-colors">Control instituciones</button></li>
                     <li><button type="button" @click="menu=20" class="btn btn-link btn-colors">Sector Institución</button></li>
-                    <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
+                    <li><button type="button" @click="menu=6" class="btn btn-link btn-colors"><i
+                        class="mdi mdi-file-document"></i>Hojas de supervisión</button></li>
+                    {{-- <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
                         class="mdi mdi-file-document"></i><span class="hide-menu">Hojas de supervisión
                         &nbsp;&nbsp;&nbsp;</span></a>
                         <ul aria-expanded="false" class="collapse ">
@@ -59,7 +61,7 @@
                             <li><button type="button" @click="menu=14" class="btn btn-link btn-colors">Por
                             Institución</button></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             <li>

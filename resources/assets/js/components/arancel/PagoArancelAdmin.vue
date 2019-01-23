@@ -37,7 +37,11 @@
       <div class="card-body">
        <div class="row">
          <div class="col-md-12">
-           <v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione Una Carrera Para ver el listado de estudiantes"></v-select>
+           <v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione Una Carrera Para ver el listado de estudiantes">
+             <span slot="no-options">
+               No hay datos disponibles
+             </span>
+           </v-select>
          </div>
        </div>
        <div class="row" v-if="carrera_selected != 0 && carrera_selected != null">

@@ -50,38 +50,42 @@
             <div class="row">
               <div class="col-md-6">
                 <v-select v-if="proceso==2" v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione una carrera">
+                  <span slot="no-options">
+                    No hay datos disponibles
+                  </span>
+                </v-select>
+                <!-- <fade-loader :loading="true"></fade-loader> -->
+              </div>
+              <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
+                <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
                  <span slot="no-options">
                   No hay datos disponibles
                 </span>
               </v-select>
-              <!-- <fade-loader :loading="true"></fade-loader> -->
+              <h6 v-if="contentProy == false" class="text-danger">No hay proyectos disponibles para esta carrera</h6>
             </div>
-            <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
-              <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
-               <span slot="no-options">
-                No hay datos disponibles
-              </span>
-            </v-select>
-            <h6 v-if="contentProy == false" class="text-danger">No hay proyectos disponibles para esta carrera</h6>
           </div>
-        </div>
-      </div><br>
+        </div><br>
 
-      <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-12 col-sm-12 col-lg-12">
-       <div class="row">
-         <div class="col-md-6">
-          <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
-        </div>
-        <div class="col-md-6"><br>
-          <div class="alert alert-primary font-weight-bold h6" role="alert">
-            Vacantes disponibles: {{ proyecto_selectd.vacantes - numeroSolicitudes }}
+        <div v-if="proyecto_selectd != 0 && proyecto_selectd != null" class="col-md-12 col-sm-12 col-lg-12">
+         <div class="row">
+           <div class="col-md-6">
+            <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getPreregister(proyecto_selectd.value,1,buscar)"  label="Nombre del estudiante" v-model="buscar"></mdc-textfield>
           </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
+          <div class="col-md-4"><br>
+            <div class="alert alert-primary font-weight-bold h6" role="alert">
+              Vacantes disponibles: {{ proyecto_selectd.vacantes - numeroSolicitudes }}
+            </div>
+          </div>
+          <div class="col-md-2 text-right" style="margin-top: -10px;"><br>
+           <button type="button" :disabled="arrayPreregister.length == 0" :class="[arrayPreregister.length == 0 ? 'disabled' : '']" @click="deleteAllPreinscripciones" class="button red btn-block " data-toggle="tooltip" title="Rechazar proyecto"><i class="mdi mdi-delete-sweep mdi-18px"></i>&nbsp;Rechazar Todas</button>
+         </div>
+       </div>
+     </div>
+     <div v-if="proyecto_selectd != 0 && proyecto_selectd != null " class="col-md-12 col-lg-12 col-sm-12">
       <br>
-      <table class="table table-striped table-bordered table-mc-light-blue">
+      <div class="table-responsive">
+       <table class="table table-striped table-bordered table-mc-light-blue">
         <thead class="thead-primary">
           <tr>
             <th>Nombre Estudiante</th>
@@ -100,72 +104,73 @@
           </tr>
         </tbody>
       </table>
-      <nav>
-       <ul class="pagination">
-        <li class="page-item" v-if="pagination.current_page > 1">
-          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
-        </li>
-        <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-          <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
+    </div>
+    <nav>
+     <ul class="pagination">
+      <li class="page-item" v-if="pagination.current_page > 1">
+        <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
+      </li>
+      <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+        <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
 
-          <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
-          </li>
-          <small v-show="arrayPreregister.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"></small>
-        </ul>
-      </nav>
-      <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
-        <h4 class="font-weight-bold text-center">No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
-      </div>
-      <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
-      <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title text-white">Información del estudiante</h4>
-              <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="text-white">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-             <fieldset>
-              <legend class="text-center">Datos completos del estudiante</legend>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                   <div class="col-md-8">
-                    <h5 class="font-weight-bold">Nombre:</h5><h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
-                    <h5 class="font-weight-bold">Carrera:</h5><h4>{{estudiante.carrer}}</h4>
-                    <h5 class="font-weight-bold">Fecha Nacimiento: </h5><h4>{{estudiante.fechaNac}}</h4>
-                    <h5 class="font-weight-bold">Género: </h5><h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
-                    <h5 class="font-weight-bold">Codigo de Carnet: </h5><h4>{{estudiante.codCarnet}}</h4>
-                    <h5 class="font-weight-bold">Dirección: </h5><h4>{{estudiante.direccion}}</h4>
-                  </div>
-                  <div class="col-md-4">
-                    <template v-if="estudiante.foto_name == ''">
-                      <img v-if="estudiante.genero == 'M'" class="text-center img-fluid" :src="'images/avatarM.png'" alt="">
-                      <img v-else class="text-center img-fluid" :src="'images/avatarF.png'" alt="">
-                    </template>
-                    <template v-else>
-                      <img class="text-center img-fluid" :src="rutaIMG" alt="">
-                    </template>
-                  </div>
+        <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+        </li>
+        <small v-show="arrayPreregister.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"></small>
+      </ul>
+    </nav>
+    <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
+      <h4 class="font-weight-bold text-center">No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
+    </div>
+    <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+    <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-white">Información del estudiante</h4>
+            <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="text-white">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           <fieldset>
+            <legend class="text-center">Datos completos del estudiante</legend>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                 <div class="col-md-8">
+                  <h5 class="font-weight-bold">Nombre:</h5><h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
+                  <h5 class="font-weight-bold">Carrera:</h5><h4>{{estudiante.carrer}}</h4>
+                  <h5 class="font-weight-bold">Fecha Nacimiento: </h5><h4>{{estudiante.fechaNac}}</h4>
+                  <h5 class="font-weight-bold">Género: </h5><h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
+                  <h5 class="font-weight-bold">Codigo de Carnet: </h5><h4>{{estudiante.codCarnet}}</h4>
+                  <h5 class="font-weight-bold">Dirección: </h5><h4>{{estudiante.direccion}}</h4>
+                </div>
+                <div class="col-md-4">
+                  <template v-if="estudiante.foto_name == ''">
+                    <img v-if="estudiante.genero == 'M'" class="text-center img-fluid" :src="'images/avatarM.png'" alt="">
+                    <img v-else class="text-center img-fluid" :src="'images/avatarF.png'" alt="">
+                  </template>
+                  <template v-else>
+                    <img class="text-center img-fluid" :src="rutaIMG" alt="">
+                  </template>
                 </div>
               </div>
             </div>
-          </fieldset>
-        </div>
-        <div class="modal-footer">
-          <div class="row">
-            <div class="col-md-12">
-              <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
-            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+</div>
+<!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
 </div>
 </div>
 </div>
@@ -496,6 +501,46 @@ export default {
             );
           me.loadSpinner = 0;
           me.getNumeroPreinscripciones()
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      } else if (
+
+        result.dismiss === swal.DismissReason.cancel
+        ) {
+      }
+    });
+  },
+  //eliminar todas las preinscripciones de un proyecto
+  deleteAllPreinscripciones(){
+    swal({
+      title: "Seguro de Rechazar Todas Las Preincripciones?",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar!",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(result => {
+      if (result.value) {
+        let me = this;
+        me.loadSpinner = 1;
+        var url = "/deleteAllPreregister/"+me.proyecto_selectd.value;
+        axios.get(url)
+        .then(function(response) {
+          me.getProyectos();
+          me.getPreregister(me.proyecto_selectd.value, 1, "");
+          swal(
+            "Rechazado!",
+            "Se ha eliminado todas las solicitudes pendientes para este proyecto",
+            "success"
+            );
+          me.loadSpinner = 0;
         })
         .catch(function(error) {
           console.log(error);
