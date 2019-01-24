@@ -285,7 +285,7 @@
       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
       swal({
         title: "Segura que desea guardar los datos?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",

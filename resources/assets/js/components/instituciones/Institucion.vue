@@ -1570,7 +1570,7 @@
         activarInstitucion(id) {
           swal({
             title: "Esta seguro de activar esta Institucion?",
-            type: "warning",
+            type: "question",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",

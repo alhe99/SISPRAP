@@ -462,7 +462,7 @@ methods:{
     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
     swal({
       title: "¿Desea Guardar los cambios?",
-      type: "warning",
+      type: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -519,7 +519,7 @@ methods:{
     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
     swal({
       title: "¿Desea Guardar los datos?",
-      type: "warning",
+      type: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -591,7 +591,6 @@ methods:{
       locale: 'es-es',
       maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
       format: 'yyyy-mm-dd',
-
     });
 
   },
@@ -671,7 +670,7 @@ methods:{
    const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
    swal({
     title: "¿Desea Guardar los datos?",
-    type: "warning",
+    type: "question",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",

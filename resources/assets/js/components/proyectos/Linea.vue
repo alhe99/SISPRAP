@@ -895,7 +895,7 @@ export default {
     desactivarProyecto(id) {
       swal({
         title: "Esta seguro de desactivar este Proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -935,7 +935,7 @@ export default {
     activarProyecto(id) {
       swal({
         title: "Esta seguro de activar este Proyecto?",
-        type: "warning",
+        type: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
