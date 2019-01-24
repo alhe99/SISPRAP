@@ -24,6 +24,8 @@ Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
 Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
+Route::get('getInstitucionesByProcess', 'InstitucionController@getInstitucionesByProcess')->name('getInstitucionesByProcess');
+
 
 Route::get('institucion/supervisor/index', 'SupervisorController@index')->name('getSupervisores');
 Route::post('institucion/supervisor/save', 'SupervisorController@store')->name('saveSupervisor');

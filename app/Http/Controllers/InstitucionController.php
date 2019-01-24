@@ -320,5 +320,26 @@ class InstitucionController extends Controller
             return response('existe', 200);
         }
     }
+
+    //listado de instituciones por su proceso y municipio
+    public function getInstitucionesByProcess(Request $request)
+    {
+        $proceso = $request->proceso_id;
+        $municipio_id = explode(',',$request->municipio_id);
+        $institucion = Institucion::select('id','nombre')->whereHas('procesos', function ($query) use ($proceso){
+        $query->where('proceso_id', $proceso);
+        })->whereIn('municipio_id',$municipio_id)->where('estado',1)->orderBy('instituciones.id','desc')->get();
+
+        $data = [];
+        foreach ($institucion as $key => $value) {
+            $data[$key] =[
+                'value'   => $value->id,
+                'label' => $value->nombre,
+            ];
+        }
+
+        return response()->json($data);
+    }
+
 }
 

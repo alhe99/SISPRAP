@@ -92116,7 +92116,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -92126,41 +92161,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       arrayMunicipios: [],
       municipio_id: [],
       loadSpinner: 0,
-      municipios_selected: []
+      municipios_selected: [],
+      proceso: 0,
+      arrayInstituciones: [],
+      carrera_id: 0,
+      institucion_id: [],
+      instituciones_selected: []
+
     };
   },
 
   watch: {
     departamento_id: function departamento_id() {
-      var vselect = this.$refs.selectMuni;
-      if (this.departamento_id != 0) {
-        vselect.disabled = false;
-      }
-      if (this.departamento_id == null) {
-        vselect.disabled = true;
+      if (this.departamento_id == null || this.departamento_id == 0) {
         this.municipio_id = 0;
       }
-      this.getMunicipios();
       this.municipio_id = 0;
       if (this.departamento_id == 1 || this.departamento_id == null) {
         this.municipio_id = [];
+      } else {
+        this.getMunicipios();
       }
     },
     municipio_id: function municipio_id() {
       var me = this;
+      var vselectInsti = me.$refs.selectInstitucion;
       for (var i = 0; i < me.municipio_id.length; i++) {
         me.municipios_selected[i] = me.municipio_id[i].value;
+      }
+      me.getInstituciones();
+      if (me.municipio_id.length == 0) {
+        me.arrayInstituciones = [];
+        me.institucion_id = [];
+        me.instituciones_selected = [];
+        me.municipios_selected = [];
+      }
+    },
+    institucion_id: function institucion_id() {
+      for (var i = 0; i < me.institucion_id.length; i++) {
+        me.instituciones_selected[i] = me.institucion_id[i].value;
       }
     }
   },
   methods: {
     getMunicipios: function getMunicipios() {
       var me = this;
+      me.loadSpinner = 1;
       var url = "GetMunicipios/" + this.departamento_id["value"];
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayMunicipios = respuesta;
+        me.loadSpinner = 0;
       }).catch(function (error) {
+        me.loadSpinner = 0;
+        console.log(error);
+      });
+    },
+    getInstituciones: function getInstituciones() {
+      var me = this;
+      me.loadSpinner = 1;
+      var url = route('getInstitucionesByProcess', { "proceso_id": me.proceso, "municipio_id": me.municipios_selected });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayInstituciones = respuesta;
+        me.loadSpinner = 0;
+      }).catch(function (error) {
+        me.loadSpinner = 0;
         console.log(error);
       });
     },
@@ -92173,10 +92239,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     clearData: function clearData() {
       var me = this;
-      var vselect = this.$refs.selectMuni;
       me.municipio_id = [];
       me.departamento_id = 0;
-      vselect.disabled = true;
       me.municipios_selected = [];
     },
     sendParameterToMethod: function sendParameterToMethod() {
@@ -92187,9 +92251,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   mounted: function mounted() {
-    var vselect = this.$refs.selectMuni;
     this.getDepartamentos();
-    vselect.disabled = true;
   }
 });
 
@@ -92208,8 +92270,6 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
@@ -92219,127 +92279,69 @@ var render = function() {
                 _c("fieldset", [
                   _c("legend", { staticClass: "text-center" }, [
                     _vm._v(
-                      "Seleccione Municipios para la generación de la hoja de supervisión:"
+                      "Seleccione un proceso para ver listado de estudiantes"
                     )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "panel panel-default" }, [
                     _c("div", { staticClass: "panel-body" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6 text-center" },
-                          [
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "v-select",
+                      _c("div", { staticClass: "row md-radio" }, [
+                        _c("div", { staticClass: "col-md-6 text-center" }, [
+                          _c("input", {
+                            directives: [
                               {
-                                attrs: {
-                                  label: "label",
-                                  placeholder: "Seleccione un departamento",
-                                  options: _vm.arrayDepartamentos
-                                },
-                                model: {
-                                  value: _vm.departamento_id,
-                                  callback: function($$v) {
-                                    _vm.departamento_id = $$v
-                                  },
-                                  expression: "departamento_id"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    attrs: { slot: "no-options" },
-                                    slot: "no-options"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                        No hay resultados\n                      "
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6 text-center" },
-                          [
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "v-select",
-                              {
-                                ref: "selectMuni",
-                                attrs: {
-                                  multiple: "",
-                                  label: "label",
-                                  placeholder: "Seleccione un municipio",
-                                  options: _vm.arrayMunicipios
-                                },
-                                model: {
-                                  value: _vm.municipio_id,
-                                  callback: function($$v) {
-                                    _vm.municipio_id = $$v
-                                  },
-                                  expression: "municipio_id"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  {
-                                    attrs: { slot: "no-options" },
-                                    slot: "no-options"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                        No hay resultados\n                      "
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12 text-center" }, [
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "button blue",
-                              class: [
-                                _vm.municipios_selected.length == 0
-                                  ? "disabled"
-                                  : ""
-                              ],
-                              attrs: {
-                                type: "button",
-                                disabled: _vm.municipios_selected.length == 0,
-                                id: "btnGenerar",
-                                "data-toggle": "tooltip",
-                                title: "Generar Hoja de Supervisión"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.sendParameterToMethod()
-                                }
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.proceso,
+                                expression: "proceso"
                               }
+                            ],
+                            attrs: {
+                              id: "radioSS",
+                              value: "1",
+                              type: "radio",
+                              name: "radioP"
                             },
-                            [
-                              _c("i", { staticClass: "mdi mdi-package-down" }),
-                              _vm._v(" Generar Hoja de Supervisión")
-                            ]
-                          )
+                            domProps: { checked: _vm._q(_vm.proceso, "1") },
+                            on: {
+                              change: function($event) {
+                                _vm.proceso = "1"
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "radioSS" } }, [
+                            _vm._v("Servicio Social")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6 text-center" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.proceso,
+                                expression: "proceso"
+                              }
+                            ],
+                            attrs: {
+                              id: "radioPP",
+                              value: "2",
+                              type: "radio",
+                              name: "radioP"
+                            },
+                            domProps: { checked: _vm._q(_vm.proceso, "2") },
+                            on: {
+                              change: function($event) {
+                                _vm.proceso = "2"
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "radioPP" } }, [
+                            _vm._v("Práctica Profesional")
+                          ])
                         ])
                       ])
                     ])
@@ -92350,7 +92352,216 @@ var render = function() {
           ])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.proceso != 0,
+            expression: "proceso != 0"
+          }
+        ],
+        staticClass: "card"
+      },
+      [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "panel panel-default" }, [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("fieldset", [
+                    _c("legend", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "Seleccione Municipios para la generación de la hoja de supervisión:"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "panel panel-default" }, [
+                      _c("div", { staticClass: "panel-body" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-md-6 text-center" },
+                            [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "v-select",
+                                {
+                                  attrs: {
+                                    label: "label",
+                                    placeholder: "Seleccione un departamento",
+                                    options: _vm.arrayDepartamentos
+                                  },
+                                  model: {
+                                    value: _vm.departamento_id,
+                                    callback: function($$v) {
+                                      _vm.departamento_id = $$v
+                                    },
+                                    expression: "departamento_id"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "no-options" },
+                                      slot: "no-options"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        No hay resultados\n                      "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-md-6 text-center" },
+                            [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "v-select",
+                                {
+                                  ref: "selectMuni",
+                                  attrs: {
+                                    disabled:
+                                      _vm.departamento_id == 0 ||
+                                      _vm.departamento_id == undefined,
+                                    multiple: "",
+                                    label: "label",
+                                    placeholder: "Seleccione un municipio",
+                                    options: _vm.arrayMunicipios
+                                  },
+                                  model: {
+                                    value: _vm.municipio_id,
+                                    callback: function($$v) {
+                                      _vm.municipio_id = $$v
+                                    },
+                                    expression: "municipio_id"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "no-options" },
+                                      slot: "no-options"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        No hay resultados\n                      "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-md-12 text-center" },
+                            [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "v-select",
+                                {
+                                  ref: "selectInstitucion",
+                                  attrs: {
+                                    disabled:
+                                      _vm.municipios_selected.length == 0,
+                                    multiple: "",
+                                    label: "label",
+                                    placeholder: "Seleccione una institución",
+                                    options: _vm.arrayInstituciones
+                                  },
+                                  model: {
+                                    value: _vm.institucion_id,
+                                    callback: function($$v) {
+                                      _vm.institucion_id = $$v
+                                    },
+                                    expression: "institucion_id"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "no-options" },
+                                      slot: "no-options"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        No hay resultados\n                      "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-12 text-center" }, [
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "button blue",
+                                class: [
+                                  _vm.instituciones_selected.length == 0
+                                    ? "disabled"
+                                    : ""
+                                ],
+                                attrs: {
+                                  type: "button",
+                                  disabled:
+                                    _vm.instituciones_selected.length == 0,
+                                  id: "btnGenerar",
+                                  "data-toggle": "tooltip",
+                                  title: "Generar Hoja de Supervisión"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.sendParameterToMethod()
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "mdi mdi-package-down"
+                                }),
+                                _vm._v(" Generar Hoja de Supervisión")
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
