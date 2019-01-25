@@ -113,23 +113,13 @@
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="institucion_tel">Teléfono*</label>
-              @if (Auth::user()->estudiante->preinscripciones[0]->institucion->telefono == null)
-              <input class="form-control" id="institucion_tel" type="text" name="institucion_tel" disabled>
-              @else
               <input class="form-control" id="institucion_tel" type="text" name="institucion_tel" disabled value="{{Auth::user()->estudiante->preinscripciones[0]->institucion->telefono}}" disabled  >
-              @endif
-
             </div>
           </div>
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="institucion_email">Correo electrónico</label>
-              @if (Auth::user()->estudiante->preinscripciones[0]->institucion->email == null)
-              <input class="form-control" id="institucion_email" type="text" name="institucion_email" disabled>
-              @else
               <input class="form-control" id="institucion_email" type="text" name="institucion_email" value="{{Auth::user()->estudiante->preinscripciones[0]->institucion->email}}" disabled >
-              @endif
-
             </div>
           </div>
         </div>
@@ -151,7 +141,7 @@
           <div class="col-md-2 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="total_horas">Total de Horas*</label>
-              <input class="form-control" value="{{Auth::user()->estudiante->proceso[0]->pivot->num_horas == null ? '' : Auth::user()->estudiante->proceso[0]->pivot->num_horas  }}"
+              <input class="form-control" value="{{Auth::user()->estudiante->preinscripciones[0]->horas_realizar  }}"
               id="total_horas" maxlength="3" type="text" name="total_horas">
             </div>
           </div>
