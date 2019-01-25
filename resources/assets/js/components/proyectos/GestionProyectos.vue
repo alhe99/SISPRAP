@@ -26,7 +26,7 @@
                       </div>
                     </div>
                   </div>
-                </fieldset>
+                </fieldset> 
               </div>
             </div>
           </div>
