@@ -146,58 +146,78 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12" data-wow-delay=".2s">
+           <div class="form-group">
+            <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
+            <textarea class="form-control-sm col-md-12" rows="5" name="proyecto_acti" id="proyecto_acti" disabled >
+              {{\Html2Text\Html2Text::convert(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
+            </textarea>
+          </div>
+        </div>
+      </div>
       <div class="row">
-        <div class="col-md-12" data-wow-delay=".2s">
-         <div class="form-group">
-          <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
-          <textarea class="form-control-sm col-md-12" rows="5" name="proyecto_acti" id="proyecto_acti" disabled >
-            {{\Html2Text\Html2Text::convert(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
-          </textarea>
+        <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
+          <div class="form-group control-floating">
+            <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
+            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
+          </div>
+        </div>
+        <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
+          <div class="form-group control-floating">
+            <label class="control-label" for="tel_supervisor">Teléfono del supervisor</label>
+            <input class="form-control" v-model="telSuper" disabled id="tel_supervisor" maxlength="9" disabled type="text" name="tel_supervisor" >
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <div class="form-group control-floating">
-          <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
-          <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
-        </div>
-      </div>
-      <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <div class="form-group control-floating">
-          <label class="control-label" for="tel_supervisor">Teléfono del supervisor</label>
-          <input class="form-control" v-model="telSuper" disabled id="tel_supervisor" maxlength="9" disabled type="text" name="tel_supervisor" >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
-        <div class="form-group mdl-selectfield">
-         <label class="control-label"  for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
-         <select v-model="selectSuper" id="selectSupervisores" class="custom-select show-tick col-md-6" data-style="btn-primary">
-          <option value="" selected disabled>Seleccione el nombre del supervisor</option>
+      <div class="row">
+        <div class="col-md-12 wow animated fadeInRight" data-wow-delay=".1s">
+          <div class="form-group mdl-selectfield">
+           <label class="control-label"  for="name_supervisor">Nombre de Supervisor de la Institución/Empresa*</label>
+           <select v-model="selectSuper" id="selectSupervisores" class="custom-select show-tick col-md-6" data-style="btn-primary">
+            <option value="" selected disabled>Seleccione el nombre del supervisor</option>
             @foreach (Auth::user()->estudiante->preinscripciones[0]->institucion->supervisores()->get() as $item)
-              <option value="{{ $item->nombre.";".$item->no_telefono }}">{{ $loop->iteration." - ".$item->nombre }}</option>
+            <option value="{{ $item->nombre.";".$item->no_telefono }}">{{ $loop->iteration." - ".$item->nombre }}</option>
             @endforeach
-        </select>
-        <small class="text-center text-danger font-weight-bold">*Selecciona del listado de supervisores el que estara a cargo de proceso</small>
+          </select>
+          <small class="text-center text-danger font-weight-bold">*Selecciona del listado de supervisores el que estara a cargo de proceso</small>
+        </div>
       </div>
     </div>
-  </div>
-  <br>
-  <div class="row text-center">
-    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-      <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
-    </div>
-    <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-      <a  href="{{ url()->previous() }}" class="btn btn-danger text-capitalize text-white font-weight-bold"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
-    </div>
-  </div><br>
-</form>
+    <br>
+    <div class="row text-center">
+      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
+      </div>
+      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+        <a  class="btn btn-danger text-capitalize text-white font-weight-bold" data-toggle="modal" data-target="#ModalCancelarPreins"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+      </div>
+    </div><br>
+  </form>
 </div>
 </div>
 </div>
 </section>
+<div class="modal" id="ModalCancelarPreins" tabindex="-4" role="dialog" aria-labelledby="ModalCancelarPreinsc" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="margin-top: 60px;">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title text-center" id="ModalCancelarPreinsc">{{Auth::user()->estudiante->nombre ." ".Auth::user()->estudiante->apellido }}</h5>
+        <button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        ¿Esta seguro de cancelar, se perderán los datos ingresados o cambios realizados?
+      </div>
+      
+      <div class="modal-body text-center">
+        <button type="button" class="btn btn-danger text-capitalize text-white " style="cursor: pointer;" data-dismiss="modal"><i class="mdi mdi-close"></i>&nbsp;Cancelar</button>
+        <a  class="btn btn-primary" style="cursor: pointer;"  href="{{ url()->previous() }}"><i class="mdi mdi-check"></i>&nbsp;Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('page_script')
 <script type="text/javascript">
