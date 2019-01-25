@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use PDF;
 use \Html2Text\Html2Text as Html2Text;
-use env;
 
 class GestionProyectoController extends Controller
 {
@@ -243,9 +242,10 @@ class GestionProyectoController extends Controller
         $gp->estado = 'F';
         $gp->update();
 
-        if($gp->horas_realizadas == $gp->horas_a_realizar){
-            $a = $gp->estudiante_id;
-            $e = Estudiante::findOrFail($a);
+        $a = $gp->estudiante_id;
+        $e = Estudiante::findOrFail($a);
+
+        if($request->horasRea == $e->proceso[0]->pivot->num_horas){
             $e->no_proyectos = 0;
             if ($e->nivel_academico_id == 1) {
                 $e->nivel_academico_id = 2;
@@ -267,7 +267,7 @@ class GestionProyectoController extends Controller
             if($e->proceso()->attach(2,array('num_horas' => '160'))){
                 $a->proceso_actual = 'P';
             }
-
+            // return "Hecho";
         }
     }
 
@@ -1208,10 +1208,10 @@ class GestionProyectoController extends Controller
                     array_push($mensuales,$mes3);
 
                     $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $mensuales,'consolidadoByNivel' => $dataByCarrer,'consolidadoGeneral'=> $dataGeneral,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
-                    $pdf->setOption('margin-top',20);
-                    $pdf->setOption('margin-bottom',20);
-                    $pdf->setOption('margin-left',20);
-                    $pdf->setOption('margin-right',20);
+                    $pdf->setOption('margin-top',15);
+                    $pdf->setOption('margin-bottom',15);
+                    $pdf->setOption('margin-left',15);
+                    $pdf->setOption('margin-right',15);
                     return $pdf->stream('Pendientes de Finalización '.date('Y-m-d').'.pdf');
                  // return $mensuales;
 
@@ -1312,10 +1312,10 @@ class GestionProyectoController extends Controller
 
 
                 $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $data,'consolidadoByNivel' => $dataByNivel,'meses'=>$mesesTitulo,'tipo'=>'M','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
-                $pdf->setOption('margin-top',20);
-                $pdf->setOption('margin-bottom',20);
-                $pdf->setOption('margin-left',20);
-                $pdf->setOption('margin-right',20);
+                $pdf->setOption('margin-top',15);
+                $pdf->setOption('margin-bottom',15);
+                $pdf->setOption('margin-left',15);
+                $pdf->setOption('margin-right',15);
                 return $pdf->stream('Reporte Pendientes de Finalización '.date('Y-m-d').'.pdf');
                 // return $dataByNivel;
 
@@ -1440,10 +1440,10 @@ class GestionProyectoController extends Controller
 
 
                 $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $dataMensual,'consolidadoAnualByNivel' => $dataByNivel,'consolidadoAnualGeneral' => $dataGeneralByAnio,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
-                $pdf->setOption('margin-top',20);
-                $pdf->setOption('margin-bottom',20);
-                $pdf->setOption('margin-left',20);
-                $pdf->setOption('margin-right',20);
+                $pdf->setOption('margin-top',15);
+                $pdf->setOption('margin-bottom',15);
+                $pdf->setOption('margin-left',15);
+                $pdf->setOption('margin-right',15);
                 return $pdf->stream('Reporte Pendientes de Finalización '.date('Y-m-d').'.pdf');
                 // return $dataGeneralByAnio;
             }
@@ -1888,6 +1888,80 @@ class GestionProyectoController extends Controller
 
             switch ($tipoDoc) {
                 case 'P':
+
+                    if(Auth::user()->rol_id >2){
+                            //Informacion del estudiante
+                            $proceso = Auth::user()->estudiante->proceso[0]->id;
+                            $nombre = Auth::user()->estudiante->nombre;
+                            $apellido = Auth::user()->estudiante->apellido;
+                            $carnet = Auth::user()->estudiante->codCarnet;
+                            $telefono = Auth::user()->estudiante->telefono;
+                            $carrera = Auth::user()->estudiante->carrera->nombre;
+                            $email = Auth::user()->estudiante->email;
+                            $numeroFactura = Auth::user()->estudiante->pagoArancel()->where('proceso_id',$proceso)->get();
+
+                            $gestion = GestionProyecto::where([
+                                ['estudiante_id',Auth::user()->estudiante->id],
+                                ['tipo_gp',$proceso],
+                                ['estado','I']
+                            ])->first();
+
+                            if($gestion->horas_a_realizar != $gestion->proyecto->horas_realizar){
+                                $gestion->horas_a_realizar = $gestion->proyecto->horas_realizar;
+                                $gestion->update();
+                            }
+
+                            // Informacion de la institucion
+                            $nombreI = $gestion->proyecto->institucion->nombre;
+                            $direccionI = $gestion->proyecto->institucion->direccion;
+                            $departamentoI = $gestion->proyecto->institucion->municipio->departamento->nombre;
+                            $municipioI =  $gestion->proyecto->institucion->municipio->nombre;
+                            $sectorI = $gestion->proyecto->institucion->sectorInstitucion->sector;
+                            $telefonoI = $gestion->proyecto->institucion->telefono;
+                            $emailI = $gestion->proyecto->institucion->email;
+
+                            // Informacion del proyecto
+                            $nombreP = $gestion->proyecto->nombre;
+                            $actividadesP = $gestion->proyecto->actividades;
+
+                            $perfil = new TextPainter(public_path('images/controles/perfil.jpg'),'',public_path('fonts/arial.ttf'), 10);
+                            $perfil->setTextColor(0,0,0);
+                            if ($proceso == 1) {$perfil->setText("x",790,362,20);}else{$perfil->setText("x",1200,362,20);}//Proceso Verifcando la posicion
+                            $perfil->setText($nombre,385,490,20);//Nombre de Alumno
+                            $perfil->setText($apellido,385,550,20);//Apellido de Alumno
+                            $perfil->setText($carnet,1115,490,20);//Carnet de Alumno
+                            $perfil->setText($telefono,1160,550,20);//Telefono de Alumno
+                            $perfil->setText($carrera,385,605,20);//Carrera de Alumno
+                            $perfil->setText($email,1100,607,20);//Email de Alumno
+
+                            $perfil->setText($nombreI,120,775,20); //Nombre de la Institucion
+                            $perfil->setText($sectorI,1150,805,20); //Sector de la Institucion
+                            $perfil->setText($direccionI,120,900,20); //Direccion de la Institucion
+                            $perfil->setText($municipioI,120,990,20); //Municipio de la Institucion
+                            $perfil->setText($departamentoI,650,990,20); //Departamento de la Institucion
+                            $perfil->setText($emailI,920,990,20); //Email de la Institucion
+                            $perfil->setText($telefonoI,1350,990,20); //Telefono de la Institucion
+
+                            $perfil->setText($nombreP, 115, 1175, 20); //Nombre del Proyecto
+                            $perfil->setText(Html2Text::convert($actividadesP),120,1300,20); //Actividades a realizar
+                            $perfil->setText($gestion->horas_a_realizar, 1465, 1210, 20); //Horas a Realizar del proyecto
+                            $perfil->setText($gestion->fecha_inicio, 135, 1625, 20); //Fecha de Inicio  del proyecto
+                            $perfil->setText($gestion->nombre_supervisor, 650, 1625, 20); //Supervisor del proyecto/Institucion
+                            $perfil->setText($gestion->tel_supervisor, 1390, 1625, 20); //Telefono Supervisor del proyecto/Institucion
+                            $perfil->setText($numeroFactura[0]->no_factura,1235,1860,20); //Numero de factura de pago de arancel de proceso
+                            // Guardando el perfil segun el proceso del estudiante
+                            if ($proceso == 1) {$perfil->save(public_path('docs/docs_ss/')."PSS-".$carnet);}
+                            else{$perfil->save(public_path('docs/docs_pp/')."PPP-".$carnet);}
+
+                            $pdf = PDF::loadView('public.reportes.documents',['ruta'=>$ruta_img])->setOption('footer-center', '');
+                            $pdf->setOption('margin-top',15);
+                            $pdf->setOption('margin-bottom',0);
+                            $pdf->setOption('margin-left',0);
+                            $pdf->setOption('margin-right',0);
+
+                            return $pdf->download('Perfil de proyecto.pdf');
+
+                    }
                 return $pdf->download('Perfil de Proyecto.pdf');
                 break;
                 case 'CH':

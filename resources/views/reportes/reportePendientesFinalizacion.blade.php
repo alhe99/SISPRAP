@@ -46,9 +46,9 @@
              @foreach ($mensuales[$i][$j][1] as $key => $item)
                @if ($item->count() > 0)
                 @php($tieneDatos = true)
-                <table class="mb-1"  border="1px" cellpadding="7">
+                <table class="mb-1"  border="1px" cellpadding="10">
                     <tr class="bg-header text-center font-weight-bold">
-                        <td>Carrera: {{ $mensuales[$i][$j][0] }}</td>
+                        <td class="text-left font-weight-bold" width="50%">Carrera: {{ substr($mensuales[$i][$j][0],11) }}</td>
                         <td>Nivel Académico: {{ $key }}</td>
                     </tr>
                     <tr class="bg-header text-center font-weight-bold">
@@ -176,7 +176,7 @@
                 @php($tieneDatos = true)
                 <table class="mb-1"  border="1px" cellpadding="7">
                     <tr class="bg-header text-center font-weight-bold">
-                        <td>Carrera: {{ $mensuales[$i][$j][0] }}</td>
+                        <td class="text-left font-weight-bold" width="50%">Carrera: {{ substr($mensuales[$i][$j][0],11) }}</td>
                         <td>Nivel Académico: {{ $key }}</td>
                     </tr>
                     <tr class="bg-header text-center font-weight-bold">
@@ -255,8 +255,6 @@
            @endif
         @endfor
         {{-- FIN DE TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
-
-
         @elseif($tipo == 'A')
 
          {{-- TABLA PARA MESES INDIVIDUALES --}}
@@ -269,7 +267,7 @@
                @php($tieneDatos = true)
                 <table class="mb-1"  border="1px" cellpadding="7">
                     <tr class="bg-header text-center font-weight-bold">
-                        <td>Carrera: {{ $mensuales[$i][$j][0] }}</td>
+                        <td class="text-left font-weight-bold" width="50%">Carrera: {{ substr($mensuales[$i][$j][0],11) }}</td>
                         <td>Nivel Académico: {{ $key }}</td>
                     </tr>
                     <tr class="bg-header text-center font-weight-bold">

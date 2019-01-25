@@ -26,10 +26,10 @@ class Carrera extends Model
     {
         switch ($procesoId) {
             case 1:
-                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
+                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereDay('fecha_inicio_ss','<=',date('d'))->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
             break;
             case 2:
-                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereY|ear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
+                return $this->estudiantes()->where([['tipo_beca_id',1],['estado',true]])->whereDay('fecha_inicio_pp','<=',date('d'))->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
             break;
         }
     }
@@ -38,10 +38,10 @@ class Carrera extends Model
     {
          switch ($procesoId) {
             case 1:
-                return $this->estudiantes()->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
+                return $this->estudiantes()->where([['tipo_beca_id',2],['estado',true]])->whereDay('fecha_inicio_ss','<=',date('d'))->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_ss',$data[0])->orWhereMonth('fecha_inicio_ss',$data[1])->orWhereMonth('fecha_inicio_ss',$data[2])->count();
             break;
             case 2:
-                return $this->estudiantes()->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
+                return $this->estudiantes()->where([['tipo_beca_id',2],['estado',true]])->whereDay('fecha_inicio_pp','<=',date('d'))->whereYear('fecha_registro',$anio)->whereMonth('fecha_inicio_pp',$data[0])->orWhereMonth('fecha_inicio_pp',$data[1])->orWhereMonth('fecha_inicio_pp',$data[2])->count();
             break;
         }
     }
@@ -51,10 +51,10 @@ class Carrera extends Model
     {
         switch ($procesoId) {
             case 1:
-                return $this->estudiantes()->whereMonth('fecha_inicio_ss',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+                return $this->estudiantes()->whereMonth('fecha_inicio_ss',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereDay('fecha_inicio_ss','<=',date('d'))->count();
             break;
             case 2:
-                return $this->estudiantes()->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+                return $this->estudiantes()->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->whereDay('fecha_inicio_pp','<=',date('d'))->count();
                 break;
         }
     }
@@ -63,10 +63,10 @@ class Carrera extends Model
     {
         switch ($procesoId) {
             case 1:
-                return $this->estudiantes()->whereMonth('fecha_inicio_ss',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+                return $this->estudiantes()->whereMonth('fecha_inicio_ss',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->whereDay('fecha_inicio_ss','<=',date('d'))->count();
             break;
             case 2:
-                return $this->estudiantes()->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->count();
+                return $this->estudiantes()->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->whereDay('fecha_inicio_pp','<=',date('d'))->count();
             break;
         }
     }
@@ -76,10 +76,10 @@ class Carrera extends Model
     {
         switch ($procesoId) {
             case 1:
-                return $this->estudiantes()->whereYear('fecha_inicio_ss',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',1],['estado',true]])->count();
+                return $this->estudiantes()->whereYear('fecha_inicio_ss',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',1],['estado',true]])->whereDay('fecha_inicio_ss','<=',date('d'))->count();
             break;
             case 2:
-                return $this->estudiantes()->whereYear('fecha_inicio_pp',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',1],['estado',true]])->count();
+                return $this->estudiantes()->whereYear('fecha_inicio_pp',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',1],['estado',true]])->whereDay('fecha_inicio_pp','<=',date('d'))->count();
             break;
         }
     }
@@ -88,10 +88,10 @@ class Carrera extends Model
     {
        switch ($procesoId) {
             case 1:
-                return $this->estudiantes()->whereYear('fecha_inicio_ss',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',2],['estado',true]])->count();
+                return $this->estudiantes()->whereYear('fecha_inicio_ss',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',2],['estado',true]])->whereDay('fecha_inicio_ss','<=',date('d'))->count();
             break;
             case 2:
-                return $this->estudiantes()->whereYear('fecha_inicio_pp',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',2],['estado',true]])->count();
+                return $this->estudiantes()->whereYear('fecha_inicio_pp',$year)->whereYear('fecha_registro',$year)->where([['tipo_beca_id',2],['estado',true]])->whereDay('fecha_inicio_pp','<=',date('d'))->count();
             break;
         }
     }

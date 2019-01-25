@@ -79693,7 +79693,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     registrarInstitucion: function registrarInstitucion() {
       var me = this;
       me.loading = true;
-
       var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -90551,41 +90550,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     //guardar cambios del pago de arancel, automaticamente cambio de estado a cancelado
     savePayArancel: function savePayArancel(no_fac, estudiante_id, tipobeca_id, proceso_id) {
-      var _this = this;
-
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-      swal({
-        title: "Segura que desea guardar los datos?",
-        type: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "button secondary",
-        cancelButtonClass: "button red",
-        buttonsStyling: false,
-        reverseButtons: true
-      }).then(function (result) {
-        if (result.value) {
-          var me = _this;
-          me.loadSpinner = 1;
-          var url = "/recepcion/payArancel?noFac=" + no_fac + "&estudiante_id=" + estudiante_id + "&tipobeca_id=" + tipobeca_id + "&proceso_id=" + proceso_id;
-          axios.post(url).then(function (response) {
-            me.getAllStudens(me.carrera_selected.value, me.proceso, 1, "");
-            swal("Hecho!", "Apertura de expediente guardada con exito", "success");
-            me.loadSpinner = 0;
-            me.cerrarModal();
-            me.buscar = "";
-          }).catch(function (error) {
-            me.loadSpinner = 0;
-            console.log(error);
-            toast({
-              type: 'danger',
-              title: 'Error! Intente Nuevamente'
-            });
+      var me = this;
+      axios.get('/recepcion/payArancel/validate/' + no_fac).then(function (response) {
+        var respuesta = response.data;
+        if (respuesta == 'existe') {
+          swal({
+            position: "center",
+            type: "warning",
+            title: "Número de factura existente, ingrese el correspondiente al pago",
+            showConfirmButton: true,
+            timer: 5000
           });
-        } else if (result.dismiss === swal.DismissReason.cancel) {}
+          me.no_fact = "";
+        } else {
+          swal({
+            title: "Seguro(a) que desea guardar los datos?",
+            type: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar!",
+            cancelButtonText: "Cancelar",
+            confirmButtonClass: "button secondary",
+            cancelButtonClass: "button red",
+            buttonsStyling: false,
+            reverseButtons: true
+          }).then(function (result) {
+            if (result.value) {
+              me.loadSpinner = 1;
+              var url = "/recepcion/payArancel?noFac=" + no_fac + "&estudiante_id=" + estudiante_id + "&tipobeca_id=" + tipobeca_id + "&proceso_id=" + proceso_id;
+              axios.post(url).then(function (response) {
+                me.getAllStudens(me.carrera_selected.value, me.proceso, 1, "");
+                swal("Hecho!", "Apertura de expediente guardada con exito", "success");
+                me.loadSpinner = 0;
+                me.cerrarModal();
+                me.buscar = "";
+              }).catch(function (error) {
+                me.loadSpinner = 0;
+                console.log(error);
+                toast({
+                  type: 'danger',
+                  title: 'Error! Intente Nuevamente'
+                });
+              });
+            } else if (result.dismiss === swal.DismissReason.cancel) {}
+          });
+        }
       });
     },
 
@@ -91109,8 +91120,8 @@ var render = function() {
                                                 {
                                                   name: "mask",
                                                   rawName: "v-mask",
-                                                  value: "####",
-                                                  expression: "'####'"
+                                                  value: "#####",
+                                                  expression: "'#####'"
                                                 }
                                               ],
                                               staticClass: "col-md-12",
@@ -92198,6 +92209,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     institucion_id: function institucion_id() {
+      var me = this;
       for (var i = 0; i < me.institucion_id.length; i++) {
         me.instituciones_selected[i] = me.institucion_id[i].value;
       }
@@ -92242,10 +92254,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.municipio_id = [];
       me.departamento_id = 0;
       me.municipios_selected = [];
+      me.instituciones_selected = [];
+      me.institucion_id = [];
     },
     sendParameterToMethod: function sendParameterToMethod() {
       var me = this;
-      var url = route('hojasupervigen', { "muni_id": me.municipios_selected });
+      var url = route('getHojaSupervision', { "instituciones_id": me.instituciones_selected, "proceso_id": me.proceso });
       window.open(url);
       me.clearData();
     }
@@ -98247,7 +98261,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.arrayDocEntreg[i] = this.gpObj.documentos_entrega[i].pivot.documento_id;
         }
       }
-      this.hrsFinal = this.gpObj.estudiante.proceso[0].pivot.num_horas;
+      this.hrsFinal = this.gpObj.horas_a_realizar;
     }
   },
   computed: {

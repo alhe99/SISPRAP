@@ -146,6 +146,7 @@ export default {
     }
   },
   institucion_id: function(){
+    let me = this;
    for (var i = 0; i < me.institucion_id.length; i++) {
     me.instituciones_selected[i] = me.institucion_id[i].value;
   }
@@ -193,11 +194,14 @@ methods: {
     let me = this;
     me.municipio_id = [];
     me.departamento_id = 0;
-    me.municipios_selected = []
+    me.municipios_selected = [];
+    me.instituciones_selected = [];
+    me.institucion_id = [];
+
   },
   sendParameterToMethod() {
     let me = this;
-    var url = route('hojasupervigen', {"muni_id" : me.municipios_selected});
+    var url = route('getHojaSupervision', {"instituciones_id" : me.instituciones_selected,"proceso_id": me.proceso});
     window.open(url);
     me.clearData();
 
