@@ -19,8 +19,8 @@ class PublicController extends Controller
         $request->request->add(['estudent_carrer' => $userCarrer]);
         $request->request->add(['estudent_process' => $userProcess]);
         $request->request->add(['buscar' => $request2->buscar]);
-        $proyectos = app(\App\Http\Controllers\ProyectoController::class)->getProjectsByCarrer($request);
         $data_search = $request2->buscar;
+        // app(\App\Http\Controllers\GestionProyectoController::class)->getActualGestionProyectos();
         return view('public.index', compact(['proyectos','data_search']));
     }
     public function create()

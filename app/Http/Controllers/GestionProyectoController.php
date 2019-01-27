@@ -6,6 +6,7 @@ use App\Documento;
 use App\Estudiante;
 use App\GestionProyecto;
 use App\PreinscripcionProyecto;
+use App\Proyecto;
 use App\TextPainter as TextPainter;
 use App\User;
 use Carbon\Carbon;
@@ -1871,7 +1872,7 @@ class GestionProyectoController extends Controller
 
     // Metodo que devuelve la descarga de los documentos relacionadoa con el proceso que realiza cada estudiante
     public function downloadDocs(Request $request){
-        $procesoId = $request->procesoId;
+        $procesoId = $request->proceso_id;
         $codCarnet = $request->codCarnet;
         $tipoDoc = $request->tipoDoc;
 
@@ -1962,7 +1963,6 @@ class GestionProyectoController extends Controller
                             return $pdf->download('Perfil de proyecto.pdf');
 
                     }
-                return $pdf->download('Perfil de Proyecto.pdf');
                 break;
                 case 'CH':
                 return $pdf->download('Control de Asistencia.pdf');
@@ -1982,5 +1982,18 @@ class GestionProyectoController extends Controller
        $estudiante->update();
 
        $gp->delete();
+    }
+
+    //Metodo que devuelve la gestion de proyecto que se esta realizando el usuario logeado
+    public function getActualGestionProyectos(){
+        $proceso = Auth::user()->estudiante->proceso[0]->pivot->proceso_id;
+        $gestiones = Auth::user()->estudiante->gestionProyecto()->where('tipo_gp',$proceso)->pluck('id');
+        $proyectos = Auth::user()->estudiante->gestionProyecto()->where('tipo_gp',$proceso)->pluck('proyecto_id');
+        $data = array();
+
+        for ($i=0; $i < $proyectos->count() ; $i++) {
+            array_push($data, array("gestionId" => $gestiones[$i],"proyecto" => Proyecto::select('nombre')->find($proyectos[$i])));
+        }
+        return $data;
     }
 }

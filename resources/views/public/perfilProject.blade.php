@@ -141,8 +141,8 @@
           <div class="col-md-2 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="total_horas">Total de Horas*</label>
-              <input class="form-control" value="{{Auth::user()->estudiante->preinscripciones[0]->horas_realizar  }}"
-              id="total_horas" maxlength="3" type="text" name="total_horas">
+              <input class="form-control" value="{{ Auth::user()->estudiante->no_proyectos == 1 ? Auth::user()->estudiante->proceso[0]->pivot->num_horas : Auth::user()->estudiante->preinscripciones[0]->horas_realizar }}"
+              id="total_horas" maxlength="3" {{  Auth::user()->estudiante->no_proyectos == 1 ? 'disabled' : '' }} type="text" name="total_horas">
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@
       <div class="modal-body text-center">
         ¿Esta seguro de cancelar, se perderán los datos ingresados o cambios realizados?
       </div>
-      
+
       <div class="modal-body text-center">
         <button type="button" class="btn btn-danger text-capitalize text-white " style="cursor: pointer;" data-dismiss="modal"><i class="mdi mdi-close"></i>&nbsp;Cancelar</button>
         <a  class="btn btn-primary" style="cursor: pointer;"  href="{{ url()->previous() }}"><i class="mdi mdi-check"></i>&nbsp;Aceptar</a>
