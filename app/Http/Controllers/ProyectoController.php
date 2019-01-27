@@ -343,7 +343,7 @@ class ProyectoController extends Controller
         }
 
         $projects_ids = $proyectos->pluck('id');
-        $result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(9);
+        $result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(12);
         return $result_paginate;
     }
 
