@@ -1872,14 +1872,14 @@ class GestionProyectoController extends Controller
 
     // Metodo que devuelve la descarga de los documentos relacionadoa con el proceso que realiza cada estudiante
     public function downloadDocs(Request $request){
-        $procesoId = $request->proceso_id;
-        $codCarnet = $request->codCarnet;
-        $tipoDoc = $request->tipoDoc;
+            $procesoId = session('process_id');
+            $codCarnet = Auth::user()->estudiante->codCarnet;
+            $tipoDoc = $request->tipoDoc;
 
-        if ($procesoId == 1)
-          $ruta_img = public_path('docs/docs_ss/').$tipoDoc."SS-".$codCarnet.".jpg";
-        else
-        $ruta_img = public_path('docs/docs_pp/').$tipoDoc."PP-".$codCarnet.".jpg";
+            if ($procesoId == 1)
+              $ruta_img = public_path('docs/docs_ss/').$tipoDoc."SS-".$codCarnet.".jpg";
+            else
+            $ruta_img = public_path('docs/docs_pp/').$tipoDoc."PP-".$codCarnet.".jpg";
 
             $pdf = PDF::loadView('public.reportes.documents',['ruta'=>$ruta_img])->setOption('footer-center', '');
             $pdf->setOption('margin-top',15);
@@ -1887,25 +1887,32 @@ class GestionProyectoController extends Controller
             $pdf->setOption('margin-left',0);
             $pdf->setOption('margin-right',0);
 
+            //Informacion del estudiante
+            $proceso = Auth::user()->estudiante->proceso[0]->id;
+            $nombre = Auth::user()->estudiante->nombre;
+            $apellido = Auth::user()->estudiante->apellido;
+            $telefono = Auth::user()->estudiante->telefono;
+            $carrera = Auth::user()->estudiante->carrera->nombre;
+            $email = Auth::user()->estudiante->email;
+            $numeroFactura = Auth::user()->estudiante->pagoArancel()->where('proceso_id',$proceso)->get();
+
             switch ($tipoDoc) {
                 case 'P':
-
                     if(Auth::user()->rol_id >2){
-                            //Informacion del estudiante
-                            $proceso = Auth::user()->estudiante->proceso[0]->id;
-                            $nombre = Auth::user()->estudiante->nombre;
-                            $apellido = Auth::user()->estudiante->apellido;
-                            $carnet = Auth::user()->estudiante->codCarnet;
-                            $telefono = Auth::user()->estudiante->telefono;
-                            $carrera = Auth::user()->estudiante->carrera->nombre;
-                            $email = Auth::user()->estudiante->email;
-                            $numeroFactura = Auth::user()->estudiante->pagoArancel()->where('proceso_id',$proceso)->get();
 
-                            $gestion = GestionProyecto::where([
-                                ['estudiante_id',Auth::user()->estudiante->id],
-                                ['tipo_gp',$proceso],
-                                ['estado','I']
-                            ])->first();
+                            if(Auth::user()->estudiante->no_proyectos == 2){
+                                $gestion = GestionProyecto::where([
+                                    ['estudiante_id',Auth::user()->estudiante->id],
+                                    ['tipo_gp',$proceso],
+                                ])->find($request->gestionId);
+
+                            }else{
+                                $gestion = GestionProyecto::where([
+                                    ['estudiante_id',Auth::user()->estudiante->id],
+                                    ['tipo_gp',$proceso],
+                                    ['estado','I']
+                                ])->first();
+                            }
 
                             if($gestion->horas_a_realizar != $gestion->proyecto->horas_realizar){
                                 $gestion->horas_a_realizar = $gestion->proyecto->horas_realizar;
@@ -1930,7 +1937,7 @@ class GestionProyectoController extends Controller
                             if ($proceso == 1) {$perfil->setText("x",790,362,20);}else{$perfil->setText("x",1200,362,20);}//Proceso Verifcando la posicion
                             $perfil->setText($nombre,385,490,20);//Nombre de Alumno
                             $perfil->setText($apellido,385,550,20);//Apellido de Alumno
-                            $perfil->setText($carnet,1115,490,20);//Carnet de Alumno
+                            $perfil->setText($codCarnet,1115,490,20);//Carnet de Alumno
                             $perfil->setText($telefono,1160,550,20);//Telefono de Alumno
                             $perfil->setText($carrera,385,605,20);//Carrera de Alumno
                             $perfil->setText($email,1100,607,20);//Email de Alumno
@@ -1951,24 +1958,69 @@ class GestionProyectoController extends Controller
                             $perfil->setText($gestion->tel_supervisor, 1390, 1625, 20); //Telefono Supervisor del proyecto/Institucion
                             $perfil->setText($numeroFactura[0]->no_factura,1235,1860,20); //Numero de factura de pago de arancel de proceso
                             // Guardando el perfil segun el proceso del estudiante
-                            if ($proceso == 1) {$perfil->save(public_path('docs/docs_ss/')."PSS-".$carnet);}
-                            else{$perfil->save(public_path('docs/docs_pp/')."PPP-".$carnet);}
-
-                            $pdf = PDF::loadView('public.reportes.documents',['ruta'=>$ruta_img])->setOption('footer-center', '');
-                            $pdf->setOption('margin-top',15);
-                            $pdf->setOption('margin-bottom',0);
-                            $pdf->setOption('margin-left',0);
-                            $pdf->setOption('margin-right',0);
+                            if ($proceso == 1) {$perfil->save(public_path('docs/docs_ss/')."PSS-".$codCarnet);}
+                            else{$perfil->save(public_path('docs/docs_pp/')."PPP-".$codCarnet);}
 
                             return $pdf->download('Perfil de proyecto.pdf');
-
                     }
                 break;
                 case 'CH':
-                return $pdf->download('Control de Asistencia.pdf');
+                    if(Auth::user()->estudiante->no_proyectos == 2){
+                        $gestion = GestionProyecto::where([
+                            ['estudiante_id',Auth::user()->estudiante->id],
+                            ['tipo_gp',$proceso],
+                        ])->find($request->gestionId);
+
+                        $nombreP = $gestion->proyecto->nombre;
+                        $nombreI = $gestion->proyecto->institucion->nombre;
+
+                        $nombre_completo = $nombre." ".$apellido;
+                        $control_horas = new TextPainter(public_path('images/controles/control-horas.jpg'),'',public_path('fonts/arial.ttf'), 10);
+                        $control_horas->setTextColor(0,0,0);
+                        if ($proceso == 1) {$control_horas->setText("x",391,468,30);}else{$control_horas->setText("x",866,468,30);}//Proceso
+                        $control_horas->setText($nombre_completo,475,555,20);//Nombre del estudiante
+                        $control_horas->setText($codCarnet,1335,555,20);//Carnet del estudiante
+                        $control_horas->setText($carrera,275,610,20);//Carrera del estudiante
+                        $control_horas->setText($nombreI,865,665,20);//Nombre de la institucion
+                        $control_horas->setText($nombreP,600,725,20);//Nombre de la institucion
+                        // Guardando el control de horas segun el proceso del estudiante
+                        if ($proceso == 1) {$control_horas->save(public_path('docs/docs_ss/')."CHSS-".$codCarnet);}
+                        else{$control_horas->save(public_path('docs/docs_pp/')."CHPP-".$codCarnet);}
+
+                        return $pdf->download('Control de Asistencia de proyecto.pdf');
+                    }else{
+                      return $pdf->download('Control de Asistencia.pdf');
+                    }
                 break;
                 case 'CP':
-                return $pdf->download('Control de Proyecto.pdf');
+                    if (Auth::user()->estudiante->no_proyectos == 2) {
+
+                        $gestion = GestionProyecto::where([
+                            ['estudiante_id',Auth::user()->estudiante->id],
+                            ['tipo_gp',$proceso],
+                        ])->find($request->gestionId);
+
+                        $nombreP = $gestion->proyecto->nombre;
+                        $nombreI = $gestion->proyecto->institucion->nombre;
+
+                        $nombre_completo = $nombre." ".$apellido;
+
+                        $control_proy = new TextPainter(public_path('images/controles/control-proyecto.jpg'),'',public_path('fonts/arial.ttf'), 10);
+                        $control_proy->setTextColor(0,0,0);
+                        if ($proceso == 1) {$control_proy->setText("x",472,498,30);}else{$control_proy->setText("x",944,500,30);}//Proceso
+                        $control_proy->setText($nombre_completo,300,620,20);//Nombre del estudiante
+                        $control_proy->setText($codCarnet,1360,620,20);//Carnet del estudiante
+                        $control_proy->setText($carrera,290,675,20);//Nombre del estudiante
+                        $control_proy->setText($nombreI,150,875,20);//Nombre de la institucion
+                        $control_proy->setText($nombreP,150,1100,20);//Nombre del proyecto
+                        // Guardando el control de horas segun el proceso del estudiante
+                        if ($proceso == 1) {$control_proy->save(public_path('docs/docs_ss/')."CPSS-".$codCarnet);}
+                        else{$control_proy->save(public_path('docs/docs_pp/')."CPPP-".$codCarnet);}
+
+                        return $pdf->download('Control de Proyecto.pdf');
+                    }else{
+                        return $pdf->download('Control de Proyecto.pdf');
+                    }
                 break;
             }
     }

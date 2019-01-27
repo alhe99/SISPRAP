@@ -41,9 +41,15 @@
 											</div>
 											@if (Auth::user()->estudiante->proceso_actual == 'I')
 											<div class="card-body">
-												<button type="button" @click="downloadDocs('{{ Auth::user()->estudiante->codCarnet }}','{{ session('process_id') }}','P')"
-													class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-												</div>
+												@if (Auth::user()->estudiante->no_proyectos == 2)
+													<button type="button" @click.prevent="downloadDocs('P')"
+														class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+													</div>
+												@else
+													<button type="button" @click.prevent="downloadDocs('P')"
+														class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+													</div>
+												@endif
 												@elseif (session('downloadDocs') == false)
 												<div class="card-body">
 													<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
@@ -58,9 +64,15 @@
 												</div>
 												@if (Auth::user()->estudiante->proceso_actual == 'I')
 												<div class="card-body">
-													<button type="button" @click.prevent="downloadDocs('{{ Auth::user()->estudiante->codCarnet }}','{{ session('process_id') }}','CP')"
-														class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-													</div>
+													@if (Auth::user()->estudiante->no_proyectos == 2)
+														<button type="button" @click.prevent="downloadDocs('CP')"
+															class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+														</div>
+													@else
+														<button type="button" @click.prevent="downloadDocs('CP')"
+															class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+														</div>
+													@endif
 													@elseif (session('downloadDocs') == false)
 													<div class="card-body">
 														<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
@@ -75,9 +87,15 @@
 													</div>
 													@if (Auth::user()->estudiante->proceso_actual == 'I')
 													<div class="card-body">
-														<button type="button" @click.prevent="downloadDocs('{{ Auth::user()->estudiante->codCarnet }}','{{ session('process_id') }}','CH')"
-															class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-														</div>
+														@if (Auth::user()->estudiante->no_proyectos == 2)
+															<button type="button" @click.prevent="downloadDocs('CH')"
+																class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+															</div>
+														@else
+															<button type="button" @click.prevent="downloadDocs('CH')"
+																class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+															</div>
+														@endif
 														@elseif (session('downloadDocs') == false)
 														<div class="card-body">
 															<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
@@ -130,11 +148,12 @@
 								console.log(error);
 							});
 						},
-						downloadDocs(codCarnet,procesoId,tipoDocumento){
-							var url = route('downloadDocs',{'proceso_id':procesoId,'codCarnet':codCarnet,'tipoDoc':tipoDocumento})
-							// window.open(url,"_self");
-							window.open(url);
-							// this.proyectoSelected = '';
+						downloadDocs(tipoDocumento){
+							$('#preloader').fadeIn();
+							var url = route('downloadDocs',{'gestionId':this.proyectoSelected,'tipoDoc':tipoDocumento})
+							window.open(url,"_self");
+							this.proyectoSelected = '';
+							$('#preloader').fadeOut();
 						}
 					},
 					mounted(){
