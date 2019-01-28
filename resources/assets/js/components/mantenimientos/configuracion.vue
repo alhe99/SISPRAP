@@ -11,26 +11,97 @@
         
          <div class="content">
           <div v-if="activetab === 1" class="tabcontent">
-            <h2 class="text-center">Registro de Sector de Instituciones</h2>
+            <h2 class="text-center">Listado de carreras</h2>
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="form-group row">
-                  <mdc-textfield
-                  type="text"
-                  name="nombre"
-                  class="col-md-12"
-                  label="Nombre del sector de Institucion"
-                  helptext="(Ingrese el nombre del sector)"
-                  v-model="sector"
-                  v-validate="'required'"
-                  ></mdc-textfield>
-                  <div
-                  class="help-block alert-danger"
-                  v-show="errors.has('nombre')"
-                  >{{errors.first('nombre')}}</div>
+                    <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-11 ">
+                            <div class="form-group row">
+                                <mdc-textfield type="text" class="col-md-12" @keyup="listarCarreras(1,  buscar)"  label="Nombre de la carrera" v-model="buscar"></mdc-textfield>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                   <div class="row">
+                    <!--<div class="col-md-12 loading text-center" v-if="loadSpinner == 1">-->
+                    </div>
                 </div>
-                <mdc-button @click="saveSector">Registrar Sector</mdc-button>
+                <!--tabla de carreras-->
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="table-responsive">
+                      <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th>Carrera</th>
+                                <th class="text-right" style="padding-right: 35px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="carrera in arrayCar" :key="carrera.id">
+                                <td v-text="carrera.nombre"></td>
+                                <td class="text-right">
+                                    <button type="button" @click="abrirModal('car','actualizar',carrera)" class="button blue" data-toggle="tooltip" title="Editar datos de la carrera"><i class="mdi mdi-border-color"></i></button>
+                                    <!--<button type="button" @click="deleteSector(carrera.id)" class="button red" data-toggle="tooltip" title="Desactivar Sector"><i class="mdi mdi-delete"></i></button>-->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <nav>
+                    <ul class="pagination">
+                        <li class="page-item" v-if="pagination.current_page > 1">
+                            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1, buscar)">Ant</a>
+                        </li>
+                        <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                            <a class="page-link" href="#" @click.prevent="cambiarPagina(page, buscar)" v-text="page"></a>
+
+                            <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                                <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+                            </li>
+                            <small v-show="arrayCar.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayCar.length + ' de ' + pagination.total + ' registros)'"></small>
+                        </ul>
+                    </nav>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                        <div v-show="search == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
+                    </div>
+                </div>
+                </div>
               </div>
+<!-- MODAL PARA REGISTRAR Y ACTUALIZAR DATOS  -->
+<div class="modal fade" :class="{'mostrar' : modalId }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-white" v-text="tituloModal"></h4>
+                <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-lg-12">
+                        <br><label for="nombre">Nombre de la carrera*</label>
+                        <input type="text" v-model="car" id="car" name="car" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+                        <button type="button" :disabled="validate == true" class="button blue" @click="actualizarCarrera" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Carrera</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
             </div>
           </div>
           <div v-if="activetab === 2" class="tabcontent">
@@ -269,7 +340,7 @@
 </div>
 </div>
 <!-- </div> -->
-</div>
+
 </template>
 <script>
 export default {
@@ -277,8 +348,14 @@ export default {
     return {
       activetab: 1,
       loadSpinner: 0,
-      modal: 0,
+      modalId: 0,
+      carrera: 0,
+      car_id: 0,
+      search: 0,
+      car: "",
+      carUpd: "",
       nombre: "",
+      buscar: "",
       sector: "",
       genero: "",
       date: "",
@@ -301,6 +378,16 @@ export default {
       arrayDepartamentos: [],
       arrayMunicipios: [],
       arrayAdmin: [],
+      arrayCar: [],
+      pagination: {
+          total: 0,
+          current_page: 0,
+          per_page: 0,
+          last_page: 0,
+          from: 0,
+          to: 0
+      },
+      offset: 3,
       maxDatetime: new Date().toISOString().substring(0, 10)
     };
   },
@@ -309,7 +396,29 @@ export default {
       if (this.departamento_id == null) {
         this.municipio_id = 0;
       }
-    }
+    },
+    isActived: function() {
+            return this.pagination.current_page;
+      },
+    pagesNumber: function() {
+        if (!this.pagination.to) {
+            return [];
+        }
+        var from = this.pagination.current_page - this.offset;
+        if (from < 1) {
+            from = 1;
+        }
+        var to = from + this.offset * 2;
+        if (to >= this.pagination.last_page) {
+            to = this.pagination.last_page;
+        }
+        var pagesArray = [];
+        while (from <= to) {
+            pagesArray.push(from);
+            from++;
+        }
+        return pagesArray;
+    },
   },
   watch: {
     departamento_id: function() {
@@ -321,28 +430,125 @@ export default {
     }
   },
   methods: {
-    //registra los datos de sector institucion
-    saveSector() {
+    //carrera
+    listarCarreras(page, buscar) {
       let me = this;
-      this.loadSpinner = 1;
+      var url =
+      "/carrera?page=" +
+      page +
+      "&buscar=" +
+      buscar;
+      me.loadSpinner = 1;
       axios
-      .post("sector/registrar", {
-        nombre: this.sector
-      })
+      .get(url)
       .then(function(response) {
-        swal({
-          position: "center",
-          type: "success",
-          title: "¡Sector agregado correctamente!",
-          showConfirmButton: false,
-          timer: 1000
-        });
-        me.clearData();
+          var respuesta = response.data;
+          me.arrayCar = respuesta.carrera.data;
+          me.pagination = respuesta.pagination;
+          //Por si no devuelve datos
+          me.loadSpinner = 0;
+          me.searchEmpty();
+
       })
-      .catch(error => {
-        console.log(error.response.data.errors);
+      .catch(function(error) {
+          me.loadSpinner = 0;
+          console.log(error);
       });
+   },
+   cambiarPagina(page, buscar) {
+        let me = this;
+        me.pagination.current_page = page;
+        me.listarCarreras(page, buscar);
     },
+   searchEmpty() {
+    let me = this;
+        //Aqui hice la verificacion si hay o no datos para mostrar mensaje
+        if (me.arrayCar.length == 0) {
+            me.search = 1;
+        } else {
+            me.search = 0;
+        }
+        return me.search;
+    }, 
+    abrirModal(modelo, accion, data = []) {
+            const el = document.body;
+            el.classList.add("abrirModal");
+            switch (modelo) {
+                case "car": {
+                    switch (accion) {
+
+                    case "actualizar": {
+                    //Asignando los datos traidos a los controles del formulario
+                    this.modalId = 1;
+                    this.car_id = data["id"];
+                    this.carrera = data["id"];
+                    this.car = data["nombre"];
+                    this.carUpd = data["nombre"];
+                    break;
+                }
+            }
+        }
+    }
+},
+    cerrarModal() {
+        const el = document.body;
+        el.classList.remove("abrirModal");
+        this.modalId = 0;
+        this.car_id = 0;
+        this.car = "";
+        this.carUpd = "";
+    },
+    actualizarCarrera(){
+        let me = this;
+        var url = route('validateCarrera',{"nombre": me.car});
+        me.loadSpinner = 1;
+        axios.get(url).then(function(response) {
+            var respuesta = response.data;
+            console.log(respuesta);
+            if((me.car != me.carUpd) && (respuesta == 'existe')){
+                swal({
+                    position: "center",
+                    type: "warning",
+                    title: "Carrera Existente! Ingrese otra carrera!",
+                    showConfirmButton: true,
+                    timer: 5000
+                });
+                me.car = "";
+                me.loadSpinner = 0;
+                me.exist = false;
+            }else {
+                axios
+                .put("/carrera/actualizar", {
+                    id: me.car_id,
+                    nombre: me.car,
+                })
+                .then(function(response) {
+                    me.loadSpinner = 0;
+                    swal({
+                        position: "center",
+                        type: "success",
+                        title: "Carrera actualizada correctamente!",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    me.cerrarModal();
+                    me.listarCarreras(1, "");
+                })
+                .catch(function(error) {
+                    swal({
+                        position: "center",
+                        type: "warning",
+                        title: "Ocurrio un error al actualizar el dato",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    me.loadSpinner = 0;
+                    console.log(error);
+                });
+            }
+        });
+    },
+
     //registra los datos del estudiante
     saveEstudiante() {
       this.$validator.validateAll().then(() => {
@@ -445,85 +651,15 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
-    },
-    //administrador
-    getadmin() {
-      let me = this;
-      var url = "/getAdmin";
-      me.loadSpinner = 1;
-      axios
-      .get(url)
-      .then(function(response) {
-        var respuesta = response.data;
-        me.arrayAdmin = respuesta;
-        me.searchEmpty();
-        me.loadSpinner = 0;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    },
-    cerrarModal() {
-      const el = document.body;
-      el.classList.remove("abrirModal");
-      this.modal = 0;
-      this.errors = [];
-    },
-    updateAdmin() {
-      let me = this;
-      axios
-      .put("/usuario/actualizar", {
-        id: this.admin_id,
-        usuario: this.usuario
-      })
-      .then(function(response) {
-        swal({
-          position: "center",
-          type: "success",
-          title: "Usuario actualizado correctamente!",
-          showConfirmButton: false,
-          timer: 1000
-        });
-        me.cerrarModal();
-        me.getadmin();
-      })
-      .catch(function(error) {
-        swal({
-          position: "center",
-          type: "warning",
-          title: "Ocurrio un error al actualizar el usuario",
-          showConfirmButton: false,
-          timer: 1000
-        });
-        console.log(error);
-      });
-    },
-    abrirModal(modelo, accion, data = []) {
-      const el = document.body;
-      el.classList.add("abrirModal");
-      //no al switch
-      switch (modelo) {
-        case "usuario": {
-          switch (accion) {
-            case "actualizar": {
-              //Asignando los datos traidos a los controles del formulario
-              this.modal = 1;
-              this.admin = data["id"];
-              this.admin_id = data["id"];
-              this.usuario = data["nombre"];
-              break;
-            }
-          }
-        }
-      }
-    }
+    },     
   },
   mounted() {
     this.getCarreras();
     this.getBecas();
     this.getMunicipios();
     this.getDepartamentos();
-    this.getadmin();
+    let me = this;
+    me.listarCarreras(1,"");
     this.maxDatetime;
   }
 };
