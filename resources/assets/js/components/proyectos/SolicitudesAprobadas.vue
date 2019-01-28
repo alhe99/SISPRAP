@@ -13,21 +13,21 @@
                       <div class="row md-radio">
                         <div class="col-md-6 text-center">
                           <input
-                            id="radioSS"
-                            value="1"
-                            v-model="proceso"
-                            type="radio"
-                            name="radioP"
+                          id="radioSS"
+                          value="1"
+                          v-model="proceso"
+                          type="radio"
+                          name="radioP"
                           >
                           <label for="radioSS">Servicio Social</label>
                         </div>
                         <div class="col-md-6 text-center">
                           <input
-                            id="radioPP"
-                            value="2"
-                            v-model="proceso"
-                            type="radio"
-                            name="radioP"
+                          id="radioPP"
+                          value="2"
+                          v-model="proceso"
+                          type="radio"
+                          name="radioP"
                           >
                           <label for="radioPP">Práctica Profesional</label>
                         </div>
@@ -49,12 +49,12 @@
         <div class="row">
           <div class="col-md-11">
             <h2
-              class="text-center font-weight-bold"
-              v-if="proceso == 1"
+            class="text-center font-weight-bold"
+            v-if="proceso == 1"
             >Listado de alumnos con proyectos aprobados de Servicio Social</h2>
             <h2
-              class="text-center font-weight-bold"
-              v-if="proceso == 2"
+            class="text-center font-weight-bold"
+            v-if="proceso == 2"
             >Listado de alumnos con proyectos aprobados de Práctica Profesional</h2>
           </div>
         </div>
@@ -67,223 +67,224 @@
             <div class="row" v-if="proceso==1">
               <div class="col-md-10">
                 <v-select
-                  ref="vselectProy"
-                  v-model="proyecto_selectd"
-                  :options="arrayProyectos"
-                  placeholder="Seleccione un Proyecto"
+                ref="vselectProy"
+                v-model="proyecto_selectd"
+                :options="arrayProyectos"
+                placeholder="Seleccione un Proyecto"
                 >
-                  <span slot="no-options">No hay datos disponibles</span>
-                </v-select>
-              </div>
-              <div class="col-md-2">
-                <checkbox v-model="proyectoExterno">Proyectos Externos</checkbox>
-              </div>
+                <span slot="no-options">No hay datos disponibles</span>
+              </v-select>
             </div>
-            <div class="row" v-else>
-              <div class="col-md-5" v-if="proyectoExterno == false">
-                <v-select
-                  v-model="carrera_selected"
-                  :options="arrayCarreras"
-                  placeholder="Seleccione una carrera"
-                >
-                  <span slot="no-options">No hay datos disponibles</span>
-                </v-select>
-              </div>
-              <div class="col-md-5" :class="[proyectoExterno ? 'col-md-10':'col-md-5']">
-                <v-select
-                  ref="vselectProy"
-                  v-model="proyecto_selectd"
-                  :options="arrayProyectos"
-                  placeholder="Seleccione un Proyecto"
-                >
-                  <span slot="no-options">No hay datos disponibles</span>
-                </v-select>
-                <h6
-                  v-if="contentProy == false && proyectoExterno == false"
-                  class="text-danger"
-                >No hay proyectos en esta carrera</h6>
-              </div>
-              <div class="col-md-2">
-                <checkbox v-model="proyectoExterno" :value="E">Proyectos Externos</checkbox>
-              </div>
+            <div class="col-md-2">
+              <checkbox v-model="proyectoExterno">Proyectos Externos</checkbox>
             </div>
           </div>
-          <br>
-
-          <div
-            v-if="proyecto_selectd != 0 && proyecto_selectd != null"
-            class="col-md-10 col-sm-12 col-lg-6"
-          >
-            <mdc-textfield
-              type="text"
-              style="margin-left: -10px"
-              class="col-md-12"
-              @keyup="getSolicitudesAprobados(proyecto_selectd.value,1,buscar)"
-              label="Nombre del estudiante"
-              v-model="buscar"
-            ></mdc-textfield>
+          <div class="row" v-else>
+            <div class="col-md-5" v-if="proyectoExterno == false">
+              <v-select
+              v-model="carrera_selected"
+              :options="arrayCarreras"
+              placeholder="Seleccione una carrera"
+              >
+              <span slot="no-options">No hay datos disponibles</span>
+            </v-select>
           </div>
-          <div
-            v-if="proyecto_selectd != 0 && proyecto_selectd != null "
-            class="col-md-12 col-lg-12 col-sm-12"
-          >
-            <br>
-            <table class="table table-striped table-bordered table-mc-light-blue">
-              <thead class="thead-primary">
-                <tr>
-                  <th>Nombre Estudiante</th>
-                  <th class="text-center">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in arrayPreregister" :key="item.id">
-                  <td>
-                    <button
-                      type="button"
-                      @click="getMoreInfo(item.id)"
-                      class="btn btn-link text-capitalize h4"
-                      style="font-size: 16px"
-                    >{{item.nombre +" "+ item.apellido}}</button>
-                  </td>
-                  <td class="text-center">
-                    <button
-                      type="button"
-                      class="button red"
-                      @click="eliminarSolicitud(item.id,proyecto_selectd.value)"
-                      data-toggle="tooltip"
-                      title="Rechazar proyecto"
-                    >
-                      <i class="mdi mdi-close"></i>&nbsp;Eliminar Aprobación
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <nav>
-              <ul class="pagination">
-                <li class="page-item" v-if="pagination.current_page > 1">
-                  <a
-                    class="page-link font-weight-bold"
-                    href="#"
-                    @click.prevent="cambiarPagina(pagination.current_page -1,buscar)"
-                  >Ant</a>
-                </li>
-                <li
-                  class="page-item"
-                  v-for="page in pagesNumber"
-                  :key="page"
-                  :class="[page == isActived ? 'active' : '']"
-                >
-                  <a
-                    class="page-link"
-                    href="#"
-                    @click.prevent="cambiarPagina(page,buscar)"
-                    v-text="page"
-                  ></a>
-                </li>
-                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                  <a
-                    class="page-link font-weight-bold"
-                    href="#"
-                    @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)"
-                  >Sig</a>
-                </li>
-                <small
-                  v-show="arrayPreregister.length != 0"
-                  class="text-muted pagination-count"
-                  v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"
-                ></small>
-              </ul>
-            </nav>
-            <div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
-              <h4
-                class="font-weight-bold text-center"
-              >No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
-            </div>
-            <!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
-            <div
-              class="modal fade"
-              :class="{'mostrar' : modal }"
-              role="dialog"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
+          <div class="col-md-5" :class="[proyectoExterno ? 'col-md-10':'col-md-5']">
+            <v-select
+            ref="vselectProy"
+            v-model="proyecto_selectd"
+            :options="arrayProyectos"
+            :disabled="proyectoExterno == false && carrera_selected == 0"
+            placeholder="Seleccione un Proyecto"
             >
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title text-white">Información del estudiante</h4>
-                    <button
-                      type="button"
-                      @click="cerrarModal()"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true" class="text-white">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <fieldset>
-                      <legend class="text-center">Datos completos del estudiante</legend>
-                      <div class="panel panel-default">
-                        <div class="panel-body">
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h5 class="font-weight-bold">Nombre:</h5>
-                              <h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
-                              <h5 class="font-weight-bold">Carrera:</h5>
-                              <h4>{{estudiante.carrer}}</h4>
-                              <h5 class="font-weight-bold">Fecha Nacimiento:</h5>
-                              <h4>{{estudiante.fechaNac}}</h4>
-                              <h5 class="font-weight-bold">Género:</h5>
-                              <h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
-                              <h5 class="font-weight-bold">Codigo de Carnet:</h5>
-                              <h4>{{estudiante.codCarnet}}</h4>
-                              <h5 class="font-weight-bold">Dirección:</h5>
-                              <h4>{{estudiante.direccion}}</h4>
-                            </div>
-                            <div class="col-md-4">
-                              <template v-if="estudiante.foto_name == ''">
-                                <img
-                                  v-if="estudiante.genero == 'M'"
-                                  class="text-center img-fluid"
-                                  :src="'images/avatarM.png'"
-                                  alt
-                                >
-                                <img
-                                  v-else
-                                  class="text-center img-fluid"
-                                  :src="'images/avatarF.png'"
-                                  alt
-                                >
-                              </template>
-                              <template v-else>
-                                <img class="text-center img-fluid" :src="rutaIMG" alt>
-                              </template>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                  <div class="modal-footer">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
-          </div>
+            <span slot="no-options">No hay datos disponibles</span>
+          </v-select>
+          <h6
+          v-if="contentProy == false && proyectoExterno == false"
+          class="text-danger"
+          >No hay proyectos en esta carrera</h6>
+        </div>
+        <div class="col-md-2">
+          <checkbox v-model="proyectoExterno" :value="E">Proyectos Externos</checkbox>
         </div>
       </div>
     </div>
+    <br>
+
+    <div
+    v-if="proyecto_selectd != 0 && proyecto_selectd != null"
+    class="col-md-10 col-sm-12 col-lg-6"
+    >
+    <mdc-textfield
+    type="text"
+    style="margin-left: -10px"
+    class="col-md-12"
+    @keyup="getSolicitudesAprobados(proyecto_selectd.value,1,buscar)"
+    label="Nombre del estudiante"
+    v-model="buscar"
+    ></mdc-textfield>
   </div>
+  <div
+  v-if="proyecto_selectd != 0 && proyecto_selectd != null "
+  class="col-md-12 col-lg-12 col-sm-12"
+  >
+  <br>
+  <table class="table table-striped table-bordered table-mc-light-blue">
+    <thead class="thead-primary">
+      <tr>
+        <th>Nombre Estudiante</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in arrayPreregister" :key="item.id">
+        <td>
+          <button
+          type="button"
+          @click="getMoreInfo(item.id)"
+          class="btn btn-link text-capitalize h4"
+          style="font-size: 16px"
+          >{{item.nombre +" "+ item.apellido}}</button>
+        </td>
+        <td class="text-center">
+          <button
+          type="button"
+          class="button red"
+          @click="eliminarSolicitud(item.id,proyecto_selectd.value)"
+          data-toggle="tooltip"
+          title="Rechazar proyecto"
+          >
+          <i class="mdi mdi-close"></i>&nbsp;Eliminar Aprobación
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<nav>
+  <ul class="pagination">
+    <li class="page-item" v-if="pagination.current_page > 1">
+      <a
+      class="page-link font-weight-bold"
+      href="#"
+      @click.prevent="cambiarPagina(pagination.current_page -1,buscar)"
+      >Ant</a>
+    </li>
+    <li
+    class="page-item"
+    v-for="page in pagesNumber"
+    :key="page"
+    :class="[page == isActived ? 'active' : '']"
+    >
+    <a
+    class="page-link"
+    href="#"
+    @click.prevent="cambiarPagina(page,buscar)"
+    v-text="page"
+    ></a>
+  </li>
+  <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+    <a
+    class="page-link font-weight-bold"
+    href="#"
+    @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)"
+    >Sig</a>
+  </li>
+  <small
+  v-show="arrayPreregister.length != 0"
+  class="text-muted pagination-count"
+  v-text=" '(Mostrando ' + arrayPreregister.length + ' de ' + pagination.total + ' registros)'"
+  ></small>
+</ul>
+</nav>
+<div v-if="arrayPreregister.length == 0" class="alert alert-warning" role="alert">
+  <h4
+  class="font-weight-bold text-center"
+  >No hay Preinscripciones en este proyecto ó la búsqueda no coincide</h4>
+</div>
+<!--///////// MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+<div
+class="modal fade"
+:class="{'mostrar' : modal }"
+role="dialog"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title text-white">Información del estudiante</h4>
+      <button
+      type="button"
+      @click="cerrarModal()"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      >
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <fieldset>
+      <legend class="text-center">Datos completos del estudiante</legend>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h5 class="font-weight-bold">Nombre:</h5>
+              <h4>{{estudiante.nombre +" "+ estudiante.apellido}}</h4>
+              <h5 class="font-weight-bold">Carrera:</h5>
+              <h4>{{estudiante.carrer}}</h4>
+              <h5 class="font-weight-bold">Fecha Nacimiento:</h5>
+              <h4>{{estudiante.fechaNac}}</h4>
+              <h5 class="font-weight-bold">Género:</h5>
+              <h4 v-text="estudiante.genero == 'M' ? 'Masculino' : 'Femenino'"></h4>
+              <h5 class="font-weight-bold">Codigo de Carnet:</h5>
+              <h4>{{estudiante.codCarnet}}</h4>
+              <h5 class="font-weight-bold">Dirección:</h5>
+              <h4>{{estudiante.direccion}}</h4>
+            </div>
+            <div class="col-md-4">
+              <template v-if="estudiante.foto_name == ''">
+                <img
+                v-if="estudiante.genero == 'M'"
+                class="text-center img-fluid"
+                :src="'images/avatarM.png'"
+                alt
+                >
+                <img
+                v-else
+                class="text-center img-fluid"
+                :src="'images/avatarF.png'"
+                alt
+                >
+              </template>
+              <template v-else>
+                <img class="text-center img-fluid" :src="rutaIMG" alt>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" @click="cerrarModal()" class="btn btn-danger">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
+</div>
+</div>
+</div>
+</div>
+</div>
 </template>
-	<script>
+<script>
 export default {
   data() {
     return {
@@ -370,12 +371,12 @@ export default {
     estudiante: function() {
       if (this.estudiante.codCarnet.length > 7) {
         this.rutaIMG =
-          "http://portal.itcha.edu.sv/fotos/alumnos/" +
-          this.estudiante.foto_name;
+        "http://portal.itcha.edu.sv/fotos/alumnos/" +
+        this.estudiante.foto_name;
       } else {
         this.rutaIMG =
-          "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" +
-          this.estudiante.foto_name;
+        "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" +
+        this.estudiante.foto_name;
         this.testImg(this.estudiante.foto_name);
       }
     },
@@ -422,47 +423,46 @@ export default {
     //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
     getProyectos() {
       let me = this;
-      //
+      me.loadSpinner = 1;
       if (this.proceso == 1) {
         var url =
-          "GetProjectsByProcess?process_id=" +
-          this.proceso +
-          "&tipoProyecto=" +
-          this.valueTipoProyectos;
+        "GetProjectsByProcess?process_id=" +
+        this.proceso +
+        "&tipoProyecto=" +
+        this.valueTipoProyectos;
       } else if (this.proceso == 2) {
         var url =
-          "GetProjectsByProcess?process_id=" +
-          this.proceso +
-          "&carre_id=" +
-          this.carrera_selected.value +
-          "&tipoProyecto=" +
-          this.valueTipoProyectos;
+        "GetProjectsByProcess?process_id=" +
+        this.proceso +
+        "&carre_id=" +
+        this.carrera_selected.value +
+        "&tipoProyecto=" +
+        this.valueTipoProyectos;
       }
       axios
-        .get(url)
-        .then(function(response) {
-          me.loadSpinner = 1;
-          var respuesta = response.data;
-          me.arrayProyectos = respuesta;
-          me.loadSpinner = 0;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      .get(url)
+      .then(function(response) {
+        var respuesta = response.data;
+        me.arrayProyectos = respuesta;
+        me.loadSpinner = 0;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
     //obtener todas las carreras
     getCarreras() {
       let me = this;
       var url = "carreras/GetCarreras";
       axios
-        .get(url)
-        .then(function(response) {
-          var respuesta = response.data;
-          me.arrayCarreras = respuesta;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      .get(url)
+      .then(function(response) {
+        var respuesta = response.data;
+        me.arrayCarreras = respuesta;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
 
     //listado de los estudiantes aprobados deacuerdo al proyecto seleccionado
@@ -470,23 +470,23 @@ export default {
       let me = this;
       me.loadSpinner = 1;
       var url =
-        "proyectos/obtenerAprobados?proyectoId=" +
-        proyecto_id +
-        "&page=" +
-        page +
-        "&buscar=" +
-        buscar;
+      "proyectos/obtenerAprobados?proyectoId=" +
+      proyecto_id +
+      "&page=" +
+      page +
+      "&buscar=" +
+      buscar;
       axios
-        .get(url)
-        .then(function(response) {
-          var respuesta = response.data;
-          me.arrayPreregister = respuesta.proyectos.data;
-          me.pagination = respuesta.pagination;
-          me.loadSpinner = 0;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      .get(url)
+      .then(function(response) {
+        var respuesta = response.data;
+        me.arrayPreregister = respuesta.proyectos.data;
+        me.pagination = respuesta.pagination;
+        me.loadSpinner = 0;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
 
     //abrir el modal de proyectos externos
@@ -510,16 +510,16 @@ export default {
       me.loadSpinner = 1;
       var url = "stundentById/" + id;
       axios
-        .get(url)
-        .then(function(response) {
-          var respuesta = response.data;
-          me.estudiante = respuesta;
-          me.loadSpinner = 0;
-          me.abrirModal();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      .get(url)
+      .then(function(response) {
+        var respuesta = response.data;
+        me.estudiante = respuesta;
+        me.loadSpinner = 0;
+        me.abrirModal();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     },
     abrirModal() {
       const el = document.body;
@@ -562,24 +562,24 @@ export default {
           let me = this;
           me.loadSpinner = 1;
           var url =
-            "/proyectos/deleteAprobacion?proyectoId=" +
-            proyecto_id +
-            "&estudianteId=" +
-            estudiante_id;
+          "/proyectos/deleteAprobacion?proyectoId=" +
+          proyecto_id +
+          "&estudianteId=" +
+          estudiante_id;
           axios
-            .get(url)
-            .then(function(response) {
-              me.getSolicitudesAprobados(me.proyecto_selectd.value, 1, "");
-              swal(
-                "Eliminada",
-                "Se ha eliminado la solicitud aprobada para este proyecto",
-                "success"
+          .get(url)
+          .then(function(response) {
+            me.getSolicitudesAprobados(me.proyecto_selectd.value, 1, "");
+            swal(
+              "Eliminada",
+              "Se ha eliminado la solicitud aprobada para este proyecto",
+              "success"
               );
-              me.loadSpinner = 0;
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
+            me.loadSpinner = 0;
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
         } else if (result.dismiss === swal.DismissReason.cancel) {
         }
       });
@@ -587,7 +587,6 @@ export default {
   },
   components: {},
   mounted() {
-    this.getProyectos();
     //this.contentProy = true;
   }
 };

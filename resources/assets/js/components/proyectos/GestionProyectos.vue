@@ -26,7 +26,7 @@
                       </div>
                     </div>
                   </div>
-                </fieldset> 
+                </fieldset>
               </div>
             </div>
           </div>
@@ -168,11 +168,14 @@
                           <div class="panel-body">
                             <label ><strong>Nombre: </strong> {{gpObj.proyecto.nombre}}</label><br>
                             <div class="row">
-                              <div class="col-md-6 "><label><strong>Institución:</strong> {{gpObj.proyecto.institucion.nombre}}</label></div>
+                              <div class="col-md-12"><label><strong>Institución:</strong> {{gpObj.proyecto.institucion.nombre}}</label></div>
                             </div>
                             <div class="row">
-                              <div class="col-md-6" style="margin-top: 2px;"><label><strong>Fecha de Inicio:</strong> {{gpObj.fecha_inicio}}</label></div>
-                              <div class="col-md-6">
+                              <div class="col-md-12" style="margin-left: -12px"><label @click="abrirModalFI" class="btn btn-link text-capitalize" style="font-size: 15px;"><strong>Fecha de Inicio:</strong> {{gpObj.fecha_inicio}}</label></div>
+                              <div class="col-md-12">
+                                <label><strong>Horas a realizar:</strong> {{gpObj.horas_a_realizar}}</label>
+                              </div>
+                              <div class="col-md-12">
                                 <template>
                                   <h5>
                                     <strong>Estado del Proceso: </strong><span v-if="gpObj.estado == 'I'" class="badge h1 badge-pill badge-primary">Iniciado</span>
@@ -288,7 +291,7 @@
                   </div><br>
                   <div class="col-md-12"><br>
                    <label for="obs" class="font-weight-bold">Total de Horas Realizadas en el proyecto: </label>
-                   <input type="number" min="0" max="300" class="form-control" v-model="hrsFinal">
+                   <input type="number" :disabled="gpObj.estudiante.no_proyectos == 2" min="0" max="300" class="form-control" v-model="hrsFinal">
                  </div>
                  <div class="col-md-12"><br>
                    <label for="obs" class="font-weight-bold">Observación Final: </label>
@@ -314,6 +317,36 @@
       </div>
       <!--///////// FIN DE MODAL PARA MOSTRAR INFORMACION DEL ALUMNO /////////-->
 
+      <!--///////// MODAL PARA EDITAR FECHA DE INCIO DE PROYECTO/////////-->
+      <div class="modal fade" :class="{'mostrar' : modalFI }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-white">Edición de fecha de inicio</h4>
+              <button type="button" @click="cerrarModalFI()" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="obs" class="font-weight-bold">Seleccione Nueva Fecha de Inicio </label>
+                  <input placeholder="aaaa-mm-dd" disabled v-model="fechaInicio" id="fechaInicio" name="fechaInicio" v-mask="'####-##-##'" class="form-control" >
+                </div><br>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" @click="cerrarModalFI()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cancelar</button>
+                  <button type="button" @click="changeFechaInicio" :disabled="fechaInicio == '' || gpObj.estado == 'F'" :class="[fechaInicio == '' || gpObj.estado == 'F' ? 'disabled' : '']" class="button blue"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Datos</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--///////// FIN DE MODAL PARA EDITAR FECHA DE INCIO DE PROYECTO/////////-->
 
       <!--Fin de seccion para documentos-->
 
@@ -360,7 +393,9 @@ export default {
       rutaIMG:'',
       valuesDoc: [],
       arrayDocEntreg: [],
-      eliminarProyecto: false
+      eliminarProyecto: false,
+      modalFI : 0,
+      fechaInicio: ''
     }
   },
   watch:{
@@ -388,8 +423,12 @@ export default {
           this.arrayDocEntreg[i] = this.gpObj.documentos_entrega[i].pivot.documento_id;
         }
       }
-      this.hrsFinal = this.gpObj.horas_a_realizar;
-
+      if(this.gpObj.estudiante.no_proyectos == 2)
+      {
+        this.hrsFinal = this.gpObj.estudiante.proceso[0].pivot.num_horas;
+      }else{
+        this.hrsFinal = this.gpObj.horas_a_realizar;
+      }
     }
   },
   computed:{
@@ -563,6 +602,23 @@ methods:{
       }
   });
   },
+  abrirModalFI() {
+    const el = document.body;
+    el.classList.add("abrirModal");
+    this.modalFI = 1;
+    this.fechaInicio = this.gpObj.fecha_inicio;
+
+    $("#fechaInicio").datepicker({
+      locale: 'es-es',
+      // minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+      format: 'yyyy-mm-dd',
+    });
+  },
+  cerrarModalFI() {
+    const el = document.body;
+    el.classList.remove("abrirModal");
+    this.modalFI = 0;
+  },
   abrirModalDoc() {
     const el = document.body;
     el.classList.add("abrirModal");
@@ -630,7 +686,55 @@ methods:{
       me.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,page,"");
     }
   },
+  // Metodo para cambiar la fecha de incio del proyecto
+  changeFechaInicio(){
+    const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
+    swal({
+      title: "¿Seguro que desea cambiar la fecha de inicio?",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(result => {
+      if (result.value) {
+        let me = this;
+        me.loadSpinner = 1;
+        var nueva_fecha = $("#fechaInicio").val().trim();
+        var url = route('changeFechaInicio',{'proceso_id':me.gpObj.estudiante.proceso[0].pivot.proceso_id,'estudiante_id':me.gpObj.estudiante_id,'gestion_id':me.gpObj.id,'fecha':nueva_fecha});
+        axios.get(url)
+        .then(function(response) {
+          me.getMoreInfoGp(me.idGP);
+          swal(
+            "Hecho!",
+            "Fecha de Inicio Actualizada Correctamente",
+            "success"
+            );
+          me.loadSpinner = 0;
+          me.cerrarModalFI();
+        })
+        .catch(function(error) {
+          me.loadSpinner = 0;
+          console.log(error);
+          toast({
+            type: 'danger',
+            title: 'Error! Intente Nuevamente'
+          });
+        });
+    }
+    else if (
 
+      result.dismiss === swal.DismissReason.cancel
+      ) {
+    }
+});
+
+  },
   //obtener mas informacion del estudiante seleccionado por su id
   getMoreInfo(id) {
     let me = this;

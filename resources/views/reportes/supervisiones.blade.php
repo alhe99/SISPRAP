@@ -26,11 +26,10 @@
         </div>
         <div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12"><br>
                     <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
                     <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-                    <p class="text-center" style="font-size:small;"><strong><ins>INFORME DE PROYECTOS SUPERVISADOS DE {{ strtoupper($proceso) }}</ins></strong></p><br>
-                    <p class="text-center" style="font-size:small;" ><strong>AÑO {{date('Y')}}</strong></p>
+                    <h6 class="text-center font-weight-bold"><ins>INFORME DE SUPERVISIONES DE {{ strtoupper($proceso)." ".$anio }}</ins></h6><br>
                 </div>
             </div>
             <div class="col-md-12">
@@ -55,18 +54,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for ($j = 2; $j < count($supervisiones[$i]) ; $j++)
-                        <tr>
-                            <td colspan="2">{{ $supervisiones[$i][$j]["nombreProyecto"] }}</td>
-                            @if ($proceso == "Práctica Profesional")
-                            <td>{{ $supervisiones[$i][$j]["carreraProyecto"] }}</td>
-                            @endif
-                            <td class="text-center">{{ $supervisiones[$i][$j]["fechaSupervision"] }}</td>
-                        </tr>
+                        @for ($j = 1; $j < count($supervisiones[$i]) ; $j++)
+                            <tr>
+                                <td colspan="2" class="text-capitalize">{{ strtolower($supervisiones[$i][$j]["nombreProyecto"]) }}</td>
+                                @if ($proceso == "Práctica Profesional")
+                                <td>{{ $supervisiones[$i][$j]["carreraProyecto"] }}</td>
+                                @endif
+                                <td class="text-center">{{ $supervisiones[$i][$j]["fechaSupervision"] }}</td>
+                            </tr>
                         @endfor
                         <tr class="bg-header font-weight-bold">
-                            <td colspan="3">Total de proyectos supervisados: </td>
-                            <td>{{ $supervisiones[$i][1] }}</td>
+                            <td colspan="{{$proceso == "Práctica Profesional" ? '3':'2' }}">Total de proyectos supervisados: </td>
+                            <td>{{ count($supervisiones[$i])-1 }}</td>
                         </tr>
                     </tbody>
                 </table><br>

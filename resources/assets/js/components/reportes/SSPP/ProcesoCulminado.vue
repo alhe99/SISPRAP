@@ -75,13 +75,19 @@
                   </div>
                 </div>
                 <div v-if="trimestral == true" class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-10">
                     <br><v-select v-model="trimestre" :options="arrayTrimestral" placeholder="Seleccione un trimestre"></v-select>
+                  </div>
+                  <div class="col-md-2">
+                    <br><checkbox  v-model="soloConsolidado">Consolidado</checkbox>
                   </div>
                 </div>
                 <div v-if="mensual == true" class="row">
-                  <div class="col-md-10">
+                  <div class="col-md-8">
                     <br><v-select multiple :disabled="anual==true" v-model="mes" :options="arrayMeses" placeholder="Seleccione mes"></v-select>
+                  </div>
+                  <div class="col-md-2">
+                    <br><checkbox  v-model="soloConsolidado">Consolidado</checkbox>
                   </div>
                   <div class="col-md-2">
                     <br><checkbox  v-model="anual">Reporte Anual</checkbox>
@@ -138,7 +144,9 @@ export default {
       trimestral: false,
       mensual: false,
       valuesMonth: [],
-      anual: false
+      anual: false,
+      soloConsolidado : false,
+      onlyConsolidado: ''
     }
   },
   watch:{
@@ -148,6 +156,8 @@ export default {
       this.mensual = false;
       this.trimestre = "";
       this.anual=false;
+      this.onlyConsolidado = '';
+      this.soloConsolidado = false;
 
     },
     trimestral:function(){
@@ -155,6 +165,8 @@ export default {
       else {this.tipoRepo = '';}
       this.trimestre = "";
       this.anual=false;
+      this.onlyConsolidado = '';
+      this.soloConsolidado = false;
     },
     mensual:function(){
       if (this.mensual == true) {this.tipoRepo = 'M';}
@@ -162,6 +174,8 @@ export default {
       this.mes = [];
       this.valuesMonth = [];
       this.anual=false;
+      this.onlyConsolidado = '';
+      this.soloConsolidado = false;
     },
     mes:function(){
       for (var i = 0; i < this.mes.length; i++) {
@@ -177,9 +191,16 @@ export default {
       else{
        this.tipoRepo = 'M';
      }
-   }
- },
- methods: {
+   },
+   soloConsolidado: function(){
+    if(this.soloConsolidado){
+      this.onlyConsolidado = 'OC'; //OC = Only Consolidado
+    }else{
+      this.onlyConsolidado = 'DG' //DG = Data General
+    }
+  }
+},
+methods: {
   getCarreras() {
     let me = this;
     var url = "carreras/GetCarreras";
@@ -198,18 +219,20 @@ export default {
     this.mes = [];
     this.valuesMonth = [];
     this.anual=false;
+    this.onlyConsolidado = '';
+    this.soloConsolidado = false;
   },
   sendParameterToMethod() {
     let me = this;
-    if(me.trimestral == true)
-     var url = route('reporteProcesosCulminados',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo})
-    else if(me.mensual == true)
-    var url = route('reporteProcesosCulminados',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo})
-   else if(me.anual == true)
-    var url = route('reporteProcesosCulminados',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo})
-    window.open(url);
-    me.clearData();
-  },
+    if(me.trimestral)
+     var url = route('reporteProcesosCulminados',{'proceso_id':me.proceso_id,'meses': [me.trimestre.value],'tipoRepo':me.tipoRepo,'onlyConsolidado': me.onlyConsolidado})
+   else if(me.mensual)
+     var url = route('reporteProcesosCulminados',{'proceso_id':me.proceso_id,'meses': [me.valuesMonth],'tipoRepo':me.tipoRepo,'onlyConsolidado': me.onlyConsolidado})
+   else if(me.anual)
+     var url = route('reporteProcesosCulminados',{'proceso_id':me.proceso_id,'tipoRepo':me.tipoRepo,'onlyConsolidado': me.onlyConsolidado})
+   window.open(url);
+   me.clearData();
+ },
 },
 components: {
   Switches,

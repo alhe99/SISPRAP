@@ -90,7 +90,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         if(Auth::user()->id > 1){
-            $proceso = Auth::user()->estudiante->proceso[0]->id;
+            $proceso = Auth::user()->estudiante->proceso[0]->pivot->proceso_id;
             $carnet = Auth::user()->estudiante->codCarnet;
             if ($proceso == 1) { $ruta_img = public_path('docs/docs_ss/')."PSS-".$carnet.".jpg";}
             else{$ruta_img = public_path('docs/docs_pp/')."PPP-".$carnet.".jpg";}

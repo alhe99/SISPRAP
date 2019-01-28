@@ -117,7 +117,7 @@
 				@endif
 			</i>
 		</button>
-		<button class="btn BF2 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px; cursor: pointer;">
+		<button class="btn BF2 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#modal" style="border-radius: 50px; cursor: pointer;">
 			<i class="far fa-folder-open fa-sm"></i>
 		</button>
 		<button class="btn BF3 hint--left" data-hint="Chat con el administrador" style="border-radius: 50px; cursor: pointer;">
@@ -172,96 +172,9 @@ aria-hidden="true">
 </div>
 </div>
 </div>
-<div class="modal" id="exampleModal2" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Descargar documentos asociados a tu proceso</h5>
-				<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12 col-lg-12 col-xs-12">
-						<div class="Material-tab">
-							<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab" href="#business" role="tab"><i class="far fa-user"></i></br>Perfil del proyecto</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#startup" role="tab"><i class="far fa-list-alt"></i></br>Control de proyecto</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#agency" role="tab"><i class="fa fa-calendar-alt"></i></br>Control de asistencia</a>
-								</li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane fade show active" id="business" role="tabpanel" >
-									<div class="card text-center">
-										<div class="card-header">
-											<h6 class="card-title">Presiona en el botón para descargar</h6>
-										</div>
-										@if (Auth::user()->estudiante->proceso_actual == 'I')
-										<div class="card-body">
-											<a href="{{route('downloadDocs',array("procesoId" => session('process_id'),
-											"codCarnet" => Auth::user()->estudiante->codCarnet,
-											"tipoDoc"=>'P')) }}"
-											class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
-										</div>
-										@elseif (session('downloadDocs') == false)
-										<div class="card-body">
-											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
-										</div>
-										@endif
-									</div>
-								</div>
-								<div class="tab-pane fade" id="startup" role="tabpanel" >
-									<div class="card text-center">
-										<div class="card-header">
-											<h6 class="card-title">Presiona en el botón para descargar</h6>
-										</div>
-										@if (Auth::user()->estudiante->proceso_actual == 'I')
-										<div class="card-body">
-											<a href="{{route('downloadDocs',array("procesoId" => session('process_id'),
-											"codCarnet" => Auth::user()->estudiante->codCarnet,
-											"tipoDoc"=>'CP')) }}" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
-										</div>
-										@elseif (session('downloadDocs') == false)
-										<div class="card-body">
-											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
-										</div>
-										@endif
-									</div>
-								</div>
-								<div  class="tab-pane fade" id="agency" role="tabpanel">
-									<div class="card text-center">
-										<div class="card-header">
-											<h6 class="card-title">Presiona en el botón para descargar</h6>
-										</div>
-										@if (Auth::user()->estudiante->proceso_actual == 'I')
-										<div class="card-body">
-											<a href="{{route('downloadDocs',array("procesoId" => session('process_id'),
-											"codCarnet" => Auth::user()->estudiante->codCarnet,
-											"tipoDoc"=>'CH')) }}" class="btn btn-primary btn-sm text-white btn-lg" style="cursor: pointer;"><i class="mdi mdi-check-all" ></i>&nbsp;Descargar</a>
-										</div>
-										@elseif (session('downloadDocs') == false)
-										<div class="card-body">
-											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
-										</div>
-										@endif
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br>
-				<button type="button" class="btn btn-danger btn-sm ml-auto d-flex text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box" ></i>&nbsp;Cancelar</button>
-			</div>
-		</div>
-	</div>
-</div>
+
+@include('public.modalDocumentos')
+
 {{-- <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
 		<div class="modal-content">
