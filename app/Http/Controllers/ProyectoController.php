@@ -301,8 +301,7 @@ class ProyectoController extends Controller
         $carre_id = $request->estudent_carrer;
         $tp = $request->estudent_process;
         $pre_register = Auth::user()->estudiante->preinscripciones;
-        $gestion = Auth::user()->estudiante->gestionProyecto()->select('proyecto_id')->get();
-        // INCLUIR ESTOS IDS ALA CUENTA
+        $gestion = Auth::user()->estudiante->gestionProyecto()->where('tipo_gp',$tp)->select('proyecto_id')->get();
         $gestion = $gestion->pluck('proyecto_id');
         $buscar = $request->buscar;
 
@@ -316,11 +315,25 @@ class ProyectoController extends Controller
                 for ($i=0; $i < count($pre_register) ; $i++) {
                  $proyectos = $proyectos->except([$pre_register[$i]->id]);
                 }
+                if(count($gestion) > 0)
+                {
+                     for ($i=0; $i < count($gestion) ; $i++) {
+                         $proyectos = $proyectos->except([$gestion[$i]]);
+                     }
+                }
+
             }else{
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                     $query->where('proceso_id', $tp);
                 })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+
+               if(count($gestion) > 0)
+               {
+                   for ($i=0; $i < count($gestion) ; $i++) {
+                       $proyectos = $proyectos->except([$gestion[$i]]);
+                   }
+               }
             };
         }else if ($tp == 2) {
 
@@ -332,12 +345,25 @@ class ProyectoController extends Controller
                 for ($i=0; $i < count($pre_register) ; $i++) {
                     $proyectos = $proyectos->except([$pre_register[$i]->id]);
                 }
+                if(count($gestion) > 0)
+                {
+                   for ($i=0; $i < count($gestion) ; $i++) {
+                       $proyectos = $proyectos->except([$gestion[$i]]);
+                   }
+                }
 
             }else{
 
                 $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                     $query->where('carrera_id', $carre_id);
                 })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+
+                if(count($gestion) > 0)
+                {
+                     for ($i=0; $i < count($gestion) ; $i++) {
+                         $proyectos = $proyectos->except([$gestion[$i]]);
+                     }
+                }
 
             }
         }
@@ -396,7 +422,7 @@ class ProyectoController extends Controller
     // Funcion para obtener el numero de preinscipciones de un proyecto
     public function getNumeroPreinscripciones(Request $request){
         $process_id = $request->process_id;
-        $carre_id = $request->carre_id;
+        $carre_id = $request->carrera_id;
         $proyectoId = $request->proyectoId;
         $totalVacantes = 0;
 
@@ -414,8 +440,9 @@ class ProyectoController extends Controller
         } else if ($process_id == 2){
 
             $proyectos = Proyecto::whereHas('carre_proy', function ($query) use ($carre_id) {
-                $query->where('carrera_id', $carre_id);
+                $query->where('carrera_proyectos.carrera_id', $carre_id);
             })->select(DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudesHechas"))->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->find($proyectoId);
+
 
             $sql = "SELECT COUNT(id) AS procesoMarcha FROM gestion_proyectos WHERE proyecto_id = :idProy AND tipo_gp = :idProceso";
             $gestion = DB::select($sql, [ 'idProy' => $proyectoId,'idProceso' => $process_id ]);

@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use PDF;
 
 
@@ -204,6 +205,7 @@ class InstitucionController extends Controller
     //Obtener instituciones por municipio
     function getHojaSupervision(Request $request)
     {
+        $testId = "10,2,8,1";
         $arrayInstituciones = explode(",", $request->instituciones_id);
         $arrayInstitucionGeneral = [];
         $arrayInstitucionDetalle = [];
@@ -244,15 +246,14 @@ class InstitucionController extends Controller
         else
             $procesoTitulo = "Práctica Profesional";
 
-        $pdf = PDF::loadView('reportes.hojaSupervisionGeneralByMunicipios',['institucionesGeneral'=>$arrayInstitucionGeneral,'institucionDetalle'=> $arrayInstitucionDetalle,'anio'=>$this->anio,'proceso' => $procesoTitulo])->setOption('footer-center', 'Página [page] de [topage]');
-        $pdf->setOption('margin-top',15);
-        $pdf->setOption('margin-bottom',15);
-        $pdf->setOption('margin-left',15);
-        $pdf->setOption('margin-right',15);
+        $headerHtml = view()->make('reportes.header_reportes',['anio'=>$this->anio,'proceso' => $procesoTitulo])->render();
+        $pdf = PDF::loadView('reportes.hojaSupervisionGeneralByMunicipios',['institucionesGeneral'=>$arrayInstitucionGeneral,'institucionDetalle'=> $arrayInstitucionDetalle,'proceso' => $procesoTitulo])->setOption('footer-center', '')->setOption('header-html',$headerHtml);;
+        $pdf->setOption('margin-top',43);
+        $pdf->setOption('margin-bottom',10);
+        $pdf->setOption('margin-left',10);
+        $pdf->setOption('margin-right',10);
         $pdf->setOption('orientation','landscape');
         return $pdf->stream('Hoja de Supervisión General '.date('Y-m-d').'.pdf');
-
-        // return $arrayInstitucionDetalle;
     }
 
     //obtener listado de instituciones por proceso
@@ -295,7 +296,7 @@ class InstitucionController extends Controller
         })->get();
 
         for ($i=0; $i < $instituciones->count() ; $i++) {
-            $test = 0;
+            $arrayInstitucion = [];
 
             $arrayInstitucion[0] = $instituciones[$i]->nombre;
             foreach ($instituciones[$i]->proyectosInsti as $key => $value) {
@@ -303,14 +304,13 @@ class InstitucionController extends Controller
                 if(!is_null($value->supervision)){
                      if($proceso == 2){
                          $carreraProy = Proyecto::findOrFail($value->id)->carre_proy[0]->nombre;
-                         $arrayInstitucion[1] = $test += count($value);
-                         $arrayInstitucion[$key+2] = array(
+                         $arrayInstitucion[] = array(
                            "nombreProyecto" => $value->nombre,
                            "fechaSupervision" => $value->supervision["fecha"],
                            "carreraProyecto" => $carreraProy
                        );
                      }else{
-                       $arrayInstitucion[$key+2] = array(
+                       $arrayInstitucion[] = array(
                          "nombreProyecto" => $value->nombre,
                          "fechaSupervision" => $value->supervision["fecha"],
                         );
@@ -327,13 +327,14 @@ class InstitucionController extends Controller
          $process = "Práctica Profesional";
 
         $date = date('Y-m-d');
-        $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervisiones, 'proceso' =>$process])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervisiones, 'proceso' =>$process,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
         $pdf->setOption('margin-top',20);
         $pdf->setOption('margin-bottom',20);
         $pdf->setOption('margin-left',20);
         $pdf->setOption('margin-right',20);
 
         return $pdf->stream('Reporte General de Supervisiones ' .$date.'.pdf');
+        // return $supervisiones;
     }
 
     function regSupervision(){

@@ -38,15 +38,16 @@
     </div>
     <div class="col-md-12">
         @if ($tipo == 'T')
-        {{-- TABLA PARA MESES INDIVIDUALES --}}
-        @for ($i = 0; $i < count($mensuales) ; $i++)
-        <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $mensuales[$i][0] }}&nbsp;</u></h6>
-        @for ($j = 1; $j < count($mensuales[$i]) ; $j++)
-            @php
+        @if (!$onlyConsolidado)
+                {{-- TABLA PARA MESES INDIVIDUALES --}}
+                @for ($i = 0; $i < count($mensuales) ; $i++)
+                <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $mensuales[$i][0] }}&nbsp;</u></h6>
+                @for ($j = 1; $j < count($mensuales[$i]) ; $j++)
+                @php
                 $cuentaMined = 0; $cuentaOtros = 0;
-            @endphp
-            @foreach ($mensuales[$i][$j][1] as $key => $item )
-              @if (count($item) != 0)
+                @endphp
+                @foreach ($mensuales[$i][$j][1] as $key => $item )
+                @if (count($item) != 0)
                 <table class="mb-1"  border="1px" cellpadding="7">
                     <thead>
                         <tr class="bg-header text-center font-weight-bold">
@@ -61,41 +62,42 @@
                     </thead>
                     <tbody>
                         @foreach ($item as $estudiante)
-                            <tr>
-                                <td colspan="2">{{ $estudiante["nombre"]." ".$estudiante["apellido"] }}</td>
-                                @if ($estudiante["tipo_beca_id"] == 1)
-                                    <td class="text-center">X</td>
-                                    <td class="text-center"></td>
-                                    @php($cuentaMined = $cuentaMined + 1)
-                                @elseif($estudiante["tipo_beca_id"] == 2)
-                                    <td class="text-center"></td>
-                                    <td class="text-center">X</td>
-                                    @php($cuentaOtros = $cuentaOtros + 1)
-                                @endif
-                            </tr>
+                        <tr>
+                            <td colspan="2">{{ $estudiante["nombre"]." ".$estudiante["apellido"] }}</td>
+                            @if ($estudiante["tipo_beca_id"] == 1)
+                            <td class="text-center">X</td>
+                            <td class="text-center"></td>
+                            @php($cuentaMined = $cuentaMined + 1)
+                            @elseif($estudiante["tipo_beca_id"] == 2)
+                            <td class="text-center"></td>
+                            <td class="text-center">X</td>
+                            @php($cuentaOtros = $cuentaOtros + 1)
+                            @endif
+                        </tr>
                         @endforeach
 
-                         <tr class="bg-header font-weight-bold">
+                        <tr class="bg-header font-weight-bold">
                             <td class="text-right" colspan="2" rowspan="2">Total:</td>
                             <td class="text-center">{{ $cuentaMined }}</td>
                             <td class="text-center">{{ $cuentaOtros }}</td>
                         </tr>
                         <tr class="bg-header font-weight-bold text-center">
-                           <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                       </tr>
-                </tbody>
-            </table><br><br>
-          @endif
-        @endforeach
-    @endfor
-        @if ($cuentaMined + $cuentaOtros == 0)
-            <div class="row m-4">
-               <div class="col-md-12 text-center">
-                 <span class="text-center h6">No hay datos para el mes de <strong>{{ $mensuales[$i][0] }}</strong>.</span>
-                </div>
-            </div>
+                         <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
+                     </tr>
+                 </tbody>
+             </table><br><br>
+             @endif
+             @endforeach
+             @endfor
+             @if ($cuentaMined + $cuentaOtros == 0)
+             <div class="row m-4">
+                 <div class="col-md-12 text-center">
+                   <span class="text-center h6">No hay datos para el mes de <strong>{{ $mensuales[$i][0] }}</strong>.</span>
+               </div>
+           </div>
+           @endif
+           @endfor
         @endif
-    @endfor
      {{-- TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
         @for ($i = 0; $i < count($consolidadoByNivel) ; $i++)
          <?php $cuentaMined = 0;$cuentaOtros=0; ?>
@@ -176,6 +178,7 @@
         {{-- FIN DE TABLA PARA CONSOLIDADO FINAL GENERAL --}}
 
     @elseif($tipo == 'M')
+         @if (!$onlyConsolidado)
            {{-- TABLA PARA MESES INDIVIDUALES --}}
             @for ($i = 0; $i < count($mensuales) ; $i++)
             <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $mensuales[$i][0] }}&nbsp;</u></h6>
@@ -234,6 +237,7 @@
                 </div>
             @endif
         @endfor
+        @endif
          {{-- TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
         @for ($i = 0; $i < count($consolidadoMensuales) ; $i++)
          <?php $cuentaMined = 0;$cuentaOtros=0; ?>
@@ -276,6 +280,7 @@
         {{-- FIN DE TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
 
 @elseif($tipo == 'A')
+        @if (!$onlyConsolidado)
            {{-- TABLA PARA MESES INDIVIDUALES --}}
         @for ($i = 0; $i < count($mensuales) ; $i++)
         <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $mensuales[$i][0] }}&nbsp;</u></h6>
@@ -334,6 +339,7 @@
             </div>
         @endif
     @endfor
+    @endif
      {{-- TABLAS PARA CONSOLIDADO FINAL ANUAL POR NIVEL ACADEMICO --}}
         @for ($i = 0; $i < count($consolidadoByNivel) ; $i++)
          <?php $cuentaMined = 0;$cuentaOtros=0; ?>

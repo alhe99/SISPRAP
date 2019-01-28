@@ -92,6 +92,7 @@ Route::get('public/downloadDocs','GestionProyectoController@downloadDocs')->name
 Route::get('/proyectos/obtenerAprobados', 'ProyectoController@getAllAcepted')->name('allAcepted');
 Route::get('/proyectos/deleteAprobacion', 'ProyectoController@deleteProyectoAprobado')->name('deleteProyAceptted');
 Route::get('getActualGestionProyectos', 'GestionProyectoController@getActualGestionProyectos')->name('getActualGestionProyectos');
+Route::get('changeFechaInicio', 'GestionProyectoController@cambiarFechaInicio')->name('changeFechaInicio');
 //Notificaciones
 
 Route::post('notifications/get', 'NotificationController@get');
