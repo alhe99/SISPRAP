@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-2 wow animated fadeInRight">
             <div class="form-group label-floating">
-              {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify"></i>', ['class' => 'animated4 btn btn-common btn-block','type'=>'submit','id' => 'btn-search']) !!}
+              {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify"></i>', ['class' => 'animated4 btn btn-primary btn-block','type'=>'submit','id' => 'btn-search']) !!}
             </div>
           </div>
         </div>
@@ -49,15 +49,15 @@
 @if (count($proyectos) > 0)
 <div class="row">
   @foreach ($proyectos as $p)
-  <div class="col-md-6 col-lg-4 col-xl-4 card-group wow animated fadeInUp"  onclick="redirectToCard('{{session('process_id')}}','{{$p->slug}}')" data-wow-delay=".3s">
+  <div class="col-md-6 col-lg-3 col-xl-3 card-group wow animated fadeInUp"  onclick="redirectToCard('{{session('process_id')}}','{{$p->slug}}')" data-wow-delay=".3s">
     <article class="single-blog-post" style="width: 100%; cursor: pointer;">
       <div class="featured-image">
         <a href="#">
           @if ($p->img == null)
           @if (session('process_id') == 1)
-          <img src="/images/img_projects/SS.png" alt="{{$p->nombre}}" >
+          <img src="/images/img_projects/SS.png" class="img-fluid" alt="{{$p->nombre}}" >
           @elseif(session('process_id') == 2)
-          <img src="/images/img_projects/PP.png" alt="{{$p->nombre}}">
+          <img src="/images/img_projects/PP.png" class="img-fluid" alt="{{$p->nombre}}">
           @endif
           @else
           <img src="/images/img_projects/{{$p->img}}" class="img-fluid" alt="{{$p->nombre}}" {{--  style="width: 100%; display: block;margin-left: auto;margin-right: auto;height:200px;" --}}>
@@ -65,7 +65,7 @@
         </a>
       </div>
       <div class="meta-tags">
-        <h2 class="subtitle">{{strtolower($p->nombre)}}</h2>
+        <h5 class="subtitle">{{strtolower($p->nombre)}}</h5>
         {{-- <p class="truncate">{!!substr($p->actividades,0,125)!!}</p> --}}
       </div>
       <div class="meta-tags">
