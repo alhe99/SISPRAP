@@ -1,0 +1,35 @@
+{
+    "alias": "optimus.phar",
+    "chmod": "0755",
+    "directories": [
+        "src"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": [
+                "bin",
+                "tests",
+                "doctrine",
+                "guzzle",
+                "myclabs",
+                "phpdocumentor",
+                "phpspec",
+                "phpunit",
+                "psr",
+                "satooshi",
+                "sebastian",
+                "webmozart",
+                "tedivm",
+                "seld",
+                "phine",
+                "justinrainbow"
+            ],
+            "in": "vendor"
+        }
+    ],
+    "git-version": "package_version",
+    "main": "bin/optimus",
+    "output": "optimus.phar",
+    "stub": true
+}

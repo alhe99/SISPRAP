@@ -57,7 +57,7 @@
                 <!-- <fade-loader :loading="true"></fade-loader> -->
               </div>
               <div class="col-md-6" :class="[proceso == 1 ? 'col-md-12' : 'col-md-6']">
-                <v-select ref="vselectProy" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
+                <v-select ref="vselectProy" :disabled="proceso==2 && carrera_selected == 0" v-model="proyecto_selectd" :options="arrayProyectos" placeholder="Seleccione un Proyecto">
                  <span slot="no-options">
                   No hay datos disponibles
                 </span>
@@ -292,22 +292,21 @@ export default {
       //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
       getProyectos() {
         let me = this;
-      //
-      if(this.proceso == 1){
-        var url = "GetProjectsByProcess?process_id=" + this.proceso+"&tipoProyecto=I";
-      }else if(this.proceso == 2){
-       var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value+"&tipoProyecto=I";
-     }
-     axios.get(url).then(function(response) {
-      me.loadSpinner = 1;
-      var respuesta = response.data;
-      me.arrayProyectos = respuesta;
-      me.loadSpinner = 0;
-    })
-     .catch(function(error) {
-      console.log(error);
-    });
-   },
+        me.loadSpinner = 1;
+        if(this.proceso == 1){
+          var url = "GetProjectsByProcess?process_id=" + this.proceso+"&tipoProyecto=I";
+        }else if(this.proceso == 2){
+         var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value+"&tipoProyecto=I";
+       }
+       axios.get(url).then(function(response) {
+        var respuesta = response.data;
+        me.arrayProyectos = respuesta;
+        me.loadSpinner = 0;
+      })
+       .catch(function(error) {
+        console.log(error);
+      });
+     },
     //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
     getNumeroPreinscripciones() {
       let me = this;
@@ -455,6 +454,7 @@ export default {
             "success"
             );
            me.loadSpinner = 0;
+           me.getNumeroPreinscripciones();
          })
           .catch(function(error) {
             console.log(error);
@@ -475,7 +475,7 @@ export default {
     //console.log(vselect);
     swal({
       title: "Seguro de Rechazar Preincripcion?",
-      type: "warning",
+      type: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -500,7 +500,7 @@ export default {
             "success"
             );
           me.loadSpinner = 0;
-          me.getNumeroPreinscripciones()
+          me.getNumeroPreinscripciones();
         })
         .catch(function(error) {
           console.log(error);
@@ -541,8 +541,10 @@ export default {
             "success"
             );
           me.loadSpinner = 0;
+          me.getNumeroPreinscripciones();
         })
         .catch(function(error) {
+          me.loadSpinner = 0;
           console.log(error);
         });
       } else if (
@@ -555,7 +557,7 @@ export default {
 },
 components: {},
 mounted() {
-  this.getProyectos();
+  // this.getProyectos();
       //this.contentProy = true;
     }
   };

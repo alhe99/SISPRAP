@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Estudiante;
 use App\Institucion;
 use App\Municipio;
 use App\Proyecto;
-use App\SupervisionProyecto;
 use App\SectorInstitucion;
+use App\SupervisionProyecto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use PDF;
 
 
@@ -200,25 +203,57 @@ class InstitucionController extends Controller
 
     // *********** METODOS UTLIZADOS PARA REPORTES *********** //
     //Obtener instituciones por municipio
-    function getReportByMunicipio(Request $request)
+    function getHojaSupervision(Request $request)
     {
-        $arrayMunicipios = explode(",", $request->muni_id);
-        $arrayInstitucion = [];
+        $testId = "10,2,8,1";
+        $arrayInstituciones = explode(",", $request->instituciones_id);
+        $arrayInstitucionGeneral = [];
+        $arrayInstitucionDetalle = [];
+        $procesoTitulo = "";
 
-        for ($i=0; $i < count($arrayMunicipios) ; $i++) {
-            $instituciones = Institucion::with(['supervisores','municipio.departamento'])->where([['estado',1],['municipio_id',$arrayMunicipios[$i]]])->whereYear('fecha_registro',$this->anio)->get();
+        for ($i=0; $i < count($arrayInstituciones) ; $i++) {
 
-            array_push($arrayInstitucion,$instituciones);
+            $arrayIteracion = [];
+            $institucion = Institucion::with(['supervisores','municipio.departamento'])->where('estado',1)->whereYear('fecha_registro',$this->anio)->find($arrayInstituciones[$i]);
+
+            $alumno = DB::table('instituciones')
+            ->join('procesos_instituciones', 'instituciones.id', '=', 'procesos_instituciones.institucion_id')
+            ->join('proyectos', 'instituciones.id', '=', 'proyectos.institucion_id')
+            ->join('gestion_proyectos', 'proyectos.id', '=', 'gestion_proyectos.proyecto_id')
+            ->join('estudiantes', 'estudiantes.id', '=', 'gestion_proyectos.estudiante_id')
+            ->select('estudiantes.nombre', 'estudiantes.apellido')
+            ->where([
+                ['instituciones.id',$arrayInstituciones[$i]],
+                ['instituciones.estado',1],
+                ['proyectos.estado',1],
+                ['gestion_proyectos.tipo_gp',$request->proceso_id],
+                ['gestion_proyectos.estado','I'],
+                ['procesos_instituciones.proceso_id',$request->proceso_id]
+            ])->get();
+
+            if($alumno->count() > 0){
+
+                $arrayIteracion[0] = $institucion->nombre;
+                $arrayIteracion[1] = $alumno;
+
+                array_push($arrayInstitucionDetalle,$arrayIteracion);
+            }
+            array_push($arrayInstitucionGeneral,$institucion);
         }
 
-        $pdf = PDF::loadView('reportes.hojaSupervisionGeneralByMunicipios',['instituciones'=>$arrayInstitucion,'anio'=>$this->anio])->setOption('footer-center', 'Página [page] de [topage]');
-        $pdf->setOption('margin-top',15);
-        $pdf->setOption('margin-bottom',15);
-        $pdf->setOption('margin-left',15);
-        $pdf->setOption('margin-right',15);
+        if($request->proceso_id == 1)
+            $procesoTitulo = "Servicio Social";
+        else
+            $procesoTitulo = "Práctica Profesional";
+
+        $headerHtml = view()->make('reportes.header_reportes',['anio'=>$this->anio,'proceso' => $procesoTitulo])->render();
+        $pdf = PDF::loadView('reportes.hojaSupervisionGeneralByMunicipios',['institucionesGeneral'=>$arrayInstitucionGeneral,'institucionDetalle'=> $arrayInstitucionDetalle,'proceso' => $procesoTitulo])->setOption('footer-center', '')->setOption('header-html',$headerHtml);;
+        $pdf->setOption('margin-top',43);
+        $pdf->setOption('margin-bottom',10);
+        $pdf->setOption('margin-left',10);
+        $pdf->setOption('margin-right',10);
         $pdf->setOption('orientation','landscape');
         return $pdf->stream('Hoja de Supervisión General '.date('Y-m-d').'.pdf');
-        // return $arrayMunicipios;
     }
 
     //obtener listado de instituciones por proceso
@@ -261,7 +296,7 @@ class InstitucionController extends Controller
         })->get();
 
         for ($i=0; $i < $instituciones->count() ; $i++) {
-            $test = 0;
+            $arrayInstitucion = [];
 
             $arrayInstitucion[0] = $instituciones[$i]->nombre;
             foreach ($instituciones[$i]->proyectosInsti as $key => $value) {
@@ -269,14 +304,13 @@ class InstitucionController extends Controller
                 if(!is_null($value->supervision)){
                      if($proceso == 2){
                          $carreraProy = Proyecto::findOrFail($value->id)->carre_proy[0]->nombre;
-                         $arrayInstitucion[1] = $test += count($value);
-                         $arrayInstitucion[$key+2] = array(
+                         $arrayInstitucion[] = array(
                            "nombreProyecto" => $value->nombre,
                            "fechaSupervision" => $value->supervision["fecha"],
                            "carreraProyecto" => $carreraProy
                        );
                      }else{
-                       $arrayInstitucion[$key+2] = array(
+                       $arrayInstitucion[] = array(
                          "nombreProyecto" => $value->nombre,
                          "fechaSupervision" => $value->supervision["fecha"],
                         );
@@ -293,13 +327,14 @@ class InstitucionController extends Controller
          $process = "Práctica Profesional";
 
         $date = date('Y-m-d');
-        $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervisiones, 'proceso' =>$process])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervisiones, 'proceso' =>$process,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
         $pdf->setOption('margin-top',20);
         $pdf->setOption('margin-bottom',20);
         $pdf->setOption('margin-left',20);
         $pdf->setOption('margin-right',20);
 
         return $pdf->stream('Reporte General de Supervisiones ' .$date.'.pdf');
+        // return $supervisiones;
     }
 
     function regSupervision(){
@@ -320,5 +355,33 @@ class InstitucionController extends Controller
             return response('existe', 200);
         }
     }
+
+    //listado de instituciones por su proceso y municipio
+    public function getInstitucionesByProcess(Request $request)
+    {
+        $proceso = $request->proceso_id;
+        $municipio_id = explode(',',$request->municipio_id);
+        $institucion = Institucion::select('id','nombre')->whereHas('procesos', function ($query) use ($proceso){
+        $query->where('proceso_id', $proceso);
+        })->whereHas('proyectosInsti',function($query) use($proceso){
+            $query->whereHas('gestionProyecto',function($query2) use($proceso){
+                $query2->where([
+                    ['tipo_gp',$proceso],
+                    ['estado','I']
+                ]);
+            });
+        })->whereIn('municipio_id',$municipio_id)->where('estado',1)->orderBy('instituciones.id','desc')->get();
+
+        $data = [];
+        foreach ($institucion as $key => $value) {
+            $data[$key] =[
+                'value'   => $value->id,
+                'label' => $value->nombre,
+            ];
+        }
+
+        return response()->json($data);
+    }
+
 }
 

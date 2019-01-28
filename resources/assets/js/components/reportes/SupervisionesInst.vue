@@ -31,7 +31,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
        <fieldset >
-        <legend class="text-center">Seleccione un proceso para ver las instituciones</legend>
+        <legend class="text-center">Seleccione un proceso para la generación del informe</legend>
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="row md-radio">
@@ -48,7 +48,7 @@
         </div>
       </fieldset>
       <div class="col-md-12 text-center"><br>
-        <button type="button" id="btnGenerar"  :disabled="validate == true" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
+        <button type="button" id="btnGenerar" :class="[validate == true ? 'disabled' : '']"  :disabled="validate == true" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
       </div>
     </div>
   </div>

@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-4 col-xs-12 welcome-column">
+                    <div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
                         @if ($proyecto->img == null)
                         @if (session('process_id') == 1)
                         <img src="/images/img_projects/SS.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
@@ -63,13 +63,13 @@
                             </div>
                             @else
                             <div class="col-md-6 text-center">
-                                <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                <br><button type="button" class="animated4 btn btn-primary" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
                               @else
                               <div class="col-md-6 text-center">
-                                <br><button style="cursor: pointer;margin-left:15px;" type="button" class="animated4 btn btn-common" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                <br><button  type="button" class="animated4 btn btn-primary" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif

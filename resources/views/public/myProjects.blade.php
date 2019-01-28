@@ -108,9 +108,11 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.value) {
+                        $('#preloader').fadeIn();
                         var url = route('deletePreRegister', [studen_id, project_id]);
                         axios.get(url).then(function(response) {
                             if(response.data == true){
+                                $('#preloader').fadeOut();
                                 toast({
                                     type: 'success',
                                     title: 'Preinscripción Eliminada Exitosamente'

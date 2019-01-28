@@ -28,7 +28,7 @@
             <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
             <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
             {{-- TRAER EL PROCESO PARA TERMINAR ESTE TITULO --}}
-            <p class="text-center font-weight-bold"><u>INFORME DE ALUMNOS QUE HAN INICIADO {{ $procesoTitulo }} DE {{ $anio}}</u></p><br>
+            <p class="text-center font-weight-bold"><u>INFORME DE ESTUDIANTES QUE HAN INICIADO {{ $procesoTitulo }} DE {{ $anio}}</u></p><br>
             @if ($tipo == 'M')
             <p class="text-center font-weight-bold"><u>MES(ES): {{ implode(", ", $meses) }}</u></strong></p>
             @elseif($tipo == 'T')

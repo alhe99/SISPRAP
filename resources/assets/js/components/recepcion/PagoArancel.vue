@@ -134,7 +134,7 @@
                                   <mdc-textfield type="text"
                                   class="col-md-12"
                                   id="txtNoFact"
-                                  v-mask="'####'"
+                                  v-mask="'#####'"
                                   label="Ingrese Número de Factura"
                                   v-model="no_fact"
                                   helptext="(Dato deacuerdo si es becado o no)" ></mdc-textfield>
@@ -283,47 +283,61 @@
     //guardar cambios del pago de arancel, automaticamente cambio de estado a cancelado
     savePayArancel(no_fac,estudiante_id,tipobeca_id,proceso_id) {
       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
-      swal({
-        title: "Segura que desea guardar los datos?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "button secondary",
-        cancelButtonClass: "button red",
-        buttonsStyling: false,
-        reverseButtons: true
-      }).then(result => {
-        if (result.value) {
-          let me = this;
-          me.loadSpinner = 1;
-          var url = "/recepcion/payArancel?noFac="+no_fac+"&estudiante_id="+estudiante_id+"&tipobeca_id="+tipobeca_id+"&proceso_id="+proceso_id;
-          axios.post(url)
-          .then(function(response) {
-            me.getAllStudens(me.carrera_selected.value,me.proceso,1,"");
-            swal(
-              "Hecho!",
-              "Apertura de expediente guardada con exito",
-              "success"
-              );
-            me.loadSpinner = 0;
-            me.cerrarModal();
-            me.buscar="";
-          })
-          .catch(function(error) {
-            me.loadSpinner = 0;
-            console.log(error);
-            toast({
-              type: 'danger',
-              title: 'Error! Intente Nuevamente'
+      let me = this;
+      axios.get('/recepcion/payArancel/validate/'+no_fac).then(function(response) {
+       var respuesta = response.data;
+       if(respuesta == 'existe'){
+        swal({
+          position: "center",
+          type: "warning",
+          title: "Número de factura existente, ingrese el correspondiente al pago",
+          showConfirmButton: true,
+          timer: 5000
+        });
+        me.no_fact = "";
+      }else {
+        swal({
+          title: "Seguro(a) que desea guardar los datos?",
+          type: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Aceptar!",
+          cancelButtonText: "Cancelar",
+          confirmButtonClass: "button secondary",
+          cancelButtonClass: "button red",
+          buttonsStyling: false,
+          reverseButtons: true
+        }).then(result => {
+          if (result.value) {
+            me.loadSpinner = 1;
+            var url = "/recepcion/payArancel?noFac="+no_fac+"&estudiante_id="+estudiante_id+"&tipobeca_id="+tipobeca_id+"&proceso_id="+proceso_id;
+            axios.post(url)
+            .then(function(response) {
+              me.getAllStudens(me.carrera_selected.value,me.proceso,1,"");
+              swal(
+                "Hecho!",
+                "Apertura de expediente guardada con exito",
+                "success"
+                );
+              me.loadSpinner = 0;
+              me.cerrarModal();
+              me.buscar="";
+            })
+            .catch(function(error) {
+              me.loadSpinner = 0;
+              console.log(error);
+              toast({
+                type: 'danger',
+                title: 'Error! Intente Nuevamente'
+              });
             });
-          });
-        } else if (
+          } else if (
 
-          result.dismiss === swal.DismissReason.cancel
-          ) {
+            result.dismiss === swal.DismissReason.cancel
+            ) {
+          }
+        });
         }
       });
     },

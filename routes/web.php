@@ -24,6 +24,8 @@ Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
 Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
+Route::get('getInstitucionesByProcess', 'InstitucionController@getInstitucionesByProcess')->name('getInstitucionesByProcess');
+
 
 Route::get('institucion/supervisor/index', 'SupervisorController@index')->name('getSupervisores');
 Route::post('institucion/supervisor/save', 'SupervisorController@store')->name('saveSupervisor');
@@ -92,6 +94,8 @@ Route::get('/perfil_proy',function(){return view('public.perfilProject');})->nam
 Route::get('public/downloadDocs','GestionProyectoController@downloadDocs')->name('downloadDocs');
 Route::get('/proyectos/obtenerAprobados', 'ProyectoController@getAllAcepted')->name('allAcepted');
 Route::get('/proyectos/deleteAprobacion', 'ProyectoController@deleteProyectoAprobado')->name('deleteProyAceptted');
+Route::get('getActualGestionProyectos', 'GestionProyectoController@getActualGestionProyectos')->name('getActualGestionProyectos');
+Route::get('changeFechaInicio', 'GestionProyectoController@cambiarFechaInicio')->name('changeFechaInicio');
 //Notificaciones
 
 Route::post('notifications/get', 'NotificationController@get');
@@ -118,7 +122,7 @@ Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistra
 
 
 //RUTAS PARA REPORTES
-Route::get('institucion/getHojaSupervision','InstitucionController@getReportByMunicipio')->name('hojasupervigen');
+Route::get('institucion/getHojaSupervision','InstitucionController@getHojaSupervision')->name('getHojaSupervision');
 Route::get('institucion/reporteGen','InstitucionController@getReportInstituciones')->name('generalInstitucion');
 Route::get('institucion/getSupervisiones','InstitucionController@getSupervisiones')->name('getReporteSupervisiones');
 Route::get('institucion/regSupervision','InstitucionController@regSupervision')->name('regSupervision');
@@ -137,6 +141,7 @@ Route::get('/gestionProy/reportes/procesosCulminados', 'GestionProyectoControlle
 Route::get('/admin/studentsHasPayArancel','EstudianteController@getStudentsHasPayArancel');
 Route::get('/becas/getAll','TipoBecaController@getAllBecas');
 Route::post('/recepcion/payArancel','PagoArancelController@payArancel');
+Route::get('/recepcion/payArancel/validate/{no_factura}','PagoArancelController@validateIfExiste')->name('validateIfExisteArancel');
 
 
 
@@ -166,11 +171,11 @@ Route::get('/backup','BackupController@backup');
 
 Route::get('/test', function () {
 
-    $test = "2019-01-21SS5c4605667c309.jpeg";
-    if(file_exists(public_path('images/img_projects/').$test))
-    {
-        unlink(public_path('images/img_projects/').$test);
-    }
+    // $test = "2019-01-21SS5c4605667c309.jpeg";
+    // if(file_exists(public_path('images/img_projects/').$test))
+    // {
+    //     unlink(public_path('images/img_projects/').$test);
+    // }
     // unlink(public_path('images/img_projects/').$test);
      // return "hecho";
 
@@ -276,5 +281,6 @@ Route::get('/test', function () {
     // $s = App\Proyecto::findOrFail($id)->supervision;
     // $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
     // return $img;
+    return Auth::user()->estudiante->gestionproyecto[0]->proyecto;
 
 });

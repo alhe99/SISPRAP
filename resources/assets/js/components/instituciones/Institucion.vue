@@ -551,7 +551,7 @@
                                        </div>
                                        <!--images con supervision-->
                                        <div v-else class="form-group">
-                                           
+
                                         <div class="uploader"
                                          @dragenter="OnDragEnter"
                                          @dragleave="OnDragLeave"
@@ -597,8 +597,8 @@
                                                                  v-for="(image, index) in arrayImagesUpd" :key="index">
                                                                   <label :for="(image, index)">
                                                               <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
-                                                            <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`"> 
-                                                                  </label>   
+                                                            <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
+                                                                  </label>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -981,7 +981,6 @@
       registrarInstitucion() {
         let me = this;
         me.loading = true;
-
         var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
         axios.get(url).then(function(response) {
          var respuesta = response.data;
@@ -1570,7 +1569,7 @@
         activarInstitucion(id) {
           swal({
             title: "Esta seguro de activar esta Institucion?",
-            type: "warning",
+            type: "question",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
