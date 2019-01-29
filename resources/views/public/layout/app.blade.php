@@ -8,22 +8,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>SISPRAP || Public</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/logo-favicon.png')}}">
+	<link rel="stylesheet" href="{{asset('css/publicTemplate.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/materialdesignicons.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/material.min.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/ripples.min.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/owl.carousel.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/magnific-popup.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/slicknav.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/animate.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/style.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/responsive.css')}}">
-	<link rel="stylesheet" href="{{asset('css/publicTemplate.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/normalize.min.css')}}">
-	<link rel="stylesheet" type="text/css" media="screen" href="{{asset('other/css/indigo.css')}}">
 	<link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
-
 	<style>
 </style>
 
@@ -364,20 +355,16 @@ aria-hidden="true">
 		</div>
 
 	</footer>
+	
 	<script src="{{asset('other/js/jquery-min.js')}}"></script>
 	<script src="{{asset('other/js/popper.min.js')}}"></script>
 	<script src="{{asset('other/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('other/js/jquery.mixitup.min.js')}}"></script>
 	<script src="{{asset('other/js/jquery.inview.js')}}"></script>
 	<script src="{{asset('other/js/jquery.counterup.min.js')}}"></script>
-	<script src="{{asset('other/js/scroll-top.js')}}"></script>
-	<script src="{{asset('other/js/smoothscroll.js')}}"></script>
 	<script src="{{asset('other/js/material.min.js')}}"></script>
-	<script src="{{asset('other/js/ripples.min.js')}}"></script>
-	<script src="{{asset('other/js/owl.carousel.min.js')}}"></script>
 	<script src="{{asset('other/js/form-validator.min.js')}}"></script>
 	<script src="{{asset('other/js/contact-form-script.min.js')}}"></script>
-	<script src="{{asset('other/js/wow.js')}}"></script>
 	<script src="{{asset('other/js/jquery.vide.js')}}"></script>
 	<script src="{{asset('other/js/jquery.magnific-popup.min.js')}}"></script>
 	<script src="{{asset('other/js/jquery.slicknav.js')}}"></script>
@@ -386,7 +373,6 @@ aria-hidden="true">
 	<script src="{{asset('js/publicTemplate.js')}}"></script>
 	<script src="{{asset('other/js/jquery.mask.min.js')}}"></script>
 	<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
-	<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
 	@routes @yield('page_script')
 </body>
 
