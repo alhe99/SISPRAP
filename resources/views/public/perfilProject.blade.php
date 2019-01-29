@@ -9,8 +9,8 @@
       </div>
       <div class="col-md-12">
         <div class="alert alert-info" role="alert">
-          <h5 class="alert-heading text-center">Porfavor completa los campos que esten vacios y sean de tipo obligatorio!</h5>
-          <p class="text-center">Los campos de tipo OBLIGATORIO tienen un <strong>*</strong></p>
+          <h5 class="alert-heading text-center font-weight-bold text-danger">Porfavor completa los campos que esten vacios y sean de tipo obligatorio!</h5>
+          <p class="text-center text-primary">Los campos de tipo OBLIGATORIO tienen un <strong>*</strong></p>
           <hr>
         </div>
       </div>
@@ -24,6 +24,7 @@
       <form class="shake" role="form" method="POST" id="perfilproy" name="perfilproy" data-toggle="validator" >
         @csrf
         <input type="hidden" name="student_id" id="student_id" value="{{Auth::user()->estudiante->id}}" >
+        <input type="hidden" id="validateFecha" value="">
         <input type="hidden" name="project_id" id="project_id" value="{{Auth::user()->estudiante->preinscripciones[0]->id == 0 ? '' : Auth::user()->estudiante->preinscripciones[0]->id  }}" >
         <div class="row">
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
@@ -160,7 +161,8 @@
         <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
           <div class="form-group control-floating">
             <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
-            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
+            <input class="form-control" @click="openDateIPicker" readonly placeholder="aaaa-mm-dd" id="fecha_ini"   name="fecha_ini" />
+            <small v-show="showMessage" class="text-center text-danger font-weight-bold">*Campo Obligatorio</small>
           </div>
         </div>
         <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
@@ -187,7 +189,7 @@
     <br>
     <div class="row text-center">
       <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
+        <button type="button" :disabled="validate"  @click.prevent="saveData({{session('student_id')}})" id="btnSave" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
       </div>
       <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
         <a  class="btn btn-danger text-capitalize text-white font-weight-bold" data-toggle="modal" data-target="#ModalCancelarPreins"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
@@ -230,21 +232,14 @@
       studentId: "",
       selectSuper: "",
       telSuper: "",
-      nombreSupervisor: ""
+      nombreSupervisor: "",
+      showMessage: false
     },
     computed:{
       validate: function(){
-        let me = this;
-        me.fechaI = $("#fecha_ini").val().trim();
-        me.hrsRea = $("#total_horas").val().trim();
-        if(
-         !(me.fechaI == "") ||
-         !(me.hrsRea == "") ||
-         !(me.nameSuper == "") ||
-         !(me.telSuper == "")){
-          return false;
-      }else{return true;}
-    },
+      // var datepicker = $('#fecha_ini').datepicker();
+      if (!(this.telSuper == '') && !(this.nombreSupervisor == '')){return false;}else{return true;}
+    }
   },
   watch:{
     selectSuper: function(){
@@ -252,76 +247,96 @@
       data = data.split(";");
       this.telSuper = data[1];
       this.nombreSupervisor = data[0];
-    }
+    },
   },
   methods : {
-    downloadPdfFromBase64(base64){
-      let a = document.createElement("a");
-      var name = "Perfil de proyecto " + new Date(Date.now()).toLocaleString();
-      a.href = "data:application/octet-stream;base64,"+base64;
-      a.download = name+".pdf"
-      a.click();
-    },
-    saveData: function (){
-     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-     swal({
-      title: 'Seguro de Guardar los datos?',
-      text: "Una vez realizado quedaras registrado a este proyecto!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.value) {
-        let me = this;
-        $('#preloader').fadeIn();
-        me.fechaI = $("#fecha_ini").val().trim();
-        me.studentId = $("#student_id").val().trim();
-        me.projectId = $("#project_id").val().trim();
-        me.hrsRea = $("#total_horas").val().trim();
+    openDateIPicker(){
+     var datepicker = $('#fecha_ini').datepicker();
+     datepicker.open();
+   },
+   test(){
+    alert($('#validateFecha').val())
+   },
+   downloadPdfFromBase64(base64){
+    let a = document.createElement("a");
+    var name = "Perfil de proyecto " + new Date(Date.now()).toLocaleString();
+    a.href = "data:application/octet-stream;base64,"+base64;
+    a.download = name+".pdf"
+    a.click();
+  },
+  saveData: function (){
+   const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+   var datepicker = $('#fecha_ini').datepicker();
+   if(datepicker.value() == ''){
+    this.showMessage = true;
+   }else{
+         this.showMessage = false;
+         swal({
+          title: 'Seguro de Guardar los datos?',
+          text: "Una vez realizado quedaras registrado a este proyecto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Aceptar!',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.value) {
+            let me = this;
+            // $('#preloader').fadeIn();
+            me.fechaI = $("#fecha_ini").val().trim();
+            me.studentId = $("#student_id").val().trim();
+            me.projectId = $("#project_id").val().trim();
+            me.hrsRea = $("#total_horas").val().trim();
 
-        var url = route('save_perfil', {
-          "fechaini": this.fechaI,
-          "hrsreal":this.hrsRea,
-          "student_id":this.studentId,
-          "proyecto_id":this.projectId,
-          "super_name":this.nombreSupervisor,
-          "super_cell":this.telSuper });
+            var url = route('save_perfil', {
+              "fechaini": this.fechaI,
+              "hrsreal":this.hrsRea,
+              "student_id":this.studentId,
+              "proyecto_id":this.projectId,
+              "super_name":this.nombreSupervisor,
+              "super_cell":this.telSuper });
 
-        axios.get(url).then(function(response) {
-          var respuesta = response.data;
-          me.downloadPdfFromBase64(respuesta);
-          $('#preloader').fadeOut();
-          swal({
-            position: "center",
-            type: "success",
-            title: "Datos Guardados Correctamente",
-            showConfirmButton: true,
-            width: '350px',
-          }).then(function(result){
-            window.location.href = route('proyects_now',[me.studentId]);
-          });
+            axios.get(url).then(function(response) {
+              var respuesta = response.data;
+              me.downloadPdfFromBase64(respuesta);
+              // $('#preloader').fadeOut();
+              swal({
+                position: "center",
+                type: "success",
+                title: "Datos Guardados Correctamente",
+                showConfirmButton: true,
+                width: '350px',
+              }).then(function(result){
+                // window.location.href = route('proyects_now',[me.studentId]);
+              });
 
-        }).catch(function(error) {
-          console.log(error);
-          toast({
-            type: 'danger',
-            title: 'Error! Intente Nuevamente'
-          });
-        });
+            }).catch(function(error) {
+              console.log(error);
+              toast({
+                type: 'danger',
+                title: 'Error! Intente Nuevamente'
+              });
+            });
+          }
+        })
       }
-    })
-  }
+   }
 },
 mounted(){
- $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
- $('#total_horas').mask('###', {reverse: true});
- $("#fecha_ini").datepicker({
-  locale: 'es-es',
-  minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-  format: 'yyyy-mm-dd'
+  let me = this;
+  $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
+  $('#total_horas').mask('###', {reverse: true});
+  $("#fecha_ini").datepicker({
+    locale: 'es-es',
+    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+    format: 'yyyy-mm-dd',
+    change: function (e) {
+      var datepicker = $('#fecha_ini').datepicker();
+      $("#validateFecha").val(datepicker.value())
+      this.fechaI = datepicker.value();
+      if ((this.name_supervisor != '') && (this.telSuper != '')){$("btnSave").prop('disabled',false)}
+    }
 });
 }
 })

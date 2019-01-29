@@ -47,6 +47,9 @@ Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
 Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');
 
 Route::get('carreras/GetCarreras', 'CarreraController@GetCarreras');
+Route::get('/carrera', 'CarreraController@index');
+Route::put('/carrera/actualizar', 'CarreraController@update');
+Route::get('/carrera/validate','CarreraController@validateCarrera')->name('validateCarrera');
 
 Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
 
@@ -67,7 +70,7 @@ Route::put('/supervision/actualizar', 'SupervisionController@update');
 Route::get('proyectos/externos', 'ProyectoController@getExternalProjects');
 Route::get('proyectos/externos/asignar', 'ProyectoController@asignarProyectoExterno')->name('asinarProyectoExterno');
 Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
-
+Route::get('getFullInfo','GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
 Route::get('/permiso', 'PermisoController@index');
 
 //usuarios
