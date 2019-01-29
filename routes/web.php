@@ -47,6 +47,9 @@ Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
 Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');
 
 Route::get('carreras/GetCarreras', 'CarreraController@GetCarreras');
+Route::get('/carrera', 'CarreraController@index');
+Route::put('/carrera/actualizar', 'CarreraController@update');
+Route::get('/carrera/validate','CarreraController@validateCarrera')->name('validateCarrera');
 
 Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
 
