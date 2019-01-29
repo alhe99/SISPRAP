@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Constancia {{ $proceso }}</title>
-    <link rel="stylesheet" href="{{asset('css/bmdf.css')}}">
+    <link rel="stylesheet" href="{{public_path('css/bmdf.css')}}">
     <style>
     .text-jus {
       text-align: justify;
@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <table class="col-md-12" border="1" cellpadding="2" cellspacing="1">
                     <td width="8">
-                        <img src="{{ asset('images/img_reportes/logopequeño.png') }}">
+                        <img src="{{ public_path('images/img_reportes/logopequeño.png') }}">
                     </td>
                     <td class="text-center font-weight-bold ">
                         ASOCIACION AGAPE <br> DE EL SALVADOR
@@ -104,7 +104,7 @@
                             </span>
                         </td>
                         <td>
-                            <img  src="{{ asset('images/img_reportes/cuadro.png') }}">
+                            <img  src="{{ public_path('images/img_reportes/cuadro.png') }}">
                         </td>
                     </tr>
                 </table>

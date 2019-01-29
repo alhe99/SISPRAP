@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Estudiantes que Iniciarion Procesos</title>
-    <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
+    <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ public_path('images/logo-favicon.png') }}">
     <style>
     .bg-header{background-color:#F8EFB6}
     .font-normal{font-weight: normal;}
@@ -18,7 +18,7 @@
     <header>
         <div class="row text-center">
             <div class="col-md-8">
-               <img class="img-fluid" width="450" src="{{asset('images/header_reportes.PNG')}}">
+               <img class="img-fluid" width="450" src="{{public_path('images/header_reportes.PNG')}}">
            </div>
        </div>
    </header>
