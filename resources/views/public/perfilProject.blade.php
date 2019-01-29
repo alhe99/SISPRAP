@@ -160,7 +160,7 @@
         <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
           <div class="form-group control-floating">
             <label class="control-label" for="fecha_fin">Fecha Inicio*</label>
-            <input class="form-control" placeholder="aaaa-mm-dd" id="fecha_ini" disabled  name="fecha_ini" />
+            <input class="form-control" @click="openDateIPicker" readonly placeholder="aaaa-mm-dd" id="fecha_ini"   name="fecha_ini" />
           </div>
         </div>
         <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
@@ -187,7 +187,7 @@
     <br>
     <div class="row text-center">
       <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
-        <button type="button" :disabled="validate" @click.prevent="saveData({{session('student_id')}})" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
+        <button type="button" :disabled="validate"  @click.prevent="test" id="btnSave" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
       </div>
       <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
         <a  class="btn btn-danger text-capitalize text-white font-weight-bold" data-toggle="modal" data-target="#ModalCancelarPreins"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
@@ -233,18 +233,10 @@
       nombreSupervisor: ""
     },
     computed:{
-      validate: function(){
-        let me = this;
-        me.fechaI = $("#fecha_ini").val().trim();
-        me.hrsRea = $("#total_horas").val().trim();
-        if(
-         !(me.fechaI == "") ||
-         !(me.hrsRea == "") ||
-         !(me.nameSuper == "") ||
-         !(me.telSuper == "")){
-          return false;
-      }else{return true;}
-    },
+    validate: function(){
+      // var datepicker = $('#fecha_ini').datepicker();
+     if (!(this.telSuper == '') && !(this.nombreSupervisor == '')){return false;}else{return true;}
+    }
   },
   watch:{
     selectSuper: function(){
@@ -255,6 +247,10 @@
     }
   },
   methods : {
+    openDateIPicker(){
+       var datepicker = $('#fecha_ini').datepicker();
+       datepicker.open();
+    },
     downloadPdfFromBase64(base64){
       let a = document.createElement("a");
       var name = "Perfil de proyecto " + new Date(Date.now()).toLocaleString();
@@ -276,7 +272,7 @@
     }).then((result) => {
       if (result.value) {
         let me = this;
-        $('#preloader').fadeIn();
+        // $('#preloader').fadeIn();
         me.fechaI = $("#fecha_ini").val().trim();
         me.studentId = $("#student_id").val().trim();
         me.projectId = $("#project_id").val().trim();
@@ -293,7 +289,7 @@
         axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.downloadPdfFromBase64(respuesta);
-          $('#preloader').fadeOut();
+          // $('#preloader').fadeOut();
           swal({
             position: "center",
             type: "success",
@@ -301,7 +297,7 @@
             showConfirmButton: true,
             width: '350px',
           }).then(function(result){
-            window.location.href = route('proyects_now',[me.studentId]);
+            // window.location.href = route('proyects_now',[me.studentId]);
           });
 
         }).catch(function(error) {
@@ -316,13 +312,19 @@
   }
 },
 mounted(){
- $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
- $('#total_horas').mask('###', {reverse: true});
- $("#fecha_ini").datepicker({
-  locale: 'es-es',
-  minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-  format: 'yyyy-mm-dd'
-});
+  let me = this;
+  $('#tel_supervisor').mask('########', {reverse: true},{maxlength:false});
+  $('#total_horas').mask('###', {reverse: true});
+  $("#fecha_ini").datepicker({
+    locale: 'es-es',
+    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+    format: 'yyyy-mm-dd',
+    change: function (e) {
+        var datepicker = $('#fecha_ini').datepicker();
+        this.fechaI = datepicker.value();
+        if ((this.name_supervisor != '') && (this.telSuper != '')){$("btnSave").prop('disabled',false)}
+   }
+  });
 }
 })
 

@@ -147,9 +147,9 @@ class GestionProyectoController extends Controller
                 if ($proceso == 1) {$control_proy->save(public_path('docs/docs_ss/')."CPSS-".$carnet);}
                 else{$control_proy->save(public_path('docs/docs_pp/')."CPPP-".$carnet);}
 
-                DB::table('preinscripciones_proyectos')->where([
-                    ['estudiante_id', $request->student_id],
-                    ['estado', 'F']])->delete();
+                // DB::table('preinscripciones_proyectos')->where([
+                //     ['estudiante_id', $request->student_id],
+                //     ['estado', 'F']])->delete();
 
                 if ($proceso == 1) { $ruta_img = public_path('docs/docs_ss/')."PSS-".$carnet.".jpg";}
                 else{$ruta_img = public_path('docs/docs_pp/')."PPP-".$carnet.".jpg";}
@@ -160,9 +160,9 @@ class GestionProyectoController extends Controller
                 $pdf->setOption('margin-left',0);
                 $pdf->setOption('margin-right',0);
 
-                DB::commit();
-                return base64_encode($pdf->download('Perfil de proyecto.pdf'));
-                // return $pdf->stream('Perfil de proyecto.pdf');
+                // DB::commit();
+                // return base64_encode($pdf->download('Perfil de proyecto.pdf'));
+                return $pdf->stream('Perfil de proyecto.pdf');
             }
         } catch (Exception $e) {
           DB::rollBack();
