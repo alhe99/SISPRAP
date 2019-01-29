@@ -225,7 +225,7 @@ class GestionProyectoController extends Controller
     // Metodo que devuelve todos los proyectos que ha realizado un alumno en su proceso correspondiente
     public function getGestionProyectoByStudent($student_id){
 
-        $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion'])->whereHas('estudiante', function ($query) use ($student_id) {
+        $gestionp = GestionProyecto::with(['proyecto.institucion'])->whereHas('estudiante', function ($query) use ($student_id) {
             $query->where('estudiantes.id',$student_id);
         })->get();
 
@@ -2104,5 +2104,13 @@ class GestionProyectoController extends Controller
             $estudiante->update();
         }
         $gestion->update();
+    }
+
+    public function getFullDataByGestion(Request $request){
+        $gestionId = $request->gestionId;
+
+        $data = GestionProyecto::with(['proyecto.institucion','documentos_entrega'])->find($gestionId);
+        $documentos = Documento::all();
+        return view('public.detailGestion',compact(['data','documentos']));
     }
 }

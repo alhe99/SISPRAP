@@ -5,111 +5,67 @@
     <h1 class="section-title">PROYECTOS EN MARCHA</h1>
   </div>
 </div>
-<div class="container">
+<div class="container" id="table">
   <div class="card wow animated fadeInLeft">
     <div class="card-body">
-      <h5 class="text-center">
-        Proyecto que actualmente estas realizando de tu proceso de:
-        <strong style="font-weight:bold">
-          {{session('process_name')}}
-        </strong>
-      </h5>
+      <h4 class="text-center">
+        Listado de proyectos que has realizado deacuerdo a tus proceso:
+      </h4>
     </div>
   </div>
   <br><br>
-  <div class="card wow animated fadeInLeft">
-    <div class="card-body">
-      <div class="row">
+  @if ($gestionp->count() > 0)
+    <div class="card wow animated fadeInLeft">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="py-3 text-center font-bold font-up blue-text">Tus Proyectos</h2>
+          </div>
+        </div>
         <div class="col-md-12">
-          <h2 class="py-3 text-center font-bold font-up blue-text">Tus Proyectos</h2>
+          <table class="table table-hover table-responsive mb-0 table-striped">
+            <thead>
+              <tr>
+                <th scope="row">No</th>
+                <th class="th-lg">Proyecto</th>
+                <th class="th-lg text-center">Proceso</th>
+                <th class="th-lg text-center">Fecha de Inicio</th>
+                <th class="th-lg text-center">Fecha de Finalización</th>
+                <th class="th-lg text-center">Estado</th>
+                <th class="th-lg text-center">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($gestionp as $item)
+              <tr>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td class="text-truncate">{{substr($item->proyecto->nombre,0,25)}}...</td>
+                <td class="text-center">{{ $item->tipo_gp == '1' ? 'Servicio Social' : 'Práctica Profesional'  }}</td>
+                <td class="text-center">{{$item->fecha_inicio}}</td>
+                <td class="text-center">{{ $item->fecha_fin == null ? 'Indefinida...' : $item->fecha_fin }}</td>
+                @if ($item->estado == "I")
+                <td class="text-center"><h3 class="badge badge-primary">Iniciado</h3></td>
+                @elseif($item->estado == "P")
+                <td class="text-center"><h3 class="badge badge-secondary">En Proceso</h3></td>
+                @elseif($item->estado == "F")
+                <td class="text-center"><h3 class="badge badge-success">Finalizado</h3></td>
+                @endif
+                <td class="text-center">
+                  <a href="{{route('getFullDataByGestion', array("gestionId" => $item->id))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información"><i class="fas fa-plus-circle"></i></a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="col-md-12">
-        <table class="table table-hover table-responsive mb-0">
-          <thead>
-            <tr>
-              <th scope="row">#</th>
-              <th class="th-lg"><a>Proyecto</a></th>
-              <th class="th-lg">Fecha de Inicio</a></th>
-              <th class="th-lg">Fecha de Finalización</a></th>
-              <th class="th-lg">Estado</a></th>
-              <th class="th-lg text-center">Opciones</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($gestionp as $i)
-            <tr>
-              <th scope="row">{{$loop->iteration}}</th>
-              <td>{{$i->proyecto["nombre"]}}</td>
-              <td>{{$i->fecha_inicio}}</td>
-              @if ($i->fecha_fin == null)
-              <td>Indefinida</td>
-              @else
-              <td>{{$i->fecha_fin}}</td>
-              @endif
-              @if ($i->estado == "I")
-              <td>Iniciado</td>
-              @elseif($i->estado == "P")
-              <td>En Proceso</td>
-              @elseif($i->estado == "F")
-              <td>Finalizado</td>
-              @endif
-              <td class="text-center">
-                <a href="{{route('viewProject', array(session('process_id'),$i->proyecto["slug"]))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información"><i class="fas fa-plus-circle"></i></a>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
     </div>
+  @else
+  <div class="alert alert-primary" role="alert">
+    <h5 class="font-weight-bold m-2">¡No tienes datos de proyectos que hayas realizado!</h5>
   </div>
+  @endif
 </div>
-@endsection
-@section('page_script')
-<script type="text/javascript">
-  var app = new Vue({
-    el : '#projects',
-    data : {
-
-    },
-    methods : {
-      resetPreRegistration: function (studen_id,project_id,process_id){
-        const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
-        swal({
-          title: 'Esta seguro de Eliminar esta preinscripcion?',
-          text: "Tu solicitud al proyecto sera cancelada totalmente",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Aceptar!',
-          cancelButtonText: 'Cancelar'
-        }).then((result) => {
-          if (result.value) {
-            var url = route('deletePreRegister', [studen_id, project_id]);
-            axios.get(url).then(function(response) {
-                        //if(response.data == true){
-                          toast({
-                            type: 'success',
-                            title: 'Preinscripción Eliminada Exitosamente'
-                          });
-                          setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
-                        //}
-
-                      }).catch(function(error) {
-                        console.log(error);
-                        toast({
-                          type: 'danger',
-                          title: 'Error! Intente Nuevamente'
-                        });
-                      });
-                    }
-                  })
-      }
-    }
-  })
-</script>
 @endsection
 
 

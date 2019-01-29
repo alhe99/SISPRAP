@@ -60,7 +60,7 @@
 						</li>
 						<li class="nav-item dropdown active">
 							<a class="nav-link" href="#">
-								Bienvenido(a): {{Auth::user()->estudiante->nombre}}
+								Bienvenido(a): {{substr(Auth::user()->estudiante->nombre,0,strpos(Auth::user()->estudiante->nombre," "))." ".substr(Auth::user()->estudiante->apellido,0,strpos(Auth::user()->estudiante->apellido," "))}}
 							</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesion </a>

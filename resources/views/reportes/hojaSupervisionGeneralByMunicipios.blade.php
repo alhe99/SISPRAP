@@ -13,7 +13,6 @@
     table{width:100%;page-break-inside: avoid;}
     thead { display : table-row-group ;}
     tfoot { display : table-row-group }
-    tr { page-break-inside : avoid }
 </style>
 
 </head>

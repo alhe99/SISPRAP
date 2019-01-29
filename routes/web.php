@@ -67,7 +67,7 @@ Route::put('/supervision/actualizar', 'SupervisionController@update');
 Route::get('proyectos/externos', 'ProyectoController@getExternalProjects');
 Route::get('proyectos/externos/asignar', 'ProyectoController@asignarProyectoExterno')->name('asinarProyectoExterno');
 Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
-
+Route::get('getFullInfo','GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
 Route::get('/permiso', 'PermisoController@index');
 
 //usuarios
