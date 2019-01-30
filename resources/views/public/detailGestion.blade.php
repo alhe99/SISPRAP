@@ -62,6 +62,7 @@
 									@foreach ($data->documentos_entrega as $documentos)
 									<div class="col-md-3">
 										<div class="tab-pane fade show active" id="business" role="tabpanel">
+											<br>
 											<div class="card text-center">
 												@if(isset($documentos->pivot->gestion_proyecto_id))
 												<div class="card-header">

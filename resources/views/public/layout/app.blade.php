@@ -289,6 +289,7 @@ aria-hidden="true">
 	<script src="{{asset('js/publicTemplate.js')}}"></script>
 	<script src="{{asset('other/js/jquery.mask.min.js')}}"></script>
 	<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
+	<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
 	@routes @yield('page_script')
 </body>
 
