@@ -15,9 +15,6 @@
 	<link rel="stylesheet" href="{{asset('other/css/material.min.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/style.css')}}">
 	<link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
-	<style>
-</style>
-
 </head>
 
 <body>
@@ -30,22 +27,22 @@
 				<div class="collapse navbar-collapse" id="main-navbar">
 					<ul class="navbar-nav mr-auto w-100 justify-content-end">
 						<li class="nav-item active">
-							<a class="nav-link" href="{{route('public')}}">
+							<a class="nav-link" href="{{route('public')}}"><i class="mdi mdi-home-circle mdi-18px"></i>
 								INICIO
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}">
+							<a class="nav-link" href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}"><i class="mdi mdi-account-edit mdi-18px"></i>
 								PREINSCRIPCIONES
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{route('proyects_now',array(session('student_id'))) }}">
+							<a class="nav-link" href="{{route('proyects_now',array(session('student_id'))) }}"><i class="mdi mdi-folder-account mdi-18px"></i>
 								MIS PROYECTOS
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" target="_black" href="{{asset('manual/MANUAL.pdf')}}">
+							<a class="nav-link" target="_black" href="{{asset('manual/MANUAL.pdf')}}"><i class="mdi mdi-book-open-page-variant mdi-18px"></i>
 								<ins>MANUAL</ins>
 							</a>
 						</li>
@@ -122,9 +119,6 @@
 			@endif
 		</i>
 	</button>
-	{{-- <button class="btn BF5 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#exampleModal2" style="border-radius: 50px;cursor: pointer;">
-		<i class="far fa-folder-open fa-sm"></i>
-	</button> --}}
 </div>
 <div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 aria-hidden="true">
@@ -165,84 +159,6 @@ aria-hidden="true">
 </div>
 
 @include('public.modalDocumentos')
-
-{{-- <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title text-center" id="exampleModalLongTitle" style="display: block; margin-left: auto; margin-right: auto;">Actualiza tus datos</h5>
-				<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="row ">
-					<div class="col-md-12">
-						<div class="form-group label-floating">
-							<label class="control-label" for="estudiante_telefono">Teléfono</label>
-							<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="{{Auth::user()->estudiante->telefono}}">
-						</div>
-					</div>
-				</div>
-				<div class="row ">
-					<div class="col-md-12">
-						<div class="form-group label-floating">
-							<label class="control-label" for="estudiante_email">Correo electrónico</label>
-							<input class="form-control" id="estudiante_email" type="text" name="estudiante_email" value="{{Auth::user()->estudiante->email}}">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<button class="btn btn-outline-info text-center btn-lg btn-block" type="button" data-toggle="collapse" style="display: block; margin-left: auto; margin-right: auto; cursor:pointer;" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
-							Cambiar contraseña
-						</button>
-						<div class="row">
-							<div class="col-md-6" data-wow-delay=".1s">
-								<div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
-									<label class="control-label" for="estudiante_contraseña">Nueva contraseña</label>
-									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
-								</div>
-							</div>
-							<div class="col-md-6" data-wow-delay=".1s">
-								<div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-									<label class="control-label" for="estudiante_contraseña_conf">Confirmar contraseña</label>
-									<input class="form-control" id="estudiante_telefono" type="text" name="estudiante_telefono" value="">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-6" data-wow-delay=".1s">
-								<div class="form-group">
-									<button type="button" class="btn btn-primary btn-block" style="cursor: pointer;" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
-								</div>
-							</div>
-							<div class="col-md-6" data-wow-delay=".1s">
-								<div class="form-group">
-									<button type="button" class="btn btn-danger btn-block text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-primary btn-block" style="cursor: pointer;" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
-				</div>
-				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-danger btn-block text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div> --}}
-
 <section>
 	<div id="carouselExampleIndicators" class="carousel slide wow animated fadeInUp" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -307,7 +223,7 @@ aria-hidden="true">
 					</button>
 				</div>
 				<div class="modal-body text-center">
-					¿Esta seguro de cerrar Sesión?
+					¿Esta seguro(a) de cerrar Sesión?
 				</div>
 				<div class="contenido text-center">
 					<i class="fas fa-question fa-3x"></i>
