@@ -1303,16 +1303,16 @@ cerrarModalSupervisores() {
 },
 registrarSupervision() {
   let me = this;
-        //me.loading = true;
+        me.loading = true;
         axios
         .post("/proyecto/registrar/supervision", {
           proyecto_id: this.proyecto_id,
           observacion: this.observacion,
-          fecha: this.date.substring(0, 10),
+          fecha: $("#fechaSupervision").val().trim(),
           imagenes: this.images
         })
         .then(function(response) {
-          //me.loading = false;
+          me.loading = false;
           swal({
             position: "center",
             type: "success",
