@@ -49,7 +49,7 @@
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" target="_black" href="{{asset('manual/MANUAL.pdf')}}"><i class="mdi mdi-book-open-page-variant mdi-18px"></i>
+							<a class="nav-link" target="_black" href="{{asset('manual/manual_public_sisprap.pdf')}}"><i class="mdi mdi-book-open-page-variant mdi-18px"></i>
 								<ins>MANUAL</ins>
 							</a>
 						</li>
@@ -84,7 +84,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{{asset('manual/MANUAL.pdf')}}" target="_black">
+					<a href="{{asset('manual/manual_public_sisprap.pdf')}}" target="_black">
 						<ins>MANUAL</ins>
 					</a>
 				</li>
