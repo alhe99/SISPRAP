@@ -254,9 +254,6 @@
      var datepicker = $('#fecha_ini').datepicker();
      datepicker.open();
    },
-   test(){
-    alert($('#validateFecha').val())
-   },
    downloadPdfFromBase64(base64){
     let a = document.createElement("a");
     var name = "Perfil de proyecto " + new Date(Date.now()).toLocaleString();
@@ -283,7 +280,7 @@
         }).then((result) => {
           if (result.value) {
             let me = this;
-            // $('#preloader').fadeIn();
+            $('#preloader').fadeIn();
             me.fechaI = $("#fecha_ini").val().trim();
             me.studentId = $("#student_id").val().trim();
             me.projectId = $("#project_id").val().trim();
@@ -300,7 +297,7 @@
             axios.get(url).then(function(response) {
               var respuesta = response.data;
               me.downloadPdfFromBase64(respuesta);
-              // $('#preloader').fadeOut();
+              $('#preloader').fadeOut();
               swal({
                 position: "center",
                 type: "success",
@@ -308,7 +305,7 @@
                 showConfirmButton: true,
                 width: '350px',
               }).then(function(result){
-                // window.location.href = route('proyects_now',[me.studentId]);
+                window.location.href = route('proyects_now',[me.studentId]);
               });
 
             }).catch(function(error) {

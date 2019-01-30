@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reporte General de Supervisiones de {{ $proceso }}</title>
-    <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
+    <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
     <style>
     .bg-header {
         background-color: #F8EFB6
@@ -21,7 +21,7 @@
     <header>
         <div class="row text-center">
             <div class="col-md-8">
-                <img class="img-fluid" width="450" src="{{asset('images/header_reportes.PNG')}}">
+                <img class="img-fluid" width="450" src="{{public_path('images/header_reportes.PNG')}}">
             </div>
         </div>
         <div>

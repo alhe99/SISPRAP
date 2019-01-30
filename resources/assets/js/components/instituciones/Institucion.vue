@@ -108,96 +108,96 @@
  </div>
 </div>
 </div>
-  <!-- MODAL PARA SUPERVISORES -->
-  <div class="modal fade" :class="{'mostrar' : modalSupervisores }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-white">{{ "Supervisores de " + tituloModalSupervisores }}</h4>
-        <button type="button" @click="cerrarModalSupervisores()" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true" class="text-white">&times;</span>
-       </button>
-     </div>
-     <div class="modal-body">
-      <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Agregar Supervisores</button>
+<!-- MODAL PARA SUPERVISORES -->
+<div class="modal fade" :class="{'mostrar' : modalSupervisores }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title text-white">{{ "Supervisores de " + tituloModalSupervisores }}</h4>
+      <button type="button" @click="cerrarModalSupervisores()" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true" class="text-white">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body">
+    <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Agregar Supervisores</button>
 
-      <div class="collapse" ref="divCollapse" id="collapseExample">
-          <fieldset>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="row m-1">
-                  <div class="col-md-12 form-group">
-                    <label class="font-weight-bold" for="">Ingrese Nombre*</label>
-                    <input class="form-control" type="text" v-model="nombreSupervisor">
-                  </div>
-                  <div class="col-md-12 form-group">
-                    <label class="font-weight-bold" for="">Ingrese Teléfono</label>
-                    <input class="form-control" type="text"  v-mask="'########'" v-model="telefonoSupervisor">
-                  </div>
-                  <div class="col-md-12 text-right">
-                    <button v-if="!updSupervisor" type="button" @click="registrarSupervisor" class="button blue text-right" :class="[nombreSupervisor == '' ? 'disabled' : '']" :disabled="nombreSupervisor == '' ">Guardar Datos</button>
-
-                    <button v-if="updSupervisor" type="button" @click="actualizarSupervisor" class="button blue text-right" :class="[nombreSupervisor == '' ? 'disabled' : '']" :disabled="nombreSupervisor == '' ">Actualizar Información</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div><br>
-
-       <fieldset>
+    <div class="collapse" ref="divCollapse" id="collapseExample">
+      <fieldset>
         <div class="panel panel-default">
           <div class="panel-body">
-             <div class="row">
-               <div class="col-md-12 mt-3">
-                  <h4 class="align-baseline font-weight-bold">Listado de Supervisores Registrados</h4><br>
-               </div>
-               <div class="col-md-12">
-                   <div class="table-responsive">
-                     <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
-                      <thead class="thead-primary">
-                       <tr>
-                         <th>Nombre</th>
-                         <th class="text-center">Teléfono</th>
-                         <th class="text-center">Acciones</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                      <tr v-if="arraySupervisores.length > 0" v-for="item in arraySupervisores" :key="item.id">
-                        <th v-text="item.nombre"></th>
-                        <th v-text="item.no_telefono == null ? '------' : item.no_telefono " class="text-center"></th>
-                        <th class="text-center">
-                           <button type="button" class="button blue" @click="editarSupervisor(item)" data-toggle="tooltip" title="Editar Supervisor"><i class="mdi mdi-border-color"></i></button>
-                           <button type="button" class="button red" @click="deleteSupervisor(item.id)" data-toggle="tooltip" title="Eliminar Supervisor"><i class="mdi mdi-delete"></i></button>
-                        </th>
-                      </tr>
-                     </tbody>
-                   </table>
-                 </div>
-                 <div v-if="arraySupervisores.length == 0" class="row">
-                  <div class="col-md-12 text-center">
-                    <div class="alert font-weight-bold alert-warning h6 text-center col-md-12" role="alert">
-                      No hay supervisores registrados en esta institución
-                    </div>
-                  </div>
-                </div>
-               </div>
-             </div>
+            <div class="row m-1">
+              <div class="col-md-12 form-group">
+                <label class="font-weight-bold" for="">Ingrese Nombre*</label>
+                <input class="form-control" type="text" v-model="nombreSupervisor">
+              </div>
+              <div class="col-md-12 form-group">
+                <label class="font-weight-bold" for="">Ingrese Teléfono</label>
+                <input class="form-control" type="text"  v-mask="'########'" v-model="telefonoSupervisor">
+              </div>
+              <div class="col-md-12 text-right">
+                <button v-if="!updSupervisor" type="button" @click="registrarSupervisor" class="button blue text-right" :class="[nombreSupervisor == '' ? 'disabled' : '']" :disabled="nombreSupervisor == '' ">Guardar Datos</button>
+
+                <button v-if="updSupervisor" type="button" @click="actualizarSupervisor" class="button blue text-right" :class="[nombreSupervisor == '' ? 'disabled' : '']" :disabled="nombreSupervisor == '' ">Actualizar Información</button>
+              </div>
+            </div>
           </div>
         </div>
       </fieldset>
-     </div>
-     <div class="modal-footer">
-      <div class="row">
-        <div class="col-md-12">
-          <button type="button" @click="cerrarModalSupervisores()" class="btn btn-danger">Cerrar</button>
+    </div><br>
+
+    <fieldset>
+      <div class="panel panel-default">
+        <div class="panel-body">
+         <div class="row">
+           <div class="col-md-12 mt-3">
+            <h4 class="align-baseline font-weight-bold">Listado de Supervisores Registrados</h4><br>
+          </div>
+          <div class="col-md-12">
+           <div class="table-responsive">
+             <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
+              <thead class="thead-primary">
+               <tr>
+                 <th>Nombre</th>
+                 <th class="text-center">Teléfono</th>
+                 <th class="text-center">Acciones</th>
+               </tr>
+             </thead>
+             <tbody>
+              <tr v-if="arraySupervisores.length > 0" v-for="item in arraySupervisores" :key="item.id">
+                <th v-text="item.nombre"></th>
+                <th v-text="item.no_telefono == null ? '------' : item.no_telefono " class="text-center"></th>
+                <th class="text-center">
+                 <button type="button" class="button blue" @click="editarSupervisor(item)" data-toggle="tooltip" title="Editar Supervisor"><i class="mdi mdi-border-color"></i></button>
+                 <button type="button" class="button red" @click="deleteSupervisor(item.id)" data-toggle="tooltip" title="Eliminar Supervisor"><i class="mdi mdi-delete"></i></button>
+               </th>
+             </tr>
+           </tbody>
+         </table>
+       </div>
+       <div v-if="arraySupervisores.length == 0" class="row">
+        <div class="col-md-12 text-center">
+          <div class="alert font-weight-bold alert-warning h6 text-center col-md-12" role="alert">
+            No hay supervisores registrados en esta institución
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</fieldset>
+</div>
+<div class="modal-footer">
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" @click="cerrarModalSupervisores()" class="btn btn-danger">Cerrar</button>
+    </div>
   </div>
-  </div>
-  <!-- FIN DE MODAL PARA SUPERVISORES -->
+</div>
+</div>
+</div>
+</div>
+<!-- FIN DE MODAL PARA SUPERVISORES -->
 <!-- CIERRE DE CARDBODY -->
 <!--MODAL PARA REGISTRAR UNA SUPERVICION-->
 <!--MODAL PARA VER LAS INSTITUCIONE DESACTIVADAS-->
@@ -460,196 +460,197 @@
                                   </h4>
                                 </template>
                               </td>
-                               <td class="text-center">
-                                  <button type="button"
-                                   v-if="proyecto.supervision == null || proyecto.supervision == undefined"
-                                   class="btn btn-primary text-capitalize"
-                                   @click="abrirModalSuper('registrar',proyecto.id,proyecto.nombre)"
-                                   data-toggle="tooltip"
-                                   title="Registrar nueva supervisión a este proyecto">
-                                   <i class="mdi mdi-folder-plus h4"></i>
-                                   Registrar Supervisión
-                                  </button>
-                                  <button type="button"
-                                  v-if="proyecto.supervision != null || proyecto.supervision != undefined"
-                                  class="btn btn-primary text-capitalize"
-                                  @click="abrirModalSuper('actualizar',proyecto.id,proyecto.nombre)"
-                                  data-toggle="tooltip"
-                                  title="Editar datos de la supervisión realizada" >
-                                  <i class="mdi mdi-border-color h4"></i>
-                                  Editar Supervisión
-                                  </button>
+                              <td class="text-center">
+                                <button type="button"
+                                v-if="proyecto.supervision == null || proyecto.supervision == undefined"
+                                class="btn btn-primary text-capitalize"
+                                @click="abrirModalSuper('registrar',proyecto.id,proyecto.nombre)"
+                                data-toggle="tooltip"
+                                title="Registrar nueva supervisión a este proyecto">
+                                <i class="mdi mdi-folder-plus h4"></i>
+                                Registrar Supervisión
+                              </button>
+                              <button type="button"
+                              v-if="proyecto.supervision != null || proyecto.supervision != undefined"
+                              class="btn btn-primary text-capitalize"
+                              @click="abrirModalSuper('actualizar',proyecto.id,proyecto.nombre)"
+                              data-toggle="tooltip"
+                              title="Editar datos de la supervisión realizada" >
+                              <i class="mdi mdi-border-color h4"></i>
+                              Editar Supervisión
+                            </button>
 
-                                </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <nav>
-                              <ul class="pagination">
-                                <li class="page-item" v-if="pagination.current_page > 1">
-                                  <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,proceso,buscar)">Ant</a>
-                                </li>
-                                <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                  <a class="page-link" href="#" @click.prevent="cambiarPagina(page,proceso,buscar)" v-text="page"></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <nav>
+                      <ul class="pagination">
+                        <li class="page-item" v-if="pagination.current_page > 1">
+                          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,proceso,buscar)">Ant</a>
+                        </li>
+                        <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                          <a class="page-link" href="#" @click.prevent="cambiarPagina(page,proceso,buscar)" v-text="page"></a>
 
-                                  <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                    <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,proceso,buscar)">Sig</a>
-                                  </li>
-                                  <small v-show="arrayProyectos.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayProyectos.length + ' de ' + pagination.total + ' registros)'"></small>
-                                </ul>
-                              </nav>
+                          <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,proceso,buscar)">Sig</a>
+                          </li>
+                          <small v-show="arrayProyectos.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayProyectos.length + ' de ' + pagination.total + ' registros)'"></small>
+                        </ul>
+                      </nav>
 
-                              <!--MODAL PARA REGISTRAR UNA SUPERVISION-->
-                              <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h4 class="modal-title text-white" >{{titleMRS +  modalsTitle | truncate(55)}}</h4>
-                                      <button type="button" @click="cerrarModalSuper()" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" class="text-white">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <div class="form-group">
-                                        <textarea name="observacion" v-model="observacion" id="observacion" class="form-control" placeholder="Observación" rows="10"></textarea>
-                                      </div>
-                                      <div class="form-group row">
-                                        <div class="col-md-12 col-sm-6 col-lg-12">
-                                         <datetime type="date" :max-datetime="maxDatetime" v-model="date" value-zone="America/El_Salvador" input-class="form-control" placeholder="Fecha en la que fue realizada la supervisión"></datetime>
-                                       </div>
-                                     </div>
-                                    <div v-if="tipoAccion2 == 1" class="form-group">
-                                         <div class="uploader"
-                                         @dragenter="OnDragEnter"
-                                         @dragleave="OnDragLeave"
-                                         @dragover.prevent
-                                         @drop="onDrop"
-                                         :class="{ dragging: isDragging }">
-                                         <div class="upload-control" v-show="images.length">
-                                          <label for="file">Seleccione una o mas imagenes</label>
-                                        </div>
-                                        <div v-show="!images.length">
-                                          <i class="fa fa-cloud-upload"></i>
-                                          <p>Arrastre sus imagenes aqui!</p>
-                                          <div>o</div>
-                                          <div class="file-input">
-                                            <label for="file">Seleccione</label>
-                                            <input type="file" id="file" @change="onInputChange" multiple>
-                                          </div>
-                                        </div>
-                                        <div class="images-preview" v-show="images.length">
-                                            <div class="img-wrapper" v-for="(image, index) in images" :key="index">
-                                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
-                                             <img  :src="image" :alt="`Imagen ${index}`">
-                                             <div class="details">
-                                               <span class="name" v-text="files[index].name"></span>
-                                               <span class="size" v-text="getFileSize(files[index].size)"></span>
-                                             </div>
-                                           </div>
-                                         </div>
-                                        </div>
-                                       </div>
-                                       <!--images con supervision-->
-                                       <div v-else class="form-group">
+                      <!--MODAL PARA REGISTRAR UNA SUPERVISION-->
+                      <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title text-white" >{{titleMRS +  modalsTitle | truncate(55)}}</h4>
+                              <button type="button" @click="cerrarModalSuper()" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="text-white">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group">
+                                <textarea name="observacion" v-model="observacion" id="observacion" class="form-control" placeholder="Observación" rows="10"></textarea>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-12 col-sm-6 col-lg-12">
+                                  <!--  <datetime type="date" :max-datetime="maxDatetime" v-model="date" value-zone="America/El_Salvador" input-class="form-control" placeholder="Fecha en la que fue realizada la supervisión"></datetime> -->
+                                  <input placeholder="aaaa-mm-dd" @click="openDateIPicker" v-mask="'####-##-##'" id="fechaSupervision" name="fechaSupervision" class="form-control" >
+                                </div>
+                              </div>
+                              <div v-if="tipoAccion2 == 1" class="form-group">
+                               <div class="uploader"
+                               @dragenter="OnDragEnter"
+                               @dragleave="OnDragLeave"
+                               @dragover.prevent
+                               @drop="onDrop"
+                               :class="{ dragging: isDragging }">
+                               <div class="upload-control" v-show="images.length">
+                                <label for="file">Seleccione una o mas imagenes</label>
+                              </div>
+                              <div v-show="!images.length">
+                                <i class="fa fa-cloud-upload"></i>
+                                <p>Arrastre sus imagenes aqui!</p>
+                                <div>o</div>
+                                <div class="file-input">
+                                  <label for="file">Seleccione</label>
+                                  <input type="file" id="file" @change="onInputChange" multiple>
+                                </div>
+                              </div>
+                              <div class="images-preview" v-show="images.length">
+                                <div class="img-wrapper" v-for="(image, index) in images" :key="index">
+                                 <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                                 <img  :src="image" :alt="`Imagen ${index}`">
+                                 <div class="details">
+                                   <span class="name" v-text="files[index].name"></span>
+                                   <span class="size" v-text="getFileSize(files[index].size)"></span>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                         <!--images con supervision-->
+                         <div v-else class="form-group">
 
-                                        <div class="uploader"
-                                         @dragenter="OnDragEnter"
-                                         @dragleave="OnDragLeave"
-                                         @dragover.prevent
-                                         @drop="onDrop"
-                                         :class="{ dragging: isDragging }">
-                                         <div class="upload-control" v-show="images.length">
-                                          <label for="file">Seleccione una o mas imagenes</label>
-                                        </div>
-                                        <div v-show="!images.length">
-                                          <i class="fa fa-cloud-upload"></i>
-                                          <p>Arrastre sus imagenes aqui!</p>
-                                          <div>o</div>
-                                          <div class="file-input">
-                                            <label for="file">Seleccione</label>
-                                            <input type="file" id="file" @change="onInputChange" multiple>
-                                          </div>
-                                        </div>
-                                        <div class="images-preview" v-show="images.length">
-                                            <div class="img-wrapper" v-for="(image, index) in images" :key="index">
-                                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
-                                             <img  :src="image" :alt="`Imagen ${index}`">
-                                             <!-- YA TRAE LAS IMAGENES,PENSAR COMO AGREGAR MAS SIN DAÑAR EL ARRAY ORIGINAL -->
+                          <div class="uploader"
+                          @dragenter="OnDragEnter"
+                          @dragleave="OnDragLeave"
+                          @dragover.prevent
+                          @drop="onDrop"
+                          :class="{ dragging: isDragging }">
+                          <div class="upload-control" v-show="images.length">
+                            <label for="file">Seleccione una o mas imagenes</label>
+                          </div>
+                          <div v-show="!images.length">
+                            <i class="fa fa-cloud-upload"></i>
+                            <p>Arrastre sus imagenes aqui!</p>
+                            <div>o</div>
+                            <div class="file-input">
+                              <label for="file">Seleccione</label>
+                              <input type="file" id="file" @change="onInputChange" multiple>
+                            </div>
+                          </div>
+                          <div class="images-preview" v-show="images.length">
+                            <div class="img-wrapper" v-for="(image, index) in images" :key="index">
+                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                             <img  :src="image" :alt="`Imagen ${index}`">
+                             <!-- YA TRAE LAS IMAGENES,PENSAR COMO AGREGAR MAS SIN DAÑAR EL ARRAY ORIGINAL -->
                                             <!--  <div class="details">
                                                <span class="name" v-text="files[index].name"></span>
                                                <span class="size" v-text="getFileSize(files[index].size)"></span>
                                              </div> -->
                                            </div>
                                          </div>
-                                        </div>
-                                       <div class="row">
-                                          <div class="col-md-6 col-sm-12 col-lg-6">
-                                                <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Imagenes</button>
-                                                <div
-                                                    class="collapse"
-                                                    ref="divCollapse"
-                                                    id="collapseExample"
-                                                    >
-                                                    <div class="card card-body">
-                                                        <div class="row images-preview" id="seccion" v-show="arrayImagesUpd.length">
-                                                          <div
-                                                          class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
-                                                                 v-for="(image, index) in arrayImagesUpd" :key="index">
-                                                                  <label :for="(image, index)">
-                                                              <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
-                                                            <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
-                                                                  </label>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                </div>
-                                          </div>
-                                      </div>
                                        </div>
-
-                                     <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
-                                   </div>
-                                   <div class="modal-footer">
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
-                                        <button type="button" class="button blue" v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense>Registrar Supervisión</button>
-                                        <button type="button" class="button blue" v-if="tipoAccion2 == 2" @click="actualizarSupervision()" dense>Actualizar Supervisión</button>
+                                       <div class="row">
+                                        <div class="col-md-6 col-sm-12 col-lg-6">
+                                          <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Imagenes</button>
+                                          <div
+                                          class="collapse"
+                                          ref="divCollapse"
+                                          id="collapseExample"
+                                          >
+                                          <div class="card card-body">
+                                            <div class="row images-preview" id="seccion" v-show="arrayImagesUpd.length">
+                                              <div
+                                              class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
+                                              v-for="(image, index) in arrayImagesUpd" :key="index">
+                                              <label :for="(image, index)">
+                                                <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
+                                                <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
+
+                                <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+                              </div>
+                              <div class="modal-footer">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
+                                    <button type="button" class="button blue" v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense>Registrar Supervisión</button>
+                                    <button type="button" class="button blue" v-if="tipoAccion2 == 2" @click="actualizarSupervision()" dense>Actualizar Supervisión</button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                            <!--FIN DE MODAL PARA REGISTRAR UNA SUPERVICION-->
                           </div>
                         </div>
-                      </div>
-                      <div v-if="arrayProyectos.length == 0" class="row">
-                        <div class="col-md-12 col-sm-12 col-lg-12">
-                          <div class="alert alert-warning h6 font-weight-bold text-center" role="alert" v-text="'No existen proyectos registrados en esta institución'"></div>
-                        </div>
+                        <!--FIN DE MODAL PARA REGISTRAR UNA SUPERVICION-->
                       </div>
                     </div>
                   </div>
-                  <button type="button" @click="back()" class="btn btn-primary text-capitalize  font-weight-bold" data-toggle="tooltip" id="back" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</button>
+                  <div v-if="arrayProyectos.length == 0" class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                      <div class="alert alert-warning h6 font-weight-bold text-center" role="alert" v-text="'No existen proyectos registrados en esta institución'"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <button type="button" @click="back()" class="btn btn-primary text-capitalize  font-weight-bold" data-toggle="tooltip" id="back" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 </template>
-                  <!--FIN DE DIV PARA MOSTRAR MAS INFORMACION DE LA INSTITUCION-->
-                </div>
-                <!--FIN DE DIV PARA TABLA,REGISTRO,BUSQUEDA DE INSTITUCIONES-->
-              </template>
-              <script>
-              export default {
-                data() {
-                  return {
+<!--FIN DE DIV PARA MOSTRAR MAS INFORMACION DE LA INSTITUCION-->
+</div>
+<!--FIN DE DIV PARA TABLA,REGISTRO,BUSQUEDA DE INSTITUCIONES-->
+</template>
+<script>
+export default {
+  data() {
+    return {
                     //declaracion de variables
                     loadSpinner: 0,
                     verCard: 1,
@@ -964,6 +965,11 @@
           console.log(error);
         });
       },
+      // Metodo que abre el datePicker
+      openDateIPicker(){
+       var datepicker = $("#fechaSupervision").datepicker();
+       datepicker.open();
+     },
       //termina
       getSupervision(id) {
         let me = this;
@@ -1079,7 +1085,7 @@
           console.log(error);
         });
        }
-       });
+     });
       },
       registrarSupervisor(){
        let me = this;
@@ -1095,208 +1101,208 @@
         cancelButtonClass: "button red",
         buttonsStyling: false,
         reverseButtons: true
-        }).then(result => {
-          if (result.value) {
-           me.loadSpinner = 1;
-          var urlSave = route('saveSupervisor',{"nombre": me.nombreSupervisor,"telefono" : me.telefonoSupervisor,"institucion_id" : me.institucionSelected});
-           var urlValidate = route('validateSupervisor',{"nombre":me.nombreSupervisor})
-           axios.get(urlValidate).then(function(response) {
-            var respuesta = response.data;
-            if(respuesta == 'existe'){
+      }).then(result => {
+        if (result.value) {
+         me.loadSpinner = 1;
+         var urlSave = route('saveSupervisor',{"nombre": me.nombreSupervisor,"telefono" : me.telefonoSupervisor,"institucion_id" : me.institucionSelected});
+         var urlValidate = route('validateSupervisor',{"nombre":me.nombreSupervisor})
+         axios.get(urlValidate).then(function(response) {
+          var respuesta = response.data;
+          if(respuesta == 'existe'){
+            swal({
+              position: "center",
+              type: "warning",
+              title: "Supervisor existente! Ingrese otro nombre!",
+              showConfirmButton: true,
+              timer: 5000
+            });
+            me.nombreSupervisor = "";
+            me.loadSpinner = 0;
+          }else {
+            axios.post(urlSave).then(function(response) {
               swal({
                 position: "center",
-                type: "warning",
-                title: "Supervisor existente! Ingrese otro nombre!",
-                showConfirmButton: true,
-                timer: 5000
+                type: "success",
+                title: "¡Supervisor registrado correctamente!",
+                showConfirmButton: false,
+                timer: 1000
               });
               me.nombreSupervisor = "";
+              me.telefonoSupervisor = "";
               me.loadSpinner = 0;
-            }else {
-              axios.post(urlSave).then(function(response) {
-                swal({
-                  position: "center",
-                  type: "success",
-                  title: "¡Supervisor registrado correctamente!",
-                  showConfirmButton: false,
-                  timer: 1000
-                });
-                me.nombreSupervisor = "";
-                me.telefonoSupervisor = "";
-                me.loadSpinner = 0;
-                me.updSupervisor = false;
-                me.getSupervisores();
-                const elem = me.$refs.divCollapse;
-                if (elem.classList.contains("collapse")) {
-                  elem.classList.remove("show");
-                }
-              })
-              .catch(error => {
-                me.loadSpinner = 0;
-                swal({
-                  position: "center",
-                  type: "warning",
-                  title: "Ocurrio un error al procesar los datos",
-                  showConfirmButton: false,
-                  timer: 1000
-                });
-                console.log(error.response.data.errors);
-              });
-            }
-          });
-         } else if (
-            // Esto lo hace cuando se descativa el registro
-            result.dismiss === swal.DismissReason.cancel
-            ) {
-         }
-      });
-      },
-      actualizarSupervisor(){
-       let me = this;
-       swal({
-        title: "Esta seguro de guardar los datos?",
-        type: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "button blue",
-        cancelButtonClass: "button red",
-        buttonsStyling: false,
-        reverseButtons: true
-        }).then(result => {
-          if (result.value) {
-           me.loadSpinner = 1;
-           var urlValidate = route('validateSupervisor',{"nombre":me.nombreSupervisor})
-           axios.get(urlValidate).then(function(response) {
-            var respuesta = response.data;
-             if((me.nombreSupervisor != me.nombreSupervisorUpd) && (respuesta == 'existe')){
+              me.updSupervisor = false;
+              me.getSupervisores();
+              const elem = me.$refs.divCollapse;
+              if (elem.classList.contains("collapse")) {
+                elem.classList.remove("show");
+              }
+            })
+            .catch(error => {
+              me.loadSpinner = 0;
               swal({
                 position: "center",
                 type: "warning",
-                title: "Supervisor existente! Ingrese otro nombre!",
-                showConfirmButton: true,
-                timer: 5000
+                title: "Ocurrio un error al procesar los datos",
+                showConfirmButton: false,
+                timer: 1000
               });
-              me.nombreSupervisor = me.nombreSupervisorUpd;
-              me.loadSpinner = 0;
-            }else {
-              axios.put("institucion/supervisor/update", {
-                id: me.supervisor_id,
-                nombre: me.nombreSupervisor,
-                telefono: me.telefonoSupervisor
-              }).then(function(response) {
-                swal({
-                  position: "center",
-                  type: "success",
-                  title: "¡Supervisor actualizado correctamente!",
-                  showConfirmButton: false,
-                  timer: 1000
-                });
-                me.nombreSupervisor = "";
-                me.telefonoSupervisor = "";
-                me.nombreSupervisorUpd = "";
-                me.loadSpinner = 0;
-                me.updSupervisor = false;
-                me.getSupervisores();
-                const elem = me.$refs.divCollapse;
-                if (elem.classList.contains("collapse")) {
-                  elem.classList.remove("show");
-                }
-              })
-              .catch(error => {
-                me.loadSpinner = 0;
-                swal({
-                  position: "center",
-                  type: "warning",
-                  title: "Ocurrio un error al procesar los datos",
-                  showConfirmButton: false,
-                  timer: 1000
-                });
-                console.log(error.response.data.errors);
-              });
-            }
-          });
-         } else if (
+              console.log(error.response.data.errors);
+            });
+          }
+        });
+       } else if (
             // Esto lo hace cuando se descativa el registro
             result.dismiss === swal.DismissReason.cancel
             ) {
-         }
+       }
+     });
+    },
+    actualizarSupervisor(){
+     let me = this;
+     swal({
+      title: "Esta seguro de guardar los datos?",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(result => {
+      if (result.value) {
+       me.loadSpinner = 1;
+       var urlValidate = route('validateSupervisor',{"nombre":me.nombreSupervisor})
+       axios.get(urlValidate).then(function(response) {
+        var respuesta = response.data;
+        if((me.nombreSupervisor != me.nombreSupervisorUpd) && (respuesta == 'existe')){
+          swal({
+            position: "center",
+            type: "warning",
+            title: "Supervisor existente! Ingrese otro nombre!",
+            showConfirmButton: true,
+            timer: 5000
+          });
+          me.nombreSupervisor = me.nombreSupervisorUpd;
+          me.loadSpinner = 0;
+        }else {
+          axios.put("institucion/supervisor/update", {
+            id: me.supervisor_id,
+            nombre: me.nombreSupervisor,
+            telefono: me.telefonoSupervisor
+          }).then(function(response) {
+            swal({
+              position: "center",
+              type: "success",
+              title: "¡Supervisor actualizado correctamente!",
+              showConfirmButton: false,
+              timer: 1000
+            });
+            me.nombreSupervisor = "";
+            me.telefonoSupervisor = "";
+            me.nombreSupervisorUpd = "";
+            me.loadSpinner = 0;
+            me.updSupervisor = false;
+            me.getSupervisores();
+            const elem = me.$refs.divCollapse;
+            if (elem.classList.contains("collapse")) {
+              elem.classList.remove("show");
+            }
+          })
+          .catch(error => {
+            me.loadSpinner = 0;
+            swal({
+              position: "center",
+              type: "warning",
+              title: "Ocurrio un error al procesar los datos",
+              showConfirmButton: false,
+              timer: 1000
+            });
+            console.log(error.response.data.errors);
+          });
+        }
       });
+     } else if (
+            // Esto lo hace cuando se descativa el registro
+            result.dismiss === swal.DismissReason.cancel
+            ) {
+     }
+   });
 
-     },
-     deleteSupervisor(id){
-        swal({
-              title: "Esta seguro de eliminar este Supervisor(a)?",
-              type: "question",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Aceptar",
-              cancelButtonText: "Cancelar",
-              confirmButtonClass: "button blue",
-              cancelButtonClass: "button red",
-              buttonsStyling: false,
-              reverseButtons: true
-            }).then(result => {
-              if (result.value) {
-                let me = this;
-                me.loadSpinner = 1;
-                axios.put("/institucion/supervisor/eliminar/"+id)
-                .then(function(response) {
-                  me.getSupervisores();
-                  swal(
-                    "Eliminado!",
-                    "El Registro ha sido eliminado con exito",
-                    "success"
-                    );
-                  me.loadSpinner = 0;
-                })
-                .catch(function(error) {
-                  me.loadSpinner = 0;
-                  console.log(error);
-                });
-              } else if (
+  },
+  deleteSupervisor(id){
+    swal({
+      title: "Esta seguro de eliminar este Supervisor(a)?",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(result => {
+      if (result.value) {
+        let me = this;
+        me.loadSpinner = 1;
+        axios.put("/institucion/supervisor/eliminar/"+id)
+        .then(function(response) {
+          me.getSupervisores();
+          swal(
+            "Eliminado!",
+            "El Registro ha sido eliminado con exito",
+            "success"
+            );
+          me.loadSpinner = 0;
+        })
+        .catch(function(error) {
+          me.loadSpinner = 0;
+          console.log(error);
+        });
+      } else if (
                 // Esto lo hace cuando se descativa el registro
                 result.dismiss === swal.DismissReason.cancel
                 ) {
-              }
-            });
-     },
-     editarSupervisor(data = []){
-       let me = this;
-       const elem = me.$refs.divCollapse;
-       elem.classList.add("show");
-       me.supervisor_id = data.id;
-       me.nombreSupervisor = data.nombre;
-       me.telefonoSupervisor = data.no_telefono;
-       me.updSupervisor = true;
-       me.nombreSupervisorUpd = data.nombre;
-     },
-      openModalSupervisores(institucion = []) {
-        const el = document.body;
-        el.classList.add("abrirModal");
-        this.modalSupervisores = 1;
-        this.tituloModalSupervisores = institucion.nombre;
-        this.institucionSelected = institucion.id;
-        this.getSupervisores();
-      },
-      cerrarModalSupervisores() {
-        const el = document.body;
-        el.classList.remove("abrirModal");
-        this.modalSupervisores = 0;
-        this.tituloModalSupervisores = "";
-        this.institucionSelected = 0;
-        this.arraySupervisores = [];
-        this.updSupervisor = false;
-        this.supervisor_id = 0;
-        this.nombreSupervisor = "";
-        this.telefonoSupervisor = "";
-        this.nombreSupervisorUpd = "";
-      },
-      registrarSupervision() {
-        let me = this;
+      }
+    });
+  },
+  editarSupervisor(data = []){
+   let me = this;
+   const elem = me.$refs.divCollapse;
+   elem.classList.add("show");
+   me.supervisor_id = data.id;
+   me.nombreSupervisor = data.nombre;
+   me.telefonoSupervisor = data.no_telefono;
+   me.updSupervisor = true;
+   me.nombreSupervisorUpd = data.nombre;
+ },
+ openModalSupervisores(institucion = []) {
+  const el = document.body;
+  el.classList.add("abrirModal");
+  this.modalSupervisores = 1;
+  this.tituloModalSupervisores = institucion.nombre;
+  this.institucionSelected = institucion.id;
+  this.getSupervisores();
+},
+cerrarModalSupervisores() {
+  const el = document.body;
+  el.classList.remove("abrirModal");
+  this.modalSupervisores = 0;
+  this.tituloModalSupervisores = "";
+  this.institucionSelected = 0;
+  this.arraySupervisores = [];
+  this.updSupervisor = false;
+  this.supervisor_id = 0;
+  this.nombreSupervisor = "";
+  this.telefonoSupervisor = "";
+  this.nombreSupervisorUpd = "";
+},
+registrarSupervision() {
+  let me = this;
         //me.loading = true;
         axios
         .post("/proyecto/registrar/supervision", {
@@ -1431,6 +1437,10 @@
         this.modal = 1;
         this.proyecto_id = id;
         this.modalsTitle = nombre;
+        $("#fechaSupervision").datepicker({
+          locale: 'es-es',
+          format: 'yyyy-mm-dd',
+        });
         switch(accion){
           case 'registrar':
           this.titleMRS = 'Registrar supervisión en: ';
@@ -1461,38 +1471,36 @@
       cerrarModalSuper() {
         const el = document.body;
         el.classList.remove("abrirModal");
+        var datepickerFechaSuper = $('#fechaSupervision').datepicker();
         this.modal = 0;
         this.date = "";
         this.observacion = "";
         this.images = "";
-          //this.proyecto_id = 0;
-          //this.images = [];
-          //this.files = [];
-          //this.supervision = {};
-          this.modalsTitle = "";
-          this.titleMRS = "";
-          this.tipoAccion2 = 0;
-        },
-        cerrarModal() {
-          const el = document.body;
-          el.classList.remove("abrirModal");
-          this.modal = 0;
-          this.tituloModal = "";
-          this.tipoproceso_id = 0;
-          this.tipoAccion = 0;
-          this.nombre = "";
-          this.direccion = "";
-          this.phone = "";
-          this.email = "";
-          this.arrayMunicipios = [];
-          this.arrayDepartamentos = [];
-          this.arraySectores = [];
-          this.municipio_id = 0;
-          this.sector_id = 0;
-          this.departamento_id = 0;
-          this.institucion_id = 0;
-          this.estado = 0;
-          this.departamento_id = 0;
+        this.modalsTitle = "";
+        this.titleMRS = "";
+        this.tipoAccion2 = 0;
+        datepickerFechaSuper.close();
+      },
+      cerrarModal() {
+        const el = document.body;
+        el.classList.remove("abrirModal");
+        this.modal = 0;
+        this.tituloModal = "";
+        this.tipoproceso_id = 0;
+        this.tipoAccion = 0;
+        this.nombre = "";
+        this.direccion = "";
+        this.phone = "";
+        this.email = "";
+        this.arrayMunicipios = [];
+        this.arrayDepartamentos = [];
+        this.arraySectores = [];
+        this.municipio_id = 0;
+        this.sector_id = 0;
+        this.departamento_id = 0;
+        this.institucion_id = 0;
+        this.estado = 0;
+        this.departamento_id = 0;
           // this.errors = [];
           this.nombreUpd = "";
           this.loading = true;

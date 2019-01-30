@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Supervisión {{ $proceso }}</title>
-    <link rel="stylesheet" href="{{asset('css/bmd.css')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
+    <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ public_path('images/logo-favicon.png') }}">
     <style>
     .bg-header{background-color:#F8EFB6}
     .font-normal{font-weight: normal;}
@@ -74,10 +74,10 @@
                 <tbody>
                     @for ($i = 0; $i < count($institucionDetalle) ; $i++)
                     <tr>
-                        <td width="22%" height="{{ count($institucionDetalle[$i][1]) <= 2 ? '110' : '' }}" rowspan="{{ count($institucionDetalle[$i][1]) }}">{{ $institucionDetalle[$i][0] }}</td>
-                        <td width="26%">{{ $institucionDetalle[$i][1][0]->nombre." ".$institucionDetalle[$i][1][0]->apellido }}</td>
+                        <td width="24%" height="{{ count($institucionDetalle[$i][1]) <= 2 ? '110' : '' }}" rowspan="{{ count($institucionDetalle[$i][1]) }}">{{ $institucionDetalle[$i][0] }}</td>
+                        <td width="28%">{{ $institucionDetalle[$i][1][0]->nombre." ".$institucionDetalle[$i][1][0]->apellido }}</td>
                         <td width="15%">{{-- observaciones --}}</td>
-                        <td width="20%" rowspan="{{ count($institucionDetalle[$i][1]) }}">{{-- Firma y sello de supervisior --}}</td>
+                        <td width="21%" rowspan="{{ count($institucionDetalle[$i][1]) }}">{{-- Firma y sello de supervisior --}}</td>
                         <td rowspan="{{ count($institucionDetalle[$i][1]) }}">{{-- Fecha --}}</td>
                     </tr>
                     @for ($j = 1; $j < count( $institucionDetalle[$i][1]) ; $j++)

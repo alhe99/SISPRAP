@@ -147,9 +147,9 @@ class GestionProyectoController extends Controller
                 if ($proceso == 1) {$control_proy->save(public_path('docs/docs_ss/')."CPSS-".$carnet);}
                 else{$control_proy->save(public_path('docs/docs_pp/')."CPPP-".$carnet);}
 
-                // DB::table('preinscripciones_proyectos')->where([
-                //     ['estudiante_id', $request->student_id],
-                //     ['estado', 'F']])->delete();
+                DB::table('preinscripciones_proyectos')->where([
+                    ['estudiante_id', $request->student_id],
+                    ['estado', 'F']])->delete();
 
                 if ($proceso == 1) { $ruta_img = public_path('docs/docs_ss/')."PSS-".$carnet.".jpg";}
                 else{$ruta_img = public_path('docs/docs_pp/')."PPP-".$carnet.".jpg";}
@@ -160,9 +160,9 @@ class GestionProyectoController extends Controller
                 $pdf->setOption('margin-left',0);
                 $pdf->setOption('margin-right',0);
 
-                // DB::commit();
-                // return base64_encode($pdf->download('Perfil de proyecto.pdf'));
-                return $pdf->stream('Perfil de proyecto.pdf');
+                DB::commit();
+                return base64_encode($pdf->download('Perfil de proyecto.pdf'));
+                // return $pdf->stream('Perfil de proyecto.pdf');
             }
         } catch (Exception $e) {
           DB::rollBack();
@@ -1988,6 +1988,7 @@ class GestionProyectoController extends Controller
                             $perfil->setText(Html2Text::convert($actividadesP),120,1300,20); //Actividades a realizar
                             $perfil->setText($gestion->horas_a_realizar, 1465, 1210, 20); //Horas a Realizar del proyecto
                             $perfil->setText($gestion->fecha_inicio, 135, 1625, 20); //Fecha de Inicio  del proyecto
+                            $perfil->setText($gestion->fecha_fin, 400, 1625, 20); //Fecha Fin  del proyecto
                             $perfil->setText($gestion->nombre_supervisor, 650, 1625, 20); //Supervisor del proyecto/Institucion
                             $perfil->setText($gestion->tel_supervisor, 1390, 1625, 20); //Telefono Supervisor del proyecto/Institucion
                             $perfil->setText($numeroFactura[0]->no_factura,1235,1860,20); //Numero de factura de pago de arancel de proceso
@@ -1995,7 +1996,7 @@ class GestionProyectoController extends Controller
                             if ($proceso == 1) {$perfil->save(public_path('docs/docs_ss/')."PSS-".$codCarnet);}
                             else{$perfil->save(public_path('docs/docs_pp/')."PPP-".$codCarnet);}
 
-                            return $pdf->download('Perfil de proyecto.pdf');
+                            return $pdf->download('Perfil Proyecto - '.$codCarnet.'.pdf');
                     }
                 break;
                 case 'CH':
@@ -2046,14 +2047,17 @@ class GestionProyectoController extends Controller
                         $control_proy->setText($codCarnet,1360,620,20);//Carnet del estudiante
                         $control_proy->setText($carrera,290,675,20);//Nombre del estudiante
                         $control_proy->setText($nombreI,150,875,20);//Nombre de la institucion
+                        if ($gestion->horas_realizadas > 0) {
+                            $control_proy->setText($gestion->horas_realizadas,1425,1125,20);//Horas realizadas
+                        }
                         $control_proy->setText($nombreP,150,1100,20);//Nombre del proyecto
                         // Guardando el control de horas segun el proceso del estudiante
                         if ($proceso == 1) {$control_proy->save(public_path('docs/docs_ss/')."CPSS-".$codCarnet);}
                         else{$control_proy->save(public_path('docs/docs_pp/')."CPPP-".$codCarnet);}
 
-                        return $pdf->download('Control de Proyecto.pdf');
+                        return $pdf->download('Control Proyecto - '.$codCarnet.'.pdf');
                     }else{
-                        return $pdf->download('Control de Proyecto.pdf');
+                        return $pdf->download('Control de Proyecto - '.$codCarnet.'.pdf');
                     }
                 break;
             }

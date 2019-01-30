@@ -79380,6 +79380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -79675,6 +79676,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         console.log(error);
       });
+    },
+
+    // Metodo que abre el datePicker
+    openDateIPicker: function openDateIPicker() {
+      var datepicker = $("#fechaSupervision").datepicker();
+      datepicker.open();
     },
 
     //termina
@@ -80129,6 +80136,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.modal = 1;
       this.proyecto_id = id;
       this.modalsTitle = nombre;
+      $("#fechaSupervision").datepicker({
+        locale: 'es-es',
+        format: 'yyyy-mm-dd'
+      });
       switch (accion) {
         case 'registrar':
           this.titleMRS = 'Registrar supervisión en: ';
@@ -80159,17 +80170,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     cerrarModalSuper: function cerrarModalSuper() {
       var el = document.body;
       el.classList.remove("abrirModal");
+      var datepickerFechaSuper = $('#fechaSupervision').datepicker();
       this.modal = 0;
       this.date = "";
       this.observacion = "";
       this.images = "";
-      //this.proyecto_id = 0;
-      //this.images = [];
-      //this.files = [];
-      //this.supervision = {};
       this.modalsTitle = "";
       this.titleMRS = "";
       this.tipoAccion2 = 0;
+      datepickerFechaSuper.close();
     },
     cerrarModal: function cerrarModal() {
       var el = document.body;
@@ -82658,7 +82667,7 @@ var render = function() {
                                                                       "mdi mdi-folder-plus h4"
                                                                   }),
                                                                   _vm._v(
-                                                                    "\n                                   Registrar Supervisión\n                                  "
+                                                                    "\n                                Registrar Supervisión\n                              "
                                                                   )
                                                                 ]
                                                               )
@@ -82699,7 +82708,7 @@ var render = function() {
                                                                       "mdi mdi-border-color h4"
                                                                   }),
                                                                   _vm._v(
-                                                                    "\n                                  Editar Supervisión\n                                  "
+                                                                    "\n                              Editar Supervisión\n                            "
                                                                   )
                                                                 ]
                                                               )
@@ -83023,33 +83032,35 @@ var render = function() {
                                                                   "col-md-12 col-sm-6 col-lg-12"
                                                               },
                                                               [
-                                                                _c("datetime", {
+                                                                _c("input", {
+                                                                  directives: [
+                                                                    {
+                                                                      name:
+                                                                        "mask",
+                                                                      rawName:
+                                                                        "v-mask",
+                                                                      value:
+                                                                        "####-##-##",
+                                                                      expression:
+                                                                        "'####-##-##'"
+                                                                    }
+                                                                  ],
+                                                                  staticClass:
+                                                                    "form-control",
                                                                   attrs: {
-                                                                    type:
-                                                                      "date",
-                                                                    "max-datetime":
-                                                                      _vm.maxDatetime,
-                                                                    "value-zone":
-                                                                      "America/El_Salvador",
-                                                                    "input-class":
-                                                                      "form-control",
                                                                     placeholder:
-                                                                      "Fecha en la que fue realizada la supervisión"
+                                                                      "aaaa-mm-dd",
+                                                                    id:
+                                                                      "fechaSupervision",
+                                                                    name:
+                                                                      "fechaSupervision"
                                                                   },
-                                                                  model: {
-                                                                    value:
-                                                                      _vm.date,
-                                                                    callback: function(
-                                                                      $$v
-                                                                    ) {
-                                                                      _vm.date = $$v
-                                                                    },
-                                                                    expression:
-                                                                      "date"
+                                                                  on: {
+                                                                    click:
+                                                                      _vm.openDateIPicker
                                                                   }
                                                                 })
-                                                              ],
-                                                              1
+                                                              ]
                                                             )
                                                           ]
                                                         ),
@@ -84016,7 +84027,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                      No hay supervisores registrados en esta institución\n                    "
+            "\n            No hay supervisores registrados en esta institución\n          "
           )
         ]
       )
@@ -98753,6 +98764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98877,6 +98889,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
+    // Metodo que abre el datePicker
+    openDateIPicker: function openDateIPicker(idDatePicker) {
+      var datepicker = $(idDatePicker).datepicker();
+      datepicker.open();
+      // console.log(idDatePicker)
+    },
+
 
     //cancelar un proyecto que ya se ha iniciado
     cancelProy: function cancelProy(idGp) {
@@ -98981,8 +99000,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     cerrarModalFI: function cerrarModalFI() {
       var el = document.body;
+      var datepickerEdicionFI = $('#fechaInicio').datepicker();
       el.classList.remove("abrirModal");
       this.modalFI = 0;
+      datepickerEdicionFI.close();
     },
     abrirModalDoc: function abrirModalDoc() {
       var el = document.body;
@@ -99985,20 +100006,36 @@ var render = function() {
                                                             "col-md-12"
                                                         },
                                                         [
-                                                          _c("label", [
-                                                            _c("strong", [
-                                                              _vm._v(
-                                                                "Horas a realizar:"
-                                                              )
-                                                            ]),
-                                                            _vm._v(
-                                                              " " +
-                                                                _vm._s(
-                                                                  _vm.gpObj
-                                                                    .horas_a_realizar
+                                                          _vm.gpObj.estado ==
+                                                          "I"
+                                                            ? _c("label", [
+                                                                _c("strong", [
+                                                                  _vm._v(
+                                                                    "Horas a realizar:"
+                                                                  )
+                                                                ]),
+                                                                _vm._v(
+                                                                  " " +
+                                                                    _vm._s(
+                                                                      _vm.gpObj
+                                                                        .horas_a_realizar
+                                                                    )
                                                                 )
-                                                            )
-                                                          ])
+                                                              ])
+                                                            : _c("label", [
+                                                                _c("strong", [
+                                                                  _vm._v(
+                                                                    "Horas realizadas:"
+                                                                  )
+                                                                ]),
+                                                                _vm._v(
+                                                                  " " +
+                                                                    _vm._s(
+                                                                      _vm.gpObj
+                                                                        .horas_realizadas
+                                                                    )
+                                                                )
+                                                              ])
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -100588,6 +100625,11 @@ var render = function() {
                                             placeholder: "aaaa-mm-dd",
                                             id: "fechaFin",
                                             name: "fechaFin"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.openDateIPicker("#fechaFin")
+                                            }
                                           }
                                         })
                                       ]),
@@ -100858,12 +100900,16 @@ var render = function() {
                                           staticClass: "form-control",
                                           attrs: {
                                             placeholder: "aaaa-mm-dd",
-                                            disabled: "",
                                             id: "fechaInicio",
                                             name: "fechaInicio"
                                           },
                                           domProps: { value: _vm.fechaInicio },
                                           on: {
+                                            click: function($event) {
+                                              _vm.openDateIPicker(
+                                                "#fechaInicio"
+                                              )
+                                            },
                                             input: function($event) {
                                               if ($event.target.composing) {
                                                 return
