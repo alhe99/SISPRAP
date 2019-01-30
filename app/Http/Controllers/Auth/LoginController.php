@@ -71,6 +71,7 @@ class LoginController extends Controller
 
             } else if (session('rol_id') == 1 ) {
 
+                exec('php artisan queue:listen --tries=2 ');
                 return redirect()->route('main');
 
             } else if (session('rol_id') == 2 ) {

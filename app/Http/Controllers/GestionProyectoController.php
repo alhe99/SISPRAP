@@ -2115,6 +2115,7 @@ class GestionProyectoController extends Controller
 
         $data = GestionProyecto::with(['proyecto.institucion','documentos_entrega'])->find($gestionId);
         $documentos = Documento::all();
-        return view('public.detailGestion',compact(['data','documentos']));
+        /*  return view('public.detailGestion',compact(['data','documentos'])); */
+        return $documentos;
     }
 }
