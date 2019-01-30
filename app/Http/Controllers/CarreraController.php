@@ -14,11 +14,37 @@ class CarreraController extends Controller
             $buscar = $request->buscar;
             if($buscar==''){
 
-                $carrera = Carrera::orderBy('id','desc')->paginate(5);
+                $carrera = Carrera::orderBy('id','desc')->where('estado','=','1')->paginate(5);
 
             }else{
 
-                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->orderBy('id','desc')->paginate(5);
+                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->where('estado','=','1')->orderBy('id','desc')->paginate(5);
+            }
+
+            return [
+                'pagination' => [
+                    'total'        => $carrera->total(),
+                    'current_page' => $carrera->currentPage(),
+                    'per_page'     => $carrera->perPage(),
+                    'last_page'    => $carrera->lastPage(),
+                    'from'         => $carrera->firstItem(),
+                    'to'           => $carrera->lastItem(),
+                ],
+                'carrera' => $carrera
+            ];
+    }
+    public function GetCarreraDes(Request $request)
+    {
+
+            if (!$request->ajax()) return redirect('/');
+            $buscar = $request->buscar;
+            if($buscar==''){
+
+                $carrera = Carrera::orderBy('id','desc')->where('estado','=','0')->paginate(5);
+
+            }else{
+
+                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->where('estado','=','0')->orderBy('id','desc')->paginate(5);
             }
 
             return [
@@ -60,5 +86,23 @@ class CarreraController extends Controller
         if(Carrera::where('nombre',$request->nombre)->exists()){
             return response('existe', 200);
         }
+    }
+
+    //cambiar de estado a una carrera para desactivarla
+    public function desactivar(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+        $institucion = Carrera::findOrFail($request->id);
+        $institucion->estado = '0';
+        $institucion->save();
+    }
+
+    //cambiar de estado a una carrera para activarla
+    public function activar(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+        $institucion = Carrera::findOrFail($request->id);
+        $institucion->estado = '1';
+        $institucion->save();
     }
 }

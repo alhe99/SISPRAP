@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carrera extends Model
 {
     protected $table = 'carreras';
-    protected $fillable = ['nombre', 'articulado'];
+    protected $fillable = ['nombre', 'articulado', 'estado'];
     public $timestamps = false;
 
     public function estudiantes()
