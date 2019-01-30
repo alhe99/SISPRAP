@@ -101,10 +101,10 @@
 									@endforeach
 								</div>
 							</div>
+							<br>
+							<a href="{{ url()->previous() }}"  class="btn btn-dark text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</a>
 						</div>
 					</div>
-					<br>
-					<a href="{{ url()->previous() }}"  class="btn btn-dark text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</a>
 				</div>
 			</div>
 		</section>
