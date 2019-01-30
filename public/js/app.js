@@ -79995,14 +79995,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     registrarSupervision: function registrarSupervision() {
       var me = this;
-      //me.loading = true;
+      me.loading = true;
       axios.post("/proyecto/registrar/supervision", {
         proyecto_id: this.proyecto_id,
         observacion: this.observacion,
         fecha: this.date.substring(0, 10),
         imagenes: this.images
       }).then(function (response) {
-        //me.loading = false;
+        me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -80020,13 +80020,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     actualizarSupervision: function actualizarSupervision() {
       var me = this;
+      me.loading = true;
       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
         observacion: this.observacion,
-        imagenes: this.images
+        images: this.images
 
       }).then(function (response) {
+        me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -80382,6 +80384,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.images = [];
       this.files = [];
       this.cerrarModalSuper();
+    },
+    DeleteImage: function DeleteImage(index, id) {
+      this.arrayImagesUpd.splice(index, 1);
+      var url = "/supervision/eliminar/" + id;
+      axios.get(url).then(function (response) {}).catch(function (error) {
+        console.log(error);
+      });
     }
   },
   components: {},
@@ -83684,6 +83693,35 @@ var render = function() {
                                                                                               }
                                                                                             },
                                                                                             [
+                                                                                              _c(
+                                                                                                "button",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "remove",
+                                                                                                  on: {
+                                                                                                    click: function(
+                                                                                                      $event
+                                                                                                    ) {
+                                                                                                      _vm.DeleteImage(
+                                                                                                        index,
+                                                                                                        image.id
+                                                                                                      )
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "i",
+                                                                                                    {
+                                                                                                      staticClass:
+                                                                                                        "mdi mdi-close-circle"
+                                                                                                    }
+                                                                                                  )
+                                                                                                ]
+                                                                                              ),
+                                                                                              _vm._v(
+                                                                                                " "
+                                                                                              ),
                                                                                               _c(
                                                                                                 "img",
                                                                                                 {
@@ -94023,7 +94061,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
 
 // exports
 
@@ -94366,6 +94404,90 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -94373,13 +94495,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       activetab: 1,
       loadSpinner: 0,
       modalId: 0,
+      modalId2: 0,
       carrera: 0,
       car_id: 0,
       search: 0,
+      searchID: 0,
       car: "",
+      tituloModal: "",
       carUpd: "",
       nombre: "",
       buscar: "",
+      buscarDes: "",
       sector: "",
       genero: "",
       date: "",
@@ -94403,6 +94529,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       arrayMunicipios: [],
       arrayAdmin: [],
       arrayCar: [],
+      arrayCarDes: [],
+      paginationID: {},
       pagination: {
         total: 0,
         current_page: 0,
@@ -94425,6 +94553,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     isActived: function isActived() {
       return this.pagination.current_page;
     },
+    isActivedID: function isActivedID() {
+      return this.paginationID.current_page;
+    },
     pagesNumber: function pagesNumber() {
       if (!this.pagination.to) {
         return [];
@@ -94436,6 +94567,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var to = from + this.offset * 2;
       if (to >= this.pagination.last_page) {
         to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberID: function pagesNumberID() {
+      if (!this.paginationID.to) {
+        return [];
+      }
+      var from = this.paginationID.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.paginationID.last_page) {
+        to = this.paginationID.last_page;
       }
       var pagesArray = [];
       while (from <= to) {
@@ -94472,10 +94622,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+    listarCarrerasDes: function listarCarrerasDes(page, buscar) {
+      var me = this;
+      var url = "/getCarreraDes?page=" + page + "&buscar=" + buscar;
+      me.loadSpinner = 1;
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayCarDes = respuesta.carrera.data;
+        me.paginationID = respuesta.pagination;
+        //Por si no devuelve datos
+        me.loadSpinner = 0;
+        //Por si no devuelve datos
+        if (me.arrayCarDes.length == 0) {
+          me.searchID = 1;
+        } else {
+          me.searchID = 0;
+        }
+      }).catch(function (error) {
+        me.loadSpinner = 0;
+        console.log(error);
+      });
+    },
     cambiarPagina: function cambiarPagina(page, buscar) {
       var me = this;
       me.pagination.current_page = page;
       me.listarCarreras(page, buscar);
+    },
+    cambiarPaginaDes: function cambiarPaginaDes(page, buscar) {
+      var me = this;
+      //Actualiza la pagina actual
+      me.paginationID.current_page = page;
+      //Envia la pericion para visualizar los datos
+      me.listarCarrerasDes(page, buscar);
     },
     searchEmpty: function searchEmpty() {
       var me = this;
@@ -94501,6 +94679,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 {
                   //Asignando los datos traidos a los controles del formulario
                   this.modalId = 1;
+                  this.tituloModal = "Actualización de Carreras";
                   this.car_id = data["id"];
                   this.carrera = data["id"];
                   this.car = data["nombre"];
@@ -94511,6 +94690,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
+    abrirModalID: function abrirModalID() {
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modalId2 = 2;
+      this.tituloModal = "Carreras Desactivadas";
+      this.listarCarrerasDes(1, "");
+    },
     cerrarModal: function cerrarModal() {
       var el = document.body;
       el.classList.remove("abrirModal");
@@ -94518,6 +94704,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.car_id = 0;
       this.car = "";
       this.carUpd = "";
+    },
+    cerrarModalID: function cerrarModalID() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalId2 = 0;
+    },
+    desactivarCarrera: function desactivarCarrera(id) {
+      var _this = this;
+
+      swal({
+        title: "Esta seguro de desactivar esta Carrera?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this;
+          me.loadSpinner = 1;
+          axios.put("/carrera/desactivar", {
+            id: id
+          }).then(function (response) {
+            me.listarCarreras(1, "");
+            swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    activarCarrera: function activarCarrera(id) {
+      var _this2 = this;
+
+      swal({
+        title: "Esta seguro de activar esta Carrera?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar!",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "btn update",
+        cancelButtonClass: "btn edit",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          me.loadSpinner = 1;
+          axios.put("/carrera/activar", {
+            id: id
+          }).then(function (response) {
+            me.listarCarrerasDes(1, "");
+            me.listarCarreras(1, "");
+            swal("Activada!", "La Carrera ha sido activada con exito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
     },
     actualizarCarrera: function actualizarCarrera() {
       var me = this;
@@ -94570,24 +94830,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     //registra los datos del estudiante
     saveEstudiante: function saveEstudiante() {
-      var _this = this;
+      var _this3 = this;
 
       this.$validator.validateAll().then(function () {
-        var me = _this;
-        _this.loadSpinner = 1;
+        var me = _this3;
+        _this3.loadSpinner = 1;
         axios.post("/admin/registrar", {
-          nombre: _this.nombre,
-          apellido: _this.apellido,
-          fecha: _this.date.substring(0, 10),
-          genero: _this.genero,
-          telefono: _this.telefono,
-          codcarnet: _this.carnet,
-          password: _this.password,
-          email: _this.email,
-          direccion: _this.direccion,
-          tipo_beca_id: _this.beca_id.value,
-          carrera_id: _this.carrerasProy.value,
-          municipio_id: _this.municipio_id.value
+          nombre: _this3.nombre,
+          apellido: _this3.apellido,
+          fecha: _this3.date.substring(0, 10),
+          genero: _this3.genero,
+          telefono: _this3.telefono,
+          codcarnet: _this3.carnet,
+          password: _this3.password,
+          email: _this3.email,
+          direccion: _this3.direccion,
+          tipo_beca_id: _this3.beca_id.value,
+          carrera_id: _this3.carrerasProy.value,
+          municipio_id: _this3.municipio_id.value
         }).then(function (response) {
           swal({
             position: "center",
@@ -94649,10 +94909,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     getDepartamentos: function getDepartamentos() {
-      var _this2 = this;
+      var _this4 = this;
 
       axios.get("GetDepartamentos").then(function (response) {
-        _this2.arrayDepartamentos = response.data;
+        _this4.arrayDepartamentos = response.data;
       });
     },
 
@@ -94742,6 +95002,8 @@ var render = function() {
       _c("div", { staticClass: "content" }, [
         _vm.activetab === 1
           ? _c("div", { staticClass: "tabcontent" }, [
+              _c("br"),
+              _vm._v(" "),
               _c("h2", { staticClass: "text-center" }, [
                 _vm._v("Listado de carreras")
               ]),
@@ -94778,332 +95040,778 @@ var render = function() {
                             ],
                             1
                           )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-1" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button secondary ",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "tooltip",
+                                title: "Carreras Desactivadas"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.abrirModalID()
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "mdi mdi-playlist-plus" })]
+                          )
                         ])
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row" })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 col-lg-12 col-sm-12" }, [
-                    _c("div", { staticClass: "table-responsive" }, [
-                      _c(
-                        "table",
-                        {
-                          staticClass:
-                            "table table-striped table-bordered table-mc-light-blue",
-                          attrs: { id: "myTable" }
-                        },
-                        [
-                          _vm._m(0),
-                          _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _vm.loadSpinner == 1
+                        ? _c("div", {
+                            staticClass: "col-md-12 loading text-center"
+                          })
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 col-lg-12 col-sm-12" },
+                      [
+                        _c("div", { staticClass: "table-responsive" }, [
                           _c(
-                            "tbody",
-                            _vm._l(_vm.arrayCar, function(carrera) {
-                              return _c("tr", { key: carrera.id }, [
-                                _c("td", {
-                                  domProps: {
-                                    textContent: _vm._s(carrera.nombre)
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "button blue",
-                                      attrs: {
-                                        type: "button",
-                                        "data-toggle": "tooltip",
-                                        title: "Editar datos de la carrera"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.abrirModal(
-                                            "car",
-                                            "actualizar",
-                                            carrera
-                                          )
-                                        }
+                            "table",
+                            {
+                              staticClass:
+                                "table table-striped table-bordered table-mc-light-blue",
+                              attrs: { id: "myTable" }
+                            },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.arrayCar, function(carrera) {
+                                  return _c("tr", { key: carrera.id }, [
+                                    _c("td", {
+                                      domProps: {
+                                        textContent: _vm._s(carrera.nombre)
                                       }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-right" },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "button blue",
+                                            attrs: {
+                                              type: "button",
+                                              "data-toggle": "tooltip",
+                                              title:
+                                                "Editar datos de la carrera"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.abrirModal(
+                                                  "car",
+                                                  "actualizar",
+                                                  carrera
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-border-color"
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        carrera.estado
+                                          ? [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass: "button red",
+                                                  attrs: {
+                                                    type: "button",
+                                                    "data-toggle": "tooltip",
+                                                    title: "Desactivar carrera"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.desactivarCarrera(
+                                                        carrera.id
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "mdi mdi-delete-variant"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          : _vm._e()
+                                      ],
+                                      2
+                                    )
+                                  ])
+                                })
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("nav", [
+                            _c(
+                              "ul",
+                              { staticClass: "pagination" },
+                              [
+                                _vm.pagination.current_page > 1
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "page-link font-weight-bold",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.cambiarPagina(
+                                                _vm.pagination.current_page - 1,
+                                                _vm.buscar
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Ant")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumber, function(page) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: page,
+                                      staticClass: "page-item",
+                                      class: [
+                                        page == _vm.isActived ? "active" : ""
+                                      ]
                                     },
                                     [
-                                      _c("i", {
-                                        staticClass: "mdi mdi-border-color"
+                                      _c("a", {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        domProps: { textContent: _vm._s(page) },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.cambiarPagina(page, _vm.buscar)
+                                          }
+                                        }
                                       })
                                     ]
                                   )
-                                ])
-                              ])
-                            })
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("nav", [
-                        _c(
-                          "ul",
-                          { staticClass: "pagination" },
-                          [
-                            _vm.pagination.current_page > 1
-                              ? _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
+                                }),
+                                _vm.pagination.current_page <
+                                _vm.pagination.last_page
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "page-link font-weight-bold",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.cambiarPagina(
+                                                _vm.pagination.current_page + 1,
+                                                _vm.buscar
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Sig")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("small", {
+                                  directives: [
                                     {
-                                      staticClass: "page-link font-weight-bold",
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          _vm.cambiarPagina(
-                                            _vm.pagination.current_page - 1,
-                                            _vm.buscar
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Ant")]
-                                  )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm._l(_vm.pagesNumber, function(page) {
-                              return _c(
-                                "li",
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.arrayCar.length != 0,
+                                      expression: "arrayCar.length != 0"
+                                    }
+                                  ],
+                                  staticClass: "text-muted pagination-count",
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      "(Mostrando " +
+                                        _vm.arrayCar.length +
+                                        " de " +
+                                        _vm.pagination.total +
+                                        " registros)"
+                                    )
+                                  }
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12 col-sm-12 col-lg-12" },
+                        [
+                          _c("div", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.search == 1,
+                                expression: "search == 1"
+                              }
+                            ],
+                            staticClass:
+                              "alert alert-primary h6 font-weight-bold text-center",
+                            attrs: { role: "alert" },
+                            domProps: {
+                              textContent: _vm._s(
+                                "No se encontraron resultados o No hay registros"
+                              )
+                            }
+                          })
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal fade",
+                    class: { mostrar: _vm.modalId },
+                    attrs: {
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalLabel",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h4", {
+                            staticClass: "modal-title text-white",
+                            domProps: { textContent: _vm._s(_vm.tituloModal) }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "close",
+                              attrs: {
+                                type: "button",
+                                "data-dismiss": "modal",
+                                "aria-label": "Close"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModal()
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
                                 {
-                                  key: page,
-                                  staticClass: "page-item",
-                                  class: [page == _vm.isActived ? "active" : ""]
+                                  staticClass: "text-white",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [_vm._v("×")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                              [
+                                _c("br"),
+                                _c("label", { attrs: { for: "nombre" } }, [
+                                  _vm._v("Nombre de la carrera*")
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.car,
+                                      expression: "car"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    id: "car",
+                                    name: "car",
+                                    autocomplete: "off"
+                                  },
+                                  domProps: { value: _vm.car },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.car = $event.target.value
+                                    }
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "button red",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.cerrarModal()
+                                    }
+                                  }
                                 },
                                 [
-                                  _c("a", {
-                                    staticClass: "page-link",
-                                    attrs: { href: "#" },
-                                    domProps: { textContent: _vm._s(page) },
+                                  _c("i", { staticClass: "mdi mdi-close-box" }),
+                                  _vm._v(" Cancelar")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "button blue",
+                                  attrs: {
+                                    type: "button",
+                                    disabled: _vm.validate == true,
+                                    dense: ""
+                                  },
+                                  on: { click: _vm.actualizarCarrera }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-content-save"
+                                  }),
+                                  _vm._v(" Actualizar Carrera")
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal fade",
+                    class: { mostrar: _vm.modalId2 },
+                    attrs: {
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalLabel",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h4", {
+                            staticClass: "modal-title text-white",
+                            domProps: { textContent: _vm._s(_vm.tituloModal) }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "close",
+                              attrs: {
+                                type: "button",
+                                "data-dismiss": "modal",
+                                "aria-label": "Close"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.cerrarModalID()
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "text-white",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [_vm._v("×")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "bmd-form-group bmd-collapse-inline pull-xs-right"
+                            },
+                            [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "collapse",
+                                  attrs: { id: "collapse-search" }
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.buscarDes,
+                                        expression: "buscarDes"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      title: "Buscar Registros",
+                                      type: "text",
+                                      id: "search",
+                                      placeholder:
+                                        "Ingrese Nombre de la Carrera"
+                                    },
+                                    domProps: { value: _vm.buscarDes },
                                     on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.cambiarPagina(page, _vm.buscar)
+                                      keyup: function($event) {
+                                        _vm.listarCarrerasDes(1, _vm.buscarDes)
+                                      },
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.buscarDes = $event.target.value
                                       }
                                     }
                                   })
                                 ]
                               )
-                            }),
-                            _vm.pagination.current_page <
-                            _vm.pagination.last_page
-                              ? _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link font-weight-bold",
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          _vm.cambiarPagina(
-                                            _vm.pagination.current_page + 1,
-                                            _vm.buscar
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Sig")]
-                                  )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c("small", {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.arrayCar.length != 0,
-                                  expression: "arrayCar.length != 0"
-                                }
-                              ],
-                              staticClass: "text-muted pagination-count",
-                              domProps: {
-                                textContent: _vm._s(
-                                  "(Mostrando " +
-                                    _vm.arrayCar.length +
-                                    " de " +
-                                    _vm.pagination.total +
-                                    " registros)"
-                                )
-                              }
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-12 col-sm-12 col-lg-12" },
-                      [
-                        _c("div", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.search == 1,
-                              expression: "search == 1"
-                            }
-                          ],
-                          staticClass:
-                            "alert alert-primary h6 font-weight-bold text-center",
-                          attrs: { role: "alert" },
-                          domProps: {
-                            textContent: _vm._s(
-                              "No se encontraron resultados o No hay registros"
-                            )
-                          }
-                        })
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "modal fade",
-                  class: { mostrar: _vm.modalId },
-                  attrs: {
-                    role: "dialog",
-                    "aria-labelledby": "exampleModalLabel",
-                    "aria-hidden": "true"
-                  }
-                },
-                [
-                  _c("div", { staticClass: "modal-dialog modal-lg" }, [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _c("div", { staticClass: "modal-header" }, [
-                        _c("h4", {
-                          staticClass: "modal-title text-white",
-                          domProps: { textContent: _vm._s(_vm.tituloModal) }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "close",
-                            attrs: {
-                              type: "button",
-                              "data-dismiss": "modal",
-                              "aria-label": "Close"
-                            },
-                            on: {
-                              click: function($event) {
-                                _vm.cerrarModal()
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "text-white",
-                                attrs: { "aria-hidden": "true" }
-                              },
-                              [_vm._v("×")]
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c("div", { staticClass: "row" }, [
+                            ]
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "col-md-12 col-xs-12 col-lg-12" },
+                            { staticClass: "col-md-12 col-lg-12 col-sm-12" },
                             [
-                              _c("br"),
-                              _c("label", { attrs: { for: "nombre" } }, [
-                                _vm._v("Nombre de la carrera*")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
+                              _c("div", { staticClass: "table-responsive" }, [
+                                _c(
+                                  "table",
                                   {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.car,
-                                    expression: "car"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "car",
-                                  name: "car",
-                                  autocomplete: "off"
-                                },
-                                domProps: { value: _vm.car },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.car = $event.target.value
-                                  }
-                                }
-                              })
+                                    staticClass:
+                                      "table table-striped table-bordered table-mc-light-blue",
+                                    attrs: { id: "myTable" }
+                                  },
+                                  [
+                                    _vm._m(2),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      _vm._l(_vm.arrayCarDes, function(
+                                        carrera
+                                      ) {
+                                        return _c("tr", { key: carrera.id }, [
+                                          _c("td", {
+                                            domProps: {
+                                              textContent: _vm._s(
+                                                carrera.nombre
+                                              )
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            [
+                                              [
+                                                _c("h4", [
+                                                  carrera.estado == 0
+                                                    ? _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "badge badge-pill badge-danger"
+                                                        },
+                                                        [_vm._v("Desactivada")]
+                                                      )
+                                                    : _vm._e()
+                                                ])
+                                              ]
+                                            ],
+                                            2
+                                          ),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-right" },
+                                            [
+                                              carrera.estado == 0
+                                                ? [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "button red",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-toggle":
+                                                            "tooltip",
+                                                          title:
+                                                            "Desactivar carrera"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.activarCarrera(
+                                                              carrera.id
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "mdi mdi-delete-variant"
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                : _vm._e()
+                                            ],
+                                            2
+                                          )
+                                        ])
+                                      })
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("nav", [
+                                  _c(
+                                    "ul",
+                                    { staticClass: "pagination" },
+                                    [
+                                      _vm.paginationID.current_page > 1
+                                        ? _c(
+                                            "li",
+                                            { staticClass: "page-item" },
+                                            [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "page-link font-weight-bold",
+                                                  attrs: { href: "#" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      $event.preventDefault()
+                                                      _vm.cambiarPaginaDes(
+                                                        _vm.paginationID
+                                                          .current_page - 1,
+                                                        _vm.buscar
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("Ant")]
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.pagesNumberID, function(page) {
+                                        return _c(
+                                          "li",
+                                          {
+                                            key: page,
+                                            staticClass: "page-item",
+                                            class: [
+                                              page == _vm.isActivedID
+                                                ? "active"
+                                                : ""
+                                            ]
+                                          },
+                                          [
+                                            _c("a", {
+                                              staticClass: "page-link",
+                                              attrs: { href: "#" },
+                                              domProps: {
+                                                textContent: _vm._s(page)
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.cambiarPaginaDes(
+                                                    page,
+                                                    _vm.buscar
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      }),
+                                      _vm.paginationID.current_page <
+                                      _vm.paginationID.last_page
+                                        ? _c(
+                                            "li",
+                                            { staticClass: "page-item" },
+                                            [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "page-link font-weight-bold",
+                                                  attrs: { href: "#" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      $event.preventDefault()
+                                                      _vm.cambiarPaginaDes(
+                                                        _vm.paginationID
+                                                          .current_page + 1,
+                                                        _vm.buscar
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("Sig")]
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c("small", {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value: _vm.arrayCarDes.length != 0,
+                                            expression:
+                                              "arrayCarDes.length != 0"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "text-muted pagination-count",
+                                        domProps: {
+                                          textContent: _vm._s(
+                                            "(Mostrando " +
+                                              _vm.arrayCarDes.length +
+                                              " de " +
+                                              _vm.paginationID.total +
+                                              " registros)"
+                                          )
+                                        }
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ])
+                              ])
                             ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-footer" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
                             _c(
-                              "button",
-                              {
-                                staticClass: "button red",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.cerrarModal()
+                              "div",
+                              { staticClass: "col-md-12 col-sm-12 col-lg-12" },
+                              [
+                                _c("div", {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.searchID == 1,
+                                      expression: "searchID == 1"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "alert alert-primary h6 font-weight-bold text-center",
+                                  attrs: { role: "alert" },
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      "No se encontraron resultados o No hay registros"
+                                    )
                                   }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "mdi mdi-close-box" }),
-                                _vm._v(" Cancelar")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "button blue",
-                                attrs: {
-                                  type: "button",
-                                  disabled: _vm.validate == true,
-                                  dense: ""
-                                },
-                                on: { click: _vm.actualizarCarrera }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "mdi mdi-content-save"
-                                }),
-                                _vm._v(" Actualizar Carrera")
+                                })
                               ]
                             )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "button red",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.cerrarModalID()
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "mdi mdi-close-box" }),
+                                  _vm._v(" Cancelar")
+                                ]
+                              )
+                            ])
                           ])
                         ])
                       ])
                     ])
-                  ])
-                ]
-              )
+                  ]
+                )
+              ])
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -95791,6 +96499,46 @@ var staticRenderFns = [
     return _c("thead", { staticClass: "thead-primary" }, [
       _c("tr", [
         _c("th", [_vm._v("Carrera")]),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "text-right",
+            staticStyle: { "padding-right": "35px" }
+          },
+          [_vm._v("Acciones")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn bmd-btn-icon",
+        attrs: {
+          for: "search",
+          "data-toggle": "collapse",
+          "data-target": "#collapse-search",
+          "aria-expanded": "false",
+          "aria-controls": "collapse-search"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-magnify" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Carrera")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
         _vm._v(" "),
         _c(
           "th",

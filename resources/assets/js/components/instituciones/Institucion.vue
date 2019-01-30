@@ -596,7 +596,7 @@
                                                           class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
                                                                  v-for="(image, index) in arrayImagesUpd" :key="index">
                                                                   <label :for="(image, index)">
-                                                              <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
+                                                              <button class="remove" @click="DeleteImage(index, image.id)"><i class="mdi mdi-close-circle"></i></button>
                                                             <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
                                                                   </label>
                                                         </div>
@@ -1297,7 +1297,7 @@
       },
       registrarSupervision() {
         let me = this;
-        //me.loading = true;
+        me.loading = true;
         axios
         .post("/proyecto/registrar/supervision", {
           proyecto_id: this.proyecto_id,
@@ -1306,7 +1306,7 @@
           imagenes: this.images
         })
         .then(function(response) {
-          //me.loading = false;
+          me.loading = false;
           swal({
             position: "center",
             type: "success",
@@ -1326,15 +1326,17 @@
       },
       actualizarSupervision(){
        let me = this;
+       me.loading = true;
        axios
        .put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
         observacion: this.observacion,
-        imagenes: this.images,
+        images: this.images,
 
       })
        .then(function(response) {
+         me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -1683,7 +1685,20 @@
           this.images = [];
           this.files = [];
           this.cerrarModalSuper();
-        }
+        },
+         DeleteImage(index, id) {
+            this.arrayImagesUpd.splice(index, 1);
+            var url = "/supervision/eliminar/"+ id;
+            axios
+            .get(url)
+            .then(function(response) {
+              
+          })
+            .catch(function(error) {
+              console.log(error);
+          });
+
+      },
       },
       components: {},
       mounted() {
