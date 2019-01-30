@@ -13,9 +13,9 @@
 					<div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
 						@if ($data->proyecto->img == null)
 						<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
-						 src="/images/img_projects/{{ $data->tipo_gp == 1 ? 'SS.png' : 'PP.png' }}" alt="{{ $data->proyecto->img }}">						@else
+						src="/images/img_projects/{{ $data->tipo_gp == 1 ? 'SS.png' : 'PP.png' }}" alt="{{ $data->proyecto->img }}">						@else
 						<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
-						 src="/images/img_projects/{{ $data->proyecto->img }}" alt="{{ $data->proyecto->img }}"> @endif
+						src="/images/img_projects/{{ $data->proyecto->img }}" alt="{{ $data->proyecto->img }}"> @endif
 						<br>
 					</div>
 					<div class="col-md-12 col-lg-8 col-xs-12">
@@ -24,15 +24,15 @@
 								<li class="nav-item">
 									<h2 class="nav-link active" data-toggle="tab" href="#busines" role="tab"><strong>Proceso de:</strong>
 										<strong>
-										{{ $data->tipo_gp == 1 ? 'Servicio Social' : 'Práctica Profesional' }}
-									</strong></h2>
-								</li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane fade show active" role="tabpanel">
-									<h6 style="padding: 5px;"><strong>Nombre:</strong> {{ $data->proyecto->nombre }}</h6>
-									<h6 style="padding: 5px;"><strong>Institucion:</strong> {{ $data->proyecto->institucion->nombre }}</h6>
-									<h6 style="padding: 5px;"><strong>Direccion:</strong> {{ $data->proyecto->institucion->direccion }}</h6>
+											{{ $data->tipo_gp == 1 ? 'Servicio Social' : 'Práctica Profesional' }}
+										</strong></h2>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane fade show active" role="tabpanel">
+										<h6 style="padding: 5px;"><strong>Nombre:</strong> {{ $data->proyecto->nombre }}</h6>
+										<h6 style="padding: 5px;"><strong>Institucion:</strong> {{ $data->proyecto->institucion->nombre }}</h6>
+										<h6 style="padding: 5px;"><strong>Direccion:</strong> {{ $data->proyecto->institucion->direccion }}</h6>
 									{{--
 									<h6 style="padding: 5px;"><strong>Estado de proyecto:</strong>{{ $data->estado == 'I' ? 'Iniciado' : $data->estado == 'F' : 'Finalizado' }}</h6>
 									--}}
@@ -50,8 +50,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="welcome-section section-padding section-dark">
+			<br>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 col-lg-12 col-xs-12">
@@ -66,33 +65,33 @@
 											<div class="card text-center">
 												@if(isset($documentos->pivot->gestion_proyecto_id))
 												<div class="card-header">
-												<h5 class="card-title">Entregado &nbsp;<i class="fas fa-check-circle"></i></h5>
+													<h5 class="card-title" style="font-size: 1.2em;">Entregado &nbsp;<i class="fas fa-check-circle"></i></h5>
 												</div>
 												<div>
-												<p class="card-text text-center"><strong>{{$documentos->nombre}}</strong></p>
+													<p class="card-text text-center"><strong>{{$documentos->nombre}}</strong></p>
 												</div>
 												<hr>
 												<div>
-												<p class="card-text text-center">{{$documentos->pivot->observacion != null ? $documentos->pivot->observacion : 'Entregado sin observaciones' }}</p>
+													<p class="card-text text-center">{{$documentos->pivot->observacion != null ? $documentos->pivot->observacion : 'Entregado sin observaciones' }}</p>
 												</div>
 												<br>
 												<div class="card-footer text-muted">
-												{{substr($documentos->pivot->created_at,0,10)}}
+													{{substr($documentos->pivot->created_at,0,10)}}
 												</div>
 												@else
 												<div class="card-header">
-												<h5 class="card-title">Pendiente &nbsp;<i class="fas fa-exclamation-circle"></i></h5>
+													<h5 class="card-title">Pendiente &nbsp;<i class="fas fa-exclamation-circle"></i></h5>
 												</div>
 												<div>
-												<p class="card-text text-center"><strong>{{$documentos->nombre}}</strong></p>
+													<p class="card-text text-center"><strong>{{$documentos->nombre}}</strong></p>
 												</div>
 												<hr>
 												<div>
-												<p class="card-text text-center">...</p>
+													<p class="card-text text-center">...</p>
 												</div>
 												<br>
 												<div class="card-footer text-muted">
-												...
+													...
 												</div>
 												@endif
 											</div>
