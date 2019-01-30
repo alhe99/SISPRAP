@@ -36,8 +36,8 @@
             </div>
           </div>
           <div class="col-md-2 wow animated fadeInRight">
-            <div class="form-group label-floating">
-              {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify"></i>', ['class' => 'animated4 btn btn-primary btn-block','type'=>'submit','id' => 'btn-search']) !!}
+            <div class="form-group label-floating" >
+              {!! Form::button('Buscar&nbsp;<i class="mdi mdi-magnify" style="cursor: pointer;"></i>', ['class' => 'animated4 btn btn-primary btn-block CursorPoint','type'=>'submit','id' => 'btn-search']) !!}
             </div>
           </div>
         </div>

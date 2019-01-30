@@ -10,7 +10,7 @@
         <section class="welcome-section section-padding section-dark">
             <div class="container wow animated fadeInLeft">
                 <div class="row">
-                    <div class="col-md-12 col-lg-8 col-xs-12">
+                    <div class="col-md-12 col-lg-8 col-xs-12"> 
                         <div class="Material-tab">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
@@ -52,24 +52,24 @@
                     <div class="row">
                         @if(in_array($proyecto->id,Auth::user()->estudiante->preinscripciones->pluck('id')->toArray()) == 1)
                         <div class="col-md-6 text-center">
-                            <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
+                            <br><button type="button" class="animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                         </div>
                         @elseif(Auth::user()->estudiante->preinscripciones->count() > 0)
                         @if (
                             Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "F" ||
                             Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "A")
                             <div class="col-md-6 text-center">
-                                <br><button type="button" class="animated4 btn btn-dark" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
+                                <br><button type="button" class="animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @else
                             <div class="col-md-6 text-center">
-                                <br><button type="button" class="animated4 btn btn-primary" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                <br><button type="button" class="animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
                               @else
                               <div class="col-md-6 text-center">
-                                <br><button  type="button" class="animated4 btn btn-primary" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                <br><button  type="button" class="animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif

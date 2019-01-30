@@ -42,122 +42,117 @@
 											@if (Auth::user()->estudiante->proceso_actual == 'I')
 											<div class="card-body">
 												@if (Auth::user()->estudiante->no_proyectos == 2)
-													<button type="button" @click.prevent="downloadDocs('P')"
-														class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-													</div>
-												@else
-													<button type="button" @click.prevent="downloadDocs('P')"
-														class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-													</div>
-												@endif
-												@elseif (session('downloadDocs') == false)
-												<div class="card-body">
-													<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
-												</div>
-												@endif
+												<button type="button" @click.prevent="downloadDocs('P')"
+												class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
 											</div>
+											@else
+											<button type="button" @click.prevent="downloadDocs('P')"
+											class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
 										</div>
-										<div class="tab-pane fade" id="startup" role="tabpanel" >
-											<div class="card text-center">
-												<div class="card-header">
-													<h6 class="card-title">Presiona en el botón para descargar</h6>
-												</div>
-												@if (Auth::user()->estudiante->proceso_actual == 'I')
-												<div class="card-body">
-													@if (Auth::user()->estudiante->no_proyectos == 2)
-														<button type="button" @click.prevent="downloadDocs('CP')"
-															class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-														</div>
-													@else
-														<button type="button" @click.prevent="downloadDocs('CP')"
-															class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-														</div>
-													@endif
-													@elseif (session('downloadDocs') == false)
-													<div class="card-body">
-														<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
-													</div>
-													@endif
-												</div>
-											</div>
-											<div  class="tab-pane fade" id="agency" role="tabpanel">
-												<div class="card text-center">
-													<div class="card-header">
-														<h6 class="card-title">Presiona en el botón para descargar</h6>
-													</div>
-													@if (Auth::user()->estudiante->proceso_actual == 'I')
-													<div class="card-body">
-														@if (Auth::user()->estudiante->no_proyectos == 2)
-															<button type="button" @click.prevent="downloadDocs('CH')"
-																class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-															</div>
-														@else
-															<button type="button" @click.prevent="downloadDocs('CH')"
-																class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
-															</div>
-														@endif
-														@elseif (session('downloadDocs') == false)
-														<div class="card-body">
-															<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
-														</div>
-														@endif
-													</div>
-												</div>
-											</div>
+										@endif
+										@elseif (session('downloadDocs') == false)
+										<div class="card-body">
+											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
 										</div>
+										@endif
 									</div>
 								</div>
-								<br>
-								<button type="button" class="btn btn-danger btn-sm ml-auto d-flex text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box" ></i>&nbsp;Cancelar</button>
+								<div class="tab-pane fade" id="startup" role="tabpanel" >
+									<div class="card text-center">
+										<div class="card-header">
+											<h6 class="card-title">Presiona en el botón para descargar</h6>
+										</div>
+										@if (Auth::user()->estudiante->proceso_actual == 'I')
+										<div class="card-body">
+											@if (Auth::user()->estudiante->no_proyectos == 2)
+											<button type="button" @click.prevent="downloadDocs('CP')"
+											class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+										</div>
+										@else
+										<button type="button" @click.prevent="downloadDocs('CP')"
+										class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+									</div>
+									@endif
+									@elseif (session('downloadDocs') == false)
+									<div class="card-body">
+										<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+									</div>
+									@endif
+								</div>
+							</div>
+							<div  class="tab-pane fade" id="agency" role="tabpanel">
+								<div class="card text-center">
+									<div class="card-header">
+										<h6 class="card-title">Presiona en el botón para descargar</h6>
+									</div>
+									@if (Auth::user()->estudiante->proceso_actual == 'I')
+									<div class="card-body">
+										@if (Auth::user()->estudiante->no_proyectos == 2)
+										<button type="button" @click.prevent="downloadDocs('CH')"
+										class="btn btn-primary" :disabled="proyectoSelected == ''" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+									</div>
+									@else
+									<button type="button" @click.prevent="downloadDocs('CH')"
+									class="btn btn-primary" style="cursor: pointer;"><i class="mdi mdi-cloud-download" ></i>&nbsp;Descargar</button>
+								</div>
+								@endif
+								@elseif (session('downloadDocs') == false)
+								<div class="card-body">
+									<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+								</div>
+								@endif
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<script src="{{asset('js/publicTemplate.js')}}"></script>
-			<script src="{{asset('other/js/jquery-min.js')}}"></script>
-			@if (Request::path() != 'public')
-			@routes @yield('page_script')
-			@endif
-			<script type="text/javascript">
-				var app = new Vue({
-					el : '#modalDocumentos',
-					data : {
-						arrayProyectos: [],
-						proyectoSelected: '',
-					},
-					watch: {
-						proyectoSelected: function(){
-							// alert("Cambio");
-						},
-					},
-					methods: {
-						getProyectosRealizados() {
-							let me = this;
-							var url;
-							if(window.location.href == 'http://sisprap.test/public'){
-								url = "getActualGestionProyectos";
-							}else{
-								url = route("getActualGestionProyectos");
-							}
-							axios.get(url).then(function(response) {
-								var respuesta = response.data;
-								me.arrayProyectos = respuesta;
-							})
-							.catch(function(error) {
-								console.log(error);
-							});
-						},
-						downloadDocs(tipoDocumento){
-							$('#preloader').fadeIn();
-							var url = route('downloadDocs',{'gestionId':this.proyectoSelected,'tipoDoc':tipoDocumento})
-							window.open(url,"_self");
-							this.proyectoSelected = '';
-							$('#preloader').fadeOut();
-						}
-					},
-					mounted(){
-						this.getProyectosRealizados();
-					}
+		</div>
+		<br>
+		<button type="button" class="btn btn-danger btn-sm ml-auto d-flex text-white" style="cursor: pointer;" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box" ></i>&nbsp;Cancelar</button>
+	</div>
+</div>
+</div>
+</div>
+</div>
+<script src="{{asset('js/publicTemplate.js')}}"></script>
+<script src="{{asset('other/js/jquery-min.js')}}"></script>
+@if (Request::path() != 'public')
+	@routes @yield('page_script')
+@endif
+<script type="text/javascript">
+	var app = new Vue({
+		el : '#modalDocumentos',
+		data : {
+			arrayProyectos: [],
+			proyectoSelected: '',
+		},
+		methods: {
+			getProyectosRealizados() {
+				let me = this;
+				var url;
+				if(window.location.pathname == '/public'){
+					url = "getActualGestionProyectos";
+				}else{
+					url = route("getActualGestionProyectos");
+				}
+				axios.get(url).then(function(response) {
+					var respuesta = response.data;
+					me.arrayProyectos = respuesta;
+				})
+				.catch(function(error) {
+					console.log(error);
 				});
-			</script>
+			},
+			downloadDocs(tipoDocumento){
+				$('#preloader').fadeIn();
+				var url = route('downloadDocs',{'gestionId':this.proyectoSelected,'tipoDoc':tipoDocumento})
+				window.open(url,"_self");
+				this.proyectoSelected = '';
+				$('#preloader').fadeOut();
+			}
+		},
+		mounted(){
+			this.getProyectosRealizados();
+		},
+	});
+</script>

@@ -173,7 +173,8 @@
                             <div class="row">
                               <div class="col-md-12" style="margin-left: -12px"><label @click="abrirModalFI" class="btn btn-link text-capitalize" style="font-size: 15px;"><strong>Fecha de Inicio:</strong> {{gpObj.fecha_inicio}}</label></div>
                               <div class="col-md-12">
-                                <label><strong>Horas a realizar:</strong> {{gpObj.horas_a_realizar}}</label>
+                                <label v-if="gpObj.estado == 'I'"><strong>Horas a realizar:</strong> {{gpObj.horas_a_realizar}}</label>
+                                <label v-else><strong>Horas realizadas:</strong> {{gpObj.horas_realizadas}}</label>
                               </div>
                               <div class="col-md-12">
                                 <template>
@@ -287,7 +288,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <label for="obs" class="font-weight-bold">Seleccione Fecha de Finalización de Proyecto: </label>
-                    <input placeholder="aaaa-mm-dd" v-mask="'####-##-##'" id="fechaFin" name="fechaFin" class="form-control" >
+                    <input placeholder="aaaa-mm-dd" @click="openDateIPicker('#fechaFin')" v-mask="'####-##-##'" id="fechaFin" name="fechaFin" class="form-control" >
                   </div><br>
                   <div class="col-md-12"><br>
                    <label for="obs" class="font-weight-bold">Total de Horas Realizadas en el proyecto: </label>
@@ -331,7 +332,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <label for="obs" class="font-weight-bold">Seleccione Nueva Fecha de Inicio </label>
-                  <input placeholder="aaaa-mm-dd" disabled v-model="fechaInicio" id="fechaInicio" name="fechaInicio" v-mask="'####-##-##'" class="form-control" >
+                  <input placeholder="aaaa-mm-dd" @click="openDateIPicker('#fechaInicio')"  v-model="fechaInicio" id="fechaInicio" name="fechaInicio" v-mask="'####-##-##'" class="form-control" >
                 </div><br>
               </div>
             </div>
@@ -495,6 +496,12 @@ methods:{
       console.log(error);
     });
   },
+  // Metodo que abre el datePicker
+  openDateIPicker(idDatePicker){
+     var datepicker = $(idDatePicker).datepicker();
+     datepicker.open();
+     // console.log(idDatePicker)
+   },
 
   //cancelar un proyecto que ya se ha iniciado
   cancelProy(idGp){
@@ -616,8 +623,11 @@ methods:{
   },
   cerrarModalFI() {
     const el = document.body;
+    var datepickerEdicionFI = $('#fechaInicio').datepicker();
     el.classList.remove("abrirModal");
     this.modalFI = 0;
+    datepickerEdicionFI.close();
+
   },
   abrirModalDoc() {
     const el = document.body;
