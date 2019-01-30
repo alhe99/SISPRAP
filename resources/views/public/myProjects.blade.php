@@ -82,7 +82,6 @@
         {!! $proyectos->links() !!}
     </div>
 </div>
-
 @endif
 </div>
 @endsection
