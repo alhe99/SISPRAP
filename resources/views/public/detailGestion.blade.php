@@ -10,7 +10,7 @@
 		<section class="welcome-section section-padding section-dark">
 			<div class="container wow animated fadeInLeft">
 				<div class="row">
-					<div class="col-md-12 col-lg-4 col-xs-12 welcome-column">
+					<div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
 						@if ($data->proyecto->img == null)
 						<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
 						 src="/images/img_projects/{{ $data->tipo_gp == 1 ? 'SS.png' : 'PP.png' }}" alt="{{ $data->proyecto->img }}">						@else
@@ -103,6 +103,8 @@
 							</div>
 						</div>
 					</div>
+					<br>
+					<a href="{{ url()->previous() }}"  class="btn btn-dark text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i>Regresar</a>
 				</div>
 			</div>
 		</section>

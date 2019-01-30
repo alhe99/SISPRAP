@@ -1332,15 +1332,17 @@ registrarSupervision() {
       },
       actualizarSupervision(){
        let me = this;
+       me.loading = true;
        axios
        .put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
         observacion: this.observacion,
-        imagenes: this.images,
+        images: this.images,
 
       })
        .then(function(response) {
+         me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -1691,7 +1693,20 @@ registrarSupervision() {
           this.images = [];
           this.files = [];
           this.cerrarModalSuper();
-        }
+        },
+         DeleteImage(index, id) {
+            this.arrayImagesUpd.splice(index, 1);
+            var url = "/supervision/eliminar/"+ id;
+            axios
+            .get(url)
+            .then(function(response) {
+              
+          })
+            .catch(function(error) {
+              console.log(error);
+          });
+
+      },
       },
       components: {},
       mounted() {

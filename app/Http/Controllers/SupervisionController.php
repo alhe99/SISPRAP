@@ -48,12 +48,12 @@ class SupervisionController extends Controller
         $supervision = Proyecto::findOrFail($request->id)->supervision;
         $supervision->fecha = $request->fecha;
         $supervision->observacion = $request->observacion;
-        for ($i=0;$i<count($request->imagenes);$i++) {
+        for ($i=0;$i<count($request->images);$i++) {
 
             $imgSuper = new ImgSupervision();
-            $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
+            $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->images[$i], 0, strpos($request->images[$i], ';')))[1])[1];
             $imgSuper->img = $name_img;
-            Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
+            Image::make($request->images[$i])->save(public_path('images_superv/').$name_img);
             SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
 
           }
@@ -74,6 +74,13 @@ class SupervisionController extends Controller
         $s = Proyecto::findOrFail($id)->supervision;
         $img = ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
         return $img;
+    }
+
+    //eliminar imagenes
+    public function delete($id){
+
+        $img = ImgSupervision::findOrFail($id);
+        $img->delete();
     }
 
 }
