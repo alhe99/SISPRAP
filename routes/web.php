@@ -1,6 +1,4 @@
 <?php
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
@@ -12,8 +10,6 @@ Route::get('/main', function () {
     return view('admin.index');
 })->name('main');
 
-
-
 Route::get('/institucion', 'InstitucionController@index');
 Route::post('/institucion/registrar', 'InstitucionController@store');
 Route::put('/institucion/actualizar', 'InstitucionController@update');
@@ -23,16 +19,14 @@ Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
 Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
-Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
+Route::get('/institucion/validate', 'InstitucionController@validateInstitucion')->name('validateInstitucion');
 Route::get('getInstitucionesByProcess', 'InstitucionController@getInstitucionesByProcess')->name('getInstitucionesByProcess');
-
 
 Route::get('institucion/supervisor/index', 'SupervisorController@index')->name('getSupervisores');
 Route::post('institucion/supervisor/save', 'SupervisorController@store')->name('saveSupervisor');
-Route::get('/institucion/supervisor/validate','SupervisorController@validateSupervisor')->name('validateSupervisor');
+Route::get('/institucion/supervisor/validate', 'SupervisorController@validateSupervisor')->name('validateSupervisor');
 Route::put('/institucion/supervisor/eliminar/{id}', 'SupervisorController@delete');
 Route::put('institucion/supervisor/update', 'SupervisorController@update')->name('updSupervisor');
-
 
 //Rutas para sectores
 Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
@@ -40,8 +34,7 @@ Route::get('getSectores/', 'SectorInstitucionController@getSectores');
 Route::get('/sector', 'SectorInstitucionController@index');
 Route::put('/sector/actualizar', 'SectorInstitucionController@update');
 Route::get('/sector/eliminar/{id}', 'SectorInstitucionController@delete');
-Route::get('/sector/validate','SectorInstitucionController@validateSector')->name('validateSector');
-
+Route::get('/sector/validate', 'SectorInstitucionController@validateSector')->name('validateSector');
 
 Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
 Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');
@@ -49,7 +42,7 @@ Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');
 Route::get('carreras/GetCarreras', 'CarreraController@GetCarreras');
 Route::get('/carrera', 'CarreraController@index');
 Route::put('/carrera/actualizar', 'CarreraController@update');
-Route::get('/carrera/validate','CarreraController@validateCarrera')->name('validateCarrera');
+Route::get('/carrera/validate', 'CarreraController@validateCarrera')->name('validateCarrera');
 
 Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
 
@@ -70,11 +63,11 @@ Route::put('/supervision/actualizar', 'SupervisionController@update');
 Route::get('proyectos/externos', 'ProyectoController@getExternalProjects');
 Route::get('proyectos/externos/asignar', 'ProyectoController@asignarProyectoExterno')->name('asinarProyectoExterno');
 Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
-Route::get('getFullInfo','GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
+Route::get('getFullInfo', 'GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
 Route::get('/permiso', 'PermisoController@index');
 
 //usuarios
-Route::post('rol/registrar','RolController@store');
+Route::post('rol/registrar', 'RolController@store');
 Route::get('/rol', 'RolController@GetRol');
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name("showLogin");
@@ -84,14 +77,14 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 //Para Preincripciones Proyectos
 
 Route::get('GetProjectsByProcess', 'ProyectoController@getProjectsByProcess');
-Route::get('getPreregistrationByProject','ProyectoController@getPreregistrationByProject');
-Route::get('stundentById/{id}','EstudianteController@getStudentById');
+Route::get('getPreregistrationByProject', 'ProyectoController@getPreregistrationByProject');
+Route::get('stundentById/{id}', 'EstudianteController@getStudentById');
 Route::post('admin/registrar', 'EstudianteController@store');
-Route::get('stundentByCarrer','EstudianteController@getStudensByCarrerAndProcess');
+Route::get('stundentByCarrer', 'EstudianteController@getStudensByCarrerAndProcess');
 
-Route::get('/perfil_proy',function(){return view('public.perfilProject');})->name('show_perfil');
+Route::get('/perfil_proy', function () {return view('public.perfilProject');})->name('show_perfil');
 
-Route::get('public/downloadDocs','GestionProyectoController@downloadDocs')->name('downloadDocs');
+Route::get('public/downloadDocs', 'GestionProyectoController@downloadDocs')->name('downloadDocs');
 Route::get('/proyectos/obtenerAprobados', 'ProyectoController@getAllAcepted')->name('allAcepted');
 Route::get('/proyectos/deleteAprobacion', 'ProyectoController@deleteProyectoAprobado')->name('deleteProyAceptted');
 Route::get('getActualGestionProyectos', 'GestionProyectoController@getActualGestionProyectos')->name('getActualGestionProyectos');
@@ -108,28 +101,27 @@ Route::get('/viewProject/{process}/{slug}', 'ProyectoController@getProjectBySlug
 Route::get('/preRegister/{studentId}/{projectId}', 'ProyectoController@preRegistrationProject')->name('preRegister');
 Route::get('/my-pre-register/{studentId}/{proceso_id}', 'ProyectoController@getPreregisterProjects')->name('myPreregister');
 Route::get('/deletePreRegister/{studentId}/{projectId}', 'ProyectoController@deletePreRegistration')->name('deletePreRegister');
-Route::get('/proyecto/validatess/{nombre}','ProyectoController@ifProjectExist');
-Route::get('/my-proyect/saveDataOfPerfil','GestionProyectoController@initGestionProyecto')->name('save_perfil');
-Route::get('/gestion_proy/{perfil}','GestionProyectoController@generatePerfil')->name('generate_perfil');
+Route::get('/proyecto/validatess/{nombre}', 'ProyectoController@ifProjectExist');
+Route::get('/my-proyect/saveDataOfPerfil', 'GestionProyectoController@initGestionProyecto')->name('save_perfil');
+Route::get('/gestion_proy/{perfil}', 'GestionProyectoController@generatePerfil')->name('generate_perfil');
 
 //Recharaz una preinscripcion
 
-Route::get('/destroyPreregister/{sId}/{pId}','ProyectoController@rechazPreregistration');
-Route::get('acceptPreregister','ProyectoController@aceptarPreregistration')->name("preregister");
-Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepcion');
-Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provideAccessToPerfil');
-Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistration');
-
+Route::get('/destroyPreregister/{sId}/{pId}', 'ProyectoController@rechazPreregistration');
+Route::get('acceptPreregister', 'ProyectoController@aceptarPreregistration')->name("preregister");
+Route::get('/recepcion/getAllStudents', 'EstudianteController@getStudentsToRecepcion');
+Route::post('/admin/provideAccessToPerfil/{sId}/{pId}', 'ProyectoController@provideAccessToPerfil');
+Route::get('deleteAllPreregister/{pId}', 'ProyectoController@deleteAllPreregistration');
 
 //RUTAS PARA REPORTES
-Route::get('institucion/getHojaSupervision','InstitucionController@getHojaSupervision')->name('getHojaSupervision');
-Route::get('institucion/reporteGen','InstitucionController@getReportInstituciones')->name('generalInstitucion');
-Route::get('institucion/getSupervisiones','InstitucionController@getSupervisiones')->name('getReporteSupervisiones');
-Route::get('institucion/regSupervision','InstitucionController@regSupervision')->name('regSupervision');
+Route::get('institucion/getHojaSupervision', 'InstitucionController@getHojaSupervision')->name('getHojaSupervision');
+Route::get('institucion/reporteGen', 'InstitucionController@getReportInstituciones')->name('generalInstitucion');
+Route::get('institucion/getSupervisiones', 'InstitucionController@getSupervisiones')->name('getReporteSupervisiones');
+Route::get('institucion/regSupervision', 'InstitucionController@regSupervision')->name('regSupervision');
 
 //Reportes GP
 
-Route::get('/gestionProy/reportes/initialprocess','GestionProyectoController@getInitialProcessReporte')->name('reporteIniProd');
+Route::get('/gestionProy/reportes/initialprocess', 'GestionProyectoController@getInitialProcessReporte')->name('reporteIniProd');
 Route::get('/gestionProy/reportes/pendienteInicio', 'GestionProyectoController@getPendientesIniProcessReporte')->name('reportePenIni');
 Route::get('/gestionProy/reportes/pendienteFin', 'GestionProyectoController@getPendientesFinProcessReporte')->name('reportePenFin');
 Route::get('/gestionProy/reportes/procesosCulminados', 'GestionProyectoController@getProcesosCulminadosReporte')->name('reporteProcesosCulminados');
@@ -138,36 +130,33 @@ Route::get('/gestionProy/reportes/procesosCulminados', 'GestionProyectoControlle
 
 ///////PARTE DE RECEPCION ////////
 
-Route::get('/admin/studentsHasPayArancel','EstudianteController@getStudentsHasPayArancel');
-Route::get('/becas/getAll','TipoBecaController@getAllBecas');
-Route::post('/recepcion/payArancel','PagoArancelController@payArancel');
-Route::get('/recepcion/payArancel/validate/{no_factura}','PagoArancelController@validateIfExiste')->name('validateIfExisteArancel');
-
-
+Route::get('/admin/studentsHasPayArancel', 'EstudianteController@getStudentsHasPayArancel');
+Route::get('/becas/getAll', 'TipoBecaController@getAllBecas');
+Route::post('/recepcion/payArancel', 'PagoArancelController@payArancel');
+Route::get('/recepcion/payArancel/validate/{no_factura}', 'PagoArancelController@validateIfExiste')->name('validateIfExisteArancel');
 
 //PARA GESTION PROYECTOS
 
-Route::get('/gestionproyectos','GestionProyectoController@index');
-Route::get('/gestionproyectos/constancias','GestionProyectoController@constancias');
-Route::get('/getMoreInfoGP/{id}','GestionProyectoController@getInfoGpById');
-Route::get('/getCostancia','GestionProyectoController@generateConstancia')->name('getConstancia');
-Route::get('/my_projects_now/{id}','GestionProyectoController@getGestionProyectoByStudent')->name('proyects_now');
-Route::get('/gestionproyectos/delete','GestionProyectoController@deleteProyectoEnMarcha')->name('deleteGestionProyecto');
+Route::get('/gestionproyectos', 'GestionProyectoController@index');
+Route::get('/gestionproyectos/constancias', 'GestionProyectoController@constancias');
+Route::get('/getMoreInfoGP/{id}', 'GestionProyectoController@getInfoGpById');
+Route::get('/getCostancia', 'GestionProyectoController@generateConstancia')->name('getConstancia');
+Route::get('/my_projects_now/{id}', 'GestionProyectoController@getGestionProyectoByStudent')->name('proyects_now');
+Route::get('/gestionproyectos/delete', 'GestionProyectoController@deleteProyectoEnMarcha')->name('deleteGestionProyecto');
 //Reportes GP
 
-Route::get('/gestionProy/reportes/initialprocess/{pId}','GestionProyectoController@getInitialProcessReporte');
-
+Route::get('/gestionProy/reportes/initialprocess/{pId}', 'GestionProyectoController@getInitialProcessReporte');
 
 //Documentos
-Route::get('/getDocuments','DocumentoController@getDocumentsByStudent');
-Route::get('/saveDoc','DocumentoController@addDocToStudent')->name('savedoc');
-Route::get('/closeProyect','GestionProyectoController@closeProy')->name('close_proyect');
+Route::get('/getDocuments', 'DocumentoController@getDocumentsByStudent');
+Route::get('/saveDoc', 'DocumentoController@addDocToStudent')->name('savedoc');
+Route::get('/closeProyect', 'GestionProyectoController@closeProy')->name('close_proyect');
 
-Route::post('sector/registrar','SectorInstitucionController@store');
+Route::post('sector/registrar', 'SectorInstitucionController@store');
 Route::post('admin/registrar', 'EstudianteController@store');
 
 //Backup
-Route::get('/backup','BackupController@backup');
+Route::get('/backup', 'BackupController@backup');
 
 Route::get('/test', function () {
 
@@ -177,7 +166,7 @@ Route::get('/test', function () {
     //     unlink(public_path('images/img_projects/').$test);
     // }
     // unlink(public_path('images/img_projects/').$test);
-     // return "hecho";
+    // return "hecho";
 
     /*$id= 36;
 
@@ -189,7 +178,7 @@ Route::get('/test', function () {
 
     for ($i=0; $i < count($proyecto) ; $i++) {
     $proyecto[$i]->setAttribute("carrera",$carreActvidad[$i]["carre_proy"][0]["nombre"]);
-} */
+    } */
 
     //return $proyecto;
 
@@ -229,7 +218,6 @@ Route::get('/test', function () {
     // $u->rol_id = 2;
     // $u->save();
 
-
     // $e = new App\Estudiante;
     // $e->nombre = "Juan Arnol";
     // $e->apellido = "Sosa Suarez";
@@ -248,7 +236,7 @@ Route::get('/test', function () {
     // $e->password = bcrypt('123');
     // $e->foto_name = "SS17001001".".JPG";
     // $e->save();
-/*
+    /*
     $e = new App\Estudiante;
     $e->nombre = "Luis Alonso";
     $e->apellido = "Hernandez Orellana";
@@ -271,7 +259,6 @@ Route::get('/test', function () {
     $e->proceso()->attach(1);
     // //return App\Notification::all();
 
-
     return "True";
     //return Auth::user()->estudiante->proceso[0]->id;*/
 
@@ -286,18 +273,18 @@ Route::get('/test', function () {
 });
 
 /* Route::get('/_debugbar/assets/stylesheets', [
-    'as' => 'debugbar-css',
-    'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
+'as' => 'debugbar-css',
+'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
 ]);
 
 Route::get('/_debugbar/assets/javascript', [
-    'as' => 'debugbar-js',
-    'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
+'as' => 'debugbar-js',
+'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
 ]);
 
 Route::get('/_debugbar/open', [
-    'as' => 'debugbar-open',
-    'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
+'as' => 'debugbar-open',
+'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
 ]);
 
  */
