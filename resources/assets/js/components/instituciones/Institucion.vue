@@ -597,7 +597,7 @@
                                               class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
                                               v-for="(image, index) in arrayImagesUpd" :key="index">
                                               <label :for="(image, index)">
-                                                <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
+                                                <button class="remove" @click="DeleteImage(index, image.id)"><i class="mdi mdi-close-circle"></i></button>
                                                 <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
                                               </label>
                                             </div>
@@ -1332,7 +1332,6 @@ registrarSupervision() {
       },
       actualizarSupervision(){
        let me = this;
-       me.loading = true;
        axios
        .put("/supervision/actualizar", {
         id: this.proyecto_id,
@@ -1342,7 +1341,6 @@ registrarSupervision() {
 
       })
        .then(function(response) {
-         me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -1694,7 +1692,7 @@ registrarSupervision() {
           this.files = [];
           this.cerrarModalSuper();
         },
-         DeleteImage(index, id) {
+        DeleteImage(index, id) {
             this.arrayImagesUpd.splice(index, 1);
             var url = "/supervision/eliminar/"+ id;
             axios

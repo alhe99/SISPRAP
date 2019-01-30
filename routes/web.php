@@ -95,10 +95,9 @@ Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision');
 Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv');
 Route::put('/supervision/actualizar', 'SupervisionController@update');
-Route::get('proyectos/externos', 'ProyectoController@getExternalProjects');
-Route::get('proyectos/externos/asignar', 'ProyectoController@asignarProyectoExterno')->name('asinarProyectoExterno');
-Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
-Route::get('getFullInfo','GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
+Route::get('/supervision/eliminar/{id}', 'SupervisionController@delete');
+
+//PERMISO
 Route::get('/permiso', 'PermisoController@index');
 
 //ROL

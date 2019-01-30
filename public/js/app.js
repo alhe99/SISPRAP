@@ -80027,7 +80027,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     actualizarSupervision: function actualizarSupervision() {
       var me = this;
-      me.loading = true;
       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
@@ -80035,7 +80034,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         images: this.images
 
       }).then(function (response) {
-        me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -83704,6 +83702,35 @@ var render = function() {
                                                                                               }
                                                                                             },
                                                                                             [
+                                                                                              _c(
+                                                                                                "button",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "remove",
+                                                                                                  on: {
+                                                                                                    click: function(
+                                                                                                      $event
+                                                                                                    ) {
+                                                                                                      _vm.DeleteImage(
+                                                                                                        index,
+                                                                                                        image.id
+                                                                                                      )
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "i",
+                                                                                                    {
+                                                                                                      staticClass:
+                                                                                                        "mdi mdi-close-circle"
+                                                                                                    }
+                                                                                                  )
+                                                                                                ]
+                                                                                              ),
+                                                                                              _vm._v(
+                                                                                                " "
+                                                                                              ),
                                                                                               _c(
                                                                                                 "img",
                                                                                                 {
