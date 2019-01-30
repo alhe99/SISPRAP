@@ -58,15 +58,16 @@
 											<div class="tab-pane fade show active" id="business" role="tabpanel" >
 												<div class="card text-center">
 													<div class="card-header">
-														<h5 class="card-title">Entregrado &nbsp;<i class="fas fa-check-circle"></i></h5>
+														<h5 class="card-title">Entregado &nbsp;<i class="fas fa-check-circle"></i></h5>
 													</div>
 													<div>
 														<p class="card-text text-center"><strong>Apertura de expediente</strong></p>
 													</div>
 													<hr>
-													<div class="card-body">
-														<p class="card-text text-center">Entregrado sin observaciones.</p>
+													<div>
+														<p class="card-text text-center">Entregado sin observaciones.</p>
 													</div>
+													<br>
 													<div class="card-footer text-muted">
 														2 days ago
 													</div>
@@ -77,15 +78,16 @@
 											<div class="tab-pane fade show active" id="business" role="tabpanel" >
 												<div class="card text-center">
 													<div class="card-header">
-														<h5 class="card-title">Entregrado &nbsp;<i class="fas fa-check-circle"></i></h5>
+														<h5 class="card-title">Entregado &nbsp;<i class="fas fa-check-circle"></i></h5>
 													</div>
 													<div>
 														<p class="card-text text-center"><strong>Perfil de proyecto</strong></p>
 													</div>
 													<hr>
-													<div class="card-body">
-														<p class="card-text text-center">Entregrado sin observaciones.</p>
+													<div>
+														<p class="card-text text-center">Entregado sin observaciones.</p>
 													</div>
+													<br>
 													<div class="card-footer text-muted">
 														2 days ago
 													</div>
@@ -96,15 +98,16 @@
 											<div class="tab-pane fade show active" id="business" role="tabpanel" >
 												<div class="card text-center">
 													<div class="card-header">
-														<h5 class="card-title">Entregrado &nbsp;<i class="fas fa-check-circle"></i></h5>
+														<h5 class="card-title">Entregado &nbsp;<i class="fas fa-check-circle"></i></h5>
 													</div>
 													<div>
 														<p class="card-text text-center"><strong>Control de asistencia</strong></p>
 													</div>
 													<hr>
-													<div class="card-body">
-														<p class="card-text text-center">Entregrado sin observaciones.</p>
+													<div>
+														<p class="card-text text-center">Entregado sin observaciones.</p>
 													</div>
+													<br>
 													<div class="card-footer text-muted">
 														2 days ago
 													</div>
@@ -121,9 +124,10 @@
 														<p class="card-text text-center"><strong>Carta de finalización</strong></p>
 													</div>
 													<hr>
-													<div class="card-body">
+													<div>
 														<p class="card-text text-center">Documento restante.</p>
 													</div>
+													<br>
 													<div class="card-footer text-muted">
 														2 days ago
 													</div>
