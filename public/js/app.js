@@ -98753,6 +98753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98877,6 +98878,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
+    // Metodo que abre el datePicker
+    openDateIPicker: function openDateIPicker(idDatePicker) {
+      var datepicker = $(idDatePicker).datepicker();
+      datepicker.open();
+      // console.log(idDatePicker)
+    },
+
 
     //cancelar un proyecto que ya se ha iniciado
     cancelProy: function cancelProy(idGp) {
@@ -98981,8 +98989,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     cerrarModalFI: function cerrarModalFI() {
       var el = document.body;
+      var datepickerEdicionFI = $('#fechaInicio').datepicker();
       el.classList.remove("abrirModal");
       this.modalFI = 0;
+      datepickerEdicionFI.close();
     },
     abrirModalDoc: function abrirModalDoc() {
       var el = document.body;
@@ -99985,20 +99995,36 @@ var render = function() {
                                                             "col-md-12"
                                                         },
                                                         [
-                                                          _c("label", [
-                                                            _c("strong", [
-                                                              _vm._v(
-                                                                "Horas a realizar:"
-                                                              )
-                                                            ]),
-                                                            _vm._v(
-                                                              " " +
-                                                                _vm._s(
-                                                                  _vm.gpObj
-                                                                    .horas_a_realizar
+                                                          _vm.gpObj.estado ==
+                                                          "I"
+                                                            ? _c("label", [
+                                                                _c("strong", [
+                                                                  _vm._v(
+                                                                    "Horas a realizar:"
+                                                                  )
+                                                                ]),
+                                                                _vm._v(
+                                                                  " " +
+                                                                    _vm._s(
+                                                                      _vm.gpObj
+                                                                        .horas_a_realizar
+                                                                    )
                                                                 )
-                                                            )
-                                                          ])
+                                                              ])
+                                                            : _c("label", [
+                                                                _c("strong", [
+                                                                  _vm._v(
+                                                                    "Horas realizadas:"
+                                                                  )
+                                                                ]),
+                                                                _vm._v(
+                                                                  " " +
+                                                                    _vm._s(
+                                                                      _vm.gpObj
+                                                                        .horas_realizadas
+                                                                    )
+                                                                )
+                                                              ])
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -100588,6 +100614,11 @@ var render = function() {
                                             placeholder: "aaaa-mm-dd",
                                             id: "fechaFin",
                                             name: "fechaFin"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.openDateIPicker("#fechaFin")
+                                            }
                                           }
                                         })
                                       ]),
@@ -100858,12 +100889,16 @@ var render = function() {
                                           staticClass: "form-control",
                                           attrs: {
                                             placeholder: "aaaa-mm-dd",
-                                            disabled: "",
                                             id: "fechaInicio",
                                             name: "fechaInicio"
                                           },
                                           domProps: { value: _vm.fechaInicio },
                                           on: {
+                                            click: function($event) {
+                                              _vm.openDateIPicker(
+                                                "#fechaInicio"
+                                              )
+                                            },
                                             input: function($event) {
                                               if ($event.target.composing) {
                                                 return
