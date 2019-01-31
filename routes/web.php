@@ -1,6 +1,4 @@
 <?php
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
@@ -22,7 +20,7 @@ Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes')->name('institucionesDesactivadas');
 Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion')->name('proyectosByinstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
-Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
+Route::get('/institucion/validate', 'InstitucionController@validateInstitucion')->name('validateInstitucion');
 Route::get('getInstitucionesByProcess', 'InstitucionController@getInstitucionesByProcess')->name('getInstitucionesByProcess');
 //REPORTE INSTITUCION
 Route::get('institucion/getHojaSupervision','InstitucionController@getHojaSupervision')->name('getHojaSupervision');
@@ -95,9 +93,10 @@ Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision');
 Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv');
 Route::put('/supervision/actualizar', 'SupervisionController@update');
-Route::get('/supervision/eliminar/{id}', 'SupervisionController@delete');
-
-//PERMISO
+Route::get('proyectos/externos', 'ProyectoController@getExternalProjects');
+Route::get('proyectos/externos/asignar', 'ProyectoController@asignarProyectoExterno')->name('asinarProyectoExterno');
+Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
+Route::get('getFullInfo', 'GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
 Route::get('/permiso', 'PermisoController@index');
 
 //ROL
@@ -158,7 +157,7 @@ Route::post('/recepcion/payArancel','PagoArancelController@payArancel');
 Route::get('/recepcion/payArancel/validate/{no_factura}','PagoArancelController@validateIfExiste')->name('validateIfExisteArancel');
 
 //Backup
-Route::get('/backup','BackupController@backup');
+Route::get('/backup', 'BackupController@backup');
 
 Route::get('/test', function () {
 
@@ -168,7 +167,7 @@ Route::get('/test', function () {
     //     unlink(public_path('images/img_projects/').$test);
     // }
     // unlink(public_path('images/img_projects/').$test);
-     // return "hecho";
+    // return "hecho";
 
     /*$id= 36;
 
@@ -180,7 +179,7 @@ Route::get('/test', function () {
 
     for ($i=0; $i < count($proyecto) ; $i++) {
     $proyecto[$i]->setAttribute("carrera",$carreActvidad[$i]["carre_proy"][0]["nombre"]);
-} */
+    } */
 
     //return $proyecto;
 
@@ -220,7 +219,6 @@ Route::get('/test', function () {
     // $u->rol_id = 2;
     // $u->save();
 
-
     // $e = new App\Estudiante;
     // $e->nombre = "Juan Arnol";
     // $e->apellido = "Sosa Suarez";
@@ -239,7 +237,7 @@ Route::get('/test', function () {
     // $e->password = bcrypt('123');
     // $e->foto_name = "SS17001001".".JPG";
     // $e->save();
-/*
+    /*
     $e = new App\Estudiante;
     $e->nombre = "Luis Alonso";
     $e->apellido = "Hernandez Orellana";
@@ -262,7 +260,6 @@ Route::get('/test', function () {
     $e->proceso()->attach(1);
     // //return App\Notification::all();
 
-
     return "True";
     //return Auth::user()->estudiante->proceso[0]->id;*/
 
@@ -284,18 +281,18 @@ Route::get('/test', function () {
 });
 
 /* Route::get('/_debugbar/assets/stylesheets', [
-    'as' => 'debugbar-css',
-    'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
+'as' => 'debugbar-css',
+'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
 ]);
 
 Route::get('/_debugbar/assets/javascript', [
-    'as' => 'debugbar-js',
-    'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
+'as' => 'debugbar-js',
+'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
 ]);
 
 Route::get('/_debugbar/open', [
-    'as' => 'debugbar-open',
-    'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
+'as' => 'debugbar-open',
+'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
 ]);
 
  */

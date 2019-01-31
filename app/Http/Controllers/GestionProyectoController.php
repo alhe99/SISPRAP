@@ -2114,8 +2114,13 @@ class GestionProyectoController extends Controller
         $gestionId = $request->gestionId;
 
         $data = GestionProyecto::with(['proyecto.institucion','documentos_entrega'])->find($gestionId);
-        $documentos = Documento::all();
-        /*  return view('public.detailGestion',compact(['data','documentos'])); */
-        return $documentos;
+        $documentosId = $data->documentos_entrega->pluck('id');
+
+        $documentos = Documento::whereNotIn('id',$documentosId)->get();
+        foreach ($documentos as $value) {
+            $value->setAttribute("pivot",(object)[]);
+            $data->documentos_entrega->push($value);
+        } 
+        return view('public.detailGestion',compact(['data']));
     }
 }

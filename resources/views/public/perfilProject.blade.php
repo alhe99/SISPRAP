@@ -151,9 +151,7 @@
           <div class="col-md-12" data-wow-delay=".2s">
            <div class="form-group">
             <label for="proyecto_acti" class="control-label">Actividades a desarrollar*</label>
-            <textarea class="form-control-sm col-md-12" rows="5" name="proyecto_acti" id="proyecto_acti" disabled >
-              {{\Html2Text\Html2Text::convert(Auth::user()->estudiante->preinscripciones[0]->actividades)}}
-            </textarea>
+            <textarea class="form-control-sm col-md-12" rows="5" name="proyecto_acti" id="proyecto_acti" disabled>{{\Html2Text\Html2Text::convert(Auth::user()->estudiante->preinscripciones[0]->actividades)}}</textarea>
           </div>
         </div>
       </div>
