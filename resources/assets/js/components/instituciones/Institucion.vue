@@ -597,7 +597,7 @@
                                               class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
                                               v-for="(image, index) in arrayImagesUpd" :key="index">
                                               <label :for="(image, index)">
-                                                <!--<button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>-->
+                                                <button class="remove" @click="DeleteImage(index, image.id)"><i class="mdi mdi-close-circle"></i></button>
                                                 <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
                                               </label>
                                             </div>
@@ -834,13 +834,7 @@ export default {
       //listado de instituciones por busqueda
       listarInstitucion(page, proceso, buscar) {
         let me = this;
-        var url =
-        "/institucion?page=" +
-        page +
-        "&proceso=" +
-        proceso +
-        "&buscar=" +
-        buscar;
+        var url = route('listInstituciones', {"page": page, "proceso": proceso, "buscar": buscar});
         me.loadSpinner = 1;
         axios
         .get(url)
@@ -862,9 +856,9 @@ export default {
       //listado de instituciones desactivadas
       listarInstitucionDes(page, proceso, buscar) {
         let me = this;
-        var url ="/institucion/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+        var urlInstDe = route('institucionesDesactivadas', {"page": page, "proceso": proceso, "buscar": buscar});
         me.loading = true;
-        axios.get(url).then(function(response) {
+        axios.get(urlInstDe).then(function(response) {
           var respuesta = response.data;
           me.arrayInstitucionDes = respuesta.institucion.data;
           me.paginationInstiDes = respuesta.pagination;
@@ -883,9 +877,9 @@ export default {
       },
       getSectores() {
         let me = this;
-        var url = "sector/selectSectores";
+        var urlSelectsect = route('selectSectores');
         axios
-        .get(url)
+        .get(urlSelectsect)
         .then(function(response) {
           var respuesta = response.data;
           me.arraySectores = respuesta;
@@ -924,19 +918,19 @@ export default {
         });
       },
       getDepartamentos() {
-        axios.get("GetDepartamentos").then(response => {
+        var urlGetDepa = route('getDepartamentos');
+        axios.get(urlGetDepa).then(response => {
           this.arrayDepartamentos = response.data;
         });
       },
       //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
       getProyectosInsti(id, page, buscar, proceso) {
         let me = this;
-        var url =
-        "getProyectosByInstitucion?id=" + id +"&page=" + page +"&buscar=" + buscar +"&proceso=" +  proceso + "&tipoProyecto=" + me.tipoProyectos;
+        var urlProyecInst = route('proyectosByinstitucion', {"id":id, "page":page, "buscar":buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos});
         me.loadSpinner = 1;
         me.pagination = "";
         axios
-        .get(url)
+        .get(urlProyecInst)
         .then(function(response) {
           var respuesta = response.data;
           me.arrayProyectos = respuesta.proyectos.data;
@@ -987,6 +981,8 @@ export default {
       registrarInstitucion() {
         let me = this;
         me.loading = true;
+        var urlSave = route('registrarInstitucion', {"nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email, 
+        "sector_institucion_id" : me.sector_id["value"], "municipio_id": me.municipio_id["value"], "proceso_id": me.tipoproceso_id});
         var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
         axios.get(url).then(function(response) {
          var respuesta = response.data;
@@ -1003,16 +999,8 @@ export default {
           me.loading = false;
           me.exist = false;
         }else {
-          axios.post("/institucion/registrar", {
-            nombre: me.nombre,
-            direccion: me.direccion,
-            telefono: me.phone,
-            email: me.email,
-            sector_institucion_id: me.sector_id["value"],
-            municipio_id: me.municipio_id["value"],
-            proceso_id: me.tipoproceso_id
-          })
-          .then(function(response) {
+          
+            axios.post(urlSave).then(function(response) {
             me.loadSpinner = 0;
             swal({
               position: "center",
@@ -1034,6 +1022,8 @@ export default {
       actualizarInstitucion() {
         let me = this;
         me.loading = true;
+        var urlUpdate = route('update', {"id":me.institucion_id, "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, 
+        "email": me.email, "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "estado": me.estado, "proceso_id": me.tipoproceso_id});
         var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
         axios.get(url).then(function(response) {
          var respuesta = response.data;
@@ -1050,18 +1040,7 @@ export default {
           me.exist = false;
         }else{
          axios
-         .put("/institucion/actualizar", {
-          id: me.institucion_id,
-          nombre: me.nombre,
-          direccion: me.direccion,
-          telefono: me.phone,
-          email: me.email,
-          sector_institucion_id: me.sector_id["value"],
-          municipio_id: me.municipio_id["value"],
-          estado: me.estado,
-          proceso_id: me.tipoproceso_id
-        })
-         .then(function(response) {
+         .put(urlUpdate).then(function(response) {
           me.loadSpinner = 0;
           swal({
             position: "center",
@@ -1233,6 +1212,8 @@ export default {
 
   },
   deleteSupervisor(id){
+
+    var urlDeleteSupervisor = route('deleteSupervisor',{id});
     swal({
       title: "Esta seguro de eliminar este Supervisor(a)?",
       type: "question",
@@ -1249,7 +1230,7 @@ export default {
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        axios.put("/institucion/supervisor/eliminar/"+id)
+        axios.put(urlDeleteSupervisor)
         .then(function(response) {
           me.getSupervisores();
           swal(
@@ -1332,7 +1313,6 @@ registrarSupervision() {
       },
       actualizarSupervision(){
        let me = this;
-       me.loading = true;
        axios
        .put("/supervision/actualizar", {
         id: this.proyecto_id,
@@ -1342,7 +1322,6 @@ registrarSupervision() {
 
       })
        .then(function(response) {
-         me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -1537,6 +1516,7 @@ registrarSupervision() {
           return me.search;
         },
         desactivarInstitucion(id) {
+         
           swal({
             title: "Esta seguro de desactivar esta Institucion?",
             type: "question",
@@ -1552,11 +1532,9 @@ registrarSupervision() {
           }).then(result => {
             if (result.value) {
               let me = this;
+               var urlDesactivar = route('desactivar',{"id":id});
               me.loadSpinner = 1;
-              axios.put("/institucion/desactivar", {
-                id: id
-              })
-              .then(function(response) {
+              axios.put(urlDesactivar).then(function(response) {
                 me.listarInstitucion(1, me.proceso, "");
                 swal(
                   "Desactivado!",
@@ -1577,6 +1555,7 @@ registrarSupervision() {
           });
         },
         activarInstitucion(id) {
+          var urlActivar = route('activar', {"id": id});
           swal({
             title: "Esta seguro de activar esta Institucion?",
             type: "question",
@@ -1593,10 +1572,7 @@ registrarSupervision() {
             if (result.value) {
               let me = this;
               me.loadSpinner = 1;
-              axios.put("/institucion/activar", {
-                id: id
-              })
-              .then(function(response) {
+              axios.put(urlActivar).then(function(response) {
                 me.listarInstitucionDes(1,me.proceso,"");
                 me.listarInstitucion(1, me.proceso, "");
                 swal(
@@ -1694,7 +1670,7 @@ registrarSupervision() {
           this.files = [];
           this.cerrarModalSuper();
         },
-         DeleteImage(index, id) {
+        DeleteImage(index, id) {
             this.arrayImagesUpd.splice(index, 1);
             var url = "/supervision/eliminar/"+ id;
             axios

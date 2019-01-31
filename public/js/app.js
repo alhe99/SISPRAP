@@ -79568,7 +79568,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //listado de instituciones por busqueda
     listarInstitucion: function listarInstitucion(page, proceso, buscar) {
       var me = this;
-      var url = "/institucion?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var url = route('listInstituciones', { "page": page, "proceso": proceso, "buscar": buscar });
       me.loadSpinner = 1;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79587,9 +79587,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //listado de instituciones desactivadas
     listarInstitucionDes: function listarInstitucionDes(page, proceso, buscar) {
       var me = this;
-      var url = "/institucion/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var urlInstDe = route('institucionesDesactivadas', { "page": page, "proceso": proceso, "buscar": buscar });
       me.loading = true;
-      axios.get(url).then(function (response) {
+      axios.get(urlInstDe).then(function (response) {
         var respuesta = response.data;
         me.arrayInstitucionDes = respuesta.institucion.data;
         me.paginationInstiDes = respuesta.pagination;
@@ -79606,8 +79606,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getSectores: function getSectores() {
       var me = this;
-      var url = "sector/selectSectores";
-      axios.get(url).then(function (response) {
+      var urlSelectsect = route('selectSectores');
+      axios.get(urlSelectsect).then(function (response) {
         var respuesta = response.data;
         me.arraySectores = respuesta;
       }).catch(function (error) {
@@ -79640,7 +79640,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getDepartamentos: function getDepartamentos() {
       var _this = this;
 
-      axios.get("GetDepartamentos").then(function (response) {
+      var urlGetDepa = route('getDepartamentos');
+      axios.get(urlGetDepa).then(function (response) {
         _this.arrayDepartamentos = response.data;
       });
     },
@@ -79648,10 +79649,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
     getProyectosInsti: function getProyectosInsti(id, page, buscar, proceso) {
       var me = this;
-      var url = "getProyectosByInstitucion?id=" + id + "&page=" + page + "&buscar=" + buscar + "&proceso=" + proceso + "&tipoProyecto=" + me.tipoProyectos;
+      var urlProyecInst = route('proyectosByinstitucion', { "id": id, "page": page, "buscar": buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos });
       me.loadSpinner = 1;
       me.pagination = "";
-      axios.get(url).then(function (response) {
+      axios.get(urlProyecInst).then(function (response) {
         var respuesta = response.data;
         me.arrayProyectos = respuesta.proyectos.data;
         me.pagination = respuesta.pagination;
@@ -79700,6 +79701,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     registrarInstitucion: function registrarInstitucion() {
       var me = this;
       me.loading = true;
+      var urlSave = route('registrarInstitucion', { "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email,
+        "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "proceso_id": me.tipoproceso_id });
       var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79716,15 +79719,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           me.loading = false;
           me.exist = false;
         } else {
-          axios.post("/institucion/registrar", {
-            nombre: me.nombre,
-            direccion: me.direccion,
-            telefono: me.phone,
-            email: me.email,
-            sector_institucion_id: me.sector_id["value"],
-            municipio_id: me.municipio_id["value"],
-            proceso_id: me.tipoproceso_id
-          }).then(function (response) {
+
+          axios.post(urlSave).then(function (response) {
             me.loadSpinner = 0;
             swal({
               position: "center",
@@ -79745,6 +79741,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     actualizarInstitucion: function actualizarInstitucion() {
       var me = this;
       me.loading = true;
+      var urlUpdate = route('update', { "id": me.institucion_id, "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone,
+        "email": me.email, "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "estado": me.estado, "proceso_id": me.tipoproceso_id });
       var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79760,17 +79758,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           me.loading = false;
           me.exist = false;
         } else {
-          axios.put("/institucion/actualizar", {
-            id: me.institucion_id,
-            nombre: me.nombre,
-            direccion: me.direccion,
-            telefono: me.phone,
-            email: me.email,
-            sector_institucion_id: me.sector_id["value"],
-            municipio_id: me.municipio_id["value"],
-            estado: me.estado,
-            proceso_id: me.tipoproceso_id
-          }).then(function (response) {
+          axios.put(urlUpdate).then(function (response) {
             me.loadSpinner = 0;
             swal({
               position: "center",
@@ -79936,6 +79924,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteSupervisor: function deleteSupervisor(id) {
       var _this2 = this;
 
+      var urlDeleteSupervisor = route('deleteSupervisor', { id: id });
       swal({
         title: "Esta seguro de eliminar este Supervisor(a)?",
         type: "question",
@@ -79952,7 +79941,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this2;
           me.loadSpinner = 1;
-          axios.put("/institucion/supervisor/eliminar/" + id).then(function (response) {
+          axios.put(urlDeleteSupervisor).then(function (response) {
             me.getSupervisores();
             swal("Eliminado!", "El Registro ha sido eliminado con exito", "success");
             me.loadSpinner = 0;
@@ -80027,7 +80016,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     actualizarSupervision: function actualizarSupervision() {
       var me = this;
-      me.loading = true;
       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
@@ -80035,7 +80023,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         images: this.images
 
       }).then(function (response) {
-        me.loading = false;
         swal({
           position: "center",
           type: "success",
@@ -80252,10 +80239,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (result) {
         if (result.value) {
           var me = _this3;
+          var urlDesactivar = route('desactivar', { "id": id });
           me.loadSpinner = 1;
-          axios.put("/institucion/desactivar", {
-            id: id
-          }).then(function (response) {
+          axios.put(urlDesactivar).then(function (response) {
             me.listarInstitucion(1, me.proceso, "");
             swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
             me.loadSpinner = 0;
@@ -80271,6 +80257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     activarInstitucion: function activarInstitucion(id) {
       var _this4 = this;
 
+      var urlActivar = route('activar', { "id": id });
       swal({
         title: "Esta seguro de activar esta Institucion?",
         type: "question",
@@ -80287,9 +80274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this4;
           me.loadSpinner = 1;
-          axios.put("/institucion/activar", {
-            id: id
-          }).then(function (response) {
+          axios.put(urlActivar).then(function (response) {
             me.listarInstitucionDes(1, me.proceso, "");
             me.listarInstitucion(1, me.proceso, "");
             swal("Activada!", "La Institucion ha sido activada con exito", "success");
@@ -83705,6 +83690,35 @@ var render = function() {
                                                                                             },
                                                                                             [
                                                                                               _c(
+                                                                                                "button",
+                                                                                                {
+                                                                                                  staticClass:
+                                                                                                    "remove",
+                                                                                                  on: {
+                                                                                                    click: function(
+                                                                                                      $event
+                                                                                                    ) {
+                                                                                                      _vm.DeleteImage(
+                                                                                                        index,
+                                                                                                        image.id
+                                                                                                      )
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "i",
+                                                                                                    {
+                                                                                                      staticClass:
+                                                                                                        "mdi mdi-close-circle"
+                                                                                                    }
+                                                                                                  )
+                                                                                                ]
+                                                                                              ),
+                                                                                              _vm._v(
+                                                                                                " "
+                                                                                              ),
+                                                                                              _c(
                                                                                                 "img",
                                                                                                 {
                                                                                                   attrs: {
@@ -84550,8 +84564,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener carreras
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
-      axios.get(url).then(function (response) {
+      var urlCarreras = route('GetCarreras');
+      axios.get(urlCarreras).then(function (response) {
         var respuesta = response.data;
         //console.log(respuesta);
         me.arrayCarreras = respuesta;
@@ -94043,7 +94057,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
 
 // exports
 
@@ -94590,9 +94604,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //carrera
     listarCarreras: function listarCarreras(page, buscar) {
       var me = this;
-      var url = "/carrera?page=" + page + "&buscar=" + buscar;
+      var urlCarreraList = route('carreraList', { "page": page, "buscar": buscar });
       me.loadSpinner = 1;
-      axios.get(url).then(function (response) {
+      axios.get(urlCarreraList).then(function (response) {
         var respuesta = response.data;
         me.arrayCar = respuesta.carrera.data;
         me.pagination = respuesta.pagination;
@@ -94606,9 +94620,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     listarCarrerasDes: function listarCarrerasDes(page, buscar) {
       var me = this;
-      var url = "/getCarreraDes?page=" + page + "&buscar=" + buscar;
+      var urlDesactivadasCar = route('carrerasDesactivadas', { "page": page, "buscar": buscar });
       me.loadSpinner = 1;
-      axios.get(url).then(function (response) {
+      axios.get(urlDesactivadasCar).then(function (response) {
         var respuesta = response.data;
         me.arrayCarDes = respuesta.carrera.data;
         me.paginationID = respuesta.pagination;
@@ -94695,6 +94709,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     desactivarCarrera: function desactivarCarrera(id) {
       var _this = this;
 
+      var urlDesactivarCarrera = route('desactivarCarrera', { "id": id });
       swal({
         title: "Esta seguro de desactivar esta Carrera?",
         type: "question",
@@ -94711,9 +94726,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          axios.put("/carrera/desactivar", {
-            id: id
-          }).then(function (response) {
+          axios.put(urlDesactivarCarrera).then(function (response) {
             me.listarCarreras(1, "");
             swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
             me.loadSpinner = 0;
@@ -94729,6 +94742,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     activarCarrera: function activarCarrera(id) {
       var _this2 = this;
 
+      var urlActivarcarrera = route('activarCarrera', { "id": id });
       swal({
         title: "Esta seguro de activar esta Carrera?",
         type: "question",
@@ -94745,9 +94759,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this2;
           me.loadSpinner = 1;
-          axios.put("/carrera/activar", {
-            id: id
-          }).then(function (response) {
+          axios.put(urlActivarcarrera).then(function (response) {
             me.listarCarrerasDes(1, "");
             me.listarCarreras(1, "");
             swal("Activada!", "La Carrera ha sido activada con exito", "success");
@@ -94763,6 +94775,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     actualizarCarrera: function actualizarCarrera() {
       var me = this;
+      var urlActualizar = route('actualizarCarrera', { "id": me.car_id, "nombre": me.car });
       var url = route('validateCarrera', { "nombre": me.car });
       me.loadSpinner = 1;
       axios.get(url).then(function (response) {
@@ -94780,10 +94793,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           me.loadSpinner = 0;
           me.exist = false;
         } else {
-          axios.put("/carrera/actualizar", {
-            id: me.car_id,
-            nombre: me.car
-          }).then(function (response) {
+          axios.put(urlActualizar).then(function (response) {
             me.loadSpinner = 0;
             swal({
               position: "center",
@@ -94868,8 +94878,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //devuelve todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
-      axios.get(url).then(function (response) {
+      var urlCarreras = route('GetCarreras');
+      axios.get(urlCarreras).then(function (response) {
         var respuesta = response.data;
         //console.log(respuesta);
         me.arrayCarreras = respuesta;
@@ -102789,9 +102799,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         listarSectores: function listarSectores(page, buscar) {
             var me = this;
-            var url = "/sector?page=" + page + "&buscar=" + buscar;
+            var urlSector = route('sectoresList', { "page": page, "buscar": buscar });
             me.loadSpinner = 1;
-            axios.get(url).then(function (response) {
+            axios.get(urlSector).then(function (response) {
                 var respuesta = response.data;
                 me.arraySector = respuesta.sectores.data;
                 me.pagination = respuesta.pagination;
@@ -102806,6 +102816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         registrarSector: function registrarSector() {
             var me = this;
             this.loadSpinner = 1;
+            var urlRegistrarSector = route('registrarSector', { "sector": me.sector });
             var url = route('validateSector', { "sector": me.sector });
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
@@ -102822,9 +102833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     me.loadSpinner = 0;
                     me.exist = false;
                 } else {
-                    axios.post("sector/registrar", {
-                        sector: me.sector
-                    }).then(function (response) {
+                    axios.post(urlRegistrarSector).then(function (response) {
                         swal({
                             position: "center",
                             type: "success",
@@ -102859,10 +102868,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     me.loadSpinner = 0;
                     me.exist = false;
                 } else {
-                    axios.put("/sector/actualizar", {
-                        id: me.sector_id,
-                        sector: me.sector
-                    }).then(function (response) {
+                    var urlActualizar = route('actualizarSector', { "id": me.sector_id, "sector": me.sector });
+                    axios.put(urlActualizar).then(function (response) {
                         me.loadSpinner = 0;
                         swal({
                             position: "center",
@@ -102965,8 +102972,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (result.value) {
                     var me = _this;
                     me.loadSpinner = 1;
-                    var url = "/sector/eliminar/" + id;
-                    axios.get(url).then(function (response) {
+                    var urlDeleteSector = route('eliminarSector', { id: id });
+                    axios.get(urlDeleteSector).then(function (response) {
                         me.listarSectores(1, "");
                         swal("Desactivado!", "El Registro ha sido eliminado con exito", "success");
                         me.loadSpinner = 0;

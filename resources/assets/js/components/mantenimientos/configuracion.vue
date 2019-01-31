@@ -533,14 +533,10 @@ export default {
     //carrera
     listarCarreras(page, buscar) {
       let me = this;
-      var url =
-      "/carrera?page=" +
-      page +
-      "&buscar=" +
-      buscar;
+      var urlCarreraList = route('carreraList', {"page":page, "buscar": buscar});
       me.loadSpinner = 1;
       axios
-      .get(url)
+      .get(urlCarreraList)
       .then(function(response) {
           var respuesta = response.data;
           me.arrayCar = respuesta.carrera.data;
@@ -557,14 +553,10 @@ export default {
    },
    listarCarrerasDes(page, buscar) {
       let me = this;
-      var url =
-      "/getCarreraDes?page=" +
-      page +
-      "&buscar=" +
-      buscar;
+      var urlDesactivadasCar = route('carrerasDesactivadas', {"page":page, "buscar":buscar});
       me.loadSpinner = 1;
       axios
-      .get(url)
+      .get(urlDesactivadasCar)
       .then(function(response) {
           var respuesta = response.data;
           me.arrayCarDes = respuesta.carrera.data;
@@ -649,6 +641,7 @@ export default {
         this.modalId2 = 0;
     },
     desactivarCarrera(id) {
+          var urlDesactivarCarrera = route('desactivarCarrera', {"id":id});
           swal({
             title: "Esta seguro de desactivar esta Carrera?",
             type: "question",
@@ -665,9 +658,7 @@ export default {
             if (result.value) {
               let me = this;
               me.loadSpinner = 1;
-              axios.put("/carrera/desactivar", {
-                id: id
-              })
+              axios.put(urlDesactivarCarrera)
               .then(function(response) {
                 me.listarCarreras(1,"");
                 swal(
@@ -689,6 +680,8 @@ export default {
           });
         },
         activarCarrera(id) {
+
+          var urlActivarcarrera = route('activarCarrera', {"id":id});
           swal({
             title: "Esta seguro de activar esta Carrera?",
             type: "question",
@@ -705,9 +698,7 @@ export default {
             if (result.value) {
               let me = this;
               me.loadSpinner = 1;
-              axios.put("/carrera/activar", {
-                id: id
-              })
+              axios.put(urlActivarcarrera)
               .then(function(response) {
                 me.listarCarrerasDes(1,"");
                 me.listarCarreras(1, "");
@@ -731,6 +722,7 @@ export default {
         },
     actualizarCarrera(){
         let me = this;
+        var urlActualizar = route('actualizarCarrera', {"id":me.car_id, "nombre": me.car});
         var url = route('validateCarrera',{"nombre": me.car});
         me.loadSpinner = 1;
         axios.get(url).then(function(response) {
@@ -749,10 +741,7 @@ export default {
                 me.exist = false;
             }else {
                 axios
-                .put("/carrera/actualizar", {
-                    id: me.car_id,
-                    nombre: me.car,
-                })
+                .put(urlActualizar)
                 .then(function(response) {
                     me.loadSpinner = 0;
                     swal({
@@ -837,9 +826,9 @@ export default {
     //devuelve todas las carreras
     getCarreras() {
       let me = this;
-      var url = "carreras/GetCarreras";
+      var urlCarreras = route('GetCarreras');
       axios
-      .get(url)
+      .get(urlCarreras)
       .then(function(response) {
         var respuesta = response.data;
           //console.log(respuesta);
