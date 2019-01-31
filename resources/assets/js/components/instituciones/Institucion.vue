@@ -906,10 +906,8 @@ export default {
       },
       getMunicipios() {
         let me = this;
-        var url = "GetMunicipios/" + this.departamento_id["value"];
-        axios
-        .get(url)
-        .then(function(response) {
+        var url = route('getMunicipios',me.departamento_id["value"]);
+        axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayMunicipios = respuesta;
         })
@@ -926,7 +924,7 @@ export default {
       //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
       getProyectosInsti(id, page, buscar, proceso) {
         let me = this;
-        var urlProyecInst = route('proyectosByinstitucion', {"id":id, "page":page, "buscar":buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos});
+        var urlProyecInst = route('proyectosByinstitucion', {"proyecto_id":id, "page":page, "buscar":buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos});
         me.loadSpinner = 1;
         me.pagination = "";
         axios
@@ -938,7 +936,6 @@ export default {
               //Por si no devuelve datos
               me.loadSpinner = 0;
               me.searchEmpty();
-
             })
         .catch(function(error) {
           me.loadSpinner = 0;
@@ -948,7 +945,7 @@ export default {
       //imagenes
       getImg(id) {
         let me = this;
-        var url = "imgSuperv/" + id;
+        var url = route('getImagenesBySupervision',id);
         me.loading = true;
         axios.get(url).then(function(response) {
           var respuesta = response.data;
@@ -967,7 +964,7 @@ export default {
       //termina
       getSupervision(id) {
         let me = this;
-        var url = "GetSupervision/" + id;
+        var url = route('getSupervisionById',id);
         me.loading = true;
         axios.get(url).then(function(response) {
           var respuesta = response.data;
@@ -983,7 +980,9 @@ export default {
         me.loading = true;
         var urlSave = route('registrarInstitucion', {"nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email, 
         "sector_institucion_id" : me.sector_id["value"], "municipio_id": me.municipio_id["value"], "proceso_id": me.tipoproceso_id});
+
         var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
+
         axios.get(url).then(function(response) {
          var respuesta = response.data;
          console.log(respuesta);
@@ -999,7 +998,6 @@ export default {
           me.loading = false;
           me.exist = false;
         }else {
-          
             axios.post(urlSave).then(function(response) {
             me.loadSpinner = 0;
             swal({
@@ -1167,11 +1165,12 @@ export default {
           me.nombreSupervisor = me.nombreSupervisorUpd;
           me.loadSpinner = 0;
         }else {
-          axios.put("institucion/supervisor/update", {
-            id: me.supervisor_id,
-            nombre: me.nombreSupervisor,
-            telefono: me.telefonoSupervisor
-          }).then(function(response) {
+          var url = route('updSupervisor',{
+            'supervisor_id': me.supervisor_id,
+            'nombre' : me.nombreSupervisor,
+            'telefono':me.telefonoSupervisor
+          });
+          axios.put(url).then(function(response) {
             swal({
               position: "center",
               type: "success",
@@ -1212,8 +1211,7 @@ export default {
 
   },
   deleteSupervisor(id){
-
-    var urlDeleteSupervisor = route('deleteSupervisor',{id});
+    var urlDeleteSupervisor = route('deleteSupervisor',id);
     swal({
       title: "Esta seguro de eliminar este Supervisor(a)?",
       type: "question",
@@ -1283,7 +1281,8 @@ cerrarModalSupervisores() {
   this.nombreSupervisorUpd = "";
 },
 registrarSupervision() {
-  let me = this;
+  //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
+        let me = this;
         me.loading = true;
         axios
         .post("/proyecto/registrar/supervision", {
@@ -1307,14 +1306,10 @@ registrarSupervision() {
           console.log(error.response.data.errors);
         });
       },
-      validateIfExist(institucion,proceso_id){
-        let me = this;
-
-      },
       actualizarSupervision(){
+       //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
        let me = this;
-       axios
-       .put("/supervision/actualizar", {
+       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
         fecha: this.date.substring(0, 10),
         observacion: this.observacion,

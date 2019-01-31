@@ -59,8 +59,6 @@ Vue.component('pagoaranceladmin', require('./components/arancel/PagoArancelAdmin
 Vue.component('hojasupervgeneral', require('./components/reportes/HojaSupervGeneral.vue'));
 Vue.component('general', require('./components/reportes/InstitucionGeneral.vue'));
 Vue.component('supervision', require('./components/reportes/SupervisionesInst.vue'));
-Vue.component('carrinst', require('./components/reportes/CarrerasInst.vue'));
-Vue.component('regsuperv', require('./components/reportes/RegistrarSupervision.vue'));
 Vue.component('configuracion', require('./components/mantenimientos/configuracion.vue'));
 Vue.component('inicioproceso', require('./components/reportes/SSPP/InicioProceso.vue'));
 Vue.component('pendientesinicio', require('./components/reportes/SSPP/PendienteInicio.vue'));
@@ -74,32 +72,32 @@ Vue.component('solicitudes_aprobadas', require('./components/proyectos/Solicitud
 Vue.component('proyectos_externos', require('./components/proyectos/ProyectosExternos.vue'));
 
 const app = new Vue({
-  el: '#app',
-  data: {
-    menu: 0,
-    notifications: []
-  },
-  created() {
-    let me = this;
-    axios.post('notifications/get').then(function(response) {
-           me.notifications=response.data;
-         }).catch(function(error) {
-          console.log(error);
+    el: '#app',
+    data: {
+        menu: 0,
+        notifications: []
+    },
+    created() {
+        let me = this;
+        axios.post(route('getNotifications')).then(function(response) {
+            me.notifications = response.data;
+        }).catch(function(error) {
+            console.log(error);
         });
 
-         var userId = 0;
+        var userId = 0;
 
-         Echo.private('App.User.' + userId).notification((notification) => {
-          me.notifications.unshift(notification);
-          this.$toastr('add', {
-            title: 'Nueva Notificacion',
-            msg: 'Tienes una Nueva Preinscripción',
-            timeout: 5000,
-            position: 'toast-bottom-right',
-            type: 'success',
-            clickClose: true,
-            closeOnHover: false
-          });
+        Echo.private('App.User.' + userId).notification((notification) => {
+            me.notifications.unshift(notification);
+            this.$toastr('add', {
+                title: 'Nueva Notificacion',
+                msg: 'Tienes una Nueva Preinscripción',
+                timeout: 5000,
+                position: 'toast-bottom-right',
+                type: 'success',
+                clickClose: true,
+                closeOnHover: false
+            });
         });
-       }
-     });
+    }
+});

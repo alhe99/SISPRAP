@@ -400,10 +400,8 @@ methods: {
       //obtener todas las instituciones
       getInstituciones() {
         let me = this;
-        var url = "GetInstituciones/" + this.proceso;
-        axios
-        .get(url)
-        .then(function(response) {
+        var url = route('getInstitucionById',me.proceso)
+        axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayInstituciones = respuesta;
         })
@@ -418,21 +416,20 @@ methods: {
         let me = this;
         var tipoProyecto = 'I';
         if (me.proyectoExterno) {tipoProyecto = 'E';};
-        this.loadSpinner = 1;
-        axios
-        .post("/proyecto/registrar", {
-          proceso_id: me.proceso,
-          nombre: me.nombre,
-          actividades: me.actividadesProy,
-          institucion_id: me.institucion.value,
-          imageG: me.imgGallery,
-          imagen: me.image,
-          actividadSS: me.actividadesCarre,
-          horas: me.catidadHoras,
-          cantidadAlumnos: me.cantidadVacantes,
-          tipoProyecto: tipoProyecto
-        })
-        .then(function(response) {
+         var url = route('saveProyectosInternos',{
+          'proceso_id':me.proceso,
+          'nombre':me.nombre,
+          'actividades': JSON.stringify(me.actividadesProy),
+          'institucion_id': me.institucion.value,
+          'imageG': me.imgGallery,
+          'imagen': me.image,
+          'actividadSS': me.actividadesCarre,
+          'horas': me.catidadHoras,
+          'cantidadAlumnos': me.cantidadVacantes,
+          'tipoProyecto': tipoProyecto
+          });
+        me.loadSpinner = 1;
+        axios.post(url).then(function(response) {
           swal({
             position: "center",
             type: "success",
@@ -443,7 +440,7 @@ methods: {
           if(tipoProyecto == 'I')
             me.clearData();
           else
-            me.clearDataExternos()
+            me.clearDataExternos();
         })
         .catch(error => {
           me.loadSpinner = 0;

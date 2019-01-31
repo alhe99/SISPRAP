@@ -802,16 +802,8 @@ export default {
       let me = this;
       me.loadSpinner = 1;
       me.arrayProyecto = [];
-      var url =
-        "proyectos/externos?page=" +
-        page +
-        "&proceso=" +
-        proceso +
-        "&buscar=" +
-        buscar;
-      axios
-        .get(url)
-        .then(function(response) {
+      var url = route('getAllProyectosExternos',{'page':page,'proceso':proceso,'buscar':buscar});
+      axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayProyecto = respuesta.proyectos.data;
           me.pagination = respuesta.pagination;
@@ -825,17 +817,9 @@ export default {
     },
     listarProyectoDes(page, proceso, buscar) {
       let me = this;
-      var url =
-        "proyecto/desactivados/externos?page=" +
-        page +
-        "&proceso=" +
-        proceso +
-        "&buscar=" +
-        buscar;
+      var url = route('getAllProyectosExternosDesactivados',{'page':page,'proceso':proceso,'buscar':buscar});
       me.loading = true;
-      axios
-        .get(url)
-        .then(function(response) {
+      axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayProyectosDes = respuesta.proyectos.data;
           me.paginationProyDes = respuesta.pagination;
@@ -852,10 +836,8 @@ export default {
     getInst() {
       let me = this;
       me.loadSpinner = 1;
-      var url = "GetInstituciones/" + this.proceso;
-      axios
-        .get(url)
-        .then(function(response) {
+      var url = route('getInstitucionById',me.proceso);
+      axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayInstitucion = respuesta;
           me.loadSpinner = 0;
@@ -867,21 +849,15 @@ export default {
     },
     getEstudianteByCarrer(page) {
       let me = this;
-      var url =
-        "stundentByCarrer?page=" +
-        page +
-        "&carrera_id=" +
-        me.carrera_selected.value +
-        "&proceso_id=" +
-        me.proceso +
-        "&nivelAcad=" +
-        me.nivelSelected.value +
-        "&buscar=" +
-        me.buscarP;
+      var url = route('getEstudiantesByCarrera',{
+        'page':page,
+        'carrera_id':me.carrera_selected.value,
+        'proceso_id':me.proceso,
+        'nivelAcad':me.nivelSelected.value,
+        'buscar':me.buscarP
+      });
       me.loader = true;
-      axios
-        .get(url)
-        .then(function(response) {
+      axios.get(url).then(function(response) {
           me.loader = false;
           var respuesta = response.data;
           me.arrayEstudianteP = respuesta.estudiantes.data;
@@ -893,10 +869,8 @@ export default {
     },
     getCarreras() {
       let me = this;
-      var url = "carreras/GetCarreras";
-      axios
-        .get(url)
-        .then(function(response) {
+      var url = route('GetCarreras')
+      axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayCarreras = respuesta;
         })
@@ -912,18 +886,17 @@ export default {
         showConfirmButton: false,
         timer: 4000
       });
+      var url = route('updateProyectos',{
+          'proyecto_id': me.proyectoId,
+          'nombre': me.nombreP,
+          'actividades': me.actividadesP,
+          'institucion_id': me.institucionP.value,
+          'horasRealizar': me.hrsRealizar,
+          'tipoProyecto': "E",
+          'procesoId': me.proceso
+      });
       me.loading = true;
-      axios
-        .put("/proyecto/actualizar", {
-          id: me.proyectoId,
-          nombre: me.nombreP,
-          actividades: me.actividadesP,
-          institucion_id: me.institucionP.value,
-          horasRealizar: me.hrsRealizar,
-          tipoProyecto: "E",
-          procesoId: me.proceso
-        })
-        .then(function(response) {
+      axios.post(url).then(function(response) {
           swal({
             position: "center",
             type: "success",
@@ -1063,9 +1036,9 @@ export default {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          var url = route("asinarProyectoExterno", {
-            estudent_id: me.estudiantesSelected,
-            project_id: me.proyecto_selected_id
+          var url = route("asignarProyectoExterno", {
+            'estudent_id': me.estudiantesSelected,
+            'project_id': me.proyecto_selected_id
           });
           axios
             .get(url)
@@ -1080,6 +1053,7 @@ export default {
               me.getEstudianteByCarrer(1);
             })
             .catch(function(error) {
+              me.loadSpinner = 0;
               console.log(error);
             });
         } else if (result.dismiss === swal.DismissReason.cancel) {
@@ -1103,11 +1077,8 @@ export default {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          axios
-            .put("/proyecto/desactivar", {
-              id: id
-            })
-            .then(function(response) {
+          var url = route('desactivarProyectosInternos',{'proyecto_id':id});
+          axios.put(url).then(function(response) {
               me.listarProyecto(1, me.proceso, "");
               swal(
                 "Desactivado!",
@@ -1143,11 +1114,8 @@ export default {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          axios
-            .put("/proyecto/activar", {
-              id: id
-            })
-            .then(function(response) {
+          var url = route('activarProyectosInternos',{'proyecto_id':id})
+          axios.put(url).then(function(response) {
               me.listarProyectoDes(1, me.proceso, "");
               me.listarProyecto(1, me.proceso, "");
               swal(

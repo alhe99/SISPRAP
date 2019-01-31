@@ -29,7 +29,7 @@ class SupervisorController extends Controller
 
     public function update(Request $request)
     {
-       $supervisor = Supervisor::find($request->id);
+       $supervisor = Supervisor::find($request->supervisor_id);
        $supervisor->nombre = $request->nombre;
        $supervisor->no_telefono = $request->telefono;
        $supervisor->update();

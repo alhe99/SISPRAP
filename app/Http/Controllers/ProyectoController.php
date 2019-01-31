@@ -57,13 +57,15 @@ class ProyectoController extends Controller
                 $img_recv = $request->imagen;
                 $proyecto = new Proyecto();
                 $proyecto->nombre = $request->nombre;
-                $proyecto->fecha = Carbon::parse($date);
+                $proyecto->fecha = $date;
                 $proyecto->actividades = $request->actividadSS;
                 $proyecto->institucion_id = $request->institucion_id;
                 $proyecto->horas_realizar = $request->horas;
                 $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->proceso_id = 1;
+                $proyecto->fecha_registro = $date;
+
                 if ($img_recv) {
                     $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
                     $proyecto->img = $name_img;
@@ -76,18 +78,20 @@ class ProyectoController extends Controller
                 break;
                 case 2:
                 try {
-                    for ($i = 0; $i < count($request->actividades); $i++) {
+                    $actividades = json_decode($request->actividades);
+                    foreach ($actividades as $key => $actividad) {
                         DB::beginTransaction();
-                        $obj = $request->actividades[$i];
                         $img_recv = $request->imagen;
                         $proyecto = new Proyecto();
                         $proyecto->nombre = $request->nombre;
-                        $proyecto->fecha = Carbon::parse($date);
+                        $proyecto->fecha = $date;
                         $proyecto->horas_realizar = $request->horas;
                         $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
-                        $proyecto->actividades = $obj['actividades'];
+                        $proyecto->actividades = $actividad->actividades;
                         $proyecto->institucion_id = $request->institucion_id;
                         $proyecto->proceso_id = 2;
+                        $proyecto->fecha_registro = $date;
+
                         if ($img_recv) {
                             $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
                             $proyecto->img = $name_img;
@@ -95,12 +99,13 @@ class ProyectoController extends Controller
                         } else {
                             $proyecto->img = $request->imageG;
                         }
-                        $proyecto->estado = 1;
+                        $proyecto->estado = 1; 
                         $proyecto->save();
-
-                        $proyecto->carre_proy()->attach($obj['carrera_id']);
-                        DB::commit();
+                        $proyecto->carre_proy()->attach($actividad->carrera_id); 
+                        DB::commit(); 
+                        
                     }
+
                 } catch (Exception $e) {
                     DB::rollBack();
                 }
@@ -118,7 +123,7 @@ class ProyectoController extends Controller
             $proyecto->tipo_proyecto = 'E';
             $proyecto->proceso_id = $request->proceso_id;
             $proyecto->estado = 1;
-            $proyecto->fecha_registro = date('Y');
+            $proyecto->fecha_registro = $date;
             $proyecto->save();
             break;
         }
@@ -134,7 +139,7 @@ class ProyectoController extends Controller
             case 'I':
             switch ($request->proceso_id) {
                 case 1:
-                $proyecto = Proyecto::find($request->id);
+                $proyecto = Proyecto::find($request->proyecto_id);
                 if ($cantidad > $proyecto->cantidades_vacantes) $proyecto->estado_vacantes = 'D';
                 $proyecto->nombre = $request->nombre;
                 $proyecto->actividades = $request->actividades;
@@ -144,6 +149,7 @@ class ProyectoController extends Controller
                 $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
+                
 
                 if ($img_recv) {
                     if($request->imagen != $proyecto->img){
@@ -161,7 +167,7 @@ class ProyectoController extends Controller
                 $proyecto->update();
                 break;
                 case 2:
-                $proyecto = Proyecto::find($request->id);
+                $proyecto = Proyecto::find($request->proyecto_id);
                 if ($cantidad > $proyecto->cantidades_vacantes ) $proyecto->estado_vacantes = 'D';
                 $proyecto->nombre = $request->nombre;
                 $proyecto->actividades = $request->actividades;
@@ -190,7 +196,7 @@ class ProyectoController extends Controller
             }
             break;
             case 'E':
-            $proyecto = Proyecto::findOrFail($request->id);
+            $proyecto = Proyecto::findOrFail($request->proyecto_id);
             $proyecto->nombre = $request->nombre;
             $proyecto->actividades = $request->actividades;
             $proyecto->institucion_id = $request->institucion_id;
@@ -222,7 +228,7 @@ class ProyectoController extends Controller
     {
         if (!$request->ajax())
          return redirect('/');
-         $proyecto = Proyecto::findOrFail($request->id);
+         $proyecto = Proyecto::findOrFail($request->proyecto_id);
          $proyecto->estado = '0';
          $proyecto->save();
     }
@@ -232,7 +238,7 @@ class ProyectoController extends Controller
      {
         if (!$request->ajax())
             return redirect('/');
-        $proyecto = Proyecto::findOrFail($request->id);
+        $proyecto = Proyecto::findOrFail($request->proyecto_id);
         $proyecto->estado = '1';
         $proyecto->save();
     }
@@ -479,10 +485,9 @@ class ProyectoController extends Controller
     {
         $proyect = Proyecto::findOrFail($project_id);
         $proyect_name = $proyect->nombre;
-        $fechaActual= date('Y-m-d');
         try {
             DB::beginTransaction();
-            if (!$proyect->preRegistration()->attach($estudent_id)) {
+            if (!$proyect->preRegistration()->attach($estudent_id,array('fecha_registro' => date('Y-m-d')))) {
 
                 $count_pre = $proyect->preRegistration()->count();
 
@@ -603,7 +608,7 @@ class ProyectoController extends Controller
         for ($i=0; $i < count($arrayEstudiante); $i++) {
 
            $proyect = Proyecto::find($request->project_id);
-           $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','fecha_registro' => date('Y')));
+           $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','fecha_registro' => date('Y-m-d')));
 
            $estudiante = Estudiante::findOrFail($arrayEstudiante[$i]);
            if ($estudiante->proceso[0]->pago_arancel == 0) {
@@ -611,7 +616,7 @@ class ProyectoController extends Controller
                 'msj' =>  "Se te ha asignado un proyecto,el siguiente paso es que apertures el expediente de tu proceso en recepción",
                 'fecha' => now()->toDateTimeString(),
                ];
-               User::FindOrFail($request->estudent_id)->notify(new NotifyStudentGoToRecep($arrayData));
+               User::FindOrFail($estudiante->id)->notify(new NotifyStudentGoToRecep($arrayData));
             }
         }
     }

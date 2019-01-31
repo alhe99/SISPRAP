@@ -468,10 +468,8 @@ methods:{
   getCarreras() {
     let me = this;
     me.loadSpinner = 1;
-    var url = "carreras/GetCarreras";
-    axios
-    .get(url)
-    .then(function(response) {
+    var url = route('GetCarreras');
+    axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayCarreras = respuesta;
       me.loadSpinner = 0;
@@ -485,10 +483,8 @@ methods:{
   //obtener los documentos
   getDocuments() {
     let me = this;
-    var url = "getDocuments";
-    axios
-    .get(url)
-    .then(function(response) {
+    var url = route('getDocumentosByEstudiante');
+    axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayDocumentos = respuesta;
     })
@@ -532,8 +528,7 @@ methods:{
         });
          me.loadSpinner = 0;
        }else {
-        axios.get(url)
-        .then(function(response) {
+        axios.get(url).then(function(response) {
           me.getMoreInfoGp(me.idGP);
           swal(
             "Hecho!",
@@ -676,13 +671,17 @@ methods:{
   getGestionProy(carrera_id,proceso_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
-    var url = "/gestionproyectos?carre_id="+ carrera_id +"&proceso_id=" + proceso_id + "&page=" + page +"&buscar=" + buscar;
+    var url = route('getGestionByCarrera',{
+      'carre_id':carrera_id,
+      'proceso_id': proceso_id,
+      'page':page,
+      'buscar':buscar
+    });
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayStudents = respuesta.gp.data;
       me.pagination = respuesta.pagination;
       me.loadSpinner = 0;
-
     })
     .catch(function(error) {
       console.log(error);
@@ -745,26 +744,11 @@ methods:{
 });
 
   },
-  //obtener mas informacion del estudiante seleccionado por su id
-  getMoreInfo(id) {
-    let me = this;
-    me.loadSpinner = 1;
-    var url = "stundentById/"+id;
-    axios.get(url).then(function(response) {
-      var respuesta = response.data;
-      me.estudiante = respuesta;
-      me.loadSpinner = 0;
-      me.abrirModal();
-    }).catch(function(error) {
-      console.log(error);
-    });
-  },
-
   //obtener mas informacion del proyecto ya en proceso
   getMoreInfoGp(id) {
     let me = this;
     me.loadSpinner = 1;
-    var url = "/getMoreInfoGP/"+id;
+    var url = route('getFullInfoGestion',id);
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.gpObj = respuesta;

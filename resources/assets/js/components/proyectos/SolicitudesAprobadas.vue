@@ -424,24 +424,12 @@ export default {
     getProyectos() {
       let me = this;
       me.loadSpinner = 1;
-      if (this.proceso == 1) {
-        var url =
-        "GetProjectsByProcess?process_id=" +
-        this.proceso +
-        "&tipoProyecto=" +
-        this.valueTipoProyectos;
-      } else if (this.proceso == 2) {
-        var url =
-        "GetProjectsByProcess?process_id=" +
-        this.proceso +
-        "&carre_id=" +
-        this.carrera_selected.value +
-        "&tipoProyecto=" +
-        this.valueTipoProyectos;
+      if(this.proceso == 1){
+          var url = route('getProyectosByProcess',{'process_id':me.proceso,'tipoProyecto':me.valueTipoProyectos})
+      }else if(this.proceso == 2){
+         var url = route('getProyectosByProcess',{'process_id':me.proceso,'carre_id':me.carrera_selected.value,'tipoProyecto':me.valueTipoProyectos})
       }
-      axios
-      .get(url)
-      .then(function(response) {
+      axios.get(url).then(function(response) {
         var respuesta = response.data;
         me.arrayProyectos = respuesta;
         me.loadSpinner = 0;
@@ -453,10 +441,8 @@ export default {
     //obtener todas las carreras
     getCarreras() {
       let me = this;
-      var url = "carreras/GetCarreras";
-      axios
-      .get(url)
-      .then(function(response) {
+      var url = route('GetCarreras');
+      axios.get(url).then(function(response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
       })
@@ -469,16 +455,8 @@ export default {
     getSolicitudesAprobados(proyecto_id, page, buscar) {
       let me = this;
       me.loadSpinner = 1;
-      var url =
-      "proyectos/obtenerAprobados?proyectoId=" +
-      proyecto_id +
-      "&page=" +
-      page +
-      "&buscar=" +
-      buscar;
-      axios
-      .get(url)
-      .then(function(response) {
+      var url = route('allAcepted',{'proyectoId':proyecto_id,'page':page,'buscar':buscar});
+      axios.get(url).then(function(response) {
         var respuesta = response.data;
         me.arrayPreregister = respuesta.proyectos.data;
         me.pagination = respuesta.pagination;
@@ -508,10 +486,8 @@ export default {
     getMoreInfo(id) {
       let me = this;
       me.loadSpinner = 1;
-      var url = "stundentById/" + id;
-      axios
-      .get(url)
-      .then(function(response) {
+      var url = route('getFullInfoEstudiante',id);
+      axios.get(url).then(function(response) {
         var respuesta = response.data;
         me.estudiante = respuesta;
         me.loadSpinner = 0;
@@ -544,7 +520,7 @@ export default {
     },
 
     //Metodo que elimina una solicitud aprobada
-    eliminarSolicitud(estudiante_id, proyecto_id) {
+    eliminarSolicitud(estudiante_id,proyecto_id) {
       swal({
         title: "Seguro de eliminar esta solicitud aprobada?",
         type: "question",
@@ -561,14 +537,8 @@ export default {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          var url =
-          "/proyectos/deleteAprobacion?proyectoId=" +
-          proyecto_id +
-          "&estudianteId=" +
-          estudiante_id;
-          axios
-          .get(url)
-          .then(function(response) {
+          var url = route('deleteProyAceptted',{'proyectoId':proyecto_id,'estudianteId':estudiante_id})
+          axios.get(url).then(function(response) {
             me.getSolicitudesAprobados(me.proyecto_selectd.value, 1, "");
             swal(
               "Eliminada",

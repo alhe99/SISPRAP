@@ -203,7 +203,7 @@ export default {
 methods: {
   getCarreras() {
     let me = this;
-    var url = "carreras/GetCarreras";
+    var url = route('GetCarreras');
     axios
     .get(url)
     .then(function(response) {

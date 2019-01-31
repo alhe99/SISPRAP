@@ -678,8 +678,7 @@ export default {
       let me = this;
       me.loadSpinner = 1;
       me.arrayProyecto = [];
-      var url =
-        "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var url = route('getAllProyectosInternos',{'page':page,'proceso':proceso,'buscar':buscar});
       axios
         .get(url)
         .then(function(response) {
@@ -695,17 +694,9 @@ export default {
     },
     listarProyectoDes(page, proceso, buscar) {
       let me = this;
-      var url =
-        "/proyecto/desactivadas?page=" +
-        page +
-        "&proceso=" +
-        proceso +
-        "&buscar=" +
-        buscar;
+      var url = route('getAllProyectosInternosDesactivados',{'page':page,'proceso':proceso,'buscar':buscar});
       me.loading = true;
-      axios
-        .get(url)
-        .then(function(response) {
+      axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayProyectosDes = respuesta.proyecto.data;
           me.paginationProyDes = respuesta.pagination;
@@ -721,10 +712,8 @@ export default {
     getInst() {
       let me = this;
       me.loadSpinner = 1;
-      var url = "GetInstituciones/" + this.proceso;
-      axios
-        .get(url)
-        .then(function(response) {
+      var url = route('getInstitucionById',me.proceso);
+      axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.arrayInstitucion = respuesta;
           me.loadSpinner = 0;
@@ -741,21 +730,20 @@ export default {
         showConfirmButton: false,
         timer: 4000
       });
-      axios
-        .put("/proyecto/actualizar", {
-          id: this.proyecto_id,
-          nombre: this.nombreP,
-          actividades: this.actividadesUpd,
-          institucion_id: this.institucionP.value,
-          estado: "1",
-          proceso_id: this.proceso,
-          tipoProyecto: "I",
-          imagenG: this.imgGallery,
-          imagen: this.image,
-          hrsRealizar: this.hrsRealizar,
-          cantidadEstudiantes: this.vacantesProy
-        })
-        .then(function(response) {
+      var url = route('updateProyectos',{
+          'proyecto_id':me.proyecto_id,
+          'nombre': me.nombreP,
+          'actividades': me.actividadesUpd,
+          'institucion_id': me.institucionP.value,
+          'estado': "1",
+          'proceso_id': me.proceso,
+          'tipoProyecto': "I",
+          'imagenG': me.imgGallery,
+          'imagen': me.image,
+          'hrsRealizar': me.hrsRealizar,
+          'cantidadEstudiantes': me.vacantesProy
+      });
+      axios.post(url).then(function(response) {
           swal({
             position: "center",
             type: "success",
@@ -774,19 +762,6 @@ export default {
           console.log(error);
         });
     },
-    getProyAct(id) {
-      let me = this;
-      var url = "/proyecto/obtenerProyecto?id=" + id;
-      axios
-        .get(url)
-        .then(function(response) {
-          var respuesta = response.data;
-          me.arrayActivities = respuesta;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
     abrirModal(modelo, accion, data = []) {
       let me = this;
       me.loadSpinner = 1;
@@ -799,7 +774,6 @@ export default {
         label: data.institucion.nombre
       });
       //Cargando datos de proyecto en modal
-      //PENDIENTE CARGA DE IMAGEN EXTERNA EN VUEIMG-INPUTER INVESTIGAR COMO SACAR EL PATH COMPLETO DE LA APP
       switch (me.proceso) {
         //El proyecto a actualizar es de Servicio Social
         case "1":
@@ -909,11 +883,8 @@ export default {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          axios
-            .put("/proyecto/desactivar", {
-              id: id
-            })
-            .then(function(response) {
+          var url = route('desactivarProyectosInternos',{'proyecto_id':id});
+          axios.put(url).then(function(response) {
               me.listarProyecto(1, me.proceso, "");
               swal(
                 "Desactivado!",
@@ -949,11 +920,8 @@ export default {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          axios
-            .put("/proyecto/activar", {
-              id: id
-            })
-            .then(function(response) {
+          var url = route('activarProyectosInternos',{'proyecto_id':id})
+          axios.put(url).then(function(response) {
               me.listarProyectoDes(1, me.proceso, "");
               me.listarProyecto(1, me.proceso, "");
               swal(

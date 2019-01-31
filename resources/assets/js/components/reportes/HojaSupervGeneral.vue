@@ -156,10 +156,8 @@ methods: {
   getMunicipios() {
     let me = this;
     me.loadSpinner = 1;
-    var url = "GetMunicipios/" + this.departamento_id["value"];
-    axios
-    .get(url)
-    .then(function(response) {
+    var url = route('getMunicipios',me.departamento_id["value"])
+    axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayMunicipios = respuesta;
       me.loadSpinner = 0;

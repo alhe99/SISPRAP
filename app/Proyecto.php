@@ -51,8 +51,7 @@ class Proyecto extends Model
     }
     public function preRegistration()
     {
-
-        return $this->belongsToMany(Estudiante::class, 'preinscripciones_proyectos', 'proyecto_id', 'estudiante_id')->withPivot('estado')->withTimestamps();
+        return $this->belongsToMany(Estudiante::class, 'preinscripciones_proyectos', 'proyecto_id', 'estudiante_id')->withPivot(['estado','fecha_registro'])->withTimestamps();
     }
     public function gestionProyecto(){
 

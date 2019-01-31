@@ -14855,8 +14855,6 @@ Vue.component('pagoaranceladmin', __webpack_require__(111));
 Vue.component('hojasupervgeneral', __webpack_require__(116));
 Vue.component('general', __webpack_require__(119));
 Vue.component('supervision', __webpack_require__(122));
-Vue.component('carrinst', __webpack_require__(127));
-Vue.component('regsuperv', __webpack_require__(132));
 Vue.component('configuracion', __webpack_require__(18));
 Vue.component('inicioproceso', __webpack_require__(141));
 Vue.component('pendientesinicio', __webpack_require__(144));
@@ -14870,36 +14868,36 @@ Vue.component('solicitudes_aprobadas', __webpack_require__(164));
 Vue.component('proyectos_externos', __webpack_require__(167));
 
 var app = new Vue({
-  el: '#app',
-  data: {
-    menu: 0,
-    notifications: []
-  },
-  created: function created() {
-    var _this = this;
+    el: '#app',
+    data: {
+        menu: 0,
+        notifications: []
+    },
+    created: function created() {
+        var _this = this;
 
-    var me = this;
-    axios.post('notifications/get').then(function (response) {
-      me.notifications = response.data;
-    }).catch(function (error) {
-      console.log(error);
-    });
+        var me = this;
+        axios.post(route('getNotifications')).then(function (response) {
+            me.notifications = response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
 
-    var userId = 0;
+        var userId = 0;
 
-    Echo.private('App.User.' + userId).notification(function (notification) {
-      me.notifications.unshift(notification);
-      _this.$toastr('add', {
-        title: 'Nueva Notificacion',
-        msg: 'Tienes una Nueva Preinscripción',
-        timeout: 5000,
-        position: 'toast-bottom-right',
-        type: 'success',
-        clickClose: true,
-        closeOnHover: false
-      });
-    });
-  }
+        Echo.private('App.User.' + userId).notification(function (notification) {
+            me.notifications.unshift(notification);
+            _this.$toastr('add', {
+                title: 'Nueva Notificacion',
+                msg: 'Tienes una Nueva Preinscripción',
+                timeout: 5000,
+                position: 'toast-bottom-right',
+                type: 'success',
+                clickClose: true,
+                closeOnHover: false
+            });
+        });
+    }
 });
 
 /***/ }),
@@ -79629,7 +79627,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getMunicipios: function getMunicipios() {
       var me = this;
-      var url = "GetMunicipios/" + this.departamento_id["value"];
+      var url = route('getMunicipios', me.departamento_id["value"]);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayMunicipios = respuesta;
@@ -79649,7 +79647,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
     getProyectosInsti: function getProyectosInsti(id, page, buscar, proceso) {
       var me = this;
-      var urlProyecInst = route('proyectosByinstitucion', { "id": id, "page": page, "buscar": buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos });
+      var urlProyecInst = route('proyectosByinstitucion', { "proyecto_id": id, "page": page, "buscar": buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos });
       me.loadSpinner = 1;
       me.pagination = "";
       axios.get(urlProyecInst).then(function (response) {
@@ -79668,7 +79666,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //imagenes
     getImg: function getImg(id) {
       var me = this;
-      var url = "imgSuperv/" + id;
+      var url = route('getImagenesBySupervision', id);
       me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79688,7 +79686,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //termina
     getSupervision: function getSupervision(id) {
       var me = this;
-      var url = "GetSupervision/" + id;
+      var url = route('getSupervisionById', id);
       me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79703,7 +79701,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.loading = true;
       var urlSave = route('registrarInstitucion', { "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email,
         "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "proceso_id": me.tipoproceso_id });
+
       var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
+
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         console.log(respuesta);
@@ -79719,7 +79719,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           me.loading = false;
           me.exist = false;
         } else {
-
           axios.post(urlSave).then(function (response) {
             me.loadSpinner = 0;
             swal({
@@ -79881,11 +79880,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               me.nombreSupervisor = me.nombreSupervisorUpd;
               me.loadSpinner = 0;
             } else {
-              axios.put("institucion/supervisor/update", {
-                id: me.supervisor_id,
-                nombre: me.nombreSupervisor,
-                telefono: me.telefonoSupervisor
-              }).then(function (response) {
+              var url = route('updSupervisor', {
+                'supervisor_id': me.supervisor_id,
+                'nombre': me.nombreSupervisor,
+                'telefono': me.telefonoSupervisor
+              });
+              axios.put(url).then(function (response) {
                 swal({
                   position: "center",
                   type: "success",
@@ -79924,7 +79924,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteSupervisor: function deleteSupervisor(id) {
       var _this2 = this;
 
-      var urlDeleteSupervisor = route('deleteSupervisor', { id: id });
+      var urlDeleteSupervisor = route('deleteSupervisor', id);
       swal({
         title: "Esta seguro de eliminar este Supervisor(a)?",
         type: "question",
@@ -79990,6 +79990,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.nombreSupervisorUpd = "";
     },
     registrarSupervision: function registrarSupervision() {
+      //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
       var me = this;
       me.loading = true;
       axios.post("/proyecto/registrar/supervision", {
@@ -80011,10 +80012,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error.response.data.errors);
       });
     },
-    validateIfExist: function validateIfExist(institucion, proceso_id) {
-      var me = this;
-    },
     actualizarSupervision: function actualizarSupervision() {
+      //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
       var me = this;
       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
@@ -84578,7 +84577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener todas las instituciones
     getInstituciones: function getInstituciones() {
       var me = this;
-      var url = "GetInstituciones/" + this.proceso;
+      var url = route('getInstitucionById', me.proceso);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayInstituciones = respuesta;
@@ -84596,19 +84595,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (me.proyectoExterno) {
         tipoProyecto = 'E';
       };
-      this.loadSpinner = 1;
-      axios.post("/proyecto/registrar", {
-        proceso_id: me.proceso,
-        nombre: me.nombre,
-        actividades: me.actividadesProy,
-        institucion_id: me.institucion.value,
-        imageG: me.imgGallery,
-        imagen: me.image,
-        actividadSS: me.actividadesCarre,
-        horas: me.catidadHoras,
-        cantidadAlumnos: me.cantidadVacantes,
-        tipoProyecto: tipoProyecto
-      }).then(function (response) {
+      var url = route('saveProyectosInternos', {
+        'proceso_id': me.proceso,
+        'nombre': me.nombre,
+        'actividades': JSON.stringify(me.actividadesProy),
+        'institucion_id': me.institucion.value,
+        'imageG': me.imgGallery,
+        'imagen': me.image,
+        'actividadSS': me.actividadesCarre,
+        'horas': me.catidadHoras,
+        'cantidadAlumnos': me.cantidadVacantes,
+        'tipoProyecto': tipoProyecto
+      });
+      me.loadSpinner = 1;
+      axios.post(url).then(function (response) {
         swal({
           position: "center",
           type: "success",
@@ -86294,7 +86294,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.loadSpinner = 1;
       me.arrayProyecto = [];
-      var url = "/proyecto?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var url = route('getAllProyectosInternos', { 'page': page, 'proceso': proceso, 'buscar': buscar });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayProyecto = respuesta.proyecto.data;
@@ -86307,7 +86307,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     listarProyectoDes: function listarProyectoDes(page, proceso, buscar) {
       var me = this;
-      var url = "/proyecto/desactivadas?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var url = route('getAllProyectosInternosDesactivados', { 'page': page, 'proceso': proceso, 'buscar': buscar });
       me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -86323,7 +86323,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getInst: function getInst() {
       var me = this;
       me.loadSpinner = 1;
-      var url = "GetInstituciones/" + this.proceso;
+      var url = route('getInstitucionById', me.proceso);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayInstitucion = respuesta;
@@ -86340,19 +86340,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showConfirmButton: false,
         timer: 4000
       });
-      axios.put("/proyecto/actualizar", {
-        id: this.proyecto_id,
-        nombre: this.nombreP,
-        actividades: this.actividadesUpd,
-        institucion_id: this.institucionP.value,
-        estado: "1",
-        proceso_id: this.proceso,
-        tipoProyecto: "I",
-        imagenG: this.imgGallery,
-        imagen: this.image,
-        hrsRealizar: this.hrsRealizar,
-        cantidadEstudiantes: this.vacantesProy
-      }).then(function (response) {
+      var url = route('updateProyectos', {
+        'proyecto_id': me.proyecto_id,
+        'nombre': me.nombreP,
+        'actividades': me.actividadesUpd,
+        'institucion_id': me.institucionP.value,
+        'estado': "1",
+        'proceso_id': me.proceso,
+        'tipoProyecto': "I",
+        'imagenG': me.imgGallery,
+        'imagen': me.image,
+        'hrsRealizar': me.hrsRealizar,
+        'cantidadEstudiantes': me.vacantesProy
+      });
+      axios.post(url).then(function (response) {
         swal({
           position: "center",
           type: "success",
@@ -86370,16 +86371,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
-    getProyAct: function getProyAct(id) {
-      var me = this;
-      var url = "/proyecto/obtenerProyecto?id=" + id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayActivities = respuesta;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
@@ -86394,7 +86385,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         label: data.institucion.nombre
       });
       //Cargando datos de proyecto en modal
-      //PENDIENTE CARGA DE IMAGEN EXTERNA EN VUEIMG-INPUTER INVESTIGAR COMO SACAR EL PATH COMPLETO DE LA APP
       switch (me.proceso) {
         //El proyecto a actualizar es de Servicio Social
         case "1":
@@ -86505,9 +86495,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this2;
           me.loadSpinner = 1;
-          axios.put("/proyecto/desactivar", {
-            id: id
-          }).then(function (response) {
+          var url = route('desactivarProyectosInternos', { 'proyecto_id': id });
+          axios.put(url).then(function (response) {
             me.listarProyecto(1, me.proceso, "");
             swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
             me.loadSpinner = 0;
@@ -86538,9 +86527,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this3;
           me.loadSpinner = 1;
-          axios.put("/proyecto/activar", {
-            id: id
-          }).then(function (response) {
+          var url = route('activarProyectosInternos', { 'proyecto_id': id });
+          axios.put(url).then(function (response) {
             me.listarProyectoDes(1, me.proceso, "");
             me.listarProyecto(1, me.proceso, "");
             swal("Activada!", "El proyecto ha sido activado con exito", "success");
@@ -89230,9 +89218,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.loadSpinner = 1;
       if (this.proceso == 1) {
-        var url = "GetProjectsByProcess?process_id=" + this.proceso + "&tipoProyecto=I";
+        var url = route('getProyectosByProcess', { 'process_id': me.proceso, 'tipoProyecto': 'I' });
       } else if (this.proceso == 2) {
-        var url = "GetProjectsByProcess?process_id=" + this.proceso + "&carre_id=" + this.carrera_selected.value + "&tipoProyecto=I";
+        var url = route('getProyectosByProcess', { 'process_id': me.proceso, 'carre_id': me.carrera_selected.value, 'tipoProyecto': 'I' });
       }
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -89262,7 +89250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -89276,7 +89264,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getPreregister: function getPreregister(proyecto_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "getPreregistrationByProject?project_id=" + proyecto_id + "&page=" + page + "&buscar=" + buscar;
+      var url = route('getPreinscripcionesByProyecto', { 'project_id': proyecto_id, 'page': page, 'buscar': buscar });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayPreregister = respuesta.projects.data;
@@ -89308,7 +89296,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMoreInfo: function getMoreInfo(id) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "stundentById/" + id;
+      var url = route('getFullInfoEstudiante', id);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.estudiante = respuesta;
@@ -89398,9 +89386,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     rechazarProy: function rechazarProy(estudiante_id, proyecto_id) {
       var _this2 = this;
 
-      // const vselect = this.$refs.vselectProy._props.value;
-      // this.$refs.vselectProy._props.value = this.testObj
-      //console.log(vselect);
       swal({
         title: "Seguro de Rechazar Preincripcion?",
         type: "question",
@@ -89417,7 +89402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this2;
           me.loadSpinner = 1;
-          var url = "/destroyPreregister/" + estudiante_id + "/" + proyecto_id;
+          var url = route('rechazarPreinscripcion', [estudiante_id, proyecto_id]);
           axios.get(url).then(function (response) {
             me.getProyectos();
             me.getPreregister(me.proyecto_selectd.value, 1, "");
@@ -89451,7 +89436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this3;
           me.loadSpinner = 1;
-          var url = "/deleteAllPreregister/" + me.proyecto_selectd.value;
+          var url = route('deleteAllPreinscripciones', me.proyecto_selectd.value);
           axios.get(url).then(function (response) {
             me.getProyectos();
             me.getPreregister(me.proyecto_selectd.value, 1, "");
@@ -90548,7 +90533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -90562,7 +90547,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
       var me = this;
       me.loadSpinner = 1;
-      var url = "/recepcion/getAllStudents?carre_id=" + carrera_id + "&proceso_id=" + proceso_id + "&page=" + page + "&buscar=" + buscar;
+      var url = route('getEstudiantesToRecepcion', {
+        'carre_id': carrera_id,
+        'proceso_id': proceso_id,
+        'page': page,
+        'buscar': buscar
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayStudents = respuesta.estudiante.data;
@@ -90585,12 +90575,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
 
-
     //guardar cambios del pago de arancel, automaticamente cambio de estado a cancelado
     savePayArancel: function savePayArancel(no_fac, estudiante_id, tipobeca_id, proceso_id) {
       var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
       var me = this;
-      axios.get('/recepcion/payArancel/validate/' + no_fac).then(function (response) {
+      var urlValidate = route('validateIfExisteArancel', no_fac);
+      axios.get(urlValidate).then(function (response) {
         var respuesta = response.data;
         if (respuesta == 'existe') {
           swal({
@@ -90617,7 +90607,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }).then(function (result) {
             if (result.value) {
               me.loadSpinner = 1;
-              var url = "/recepcion/payArancel?noFac=" + no_fac + "&estudiante_id=" + estudiante_id + "&tipobeca_id=" + tipobeca_id + "&proceso_id=" + proceso_id;
+              var url = route('cancelarArancel', {
+                'noFac': no_fac,
+                'estudiante_id': estudiante_id,
+                'tipobeca_id': tipobeca_id,
+                'proceso_id': proceso_id
+              });
               axios.post(url).then(function (response) {
                 me.getAllStudens(me.carrera_selected.value, me.proceso, 1, "");
                 swal("Hecho!", "Apertura de expediente guardada con exito", "success");
@@ -91537,7 +91532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -91548,7 +91543,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getAllStudensHasPayArancel: function getAllStudensHasPayArancel(carrera_id, proceso_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "/admin/studentsHasPayArancel?carre_id=" + carrera_id + "&proceso_id=" + proceso_id + "&page=" + page + "&buscar=" + buscar;
+      var url = route('accessToPerfil', {
+        'carre_id': carrera_id,
+        'proceso_id': proceso_id,
+        'page': page,
+        'buscar': buscar
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayStudents = respuesta.estudiante.data;
@@ -91565,19 +91565,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (me.arrayStudents.length > 0) {
         me.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, page, "");
       }
-    },
-    getMoreInfo: function getMoreInfo(id) {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "stundentById/" + id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.estudiante = respuesta;
-        me.loadSpinner = 0;
-        me.abrirModal();
-      }).catch(function (error) {
-        console.log(error);
-      });
     },
     provideAccess: function provideAccess(estudiante_id, proyecto_id) {
       var _this = this;
@@ -91599,7 +91586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          var url = "/admin/provideAccessToPerfil/" + estudiante_id + "/" + proyecto_id;
+          var url = route('darAccesoPerfil', [estudiante_id, proyecto_id]);
           axios.post(url).then(function (response) {
             me.getAllStudensHasPayArancel(me.carrera_selected.value, me.proceso, 1, "");
             swal("Hecho!", "El estudiante puede completar el perfil del proyecto ahora", "success");
@@ -92257,7 +92244,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMunicipios: function getMunicipios() {
       var me = this;
       me.loadSpinner = 1;
-      var url = "GetMunicipios/" + this.departamento_id["value"];
+      var url = route('getMunicipios', me.departamento_id["value"]);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayMunicipios = respuesta;
@@ -92978,10 +92965,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(123)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(125)
@@ -92990,7 +92973,7 @@ var __vue_template__ = __webpack_require__(126)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -93025,46 +93008,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(124);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("342b57a9", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14700b18\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SupervisionesInst.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14700b18\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SupervisionesInst.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 123 */,
+/* 124 */,
 /* 125 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -93336,693 +93281,16 @@ if (false) {
 }
 
 /***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(128)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(130)
-/* template */
-var __vue_template__ = __webpack_require__(131)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\reportes\\CarrerasInst.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7aeb9d94", Component.options)
-  } else {
-    hotAPI.reload("data-v-7aeb9d94", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(129);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("11e2645e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7aeb9d94\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CarrerasInst.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7aeb9d94\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CarrerasInst.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 130 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_switches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_switches__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            loadSpinner: 0,
-            arrayCarreras: []
-
-        };
-    },
-
-    watch: {},
-    methods: {
-        clearData: function clearData() {
-            var me = this;
-            me.proceso_id = 0;
-            $("#btnGenerar").prop('disabled', true);
-        },
-        getCarreras: function getCarreras() {
-            var me = this;
-            var url = "carreras/GetCarreras";
-            axios.get(url).then(function (response) {
-                var respuesta = response.data;
-                //console.log(respuesta);
-                me.arrayCarreras = respuesta;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        viewPdfFromBase64: function viewPdfFromBase64(base64, titlepdf) {
-            var objbuilder = '';
-            objbuilder += '<object width="100%" height="100%"data="data:application/pdf;base64,';
-            objbuilder += base64;
-            objbuilder += '" type="application/pdf" class="internal">';
-            objbuilder += '<embed src="data:application/pdf;base64,';
-            objbuilder += base64;
-            objbuilder += '" type="application/pdf"  />';
-            objbuilder += '</object>';
-
-            var win = window.open("#", "_blank");
-            win.document.write('<html><title>' + titlepdf + '</title><body style="margin-top:0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
-            win.document.write(objbuilder);
-            win.document.write('</body></html>');
-            layer = jQuery(win.document);
-        },
-        downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
-            var a = document.createElement("a");
-            var name = "Institucion por proceso ";
-            a.href = "data:application/octet-stream;base64," + base64;
-            a.download = name + ".pdf";
-            a.click();
-        },
-        sendParameterToMethod: function sendParameterToMethod() {
-            var me = this;
-            me.loadSpinner = 1;
-            var url = "institucion/getInstituciones/" + this.proceso_id;
-            axios.post(url).then(function (response) {
-                var respuesta = response.data;
-                me.loadSpinner = 0;
-                me.downloadPdfFromBase64(respuesta, name);
-                //me.viewPdfFromBase64(respuesta,'Hoja de Supervisión General');
-                me.clearData();
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    },
-    components: {
-        Switches: __WEBPACK_IMPORTED_MODULE_0_vue_switches___default.a
-    },
-    mounted: function mounted() {
-        this.getCarreras();
-    }
-});
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-12 col-md-12" }, [
-    _c("div", { staticClass: "row" }, [
-      _vm.loadSpinner == 1
-        ? _c("div", { staticClass: "col-md-12 loading text-center" })
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-body" }, [
-              _c("fieldset", [
-                _c("legend", { staticClass: "text-center" }, [
-                  _vm._v("Seleccione una o mas carreras")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "panel panel-default" }, [
-                  _c(
-                    "div",
-                    { staticClass: "panel-body" },
-                    [
-                      _c("v-select", {
-                        ref: "selectCarreras",
-                        attrs: {
-                          multiple: "",
-                          options: _vm.arrayCarreras,
-                          placeholder: "Seleccione una o mas carreras"
-                        },
-                        model: {
-                          value: _vm.carrerasProy,
-                          callback: function($$v) {
-                            _vm.carrerasProy = $$v
-                          },
-                          expression: "carrerasProy"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-12 text-center" }, [
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "button blue",
-                    attrs: {
-                      type: "button",
-                      id: "btnGenerar",
-                      "data-toggle": "tooltip",
-                      title: "Generar Hoja de Supervisión"
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.sendParameterToMethod()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "mdi mdi-package-down" }),
-                    _vm._v(" Generar Reporte")
-                  ]
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7aeb9d94", module.exports)
-  }
-}
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(133)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(135)
-/* template */
-var __vue_template__ = __webpack_require__(136)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\reportes\\RegistrarSupervision.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-863af9ee", Component.options)
-  } else {
-    hotAPI.reload("data-v-863af9ee", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(134);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("3cc6e7e3", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-863af9ee\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegistrarSupervision.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-863af9ee\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegistrarSupervision.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none; \r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 135 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      arrayInstituciones: [],
-      loadSpinner: 0,
-      proceso_id: 0,
-      institucion_id: ""
-    };
-  },
-
-  watch: {
-    proceso_id: function proceso_id() {
-      if (this.proceso_id != 0) {
-        this.getInstituciones();
-      }
-    }
-  },
-  computed: {
-    validate: function validate() {
-      if (this.proceso_id == 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  },
-  methods: {
-    getInstituciones: function getInstituciones() {
-      var me = this;
-      var url = "GetInstituciones/" + this.proceso_id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayInstituciones = respuesta;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    viewPdfFromBase64: function viewPdfFromBase64(base64, titlepdf) {
-      var objbuilder = '';
-      objbuilder += '<object width="100%" height="100%"data="data:application/pdf;base64,';
-      objbuilder += base64;
-      objbuilder += '" type="application/pdf" class="internal">';
-      objbuilder += '<embed src="data:application/pdf;base64,';
-      objbuilder += base64;
-      objbuilder += '" type="application/pdf"  />';
-      objbuilder += '</object>';
-
-      var win = window.open("#", "_blank");
-      win.document.write('<html><title>' + titlepdf + '</title><body style="margin-top:0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
-      win.document.write(objbuilder);
-      win.document.write('</body></html>');
-      layer = jQuery(win.document);
-    },
-    downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
-      var a = document.createElement("a");
-      var name = "Registro de supervision " + new Date(Date.now()).toLocaleString();
-      a.href = "data:application/octet-stream;base64," + base64;
-      a.download = name + ".pdf";
-      a.click();
-    },
-    clearData: function clearData() {},
-    sendParameterToMethod: function sendParameterToMethod() {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "institucion/regSupervision";
-      axios.post(url).then(function (response) {
-        var respuesta = response.data;
-        me.loadSpinner = 0;
-        me.viewPdfFromBase64(respuesta, 'Hoja de Supervisión General');
-        me.downloadPdfFromBase64(respuesta, name);
-        me.clearData();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.getInstituciones();
-  }
-});
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-12 col-md-12" }, [
-    _c("div", { staticClass: "row" }, [
-      _vm.loadSpinner == 1
-        ? _c("div", { staticClass: "col-md-12 loading text-center" })
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-body" }, [
-              _c("fieldset", [
-                _c("legend", { staticClass: "text-center" }, [
-                  _vm._v("Seleccione un proceso")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "panel panel-default" }, [
-                  _c("div", { staticClass: "panel-body" }, [
-                    _c("div", { staticClass: "row md-radio" }, [
-                      _c("div", { staticClass: "col-md-6 text-center" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.proceso_id,
-                              expression: "proceso_id"
-                            }
-                          ],
-                          attrs: {
-                            id: "radioSS",
-                            value: "1",
-                            type: "radio",
-                            name: "radioP"
-                          },
-                          domProps: { checked: _vm._q(_vm.proceso_id, "1") },
-                          on: {
-                            change: function($event) {
-                              _vm.proceso_id = "1"
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "radioSS" } }, [
-                          _vm._v("Servicio Social")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 text-center" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.proceso_id,
-                              expression: "proceso_id"
-                            }
-                          ],
-                          attrs: {
-                            id: "radioPP",
-                            value: "2",
-                            type: "radio",
-                            name: "radioP"
-                          },
-                          domProps: { checked: _vm._q(_vm.proceso_id, "2") },
-                          on: {
-                            change: function($event) {
-                              _vm.proceso_id = "2"
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", { attrs: { for: "radioPP" } }, [
-                          _vm._v("Práctica Profesional")
-                        ])
-                      ])
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _vm.proceso_id != 0
-                      ? _c(
-                          "div",
-                          [
-                            _c("h4", { staticClass: "text-center" }, [
-                              _vm._v("Seleccione una institución")
-                            ]),
-                            _vm._v(" "),
-                            _c("v-select", {
-                              attrs: {
-                                options: _vm.arrayInstituciones,
-                                placeholder: "Seleccione una Institución"
-                              },
-                              model: {
-                                value: _vm.institucion,
-                                callback: function($$v) {
-                                  _vm.institucion = $$v
-                                },
-                                expression: "institucion"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-12 text-center" }, [
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "button blue",
-                    attrs: {
-                      type: "button",
-                      id: "btnGenerar",
-                      disabled: _vm.validate == true,
-                      "data-toggle": "tooltip",
-                      title: "Generar Hoja de Supervisión"
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.sendParameterToMethod()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "mdi mdi-package-down" }),
-                    _vm._v(" Generar Reporte")
-                  ]
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-863af9ee", module.exports)
-  }
-}
-
-/***/ }),
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
 /* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -96778,7 +96046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -97393,7 +96661,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -98006,7 +97274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -98642,7 +97910,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -99594,7 +98862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getCarreras: function getCarreras() {
       var me = this;
       me.loadSpinner = 1;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -99609,7 +98877,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener los documentos
     getDocuments: function getDocuments() {
       var me = this;
-      var url = "getDocuments";
+      var url = route('getDocumentosByEstudiante');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayDocumentos = respuesta;
@@ -99780,7 +99048,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getGestionProy: function getGestionProy(carrera_id, proceso_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "/gestionproyectos?carre_id=" + carrera_id + "&proceso_id=" + proceso_id + "&page=" + page + "&buscar=" + buscar;
+      var url = route('getGestionByCarrera', {
+        'carre_id': carrera_id,
+        'proceso_id': proceso_id,
+        'page': page,
+        'buscar': buscar
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayStudents = respuesta.gp.data;
@@ -99839,27 +99112,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
-    //obtener mas informacion del estudiante seleccionado por su id
-    getMoreInfo: function getMoreInfo(id) {
-      var me = this;
-      me.loadSpinner = 1;
-      var url = "stundentById/" + id;
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.estudiante = respuesta;
-        me.loadSpinner = 0;
-        me.abrirModal();
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-
-
     //obtener mas informacion del proyecto ya en proceso
     getMoreInfoGp: function getMoreInfoGp(id) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "/getMoreInfoGP/" + id;
+      var url = route('getFullInfoGestion', id);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.gpObj = respuesta;
@@ -102028,13 +101285,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     carrera_selected: function carrera_selected() {
       this.getGestionProy(this.carrera_selected.value, this.proceso, 1, "");
-    },
-    gpObj: function gpObj() {
-      if (this.gpObj.documentos_entrega.length == 4) {
-        this.textoBtn = "Cerrar Proyecto";
-      } else if (this.gpObj.documentos_entrega.length < 4) {
-        this.textoBtn = "Cancelar Proyecto";
-      }
     }
   },
   computed: {
@@ -102062,12 +101312,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
-
     //obtener todas las carreras registradas
     getCarreras: function getCarreras() {
       var me = this;
       me.loadSpinner = 1;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -102083,7 +101332,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getGestionProy: function getGestionProy(carrera_id, proceso_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "/gestionproyectos/constancias?carre_id=" + carrera_id + "&proceso_id=" + proceso_id + "&page=" + page + "&buscar=" + buscar;
+      var url = route('getEstudiantesToConstacias', {
+        'carre_id': carrera_id,
+        'proceso_id': proceso_id,
+        'page': page,
+        'buscar': buscar
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayStudents = respuesta.gp.data;
@@ -102964,8 +102218,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Aceptar!",
                 cancelButtonText: "Cancelar",
-                confirmButtonClass: "btn update",
-                cancelButtonClass: "btn edit",
+                confirmButtonClass: "button blue",
+                cancelButtonClass: "button red",
                 buttonsStyling: false,
                 reverseButtons: true
             }).then(function (result) {
@@ -103916,9 +103170,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.loadSpinner = 1;
       if (this.proceso == 1) {
-        var url = "GetProjectsByProcess?process_id=" + this.proceso + "&tipoProyecto=" + this.valueTipoProyectos;
+        var url = route('getProyectosByProcess', { 'process_id': me.proceso, 'tipoProyecto': me.valueTipoProyectos });
       } else if (this.proceso == 2) {
-        var url = "GetProjectsByProcess?process_id=" + this.proceso + "&carre_id=" + this.carrera_selected.value + "&tipoProyecto=" + this.valueTipoProyectos;
+        var url = route('getProyectosByProcess', { 'process_id': me.proceso, 'carre_id': me.carrera_selected.value, 'tipoProyecto': me.valueTipoProyectos });
       }
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -103932,7 +103186,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener todas las carreras
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -103946,7 +103200,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getSolicitudesAprobados: function getSolicitudesAprobados(proyecto_id, page, buscar) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "proyectos/obtenerAprobados?proyectoId=" + proyecto_id + "&page=" + page + "&buscar=" + buscar;
+      var url = route('allAcepted', { 'proyectoId': proyecto_id, 'page': page, 'buscar': buscar });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayPreregister = respuesta.proyectos.data;
@@ -103978,7 +103232,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getMoreInfo: function getMoreInfo(id) {
       var me = this;
       me.loadSpinner = 1;
-      var url = "stundentById/" + id;
+      var url = route('getFullInfoEstudiante', id);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.estudiante = respuesta;
@@ -104031,7 +103285,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          var url = "/proyectos/deleteAprobacion?proyectoId=" + proyecto_id + "&estudianteId=" + estudiante_id;
+          var url = route('deleteProyAceptted', { 'proyectoId': proyecto_id, 'estudianteId': estudiante_id });
           axios.get(url).then(function (response) {
             me.getSolicitudesAprobados(me.proyecto_selectd.value, 1, "");
             swal("Eliminada", "Se ha eliminado la solicitud aprobada para este proyecto", "success");
@@ -105658,7 +104912,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.loadSpinner = 1;
       me.arrayProyecto = [];
-      var url = "proyectos/externos?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var url = route('getAllProyectosExternos', { 'page': page, 'proceso': proceso, 'buscar': buscar });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayProyecto = respuesta.proyectos.data;
@@ -105672,7 +104926,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     listarProyectoDes: function listarProyectoDes(page, proceso, buscar) {
       var me = this;
-      var url = "proyecto/desactivados/externos?page=" + page + "&proceso=" + proceso + "&buscar=" + buscar;
+      var url = route('getAllProyectosExternosDesactivados', { 'page': page, 'proceso': proceso, 'buscar': buscar });
       me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -105689,7 +104943,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getInst: function getInst() {
       var me = this;
       me.loadSpinner = 1;
-      var url = "GetInstituciones/" + this.proceso;
+      var url = route('getInstitucionById', me.proceso);
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayInstitucion = respuesta;
@@ -105701,7 +104955,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getEstudianteByCarrer: function getEstudianteByCarrer(page) {
       var me = this;
-      var url = "stundentByCarrer?page=" + page + "&carrera_id=" + me.carrera_selected.value + "&proceso_id=" + me.proceso + "&nivelAcad=" + me.nivelSelected.value + "&buscar=" + me.buscarP;
+      var url = route('getEstudiantesByCarrera', {
+        'page': page,
+        'carrera_id': me.carrera_selected.value,
+        'proceso_id': me.proceso,
+        'nivelAcad': me.nivelSelected.value,
+        'buscar': me.buscarP
+      });
       me.loader = true;
       axios.get(url).then(function (response) {
         me.loader = false;
@@ -105714,7 +104974,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getCarreras: function getCarreras() {
       var me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayCarreras = respuesta;
@@ -105730,16 +104990,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showConfirmButton: false,
         timer: 4000
       });
+      var url = route('updateProyectos', {
+        'proyecto_id': me.proyectoId,
+        'nombre': me.nombreP,
+        'actividades': me.actividadesP,
+        'institucion_id': me.institucionP.value,
+        'horasRealizar': me.hrsRealizar,
+        'tipoProyecto': "E",
+        'procesoId': me.proceso
+      });
       me.loading = true;
-      axios.put("/proyecto/actualizar", {
-        id: me.proyectoId,
-        nombre: me.nombreP,
-        actividades: me.actividadesP,
-        institucion_id: me.institucionP.value,
-        horasRealizar: me.hrsRealizar,
-        tipoProyecto: "E",
-        procesoId: me.proceso
-      }).then(function (response) {
+      axios.post(url).then(function (response) {
         swal({
           position: "center",
           type: "success",
@@ -105884,9 +105145,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this;
           me.loadSpinner = 1;
-          var url = route("asinarProyectoExterno", {
-            estudent_id: me.estudiantesSelected,
-            project_id: me.proyecto_selected_id
+          var url = route("asignarProyectoExterno", {
+            'estudent_id': me.estudiantesSelected,
+            'project_id': me.proyecto_selected_id
           });
           axios.get(url).then(function (response) {
             swal("Hecho", "Las asignaciones a este proyecto fueron realizadas con exito", "success");
@@ -105894,6 +105155,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.estudiantesSelected = [];
             me.getEstudianteByCarrer(1);
           }).catch(function (error) {
+            me.loadSpinner = 0;
             console.log(error);
           });
         } else if (result.dismiss === swal.DismissReason.cancel) {}
@@ -105918,9 +105180,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this2;
           me.loadSpinner = 1;
-          axios.put("/proyecto/desactivar", {
-            id: id
-          }).then(function (response) {
+          var url = route('desactivarProyectosInternos', { 'proyecto_id': id });
+          axios.put(url).then(function (response) {
             me.listarProyecto(1, me.proceso, "");
             swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
             me.loadSpinner = 0;
@@ -105951,9 +105212,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (result.value) {
           var me = _this3;
           me.loadSpinner = 1;
-          axios.put("/proyecto/activar", {
-            id: id
-          }).then(function (response) {
+          var url = route('activarProyectosInternos', { 'proyecto_id': id });
+          axios.put(url).then(function (response) {
             me.listarProyectoDes(1, me.proceso, "");
             me.listarProyecto(1, me.proceso, "");
             swal("Activada!", "El proyecto ha sido activado con exito", "success");

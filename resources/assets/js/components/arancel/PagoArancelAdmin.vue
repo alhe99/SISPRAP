@@ -157,10 +157,8 @@ export default {
 methods:{
   getCarreras() {
     let me = this;
-    var url = "carreras/GetCarreras";
-    axios
-    .get(url)
-    .then(function(response) {
+    var url = route('GetCarreras');
+    axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayCarreras = respuesta;
     })
@@ -171,7 +169,12 @@ methods:{
   getAllStudensHasPayArancel(carrera_id,proceso_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
-    var url = "/admin/studentsHasPayArancel?carre_id="+ carrera_id +"&proceso_id=" + proceso_id + "&page=" + page +"&buscar=" + buscar;
+    var url = route('accessToPerfil',{
+      'carre_id': carrera_id,
+      'proceso_id': proceso_id,
+      'page': page,
+      'buscar': buscar
+    });
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayStudents = respuesta.estudiante.data;
@@ -191,19 +194,6 @@ methods:{
       me.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,page,"");
     }
   },
-  getMoreInfo(id) {
-    let me = this;
-    me.loadSpinner = 1;
-    var url = "stundentById/"+id;
-    axios.get(url).then(function(response) {
-      var respuesta = response.data;
-      me.estudiante = respuesta;
-      me.loadSpinner = 0;
-      me.abrirModal();
-    }).catch(function(error) {
-      console.log(error);
-    });
-  },
   provideAccess(estudiante_id,proyecto_id) {
     const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
     swal({
@@ -222,9 +212,8 @@ methods:{
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        var url = "/admin/provideAccessToPerfil/"+estudiante_id+"/"+proyecto_id;
-        axios.post(url)
-        .then(function(response) {
+        var url = route('darAccesoPerfil',[estudiante_id,proyecto_id])        
+        axios.post(url).then(function(response) {
           me.getAllStudensHasPayArancel(me.carrera_selected.value,me.proceso,1,"");
           swal(
             "Hecho!",

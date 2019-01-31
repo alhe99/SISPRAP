@@ -294,9 +294,9 @@ export default {
         let me = this;
         me.loadSpinner = 1;
         if(this.proceso == 1){
-          var url = "GetProjectsByProcess?process_id=" + this.proceso+"&tipoProyecto=I";
+          var url = route('getProyectosByProcess',{'process_id':me.proceso,'tipoProyecto':'I'})
         }else if(this.proceso == 2){
-         var url = "GetProjectsByProcess?process_id=" + this.proceso +"&carre_id="+this.carrera_selected.value+"&tipoProyecto=I";
+         var url = route('getProyectosByProcess',{'process_id':me.proceso,'carre_id':me.carrera_selected.value,'tipoProyecto':'I'})
        }
        axios.get(url).then(function(response) {
         var respuesta = response.data;
@@ -326,10 +326,8 @@ export default {
   //obtener todas las carreras
   getCarreras() {
     let me = this;
-    var url = "carreras/GetCarreras";
-    axios
-    .get(url)
-    .then(function(response) {
+    var url = route('GetCarreras');
+    axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayCarreras = respuesta;
     })
@@ -342,7 +340,7 @@ export default {
   getPreregister(proyecto_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
-    var url = "getPreregistrationByProject?project_id="+proyecto_id +"&page=" + page +"&buscar=" + buscar;
+    var url = route('getPreinscripcionesByProyecto',{'project_id':proyecto_id,'page':page,'buscar':buscar})
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayPreregister = respuesta.projects.data;
@@ -374,7 +372,7 @@ export default {
   getMoreInfo(id) {
     let me = this;
     me.loadSpinner = 1;
-    var url = "stundentById/"+id;
+    var url = route('getFullInfoEstudiante',id);
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.estudiante = respuesta;
@@ -445,8 +443,7 @@ export default {
           let me = this;
           me.loadSpinner = 1;
           var url = route('preregister', {"estudent_id": estudiante_id,"project_id": proyecto_id});
-          axios.get(url)
-          .then(function(response) {
+          axios.get(url).then(function(response) {
            me.getPreregister(me.proyecto_selectd.value, 1, "");
            swal(
             "Aprobado!",
@@ -470,9 +467,6 @@ export default {
   },
   //rechazar la preinscripcion del estudiante
   rechazarProy(estudiante_id,proyecto_id){
-    // const vselect = this.$refs.vselectProy._props.value;
-    // this.$refs.vselectProy._props.value = this.testObj
-    //console.log(vselect);
     swal({
       title: "Seguro de Rechazar Preincripcion?",
       type: "question",
@@ -489,7 +483,7 @@ export default {
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        var url = "/destroyPreregister/"+estudiante_id+"/"+proyecto_id;
+        var url = route('rechazarPreinscripcion',[estudiante_id,proyecto_id])
         axios.get(url)
         .then(function(response) {
           me.getProyectos();
@@ -530,9 +524,8 @@ export default {
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        var url = "/deleteAllPreregister/"+me.proyecto_selectd.value;
-        axios.get(url)
-        .then(function(response) {
+        var url = route('deleteAllPreinscripciones',me.proyecto_selectd.value);
+        axios.get(url).then(function(response) {
           me.getProyectos();
           me.getPreregister(me.proyecto_selectd.value, 1, "");
           swal(

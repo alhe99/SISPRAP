@@ -239,7 +239,7 @@
      //obtener todas las carreras
      getCarreras() {
       let me = this;
-      var url = "carreras/GetCarreras";
+      var url = route('GetCarreras');
       axios
       .get(url)
       .then(function(response) {
@@ -255,7 +255,12 @@
       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
       let me = this;
       me.loadSpinner = 1;
-      var url = "/recepcion/getAllStudents?carre_id="+ carrera_id +"&proceso_id=" + proceso_id + "&page=" + page +"&buscar=" + buscar;
+      var url = route('getEstudiantesToRecepcion',{
+        'carre_id': carrera_id,
+        'proceso_id':proceso_id,
+        'page': page,
+        'buscar' : buscar
+      });
       axios.get(url).then(function(response) {
         var respuesta = response.data;
         me.arrayStudents = respuesta.estudiante.data;
@@ -279,12 +284,12 @@
         me.getAllStudens(this.carrera_selected.value,this.proceso,page,"");
       }
     },
-
     //guardar cambios del pago de arancel, automaticamente cambio de estado a cancelado
     savePayArancel(no_fac,estudiante_id,tipobeca_id,proceso_id) {
       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
       let me = this;
-      axios.get('/recepcion/payArancel/validate/'+no_fac).then(function(response) {
+      var urlValidate = route('validateIfExisteArancel',no_fac);
+      axios.get(urlValidate).then(function(response) {
        var respuesta = response.data;
        if(respuesta == 'existe'){
         swal({
@@ -311,7 +316,12 @@
         }).then(result => {
           if (result.value) {
             me.loadSpinner = 1;
-            var url = "/recepcion/payArancel?noFac="+no_fac+"&estudiante_id="+estudiante_id+"&tipobeca_id="+tipobeca_id+"&proceso_id="+proceso_id;
+            var url = route('cancelarArancel',{
+              'noFac':no_fac,
+              'estudiante_id': estudiante_id,
+              'tipobeca_id': tipobeca_id,
+              'proceso_id': proceso_id
+            });
             axios.post(url)
             .then(function(response) {
               me.getAllStudens(me.carrera_selected.value,me.proceso,1,"");

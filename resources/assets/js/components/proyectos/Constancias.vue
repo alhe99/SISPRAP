@@ -154,13 +154,6 @@ export default {
     carrera_selected: function(){
       this.getGestionProy(this.carrera_selected.value,this.proceso,1,"")
     },
-    gpObj:function(){
-      if(this.gpObj.documentos_entrega.length == 4){
-        this.textoBtn = "Cerrar Proyecto"
-      }else if(this.gpObj.documentos_entrega.length < 4){
-        this.textoBtn = "Cancelar Proyecto"
-      }
-    }
   },
   computed:{
    isActived: function() {
@@ -187,15 +180,12 @@ export default {
   },
 },
 methods:{
-
   //obtener todas las carreras registradas
   getCarreras() {
     let me = this;
     me.loadSpinner = 1;
-    var url = "carreras/GetCarreras";
-    axios
-    .get(url)
-    .then(function(response) {
+    var url = route('GetCarreras');
+    axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayCarreras = respuesta;
       me.loadSpinner = 0;
@@ -210,7 +200,12 @@ methods:{
   getGestionProy(carrera_id,proceso_id,page,buscar) {
     let me = this;
     me.loadSpinner = 1;
-    var url = "/gestionproyectos/constancias?carre_id="+ carrera_id +"&proceso_id=" + proceso_id + "&page=" + page +"&buscar=" + buscar;
+    var url = route('getEstudiantesToConstacias',{
+      'carre_id':carrera_id,
+      'proceso_id':proceso_id,
+      'page': page,
+      'buscar': buscar
+    });
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayStudents = respuesta.gp.data;

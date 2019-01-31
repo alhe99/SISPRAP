@@ -138,7 +138,7 @@ class InstitucionController extends Controller
     public function getProyectosByInstitucion(Request $request)
     {
 
-        $id = $request->id;
+        $id = $request->proyecto_id;
         $buscar = $request->buscar;
         $proceso = $request->proceso;
         $tipoProyecto = $request->tipoProyecto;

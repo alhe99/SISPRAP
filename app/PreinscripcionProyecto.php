@@ -12,7 +12,7 @@ class PreinscripcionProyecto extends Model
         'estudiante_id',
         'proyecto_id',
         'estado',
-        'pago_arancel'
+        'fecha_registro'
     ];
 
     public function gestionProy()
