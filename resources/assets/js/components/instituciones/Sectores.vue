@@ -161,14 +161,10 @@ export default {
     methods: {
         listarSectores(page, buscar) {
             let me = this;
-            var url =
-            "/sector?page=" +
-            page +
-            "&buscar=" +
-            buscar;
+            var urlSector = route('sectoresList', {"page": page, "buscar": buscar})
             me.loadSpinner = 1;
             axios
-            .get(url)
+            .get(urlSector)
             .then(function(response) {
                 var respuesta = response.data;
                 me.arraySector = respuesta.sectores.data;
@@ -186,6 +182,7 @@ export default {
         registrarSector(){
            let me = this;
            this.loadSpinner = 1;
+           var urlRegistrarSector = route('registrarSector', {"sector":me.sector});
            var url = route('validateSector',{"sector": me.sector});
            axios.get(url).then(function(response) {
             var respuesta = response.data;
@@ -203,9 +200,7 @@ export default {
                 me.exist = false;
             }else {
                 axios
-                .post("sector/registrar", {
-                    sector: me.sector,
-                })
+                .post(urlRegistrarSector)
                 .then(function(response) {
                     swal({
                         position: "center",
@@ -242,11 +237,9 @@ export default {
                 me.loadSpinner = 0;
                 me.exist = false;
             }else {
+                var urlActualizar = route('actualizarSector', {"id":me.sector_id, "sector":me.sector});
                 axios
-                .put("/sector/actualizar", {
-                    id: me.sector_id,
-                    sector: me.sector,
-                })
+                .put(urlActualizar)
                 .then(function(response) {
                     me.loadSpinner = 0;
                     swal({
@@ -329,6 +322,8 @@ searchEmpty() {
         return me.search;
     },
     deleteSector(id) {
+
+       
       swal({
         title: "Esta seguro de eliminar este Sector?",
         type: "question",
@@ -345,9 +340,9 @@ searchEmpty() {
         if (result.value) {
           let me = this;
           me.loadSpinner = 1;
-          var url = "/sector/eliminar/"+ id;
+        var urlDeleteSector = route('eliminarSector',{id});
           axios
-          .get(url)
+          .get(urlDeleteSector)
           .then(function(response) {
             me.listarSectores(1, "");
             swal(

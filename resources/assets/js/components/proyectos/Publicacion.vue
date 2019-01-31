@@ -384,9 +384,9 @@ methods: {
       //obtener carreras
       getCarreras() {
         let me = this;
-        var url = "carreras/GetCarreras";
+        var urlCarreras = route('GetCarreras');
         axios
-        .get(url)
+        .get(urlCarreras)
         .then(function(response) {
           var respuesta = response.data;
             //console.log(respuesta);

@@ -13,14 +13,14 @@ Route::get('/main', function () {
 })->name('main');
 
 //INSTITUCION
-Route::get('/institucion', 'InstitucionController@index');
-Route::post('/institucion/registrar', 'InstitucionController@store');
-Route::put('/institucion/actualizar', 'InstitucionController@update');
-Route::put('/institucion/desactivar', 'InstitucionController@desactivar');
-Route::put('/institucion/activar', 'InstitucionController@activar');
+Route::get('/institucion', 'InstitucionController@index')->name('listInstituciones');
+Route::post('/institucion/registrar', 'InstitucionController@store')->name('registrarInstitucion');
+Route::put('/institucion/actualizar/{id}', 'InstitucionController@update')->name('update');
+Route::put('/institucion/desactivar/{id}', 'InstitucionController@desactivar')->name('desactivar');
+Route::put('/institucion/activar/{id}', 'InstitucionController@activar')->name('activar');
 Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones');
-Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes');
-Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion');
+Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes')->name('institucionesDesactivadas');
+Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion')->name('proyectosByinstitucion');
 Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate','InstitucionController@validateInstitucion')->name('validateInstitucion');
 Route::get('getInstitucionesByProcess', 'InstitucionController@getInstitucionesByProcess')->name('getInstitucionesByProcess');
@@ -34,32 +34,32 @@ Route::get('institucion/regSupervision','InstitucionController@regSupervision')-
 Route::get('institucion/supervisor/index', 'SupervisorController@index')->name('getSupervisores');
 Route::post('institucion/supervisor/save', 'SupervisorController@store')->name('saveSupervisor');
 Route::get('/institucion/supervisor/validate','SupervisorController@validateSupervisor')->name('validateSupervisor');
-Route::put('/institucion/supervisor/eliminar/{id}', 'SupervisorController@delete');
+Route::put('/institucion/supervisor/eliminar/{id}', 'SupervisorController@delete')->name('deleteSupervisor');
 Route::put('institucion/supervisor/update', 'SupervisorController@update')->name('updSupervisor');
 
 
 //SECTOR INSTITUCION
-Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
+Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores')->name('selectSectores');
 Route::get('getSectores/', 'SectorInstitucionController@getSectores');
-Route::get('/sector', 'SectorInstitucionController@index');
-Route::put('/sector/actualizar', 'SectorInstitucionController@update');
-Route::get('/sector/eliminar/{id}', 'SectorInstitucionController@delete');
+Route::get('/sector', 'SectorInstitucionController@index')->name('sectoresList');
+Route::put('/sector/actualizar/{id}', 'SectorInstitucionController@update')->name('actualizarSector');
+Route::get('/sector/eliminar/{id}', 'SectorInstitucionController@delete')->name('eliminarSector');
 Route::get('/sector/validate','SectorInstitucionController@validateSector')->name('validateSector');
-Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores');
-Route::post('sector/registrar','SectorInstitucionController@store');
+Route::get('sector/selectSectores', 'SectorInstitucionController@selectSectores')->name('selectSectores');
+Route::post('sector/registrar','SectorInstitucionController@store')->name('registrarSector');
 
 //MUNICIPIO
-Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos');
-Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios');
+Route::get('GetDepartamentos', 'MunicipioController@GetDepartamentos')->name('getDepartamentos');
+Route::get('GetMunicipios/{id}', 'MunicipioController@GetMunicipios')->name('getMunicipios');
 
 //CARRERA
-Route::get('carreras/GetCarreras', 'CarreraController@GetCarreras');
-Route::get('/carrera', 'CarreraController@index');
-Route::put('/carrera/actualizar', 'CarreraController@update');
+Route::get('carreras/GetCarreras', 'CarreraController@GetCarreras')->name('GetCarreras');
+Route::get('/carrera', 'CarreraController@index')->name('carreraList');
+Route::put('/carrera/actualizar/{id}', 'CarreraController@update')->name('actualizarCarrera');
 Route::get('/carrera/validate','CarreraController@validateCarrera')->name('validateCarrera');
-Route::put('/carrera/desactivar', 'CarreraController@desactivar');
-Route::put('/carrera/activar', 'CarreraController@activar');
-Route::get('/getCarreraDes', 'CarreraController@GetCarreraDes');
+Route::put('/carrera/desactivar/{id}', 'CarreraController@desactivar')->name('desactivarCarrera');
+Route::put('/carrera/activar/{id}', 'CarreraController@activar')->name('activarCarrera');
+Route::get('/getCarreraDes', 'CarreraController@GetCarreraDes')->name('carrerasDesactivadas');
 
 //ADMINISTRATIVA PROYECTO
 Route::get('/proyecto', 'ProyectoController@index');
