@@ -260,7 +260,7 @@ Route::get('/test', function () {
     //return Auth::user()->estudiante->gestionproyecto[0]->proyecto;
 });
 
-/* Route::get('/_debugbar/assets/stylesheets', [
+Route::get('/_debugbar/assets/stylesheets', [
 'as' => 'debugbar-css',
 'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
 ]);
@@ -275,4 +275,4 @@ Route::get('/_debugbar/open', [
 'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
 ]);
 
- */
+
