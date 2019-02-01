@@ -54,13 +54,13 @@
       <div class="featured-image">
         <a href="#">
           @if ($p->img == null)
-          @if (session('process_id') == 1)
-          <img src="/images/img_projects/SS.png" class="img-fluid" alt="{{$p->nombre}}" >
-          @elseif(session('process_id') == 2)
-          <img src="/images/img_projects/PP.png" class="img-fluid" alt="{{$p->nombre}}">
-          @endif
+           @if($p->proceso_id == 1)
+            <img src="{{url("/images/img_projects/SS.png")}}" class="img-fluid img-proy" alt="Servicio Social">
+           @else
+            <img src="{{url("/images/img_projects/PP.png")}}" class="img-fluid img-proy" alt="Práctica Profesional">
+           @endif
           @else
-          <img src="/images/img_projects/{{$p->img}}" class="img-fluid" alt="{{$p->nombre}}" {{--  style="width: 100%; display: block;margin-left: auto;margin-right: auto;height:200px;" --}}>
+          <img src="{{url("/images/img_projects/".$p->img)}}" class="img-fluid img-proy" alt="{{$p->nombre}}" {{--  style="width: 100%; display: block;margin-left: auto;margin-right: auto;height:200px;" --}}>
           @endif
         </a>
       </div>
@@ -102,8 +102,8 @@
   redirectToCard = function (process_id,project_slug) {
     window.location.href = route('viewProject',[process_id,project_slug])
   }.bind(this);
-  $("#btn-search").click(function(e){
-    //e.preventDefault();
+  $(".img-proy").click(function(e){
+    e.preventDefault();
   })
 });
 </script>

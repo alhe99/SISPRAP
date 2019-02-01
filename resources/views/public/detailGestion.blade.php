@@ -12,10 +12,17 @@
 				<div class="row">
 					<div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
 						@if ($data->proyecto->img == null)
+						 @if($data->tipo_gp == 1)
+							<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
+							src="{{url("/images/img_projects/SS.png") }}" alt="Servicio Social">
+						 @else
+							<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
+							src="{{url("/images/img_projects/PP.png") }}" alt="Práctiva Profesional">
+						 @endif						
+						@else
 						<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
-						src="/images/img_projects/{{ $data->tipo_gp == 1 ? 'SS.png' : 'PP.png' }}" alt="{{ $data->proyecto->img }}">						@else
-						<img class="img-fluid img-rounded" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;"
-						src="/images/img_projects/{{ $data->proyecto->img }}" alt="{{ $data->proyecto->img }}"> @endif
+						src="{{url("/images/img_projects/".$data->proyecto->img)}}" alt="{{ $data->proyecto->img }}">
+						 @endif
 						<br>
 					</div>
 					<div class="col-md-12 col-lg-8 col-xs-12">

@@ -118,7 +118,6 @@
                                 });
                                 setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                             }
-
                         }).catch(function(error) {
                             console.log(error);
                             toast({

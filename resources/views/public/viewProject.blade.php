@@ -41,12 +41,12 @@
                     <div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
                         @if ($proyecto->img == null)
                         @if (session('process_id') == 1)
-                        <img src="/images/img_projects/SS.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
+                        <img src="{{url('/images/img_projects/SS.png')}}" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
                         @elseif(session('process_id') == 2)
-                        <img src="/images/img_projects/PP.png" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
+                        <img src="{{url('/images/img_projects/PP.png')}}" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
                         @endif
                         @else
-                        <img class="img-fluid"  style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;" src="/images/img_projects/{{$proyecto->img}}" alt="{{$proyecto->nombre}}">
+                        <img class="img-fluid"  style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;" src="{{url('/images/img_projects/'.$proyecto->img)}}" alt="{{$proyecto->nombre}}">
                         @endif
                     </div>
                     <div class="row">
@@ -62,19 +62,19 @@
                                 <br><button type="button" class="animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @else
-                            <div class="col-md-6 text-center">
-                                <br><button type="button" class="animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                              <div class="col-md-6 text-center">
+                                <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
                               @else
                               <div class="col-md-6 text-center">
-                                <br><button  type="button" class="animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
+                                <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{session('process_id')}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
-                              <div class="col-md-6 text-center">
-                                <br><a href="#" rel="nofollow" class="animated4 btn btn-info">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
+                              <div hidden class="col-md-6 text-center">
+                                <br><a  href="#" rel="nofollow" class="animated4 btn btn-info">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
                             </div>
                         </div>
                     </div>
@@ -91,9 +91,7 @@
 <script type="text/javascript">
     var app = new Vue({
         el : '#cards',
-        data : {
-
-        },
+        data : {},
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
              const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
@@ -122,10 +120,7 @@
                                 width: '350px',
                             }).then(function(result){
                                 window.location.href = route('myPreregister',[studen_id,process_id]);
-                                //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                             })
-
-                            //setTimeout(function () { window.location.href = route('myPreregister',[studen_id,process_id]) }.bind(this), 1500);
                         }
 
                     }).catch(function(error) {
@@ -140,6 +135,5 @@
         }
     }
 })
-
 </script>
 @endsection

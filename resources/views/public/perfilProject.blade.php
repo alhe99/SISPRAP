@@ -235,7 +235,6 @@
     },
     computed:{
       validate: function(){
-      // var datepicker = $('#fecha_ini').datepicker();
       if (!(this.telSuper == '') && !(this.nombreSupervisor == '')){return false;}else{return true;}
     }
   },
