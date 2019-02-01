@@ -52,7 +52,7 @@
 										@endif
 										@elseif (session('downloadDocs') == false)
 										<div class="card-body">
-											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+											<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{  Auth::user()->estudiante->proceso[0]->nombre }}!</h5>
 										</div>
 										@endif
 									</div>
@@ -75,7 +75,7 @@
 									@endif
 									@elseif (session('downloadDocs') == false)
 									<div class="card-body">
-										<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+										<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{  Auth::user()->estudiante->proceso[0]->nombre }}!</h5>
 									</div>
 									@endif
 								</div>
@@ -98,7 +98,7 @@
 								@endif
 								@elseif (session('downloadDocs') == false)
 								<div class="card-body">
-									<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{ session('process_name') }}!</h5>
+									<h5 class="text-center text-danger">No has iniciado tu proceso, la descarga estará disponible hasta que inicies {{  Auth::user()->estudiante->proceso[0]->nombre }}!</h5>
 								</div>
 								@endif
 							</div>

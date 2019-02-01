@@ -15,7 +15,7 @@ class CreateImgSupervisionesTable extends Migration
     {
         Schema::create('img_supervisiones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('img',300)->nullable(false);
+            $table->string('img',190)->nullable(false);
             $table->integer('supervision_id')->unsigned();
         });
     }

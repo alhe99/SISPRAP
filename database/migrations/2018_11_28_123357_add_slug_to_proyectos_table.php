@@ -14,7 +14,7 @@ class AddSlugToProyectosTable extends Migration
     public function up()
     {
         Schema::table('proyectos', function (Blueprint $table) {
-            $table->string('slug')->unique();
+            $table->string('slug',190)->unique();
         });
     }
 

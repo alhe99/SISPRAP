@@ -16,7 +16,7 @@ class CreateSupervisoresTable extends Migration
         Schema::create('supervisores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',50)->nullable(false);
-            $table->string('no_telefono')->nullable(true);
+            $table->string('no_telefono',20)->nullable(true);
             $table->integer('institucion_id')->unsigned()->nullable(false);
             $table->date('fecha_registro')->nullable(true);
             // $table->timestamps();

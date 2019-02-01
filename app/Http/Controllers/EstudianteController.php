@@ -104,7 +104,7 @@ class EstudianteController extends Controller
             $query->where('procesos_estudiantes.proceso_id',$proceso_id);
         })->whereDoesntHave('preinscripciones', function ($query) {
             $query->where('preinscripciones_proyectos.estado','A')->orWhere('preinscripciones_proyectos.estado','F');
-        })->where('nivel_academico_id',$nivelAcad)->nombre($nombre)->paginate(5);
+        })->where([['nivel_academico_id',$nivelAcad],['proceso_actual','P']])->nombre($nombre)->paginate(5);
         return [
             'pagination' => [
                 'total' => $estudiantes->total(),

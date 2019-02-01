@@ -39,7 +39,7 @@
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}"><i class="mdi mdi-account-edit mdi-18px"></i>
+							<a class="nav-link" href="{{route('myPreregister',array(Auth::user()->estudiante->id,Auth::user()->estudiante->proceso[0]->id)) }}"><i class="mdi mdi-account-edit mdi-18px"></i>
 								PREINSCRIPCIONES
 							</a>
 						</li>
@@ -74,7 +74,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}">
+					<a href="{{route('myPreregister',array(Auth::user()->estudiante->id,Auth::user()->estudiante->proceso[0]->id)) }}">
 						PREINSCRIPCIONES
 					</a>
 				</li>

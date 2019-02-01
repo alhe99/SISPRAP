@@ -2,19 +2,20 @@
 @section('contenido')
 <div class="row">
   <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".2s">
-    <h2 align="center" style="font-size: 5vh;">¡Bienvenido al apartado de proyectos disponibles para tu proceso de {{session('process_name')}}!</h2>
+    <h2 align="center" style="font-size: 5vh;">¡Bienvenido al apartado de proyectos disponibles para tu proceso de {{ Auth::user()->estudiante->proceso[0]->nombre}}!</h2>
   </div>
 </div><br> @if (Auth::user()->estudiante->supero_limite == 1)
 <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">Has Llegado el limite de preinscripciones!</h4>
-  <p>Porfavor espera la confirmación de alguno de los proyectos por parte de encargado de <strong>{{session('process_name')}}</strong>,
+  <p>Porfavor espera la confirmación de alguno de los proyectos por parte de encargado de <strong>{{ Auth::user()->estudiante->proceso[0]->nombre}}</strong>,
   o elimina una de las preinscripciones vigentes que posees!</p>
   <hr>
-  <p class="mb-0"><a href="{{route('myPreregister',array(Auth::user()->estudiante->id,session('process_id'))) }}" class="btn btn-link">Ver mis preinscripciones</a></p>
+<p class="mb-0"><a href="{{route('myPreregister',array(Auth::user()->estudiante->id,Auth::user()->estudiante->proceso[0]->id)) }}"
+        class="btn btn-link">Ver mis preinscripciones</a></p>
 </div>
 @elseif (Auth::user()->estudiante->no_proyectos == 2)
 <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{session('process_name')}}!</h4>
+  <h4 class="alert-heading">Ya estas realizando tu segundo proyecto de {{ Auth::user()->estudiante->proceso[0]->nombre}}!</h4>
   <p>El limite de proyecto por proceso es de 2!</p>
 </div>
 @elseif (Auth::user()->estudiante->estado_pp == 2)
@@ -49,7 +50,8 @@
 @if (count($proyectos) > 0)
 <div class="row">
   @foreach ($proyectos as $p)
-  <div class="col-md-6 col-lg-3 col-xl-3 card-group wow animated fadeInUp"  onclick="redirectToCard('{{session('process_id')}}','{{$p->slug}}')" data-wow-delay=".3s">
+<div class="col-md-6 col-lg-3 col-xl-3 card-group wow animated fadeInUp" onclick="redirectToCard('{{ Auth::user()->estudiante->proceso[0]->id}}','{{$p->slug}}')"
+    data-wow-delay=".3s">
     <article class="single-blog-post" style="width: 100%; cursor: pointer;">
       <div class="featured-image">
         <a href="#">
@@ -84,11 +86,27 @@
   </div>
   @endif
   @elseif(count($proyectos) == 0)
+   @if (Auth::user()->estudiante->proceso[0]->id == 2 and Auth::user()->estudiante->nivel_academico_id == 1)
+    <div class="alert alert-info" role="alert">
+      <hr>
+      <h4 class="alert-heading font-weight-bold">Has completado el proceso de servicio social!</h4>
+      <p>Regresa el siguiente año para realizar tu proceso de Práctica Profesional</p>
+      <hr>
+    </div>
+   @else
+    <div class="alert alert-success" role="alert">
+        <hr>
+        <h4 class="alert-heading">No Hay Proyectos Publicados!</h4>
+        <p>Espera a que el administrador realice nuevas publicaciones pronto</p>
+        <hr>
+    </div>
+   @endif
+  @elseif(Auth::user()->estudiante->proceso[0]->id == 2 and Auth::user()->estudiante->nivel_academico_id == 1)
   <div class="alert alert-success" role="alert">
-    <hr>
-    <h4 class="alert-heading">No Hay Proyectos Publicados!</h4>
-    <p>Espera a que el administrador realice nuevas publicaciones pronto</p>
-    <hr>
+      <hr>
+      <h4 class="alert-heading">Has completado el proceso de servicio social!</h4>
+      <p>Regresa el siguiente año para realizar tu proceso de Práctica Profesional</p>
+      <hr>
   </div>
   @endif
 </div>

@@ -98,11 +98,11 @@
             </thead>
             <tbody>
               <tr v-for="proyecto in arrayProyecto" :key="proyecto.id">
-                <td v-text="proyecto.nombre"></td>
+                <td>{{ proyecto.nombre| truncate(35)}}</td>
                 <td
                   v-if="proceso == 2 && proyecto.carre_proy[0].nombre != null"
                 >{{proyecto.carre_proy[0].nombre}}</td>
-                <td v-text="proyecto.institucion.nombre"></td>
+                <td>{{proyecto.institucion.nombre | truncate(25)}}</td>
                 <td class="text-center" v-text="proyecto.fecha"></td>
                 <td class="text-center">
                   <button

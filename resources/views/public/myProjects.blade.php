@@ -5,7 +5,7 @@
         <h5 class="text-center">
             Proyectos a los que te has preinscrito de proceso de:
             <strong style="font-weight:bold">
-                {{session('process_name')}}
+                {{ Auth::user()->estudiante->proceso[0]->nombre}}
             </strong>
         </h5>
     </div>
@@ -61,7 +61,7 @@
                           <td class="text-center">
                             <a href="{{route('viewProject', array($preinscripcion->proceso_id,$preinscripcion->slug))}}" rel="nofollow" class="animated4 btn btn-primary" title="Ver más Información del proyecto"><i class="fas fa-plus-circle"></i></a>
                             @if ($preinscripcion->pivot->estado != "A" && $preinscripcion->pivot->estado != "R" && $preinscripcion->pivot->estado != "F"  )
-                            <a href="#" @click.prevent="resetPreRegistration('{{Auth::user()->estudiante->id}}','{{$preinscripcion->id}}','{{session('process_id')}}')"
+                            <a href="#" @click.prevent="resetPreRegistration('{{Auth::user()->estudiante->id}}','{{$preinscripcion->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
                                 class="btn btn-success" title="Eliminar"><i class="fas fa-trash"></i>
                             </a>
                             @endif

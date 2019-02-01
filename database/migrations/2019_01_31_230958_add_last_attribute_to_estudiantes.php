@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagoArancelesTable extends Migration
+class AddLastAttributeToEstudiantes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePagoArancelesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pago_aranceles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('no_factura',190)->nullable(false);
-            $table->integer('estudiante_id')->unsigned();
+        Schema::table('estudiantes', function (Blueprint $table) {
+            $table->integer('session_token_by_year')->default(0)->after('fecha_registro');
         });
     }
 
@@ -28,6 +25,8 @@ class CreatePagoArancelesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pago_aranceles');
+        Schema::table('estudiantes', function (Blueprint $table) {
+            //
+        });
     }
 }

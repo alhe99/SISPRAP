@@ -15,7 +15,7 @@ class CreateTiposprocesosTable extends Migration
     {
         Schema::create('tipos_procesos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->nullable(false);;
+            $table->string('nombre',30)->nullable(false);;
             $table->integer('horas')->nullable(false);;
         });
         

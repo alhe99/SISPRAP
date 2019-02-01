@@ -86767,9 +86767,11 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.arrayProyecto, function(proyecto) {
                       return _c("tr", { key: proyecto.id }, [
-                        _c("td", {
-                          domProps: { textContent: _vm._s(proyecto.nombre) }
-                        }),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm._f("truncate")(proyecto.nombre, 35))
+                          )
+                        ]),
                         _vm._v(" "),
                         _vm.proceso == 2 &&
                         proyecto.carre_proy[0].nombre != null
@@ -86778,11 +86780,16 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("td", {
-                          domProps: {
-                            textContent: _vm._s(proyecto.institucion.nombre)
-                          }
-                        }),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("truncate")(
+                                proyecto.institucion.nombre,
+                                25
+                              )
+                            )
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("td", {
                           staticClass: "text-center",
@@ -105953,15 +105960,22 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.arrayProyecto, function(proyecto) {
                       return _c("tr", { key: proyecto.id }, [
-                        _c("td", {
-                          domProps: { textContent: _vm._s(proyecto.nombre) }
-                        }),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm._f("truncate")(proyecto.nombre, 35))
+                          )
+                        ]),
                         _vm._v(" "),
-                        _c("td", {
-                          domProps: {
-                            textContent: _vm._s(proyecto.institucion.nombre)
-                          }
-                        }),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("truncate")(
+                                proyecto.institucion.nombre,
+                                25
+                              )
+                            )
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("td", {
                           staticClass: "text-center",

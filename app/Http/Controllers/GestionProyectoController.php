@@ -61,6 +61,9 @@ class GestionProyectoController extends Controller
             $gp->nombre_supervisor = $request->super_name; //Nombre del supervisor
             $gp->tel_supervisor = $request->super_cell; //Telefono del supervisor
             $gp->tipo_gp = Auth::user()->estudiante->proceso[0]->id;
+            $estudiante = Estudiante::find($request->student_id);
+            $estudiante->proceso_actual = 'I';
+            $estudiante->no_proyectos = $estudiante->no_proyectos + 1; 
 
             if(Auth::user()->rol_id >2){
             //Informacion del estudiante
@@ -90,7 +93,7 @@ class GestionProyectoController extends Controller
 
             if($gp->save())
             {
-
+                $estudiante->update();
                 $perfil = new TextPainter(public_path('images/controles/perfil.jpg'),'',public_path('fonts/arial.ttf'), 10);
                 $perfil->setTextColor(0,0,0);
                 if ($proceso == 1) {$perfil->setText("x",790,362,20);}else{$perfil->setText("x",1200,362,20);}//Proceso Verifcando la posicion
@@ -1929,7 +1932,7 @@ class GestionProyectoController extends Controller
             $carrera = Auth::user()->estudiante->carrera->nombre;
             $email = Auth::user()->estudiante->email;
             $numeroFactura = Auth::user()->estudiante->pagoArancel()->where('proceso_id',$proceso)->get();
-
+            $numeroProyectos = Auth::user()->estudiante->no_proyectos;
             switch ($tipoDoc) {
                 case 'P':
                     if(Auth::user()->rol_id >2){
@@ -1948,9 +1951,11 @@ class GestionProyectoController extends Controller
                                 ])->first();
                             }
 
-                            if($gestion->horas_a_realizar != $gestion->proyecto->horas_realizar){
-                                $gestion->horas_a_realizar = $gestion->proyecto->horas_realizar;
-                                $gestion->update();
+                            if($numeroProyectos == 1){
+                                if($gestion->horas_a_realizar != $gestion->proyecto->horas_realizar){
+                                    $gestion->horas_a_realizar = $gestion->proyecto->horas_realizar;
+                                    $gestion->update();
+                                }
                             }
 
                             // Informacion de la institucion
@@ -1986,7 +1991,10 @@ class GestionProyectoController extends Controller
 
                             $perfil->setText($nombreP, 115, 1175, 20); //Nombre del Proyecto
                             $perfil->setText(Html2Text::convert($actividadesP),120,1300,20); //Actividades a realizar
-                            $perfil->setText($gestion->horas_a_realizar, 1465, 1210, 20); //Horas a Realizar del proyecto
+                            if($gestion->estado == 'F')
+                             $perfil->setText($gestion->horas_realizadas, 1465, 1210, 20); //Horas a Realizar del proyecto
+                            else
+                             $perfil->setText($gestion->horas_a_realizar, 1465, 1210, 20); //Horas a Realizar del proyecto
                             $perfil->setText($gestion->fecha_inicio, 135, 1625, 20); //Fecha de Inicio  del proyecto
                             $perfil->setText($gestion->fecha_fin, 400, 1625, 20); //Fecha Fin  del proyecto
                             $perfil->setText($gestion->nombre_supervisor, 650, 1625, 20); //Supervisor del proyecto/Institucion
