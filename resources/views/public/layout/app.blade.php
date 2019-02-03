@@ -12,18 +12,12 @@
 	<link rel="stylesheet" href="{{asset('css/materialdesignicons.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/material.min.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/ripples.min.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/owl.carousel.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/magnific-popup.css')}}">
 	<link rel="stylesheet" href="{{asset('other/css/slicknav.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/animate.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/style.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/responsive.css')}}">
-	<link rel="stylesheet" href="{{asset('other/css/normalize.min.css')}}">
+	<link rel="stylesheet" href="{{asset('other/css/style.css')}}"> 
 	<link rel="stylesheet" type="text/css" media="screen" href="{{asset('other/css/indigo.css')}}">
 	<link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
 </head>
-
 <body>
 	<header id="header">
 		<nav class="navbar navbar-expand-lg fixed-top scrolling-navbar nav-bg">
@@ -101,7 +95,7 @@
 			</ul>
 		</nav>
 	</header>
-	<br><br>
+	<br>
 	<div class="Notificaciones">
 		<div class="contenedorBF">
 			<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
@@ -138,7 +132,7 @@ aria-hidden="true">
 			</button>
 		</div>
 		<div class="modal-body">
-			<div class="row ">
+			<div class="row "> 
 				<div class="col-md-12 ">
 					&nbsp;
 					@if (count(Auth::user()->estudiante->preinscripciones) != 0)
@@ -213,7 +207,6 @@ aria-hidden="true">
 			</a>
 		</div>
 	</section>
-	<br>
 	<section class="Material-blog-section section-padding section-dark" id="contenido">
 		<div class="container">
 			@yield('contenido')

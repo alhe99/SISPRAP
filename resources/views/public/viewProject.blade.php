@@ -39,6 +39,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
+                        <br>
                         @if ($proyecto->img == null)
                         @if (Auth::user()->estudiante->proceso[0]->id == 1)
                         <img src="{{url('/images/img_projects/SS.png')}}" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
@@ -62,7 +63,7 @@
                                 <br><button type="button" class="ml-3 animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @else
-                              <div class="col-md-6 text-center">
+                            <div class="col-md-6 text-center">
                                 <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
@@ -94,11 +95,11 @@
         data : {},
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
-             const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-             swal({
+               const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+               swal({
                 title: 'Esta seguro de Preinscribirte a este proyecto?',
                 text: "Una vez hecho espera la respuesta del administrador!",
-                type: 'warning',
+                type: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',

@@ -17,6 +17,7 @@
         <div class="alert alert-primary" role="alert">
             ¡No tienes preinscripciones a proyectos!
         </div>
+        <a href="{{ route('public') }}" class="btn btn-secondary text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i> Ir a inicio</a>
         @else
         <div class="row">
             <div class="col-md-12">
@@ -71,7 +72,6 @@
                     @endforeach
                 </tbody>
             </table>
-
         </div>
     </div>
     <br>
