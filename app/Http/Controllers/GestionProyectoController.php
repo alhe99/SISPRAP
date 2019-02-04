@@ -726,10 +726,10 @@ class GestionProyectoController extends Controller
 
                 $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['mensuales' => $mensuales,'consolidado' => $dataGeneral,'consolidadoPorNivel' => $dataByCarrer,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
 
-                $pdf->setOption('margin-top',20);
-                $pdf->setOption('margin-bottom',20);
-                $pdf->setOption('margin-left',20);
-                $pdf->setOption('margin-right',20);
+                $pdf->setOption('margin-top',15);
+                $pdf->setOption('margin-bottom',15);
+                $pdf->setOption('margin-left',15);
+                $pdf->setOption('margin-right',15);
                 return $pdf->stream('Reporte Pendientes de Inicio '.date('Y-m-d').'.pdf');
                 // return $mensuales;
 
@@ -842,10 +842,10 @@ class GestionProyectoController extends Controller
                 }
 
                 $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['mensuales' => $data,'consolidado' => $dataByCarrer,'meses'=>$mesesTitulo,'tipo'=>'M','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
-                $pdf->setOption('margin-top',20);
-                $pdf->setOption('margin-bottom',20);
-                $pdf->setOption('margin-left',20);
-                $pdf->setOption('margin-right',20);
+                $pdf->setOption('margin-top',15);
+                $pdf->setOption('margin-bottom',15);
+                $pdf->setOption('margin-left',15);
+                $pdf->setOption('margin-right',15);
                 return $pdf->stream('Reporte Pendientes de Inicio '.date('Y-m-d').'.pdf');
                 // return $dataByCarrer;
 
@@ -1008,10 +1008,10 @@ class GestionProyectoController extends Controller
 
 
                     $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['consolidadoMensual' => $dataMensual,'consolidadoAnualNiveles' => $dataByNivel,'consolidadoAnualGeneral' => $dataGeneralByAnio,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
-                    $pdf->setOption('margin-top',20);
-                    $pdf->setOption('margin-bottom',20);
-                    $pdf->setOption('margin-left',20);
-                    $pdf->setOption('margin-right',20);
+                    $pdf->setOption('margin-top',15);
+                    $pdf->setOption('margin-bottom',15);
+                    $pdf->setOption('margin-left',15);
+                    $pdf->setOption('margin-right',15);
                     return $pdf->stream('Reporte Pendientes de Inicio '.date('Y-m-d').'.pdf');
                     // return $dataByNivel;
             }
@@ -1464,7 +1464,6 @@ class GestionProyectoController extends Controller
                 // return $dataGeneralByAnio;
             }
     }
-
     //Devueve los estudiantes que han finzalido su proceso correspondiente
     public function getProcesosCulminadosReporte(Request $request){
         $carrera = Carrera::get();
@@ -1493,15 +1492,24 @@ class GestionProyectoController extends Controller
                 $arrayTrimestre = explode(",",$request->meses);
                 $totalMined = 0;$totalOtros = 0;
                 $totalOtrosMes3 = 0;
-
+                $dataPA_M1 = []; $dataSA_M1 = [];
+                $dataPA_M2 = []; $dataSA_M2 = [];
+                $dataPA_M3 = []; $dataSA_M3 = [];
+                $consolidadoM1_PA = [];$consolidadoM2_PA = [];$consolidadoM3_PA = [];
+                $consolidadoM1_SA = [];$consolidadoM2_SA = [];$consolidadoM3_SA = [];
                 //Sacando datos mensuales
                 $dataMensual = [];
                 $mes1 = [];$mes2 = [];$mes3 = [];
 
-                $mes1[0] = $this->meses[$arrayTrimestre[0]];
-                $mes2[0] = $this->meses[$arrayTrimestre[1]];
-                $mes3[0] = $this->meses[$arrayTrimestre[2]];
-                $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
+                $mes1PA[0] = $this->meses[$arrayTrimestre[0]];
+                $mes2PA[0] = $this->meses[$arrayTrimestre[1]];
+                $mes3PA[0] = $this->meses[$arrayTrimestre[2]];
+
+                $mes1SA[0] = $this->meses[$arrayTrimestre[0]];
+                $mes2SA[0] = $this->meses[$arrayTrimestre[1]];
+                $mes3SA[0] = $this->meses[$arrayTrimestre[2]];
+
+                $mesesTitulo = $mes1SA[0].", ".$mes2SA[0].", ".$mes3SA[0];
 
                 foreach($carrera as $carre){
 
@@ -1511,40 +1519,173 @@ class GestionProyectoController extends Controller
 
                     $estudiantesM1_SA = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth($campoFecha,$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->get();
 
+                    /* Consolidado para el mes 1 */
+                    $estudiantesBM_PA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[0]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_PA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[0]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesBM_SA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[0]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_SA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[0]])->whereYear('fecha_registro',$this->anio)->count();
+
                     // DATOS MES 2
                     $estudiantesM2_PA = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth($campoFecha,$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->get();
 
                     $estudiantesM2_SA = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth($campoFecha,$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->get();
+
+                    /* Consolidado para el mes 2  */
+                    $estudiantesBM_PA_M2 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[1]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_PA_M2 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[1]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesBM_SA_M2 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[1]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_SA_M2 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[1]])->whereYear('fecha_registro',$this->anio)->count();
 
                     // DATOS MES 3
                     $estudiantesM3_PA = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereMonth($campoFecha,$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->get();
 
                     $estudiantesM3_SA = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth($campoFecha,$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->get();
 
+                    /* Consolidado para el mes 3  */
+                    $estudiantesBM_PA_M3 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
 
-                    $c1[0] = $carre->nombre;
-                    if($procesoId == 2)
-                        $c1[1] = array("Segundo Año" => $estudiantesM1_SA);
+                    $estudiantesOB_PA_M3 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesBM_SA_M3 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_SA_M3 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+
+
+                    /* Primer Año */
+                    $c1PA[0] = $carre->nombre;
+                    if($procesoId == 1)
+                        $c1PA[1] = $estudiantesM1_PA;
                     else
-                        $c1[1] = array("Primer Año" => $estudiantesM1_PA,"Segundo Año" => $estudiantesM1_SA);
+                        $c1PA[1] = [];
 
-
-                    $c2[0] = $carre->nombre;
-                    if($procesoId == 2)
-                        $c2[1] = array("Segundo Año" => $estudiantesM2_SA);
+                    $c2PA[0] = $carre->nombre;
+                    if($procesoId == 1)
+                        $c2PA[1] = $estudiantesM2_PA;
                     else
-                        $c2[1] = array("Primer Año" => $estudiantesM2_PA,"Segundo Año" => $estudiantesM2_SA);
+                        $c2PA[1] = [];
 
-                    $c3[0] = $carre->nombre;
-                    if($procesoId == 2)
-                        $c3[1] = array("Segundo Año" => $estudiantesM3_SA);
+                    $c3PA[0] = $carre->nombre;
+                    if($procesoId == 1)
+                        $c3PA[1] = $estudiantesM3_PA;
                     else
-                        $c3[1] = array("Primer Año" => $estudiantesM3_PA,"Segundo Año" => $estudiantesM3_SA);
+                        $c3PA[1] = [];
 
-                    $mes1[$carre->id] = $c1;
-                    $mes2[$carre->id] = $c2;
-                    $mes3[$carre->id] = $c3;
+                    /* Segundo Año */
+                    $c1SA[0] = $carre->nombre;
+                    $c1SA[1] = $estudiantesM1_SA;
+
+
+                    $c2SA[0] = $carre->nombre;
+                    $c2SA[1] = $estudiantesM2_SA;
+        
+
+                    $c3SA[0] = $carre->nombre;
+                    $c3SA[1] = $estudiantesM3_SA;
+                    
+                    $mes1PA[1] = "PRIMER AÑO";$mes2PA[1] = "PRIMER AÑO";$mes3PA[1] = "PRIMER AÑO";
+                    $mes1PA[$carre->id+2] = $c1PA;
+                    $mes2PA[$carre->id+2] = $c2PA;
+                    $mes3PA[$carre->id+2] = $c3PA;
+                    
+                    $mes1SA[1] = "SEGUNDO AÑO";$mes2SA[1] = "SEGUNDO AÑO";$mes3SA[1] = "SEGUNDO AÑO";
+                    $mes1SA[$carre->id+2] = $c1SA;
+                    $mes2SA[$carre->id+2] = $c2SA;
+                    $mes3SA[$carre->id+2] = $c3SA;
+
+                    /* Agregando al arreglo de cada mes el consolidado */
+                    /* PRIMER AÑO */
+                    if($procesoId == 1){
+                        $dataPA_M1[0] = $mes1PA[0]." PRIMER AÑO";
+                        $dataPA_M1[$carre->id] = array(
+                            "Carrera" => $carre->nombre,
+                            "totalBecaMined" => $estudiantesBM_PA_M1,
+                            "totalOtraBeca" => $estudiantesOB_PA_M1
+                        );
+
+                        $dataPA_M2[0] = $mes2PA[0]." PRIMER AÑO";
+                        $dataPA_M2[$carre->id] = array(
+                            "Carrera" => $carre->nombre,
+                            "totalBecaMined" => $estudiantesBM_PA_M2,
+                            "totalOtraBeca" => $estudiantesOB_PA_M2
+                        );
+
+                        $dataPA_M3[0] = $mes3PA[0]." PRIMER AÑO";
+                        $dataPA_M3[$carre->id] = array(
+                            "Carrera" => $carre->nombre,
+                            "totalBecaMined" => $estudiantesBM_PA_M3,
+                            "totalOtraBeca" => $estudiantesOB_PA_M3
+                        );
+                    }
+                    /* SEGUNDO AÑO */
+                    $dataSA_M1[0] = $mes1SA[0]." SEGUNDO AÑO";
+                    $dataSA_M1[$carre->id] = array(
+                        "Carrera" => $carre->nombre,
+                        "totalBecaMined" => $estudiantesBM_SA_M1,
+                        "totalOtraBeca" => $estudiantesOB_SA_M1
+                    );
+
+                    $dataSA_M2[0] = $mes2SA[0]." SEGUNDO AÑO";
+                    $dataSA_M2[$carre->id] = array(
+                        "Carrera" => $carre->nombre,
+                        "totalBecaMined" => $estudiantesBM_SA_M2,
+                        "totalOtraBeca" => $estudiantesOB_SA_M2
+                    );
+
+                    $dataSA_M3[0] = $mes3SA[0]." SEGUNDO AÑO";
+                    $dataSA_M3[$carre->id] = array(
+                        "Carrera" => $carre->nombre,
+                        "totalBecaMined" => $estudiantesBM_SA_M3,
+                        "totalOtraBeca" => $estudiantesOB_SA_M3
+                    );
+                    /* Fin de proceso para consolidado */
                 }
+                array_push($consolidadoM1_PA,$dataPA_M1);
+                array_push($consolidadoM2_PA,$dataPA_M2);
+                array_push($consolidadoM3_PA, $dataPA_M3);
+
+                array_push($consolidadoM1_SA,$dataSA_M1);
+                array_push($consolidadoM2_SA,$dataSA_M2);
+                array_push($consolidadoM3_SA,$dataSA_M3);
+
+                /* Agregando el consolidado a cada mes */
+                $mes1PA[2] = $consolidadoM1_PA[0];
+                $mes1SA[2] = $consolidadoM1_SA[0];
+
+                $mes2PA[2] = $consolidadoM2_PA[0];
+                $mes2SA[2] = $consolidadoM2_SA[0];
+
+                $mes3PA[2] = $consolidadoM3_PA[0];
+                $mes3SA[2] = $consolidadoM3_SA[0];
 
                 // Obteniendo CONSOLIDADO por los 3 meses pero dividido en niveles academico
                 // Sacando Consolidado por los 3 meses
@@ -1552,8 +1693,7 @@ class GestionProyectoController extends Controller
                 $dataPA = []; $dataSA = [];
                 $data[0] = $this->trimestres[implode($arrayTrimestre)];
                 foreach ($carrera as $carre) {
-                    //Obteniendo el total de resultados becados y otros
-
+                       //Obteniendo el total de resultados becados y otros
                         $estudiantesBM_PA = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
                         $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),[$arrayTrimestre[0],
                         $arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
@@ -1569,7 +1709,6 @@ class GestionProyectoController extends Controller
                         $estudiantesOB_SA = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
                         $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados), [$arrayTrimestre[0],
                         $arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
 
                         if($procesoId == 1){
                             $dataPA[0] = $this->trimestres[implode($arrayTrimestre)]." 1º AÑO";
@@ -1590,62 +1729,53 @@ class GestionProyectoController extends Controller
                 array_push($dataByNivel,$dataPA);
                 array_push($dataByNivel,$dataSA);
 
-
-                // Sacando Consolidado por los 3 meses
-                $data = [];
-                $data[0] = $this->trimestres[implode($arrayTrimestre)];
-                foreach ($carrera as $carre) {
-                    //Obteniendo el total de resultados becados y otros
-                        $estudiantesBM = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
-                        $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados), [$arrayTrimestre[0],
-                        $arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
-                        $estudiantesOB = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
-                        $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados), [$arrayTrimestre[0],
-                        $arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
-
-                        $data[$carre->id] = array(
-                             "Carrera" => $carre->nombre,
-                             "totalMined" => $estudiantesBM,
-                             "totalOtraBeca" => $estudiantesOB
-                        );
-                }
-
-
                 $mensuales = array();
-                array_push($mensuales,$mes1);
-                array_push($mensuales,$mes2);
-                array_push($mensuales,$mes3);
+                if($procesoId==1)
+                    array_push($mensuales,array($mes1PA , $mes1SA));
+                else
+                    array_push($mensuales,array($mes1SA));
+
+                if($procesoId==1)
+                    array_push($mensuales,array($mes2PA , $mes2SA));
+                else
+                    array_push($mensuales, array($mes2SA));
+                
+                if($procesoId==1)
+                    array_push($mensuales,array($mes3PA , $mes3SA));
+                else
+                    array_push($mensuales,array($mes3SA));
 
 
                 if($request->onlyConsolidado=='OC'){
-                    $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['consolidadoByNivel' => $dataByNivel,'consolidadoGeneral' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
+                    $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $mensuales,'consolidadoByNivel' => $dataByNivel,'consolidadoGeneral' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
                 }else{
                     $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $mensuales,'consolidadoByNivel' => $dataByNivel,'consolidadoGeneral' => $data,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => false])->setOption('footer-center', 'Página [page] de [topage]');
                 }
 
-
-                $pdf->setOption('margin-top',20);
-                $pdf->setOption('margin-bottom',20);
-                $pdf->setOption('margin-left',20);
-                $pdf->setOption('margin-right',20);
+                $pdf->setOption('margin-top',15);
+                $pdf->setOption('margin-bottom',15);
+                $pdf->setOption('margin-left',15);
+                $pdf->setOption('margin-right',15);
                 return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
-                // return $data;
+                /* return $mensuales; */
 
         }else if($request->tipoRepo == 'M'){
 
                 $arrayMeses = explode(",", $request->meses);
-                $data = array();
-                $arrayMes = [];
-                $arrayMesEstudiante = [];
+                $arrayMesEstudiantePA = [];
+                $arrayMesEstudianteSA = [];
                 $mesesTitulo = [];
                 $dataPA = []; $dataSA = [];
                 $dataByNivel = [];
+                $arrayGeneral = [];
+                
 
                 for ($i=0; $i < count($arrayMeses) ; $i++) {
 
                     $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
+                    $arrayMesPA = [];
+                    $arrayMesSA = [];
+                    $dataMensual = array();
 
                     foreach($carrera as $carre){
 
@@ -1670,66 +1800,100 @@ class GestionProyectoController extends Controller
                             $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
                             [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
 
+                            /* PROCESO PARA OBTENER EL CONSOLIDADO DE CADA MES */
+                            $estudiantesBM_PA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                            $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                            [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
 
-                           $arrayMesEstudiante[0] = $carre->nombre;
+                            $estudiantesOB_PA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                            $carre->id],['tipo_beca_id',2],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                            [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                            $estudiantesBM_SA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                            $carre->id],['tipo_beca_id',1],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                            [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                            $estudiantesOB_SA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                            $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                            [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+
+                           $arrayMesEstudiantePA[0] = $carre->nombre;$arrayMesEstudianteSA[0] = $carre->nombre;
                            if($procesoId == 1)
-                            $arrayMesEstudiante[1] = array("Primer Año" => $estudiantes_PA, "Segundo Año" => $estudiantes_SA);
-                           else
-                            $arrayMesEstudiante[1] = array("Segundo Año" => $estudiantes_SA);
+                                $arrayMesEstudiantePA[1] = $estudiantes_PA;
+                            else
+                            $arrayMesEstudiantePA[1] = [];
 
+                           $arrayMesEstudianteSA[1] = $estudiantes_SA; 
+                           /* else */
+                            /* $arrayMesEstudiante[1] = array("Segundo Año" => $estudiantes_SA); */
 
-                           $arrayMes[0] = $this->meses[$arrayMeses[$i]];
-                           $arrayMes[$carre->id] = $arrayMesEstudiante;
+                           $arrayMesPA[0] = $this->meses[$arrayMeses[$i]];
+                           $arrayMesPA[1] = "PRIMER AÑO";
+                           $arrayMesPA[$carre->id+2] = $arrayMesEstudiantePA;
+
+                           $arrayMesSA[0] = $this->meses[$arrayMeses[$i]];
+                           $arrayMesSA[1] = "SEGUNDO AÑO";
+                           $arrayMesSA[$carre->id+2] = $arrayMesEstudianteSA;   
 
                             // Datos para el consolidado de cada mes
-                            if ($procesoId == 1) {
+                            /* if ($procesoId == 1) { */
                             // Asignando en la posicion 0 el titulo de la tabla
-                                $dataPA[0] = $this->meses[$arrayMeses[$i]]." 1º AÑO";
-                                $dataPA[$carre->id] = array(
-                                  "Carrera" => $carre->nombre,
-                                  "totalBecaMined" => $estudiantesBM_PA,
-                                  "totalOtraBeca" => $estudiantesOB_PA,
-                                );
+                            $dataPA[0] = $this->meses[$arrayMeses[$i]]." PRIMER AÑO";
+                            $dataPA[$carre->id] = array(
+                                "Carrera" => $carre->nombre,
+                                "totalBecaMined" => $estudiantesBM_PA,
+                                "totalOtraBeca" => $estudiantesOB_PA,
+                            );
 
-                            }
+                            /* } */
 
-                            $dataSA[0] = $this->meses[$arrayMeses[$i]]." 2º AÑO";
+                            $dataSA[0] = $this->meses[$arrayMeses[$i]]." SEGUNDO AÑO";
                             $dataSA[$carre->id] = array(
                               "Carrera" => $carre->nombre,
                               "totalBecaMined" => $estudiantesBM_SA,
                               "totalOtraBeca" => $estudiantesOB_SA,
                             );
+
+                            $arrayMesPA[2] = $dataPA;
+                            $arrayMesSA[2] = $dataSA;
                     }
+                   if($procesoId ==1)
+                   array_push($dataMensual, $arrayMesPA);
 
-                   array_push($data, $arrayMes);
-                   array_push($dataByNivel,$dataPA);
-                   array_push($dataByNivel,$dataSA);
+                   array_push($dataMensual, $arrayMesSA);
+                   array_push($arrayGeneral, $dataMensual);
                 }
-
+                  
                if($request->onlyConsolidado=='OC'){
-
-                 $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['consolidadoMensuales' => $dataByNivel,'tipo' => 'M','meses'=>$mesesTitulo,'procesoTitulo' => $procesoTitulo,'anio'=>$this->anio,'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
-
+                 $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $arrayGeneral,'tipo' => 'M', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo, 'anio' => $this->anio, 'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
                 }else{
-                 $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $data,'consolidadoMensuales' => $dataByNivel,'tipo' => 'M','meses'=>$mesesTitulo,'procesoTitulo' => $procesoTitulo,'anio'=>$this->anio,'onlyConsolidado' => false])->setOption('footer-center', 'Página [page] de [topage]');
+                 $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $arrayGeneral,'tipo' => 'M','meses'=>$mesesTitulo,'procesoTitulo' => $procesoTitulo,'anio'=>$this->anio,'onlyConsolidado' => false])->setOption('footer-center', 'Página [page] de [topage]');
                 }
 
-               $pdf->setOption('margin-top',20);
-               $pdf->setOption('margin-bottom',20);
-               $pdf->setOption('margin-left',20);
-               $pdf->setOption('margin-right',20);
+               $pdf->setOption('margin-top',15);
+               $pdf->setOption('margin-bottom',15);
+               $pdf->setOption('margin-left',15);
+               $pdf->setOption('margin-right',15);
                return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
-                 // return $dataByNivel;
+               /* return $arrayGeneral; */
 
         }else if($request->tipoRepo == 'A'){
 
             $arrayMeses = explode(",", "1,2,3,4,5,6,7,8,9,10,11,12");
-            $dataMensual = array();
+            $arrayMesEstudiantePA = [];
+            $arrayMesEstudianteSA = [];
             $mesesTitulo = [];
+            $dataPA = []; $dataSA = [];
+            $dataByNivel = [];
+            $arrayGeneral = [];
 
             for ($i=0; $i < count($arrayMeses) ; $i++) {
 
               $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
+              $arrayMesPA = [];
+              $arrayMesSA = [];
+              $dataMensual = array();
 
               foreach($carrera as $carre){
 
@@ -1737,19 +1901,89 @@ class GestionProyectoController extends Controller
 
                     $estudiantes_SA = $carre->estudiantes()->select('nombre','apellido','tipo_beca_id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereMonth($campoFecha,$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
 
-                   $arrayMesEstudiante[0] = $carre->nombre;
-                   $arrayMesEstudiante[1] = array("Primer Año" => $estudiantes_PA,"Segundo Año" => $estudiantes_SA);
+                    // Obteniendo Cuenta para consolidado Mensual
+                    $estudiantesBM_PA = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
 
-                   $arrayMes[0] = $this->meses[$arrayMeses[$i]];
-                   $arrayMes[$carre->id] = $arrayMesEstudiante;
+                    $estudiantesOB_PA = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesBM_SA = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_SA = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    /* PROCESO PARA OBTENER EL CONSOLIDADO DE CADA MES */
+                    $estudiantesBM_PA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_PA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',1]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesBM_SA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',1],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+                    $estudiantesOB_SA_M1 = $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id',
+                    $carre->id],['tipo_beca_id',2],['nivel_academico_id',2]])->whereNotNull(trim($estudianteProceso))->whereIn(DB::raw($campoFechaConsolidados),
+                    [$arrayMeses[$i]])->whereYear('fecha_registro',$this->anio)->count();
+
+
+                    $arrayMesEstudiantePA[0] = $carre->nombre;$arrayMesEstudianteSA[0] = $carre->nombre;
+                    if($procesoId == 1)
+                        $arrayMesEstudiantePA[1] = $estudiantes_PA;
+                    else
+                    $arrayMesEstudiantePA[1] = [];
+
+                    $arrayMesEstudianteSA[1] = $estudiantes_SA; 
+                    /* else */
+                    /* $arrayMesEstudiante[1] = array("Segundo Año" => $estudiantes_SA); */
+
+                    $arrayMesPA[0] = $this->meses[$arrayMeses[$i]];
+                    $arrayMesPA[1] = "PRIMER AÑO";
+                    $arrayMesPA[$carre->id+2] = $arrayMesEstudiantePA;
+
+                    $arrayMesSA[0] = $this->meses[$arrayMeses[$i]];
+                    $arrayMesSA[1] = "SEGUNDO AÑO";
+                    $arrayMesSA[$carre->id+2] = $arrayMesEstudianteSA;   
+
+                    // Datos para el consolidado de cada mes
+                    /* if ($procesoId == 1) { */
+                    // Asignando en la posicion 0 el titulo de la tabla
+                    $dataPA[0] = $this->meses[$arrayMeses[$i]]." PRIMER AÑO";
+                    $dataPA[$carre->id] = array(
+                        "Carrera" => $carre->nombre,
+                        "totalBecaMined" => $estudiantesBM_PA,
+                        "totalOtraBeca" => $estudiantesOB_PA,
+                    );
+
+                    /* } */
+
+                    $dataSA[0] = $this->meses[$arrayMeses[$i]]." SEGUNDO AÑO";
+                    $dataSA[$carre->id] = array(
+                        "Carrera" => $carre->nombre,
+                        "totalBecaMined" => $estudiantesBM_SA,
+                        "totalOtraBeca" => $estudiantesOB_SA,
+                    );
+
+                    $arrayMesPA[2] = $dataPA;
+                    $arrayMesSA[2] = $dataSA;
               }
+               if($procesoId ==1)
+                array_push($dataMensual, $arrayMesPA);
 
-               array_push($dataMensual, $arrayMes);
+                array_push($dataMensual, $arrayMesSA);
+                array_push($arrayGeneral, $dataMensual);
 
                 // Sacando Consolidado Anual POR NIVELES ACADEMICOS
                 $dataByNivel = [];
-                $dataGeneralByAnio = [];
-                $dataGeneralByAnio[0] = $this->anio;
 
                 $dataPA = []; $dataSA = [];
                 foreach ($carrera as $carre) {
@@ -1762,19 +1996,12 @@ class GestionProyectoController extends Controller
 
                     $estudiantesOB_SA =  $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
-                    // DATOS PARA EN CONSOLIDADO GENERAL
-                     $estudiantesGeneralBM =  $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1]])->whereNotNull(trim($estudianteProceso))->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-                     $estudiantesGeneralOB =  $carre->estudiantes()->select('id')->where([['articulado',false],['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2]])->whereNotNull(trim($estudianteProceso))->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-
-
                     // Juntando los resultados en array individuales
                      // Datos para el consolidado de cada mes
 
                     if ($procesoId == 1) {
                         // Asignando en la posicion 0 el titulo de la tabla
-                        $dataPA[0] = $this->anio." 1º AÑO";
+                        $dataPA[0] = $this->anio." PRIMER AÑO";
                         $dataPA[$carre->id] = array(
                           "Carrera" => $carre->nombre,
                           "totalBecaMined" => $estudiantesBM_PA,
@@ -1783,17 +2010,11 @@ class GestionProyectoController extends Controller
 
                     }
 
-                    $dataSA[0] = $this->anio." 2º AÑO";
+                    $dataSA[0] = $this->anio." SEGUNDO AÑO";
                     $dataSA[$carre->id] = array(
                       "Carrera" => $carre->nombre,
                       "totalBecaMined" => $estudiantesBM_SA,
                       "totalOtraBeca" => $estudiantesOB_SA,
-                    );
-
-                    $dataGeneralByAnio[$carre->id] =  array(
-                       "Carrera" => $carre->nombre,
-                       "totalBecaMined" => $estudiantesGeneralBM,
-                       "totalOtraBeca" => $estudiantesGeneralOB,
                     );
                 }
                 array_push($dataByNivel,$dataPA);
@@ -1802,20 +2023,17 @@ class GestionProyectoController extends Controller
 
 
             if($request->onlyConsolidado=='OC'){
-
-               $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['consolidadoByNivel'=>$dataByNivel,'consolidadoGeneralByAnio' => $dataGeneralByAnio,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
-
+              $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $arrayGeneral,'consolidadoByNivel'=>$dataByNivel,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
             }else{
-
-              $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $dataMensual,'consolidadoByNivel'=>$dataByNivel,'consolidadoGeneralByAnio' => $dataGeneralByAnio,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => false])->setOption('footer-center', 'Página [page] de [topage]');
+              $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $arrayGeneral,'consolidadoByNivel'=>$dataByNivel,'tipo' => 'A', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo,'anio' => $this->anio,'onlyConsolidado' => false])->setOption('footer-center', 'Página [page] de [topage]');
             }
 
-            $pdf->setOption('margin-top',20);
-            $pdf->setOption('margin-bottom',20);
-            $pdf->setOption('margin-left',20);
-            $pdf->setOption('margin-right',20);
+            $pdf->setOption('margin-top',15);
+            $pdf->setOption('margin-bottom',15);
+            $pdf->setOption('margin-left',15);
+            $pdf->setOption('margin-right',15);
             return $pdf->stream('Reporte Procesos Culminados '.date('Y-m-d').'.pdf');
-            // return $dataGeneralByAnio;
+            /* return $arrayGeneral; */
         }
     }
     // ***************** Fin de la funciones para reportes *****************//
@@ -1909,7 +2127,7 @@ class GestionProyectoController extends Controller
 
     // Metodo que devuelve la descarga de los documentos relacionadoa con el proceso que realiza cada estudiante
     public function downloadDocs(Request $request){
-            $procesoId = session('process_id');
+            $procesoId = Auth::user()->estudiante->proceso[0]->id;
             $codCarnet = Auth::user()->estudiante->codCarnet;
             $tipoDoc = $request->tipoDoc;
 
@@ -2078,7 +2296,7 @@ class GestionProyectoController extends Controller
        $estudiante = Estudiante::findOrFail($gp->estudiante_id);
        $estudiante->proceso_actual = 'P';
        $estudiante->update();
-
+       DB::table('documentos_entregados')->where('gestion_proyecto_id',$gp->id)->delete();
        $gp->delete();
     }
 
@@ -2130,5 +2348,12 @@ class GestionProyectoController extends Controller
             $data->documentos_entrega->push($value);
         } 
         return view('public.detailGestion',compact(['data']));
+    }
+    /* Funcion que obtiene la fecha minima que iniciara un proyecto */
+    public function getMinDateInicio($proyectoId,$process_id){
+        
+        $sql = "SELECT MIN(fecha_inicio) as fecha FROM gestion_proyectos WHERE proyecto_id = :idProy AND tipo_gp = :idProceso";
+        $fecha_min = DB::select($sql, [ 'idProy' => $proyectoId,'idProceso' => $process_id ]);
+        return $fecha_min[0]->fecha;
     }
 }

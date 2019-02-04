@@ -115,10 +115,8 @@
 </div>
 </div>
 <script src="{{asset('js/publicTemplate.js')}}"></script>
-<script src="{{asset('other/js/jquery-min.js')}}"></script>
-@if (Request::path() != 'public')
-	@routes @yield('page_script')
-@endif
+<script src="{{asset('other/js/jquery-min.js')}}"></script>}
+@routes @yield('page_script')
 <script type="text/javascript">
 	var app = new Vue({
 		el : '#modalDocumentos',
@@ -129,12 +127,7 @@
 		methods: {
 			getProyectosRealizados() {
 				let me = this;
-				var url;
-				if(window.location.pathname == '/public'){
-					url = "getActualGestionProyectos";
-				}else{
-					url = route("getActualGestionProyectos");
-				}
+				var url  = route("getActualGestionProyectos");;
 				axios.get(url).then(function(response) {
 					var respuesta = response.data;
 					me.arrayProyectos = respuesta;

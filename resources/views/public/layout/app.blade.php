@@ -90,7 +90,7 @@
 				</li>
 				<li>
 					<a href="#">
-						Bienvenido(a): {{Auth::user()->estudiante->nombre}}
+						Bienvenido(a): {{substr(Auth::user()->estudiante->nombre,0,strpos(Auth::user()->estudiante->nombre," "))." ".substr(Auth::user()->estudiante->apellido,0,strpos(Auth::user()->estudiante->apellido," "))}}
 					</a>
 					<ul class="dropdown">
 						<li>

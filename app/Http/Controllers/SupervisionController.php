@@ -26,6 +26,7 @@ class SupervisionController extends Controller
                   $supervision->fecha = $request->fecha;
                   $supervision->observacion = $request->observacion;
                   $supervision->estado = 0;
+                  $supervision->fecha_registro = date('Y-m-d');
                   Proyecto::findOrFail($request->proyecto_id)->supervision()->save($supervision);
 
                   for ($i=0;$i<count($request->imagenes);$i++) {
@@ -33,6 +34,7 @@ class SupervisionController extends Controller
                     $imgSuper = new ImgSupervision();
                     $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
                     $imgSuper->img = $name_img;
+                    $imgSuper->fecha_registro = date('Y-m-d');
                     Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
                     SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
 
@@ -55,9 +57,8 @@ class SupervisionController extends Controller
             $imgSuper->img = $name_img;
             Image::make($request->images[$i])->save(public_path('images_superv/').$name_img);
             SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
-
           }
-        $supervision->save();
+        $supervision->update();
     }
     //obtener las supervisiones
     public function GetSupervision($id)
@@ -80,6 +81,10 @@ class SupervisionController extends Controller
     public function delete($id){
 
         $img = ImgSupervision::findOrFail($id);
+        if(file_exists(public_path('images_superv/').$img->img))
+        {
+            unlink(public_path('images_superv/').$img->img);
+        }
         $img->delete();
     }
 

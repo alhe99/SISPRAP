@@ -63,13 +63,13 @@
                             </div>
                             @else
                               <div class="col-md-6 text-center">
-                                <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
+                                <br><button  type="button" class="ml-3 btnPreinscripcion animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
                               @else
                               <div class="col-md-6 text-center">
-                                <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
+                                <br><button  type="button" class="ml-3 btnPreinscripcion animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
@@ -94,46 +94,71 @@
         data : {},
         methods : {
             loadPreRegistration: function (studen_id,project_id,process_id){
-             const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
-             swal({
-                title: 'Esta seguro de Preinscribirte a este proyecto?',
-                text: "Una vez hecho espera la respuesta del administrador!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.value) {
-                    let me = this;
-                    $('#preloader').fadeIn();
-                    var url = route('preRegister', [studen_id, project_id]);
-                    axios.get(url).then(function(response) {
-                        if(response.data == true){
-                            $('#preloader').fadeOut();
-                            swal({
-                                position: "center",
-                                type: "warning",
-                                title: "Preinscripción realizada con exito",
-                                showConfirmButton: true,
-                                width: '350px',
-                            }).then(function(result){
-                                window.location.href = route('myPreregister',[studen_id,process_id]);
-                            })
-                        }
-
-                    }).catch(function(error) {
-                        console.log(error);
-                        toast({
-                            type: 'danger',
-                            title: 'Error! Intente Nuevamente'
-                        });
-                    });
-                }
-            })
+              const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 1500 });
+                    swal({
+                        title: 'Esta seguro de Preinscribirte a este proyecto?',
+                        text: "Una vez hecho espera la respuesta del administrador!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Aceptar!',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.value) {
+                            let me = this;
+                            $('#preloader').fadeIn();
+                            var validate = route('verificarEstadoVacantes',project_id);
+                            axios.get(validate).then(function(response) {
+                                if(response.data == 'completado'){
+                                    $('#preloader').fadeOut();
+                                    swal({
+                                        position: "center",
+                                        type: "warning",
+                                        title: "Error, No puedes preinscribirte a este proyecto!",
+                                        showConfirmButton: true,
+                                        timer: 5000
+                                    });
+                                    $(".btnPreinscripcion").prop('disabled',true);
+                                }else{
+                                    var url = route('preRegister', [studen_id, project_id]);
+                                    axios.get(url).then(function(response) {
+                                        if(response.data == true){
+                                            $('#preloader').fadeOut();
+                                            swal({
+                                                position: "center",
+                                                type: "warning",
+                                                title: "Preinscripción realizada con exito",
+                                                showConfirmButton: true,
+                                                width: '350px',
+                                            }).then(function(result){
+                                                window.location.href = route('myPreregister',[studen_id,process_id]);
+                                            });
+                                        }else if(response.data == 'completado')
+                                        {
+                                            $('#preloader').fadeOut();
+                                            swal({
+                                                position: "center",
+                                                type: "warning",
+                                                title: "Error, No puedes preinscribirte a este proyecto!",
+                                                showConfirmButton: true,
+                                                timer: 5000
+                                            });
+                                            $(".btnPreinscripcion").prop('disabled',true);
+                                        }
+                                    }).catch(function(error) {
+                                        console.log(error);
+                                        toast({
+                                            type: 'danger',
+                                            title: 'Error! Intente Nuevamente'
+                                        });
+                                    });
+                                }
+                            });
+                    }
+            });
         }
     }
-})
+});
 </script>
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ImgSupervision extends Model
 {
     protected $table = 'img_supervisiones';
-    protected $fillable = ['img','supervision_id'];
+    protected $fillable = ['img','supervision_id','fecha_registro'];
     public $timestamps = false;
 
     public function supervisionProyecto(){

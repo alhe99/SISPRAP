@@ -1,6 +1,10 @@
 <template>
   <!--INICIO DE DIV PARA TABLA,REGISTRO,BUSQUEDA DE INSTITUCIONES-->
   <div class="col-lg-12 col-md-12">
+  <div class="row">
+   <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
+  </div>
+  </div>
     <div class="card" v-show="verCard == 1">
       <div class="card-body">
        <div class="row">
@@ -393,10 +397,6 @@
 </div>
 <!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
 </div>
-<div class="row">
-  <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
-  </div>
-</div>
 <!--DIV PARA MOSTRAR MAS INFORMACION DE LA INSTITUCION-->
 <template>
  <div class="row" v-show="verCard == 2">
@@ -498,131 +498,96 @@
                           <small v-show="arrayProyectos.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayProyectos.length + ' de ' + pagination.total + ' registros)'"></small>
                         </ul>
                       </nav>
-
-                      <!--MODAL PARA REGISTRAR UNA SUPERVISION-->
-                      <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title text-white" >{{titleMRS +  modalsTitle | truncate(55)}}</h4>
-                              <button type="button" @click="cerrarModalSuper()" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" class="text-white">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="form-group">
-                                <textarea name="observacion" v-model="observacion" id="observacion" class="form-control" placeholder="Observación" rows="10"></textarea>
-                              </div>
-                              <div class="form-group row">
-                                <div class="col-md-12 col-sm-6 col-lg-12">
-                                  <!--  <datetime type="date" :max-datetime="maxDatetime" v-model="date" value-zone="America/El_Salvador" input-class="form-control" placeholder="Fecha en la que fue realizada la supervisión"></datetime> -->
-                                  <input placeholder="aaaa-mm-dd" @click="openDateIPicker" v-mask="'####-##-##'" id="fechaSupervision" name="fechaSupervision" class="form-control" >
+                      <!--MODAL PARA REGISTRAR UNA SUPERVICION-->
+                        <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" style="min-width: 1100px;">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title text-white" >{{titleMRS +  modalsTitle | truncate(55)}}</h4>
+                                  <button type="button" @click="cerrarModalSuper()" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" class="text-white">&times;</span>
+                                  </button>
                                 </div>
-                              </div>
-                              <div v-if="tipoAccion2 == 1" class="form-group">
-                               <div class="uploader"
-                               @dragenter="OnDragEnter"
-                               @dragleave="OnDragLeave"
-                               @dragover.prevent
-                               @drop="onDrop"
-                               :class="{ dragging: isDragging }">
-                               <div class="upload-control" v-show="images.length">
-                                <label for="file">Seleccione una o mas imagenes</label>
-                              </div>
-                              <div v-show="!images.length">
-                                <i class="fa fa-cloud-upload"></i>
-                                <p>Arrastre sus imagenes aqui!</p>
-                                <div>o</div>
-                                <div class="file-input">
-                                  <label for="file">Seleccione</label>
-                                  <input type="file" id="file" @change="onInputChange" multiple>
-                                </div>
-                              </div>
-                              <div class="images-preview" v-show="images.length">
-                                <div class="img-wrapper" v-for="(image, index) in images" :key="index">
-                                 <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
-                                 <img  :src="image" :alt="`Imagen ${index}`">
-                                 <div class="details">
-                                   <span class="name" v-text="files[index].name"></span>
-                                   <span class="size" v-text="getFileSize(files[index].size)"></span>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                         <!--images con supervision-->
-                         <div v-else class="form-group">
-
-                          <div class="uploader"
-                          @dragenter="OnDragEnter"
-                          @dragleave="OnDragLeave"
-                          @dragover.prevent
-                          @drop="onDrop"
-                          :class="{ dragging: isDragging }">
-                          <div class="upload-control" v-show="images.length">
-                            <label for="file">Seleccione una o mas imagenes</label>
-                          </div>
-                          <div v-show="!images.length">
-                            <i class="fa fa-cloud-upload"></i>
-                            <p>Arrastre sus imagenes aqui!</p>
-                            <div>o</div>
-                            <div class="file-input">
-                              <label for="file">Seleccione</label>
-                              <input type="file" id="file" @change="onInputChange" multiple>
-                            </div>
-                          </div>
-                          <div class="images-preview" v-show="images.length">
-                            <div class="img-wrapper" v-for="(image, index) in images" :key="index">
-                             <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
-                             <img  :src="image" :alt="`Imagen ${index}`">
-                             <!-- YA TRAE LAS IMAGENES,PENSAR COMO AGREGAR MAS SIN DAÑAR EL ARRAY ORIGINAL -->
-                                            <!--  <div class="details">
-                                               <span class="name" v-text="files[index].name"></span>
-                                               <span class="size" v-text="getFileSize(files[index].size)"></span>
-                                             </div> -->
-                                           </div>
-                                         </div>
-                                       </div>
-                                       <div class="row">
-                                        <div class="col-md-6 col-sm-12 col-lg-6">
-                                          <button class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i style="margin-bottom: -10px" class="mdi mdi-playlist-plus i-crud"></i>&nbsp;Imagenes</button>
-                                          <div
-                                          class="collapse"
-                                          ref="divCollapse"
-                                          id="collapseExample"
-                                          >
-                                          <div class="card card-body">
-                                            <div class="row images-preview" id="seccion" v-show="arrayImagesUpd.length">
-                                              <div
-                                              class="col-md-6 col-sm-12 col-lg-6 img-wrapper"
-                                              v-for="(image, index) in arrayImagesUpd" :key="index">
-                                              <label :for="(image, index)">
-                                                <button class="remove" @click="DeleteImage(index, image.id)"><i class="mdi mdi-close-circle"></i></button>
-                                                <img :src="'images_superv/'+image.img" :alt="`Imagen ${index}`">
-                                              </label>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                      <textarea name="observacion" v-model="observacion" id="observacion" class="form-control" placeholder="Observación" rows="10"></textarea>
+                                    </div>
+                                      <div class="form-group row">
+                                        <div class="col-md-12 col-sm-6 col-lg-12">
+                                          <input placeholder="aaaa-mm-dd" @click="openDateIPicker" v-mask="'####-##-##'" id="fechaSupervision" name="fechaSupervision" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" v-if="arrayImagesUpd.length > 0">
+                                      <div class="col-md-12">
+                                         <button style="margin-left: -15px;" class="btn btn-primary h5 font-weight-bold text-dark text-capitalize" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                           <i class="mdi mdi-folder-multiple-image"></i>&nbsp;Imagenes en supervisión</button>
+                                        <div class="collapse m-1" ref="divCollapse" id="collapseExample">
+                                          <fieldset>
+                                            <div class="panel panel-default">
+                                              <div class="panel-body">
+                                                <div class="uploader">
+                                                 <div class="images-preview">
+                                                    <div class="img-wrapper" v-for="image in arrayImagesUpd" :key="image.id">
+                                                        <button class="remove" @click="deleteImage(image.id)"><i class="mdi mdi-close-circle"></i></button>
+                                                        <img  :src="'images_superv/'+image.img" :alt="image.id">
+                                                        <div class="details">
+                                                          <span class="name" v-text="image.img"></span>
+                                                        </div>
+                                                    </div>
+                                                 </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                          </div>
+                                          </fieldset>
                                         </div>
                                       </div>
                                     </div>
+                                    <div class="form-group">
+                                          <div class="uploader"
+                                            @dragenter="OnDragEnter"
+                                            @dragleave="OnDragLeave"
+                                            @dragover.prevent
+                                            @drop="onDrop"
+                                            :class="{ dragging: isDragging }">
+                                            <div class="upload-control" v-show="images.length">
+                                                <label for="file">Seleccione una o mas imagenes</label>
+                                            </div>
+                                            <div v-show="!images.length">
+                                                <i class="fa fa-cloud-upload"></i>
+                                                <p>Arrastre sus imagenes aqui!</p>
+                                                <div>o</div>
+                                                <div class="file-input">
+                                                    <label for="file">Seleccione</label>
+                                                    <input type="file" id="file" @change="onInputChange" multiple>
+                                                </div>
+                                            </div>
+                                            <div class="images-preview" v-show="images.length">
+                                                <div class="img-wrapper" v-for="(image, index) in images" :key="index">
+                                                    <button class="remove" @click="removeImage(index)"><i class="mdi mdi-close-circle"></i></button>
+                                                    <img  :src="image" :alt="`Imagen ${index}`">
+                                                    <div class="details">
+                                                      <span class="name" v-text="files[index].name"></span>
+                                                        <span class="size" v-text="getFileSize(files[index].size)"></span> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+                                </div>
+                                <div class="modal-footer">
+                                  <div class="row"> 
+                                    <div class="col-md-12">
+                                      <button type="button" @click="cerrarModalSuper()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cancelar</button>
+                                      <button type="button" class="button blue disabled" id="btnSaveSupervision" disabled v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense><i class="mdi mdi-content-save"></i>&nbsp;Registrar Supervisión</button>
+                                      <button type="button" class="button blue" v-if="tipoAccion2 == 2" @click="actualizarSupervision()" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Supervisión</button>
+                                    </div>
                                   </div>
                                 </div>
-
-                                <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
-                              </div>
-                              <div class="modal-footer">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <button type="button" class="button red" @click="cerrarModalSuper()">Cancelar</button>
-                                    <button type="button" class="button blue" v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense>Registrar Supervisión</button>
-                                    <button type="button" class="button blue" v-if="tipoAccion2 == 2" @click="actualizarSupervision()" dense>Actualizar Supervisión</button>
-                                  </div>
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
-                        <!--FIN DE MODAL PARA REGISTRAR UNA SUPERVICION-->
+                      <!--FIN DE MODAL PARA REGISTRAR UNA SUPERVICION-->
                       </div>
                     </div>
                   </div>
@@ -726,6 +691,7 @@ export default {
                     verProyectosExternos: false,
                     tipoProyectos: 'I',
                     arrayImagesUpd: [],
+                    fechaMinSupervision: ''
                   };
                 },
                 computed: {
@@ -788,13 +754,6 @@ export default {
                       return false;
                     }
                   },
-                 /* removeOpcion: function(){
-                    let me = this;
-                    return $("#nombre").on('keyup',function(){
-                      //me.opcion = "";
-                      me.validateIfExist($(this).val().trim(),me.proceso);
-                    });
-                  } */
                 },
                 watch: {
                   verProyectosExternos: function(){
@@ -821,14 +780,10 @@ export default {
                     }
                   },
                   supervision: function(){
-            // if(this.supervision != {})
-            // {
-              this.observacion = this.supervision["observacion"];
-              this.date = this.supervision["fecha"];
-              this.arrayImagesUpd = this.supervision["imagenes"];
-            // }
-          },
-
+                    this.observacion = this.supervision["observacion"];
+                    $("#fechaSupervision").val(this.supervision["fecha"]);
+                    this.arrayImagesUpd = this.supervision["imagenes"];
+                  },
         },
         methods: {
       //listado de instituciones por busqueda
@@ -943,33 +898,34 @@ export default {
         });
       },
       //imagenes
-      getImg(id) {
+      /* Metodo para eliminar una imagen de una supervision */
+      deleteImage(id){
+        const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
         let me = this;
-        var url = route('getImagenesBySupervision',id);
-        me.loading = true;
-        axios.get(url).then(function(response) {
-          var respuesta = response.data;
-          me.arrayImages = respuesta;
-          me.loading = false;
+        var url = route('deleteImgSupervision',id);
+        me.loadSpinner = 1;
+        axios.get(url).then(function(response){
+          me.getSupervision(me.proyecto_id);
+          me.loadSpinner = 0;
+          toast({
+            type: 'info',
+            title: 'Imagen removida de supervisión',
+            timer: 3000
+           });          
         })
-        .catch(function(error) {
-          console.log(error);
-        });
       },
       // Metodo que abre el datePicker
       openDateIPicker(){
        var datepicker = $("#fechaSupervision").datepicker();
        datepicker.open();
-     },
+      },
       //termina
       getSupervision(id) {
         let me = this;
         var url = route('getSupervisionById',id);
-        me.loading = true;
         axios.get(url).then(function(response) {
           var respuesta = response.data;
           me.supervision = respuesta;
-          me.loading = false;
         })
         .catch(function(error) {
           console.log(error);
@@ -1284,8 +1240,8 @@ registrarSupervision() {
   //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
         let me = this;
         me.loading = true;
-        axios
-        .post("/proyecto/registrar/supervision", {
+        /* var url = window.location.origin+"proyecto/registrar/supervision/"; */
+        axios.post("/proyecto/registrar/supervision",{
           proyecto_id: this.proyecto_id,
           observacion: this.observacion,
           fecha: $("#fechaSupervision").val().trim(),
@@ -1303,28 +1259,31 @@ registrarSupervision() {
           me.clearDatos();
         })
         .catch(error => {
+           me.loading = false;
           console.log(error.response.data.errors);
         });
       },
       actualizarSupervision(){
        //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
        let me = this;
+       me.loadSpinner = 1;
        axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
-        fecha: this.date.substring(0, 10),
+        fecha: $("#fechaSupervision").val().trim(),
         observacion: this.observacion,
         images: this.images,
-
-      })
-       .then(function(response) {
+      }).then(function(response) {
+        me.loadSpinner = 0;
+        me.getSupervision(me.proyecto_id);
         swal({
           position: "center",
           type: "success",
-          title: "Supervision actualizado correctamente!",
+          title: "Supervisión actualizada correctamente!",
           showConfirmButton: false,
           timer: 1000
         });
-        me.cerrarModalSuper();
+        me.images = [];
+        me.files = [];
       })
        .catch(function(error) {
         swal({
@@ -1408,26 +1367,48 @@ registrarSupervision() {
         this.getDepartamentos();
       },
       abrirModalSuper(accion, id, nombre, data = []) {
+        let me = this;
         const el = document.body;
+        me.loadSpinner = 1;
         el.classList.add("abrirModal");
-        this.modal = 1;
-        this.proyecto_id = id;
-        this.modalsTitle = nombre;
-        $("#fechaSupervision").datepicker({
-          locale: 'es-es',
-          format: 'yyyy-mm-dd',
-        });
+        me.proyecto_id = id;
+        me.modalsTitle = nombre;
         switch(accion){
           case 'registrar':
-          this.titleMRS = 'Registrar supervisión en: ';
-          this.tipoAccion2 = 1;
+          me.titleMRS = 'Registrar supervisión en: ';
+          me.tipoAccion2 = 1;
 
+          var url = route('getMinDateInicio',[me.proyecto_id,me.proceso]);
+          axios.get(url).then(response => {
+            me.fechaMinSupervision = response.data;
+            me.loadSpinner = 0;
+            me.modal = 1;
+            $("#fechaSupervision").datepicker({
+              locale: 'es-es',
+              format: 'yyyy-mm-dd',
+              minDate: me.fechaMinSupervision,
+              change:function(e){
+                $("#btnSaveSupervision").prop('disabled',false);
+                $("#btnSaveSupervision").removeClass('disabled');
+              }
+            });
+          });
           break;
           case 'actualizar':
-          this.getSupervision(id);
-          this.titleMRS = 'Actualizar supervisión de: ';
-          this.tipoAccion2 = 2;
-
+          me.titleMRS = 'Actualizar supervisión de: ';
+          me.tipoAccion2 = 2;
+          var url = route('getMinDateInicio',[me.proyecto_id,me.proceso]);
+          axios.get(url).then(response => {
+            me.fechaMinSupervision = response.data;
+            me.getSupervision(id);
+            me.loadSpinner = 0;
+            me.modal = 1;
+            $("#fechaSupervision").datepicker({
+              locale: 'es-es',
+              format: 'yyyy-mm-dd',
+              minDate: me.fechaMinSupervision
+            });
+          });
           break;
         }
       },
@@ -1449,13 +1430,15 @@ registrarSupervision() {
         el.classList.remove("abrirModal");
         var datepickerFechaSuper = $('#fechaSupervision').datepicker();
         this.modal = 0;
-        this.date = "";
         this.observacion = "";
-        this.images = "";
         this.modalsTitle = "";
         this.titleMRS = "";
         this.tipoAccion2 = 0;
-        datepickerFechaSuper.close();
+        this.images = [];
+        this.files = [];
+        this.arrayImagesUpd = [];
+        this.fechaMinSupervision = '';
+        datepickerFechaSuper.destroy();
       },
       cerrarModal() {
         const el = document.body;
@@ -1635,7 +1618,7 @@ registrarSupervision() {
           this.loading = true;
           this.files.push(file);
           const img = new Image(),
-          reader = new FileReader();
+            reader = new FileReader();
           reader.onload = e => this.images.push(e.target.result);
           reader.readAsDataURL(file);
           this.loading = false;
@@ -1653,7 +1636,6 @@ registrarSupervision() {
           this.loading = true;
           this.files.splice(index, 1);
           this.images.splice(index, 1);
-          this.arrayImagesUpd.splice(index, 1);
           this.loading = false;
         },
         clearDatos() {
@@ -1663,6 +1645,7 @@ registrarSupervision() {
           this.proyecto_id = 0;
           this.images = [];
           this.files = [];
+          this.fechaMinSupervision = '';
           this.cerrarModalSuper();
         },
         DeleteImage(index, id) {
@@ -1676,7 +1659,6 @@ registrarSupervision() {
             .catch(function(error) {
               console.log(error);
           });
-
       },
       },
       components: {},

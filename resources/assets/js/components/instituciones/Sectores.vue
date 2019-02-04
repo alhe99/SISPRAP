@@ -224,7 +224,6 @@ export default {
         me.loadSpinner = 1;
         axios.get(url).then(function(response) {
             var respuesta = response.data;
-            console.log(respuesta);
             if((me.sector != me.sectorUpd) && (respuesta == 'existe')){
                 swal({
                     position: "center",

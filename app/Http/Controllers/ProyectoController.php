@@ -496,9 +496,13 @@ class ProyectoController extends Controller
                     'msj' =>  "Nueva Preinscripcion al proyecto de: ".$proyect_name,
                     'fecha' => now()->toDateTimeString(),
                 ];
-                dispatch(new sendNotificationToAdmin($arrayData));
-                DB::commit();
-                return "true";
+                if($proyect->estado_vacantes == 'C'){
+                    return response('completado', 200);
+                }else{
+                    dispatch(new sendNotificationToAdmin($arrayData));
+                    DB::commit();
+                    return "true";
+                }
             } else {return "false";}
 
         } catch (Exception $e) {
@@ -689,5 +693,13 @@ class ProyectoController extends Controller
             ],
             'proyectos' => $proyecto,
         ];
+    }
+    /* Metodo que verifica la cantidad de vacantes de un proyecto */
+    public function verificarEstadoVacantes($id)
+    {
+        $proyecto = Proyecto::select('estado_vacantes')->find($id);
+        if($proyecto->estado_vacantes == 'C'){
+            return response('completado', 200);
+        }
     }
 }

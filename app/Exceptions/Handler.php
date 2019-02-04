@@ -63,9 +63,9 @@ class Handler extends ExceptionHandler
             
         } else {
             // Custom error 500 view on production
-            //if (app()->environment() == 'production') {
-                //return response()->view('auth.login', [], 200);
-            //}
+            if (app()->environment() == 'production') {
+                return response()->view('auth.login', [], 200);
+            }
             return parent::render($request, $exception);
         }
 

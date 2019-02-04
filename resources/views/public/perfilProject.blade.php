@@ -30,7 +30,7 @@
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
             <div class="form-group label-floating">
               <label class="control-label" for="estudiante_name">Nombre de alumno*</label>
-              <input class="form-control" id="estudiante_name" value="{{Auth::user()->estudiante->nombre}}" disabled type="text" name="estudiante_name" >
+              <input class="form-control" id="estudiante_name" value="{{Auth::user()->estudiante->nombre." ".Auth::user()->estudiante->apellido}}" disabled type="text" name="estudiante_name" >
             </div>
           </div>
           <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".1s">
@@ -235,7 +235,7 @@
     },
     computed:{
       validate: function(){
-      if (!(this.telSuper == '') && !(this.nombreSupervisor == '')){return false;}else{return true;}
+      if (!(this.nombreSupervisor == '')){return false;}else{return true;}
     }
   },
   watch:{

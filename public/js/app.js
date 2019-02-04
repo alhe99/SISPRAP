@@ -174,139 +174,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(91)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(93)
-/* template */
-var __vue_template__ = __webpack_require__(94)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules\\vue-switches\\src\\switches.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-86411bee", Component.options)
-  } else {
-    hotAPI.reload("data-v-86411bee", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -613,6 +480,139 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(91)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(93)
+/* template */
+var __vue_template__ = __webpack_require__(94)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules\\vue-switches\\src\\switches.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-86411bee", Component.options)
+  } else {
+    hotAPI.reload("data-v-86411bee", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -11607,7 +11607,7 @@ return jQuery;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var normalizeHeaderName = __webpack_require__(29);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -14454,7 +14454,7 @@ process.umask = function() { return 0; };
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var settle = __webpack_require__(30);
 var buildURL = __webpack_require__(32);
 var parseHeaders = __webpack_require__(33);
@@ -14710,13 +14710,13 @@ module.exports = "/fonts/vendor/vue-img-inputer/dist/iconfont.eot?50c39a176b3f06
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(137)
+  __webpack_require__(125)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(139)
+var __vue_script__ = __webpack_require__(127)
 /* template */
-var __vue_template__ = __webpack_require__(140)
+var __vue_template__ = __webpack_require__(128)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -14856,16 +14856,16 @@ Vue.component('hojasupervgeneral', __webpack_require__(116));
 Vue.component('general', __webpack_require__(119));
 Vue.component('supervision', __webpack_require__(122));
 Vue.component('configuracion', __webpack_require__(18));
-Vue.component('inicioproceso', __webpack_require__(141));
-Vue.component('pendientesinicio', __webpack_require__(144));
-Vue.component('pendientefin', __webpack_require__(147));
-Vue.component('culminados', __webpack_require__(150));
+Vue.component('inicioproceso', __webpack_require__(129));
+Vue.component('pendientesinicio', __webpack_require__(132));
+Vue.component('pendientefin', __webpack_require__(135));
+Vue.component('culminados', __webpack_require__(138));
 Vue.component('configuracion', __webpack_require__(18));
-Vue.component('gestproy', __webpack_require__(153));
-Vue.component('constancias', __webpack_require__(156));
-Vue.component('sectores', __webpack_require__(161));
-Vue.component('solicitudes_aprobadas', __webpack_require__(164));
-Vue.component('proyectos_externos', __webpack_require__(167));
+Vue.component('gestproy', __webpack_require__(141));
+Vue.component('constancias', __webpack_require__(144));
+Vue.component('sectores', __webpack_require__(149));
+Vue.component('solicitudes_aprobadas', __webpack_require__(152));
+Vue.component('proyectos_externos', __webpack_require__(155));
 
 var app = new Vue({
     el: '#app',
@@ -36050,7 +36050,7 @@ module.exports = __webpack_require__(26);
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var bind = __webpack_require__(11);
 var Axios = __webpack_require__(28);
 var defaults = __webpack_require__(8);
@@ -36137,7 +36137,7 @@ function isSlowBuffer (obj) {
 
 
 var defaults = __webpack_require__(8);
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(37);
 var dispatchRequest = __webpack_require__(38);
 
@@ -36222,7 +36222,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -36302,7 +36302,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -36375,7 +36375,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -36435,7 +36435,7 @@ module.exports = function parseHeaders(headers) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -36553,7 +36553,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -36613,7 +36613,7 @@ module.exports = (
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -36672,7 +36672,7 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var transformData = __webpack_require__(39);
 var isCancel = __webpack_require__(15);
 var defaults = __webpack_require__(8);
@@ -36765,7 +36765,7 @@ module.exports = function dispatchRequest(config) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 /**
  * Transform the data for a request or a response
@@ -58953,7 +58953,7 @@ if(false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(53);
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -59139,7 +59139,7 @@ if(false) {
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -67637,7 +67637,7 @@ if(false) {
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -69673,7 +69673,7 @@ if(false) {
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -78473,7 +78473,7 @@ if(false) {
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -78714,7 +78714,7 @@ if(false) {
 /* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -78730,41 +78730,6 @@ exports.push([module.i, "\n.uploader[data-v-f70e4106] {\n  width: 100%;\n  backg
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -79457,7 +79422,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       nombreSupervisorUpd: "",
       verProyectosExternos: false,
       tipoProyectos: 'I',
-      arrayImagesUpd: []
+      arrayImagesUpd: [],
+      fechaMinSupervision: ''
     };
   },
 
@@ -79520,13 +79486,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return false;
       }
     }
-    /* removeOpcion: function(){
-       let me = this;
-       return $("#nombre").on('keyup',function(){
-         //me.opcion = "";
-         me.validateIfExist($(this).val().trim(),me.proceso);
-       });
-     } */
   },
   watch: {
     verProyectosExternos: function verProyectosExternos() {
@@ -79553,14 +79512,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     supervision: function supervision() {
-      // if(this.supervision != {})
-      // {
       this.observacion = this.supervision["observacion"];
-      this.date = this.supervision["fecha"];
+      $("#fechaSupervision").val(this.supervision["fecha"]);
       this.arrayImagesUpd = this.supervision["imagenes"];
-      // }
     }
-
   },
   methods: {
     //listado de instituciones por busqueda
@@ -79664,16 +79619,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     //imagenes
-    getImg: function getImg(id) {
+    /* Metodo para eliminar una imagen de una supervision */
+    deleteImage: function deleteImage(id) {
+      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
       var me = this;
-      var url = route('getImagenesBySupervision', id);
-      me.loading = true;
+      var url = route('deleteImgSupervision', id);
+      me.loadSpinner = 1;
       axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayImages = respuesta;
-        me.loading = false;
-      }).catch(function (error) {
-        console.log(error);
+        me.getSupervision(me.proyecto_id);
+        me.loadSpinner = 0;
+        toast({
+          type: 'info',
+          title: 'Imagen removida de supervisión',
+          timer: 3000
+        });
       });
     },
 
@@ -79687,11 +79646,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getSupervision: function getSupervision(id) {
       var me = this;
       var url = route('getSupervisionById', id);
-      me.loading = true;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.supervision = respuesta;
-        me.loading = false;
       }).catch(function (error) {
         console.log(error);
       });
@@ -79993,6 +79950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
       var me = this;
       me.loading = true;
+      /* var url = window.location.origin+"proyecto/registrar/supervision/"; */
       axios.post("/proyecto/registrar/supervision", {
         proyecto_id: this.proyecto_id,
         observacion: this.observacion,
@@ -80009,27 +79967,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         me.clearDatos();
       }).catch(function (error) {
+        me.loading = false;
         console.log(error.response.data.errors);
       });
     },
     actualizarSupervision: function actualizarSupervision() {
       //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
       var me = this;
+      me.loadSpinner = 1;
       axios.put("/supervision/actualizar", {
         id: this.proyecto_id,
-        fecha: this.date.substring(0, 10),
+        fecha: $("#fechaSupervision").val().trim(),
         observacion: this.observacion,
         images: this.images
-
       }).then(function (response) {
+        me.loadSpinner = 0;
+        me.getSupervision(me.proyecto_id);
         swal({
           position: "center",
           type: "success",
-          title: "Supervision actualizado correctamente!",
+          title: "Supervisión actualizada correctamente!",
           showConfirmButton: false,
           timer: 1000
         });
-        me.cerrarModalSuper();
+        me.images = [];
+        me.files = [];
       }).catch(function (error) {
         swal({
           position: "center",
@@ -80119,26 +80081,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     abrirModalSuper: function abrirModalSuper(accion, id, nombre) {
       var data = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
 
+      var me = this;
       var el = document.body;
+      me.loadSpinner = 1;
       el.classList.add("abrirModal");
-      this.modal = 1;
-      this.proyecto_id = id;
-      this.modalsTitle = nombre;
-      $("#fechaSupervision").datepicker({
-        locale: 'es-es',
-        format: 'yyyy-mm-dd'
-      });
+      me.proyecto_id = id;
+      me.modalsTitle = nombre;
       switch (accion) {
         case 'registrar':
-          this.titleMRS = 'Registrar supervisión en: ';
-          this.tipoAccion2 = 1;
+          me.titleMRS = 'Registrar supervisión en: ';
+          me.tipoAccion2 = 1;
 
+          var url = route('getMinDateInicio', [me.proyecto_id, me.proceso]);
+          axios.get(url).then(function (response) {
+            me.fechaMinSupervision = response.data;
+            me.loadSpinner = 0;
+            me.modal = 1;
+            $("#fechaSupervision").datepicker({
+              locale: 'es-es',
+              format: 'yyyy-mm-dd',
+              minDate: me.fechaMinSupervision,
+              change: function change(e) {
+                $("#btnSaveSupervision").prop('disabled', false);
+                $("#btnSaveSupervision").removeClass('disabled');
+              }
+            });
+          });
           break;
         case 'actualizar':
-          this.getSupervision(id);
-          this.titleMRS = 'Actualizar supervisión de: ';
-          this.tipoAccion2 = 2;
-
+          me.titleMRS = 'Actualizar supervisión de: ';
+          me.tipoAccion2 = 2;
+          var url = route('getMinDateInicio', [me.proyecto_id, me.proceso]);
+          axios.get(url).then(function (response) {
+            me.fechaMinSupervision = response.data;
+            me.getSupervision(id);
+            me.loadSpinner = 0;
+            me.modal = 1;
+            $("#fechaSupervision").datepicker({
+              locale: 'es-es',
+              format: 'yyyy-mm-dd',
+              minDate: me.fechaMinSupervision
+            });
+          });
           break;
       }
     },
@@ -80160,13 +80144,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       el.classList.remove("abrirModal");
       var datepickerFechaSuper = $('#fechaSupervision').datepicker();
       this.modal = 0;
-      this.date = "";
       this.observacion = "";
-      this.images = "";
       this.modalsTitle = "";
       this.titleMRS = "";
       this.tipoAccion2 = 0;
-      datepickerFechaSuper.close();
+      this.images = [];
+      this.files = [];
+      this.arrayImagesUpd = [];
+      this.fechaMinSupervision = '';
+      datepickerFechaSuper.destroy();
     },
     cerrarModal: function cerrarModal() {
       var el = document.body;
@@ -80366,7 +80352,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.loading = true;
       this.files.splice(index, 1);
       this.images.splice(index, 1);
-      this.arrayImagesUpd.splice(index, 1);
       this.loading = false;
     },
     clearDatos: function clearDatos() {
@@ -80376,6 +80361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.proyecto_id = 0;
       this.images = [];
       this.files = [];
+      this.fechaMinSupervision = '';
       this.cerrarModalSuper();
     },
     DeleteImage: function DeleteImage(index, id) {
@@ -80404,6 +80390,12 @@ var render = function() {
     "div",
     { staticClass: "col-lg-12 col-md-12" },
     [
+      _c("div", { staticClass: "row" }, [
+        _vm.loadSpinner == 1
+          ? _c("div", { staticClass: "col-md-12 loading text-center" })
+          : _vm._e()
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -82243,12 +82235,6 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _vm.loadSpinner == 1
-          ? _c("div", { staticClass: "col-md-12 loading text-center" })
-          : _vm._e()
-      ]),
-      _vm._v(" "),
       [
         _c(
           "div",
@@ -82876,7 +82862,10 @@ var render = function() {
                                               "div",
                                               {
                                                 staticClass:
-                                                  "modal-dialog modal-lg"
+                                                  "modal-dialog modal-lg",
+                                                staticStyle: {
+                                                  "min-width": "1100px"
+                                                }
                                               },
                                               [
                                                 _c(
@@ -83058,545 +83047,231 @@ var render = function() {
                                                           ]
                                                         ),
                                                         _vm._v(" "),
-                                                        _vm.tipoAccion2 == 1
+                                                        _vm.arrayImagesUpd
+                                                          .length > 0
                                                           ? _c(
                                                               "div",
                                                               {
                                                                 staticClass:
-                                                                  "form-group"
+                                                                  "form-group row"
                                                               },
                                                               [
                                                                 _c(
                                                                   "div",
                                                                   {
                                                                     staticClass:
-                                                                      "uploader",
-                                                                    class: {
-                                                                      dragging:
-                                                                        _vm.isDragging
-                                                                    },
-                                                                    on: {
-                                                                      dragenter:
-                                                                        _vm.OnDragEnter,
-                                                                      dragleave:
-                                                                        _vm.OnDragLeave,
-                                                                      dragover: function(
-                                                                        $event
-                                                                      ) {
-                                                                        $event.preventDefault()
-                                                                      },
-                                                                      drop:
-                                                                        _vm.onDrop
-                                                                    }
+                                                                      "col-md-12"
                                                                   },
                                                                   [
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        directives: [
-                                                                          {
-                                                                            name:
-                                                                              "show",
-                                                                            rawName:
-                                                                              "v-show",
-                                                                            value:
-                                                                              _vm
-                                                                                .images
-                                                                                .length,
-                                                                            expression:
-                                                                              "images.length"
-                                                                          }
-                                                                        ],
-                                                                        staticClass:
-                                                                          "upload-control"
-                                                                      },
-                                                                      [
-                                                                        _c(
-                                                                          "label",
-                                                                          {
-                                                                            attrs: {
-                                                                              for:
-                                                                                "file"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "Seleccione una o mas imagenes"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    ),
+                                                                    _vm._m(8),
                                                                     _vm._v(" "),
                                                                     _c(
                                                                       "div",
                                                                       {
-                                                                        directives: [
-                                                                          {
-                                                                            name:
-                                                                              "show",
-                                                                            rawName:
-                                                                              "v-show",
-                                                                            value: !_vm
-                                                                              .images
-                                                                              .length,
-                                                                            expression:
-                                                                              "!images.length"
-                                                                          }
-                                                                        ]
+                                                                        ref:
+                                                                          "divCollapse",
+                                                                        staticClass:
+                                                                          "collapse m-1",
+                                                                        attrs: {
+                                                                          id:
+                                                                            "collapseExample"
+                                                                        }
                                                                       },
                                                                       [
                                                                         _c(
-                                                                          "i",
-                                                                          {
-                                                                            staticClass:
-                                                                              "fa fa-cloud-upload"
-                                                                          }
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "p",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "Arrastre sus imagenes aqui!"
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "div",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "o"
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "div",
-                                                                          {
-                                                                            staticClass:
-                                                                              "file-input"
-                                                                          },
+                                                                          "fieldset",
                                                                           [
                                                                             _c(
-                                                                              "label",
+                                                                              "div",
                                                                               {
-                                                                                attrs: {
-                                                                                  for:
-                                                                                    "file"
-                                                                                }
+                                                                                staticClass:
+                                                                                  "panel panel-default"
                                                                               },
                                                                               [
-                                                                                _vm._v(
-                                                                                  "Seleccione"
+                                                                                _c(
+                                                                                  "div",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "panel-body"
+                                                                                  },
+                                                                                  [
+                                                                                    _c(
+                                                                                      "div",
+                                                                                      {
+                                                                                        staticClass:
+                                                                                          "uploader"
+                                                                                      },
+                                                                                      [
+                                                                                        _c(
+                                                                                          "div",
+                                                                                          {
+                                                                                            staticClass:
+                                                                                              "images-preview"
+                                                                                          },
+                                                                                          _vm._l(
+                                                                                            _vm.arrayImagesUpd,
+                                                                                            function(
+                                                                                              image
+                                                                                            ) {
+                                                                                              return _c(
+                                                                                                "div",
+                                                                                                {
+                                                                                                  key:
+                                                                                                    image.id,
+                                                                                                  staticClass:
+                                                                                                    "img-wrapper"
+                                                                                                },
+                                                                                                [
+                                                                                                  _c(
+                                                                                                    "button",
+                                                                                                    {
+                                                                                                      staticClass:
+                                                                                                        "remove",
+                                                                                                      on: {
+                                                                                                        click: function(
+                                                                                                          $event
+                                                                                                        ) {
+                                                                                                          _vm.deleteImage(
+                                                                                                            image.id
+                                                                                                          )
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    [
+                                                                                                      _c(
+                                                                                                        "i",
+                                                                                                        {
+                                                                                                          staticClass:
+                                                                                                            "mdi mdi-close-circle"
+                                                                                                        }
+                                                                                                      )
+                                                                                                    ]
+                                                                                                  ),
+                                                                                                  _vm._v(
+                                                                                                    " "
+                                                                                                  ),
+                                                                                                  _c(
+                                                                                                    "img",
+                                                                                                    {
+                                                                                                      attrs: {
+                                                                                                        src:
+                                                                                                          "images_superv/" +
+                                                                                                          image.img,
+                                                                                                        alt:
+                                                                                                          image.id
+                                                                                                      }
+                                                                                                    }
+                                                                                                  ),
+                                                                                                  _vm._v(
+                                                                                                    " "
+                                                                                                  ),
+                                                                                                  _c(
+                                                                                                    "div",
+                                                                                                    {
+                                                                                                      staticClass:
+                                                                                                        "details"
+                                                                                                    },
+                                                                                                    [
+                                                                                                      _c(
+                                                                                                        "span",
+                                                                                                        {
+                                                                                                          staticClass:
+                                                                                                            "name",
+                                                                                                          domProps: {
+                                                                                                            textContent: _vm._s(
+                                                                                                              image.img
+                                                                                                            )
+                                                                                                          }
+                                                                                                        }
+                                                                                                      )
+                                                                                                    ]
+                                                                                                  )
+                                                                                                ]
+                                                                                              )
+                                                                                            }
+                                                                                          )
+                                                                                        )
+                                                                                      ]
+                                                                                    )
+                                                                                  ]
                                                                                 )
                                                                               ]
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "input",
-                                                                              {
-                                                                                attrs: {
-                                                                                  type:
-                                                                                    "file",
-                                                                                  id:
-                                                                                    "file",
-                                                                                  multiple:
-                                                                                    ""
-                                                                                },
-                                                                                on: {
-                                                                                  change:
-                                                                                    _vm.onInputChange
-                                                                                }
-                                                                              }
                                                                             )
                                                                           ]
                                                                         )
                                                                       ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        directives: [
-                                                                          {
-                                                                            name:
-                                                                              "show",
-                                                                            rawName:
-                                                                              "v-show",
-                                                                            value:
-                                                                              _vm
-                                                                                .images
-                                                                                .length,
-                                                                            expression:
-                                                                              "images.length"
-                                                                          }
-                                                                        ],
-                                                                        staticClass:
-                                                                          "images-preview"
-                                                                      },
-                                                                      _vm._l(
-                                                                        _vm.images,
-                                                                        function(
-                                                                          image,
-                                                                          index
-                                                                        ) {
-                                                                          return _c(
-                                                                            "div",
-                                                                            {
-                                                                              key: index,
-                                                                              staticClass:
-                                                                                "img-wrapper"
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "button",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "remove",
-                                                                                  on: {
-                                                                                    click: function(
-                                                                                      $event
-                                                                                    ) {
-                                                                                      _vm.removeImage(
-                                                                                        index
-                                                                                      )
-                                                                                    }
-                                                                                  }
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "i",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "mdi mdi-close-circle"
-                                                                                    }
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "img",
-                                                                                {
-                                                                                  attrs: {
-                                                                                    src: image,
-                                                                                    alt:
-                                                                                      "Imagen " +
-                                                                                      index
-                                                                                  }
-                                                                                }
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "div",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "details"
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "span",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "name",
-                                                                                      domProps: {
-                                                                                        textContent: _vm._s(
-                                                                                          _vm
-                                                                                            .files[
-                                                                                            index
-                                                                                          ]
-                                                                                            .name
-                                                                                        )
-                                                                                      }
-                                                                                    }
-                                                                                  ),
-                                                                                  _vm._v(
-                                                                                    " "
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "span",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "size",
-                                                                                      domProps: {
-                                                                                        textContent: _vm._s(
-                                                                                          _vm.getFileSize(
-                                                                                            _vm
-                                                                                              .files[
-                                                                                              index
-                                                                                            ]
-                                                                                              .size
-                                                                                          )
-                                                                                        )
-                                                                                      }
-                                                                                    }
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                        }
-                                                                      )
                                                                     )
                                                                   ]
                                                                 )
                                                               ]
                                                             )
-                                                          : _c(
+                                                          : _vm._e(),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "form-group"
+                                                          },
+                                                          [
+                                                            _c(
                                                               "div",
                                                               {
                                                                 staticClass:
-                                                                  "form-group"
+                                                                  "uploader",
+                                                                class: {
+                                                                  dragging:
+                                                                    _vm.isDragging
+                                                                },
+                                                                on: {
+                                                                  dragenter:
+                                                                    _vm.OnDragEnter,
+                                                                  dragleave:
+                                                                    _vm.OnDragLeave,
+                                                                  dragover: function(
+                                                                    $event
+                                                                  ) {
+                                                                    $event.preventDefault()
+                                                                  },
+                                                                  drop:
+                                                                    _vm.onDrop
+                                                                }
                                                               },
                                                               [
                                                                 _c(
                                                                   "div",
                                                                   {
+                                                                    directives: [
+                                                                      {
+                                                                        name:
+                                                                          "show",
+                                                                        rawName:
+                                                                          "v-show",
+                                                                        value:
+                                                                          _vm
+                                                                            .images
+                                                                            .length,
+                                                                        expression:
+                                                                          "images.length"
+                                                                      }
+                                                                    ],
                                                                     staticClass:
-                                                                      "uploader",
-                                                                    class: {
-                                                                      dragging:
-                                                                        _vm.isDragging
-                                                                    },
-                                                                    on: {
-                                                                      dragenter:
-                                                                        _vm.OnDragEnter,
-                                                                      dragleave:
-                                                                        _vm.OnDragLeave,
-                                                                      dragover: function(
-                                                                        $event
-                                                                      ) {
-                                                                        $event.preventDefault()
-                                                                      },
-                                                                      drop:
-                                                                        _vm.onDrop
-                                                                    }
+                                                                      "upload-control"
                                                                   },
                                                                   [
                                                                     _c(
-                                                                      "div",
+                                                                      "label",
                                                                       {
-                                                                        directives: [
-                                                                          {
-                                                                            name:
-                                                                              "show",
-                                                                            rawName:
-                                                                              "v-show",
-                                                                            value:
-                                                                              _vm
-                                                                                .images
-                                                                                .length,
-                                                                            expression:
-                                                                              "images.length"
-                                                                          }
-                                                                        ],
-                                                                        staticClass:
-                                                                          "upload-control"
-                                                                      },
-                                                                      [
-                                                                        _c(
-                                                                          "label",
-                                                                          {
-                                                                            attrs: {
-                                                                              for:
-                                                                                "file"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "Seleccione una o mas imagenes"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        directives: [
-                                                                          {
-                                                                            name:
-                                                                              "show",
-                                                                            rawName:
-                                                                              "v-show",
-                                                                            value: !_vm
-                                                                              .images
-                                                                              .length,
-                                                                            expression:
-                                                                              "!images.length"
-                                                                          }
-                                                                        ]
-                                                                      },
-                                                                      [
-                                                                        _c(
-                                                                          "i",
-                                                                          {
-                                                                            staticClass:
-                                                                              "fa fa-cloud-upload"
-                                                                          }
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "p",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "Arrastre sus imagenes aqui!"
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "div",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "o"
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "div",
-                                                                          {
-                                                                            staticClass:
-                                                                              "file-input"
-                                                                          },
-                                                                          [
-                                                                            _c(
-                                                                              "label",
-                                                                              {
-                                                                                attrs: {
-                                                                                  for:
-                                                                                    "file"
-                                                                                }
-                                                                              },
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "Seleccione"
-                                                                                )
-                                                                              ]
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "input",
-                                                                              {
-                                                                                attrs: {
-                                                                                  type:
-                                                                                    "file",
-                                                                                  id:
-                                                                                    "file",
-                                                                                  multiple:
-                                                                                    ""
-                                                                                },
-                                                                                on: {
-                                                                                  change:
-                                                                                    _vm.onInputChange
-                                                                                }
-                                                                              }
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        directives: [
-                                                                          {
-                                                                            name:
-                                                                              "show",
-                                                                            rawName:
-                                                                              "v-show",
-                                                                            value:
-                                                                              _vm
-                                                                                .images
-                                                                                .length,
-                                                                            expression:
-                                                                              "images.length"
-                                                                          }
-                                                                        ],
-                                                                        staticClass:
-                                                                          "images-preview"
-                                                                      },
-                                                                      _vm._l(
-                                                                        _vm.images,
-                                                                        function(
-                                                                          image,
-                                                                          index
-                                                                        ) {
-                                                                          return _c(
-                                                                            "div",
-                                                                            {
-                                                                              key: index,
-                                                                              staticClass:
-                                                                                "img-wrapper"
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "button",
-                                                                                {
-                                                                                  staticClass:
-                                                                                    "remove",
-                                                                                  on: {
-                                                                                    click: function(
-                                                                                      $event
-                                                                                    ) {
-                                                                                      _vm.removeImage(
-                                                                                        index
-                                                                                      )
-                                                                                    }
-                                                                                  }
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "i",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "mdi mdi-close-circle"
-                                                                                    }
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "img",
-                                                                                {
-                                                                                  attrs: {
-                                                                                    src: image,
-                                                                                    alt:
-                                                                                      "Imagen " +
-                                                                                      index
-                                                                                  }
-                                                                                }
-                                                                              )
-                                                                            ]
-                                                                          )
+                                                                        attrs: {
+                                                                          for:
+                                                                            "file"
                                                                         }
-                                                                      )
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "Seleccione una o mas imagenes"
+                                                                        )
+                                                                      ]
                                                                     )
                                                                   ]
                                                                 ),
@@ -83604,149 +83279,215 @@ var render = function() {
                                                                 _c(
                                                                   "div",
                                                                   {
-                                                                    staticClass:
-                                                                      "row"
+                                                                    directives: [
+                                                                      {
+                                                                        name:
+                                                                          "show",
+                                                                        rawName:
+                                                                          "v-show",
+                                                                        value: !_vm
+                                                                          .images
+                                                                          .length,
+                                                                        expression:
+                                                                          "!images.length"
+                                                                      }
+                                                                    ]
                                                                   },
                                                                   [
+                                                                    _c("i", {
+                                                                      staticClass:
+                                                                        "fa fa-cloud-upload"
+                                                                    }),
+                                                                    _vm._v(" "),
+                                                                    _c("p", [
+                                                                      _vm._v(
+                                                                        "Arrastre sus imagenes aqui!"
+                                                                      )
+                                                                    ]),
+                                                                    _vm._v(" "),
+                                                                    _c("div", [
+                                                                      _vm._v(
+                                                                        "o"
+                                                                      )
+                                                                    ]),
+                                                                    _vm._v(" "),
                                                                     _c(
                                                                       "div",
                                                                       {
                                                                         staticClass:
-                                                                          "col-md-6 col-sm-12 col-lg-6"
+                                                                          "file-input"
                                                                       },
                                                                       [
-                                                                        _vm._m(
-                                                                          8
+                                                                        _c(
+                                                                          "label",
+                                                                          {
+                                                                            attrs: {
+                                                                              for:
+                                                                                "file"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Seleccione"
+                                                                            )
+                                                                          ]
                                                                         ),
                                                                         _vm._v(
                                                                           " "
                                                                         ),
                                                                         _c(
-                                                                          "div",
+                                                                          "input",
                                                                           {
-                                                                            ref:
-                                                                              "divCollapse",
-                                                                            staticClass:
-                                                                              "collapse",
                                                                             attrs: {
+                                                                              type:
+                                                                                "file",
                                                                               id:
-                                                                                "collapseExample"
+                                                                                "file",
+                                                                              multiple:
+                                                                                ""
+                                                                            },
+                                                                            on: {
+                                                                              change:
+                                                                                _vm.onInputChange
                                                                             }
-                                                                          },
-                                                                          [
-                                                                            _c(
-                                                                              "div",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "card card-body"
-                                                                              },
-                                                                              [
-                                                                                _c(
-                                                                                  "div",
-                                                                                  {
-                                                                                    directives: [
-                                                                                      {
-                                                                                        name:
-                                                                                          "show",
-                                                                                        rawName:
-                                                                                          "v-show",
-                                                                                        value:
-                                                                                          _vm
-                                                                                            .arrayImagesUpd
-                                                                                            .length,
-                                                                                        expression:
-                                                                                          "arrayImagesUpd.length"
-                                                                                      }
-                                                                                    ],
-                                                                                    staticClass:
-                                                                                      "row images-preview",
-                                                                                    attrs: {
-                                                                                      id:
-                                                                                        "seccion"
-                                                                                    }
-                                                                                  },
-                                                                                  _vm._l(
-                                                                                    _vm.arrayImagesUpd,
-                                                                                    function(
-                                                                                      image,
-                                                                                      index
-                                                                                    ) {
-                                                                                      return _c(
-                                                                                        "div",
-                                                                                        {
-                                                                                          key: index,
-                                                                                          staticClass:
-                                                                                            "col-md-6 col-sm-12 col-lg-6 img-wrapper"
-                                                                                        },
-                                                                                        [
-                                                                                          _c(
-                                                                                            "label",
-                                                                                            {
-                                                                                              attrs: {
-                                                                                                for: (image,
-                                                                                                index)
-                                                                                              }
-                                                                                            },
-                                                                                            [
-                                                                                              _c(
-                                                                                                "button",
-                                                                                                {
-                                                                                                  staticClass:
-                                                                                                    "remove",
-                                                                                                  on: {
-                                                                                                    click: function(
-                                                                                                      $event
-                                                                                                    ) {
-                                                                                                      _vm.DeleteImage(
-                                                                                                        index,
-                                                                                                        image.id
-                                                                                                      )
-                                                                                                    }
-                                                                                                  }
-                                                                                                },
-                                                                                                [
-                                                                                                  _c(
-                                                                                                    "i",
-                                                                                                    {
-                                                                                                      staticClass:
-                                                                                                        "mdi mdi-close-circle"
-                                                                                                    }
-                                                                                                  )
-                                                                                                ]
-                                                                                              ),
-                                                                                              _vm._v(
-                                                                                                " "
-                                                                                              ),
-                                                                                              _c(
-                                                                                                "img",
-                                                                                                {
-                                                                                                  attrs: {
-                                                                                                    src:
-                                                                                                      "images_superv/" +
-                                                                                                      image.img,
-                                                                                                    alt:
-                                                                                                      "Imagen " +
-                                                                                                      index
-                                                                                                  }
-                                                                                                }
-                                                                                              )
-                                                                                            ]
-                                                                                          )
-                                                                                        ]
-                                                                                      )
-                                                                                    }
-                                                                                  )
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
+                                                                          }
                                                                         )
                                                                       ]
                                                                     )
                                                                   ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    directives: [
+                                                                      {
+                                                                        name:
+                                                                          "show",
+                                                                        rawName:
+                                                                          "v-show",
+                                                                        value:
+                                                                          _vm
+                                                                            .images
+                                                                            .length,
+                                                                        expression:
+                                                                          "images.length"
+                                                                      }
+                                                                    ],
+                                                                    staticClass:
+                                                                      "images-preview"
+                                                                  },
+                                                                  _vm._l(
+                                                                    _vm.images,
+                                                                    function(
+                                                                      image,
+                                                                      index
+                                                                    ) {
+                                                                      return _c(
+                                                                        "div",
+                                                                        {
+                                                                          key: index,
+                                                                          staticClass:
+                                                                            "img-wrapper"
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "button",
+                                                                            {
+                                                                              staticClass:
+                                                                                "remove",
+                                                                              on: {
+                                                                                click: function(
+                                                                                  $event
+                                                                                ) {
+                                                                                  _vm.removeImage(
+                                                                                    index
+                                                                                  )
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "i",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "mdi mdi-close-circle"
+                                                                                }
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "img",
+                                                                            {
+                                                                              attrs: {
+                                                                                src: image,
+                                                                                alt:
+                                                                                  "Imagen " +
+                                                                                  index
+                                                                              }
+                                                                            }
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "div",
+                                                                            {
+                                                                              staticClass:
+                                                                                "details"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "span",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "name",
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      _vm
+                                                                                        .files[
+                                                                                        index
+                                                                                      ]
+                                                                                        .name
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "span",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "size",
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      _vm.getFileSize(
+                                                                                        _vm
+                                                                                          .files[
+                                                                                          index
+                                                                                        ]
+                                                                                          .size
+                                                                                      )
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    }
+                                                                  )
                                                                 )
                                                               ]
-                                                            ),
+                                                            )
+                                                          ]
+                                                        ),
                                                         _vm._v(" "),
                                                         _c("pulse-loader", {
                                                           staticClass:
@@ -83800,8 +83541,12 @@ var render = function() {
                                                                     }
                                                                   },
                                                                   [
+                                                                    _c("i", {
+                                                                      staticClass:
+                                                                        "mdi  mdi-close-box"
+                                                                    }),
                                                                     _vm._v(
-                                                                      "Cancelar"
+                                                                      " Cancelar"
                                                                     )
                                                                   ]
                                                                 ),
@@ -83812,10 +83557,14 @@ var render = function() {
                                                                       "button",
                                                                       {
                                                                         staticClass:
-                                                                          "button blue",
+                                                                          "button blue disabled",
                                                                         attrs: {
                                                                           type:
                                                                             "button",
+                                                                          id:
+                                                                            "btnSaveSupervision",
+                                                                          disabled:
+                                                                            "",
                                                                           dense:
                                                                             ""
                                                                         },
@@ -83828,8 +83577,15 @@ var render = function() {
                                                                         }
                                                                       },
                                                                       [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "mdi mdi-content-save"
+                                                                          }
+                                                                        ),
                                                                         _vm._v(
-                                                                          "Registrar Supervisión"
+                                                                          " Registrar Supervisión"
                                                                         )
                                                                       ]
                                                                     )
@@ -83857,8 +83613,15 @@ var render = function() {
                                                                         }
                                                                       },
                                                                       [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "mdi mdi-content-save"
+                                                                          }
+                                                                        ),
                                                                         _vm._v(
-                                                                          "Actualizar Supervisión"
+                                                                          " Actualizar Supervisión"
                                                                         )
                                                                       ]
                                                                     )
@@ -84101,6 +83864,7 @@ var staticRenderFns = [
       {
         staticClass:
           "btn btn-primary h5 font-weight-bold text-dark text-capitalize",
+        staticStyle: { "margin-left": "-15px" },
         attrs: {
           type: "button",
           "data-toggle": "collapse",
@@ -84110,11 +83874,8 @@ var staticRenderFns = [
         }
       },
       [
-        _c("i", {
-          staticClass: "mdi mdi-playlist-plus i-crud",
-          staticStyle: { "margin-bottom": "-10px" }
-        }),
-        _vm._v(" Imagenes")
+        _c("i", { staticClass: "mdi mdi-folder-multiple-image" }),
+        _vm._v(" Imagenes en supervisión")
       ]
     )
   }
@@ -84721,7 +84482,7 @@ if(false) {
 /* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -91361,7 +91122,7 @@ if(false) {
 /* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -92974,9 +92735,9 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(125)
+var __vue_script__ = __webpack_require__(123)
 /* template */
-var __vue_template__ = __webpack_require__(126)
+var __vue_template__ = __webpack_require__(124)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -93015,9 +92776,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 123 */,
-/* 124 */,
-/* 125 */
+/* 123 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93123,7 +92882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 126 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -93288,23 +93047,13 @@ if (false) {
 }
 
 /***/ }),
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(138);
+var content = __webpack_require__(126);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -93324,10 +93073,10 @@ if(false) {
 }
 
 /***/ }),
-/* 138 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -93338,7 +93087,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 139 */
+/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94207,7 +93956,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 140 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95829,15 +95578,15 @@ if (false) {
 }
 
 /***/ }),
-/* 141 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(142)
+var __vue_script__ = __webpack_require__(130)
 /* template */
-var __vue_template__ = __webpack_require__(143)
+var __vue_template__ = __webpack_require__(131)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95876,7 +95625,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 142 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -96083,7 +95832,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 143 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96443,15 +96192,15 @@ if (false) {
 }
 
 /***/ }),
-/* 144 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(145)
+var __vue_script__ = __webpack_require__(133)
 /* template */
-var __vue_template__ = __webpack_require__(146)
+var __vue_template__ = __webpack_require__(134)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -96490,7 +96239,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 145 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -96698,7 +96447,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 146 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -97058,15 +96807,15 @@ if (false) {
 }
 
 /***/ }),
-/* 147 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(148)
+var __vue_script__ = __webpack_require__(136)
 /* template */
-var __vue_template__ = __webpack_require__(149)
+var __vue_template__ = __webpack_require__(137)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -97105,7 +96854,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 148 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97311,7 +97060,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 149 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -97671,15 +97420,15 @@ if (false) {
 }
 
 /***/ }),
-/* 150 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(151)
+var __vue_script__ = __webpack_require__(139)
 /* template */
-var __vue_template__ = __webpack_require__(152)
+var __vue_template__ = __webpack_require__(140)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -97718,7 +97467,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 151 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97949,7 +97698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 152 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -98353,15 +98102,15 @@ if (false) {
 }
 
 /***/ }),
-/* 153 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(154)
+var __vue_script__ = __webpack_require__(142)
 /* template */
-var __vue_template__ = __webpack_require__(155)
+var __vue_template__ = __webpack_require__(143)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -98400,7 +98149,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 154 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99181,7 +98930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 155 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -101040,23 +100789,19 @@ if (false) {
 }
 
 /***/ }),
-/* 156 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(157)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(159)
+var __vue_script__ = __webpack_require__(147)
 /* template */
-var __vue_template__ = __webpack_require__(160)
+var __vue_template__ = __webpack_require__(148)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -101091,47 +100836,9 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 157 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(158);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("53b38998", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-313fd99a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Constancias.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-313fd99a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Constancias.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 158 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.button {\r\n  display: inline-block;\r\n  margin: 0.3em;\r\n  padding: 1.0em 1em;\r\n  overflow: hidden;\r\n  position: relative;\r\n  text-decoration: none;\r\n  text-transform: capitalize;\r\n  border-radius: 3px;\r\n  -webkit-transition: 0.3s;\r\n  -moz-transition: 0.3s;\r\n  -ms-transition: 0.3s;\r\n  -o-transition: 0.3s;\r\n  transition: 0.3s;\r\n  box-shadow: 0 2px 10px rgba(0,0,0,0.5);\r\n  border: none;\r\n  font-size: 15px;\r\n  text-align: center;\n}\n.button:hover {\r\n  box-shadow: 1px 6px 15px rgba(0,0,0,0.5);\n}\n.green {\r\n  background-color: #4CAF50;\r\n  color: white;\n}\n.red {\r\n  background-color: #F44336;\r\n  color: white;\n}\n.blue {\r\n  background-color: #6200EC;\r\n  color: white;\n}\n.secondary {\r\n  background-color: #6c757d;\r\n  color: white;\n}\n.info {\r\n  background-color: #03a9f4;\r\n  color: white;\n}\n.ripple {\r\n  position: absolute;\r\n  background: rgba(0,0,0,.25);\r\n  border-radius: 100%;\r\n  transform: scale(0.2);\r\n  opacity:0;\r\n  pointer-events: none;\r\n  -webkit-animation: ripple .75s ease-out;\r\n  -moz-animation: ripple .75s ease-out;\r\n  animation: ripple .75s ease-out;\n}\n@-webkit-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@-moz-keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\n@keyframes ripple {\nfrom {\r\n    opacity:1;\n}\nto {\r\n    transform: scale(2);\r\n    opacity: 0;\n}\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 159 */
+/* 145 */,
+/* 146 */,
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101372,38 +101079,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       a.download = name + ".pdf";
       a.click();
     },
-    saveDoc: function saveDoc(gp_id, procesoId) {
-      var me = this;
-      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
-      swal({
-        title: "¿ Desea Generar Constancia?",
-        type: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "button blue",
-        cancelButtonClass: "button red",
-        buttonsStyling: false,
-        reverseButtons: true
-      }).then(function (result) {
-        if (result.value) {
-          var url = route('getConstancia', { "estudianteId": gp_id, "procesoId": procesoId });
-          window.open(url);
-          me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
-        } else if (result.dismiss === swal.DismissReason.cancel) {
-          me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
-        }
-        me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
-      });
-    },
     mounted: function mounted() {}
   }
 });
 
 /***/ }),
-/* 160 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -101847,15 +101528,15 @@ if (false) {
 }
 
 /***/ }),
-/* 161 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(162)
+var __vue_script__ = __webpack_require__(150)
 /* template */
-var __vue_template__ = __webpack_require__(163)
+var __vue_template__ = __webpack_require__(151)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -101894,7 +101575,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 162 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102116,7 +101797,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.loadSpinner = 1;
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
-                console.log(respuesta);
                 if (me.sector != me.sectorUpd && respuesta == 'existe') {
                     swal({
                         position: "center",
@@ -102254,7 +101934,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 163 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -102701,15 +102381,15 @@ if (false) {
 }
 
 /***/ }),
-/* 164 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(165)
+var __vue_script__ = __webpack_require__(153)
 /* template */
-var __vue_template__ = __webpack_require__(166)
+var __vue_template__ = __webpack_require__(154)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -102748,7 +102428,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 165 */
+/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103311,7 +102991,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 166 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -104073,15 +103753,15 @@ if (false) {
 }
 
 /***/ }),
-/* 167 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(168)
+var __vue_script__ = __webpack_require__(156)
 /* template */
-var __vue_template__ = __webpack_require__(169)
+var __vue_template__ = __webpack_require__(157)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -104120,7 +103800,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 168 */
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -105250,7 +104930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 169 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

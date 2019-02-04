@@ -73,6 +73,8 @@ Route::get('GetProjectsByProcess', 'ProyectoController@getProjectsByProcess')->n
 Route::get('getPreregistrationByProject','ProyectoController@getPreregistrationByProject')->name('getPreinscripcionesByProyecto');
 Route::get('/proyectos/obtenerAprobados', 'ProyectoController@getAllAcepted')->name('allAcepted');
 Route::get('/proyectos/deleteAprobacion', 'ProyectoController@deleteProyectoAprobado')->name('deleteProyAceptted');
+Route::get('/proyecto/vacantes/{id}','ProyectoController@verificarEstadoVacantes')->name('verificarEstadoVacantes');
+
 ///////PUBLICA PROYECTO///////
 Route::get('/viewProject/{process}/{slug}', 'ProyectoController@getProjectBySlug')->name('viewProject');
 Route::get('/preRegister/{studentId}/{projectId}', 'ProyectoController@preRegistrationProject')->name('preRegister');
@@ -85,7 +87,7 @@ Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provi
 Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistration')->name('deleteAllPreinscripciones');
 
 //SUPERVISIONES
-Route::post('proyecto/registrar/supervision', 'SupervisionController@store');
+Route::post('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
 Route::get('/proyecto/obtenerProyecto', 'ProyectoController@obtenerProyecto');
 Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision')->name('getSupervisionById');
@@ -93,6 +95,7 @@ Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv')->name('getImagen
 Route::put('/supervision/actualizar', 'SupervisionController@update');
 Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
 Route::get('getFullInfo', 'GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
+Route::get('/supervision/deteleImg/{id}', 'SupervisionController@delete')->name('deleteImgSupervision');
 
 //LOGIN
 Route::get('/', 'Auth\LoginController@showLoginForm')->name("showLogin");
@@ -122,6 +125,8 @@ Route::get('/getMoreInfoGP/{id}','GestionProyectoController@getInfoGpById')->nam
 Route::get('/getCostancia','GestionProyectoController@generateConstancia')->name('getConstancia');
 Route::get('/my_projects_now/{id}','GestionProyectoController@getGestionProyectoByStudent')->name('proyects_now');
 Route::get('/gestionproyectos/delete','GestionProyectoController@deleteProyectoEnMarcha')->name('deleteGestionProyecto');
+Route::get('/gestion/getMinDateInicio/{proyectoId}/{procesoId}', 'GestionProyectoController@getMinDateInicio')->name('getMinDateInicio');
+
 //PUBLICA GESTION PROYECTO
 Route::get('/my-proyect/saveDataOfPerfil','GestionProyectoController@initGestionProyecto')->name('save_perfil');
 Route::get('/gestion_proy/{perfil}','GestionProyectoController@generatePerfil')->name('generate_perfil');
@@ -148,7 +153,15 @@ Route::get('/recepcion/payArancel/validate/{no_factura}','PagoArancelController@
 Route::get('/backup', 'BackupController@backup');
 
 Route::get('/test', function () {
-
+    
+    $carrera = App\Carrera::find(1);
+    $data = $carrera->estudiantes()->select('id','fecha_inicio_ss')->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro','2019')->get();
+    foreach ($data as $key => $value) {
+        if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
+            $data = $data->except($value->id);
+        }
+    }
+    return $data;
     // $test = "2019-01-21SS5c4605667c309.jpeg";
     // if(file_exists(public_path('images/img_projects/').$test))
     // {
@@ -260,7 +273,7 @@ Route::get('/test', function () {
     //return Auth::user()->estudiante->gestionproyecto[0]->proyecto;
 });
 
-Route::get('/_debugbar/assets/stylesheets', [
+/* Route::get('/_debugbar/assets/stylesheets', [
 'as' => 'debugbar-css',
 'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
 ]);
@@ -273,6 +286,6 @@ Route::get('/_debugbar/assets/javascript', [
 Route::get('/_debugbar/open', [
 'as' => 'debugbar-open',
 'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
-]);
+]); */
 
 
