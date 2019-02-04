@@ -57,17 +57,16 @@
             @endforeach
           </tbody>
         </table>
+        <br>
+        <a href="{{ route('public') }}" class="btn btn-secondary text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i> Ir a inicio</a>
       </div>
     </div>
-  </div>
-  <br>
-  <div>
-     <a href="{{ route('public') }}" class="btn btn-secondary text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i> Ir a inicio</a>
   </div>
   @else
   <div class="alert alert-primary" role="alert">
     <h5 class="font-weight-bold m-2">¡No tienes datos de proyectos que hayas realizado!</h5>
   </div>
+  <a href="{{ route('public') }}" class="btn btn-secondary text-capitalize  font-weight-bold" data-toggle="tooltip" id="#" title="Regresar"><i class="mdi mdi-chevron-double-left" ></i> Ir a inicio</a>
   @endif
 </div>
 @endsection

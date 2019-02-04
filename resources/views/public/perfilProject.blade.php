@@ -186,10 +186,11 @@
     </div>
     <br>
     <div class="row text-center">
-      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+      <div class="col-md-5 col-sm-5 wow animated fadeInRight text-center" data-wow-delay=".1s">
         <button type="button" :disabled="validate"  @click.prevent="saveData({{session('student_id')}})" id="btnSave" class="animated4 btn btn-round text-capitalize  font-weight-bold" style="cursor: pointer;"><i class="far fa-save"></i>&nbsp;Guardar Datos</button>
       </div>
-      <div class="col-md-6 col-sm-6 wow animated fadeInRight" data-wow-delay=".1s">
+      <div class="col-sm-2"></div>
+      <div class="col-md-5 col-sm-5 wow animated fadeInRight text-center" data-wow-delay=".1s">
         <a  class="btn btn-danger text-capitalize text-white font-weight-bold" data-toggle="modal" data-target="#ModalCancelarPreins"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
       </div>
     </div><br>

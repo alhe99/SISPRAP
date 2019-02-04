@@ -26,6 +26,7 @@
 						<br>
 					</div>
 					<div class="col-md-12 col-lg-8 col-xs-12">
+						<br>
 						<div class="Material-tab">
 							<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 								<li class="nav-item">

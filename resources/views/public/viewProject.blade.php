@@ -39,6 +39,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-4 col-xs-12 welcome-column text-center">
+                        <br>
                         @if ($proyecto->img == null)
                         @if (Auth::user()->estudiante->proceso[0]->id == 1)
                         <img src="{{url('/images/img_projects/SS.png')}}" alt="{{$proyecto->nombre}}" style="background-repeat: no-repeat; height: 250px; width: 250px; background-position: 100%;border-radius: 50%; background-size: 100% auto;">
@@ -62,8 +63,13 @@
                                 <br><button type="button" class="ml-3 animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @else
+<<<<<<< HEAD
                               <div class="col-md-6 text-center">
                                 <br><button  type="button" class="ml-3 btnPreinscripcion animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
+=======
+                            <div class="col-md-6 text-center">
+                                <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
+>>>>>>> 42387dc79fd9670644584326e14c96fdf89b7d8f
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
