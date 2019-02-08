@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Estudiantes Pendientes de Finalizar {{ ucfirst(strtolower($procesoTitulo)) }}</title>
+    <title>Estudiantes Pendientes de Finalizar {{ str_replace("Á" ,'á',ucfirst(strtolower($procesoTitulo))) }}</title>
     <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ public_path('images/logo-favicon.png') }}">
     <style>
@@ -60,11 +60,11 @@
                         <tr>
                             <td>{{ $estudiante["nombre"]." ".$estudiante["apellido"] }}</td>
                             <td>
-                                @if (count($estudiante["documentosEntregados"]) == 0)
+                                @if (count($estudiante["documentosRestantes"]) == 0)
                                     <small style="font-size: 15px" class="text-center font-weight-bold">Documentos completados, cierre de proyecto pendiente</small>
                                 @else
-                                    @for ($k=0;$k < count($estudiante["documentosEntregados"]);$k++)
-                                          &#126;{{ $estudiante["documentosEntregados"][$k]->nombre }}<br>
+                                    @for ($k=0;$k < count($estudiante["documentosRestantes"]);$k++)
+                                          &#126;{{ $estudiante["documentosRestantes"][$k]->nombre }}<br>
                                     @endfor
                                 @endif
                             </td>
@@ -126,46 +126,7 @@
            @endif
         @endfor
         {{-- FIN DE TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
-         {{-- TABLA PARA CONSOLIDADO FINAL GENERAL --}}
-        <table width="100%" border="1px" cellpadding="6">
-            <thead class="font-weight-bold text-center bg-header">
-                <tr>
-                    <td colspan="4">{{"CONSOLIDADO ".$consolidadoGeneral[0]." (GENERAL)"}}</td>
-                </tr>
-                <tr class="text-center">
-                    <td>Carrera</td>
-                    <td>Becados Mined</td>
-                    <td>Otros</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $cuentaMined = 0;$cuentaOtros=0;
-                ?>
-                @for ($i = 1; $i < count($consolidadoGeneral); $i++)
-                    <?php
-                        $cuentaMined += $consolidadoGeneral[$i]['totalBecaMined'];
-                        $cuentaOtros += $consolidadoGeneral[$i]['totalOtraBeca'];
-                    ?>
-                <tr>
-                    <th class="font-normal">{{$consolidadoGeneral[$i]['Carrera']}}</th>
-                    <th class="text-center font-normal">{{$consolidadoGeneral[$i]['totalBecaMined']}}</th>
-                    <th class="text-center font-normal">{{$consolidadoGeneral[$i]['totalOtraBeca']}}</th>
-                </tr>
-                @endfor
-                <tr class="bg-header font-weight-bold">
-                    <td class="text-right" rowspan="2">Total:</td>
-                    <td class="text-center">{{ $cuentaMined }}</td>
-                    <td class="text-center">{{ $cuentaOtros }}</td>
-                </tr>
-                <tr class="bg-header font-weight-bold text-center">
-                   <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-               </tr>
-            </tbody>
-        </table>
-        {{-- FIN DE TABLA PARA CONSOLIDADO FINAL GENERAL --}}
         @elseif($tipo == 'M')
-
          {{-- TABLA PARA MESES INDIVIDUALES --}}
         @for ($i = 0; $i < count($mensuales) ; $i++)
          <h6 class="font-weight-bold text-center"><u>&nbsp;{{ $mensuales[$i][0] }}&nbsp;</u></h6>
@@ -345,44 +306,6 @@
            @endif
         @endfor
         {{-- FIN DE TABLAS PARA CONSOLIDADO FINAL ANUAL POR NIVEL ACADEMICO --}}
-        {{-- TABLA PARA CONSOLIDADO FINAL GENERAL ANUAL --}}
-        <table width="100%" border="1px" cellpadding="6">
-            <thead class="font-weight-bold text-center bg-header">
-                <tr>
-                    <td colspan="4">{{"CONSOLIDADO ".$consolidadoAnualGeneral[0]." (GENERAL)"}}</td>
-                </tr>
-                <tr class="text-center">
-                    <td>Carrera</td>
-                    <td>Becados Mined</td>
-                    <td>Otros</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $cuentaMined = 0;$cuentaOtros=0;
-                ?>
-                @for ($i = 1; $i < count($consolidadoAnualGeneral); $i++)
-                    <?php
-                        $cuentaMined += $consolidadoAnualGeneral[$i]['totalBecaMined'];
-                        $cuentaOtros += $consolidadoAnualGeneral[$i]['totalOtraBeca'];
-                    ?>
-                <tr>
-                    <th class="font-normal">{{$consolidadoAnualGeneral[$i]['Carrera']}}</th>
-                    <th class="text-center font-normal">{{$consolidadoAnualGeneral[$i]['totalBecaMined']}}</th>
-                    <th class="text-center font-normal">{{$consolidadoAnualGeneral[$i]['totalOtraBeca']}}</th>
-                </tr>
-                @endfor
-                <tr class="bg-header font-weight-bold">
-                    <td class="text-right" rowspan="2">Total:</td>
-                    <td class="text-center">{{ $cuentaMined }}</td>
-                    <td class="text-center">{{ $cuentaOtros }}</td>
-                </tr>
-                <tr class="bg-header font-weight-bold text-center">
-                   <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-               </tr>
-            </tbody>
-        </table>
-        {{-- FIN DE TABLA PARA CONSOLIDADO FINAL GENERAL ANUAL --}}
         @endif
     </div>
 </div>

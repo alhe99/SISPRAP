@@ -27,7 +27,7 @@ class Carrera extends Model
         switch ($procesoId) {
             case 1:
                 $data = $this->estudiantes()->select('id','fecha_inicio_ss')->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)
-                ->whereIn(DB::raw('MONTH(fecha_inicio_ss)'), [$data[0],$data[1],$data[2]])->get();
+                ->whereMonth('fecha_inicio_ss','<=',date('m'))->whereIn(DB::raw('MONTH(fecha_inicio_ss)'), [$data[0],$data[1],$data[2]])->get();
 
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
@@ -38,7 +38,7 @@ class Carrera extends Model
             break;
             case 2:
                 $data = $this->estudiantes()->select('id','fecha_inicio_pp')->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)
-                ->whereIn(DB::raw('MONTH(fecha_inicio_pp)'), [$data[0],$data[1],$data[2]])->get();
+                ->whereMonth('fecha_inicio_pp','<=',date('m'))->whereIn(DB::raw('MONTH(fecha_inicio_pp)'), [$data[0],$data[1],$data[2]])->get();
                 
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_pp,5,2) == date('m') and substr($value->fecha_inicio_pp,8,2) > date('d')){
@@ -55,7 +55,7 @@ class Carrera extends Model
           switch ($procesoId) {
             case 1:
                 $data = $this->estudiantes()->select('id','fecha_inicio_ss')->where([['articulado',false],['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)
-                ->whereIn(DB::raw('MONTH(fecha_inicio_ss)'), [$data[0],$data[1],$data[2]])->get();
+                ->whereMonth('fecha_inicio_ss','<=',date('m'))->whereIn(DB::raw('MONTH(fecha_inicio_ss)'), [$data[0],$data[1],$data[2]])->get();
 
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
@@ -66,7 +66,7 @@ class Carrera extends Model
             break;
             case 2:
                 $data = $this->estudiantes()->select('id','fecha_inicio_pp')->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)
-                ->whereIn(DB::raw('MONTH(fecha_inicio_pp)'), [$data[0],$data[1],$data[2]])->get();
+                ->whereMonth('fecha_inicio_pp','<=',date('m'))->whereIn(DB::raw('MONTH(fecha_inicio_pp)'), [$data[0],$data[1],$data[2]])->get();
                 
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_pp,5,2) == date('m') and substr($value->fecha_inicio_pp,8,2) > date('d')){
@@ -83,7 +83,7 @@ class Carrera extends Model
     {
         switch ($procesoId) {
             case 1:
-                $data = $this->estudiantes()->select('id','fecha_inicio_ss')->whereMonth('fecha_inicio_ss',$mes)->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->get();
+                $data = $this->estudiantes()->select('id','fecha_inicio_ss')->whereMonth('fecha_inicio_ss',$mes)->whereMonth('fecha_inicio_ss','<=',date('m'))->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->get();
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
                         $data = $data->except($value->id);
@@ -92,7 +92,7 @@ class Carrera extends Model
                 return $data->count();
             break;
             case 2:
-                $data = $this->estudiantes()->select('id','fecha_inicio_pp')->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->get();
+                $data = $this->estudiantes()->select('id','fecha_inicio_pp')->whereMonth('fecha_inicio_pp',$mes)->whereMonth('fecha_inicio_pp','<=',date('m'))->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)->get();
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_pp,5,2) == date('m') and substr($value->fecha_inicio_pp,8,2) > date('d')){
                         $data = $data->except($value->id);
@@ -107,7 +107,7 @@ class Carrera extends Model
     {
          switch ($procesoId) {
             case 1:
-                $data = $this->estudiantes()->select('id','fecha_inicio_ss')->whereMonth('fecha_inicio_ss',$mes)->where([['articulado',false],['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->get();
+                $data = $this->estudiantes()->select('id','fecha_inicio_ss')->whereMonth('fecha_inicio_ss',$mes)->whereMonth('fecha_inicio_ss','<=',date('m'))->where([['articulado',false],['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->get();
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
                         $data = $data->except($value->id);
@@ -116,7 +116,7 @@ class Carrera extends Model
                 return $data->count();
             break;
             case 2:
-                $data = $this->estudiantes()->select('id','fecha_inicio_pp')->whereMonth('fecha_inicio_pp',$mes)->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->get();
+                $data = $this->estudiantes()->select('id','fecha_inicio_pp')->whereMonth('fecha_inicio_pp',$mes)->whereMonth('fecha_inicio_pp','<=',date('m'))->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)->get();
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_pp,5,2) == date('m') and substr($value->fecha_inicio_pp,8,2) > date('d')){
                         $data = $data->except($value->id);

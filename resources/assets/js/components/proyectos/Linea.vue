@@ -77,7 +77,7 @@
               <i class="mdi mdi-dots-vertical"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="mw2">
-              <button class="dropdown-item d-block menu" type="button" @click="abrirModalID()">
+              <button class="dropdown-item d-block menu" style="cursor: pointer;" type="button" @click="abrirModalID()">
                 <i class="mdi mdi-delete-empty"></i>Proyectos Desactivados
               </button>
             </div>
@@ -345,7 +345,7 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-lg" style="min-width:1000px;">
+        <div class="modal-dialog modal-lg" style="min-width:1100px;">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title text-white">Actualización de Datos del Proyecto</h4>
@@ -361,9 +361,14 @@
             </div>
             <div class="modal-body">
               <div class="row">
+               <div class="col-md-12">
+                <div class="alert alert-primary text-center font-weight-bold h6" role="alert">
+                  Campos requeridos poseen un (*)
+                </div>
+              </div>
                 <div class="col-md-12 col-xs-12 col-lg-12">
                   <br>
-                  <label class="font-weight-bold" for="nombre">Nombre del proyecto</label>
+                  <label class="font-weight-bold" for="nombre">Nombre del proyecto (*)</label>
                   <input
                     type="text"
                     v-model="nombreP"
@@ -379,11 +384,12 @@
               <div class="row">
                 <div class="col-md-6 col-xs-6 col-lg-6">
                   <br>
-                  <label class="font-weight-bold" for="hrsRealizar">Horas a realizar</label>
+                  <label class="font-weight-bold" for="hrsRealizar">Horas a realizar (*)</label>
                   <input
                     type="number"
                     v-model="hrsRealizar"
                     id="hrsRealizar"
+                    min="0"
                     name="hrsRealizar"
                     class="form-control"
                     autocomplete="off"
@@ -392,11 +398,12 @@
                 </div>
                 <div class="col-md-6">
                   <br>
-                  <label class="font-weight-bold" for="hrsRealizar"># Estudiantes en proyecto</label>
+                  <label class="font-weight-bold" for="hrsRealizar"># Estudiantes en proyecto (*)</label>
                   <input
                     type="number"
                     v-model="vacantesProy"
                     id="vacantesProy"
+                    min="0"
                     name="vacantesProy"
                     class="form-control"
                     autocomplete="off"
@@ -407,7 +414,7 @@
               <br>
               <div class="form-group row">
                 <div class="col-md-12 col-sm-12 col-lg-12">
-                  <label for class="font-weight-bold">Actividades:*</label>
+                  <label for class="font-weight-bold">Actividades (*)</label>
                   <br>
                   <vue-editor v-model="actividadesUpd" :editorToolbar="toolBars"></vue-editor>
                 </div>
@@ -415,7 +422,7 @@
               <div class="row">
                 <div class="col-md-12 col-xs-12 col-lg-12">
                   <br>
-                  <label class="font-weight-bold" for>Institución donde se realiza proyecto:*</label>
+                  <label class="font-weight-bold" for>Institución donde se realiza proyecto (*)</label>
                   <br>
                   <v-select
                     label="label"
@@ -430,7 +437,14 @@
               <br>
               <div class="form-group row">
                 <div class="col-md-12 col-lg-12">
-                  <label class="font-weight-bold" for>Imagen:*</label>
+                  <label class="font-weight-bold" for>Imagen</label>
+                  <div class="row">
+                   <div class="col-md-12" v-if="!tieneImagen">
+                    <div class="alert alert-warning text-center m-2 font-weight-bold" role="alert">
+                      Este Proyecto no posee imagen..
+                    </div>
+                  </div>
+                </div>
                   <br>
                   <div class="row">
                     <div class="col-md-6 col-sm-12 col-lg-6">
@@ -510,7 +524,7 @@
                   <button type="button" @click="cerrarModal()" class="button red">
                     <i class="mdi mdi-close-box"></i>&nbsp;Cancelar
                   </button>
-                  <button type="button" class="button blue" @click="actualizarProyecto">
+                  <button type="button" :class="[vacantesProy == '' || hrsRealizar == '' || nombreP == '' || actividadesUpd == '' || institucionP == null ? 'disabled':'']" :disabled="vacantesProy == '' || hrsRealizar == '' || nombreP == '' || actividadesUpd == '' || institucionP == null" class="button blue" @click="actualizarProyecto">
                     <i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto
                   </button>
                 </div>
@@ -597,7 +611,8 @@ export default {
       offset: 3,
       color: "#533fd0",
       size: "20px",
-      disabledVE: false
+      disabledVE: false,
+      tieneImagen: true
     };
   },
   computed: {
@@ -783,12 +798,16 @@ export default {
           if (me.arrayImages.indexOf(data.img) != -1) {
             $("#btnOpenGallery").click();
             me.imgGallery = data.img;
-          } else {
-            me.image = data.img;
-            var url =
+            me.tieneImagen = true;
+          }else if((data.img == null) || (data.img == '')) {
+            me.tieneImagen = false;
+          }else{
+              me.image = data.img;
+              var url =
               window.location.origin + "/images/img_projects/" + me.image;
-            vueImgInputer.imgSrc = url;
-            me.switchImg = true;
+              vueImgInputer.imgSrc = url;
+              me.switchImg = true;
+              me.tieneImagen = true;
           }
           me.actividadesUpd = data.actividades;
           me.institucionP = JSON.parse(inst);
@@ -838,23 +857,22 @@ export default {
       let me = this;
       const el = document.body;
       el.classList.remove("abrirModal");
-      this.modal = 0;
-      this.tituloModal = "";
-      this.nombreP = "";
-      this.proyecto_id = 0;
-      this.actividadesUpd = "";
-      this.arrayInstitucion = [];
-      this.estado = 0;
-      this.errors = [];
-      this.imgGallery = "";
-      this.img = "";
+      me.modal = 0;
+      me.tituloModal = "";
+      me.nombreP = "";
+      me.proyecto_id = 0;
+      me.actividadesUpd = "";
+      me.arrayInstitucion = [];
+      me.estado = 0;
+      me.errors = [];
+      me.imgGallery = "";
+      me.img = "";
+      me.tieneImagen = true;
       if (me.switchImg == true) {
         me.switchImg = false;
       }
-      // const elem = me.$refs.divCollapse;
-      // if (elem.classList.contains("collapse")) {
-      // 	elem.classList.remove("show");
-      // }
+      if ($("#collapseExample").hasClass('show'))
+      	   $("#collapseExample").removeClass('show')
     },
     cambiarPaginaPID(page, proceso, buscar) {
       let me = this;

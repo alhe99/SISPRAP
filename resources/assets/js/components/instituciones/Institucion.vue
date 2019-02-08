@@ -333,53 +333,72 @@
           </div>
         </div>
         <div class="row">
+         <div class="col-md-12">
+          <br><div class="alert alert-primary text-center font-weight-bold h6" role="alert">
+            Campos requeridos poseen un (*)
+          </div>
+         </div>
+       </div>
+        <div class="row">
           <div class="col-md-12"><br>
             <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
           </div>
           <div class="col-md-12 col-xs-12 col-lg-12">
-            <br><label for="nombre">Nombre de la institución*</label>
+            <label class="font-weight-bold" for="nombre">Nombre de la institución (*)</label>
             <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" autocomplete="off">
             <!-- <span v-if="errors.nombre" class="text-danger" v-text="errors.nombre[0]" ></span> -->
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
-            <br><label for="direccion">Dirección exacta*</label><br>
+            <br><label class="font-weight-bold" for="direccion">Dirección exacta (*)</label><br>
             <textarea v-model="direccion" id="direccion" name="direccion" class="form-control" rows="3"></textarea>
             <!-- <span v-if="errors.direccion" class="text-danger" v-text="errors.direccion[0]"></span>-->
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
-            <br><label for="phone">Teléfono</label>
+            <br><label class="font-weight-bold" for="phone">Teléfono</label>
             <input type="text" v-mask="'########'" v-model="phone" name="phone" id="phone" class="form-control" required>
             <!-- <span v-if="errors.phone" class="text-danger" v-text="errors.phone[0]"></span> -->
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
-            <br><label for="email">Correo Electrónico</label>
-            <input type="email" v-model="email" name="email" id="email" class="form-control" autocomplete="off">
+            <br><label class="font-weight-bold" for="email">Correo Electrónico</label>
+            <input type="email" v-validate="'email'" data-vv-as="email" v-model="email" name="email" id="email" class="form-control" autocomplete="off">
             <!-- <span v-if="errors.email" class="text-danger" v-text="errors.email[0]"></span> -->
-            <!-- <span>{{ errors.first('email') v-validate="'email'" data-vv-as="email" }}</span> -->
+            <span>{{ errors.first('email')}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
-            <br><label for="email">Seleccione un Departamento* </label>
-            <br><v-select label="label" v-model="departamento_id" :onChange="watchDepa" placeholder="Seleccione un departamento" :options="arrayDepartamentos"></v-select>
+            <br><label class="font-weight-bold" for="email">Seleccione un Departamento (*)</label>
+            <br><v-select label="label" v-model="departamento_id" :onChange="watchDepa" placeholder="Seleccione un departamento" :options="arrayDepartamentos">
+              <span slot="no-options">
+               No hay datos disponibles
+             </span>
+            </v-select>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12" v-if="departamento_id !== null">
-            <br><label for="email">Seleccione un Municipio*</label>
-            <br><v-select label="label" v-model="municipio_id"  placeholder="Seleccione un municipio"  :options="arrayMunicipios"></v-select>
+            <br><label class="font-weight-bold" for="email">Seleccione un Municipio (*)</label>
+            <br><v-select label="label" v-model="municipio_id"  placeholder="Seleccione un municipio"  :options="arrayMunicipios">
+              <span slot="no-options">
+               No hay datos disponibles
+             </span>
+            </v-select>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12 col-lg-12">
-            <br><label for="email">Seleccione un Sector de la Institución*</label>
-            <br><v-select label="label" v-model="sector_id" placeholder="Seleccione un sector de la institucion"  :options="arraySectores"></v-select>
+            <br><label class="font-weight-bold" for="email">Seleccione un Sector de la Institución (*)</label>
+            <br><v-select label="label" v-model="sector_id" placeholder="Seleccione un sector de la institucion"  :options="arraySectores">
+              <span slot="no-options">
+               No hay datos disponibles
+             </span>
+            </v-select>
           </div>
         </div>
       </div>
@@ -387,8 +406,9 @@
         <div class="row">
           <div class="col-md-12">
             <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-            <button type="button" :disabled="validate == true" :class="[validate == true ? 'disabled' : '']" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Institución</button>
-            <button type="button" :disabled="validate == true" :class="[validate == true ? 'disabled' : '']" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Institución</button>
+            <button type="button" :disabled="nombre == '' || direccion == '' || departamento_id == null || municipio_id == null || municipio_id == 0 || sector_id == 0 || sector_id == null " :class="[nombre == '' || direccion == '' || departamento_id == null || municipio_id == null || municipio_id == 0 || sector_id == 0 || sector_id == null  ? 'disabled' : '']" v-if="tipoAccion==1" class="button blue" @click="registrarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Guardar Institución</button>
+
+            <button type="button" :disabled="nombre == '' || direccion == '' || departamento_id == null || municipio_id == null || municipio_id == 0 || sector_id == 0 || sector_id == null " :class="[nombre == '' || direccion == '' || departamento_id == null || municipio_id == null || municipio_id == 0 || sector_id == 0 || sector_id == null  ? 'disabled' : '']" v-if="tipoAccion==2" class="button blue" @click="actualizarInstitucion" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Institución</button>
           </div>
         </div>
       </div>
@@ -567,7 +587,7 @@
                                                     <img  :src="image" :alt="`Imagen ${index}`">
                                                     <div class="details">
                                                       <span class="name" v-text="files[index].name"></span>
-                                                        <span class="size" v-text="getFileSize(files[index].size)"></span> 
+                                                        <span class="size" v-text="getFileSize(files[index].size)"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -576,7 +596,7 @@
                                   <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
                                 </div>
                                 <div class="modal-footer">
-                                  <div class="row"> 
+                                  <div class="row">
                                     <div class="col-md-12">
                                       <button type="button" @click="cerrarModalSuper()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cancelar</button>
                                       <button type="button" class="button blue disabled" id="btnSaveSupervision" disabled v-if="tipoAccion2 == 1" @click="registrarSupervision()" dense><i class="mdi mdi-content-save"></i>&nbsp;Registrar Supervisión</button>
@@ -746,14 +766,6 @@ export default {
                       this.municipio_id = 0;
                     }
                   },
-                  validate: function(){
-                    if((this.nombre == "") || (this.direccion == "") || (this.departamento_id == 0) || (this.municipio_id == 0) || (this.sector_id == 0))
-                    {
-                      return true;
-                    }else{
-                      return false;
-                    }
-                  },
                 },
                 watch: {
                   verProyectosExternos: function(){
@@ -911,7 +923,7 @@ export default {
             type: 'info',
             title: 'Imagen removida de supervisión',
             timer: 3000
-           });          
+           });
         })
       },
       // Metodo que abre el datePicker
@@ -934,7 +946,7 @@ export default {
       registrarInstitucion() {
         let me = this;
         me.loading = true;
-        var urlSave = route('registrarInstitucion', {"nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email, 
+        var urlSave = route('registrarInstitucion', {"nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email,
         "sector_institucion_id" : me.sector_id["value"], "municipio_id": me.municipio_id["value"], "proceso_id": me.tipoproceso_id});
 
         var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
@@ -976,7 +988,7 @@ export default {
       actualizarInstitucion() {
         let me = this;
         me.loading = true;
-        var urlUpdate = route('update', {"id":me.institucion_id, "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, 
+        var urlUpdate = route('update', {"id":me.institucion_id, "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone,
         "email": me.email, "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "estado": me.estado, "proceso_id": me.tipoproceso_id});
         var url = route('validateInstitucion',{"nombre": me.nombre,"proceso_id":me.proceso});
         axios.get(url).then(function(response) {
@@ -1494,7 +1506,7 @@ registrarSupervision() {
           return me.search;
         },
         desactivarInstitucion(id) {
-         
+
           swal({
             title: "Esta seguro de desactivar esta Institucion?",
             type: "question",
@@ -1654,7 +1666,7 @@ registrarSupervision() {
             axios
             .get(url)
             .then(function(response) {
-              
+
           })
             .catch(function(error) {
               console.log(error);

@@ -41,6 +41,11 @@
             class="text-center font-weight-bold"
             v-if="proceso==2"
             >Formulario para publicación proyectos  de Práctica Profesional</h3>
+            <div class="col-md-12">
+              <div class="alert alert-primary text-center font-weight-bold h6" role="alert">
+                  Campos requeridos poseen un (*)
+              </div>
+            </div>
             <form>
               <div class="form-group" style="margin-left: -12px;">
                 <div class="row">
@@ -48,7 +53,7 @@
                     <mdc-textfield
                     type="text"
                     class="col-md-12"
-                    label="Nombre del proyecto"
+                    label="Nombre del proyecto (*)"
                     helptext="(Ingrese el nombre del proyecto a publicar)"
                     v-model="nombre"
                     ></mdc-textfield>
@@ -66,7 +71,7 @@
                 :max="300"
                 class="col-md-6"
                 :class="[proyectoExterno == true ? 'col-md-12' : 'col-md-6']"
-                label="Cantidad de horas a realizar:"
+                label="Cantidad de horas a realizar (*)"
                 helptext="Detalle el numero de horas del proyecto"
                 v-model="catidadHoras"
                 ></mdc-textfield>
@@ -77,7 +82,7 @@
                 :max="500"
                 v-show="proyectoExterno == false"
                 class="col-md-6"
-                label="Cantidad de alumnos para proyecto:"
+                label="Cantidad de alumnos para proyecto (*)"
                 helptext="Digite la cantidad"
                 v-model="cantidadVacantes"
                 ></mdc-textfield>
@@ -91,165 +96,165 @@
                   :options="arrayCarreras"
                   placeholder="Seleccione una o mas carreras"
                   ><span slot="no-options">
-               No hay datos disponibles
-             </span></v-select>
-                </div>
-                <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12 col-sm-12 col-lg-12">
-                  <label for="vEditorSS">Describa Actividades a Realizar:</label>
-                  <form-wizard
-                  v-if="proceso == 2 && carrerasProy.length != 0 "
-                  title="Actividades"
-                  subtitle="Detalle Actividades para cada carrera seleccionada"
-                  color="#6200ee"
-                  >
-                  <wizard-step
-                  slot-scope="props"
-                  slot="step"
-                  :tab="props.tab"
-                  :transition="props.transition"
-                  :index="props.index"
-                  ></wizard-step>
-                  <tab-content
-                  v-for="carreras in carrerasProy"
-                  :key="carreras.id"
-                  :title="carreras['label']"
-                  ref="titleC"
-                  >
-                  <vue-editor
-                  ref="editorPP"
-                  :disabled="disabledVE"
-                  v-model="actividadesCarre"
-                  :editorToolbar="toolBars"
-                  ></vue-editor>
-                </tab-content>
-                <mdc-button
-                type="button"
-                ref="myBtn"
-                id="btnNextActi"
-                raised
-                slot="next"
-                @click="agregarActivi"
-                :disabled="actividadesCarre == ''"
-                >Siguiente</mdc-button>
-                <mdc-button
-                type="button"
-                ref="btnEnd"
-                raised
-                slot="finish"
-                @click="agregarActivi"
-                :disabled="actividadesCarre == ''"
-                >Aceptar</mdc-button>
+                   No hay datos disponibles
+                 </span></v-select>
+               </div>
+               <div class="col-md-2 col-sm-2 col-lg-2 text-primary"></div>
+             </div>
+             <div class="form-group row">
+              <div class="col-md-12 col-sm-12 col-lg-12">
+                <label for="vEditorSS">Describa Actividades a Realizar (*)</label>
+                <form-wizard
+                v-if="proceso == 2 && carrerasProy.length != 0 "
+                title="Actividades"
+                subtitle="Detalle Actividades para cada carrera seleccionada"
+                color="#6200ee"
+                >
+                <wizard-step
+                slot-scope="props"
+                slot="step"
+                :tab="props.tab"
+                :transition="props.transition"
+                :index="props.index"
+                ></wizard-step>
+                <tab-content
+                v-for="carreras in carrerasProy"
+                :key="carreras.id"
+                :title="carreras['label']"
+                ref="titleC"
+                >
+                <vue-editor
+                ref="editorPP"
+                :disabled="disabledVE"
+                v-model="actividadesCarre"
+                :editorToolbar="toolBars"
+                ></vue-editor>
+              </tab-content>
+              <mdc-button
+              type="button"
+              ref="myBtn"
+              id="btnNextActi"
+              raised
+              slot="next"
+              @click="agregarActivi"
+              :disabled="actividadesCarre == ''"
+              >Siguiente</mdc-button>
+              <mdc-button
+              type="button"
+              ref="btnEnd"
+              raised
+              slot="finish"
+              @click="agregarActivi"
+              :disabled="actividadesCarre == ''"
+              >Aceptar</mdc-button>
 
-              </form-wizard>
-              <vue-editor
-              v-else-if="proceso == 1 || proyectoExterno == true"
-              v-model="actividadesCarre"
-              :editorToolbar="toolBars"
-              id="vEditorSS"
-              ></vue-editor>
-            </div>
+            </form-wizard>
+            <vue-editor
+            v-else-if="proceso == 1 || proyectoExterno == true"
+            v-model="actividadesCarre"
+            :editorToolbar="toolBars"
+            id="vEditorSS"
+            ></vue-editor>
+          </div>
 
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <v-select
+            v-model="institucion"
+            :options="arrayInstituciones"
+            placeholder="Seleccione una Institución (*)"
+            ><span slot="no-options">
+             No hay datos disponibles
+           </span></v-select>
+         </div>
+       </div>
+       <div class="form-group row" v-if="proyectoExterno == false">
+        <div class="col-md-12 col-lg-12  col-sm-12">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-6">
+              <button
+              :disabled="switchImg ==true"
+              ref="btntest"
+              v-on:click="clearGallery()"
+              class="btn btn-primary font-weight-bold text-dark"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+              >
+              <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Predeterminadas
+            </button>
           </div>
-          <div class="form-group row">
-            <div class="col-md-12 col-sm-12 col-lg-12">
-              <v-select
-              v-model="institucion"
-              :options="arrayInstituciones"
-              placeholder="Seleccione una Institución"
-              ><span slot="no-options">
-               No hay datos disponibles
-             </span></v-select>
+          <div class="col-md-6 col-sm-12 col-lg-6">
+            <div class="form-group text-right">
+              <switches
+              class="switch-md"
+              v-model="switchImg "
+              theme="bootstrap"
+              color="primary"
+              ></switches>
+              <label>Seleccionar Imagen De PC</label>
             </div>
           </div>
-          <div class="form-group row" v-if="proyectoExterno == false">
-            <div class="col-md-12 col-lg-12  col-sm-12">
-              <div class="row">
-                <div class="col-md-6 col-sm-12 col-lg-6">
-                  <button
-                  :disabled="switchImg ==true"
-                  ref="btntest"
-                  v-on:click="clearGallery()"
-                  class="btn btn-primary font-weight-bold text-dark"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapseExample"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                  >
-                  <i class="mdi mdi-folder-multiple-image h4"></i> Imágenes Predeterminadas
-                </button>
-              </div>
-              <div class="col-md-6 col-sm-12 col-lg-6">
-                <div class="form-group text-right">
-                  <switches
-                  class="switch-md"
-                  v-model="switchImg "
-                  theme="bootstrap"
-                  color="primary"
-                  ></switches>
-                  <label>Seleccionar Imagen De PC</label>
-                </div>
-              </div>
-            </div>
+        </div>
+        <div
+        v-show="switchImg==false"
+        class="collapse"
+        ref="divCollapse"
+        id="collapseExample"
+        >
+        <div class="card card-body">
+          <div class="row" id="seccion">
             <div
-            v-show="switchImg==false"
-            class="collapse"
-            ref="divCollapse"
-            id="collapseExample"
+            class="col-md-2 col-sm-12 col-lg-2"
+            v-for="image in arrayImages"
+            :key="image.id"
             >
-            <div class="card card-body">
-              <div class="row" id="seccion">
-                <div
-                class="col-md-2 col-sm-12 col-lg-2"
-                v-for="image in arrayImages"
-                :key="image.id"
-                >
-                <input
-                type="radio"
-                :id="image"
-                name="select"
-                :value="image"
-                v-model="imgGallery"
-                >
-                <label :for="image">
-                  <img
-                  class="text-center img-fluid"
-                  :src="'images/img_projects/' + image"
-                  alt=""
-                  >
-                </label>
-              </div>
-            </div>
+            <input
+            type="radio"
+            :id="image"
+            name="select"
+            :value="image"
+            v-model="imgGallery"
+            >
+            <label :for="image">
+              <img
+              class="text-center img-fluid"
+              :src="'images/img_projects/' + image"
+              alt=""
+              >
+            </label>
           </div>
         </div>
-        <div class="row" id="imageP" v-show="switchImg==true">
-          <img-inputer
-          class="col-md-12 col-sm-12 col-lg-12"
-          ref="imgUpload"
-          icon="img"
-          bottom-text="Seleccionar nueva imagen"
-          theme="material"
-          accept="image/*"
-          @onChange="changeImg"
-          size="large"
-          placeholder="Selecione una imagen de su computadora!"
-          />
-        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
-        <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
-      </div>
+    <div class="row" id="imageP" v-show="switchImg==true">
+      <img-inputer
+      class="col-md-12 col-sm-12 col-lg-12"
+      ref="imgUpload"
+      icon="img"
+      bottom-text="Seleccionar nueva imagen"
+      theme="material"
+      accept="image/*"
+      @onChange="changeImg"
+      size="large"
+      placeholder="Selecione una imagen de su computadora!"
+      />
     </div>
-  </form>
-  <div class="row">
-    <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
   </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <button type="button" :class="[validate == true ? 'disabled' : '']" :disabled="validate == true" id="btnGuardar" class="button blue" @click="saveProyect"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Proyecto</button>
+    <!-- <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader> -->
+  </div>
+</div>
+</form>
+<div class="row">
+  <div class="col-md-12 loading text-center" v-if="loadSpinner == 1"></div>
+</div>
 </div>
 </div>
 </div>
@@ -343,9 +348,7 @@ export default {
  },
  computed:{
   validate: function(){
-        //if((this.nombre == "") || (this.actividadesCarre == "") || (this.institucion == ""))
-        if((this.nombre == "") || (this.institucion == ""))
-        //if((this.nombre == "") || (this.actividadesCarre == "") || (this.institucion == ""))
+      if((this.nombre == "") || (this.institucion == ""))
       {
         return true;
       }else{
@@ -416,7 +419,7 @@ methods: {
         let me = this;
         var tipoProyecto = 'I';
         if (me.proyectoExterno) {tipoProyecto = 'E';};
-         var url = route('saveProyectosInternos',{
+        var url = route('saveProyectosInternos',{
           'proceso_id':me.proceso,
           'nombre':me.nombre,
           'actividades': JSON.stringify(me.actividadesProy),
@@ -427,7 +430,7 @@ methods: {
           'horas': me.catidadHoras,
           'cantidadAlumnos': me.cantidadVacantes,
           'tipoProyecto': tipoProyecto
-          });
+        });
         me.loadSpinner = 1;
         axios.post(url).then(function(response) {
           swal({

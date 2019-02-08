@@ -88,7 +88,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-lg-12">
                         <br><label for="nombre">Nombre de la carrera*</label>
@@ -399,7 +398,7 @@
       </div>     
     </div>
     <div v-if="activetab === 3" class="tabcontent">
-        <h2 class="text-center">Año</h2>
+        <br><h2 class="text-center">Año Actual del sistema</h2>
       <div class="panel panel-default">
        <div class="row">
         <div class="col-md-12 col-xs-12 col-lg-12">
@@ -583,9 +582,7 @@ export default {
     },
     cambiarPaginaDes(page, buscar) {
           let me = this;
-          //Actualiza la pagina actual
           me.paginationID.current_page = page;
-          //Envia la pericion para visualizar los datos
           me.listarCarrerasDes(page, buscar);
         },
    searchEmpty() {
@@ -604,7 +601,6 @@ export default {
             switch (modelo) {
                 case "car": {
                     switch (accion) {
-
                     case "actualizar": {
                     //Asignando los datos traidos a los controles del formulario
                     this.modalId = 1;
@@ -625,7 +621,6 @@ export default {
       this.modalId2 = 2;
       this.tituloModal = "Carreras Desactivadas";
       this.listarCarrerasDes(1, "");
-
     },
     cerrarModal() {
         const el = document.body;
@@ -680,7 +675,6 @@ export default {
           });
         },
         activarCarrera(id) {
-
           var urlActivarcarrera = route('activarCarrera', {"id":id});
           swal({
             title: "Esta seguro de activar esta Carrera?",
@@ -732,7 +726,7 @@ export default {
                 swal({
                     position: "center",
                     type: "warning",
-                    title: "Carrera Existente! Ingrese otra carrera!",
+                    title: "Nombre de Carrera Existente!",
                     showConfirmButton: true,
                     timer: 5000
                 });
@@ -747,7 +741,7 @@ export default {
                     swal({
                         position: "center",
                         type: "success",
-                        title: "Carrera actualizada correctamente!",
+                        title: "Datos actualizada correctamente!",
                         showConfirmButton: false,
                         timer: 1000
                     });
@@ -768,7 +762,6 @@ export default {
             }
         });
     },
-
     //registra los datos del estudiante
     saveEstudiante() {
       this.$validator.validateAll().then(() => {

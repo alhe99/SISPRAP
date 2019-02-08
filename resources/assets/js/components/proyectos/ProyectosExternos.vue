@@ -382,7 +382,7 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" >
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title text-white">Proyectos Desactivados</h4>
@@ -542,7 +542,7 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" style="min-width:1100px;">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title text-white">Actualización de Datos</h4>
@@ -559,11 +559,16 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-md-12">
+                 <div class="col-md-12">
+                  <div class="alert alert-primary text-center font-weight-bold h6" role="alert">
+                    Campos requeridos poseen un (*)
+                  </div>
+                </div>
                   <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
                 </div>
                 <div class="col-md-12 col-xs-12 col-lg-12">
                   <br>
-                  <label class="font-weight-bold" for="nombre">Nombre del proyecto</label>
+                  <label class="font-weight-bold" for="nombre">Nombre del proyecto (*)</label>
                   <input
                     type="text"
                     v-model="nombreP"
@@ -579,7 +584,7 @@
               <div class="row">
                 <div class="col-md-12 col-xs-12 col-lg-12">
                   <br>
-                  <label class="font-weight-bold" for="hrsRealizar">Horas a realizar</label>
+                  <label class="font-weight-bold" for="hrsRealizar">Horas a realizar (*)</label>
                   <input
                     type="number"
                     v-model="hrsRealizar"
@@ -596,7 +601,7 @@
               <br>
               <div class="form-group row">
                 <div class="col-md-12 col-sm-12 col-lg-12">
-                  <label for class="font-weight-bold">Actividades:*</label>
+                  <label for class="font-weight-bold">Actividades (*)</label>
                   <br>
                   <vue-editor v-model="actividadesP" :editorToolbar="toolBars"></vue-editor>
                 </div>
@@ -604,7 +609,7 @@
               <div class="row">
                 <div class="col-md-12 col-xs-12 col-lg-12">
                   <br>
-                  <label class="font-weight-bold" for>Institución donde se realiza proyecto:*</label>
+                  <label class="font-weight-bold" for>Institución donde se realiza proyecto (*)</label>
                   <br>
                   <v-select
                     label="label"
@@ -623,7 +628,7 @@
                   <button type="button" @click="cerrarModal()" class="button red">
                     <i class="mdi mdi-close-box"></i>&nbsp;Cancelar
                   </button>
-                  <button type="button" class="button blue" @click="actualizarProyecto">
+                  <button type="button" :class="[nombreP == '' || hrsRealizar == '' || actividadesP == '' || institucionP == null ? 'disabled':'']" :disabled="nombreP == '' || hrsRealizar == '' || actividadesP == '' || institucionP == null" class="button blue" @click="actualizarProyecto">
                     <i class="mdi mdi-content-save"></i>&nbsp;Actualizar Proyecto
                   </button>
                 </div>
@@ -948,7 +953,6 @@ export default {
           me.hrsRealizar = data.horas_realizar;
           me.getInst();
           this.loadSpinner = 0;
-
           break;
       }
     },

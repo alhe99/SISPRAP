@@ -85,19 +85,19 @@
         </tbody>
       </table>
       <nav>
-        <ul class="pagination" >
-          <li class="page-item" v-if="pagination.current_page > 1">
-            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
-          </li>
-          <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-            <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
+            <ul class="pagination">
+              <li class="page-item" v-if="pagination.current_page > 1">
+                <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
+              </li>
+              <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
 
-            <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-              <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
-            </li>
-            <small v-show="arrayStudents.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayStudents.length + ' de ' + pagination.total + ' registros)'"></small>
-          </ul>
-        </nav>
+                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                  <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+                </li>
+                <small v-show="arrayStudents.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayStudents.length + ' de ' + pagination.total + ' registros)'"></small>
+              </ul>
+            </nav>
         <div v-if="arrayStudents.length == 0" class="alert alert-warning" role="alert">
           <h4 class="font-weight-bold text-center">No hay registros disponibles</h4>
         </div>
@@ -247,7 +247,7 @@
                 <div class="modal-body">
                   <div class="row">
                     <div class="col-md-12">
-                      <label for="">Seleccione un documento</label>
+                      <label for="">Seleccione uno o mas documento de la lista</label>
                       <div class="row">
                         <div v-for="(item,index) in arrayDocumentos" :key="item.id" v-if="item.value != arrayDocEntreg[index]" class="col-md-3">
                          <checkbox  :value="item.value" v-model="valuesDoc">{{ item.label }}</checkbox>
@@ -265,7 +265,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <button type="button" @click="cerrarModalDoc()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cerrar</button>
-                    <button type="button" @click="saveDoc()" class="button blue"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Datos</button>
+                    <button type="button" @click="saveDoc()" :class="[valuesDoc.length == 0 ? 'disabled' : '']" :disabled="valuesDoc.length == 0" class="button blue"><i class="mdi mdi-content-save"></i>&nbsp;Guardar Datos</button>
                   </div>
                 </div>
               </div>
@@ -288,15 +288,15 @@
                 <div class="row">
                   <div class="col-md-12">
                     <label for="obs" class="font-weight-bold">Seleccione Fecha de Finalización de Proyecto: </label>
-                    <input placeholder="aaaa-mm-dd" @click="openDateIPicker('#fechaFin')" v-mask="'####-##-##'" id="fechaFin" name="fechaFin" class="form-control" >
+                    <input placeholder="aaaa-mm-dd" :readonly="!eliminarProyecto" :disabled="eliminarProyecto" @click="openDateIPicker('#fechaFin')" v-mask="'####-##-##'" id="fechaFin" name="fechaFin" class="form-control" >
                   </div><br>
                   <div class="col-md-12"><br>
                    <label for="obs" class="font-weight-bold">Total de Horas Realizadas en el proyecto: </label>
-                   <input type="number" :disabled="gpObj.estudiante.no_proyectos == 2" min="0" max="300" class="form-control" v-model="hrsFinal">
+                   <input type="number" :disabled="gpObj.estudiante.no_proyectos == 2 || eliminarProyecto" min="0" max="300" class="form-control" v-model="hrsFinal">
                  </div>
                  <div class="col-md-12"><br>
                    <label for="obs" class="font-weight-bold">Observación Final: </label>
-                   <textarea name="obs" class="form-control"  v-model="obsFinal" rows="5"></textarea>
+                   <textarea name="obs" :disabled="eliminarProyecto" class="form-control"  v-model="obsFinal" rows="5"></textarea>
                  </div>
                  <div class="col-md-12">
                    <checkbox v-model="eliminarProyecto" class="font-weight-bold">No contar horas al proceso (eliminar proyecto)</checkbox>
@@ -308,7 +308,7 @@
                 <div class="col-md-12">
                   <button type="button" @click="cerrarModalEnd()" class="button red"><i class="mdi  mdi-close-box"></i>&nbsp;Cerrar</button>
                   <button type="button" v-if="eliminarProyecto" @click="deleteProy(idGP)" class="button secondary"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
-                  <button type="button" v-else @click="cancelProy(idGP)" class="button secondary"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
+                  <button type="button" v-else @click="cancelProy(idGP)" id="btnCloseProyect" disabled class="button secondary disabled"><i class="mdi mdi-content-save"></i>&nbsp;Guardar</button>
 
                 </div>
               </div>
@@ -430,13 +430,29 @@ export default {
       }else{
         this.hrsFinal = this.gpObj.horas_a_realizar;
       }
+    },
+    eliminarProyecto:function(){
+      if(this.eliminarProyecto){
+         if( $("#btnCloseProyect").hasClass('disabled')){
+           $("#btnCloseProyect").prop('disabled',false);
+           $("#btnCloseProyect").removeClass('disabled');
+         }
+         $("#fechaFin").val('');
+         this.hrsFinal = 0;
+         this.obsFinal = '';
+         $(".gj-icon").prop('hidden',true);
+      }else{
+        $(".gj-icon").prop('hidden',false);
+        $("#btnCloseProyect").prop('disabled',false);
+        $("#btnCloseProyect").addClass('disabled');
+      }
     }
   },
   computed:{
-   isActived: function() {
+  isActived: function() {
     return this.pagination.current_page;
   },
-  pagesNumber: function() {
+   pagesNumber: function() {
     if (!this.pagination.to) {
       return [];
     }
@@ -483,12 +499,15 @@ methods:{
   //obtener los documentos
   getDocuments() {
     let me = this;
+    me.loadSpinner = 1;
     var url = route('getDocumentosByEstudiante');
     axios.get(url).then(function(response) {
       var respuesta = response.data;
       me.arrayDocumentos = respuesta;
+      me.loadSpinner = 0;
     })
     .catch(function(error) {
+      me.loadSpinner = 0;
       console.log(error);
     });
   },
@@ -580,7 +599,7 @@ methods:{
           me.getMoreInfoGp(me.idGP);
           swal(
             "Hecho!",
-            "Proyecto Elimnado Correctamente",
+            "Proyecto Eliminado Correctamente",
             "success"
             );
           me.loadSpinner = 0;
@@ -612,7 +631,6 @@ methods:{
 
     $("#fechaInicio").datepicker({
       locale: 'es-es',
-      // minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
       format: 'yyyy-mm-dd',
     });
   },
@@ -652,21 +670,26 @@ methods:{
       locale: 'es-es',
       maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
       format: 'yyyy-mm-dd',
+      minDate: this.gpObj.fecha_inicio,
+      change:function(e){
+        $("#btnCloseProyect").prop('disabled',false);
+        $("#btnCloseProyect").removeClass('disabled');
+      }
     });
 
   },
   cerrarModalEnd() {
     const el = document.body;
     el.classList.remove("abrirModal");
+    var datepickerFechaFin = $('#fechaFin').datepicker();
     this.modalEnd = 0;
     this.fechaFin= '';
     this.obsFinal= '';
     $("#fechaFin").val('');
     this.eliminarProyecto = false;
-    //$(".gj-icon").click();
+    datepickerFechaFin.destroy();
 
   },
-
   //obtener proyectos iniciados por su proceso
   getGestionProy(carrera_id,proceso_id,page,buscar) {
     let me = this;
@@ -692,7 +715,7 @@ methods:{
     let me = this;
     me.pagination.current_page = page;
     if (me.arrayStudents.length > 0) {
-      me.getAllStudensHasPayArancel(this.carrera_selected.value,this.proceso,page,"");
+      me.getGestionProy(me.carrera_selected.value,me.proceso,page,"")
     }
   },
   // Metodo para cambiar la fecha de incio del proyecto

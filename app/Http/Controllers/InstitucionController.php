@@ -248,12 +248,14 @@ class InstitucionController extends Controller
 
         $headerHtml = view()->make('reportes.header_reportes',['anio'=>$this->anio,'proceso' => $procesoTitulo])->render();
         $pdf = PDF::loadView('reportes.hojaSupervisionGeneralByMunicipios',['institucionesGeneral'=>$arrayInstitucionGeneral,'institucionDetalle'=> $arrayInstitucionDetalle,'proceso' => $procesoTitulo])->setOption('footer-center', '')->setOption('header-html',$headerHtml);;
-        $pdf->setOption('margin-top',43);
-        $pdf->setOption('margin-bottom',10);
+        $pdf->setOption('margin-top',48);
+        $pdf->setOption('margin-bottom',15);
         $pdf->setOption('margin-left',10);
         $pdf->setOption('margin-right',10);
+        // $pdf->setOption('header-spacing',5);
+        // $pdf->setOption('footer-spacing',0);
         $pdf->setOption('orientation','landscape');
-        return $pdf->stream('Hoja de Supervisión General '.date('Y-m-d').'.pdf');
+        return $pdf->stream('Hoja de Supervisión General '.$procesoTitulo." ".date('Y-m-d').'.pdf');
     }
 
     //obtener listado de instituciones por proceso

@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col-md-12"><br>
 				<h5 class="text-center font-weight-bold">INSTITUTO TECNOLÓGICO DE CHALATENANGO, ASOCIACIÓN AGAPE DE EL SALVADOR</h5>
-				<h6 class="text-center font-weight-bold">SUPERVISIÓN {{ strtoupper($proceso)." ".$anio }}</h6><br>
+				<h6 class="text-center font-weight-bold">SUPERVISIÓN {{ str_replace("á" ,'Á',strtoupper($proceso))." ".$anio }}</h6><br>
 			</div>
 		</div>
 	</header>

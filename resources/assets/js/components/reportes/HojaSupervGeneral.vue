@@ -68,21 +68,21 @@
                     <div class="col-md-6 text-center"><br>
                      <v-select label="label" v-model="departamento_id" placeholder="Seleccione un departamento" :options="arrayDepartamentos">
                       <span slot="no-options">
-                        No hay resultados
+                         No hay datos disponibles
                       </span>
                     </v-select>
                   </div>
                   <div class="col-md-6 text-center"><br>
                     <v-select :disabled="departamento_id == 0 || departamento_id == undefined" ref="selectMuni" multiple label="label" v-model="municipio_id"  placeholder="Seleccione un municipio"  :options="arrayMunicipios">
                       <span slot="no-options">
-                        No hay resultados
+                         No hay datos disponibles
                       </span>
                     </v-select>
                   </div>
                   <div class="col-md-12 text-center"><br>
                     <v-select ref="selectInstitucion" :disabled="municipios_selected.length == 0" multiple label="label" v-model="institucion_id"  placeholder="Seleccione una institución"  :options="arrayInstituciones">
                       <span slot="no-options">
-                        No hay resultados
+                         No hay datos disponibles
                       </span>
                     </v-select>
                   </div>
@@ -120,6 +120,9 @@ export default {
     }
   },
   watch: {
+    proceso:function(){
+      this.clearData();
+    },
     departamento_id: function() {
       if((this.departamento_id == null) || (this.departamento_id == 0)){
        this.municipio_id = 0;

@@ -34,16 +34,12 @@
             <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-file-check"></i><span
                 class="hide-menu">Control Proyectos</span></a>
                 <ul aria-expanded="false" class="collapse ">
-                    <li><button type="button" @click="menu=22" class="btn btn-link btn-colors">Aprobaciones</button></li>
-                    <li><button type="button" @click="menu=4" class="btn btn-link btn-colors">Gestión proyectos</button></li>
+                    <li><button type="button" @click="menu=1" class="btn btn-link  btn-colors">Publicación de proyectos</button></li>
                     <li><button type="button" @click="menu=3" class="btn btn-link btn-colors">Proyectos Internos</button></li>
                     <li><button type="button" @click="menu=23" class="btn btn-link  btn-colors">Proyectos Externos</button></li>
-                    <li><button type="button" @click="menu=1" class="btn btn-link  btn-colors">Publicación de
-                    proyectos</button></li>
-                    <li><button type="button" @click="menu=2" class="btn btn-link btn-colors">Preinscripciones
-                    proyectos</button></li>
-
-
+                    <li><button type="button" @click="menu=2" class="btn btn-link btn-colors">Preinscripciones proyectos</button></li>
+                    <li><button type="button" @click="menu=22" class="btn btn-link btn-colors">Aprobaciones</button></li>
+                    <li><button type="button" @click="menu=4" class="btn btn-link btn-colors">Gestión proyectos</button></li>
                 </ul>
             </li>
             <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-city"></i><span
@@ -52,15 +48,6 @@
                     <li><button type="button" @click="menu=5" class="btn btn-link btn-colors">Control instituciones</button></li>
                     <li><button type="button" @click="menu=20" class="btn btn-link btn-colors">Sector Institución</button></li>
                     <li><button type="button" @click="menu=6" class="btn btn-link btn-colors">Hojas de supervisión</button></li>
-                    {{-- <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
-                        class="mdi mdi-file-document"></i><span class="hide-menu">Hojas de supervisión
-                        &nbsp;&nbsp;&nbsp;</span></a>
-                        <ul aria-expanded="false" class="collapse ">
-                            <li><button type="button" @click="menu=6" class="btn btn-link  btn-colors">General</button></li>
-                            <li><button type="button" @click="menu=14" class="btn btn-link btn-colors">Por
-                            Institución</button></li>
-                        </ul>
-                    </li> --}}
                 </ul>
             </li>
             <li>
@@ -116,16 +103,6 @@
         {{ csrf_field() }}
     </form>
     <!--Fin de formulario de cerrar sesion-->
-    <!-- Bottom points-->
-    {{-- <div class="sidebar-footer">
-        <! item><a href="" class="link" @click="menu=15" onclick="event.preventDefault();" data-toggle="tooltip"
-            title="Settings"><i class="ti-settings"></i></a>
-        <! item><a href="http://sisprap.test/public" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-        <! item><a href="{{ route('logout') }}"
-    onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-    class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
-    --}}
-    <!-- End Bottom points-->
 </aside>
 <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
@@ -188,76 +165,4 @@
 </div>
 </div>
 </div>
-{{-- <div class="modal" id="exampleModal1" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title text-center text-white" id="exampleModalLongTitle">Actualiza tus datos</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row ">
-                    <div class="col-md-12">
-                     <mdc-textfield
-                     type="text"
-                     class="col-md-12"
-                     label="Nombre"
-                     helptext="(Ingrese el nombre del usuario a actualizar)"
-
-                     ></mdc-textfield>
-                 </div>
-             </div>
-             <div class="row ">
-                <div class="col-md-12">
-                    <mdc-textfield
-                    type="text"
-                    class="col-md-12"
-                    label="Usuario"
-                    helptext="(Ingrese el nombre del usuario)"
-                    ></mdc-textfield>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
-                        Cambiar contraseña
-                    </button>
-                    <div class="row">
-                        <div class="col-md-6" data-wow-delay=".1s">
-                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
-                                <mdc-textfield
-                                type="text"
-                                class="col-md-12"
-                                label="contraseña"
-                                helptext="(Ingrese la nueva contraseña)"
-                                ></mdc-textfield>
-                            </div>
-                        </div>
-                        <div class="col-md-6" data-wow-delay=".1s">
-                            <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-                             <mdc-textfield
-                             type="text"
-                             class="col-md-12"
-                             label="Confirmar contraseña"
-                             helptext="(Confirme su contraseña)"
-                             ></mdc-textfield>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="modal-footer">
-        <div class="col-md-6 text-center">
-            <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
-        </div>
-        <div class="col-md-6 text-center">
-            <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-        </div>
-    </div>
-</div>
-</div>
-</div> --}}
 

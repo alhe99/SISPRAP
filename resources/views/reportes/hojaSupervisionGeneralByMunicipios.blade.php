@@ -10,9 +10,27 @@
     <style>
     .bg-header{background-color:#F8EFB6}
     .font-normal{font-weight: normal;}
-    table{width:100%;page-break-inside: avoid;}
-    thead { display : table-row-group ;}
-    tfoot { display : table-row-group }
+    /*thead{
+        display: table-row-group;
+    }
+    tr{
+        page-break-inside: avoid !important;
+        page-break-before: always;
+        page-break-after: always;
+    }
+    table{
+        word-wrap: break-word;
+    }
+    table td{
+        word-break: break-all;
+    }*/
+    .divTable{
+        display: block;
+        page-break-inside: avoid !important;
+    }
+    .divTable table,.divTable tbody,.divTable tr,.divTable td,.divTable th{
+        page-break-inside: avoid !important;
+    }
 </style>
 
 </head>
@@ -56,11 +74,8 @@
             <h4></h4>
         </div>
         {{-- TABLA PARA DETALLE DE LA EMPRESA --}}
-        {{-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
-        {{-- <br><br> --}}
         <table style='page-break-after:always;'></table>
-        {{-- @include('reportes.header_reportes') --}}
-        <div class="col-md-12">
+        <div class="divTable">
             <table border="2px" cellpadding="10" cellspacing="10" width="100%" >
                 <thead class="font-weight-bold">
                     <tr class="text-center">

@@ -251,9 +251,9 @@ class GestionProyectoController extends Controller
 
         if($request->horasRea == $e->proceso[0]->pivot->num_horas){
             $e->no_proyectos = 0;
-           /*  if ($e->nivel_academico_id == 1) {
+            if ($e->nivel_academico_id == 1) {
                 $e->nivel_academico_id = 2;
-            } */
+            }
             if($gp->tipo_gp == 1){
                 $e->fecha_fin_ss = date('Y-m-d');
 
@@ -515,7 +515,7 @@ class GestionProyectoController extends Controller
             if($procesoId == 1)
                 $procesoTitulo = "SERVICIO SOCIAL";
             else if($procesoId == 2)
-                $procesoTitulo = "PRACTICA PROFESIONAL";
+                $procesoTitulo = "PRÁCTICA PROFESIONAL";
 
             if($request->tipoRepo == 'T'){
                 $collection;
@@ -538,47 +538,47 @@ class GestionProyectoController extends Controller
 
                     switch ($procesoId) {
                         case 1:
-                            $estudiantesM1_PA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesM1_PA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',1]])->get();
+                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->where('proceso_actual','P')->get();
 
-                            $estudiantesM2_PA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesM2_PA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',1]])->get();
+                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->where('proceso_actual','P')->get();
 
-                            $estudiantesM3_PA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesM3_PA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',1]])->get();
+                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->where('proceso_actual','P')->get();
 
-                             $estudiantesM1_SA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                             $estudiantesM1_SA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
+                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->where('proceso_actual','P')->get();
 
-                            $estudiantesM2_SA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesM2_SA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
+                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->where('proceso_actual','P')->get();
 
-                            $estudiantesM3_SA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesM3_SA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',3]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
+                            })->whereNull('fecha_inicio_ss')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->where('proceso_actual','P')->get();
                             break;
                         case 2:
                             $estudiantesM1_PA = new Collection;$estudiantesM2_PA = new Collection;$estudiantesM3_PA = new Collection();
                             $estudiantesM1_SA = $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                 $query->where('tipo_gp',$procesoId);
-                            })->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                             })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
 
                             $estudiantesM2_SA = $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                 $query->where('tipo_gp',$procesoId);
-                            })->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                             })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
 
                             $estudiantesM3_SA = $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                 $query->where('tipo_gp',$procesoId);
-                            })->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                             })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
                             break;
@@ -613,43 +613,6 @@ class GestionProyectoController extends Controller
                     $mes3[$carre->id] = $c3;
 
                 }
-                // Sacando Consolidado por los 3 meses(GENERAL)
-                $dataGeneral = [];
-                $dataGeneral[0] = $this->trimestres[implode($arrayTrimestre)];
-                foreach ($carrera as $carre) {
-                    //Obteniendo el total de resultados becados y otros
-                    switch ($procesoId) {
-                        case 1:
-                            $estudiantesBM =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where('tipo_beca_id',1)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
-                            $estudiantesOB =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where('tipo_beca_id',2)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-                            break;
-
-                        case 2:
-                            $estudiantesBM =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
-                                $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',1)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
-                            $estudiantesOB =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
-                                $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',2)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-                            break;
-                    }
-
-                    $dataGeneral[$carre->id] = array(
-                        "Carrera" => $carre->nombre,
-                        "totalBecaMined" => $estudiantesBM,
-                        "totalOtraBeca" => $estudiantesOB,
-                    );
-                }
 
                  // Sacando Consolidado por los 3 meses(POR NIVEL ACADEMICO)
                 $dataByCarrer = [];
@@ -659,19 +622,19 @@ class GestionProyectoController extends Controller
                     //Obteniendo el total de resultados becados y otros
                     switch ($procesoId) {
                         case 1:
-                            $estudiantesBM_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesBM_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',1],['nivel_academico_id',1]])->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_ss')->where('tipo_beca_id',1)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
 
-                            $estudiantesOB_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesOB_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',1]])->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_ss')->where('tipo_beca_id',2)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
 
-                            $estudiantesBM_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesBM_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                             })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',1],['nivel_academico_id',2]])->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
 
-                            $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                             })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',2]])->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
 
@@ -683,15 +646,15 @@ class GestionProyectoController extends Controller
 
                             $estudiantesBM_SA =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                 $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre')->where([['tipo_beca_id',1],['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',1)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_pp')->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
 
                             $estudiantesOB_SA =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                 $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre')->where([['tipo_beca_id',2],['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',2)->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_pp')->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
                             break;
                     };
 
@@ -724,7 +687,7 @@ class GestionProyectoController extends Controller
                 array_push($mensuales,$mes2);
                 array_push($mensuales,$mes3);
 
-                $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['mensuales' => $mensuales,'consolidado' => $dataGeneral,'consolidadoPorNivel' => $dataByCarrer,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
+                $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['mensuales' => $mensuales,'consolidadoPorNivel' => $dataByCarrer,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
 
                 $pdf->setOption('margin-top',15);
                 $pdf->setOption('margin-bottom',15);
@@ -744,7 +707,6 @@ class GestionProyectoController extends Controller
 
                 $arrayMes = [];$arrayMesEstudiante = [];
 
-
                 for ($i=0; $i < count($arrayMeses) ; $i++) {
 
                   $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
@@ -756,30 +718,30 @@ class GestionProyectoController extends Controller
 
                         switch ($procesoId) {
                             case 1:
-                                $estudiantesPA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $estudiantesPA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
                                 })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',1]])->get();
 
-                                $estudiantesSA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $estudiantesSA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
                                 })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
 
                                 // Obteniendo la cuenta para el conslidado de los meses
-                                $estudiantesBM_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $estudiantesBM_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',1],['nivel_academico_id',1]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
+                                })->whereNull('fecha_inicio_ss')->where([['estado', true],['tipo_beca_id',1],['nivel_academico_id',1]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
 
-                                $estudiantesOB_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $estudiantesOB_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',1]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
+                                })->whereNull('fecha_inicio_ss')->where([['estado', true],['tipo_beca_id',2],['nivel_academico_id',1]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
 
-                                $estudiantesBM_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $estudiantesBM_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',1],['nivel_academico_id',2]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
+                                })->whereNull('fecha_inicio_ss')->where([['estado', true],['tipo_beca_id',1],['nivel_academico_id',2]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
 
-                                $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',2]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
+                                })->whereNull('fecha_inicio_ss')->where([['estado', true],['tipo_beca_id',2],['nivel_academico_id',2]])->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->count();
                                 break;
 
                             case 2:
@@ -787,24 +749,24 @@ class GestionProyectoController extends Controller
 
                                 $estudiantesSA = $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                     $query->where('tipo_gp',$procesoId);
-                                })->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                })->select('nombre','apellido')->where([['proceso_actual','P'],['nivel_academico_id',2],['estado', true]])->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
+                                })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
 
                                 // Obteniendo la cuenta para el conslidado de los meses
                                 $estudiantesBM_PA = new Collection();$estudiantesOB_PA = new Collection();
 
                                 $estudiantesBM_SA =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                     $query->where('tipo_gp',$procesoId);
-                                })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                })->select('nombre')->where([['tipo_beca_id',1],['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',1)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                                })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
 
                                 $estudiantesOB_SA =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                     $query->where('tipo_gp',$procesoId);
-                                })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                })->select('nombre')->where([['tipo_beca_id',2],['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',2)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                                })->whereNull('fecha_inicio_pp')->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
 
                                 break;
                         }
@@ -864,31 +826,26 @@ class GestionProyectoController extends Controller
 
                       $mesesTitulo[$i] = $this->meses[$arrayMeses[$i]];
 
-
                       foreach($carrera as $carre){
 
                             switch ($procesoId) {
                                 case 1:
-                                    $estudiantesPA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $estudiantesPA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['proceso_actual','P'],['nivel_academico_id',1]])->whereHas('proceso', function ($query) use ($procesoId) {
                                         $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                    })->whereNull('fecha_inicio_ss')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->where([['proceso_actual','P'],['nivel_academico_id',1]])->get();
+                                    })->whereNull('fecha_inicio_ss')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->get();
 
-                                    $estudiantesSA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $estudiantesSA = $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre','apellido')->where([['estado', true],['proceso_actual','P'],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                         $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                    })->whereNull('fecha_inicio_ss')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
+                                    })->whereNull('fecha_inicio_ss')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->get();
                                     break;
                                 case 2:
-                                    $estudiantesPA = $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
-                                        $query->where('tipo_gp',$procesoId);
-                                    })->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                    })->whereNull('fecha_inicio_pp')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->where([['proceso_actual','P'],['nivel_academico_id',1]])->get();
+                                    $estudiantesPA = new Collection();
 
                                     $estudiantesSA = $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
-                                        $query->where('tipo_gp',$procesoId);
-                                    })->select('nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                                        $query->where('tipo_gp',2);
+                                    })->select('nombre','apellido')->where([['proceso_actual','P'],['estado', true], ['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                         $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                                    })->whereNull('fecha_inicio_pp')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->where([['proceso_actual','P'],['nivel_academico_id',2]])->get();
+                                    })->whereNull('fecha_inicio_pp')->whereYear('fecha_registro',$this->anio)->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->get();
                                     break;
                             }
 
@@ -918,30 +875,22 @@ class GestionProyectoController extends Controller
                     //Obteniendo el total de resultados becados y otros
                     switch ($procesoId) {
                         case 1:
-                            $estudiantesBM_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesBM_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['tipo_beca_id',1],['nivel_academico_id',1],['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',1],['nivel_academico_id',1]])->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_ss')->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
-                            $estudiantesOB_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesOB_PA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['tipo_beca_id',2],['nivel_academico_id',1],['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',1]])->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_ss')->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
-                            $estudiantesBM_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesBM_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['tipo_beca_id',1],['nivel_academico_id',2],['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',1],['nivel_academico_id',2]])->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_ss')->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
-                            $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['tipo_beca_id',2],['nivel_academico_id',2],['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',2]])->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_ss')->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
-                            // DATOS PARA EN CONSOLIDADO GENERAL
-                             $estudiantesGeneralBM =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where('tipo_beca_id',1)->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-                             $estudiantesGeneralOB =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_ss')->where('tipo_beca_id',2)->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
                             break;
 
@@ -950,28 +899,16 @@ class GestionProyectoController extends Controller
 
                             $estudiantesBM_SA =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                     $query->where('tipo_gp',$procesoId);
-                                })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre')->where([['estado', true],['tipo_beca_id',1],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where([['tipo_beca_id',1],['nivel_academico_id',2]])->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_pp')->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
                             $estudiantesOB_SA =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
                                 $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
+                            })->select('nombre')->where([['estado', true],['tipo_beca_id',2],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where([['tipo_beca_id',2],['nivel_academico_id',2]])->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                            })->whereNull('fecha_inicio_pp')->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
 
-                            // DATOS PARA EN CONSOLIDADO GENERAL
-                            $estudiantesGeneralBM =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
-                                $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',1)->whereYear('fecha_registro',$this->anio)->whereYear('ultimo_cambio',$this->anio)->count();
-
-                            $estudiantesGeneralOB =  $carre->estudiantes()->whereDoesntHave('gestionProyecto',function($query) use($procesoId){
-                                $query->where('tipo_gp',$procesoId);
-                            })->select('nombre')->where([['estado', true], ['carrera_id', $carre->id]])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereNull('fecha_inicio_pp')->where('tipo_beca_id',2)->whereYear('fecha_registro',$this->anio)->whereYear('ultimo_cambio',$this->anio)->count();
                            break;
                     }
 
@@ -996,18 +933,12 @@ class GestionProyectoController extends Controller
                       "totalOtraBeca" => $estudiantesOB_SA,
                     );
 
-                    $dataGeneralByAnio[$carre->id] =  array(
-                       "Carrera" => $carre->nombre,
-                       "totalBecaMined" => $estudiantesGeneralBM,
-                       "totalOtraBeca" => $estudiantesGeneralOB,
-                    );
-
                 }
                 array_push($dataByNivel,$dataPA);
                 array_push($dataByNivel,$dataSA);
 
 
-                    $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['consolidadoMensual' => $dataMensual,'consolidadoAnualNiveles' => $dataByNivel,'consolidadoAnualGeneral' => $dataGeneralByAnio,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
+                    $pdf = PDF::loadView('reportes.reportePendientesDeIniciar', ['consolidadoMensual' => $dataMensual,'consolidadoAnualNiveles' => $dataByNivel,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
                     $pdf->setOption('margin-top',15);
                     $pdf->setOption('margin-bottom',15);
                     $pdf->setOption('margin-left',15);
@@ -1024,17 +955,25 @@ class GestionProyectoController extends Controller
            $procesoTitulo = "";
            $mesesTitulo = "";
            $documentos = Documento::all();
+           $proceso_campo = "";
+           $proceso_consolidado = "";
 
-            if($procesoId == 1)
+            if($procesoId == 1){
               $procesoTitulo = "SERVICIO SOCIAL";
-            else if($procesoId == 2)
+              $proceso_campo = "fecha_inicio_ss";
+              $proceso_consolidado = 'MONTH(fecha_inicio_ss)';
+            }else if($procesoId == 2){
               $procesoTitulo = "PRÁCTICA PROFESIONAL";
+              $proceso_campo = "fecha_inicio_pp";
+              $proceso_consolidado = 'MONTH(fecha_inicio_pp)';
+
+            }
 
             if($request->tipoRepo == 'T'){
 
                     $collection;
                     $arrayTrimestre = explode(",",$request->meses);
-
+                    $arrayValuesOfConso = [];
                     //Sacando datos mensuales
                     $dataMensual = [];
                     $mes1 = [];$mes2 = [];$mes3 = [];
@@ -1049,38 +988,60 @@ class GestionProyectoController extends Controller
                     $c1 = [];$c2 = [];$c3 = [];
 
                     foreach($carrera as $carre){
+                        
+                        if($arrayTrimestre[0] <= date('m')){
+                            $estudiantesM1_PA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[0])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                            })->whereYear('fecha_registro',$this->anio)->get();
 
-                        $estudiantesM1_PA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->get();
+                            $estudiantesM1_SA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[0])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                            })->whereYear('fecha_registro',$this->anio)->get();
 
-                        $estudiantesM1_SA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayTrimestre[0])->whereYear('fecha_registro',$this->anio)->get();
+                            $arrayValuesOfConso = [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]];
 
-                        $estudiantesM2_PA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->get();
+                        }else{$estudiantesM1_PA = new Collection();$estudiantesM1_SA = new Collection();$arrayValuesOfConso = [$arrayTrimestre[1],$arrayTrimestre[2]];}
 
-                         $estudiantesM2_SA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayTrimestre[1])->whereYear('fecha_registro',$this->anio)->get();
+                        if($arrayTrimestre[1] <= date('m')){
+                            $estudiantesM2_PA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[1])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                            })->whereYear('fecha_registro',$this->anio)->get();
 
-                        $estudiantesM3_PA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->get();
+                            $estudiantesM2_SA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[1])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                            })->whereYear('fecha_registro',$this->anio)->get();
 
-                        $estudiantesM3_SA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayTrimestre[2])->whereYear('fecha_registro',$this->anio)->get();
+                            $arrayValuesOfConso = [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]];
 
+                        }else{$estudiantesM2_PA = new Collection();$estudiantesM2_SA = new Collection();$arrayValuesOfConso = [$arrayTrimestre[0],$arrayTrimestre[2]];}
 
+                        if($arrayTrimestre[2] <= date('m')){
+                            $estudiantesM3_PA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[2])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                            })->whereYear('fecha_registro',$this->anio)->get();
+
+                            $estudiantesM3_SA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[2])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                            })->whereYear('fecha_registro',$this->anio)->get();
+
+                            $arrayValuesOfConso = [$arrayTrimestre[0], $arrayTrimestre[1], $arrayTrimestre[2]];
+
+                        }else{$estudiantesM3_PA = new Collection();$estudiantesM3_SA = new Collection();$arrayValuesOfConso = [$arrayTrimestre[0],$arrayTrimestre[1]];}                 
+
+                        if(date('m') == '01' and $arrayTrimestre[0] == '1')
+                            $arrayValuesOfConso = [$arrayTrimestre[0]];
+
+                        /* Verficando que si el trimestre ingresado es mayor al mes actual no se sacan datos */
+                        if($arrayTrimestre[0] > date('m') and $arrayTrimestre[1] > date('m') and $arrayTrimestre[1] > date('m') )
+                            $arrayValuesOfConso = [];
+
+                            
                         // OBTENIENDO LOS DOCUMENTOS RESTANTES DE CADA ESTUDIANTE
                         $estudianteM1_PA = "";
                         foreach ($estudiantesM1_PA as $value) {
                           $estudianteM1_PA = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
                           foreach ($estudianteM1_PA->gestionProyecto as $item) {
-                              $value->setAttribute("documentosEntregados",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
+                              $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
                           }
                         }
 
@@ -1088,7 +1049,7 @@ class GestionProyectoController extends Controller
                         foreach ($estudiantesM1_SA as $value) {
                           $estudianteM1_SA = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
                           foreach ($estudianteM1_SA->gestionProyecto as $item) {
-                              $value->setAttribute("documentosEntregados",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
+                              $value->setAttribute("documentosRestantes",Documento::whereNotIn('id',$item->documentos_entrega->pluck('id'))->get());
                           }
                         }
 
@@ -1151,28 +1112,46 @@ class GestionProyectoController extends Controller
                       // Sacando Consolidado por los 3 meses(POR NIVEL ACADEMICO)
                       $dataByCarrer = [];
                       $dataByCarrer[0] = $this->trimestres[implode($arrayTrimestre)];
-                      $dataPA = [];$dataSA = [];
+                      $dataPA = [];$dataSA = [];                     
 
                       foreach($carrera as $carre){
 
-                          $estudiantesBM_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                          if(!array_search(date('m'),$arrayTrimestre)){
+                                $estudiantesBM_PA =  $carre->estudiantes()->select('id')->where([['estado', true],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereIn(DB::raw($proceso_consolidado), $arrayValuesOfConso)->whereYear('fecha_registro',$this->anio)->count();
 
-                          $estudiantesOB_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                                $estudiantesOB_PA =  $carre->estudiantes()->select('id')->where([['estado', true],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereIn(DB::raw($proceso_consolidado), $arrayValuesOfConso)->whereYear('fecha_registro',$this->anio)->count();
 
-                          $estudiantesBM_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                                $estudiantesBM_SA =  $carre->estudiantes()->select('id')->where([['estado', true],['nivel_academico_id',2],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereIn(DB::raw($proceso_consolidado), $arrayValuesOfConso)->whereYear('fecha_registro',$this->anio)->count();
 
-                          $estudiantesOB_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
+                                $estudiantesOB_SA =  $carre->estudiantes()->select('id')->where([['estado', true],['nivel_academico_id',2],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereIn(DB::raw($proceso_consolidado), $arrayValuesOfConso)->whereYear('fecha_registro',$this->anio)->count();
+                          }else{
+                                $indiceMes = array_search(date('m'), $arrayTrimestre);
+                              
+                                $estudiantesBM_PA =  $carre->estudiantes()->select('id')->where([['estado', true],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereMonth($proceso_campo,'<=',$arrayTrimestre[$indiceMes])->whereYear('fecha_registro',$this->anio)->count();
 
+                                $estudiantesOB_PA =  $carre->estudiantes()->select('id')->where([['estado', true],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereMonth($proceso_campo,'<=',$arrayTrimestre[$indiceMes])->whereYear('fecha_registro',$this->anio)->count();
 
+                                $estudiantesBM_SA =  $carre->estudiantes()->select('id')->where([['estado', true],['nivel_academico_id',2],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereMonth($proceso_campo,'<=',$arrayTrimestre[$indiceMes])->whereYear('fecha_registro',$this->anio)->count();
 
+                                $estudiantesOB_SA =  $carre->estudiantes()->select('id')->where([['estado', true],['nivel_academico_id',2],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                                    $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                                })->whereMonth($proceso_campo,'<=',$arrayTrimestre[$indiceMes])->whereYear('fecha_registro',$this->anio)->count();
+                          }
+                              
                             if ($procesoId == 1) {
                                 $dataPA[0] = $this->trimestres[implode($arrayTrimestre)]." 1º AÑO";
                             // Asignando en la posicion 0 el titulo de la tabla
@@ -1194,28 +1173,6 @@ class GestionProyectoController extends Controller
                             $dataByCarrer[0] = $dataPA;
                             $dataByCarrer[1] = $dataSA;
                       }
-
-
-                    // Sacando Consolidado por los 3 meses(GENERAL)
-                      $dataGeneral = [];
-                      $dataGeneral[0] = $this->trimestres[implode($arrayTrimestre)];
-                      foreach ($carrera as $carre) {
-                            //Obteniendo el total de resultados becados y otros
-                            $estudiantesBM =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
-                              $estudiantesOB =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                                $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereIn(DB::raw('MONTH(ultimo_cambio)'), [$arrayTrimestre[0],$arrayTrimestre[1],$arrayTrimestre[2]])->whereYear('fecha_registro',$this->anio)->count();
-
-
-                            $dataGeneral[$carre->id] = array(
-                                "Carrera" => $carre->nombre,
-                                "totalBecaMined" => $estudiantesBM,
-                                "totalOtraBeca" => $estudiantesOB,
-                            );
-                      }
                   }
 
                     $mensuales = array();
@@ -1223,13 +1180,13 @@ class GestionProyectoController extends Controller
                     array_push($mensuales,$mes2);
                     array_push($mensuales,$mes3);
 
-                    $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $mensuales,'consolidadoByNivel' => $dataByCarrer,'consolidadoGeneral'=> $dataGeneral,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
+                    $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $mensuales,'consolidadoByNivel' => $dataByCarrer,'meses'=>$mesesTitulo,'tipo'=>'T','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
                     $pdf->setOption('margin-top',15);
                     $pdf->setOption('margin-bottom',15);
                     $pdf->setOption('margin-left',15);
                     $pdf->setOption('margin-right',15);
                     return $pdf->stream('Pendientes de Finalización '.date('Y-m-d').'.pdf');
-                 // return $mensuales;
+                    /* return $indiceMes; */
 
             }else if($request->tipoRepo == 'M'){
 
@@ -1250,34 +1207,43 @@ class GestionProyectoController extends Controller
                     $dataPA = [];$dataSA = [];
 
                    foreach($carrera as $carre){
-
-                        $estudiantes_PA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
-
-                        $estudiantes_SA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
-
-
+                    
+                    if($arrayMeses[$i] > date('m')){
+                        /* En este caso significa que uno de los meses seleccionados es mayor al actual por lo tanto no se sacan datos */
+                        $estudiantes_PA = new Collection();
+                        $estudiantes_SA = new Collection();
                         // DATOS PARA CONSOLIDADO MENSUAL POR NIVEL ACADEMICO
-
-                         $estudiantesBM_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        $estudiantesBM_PA =  0;
+                        $estudiantesOB_PA =  0;
+                        $estudiantesBM_SA = 0;
+                        $estudiantesOB_SA =  0;
+                        
+                    }else{
+                        /* Aqui es lo meses menores o iguales al mes actual y si se sacan datos */
+                        $estudiantes_PA = $carre->estudiantes()->select('id','nombre','apellido')->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                             $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                        })->whereYear('fecha_registro',$this->anio)->get();
 
-                          $estudiantesOB_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        $estudiantes_SA = $carre->estudiantes()->select('id','nombre','apellido')->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                             $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                        })->whereYear('fecha_registro',$this->anio)->get();
+                        // DATOS PARA CONSOLIDADO MENSUAL POR NIVEL ACADEMICO
+                        $estudiantesBM_PA =  $carre->estudiantes()->where([['estado', true],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
 
-                          $estudiantesBM_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                        $estudiantesOB_PA =  $carre->estudiantes()->where([['estado', true],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
 
-                          $estudiantesOB_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                          })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                        $estudiantesBM_SA =  $carre->estudiantes()->where([['estado', true],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
 
+                        $estudiantesOB_SA =  $carre->estudiantes()->where([['estado', true],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->count();
+                    }
 
                         $estudiantePA = "";
                         foreach ($estudiantes_PA as $value) {
@@ -1296,7 +1262,10 @@ class GestionProyectoController extends Controller
                         }
 
                         $arrayMesEstudiante[0] = $carre->nombre;
-                        $arrayMesEstudiante[1] = array("Primer Año" => $estudiantes_PA,"Segundo Año" => $estudiantes_SA);
+                        if($procesoId == 1)
+                            $arrayMesEstudiante[1] = array("Primer Año" => $estudiantes_PA,"Segundo Año" => $estudiantes_SA);
+                        else
+                            $arrayMesEstudiante[1] = array("Segundo Año" => $estudiantes_SA);
 
                         $arrayMes[0] = $this->meses[$arrayMeses[$i]];
                         $arrayMes[$carre->id] = $arrayMesEstudiante;
@@ -1351,14 +1320,18 @@ class GestionProyectoController extends Controller
 
                     foreach($carrera as $carre){
 
-                            $estudiantes_PA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                        if($arrayMeses[$i] > date('m')){
+                            $estudiantes_PA = new Collection();
+                            $estudiantes_SA = new Collection();
+                        }else{
+                            $estudiantes_PA = $carre->estudiantes()->select('id','nombre','apellido')->where([['estado', true],['nivel_academico_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
+                            })->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
 
-                            $estudiantes_SA = $carre->estudiantes()->has('gestionProyecto')->select('id','nombre','apellido')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $estudiantes_SA = $carre->estudiantes()->select('id','nombre','apellido')->where([['estado', true],['nivel_academico_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                            })->whereMonth('ultimo_cambio','>=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
-
+                            })->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->whereYear('fecha_registro',$this->anio)->get();
+                        }
                             $estudiantePA = "";
                             foreach ($estudiantes_PA as $value) {
                                 $estudiantePA = Estudiante::with(['gestionProyecto.documentos_entrega'])->findOrFail($value->id);
@@ -1394,68 +1367,52 @@ class GestionProyectoController extends Controller
                 $dataGeneralByAnio[0] = $this->anio;
 
                 $dataPA = []; $dataSA = [];
+
                 foreach ($carrera as $carre) {
+                    
+                        $estudiantesBM_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',date('m'))->whereYear('fecha_registro',$this->anio)->count();
 
-                    //Obteniendo el total de resultados becados y otros
-                      $estudiantesBM_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                      })->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                        $estudiantesOB_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',date('m'))->whereYear('fecha_registro',$this->anio)->count();
 
-                      $estudiantesOB_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
+                        $estudiantesBM_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',date('m'))->whereYear('fecha_registro',$this->anio)->count();
 
-                      $estudiantesBM_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-                      $estudiantesOB_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-
-                      // DATOS PARA EN CONSOLIDADO GENERAL
-                       $estudiantesGeneralBM =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-                       $estudiantesGeneralOB =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
-                        $query->where('procesos_estudiantes.proceso_id', $procesoId);
-                        })->whereYear('ultimo_cambio',$this->anio)->whereYear('fecha_registro',$this->anio)->count();
-
-
-                         // Juntando los resultados en array individuales
-                         // Datos para el consolidado de cada mes
+                        $estudiantesOB_SA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',2],['tipo_beca_id',2],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
+                            $query->where('procesos_estudiantes.proceso_id', $procesoId);
+                        })->whereMonth($proceso_campo,'<=',date('m'))->whereYear('fecha_registro',$this->anio)->count();
+                        // Juntando los resultados en array individuales
+                        // Datos para el consolidado de cada mes
 
                         if ($procesoId == 1) {
                                 // Asignando en la posicion 0 el titulo de la tabla
                             $dataPA[0] = $this->anio." 1º AÑO";
                             $dataPA[$carre->id] = array(
-                              "Carrera" => $carre->nombre,
-                              "totalBecaMined" => $estudiantesBM_PA,
-                              "totalOtraBeca" => $estudiantesOB_PA,
+                            "Carrera" => $carre->nombre,
+                            "totalBecaMined" => $estudiantesBM_PA,
+                            "totalOtraBeca" => $estudiantesOB_PA,
                             );
                         }
 
                         $dataSA[0] = $this->anio." 2º AÑO";
                         $dataSA[$carre->id] = array(
-                          "Carrera" => $carre->nombre,
-                          "totalBecaMined" => $estudiantesBM_SA,
-                          "totalOtraBeca" => $estudiantesOB_SA,
+                        "Carrera" => $carre->nombre,
+                        "totalBecaMined" => $estudiantesBM_SA,
+                        "totalOtraBeca" => $estudiantesOB_SA,
                         );
 
-                        $dataGeneralByAnio[$carre->id] =  array(
-                           "Carrera" => $carre->nombre,
-                           "totalBecaMined" => $estudiantesGeneralBM,
-                           "totalOtraBeca" => $estudiantesGeneralOB,
-                        );
                 }
-
                 array_push($dataByNivel,$dataPA);
                 array_push($dataByNivel,$dataSA);
+                
 
+            
 
-                $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $dataMensual,'consolidadoAnualByNivel' => $dataByNivel,'consolidadoAnualGeneral' => $dataGeneralByAnio,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
+                $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $dataMensual,'consolidadoAnualByNivel' => $dataByNivel,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
                 $pdf->setOption('margin-top',15);
                 $pdf->setOption('margin-bottom',15);
                 $pdf->setOption('margin-left',15);

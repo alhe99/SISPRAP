@@ -49,6 +49,79 @@ class ProyectoController extends Controller
     //Publicacion de proyectos verificando proceso y tipo de proyecto
     public function store(Request $request)
     {
+        /*$date = date('Y-m-d');
+        switch ($request->tipoProyecto) {
+            case 'I':
+             switch ($request->proceso_id) {
+                case 1:
+                $img_recv = $request->imagen;
+                $proyecto = new Proyecto();
+                $proyecto->nombre = $request->nombre;
+                $proyecto->fecha = Carbon::parse($date);
+                $proyecto->actividades = $request->actividadSS;
+                $proyecto->institucion_id = $request->institucion_id;
+                $proyecto->horas_realizar = $request->horas;
+                $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
+                $proyecto->tipo_proyecto = 'I';
+                $proyecto->proceso_id = 1;
+                if ($img_recv) {
+                    $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                    $proyecto->img = $name_img;
+                    Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
+                } else {
+                    $proyecto->img = $request->imageG;
+                }
+                $proyecto->estado = 1;
+                $proyecto->save();
+                break;
+                case 2:
+                try {
+                    for ($i = 0; $i < count($request->actividades); $i++) {
+                        DB::beginTransaction();
+                        $obj = $request->actividades[$i];
+                        $img_recv = $request->imagen;
+                        $proyecto = new Proyecto();
+                        $proyecto->nombre = $request->nombre;
+                        $proyecto->fecha = Carbon::parse($date);
+                        $proyecto->horas_realizar = $request->horas;
+                        $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
+                        $proyecto->actividades = $obj['actividades'];
+                        $proyecto->institucion_id = $request->institucion_id;
+                        $proyecto->proceso_id = 2;
+                        if ($img_recv) {
+                            $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
+                            $proyecto->img = $name_img;
+                            Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
+                        } else {
+                            $proyecto->img = $request->imageG;
+                        }
+                        $proyecto->estado = 1;
+                        $proyecto->save();
+
+                        $proyecto->carre_proy()->attach($obj['carrera_id']);
+                        DB::commit();
+                    }
+                } catch (Exception $e) {
+                    DB::rollBack();
+                }
+                break;
+            }
+            break;
+            case 'E':
+            $proyecto = new Proyecto();
+            $proyecto->nombre = $request->nombre;
+            $proyecto->fecha = $date;
+            $proyecto->actividades = $request->actividadSS;
+            $proyecto->institucion_id = $request->institucion_id;
+            $proyecto->horas_realizar = $request->horas;
+            $proyecto->cantidades_vacantes = null;
+            $proyecto->tipo_proyecto = 'E';
+            $proyecto->proceso_id = $request->proceso_id;
+            $proyecto->estado = 1;
+            $proyecto->fecha_registro = $date;
+            $proyecto->save();
+            break;
+        }*/
         $date = date('Y-m-d');
         switch ($request->tipoProyecto) {
             case 'I':
@@ -99,11 +172,11 @@ class ProyectoController extends Controller
                         } else {
                             $proyecto->img = $request->imageG;
                         }
-                        $proyecto->estado = 1; 
+                        $proyecto->estado = 1;
                         $proyecto->save();
-                        $proyecto->carre_proy()->attach($actividad->carrera_id); 
-                        DB::commit(); 
-                        
+                        $proyecto->carre_proy()->attach($actividad->carrera_id);
+                        DB::commit();
+
                     }
 
                 } catch (Exception $e) {
@@ -149,7 +222,7 @@ class ProyectoController extends Controller
                 $proyecto->cantidades_vacantes = $request->cantidadEstudiantes;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->estado = $request->estado;
-                
+
 
                 if ($img_recv) {
                     if($request->imagen != $proyecto->img){
