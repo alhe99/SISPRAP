@@ -8,12 +8,17 @@ use Illuminate\Http\Request;
 
 class SupervisorController extends Controller
 {
-    public $anio = 2019;
+    public $anio;
+
+    public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
 
     //RUTA /institucion/supervisor/index/{$institucion_id}
     public function index(Request $request)
     {
-        $supervisores = Institucion::find($request->institucion_id)->supervisores()->whereYear('fecha_registro',$this->anio)->get();
+        $supervisores = Institucion::find($request->institucion_id)->supervisores()->get();
         return $supervisores;
     }
 

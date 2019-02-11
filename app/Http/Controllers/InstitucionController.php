@@ -19,7 +19,12 @@ use PDF;
 class InstitucionController extends Controller
 {
 
-    public $anio = 2019;
+    public $anio;
+
+    public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
     //Devuelve el listado de instituciones por proceso
     public function index(Request $request)
     {
@@ -31,14 +36,14 @@ class InstitucionController extends Controller
         $institucion = Institucion::with(['sectorInstitucion','municipio.departamento','procesos'])
         ->whereHas('procesos', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->where('instituciones.estado','=','1')->orderBy('instituciones.id','desc')->paginate(5);
+        })->whereYear('fecha_registro',$this->anio)->where('estado',1)->orderBy('instituciones.id','desc')->paginate(5);
 
         }else{
 
             $institucion = Institucion::with(['sectorInstitucion','municipio.departamento','procesos'])
             ->whereHas('procesos', function ($query) use ($proceso) {
                 $query->where('proceso_id', $proceso);
-            })->where('instituciones.nombre','like','%'.$buscar.'%')->where('instituciones.estado','=','1')->orderBy('instituciones.id','desc')->paginate(5);
+            })->where('instituciones.nombre','like','%'.$buscar.'%')->whereYear('fecha_registro',$this->anio)->where('estado',1)->orderBy('instituciones.id','desc')->paginate(5);
         }
 
         return [
@@ -121,7 +126,7 @@ class InstitucionController extends Controller
         $proceso = $id;
         $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso){
         $query->where('proceso_id', $proceso);
-        })->where('instituciones.estado','1')->orderBy('instituciones.id','desc')->get();
+        })->whereYear('fecha_registro',$this->anio)->where('estado',1)->orderBy('instituciones.id','desc')->get();
 
         $data = [];
         foreach ($institucion as $key => $value) {
@@ -171,7 +176,7 @@ class InstitucionController extends Controller
             $proceso = $request->proceso;
             $institucion = Institucion::whereHas('procesos', function ($query) use ($proceso) {
                     $query->where('proceso_id', $proceso);
-            })->where('instituciones.estado','=','0')->orderBy('instituciones.id','desc')->nombre($buscar)->paginate(5);
+            })->whereYear('fecha_registro',$this->anio)->where('instituciones.estado',0)->orderBy('instituciones.id','desc')->nombre($buscar)->paginate(5);
 
             return [
                 'pagination' => [
@@ -189,7 +194,7 @@ class InstitucionController extends Controller
     //obtener todas las instituciones
     public function GetInst()
     {
-        $instituciones = Institucion::all();
+        $instituciones = Institucion::whereYear('fecha_registro',$this->anio)->get();
         $data = [];
         $data[0] = [];
         foreach ($instituciones as $key => $value) {
@@ -264,11 +269,11 @@ class InstitucionController extends Controller
 
         $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->where('instituciones.estado','1')->orderBy('instituciones.id','desc')->get();
+        })->whereYear('fecha_registro',$this->anio)->where('instituciones.estado',1)->orderBy('instituciones.id','desc')->get();
 
         $inst = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
            $query->where('proceso_id', $proceso);
-       })->where('instituciones.estado', '1')->orderBy('instituciones.id', 'desc')->count();
+       })->whereYear('fecha_registro',$this->anio)->where('instituciones.estado',1)->orderBy('instituciones.id', 'desc')->count();
 
         $process = "";
         if($proceso == 1)
@@ -295,7 +300,7 @@ class InstitucionController extends Controller
 
         $instituciones = Institucion::has('proyectosInsti.supervision')->whereHas('procesos',function($query) use ($proceso){
             $query->where('proceso_id',$proceso);
-        })->get();
+        })->whereYear('fecha_registro',$this->anio)->get();
 
         for ($i=0; $i < $instituciones->count() ; $i++) {
             $arrayInstitucion = [];
@@ -372,7 +377,7 @@ class InstitucionController extends Controller
                     ['estado','I']
                 ]);
             });
-        })->whereIn('municipio_id',$municipio_id)->where('estado',1)->orderBy('instituciones.id','desc')->get();
+        })->whereYear('fecha_registro',$this->anio)->whereIn('municipio_id',$municipio_id)->where('estado',1)->orderBy('instituciones.id','desc')->get();
 
         $data = [];
         foreach ($institucion as $key => $value) {

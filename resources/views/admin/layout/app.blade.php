@@ -83,7 +83,7 @@
                     <ul class="dropdown-user">
                       <li>
                        <div class="dw-user-box text-center">
-                           @if (Auth::user()->rol_id == 1)
+                         @if (Auth::user()->rol_id == 1)
                          <div class="u-img text-center"><img class="text-center" src="images/users/1.png" alt="user"></div>
                          @elseif(Auth::user()->rol_id == 2)
                          <div class="u-img text-center"><img src="images/users/recep.png" class="text-center" alt="user"></div>
@@ -99,81 +99,17 @@
                        <li role="separator" class="divider"></li>
                        <li><a style="cursor: pointer;" @click="menu=15" ><i class="mdi mdi-plus-circle mdi-18px"></i> Más opciones</a></li>
                        @endif
-                       @if (Auth::user()->rol_id == 2)
-                       <li><button type="button" class="btn btn-link btn-field" data-toggle="modal" data-target="#exampleModal3"><i class="ti-settings"></i>&nbsp;Mi cuenta</button></li>
-                       @endif
                        <li role="separator" class="divider"></li>
                        <li><a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off">
                        </i> Cerrar sesion</a>
                      </li>
-                       </div>
-                     </li>
-                   </ul>
-                 </div>
-               </nav>
-             </header>
-             <div class="modal" id="exampleModal3" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document" style="margin-top: 60px;">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h3 class="modal-title text-center text-white" id="exampleModalLongTitle">Actualiza tus datos</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row ">
-                      <div class="col-md-12">
-                        <h4>Nombre</h4>
-                        <input type="text" class="form-control" name="" value="">
-                        <h6><span class="text-muted">Ingrese el nombre del usuario a actualizar</span></h6>
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row ">
-                      <div class="col-md-12">
-                       <h4>Usuario</h4>
-                       <input type="text" class="form-control" name="" value="">
-                       <h6><span class="text-muted">Ingrese el nombre del usuario</span></h6>
-                     </div>
                    </div>
-                   <br>
-                   <div class="row">
-                    <div class="col-md-12">
-                      <button :disabled="switchImg ==true" ref="btntest" class="btn btn-primary font-weight-bold text-dark btn-lg btn-block" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample1 collapseExample2"><i class="mdi mdi-key-variant"></i>&nbsp;
-                        Cambiar contraseña
-                      </button>
-                      <div class="row">
-                        <div class="col-md-6" data-wow-delay=".1s">
-                          <div class="form-group label-floating collapse multi-collapse" id="collapseExample1">
-                            <h4>Contraseña</h4>
-                            <input type="text" class="form-control" name="hola" value="">
-                            <h6><span class="text-muted">Ingrese la nueva contraseña</span></h6>
-                          </div>
-                        </div>
-                        <div class="col-md-6" data-wow-delay=".1s">
-                          <div class="form-group label-floating collapse multi-collapse" id="collapseExample2">
-                           <h4>Confirmar contraseña</h4>
-                           <input type="text" class="form-control" name="" value="">
-                           <h6><span class="text-muted">Confirme su contraseña</span></h6>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <div class="modal-footer">
-                <div class="col-md-6 text-center">
-                  <button type="button" class="button red btn-block" data-target="#exampleModal" data-dismiss="modal"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-                </div>
-                <div class="col-md-6 text-center">
-                  <button type="button"class="button blue btn-block" data-target="#exampleModal"><i class="mdi mdi-content-save"></i>&nbsp;Actualizar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 </li>
+               </ul>
+             </div>
+           </nav>
+         </header>
+         <div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document" style="margin-top: 60px;">
             <div class="modal-content">
               <div class="modal-header">
@@ -274,6 +210,76 @@
   <script src="js/admintemplate.js"></script>
   <script src='{{ asset('other/js/gijgo.min.js') }}'></script>
   <script src='{{ asset('other/js/messages.es-es.js') }}'></script>
-</body>
+  <script src='{{ asset('js/year-select.js') }}'></script>
+  {{-- Mensaje cuando un usuario ha actualizados sus datos personales --}}
+  @if (session()->has('updateDataUser'))
+    <script>
+      $(function(){
+         const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 5000});
+          toast({
+            type: 'success',
+            title: 'Datos Actualizados Correctamente'
+          });
+      })
+    </script>
+  @endif
+  <script>
+     $(function(){
 
+        $("#nombre").keyup(function(){
+          if(($(this).val().trim() != '') && ($("#usuario").val().trim() != '')){
+            $("#btnUpdateData").prop('disabled', false);
+            $("#btnUpdateData").removeClass('disabled');
+          }else{
+            $("#btnUpdateData").prop('disabled', true);
+            $("#btnUpdateData").addClass('disabled');
+          }
+        })
+        $("#usuario").keyup(function(){
+          if(($(this).val().trim() != '') && ($("#nombre").val().trim() != '')){
+            $("#btnUpdateData").prop('disabled', false)
+            $("#btnUpdateData").removeClass('disabled');
+          }else{
+            $("#btnUpdateData").prop('disabled', true);
+            $("#btnUpdateData").addClass('disabled');
+          }
+        });
+
+        $("#btnOpenPasswordsFields").on('click',function(){
+          if(!$("#divPasswords").hasClass('show')){
+             //Desabilitando el boton de guardar
+            $("#btnUpdateData").prop('disabled', true);
+            $("#btnUpdateData").addClass('disabled');
+
+            $("#cPassword").keyup(function(){
+              if($(this).val().trim() != $("#password").val().trim()){
+                $("#divNoMatchPasswords").css('display','block');
+                $("#btnUpdateData").prop('disabled', true);
+                $("#btnUpdateData").addClass('disabled');
+              }else if($(this).val().trim() == $("#password").val().trim()){
+                $("#divNoMatchPasswords").css('display','none');
+                $("#btnUpdateData").prop('disabled', false)
+                $("#btnUpdateData").removeClass('disabled');
+              }
+
+              if($(this).val().trim() == ''){
+               $("#btnUpdateData").prop('disabled', true);
+               $("#btnUpdateData").addClass('disabled');
+              }
+            });
+
+          }else {
+            // Limpiando datos de password
+            $("#password").val('');$("#cPassword").val('');
+            if($("#btnUpdateData").hasClass('disabled')){
+                if(($("#nombre").val().trim() != '') && ($("#usuario").val().trim() != '')){
+                 $("#btnUpdateData").prop('disabled', false)
+                 $("#btnUpdateData").removeClass('disabled');
+               }
+             }
+          }
+        });
+    })
+</script>
+</body>
 </html>

@@ -60,10 +60,11 @@ class GestionProyectoController extends Controller
             $gp->estudiante_id = $request->student_id;
             $gp->nombre_supervisor = $request->super_name; //Nombre del supervisor
             $gp->tel_supervisor = $request->super_cell; //Telefono del supervisor
+            $gp->fecha_registro = date('Y-m-d');
             $gp->tipo_gp = Auth::user()->estudiante->proceso[0]->id;
             $estudiante = Estudiante::find($request->student_id);
             $estudiante->proceso_actual = 'I';
-            $estudiante->no_proyectos = $estudiante->no_proyectos + 1; 
+            $estudiante->no_proyectos = $estudiante->no_proyectos + 1;
 
             if(Auth::user()->rol_id >2){
             //Informacion del estudiante
@@ -188,7 +189,7 @@ class GestionProyectoController extends Controller
             })->whereHas('estudiante', function ($query) use ($carrera_id) {
                 $query->where('carrera_id', $carrera_id);
 
-            })->where('tipo_gp',$proceso)->paginate(8);
+            })->whereYear('fecha_registro',$this->anio)->where('tipo_gp',$proceso)->paginate(8);
 
         } else {
 
@@ -201,7 +202,7 @@ class GestionProyectoController extends Controller
 
             })->whereHas('estudiante', function ($query) use ($carrera_id) {
                 $query->where('carrera_id', $carrera_id);
-            })->where('tipo_gp',$proceso)->paginate(8);
+            })->whereYear('fecha_registro',$this->anio)->where('tipo_gp',$proceso)->paginate(8);
         }
 
         return [
@@ -220,7 +221,7 @@ class GestionProyectoController extends Controller
     // Metodo que delvuelve toda la informacion del el proyecto que esta realizando un alumno
     public function getInfoGpById($id){
 
-        $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','documentos_entrega','estudiante.proceso'])->findOrFail($id);
+        $gestionp = GestionProyecto::with(['estudiante.carrera', 'proyecto.institucion','documentos_entrega','estudiante.proceso'])->whereYear('fecha_registro',$this->anio)->findOrFail($id);
 
         return $gestionp;
     }
@@ -230,16 +231,15 @@ class GestionProyectoController extends Controller
 
         $gestionp = GestionProyecto::with(['proyecto.institucion'])->whereHas('estudiante', function ($query) use ($student_id) {
             $query->where('estudiantes.id',$student_id);
-        })->get();
+        })->whereYear('fecha_registro',$this->anio)->get();
 
         return view('public.gestionPro',compact("gestionp"));
-            //return $gestionp;
     }
 
     // Metodo que cierra un proyecto deacuerdo ala horas y fecha de finalizacion del estudiante
     public function closeProy(Request $request){
 
-        $gp = GestionProyecto::findOrFail($request->gestionId);
+        $gp = GestionProyecto::whereYear('fecha_registro',$this->anio)->findOrFail($request->gestionId);
         $gp->fecha_fin = $request->fechaFin;
         $gp->horas_realizadas = $request->horasRea;
         $gp->observacion_final = $request->obsFinal;
@@ -988,7 +988,7 @@ class GestionProyectoController extends Controller
                     $c1 = [];$c2 = [];$c3 = [];
 
                     foreach($carrera as $carre){
-                        
+
                         if($arrayTrimestre[0] <= date('m')){
                             $estudiantesM1_PA = $carre->estudiantes()->whereMonth($proceso_campo,'<=',$arrayTrimestre[0])->select('id','nombre','apellido')->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
@@ -1026,7 +1026,7 @@ class GestionProyectoController extends Controller
 
                             $arrayValuesOfConso = [$arrayTrimestre[0], $arrayTrimestre[1], $arrayTrimestre[2]];
 
-                        }else{$estudiantesM3_PA = new Collection();$estudiantesM3_SA = new Collection();$arrayValuesOfConso = [$arrayTrimestre[0],$arrayTrimestre[1]];}                 
+                        }else{$estudiantesM3_PA = new Collection();$estudiantesM3_SA = new Collection();$arrayValuesOfConso = [$arrayTrimestre[0],$arrayTrimestre[1]];}
 
                         if(date('m') == '01' and $arrayTrimestre[0] == '1')
                             $arrayValuesOfConso = [$arrayTrimestre[0]];
@@ -1035,7 +1035,7 @@ class GestionProyectoController extends Controller
                         if($arrayTrimestre[0] > date('m') and $arrayTrimestre[1] > date('m') and $arrayTrimestre[1] > date('m') )
                             $arrayValuesOfConso = [];
 
-                            
+
                         // OBTENIENDO LOS DOCUMENTOS RESTANTES DE CADA ESTUDIANTE
                         $estudianteM1_PA = "";
                         foreach ($estudiantesM1_PA as $value) {
@@ -1112,7 +1112,7 @@ class GestionProyectoController extends Controller
                       // Sacando Consolidado por los 3 meses(POR NIVEL ACADEMICO)
                       $dataByCarrer = [];
                       $dataByCarrer[0] = $this->trimestres[implode($arrayTrimestre)];
-                      $dataPA = [];$dataSA = [];                     
+                      $dataPA = [];$dataSA = [];
 
                       foreach($carrera as $carre){
 
@@ -1134,7 +1134,7 @@ class GestionProyectoController extends Controller
                                 })->whereIn(DB::raw($proceso_consolidado), $arrayValuesOfConso)->whereYear('fecha_registro',$this->anio)->count();
                           }else{
                                 $indiceMes = array_search(date('m'), $arrayTrimestre);
-                              
+
                                 $estudiantesBM_PA =  $carre->estudiantes()->select('id')->where([['estado', true],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                                 })->whereMonth($proceso_campo,'<=',$arrayTrimestre[$indiceMes])->whereYear('fecha_registro',$this->anio)->count();
@@ -1151,7 +1151,7 @@ class GestionProyectoController extends Controller
                                     $query->where('procesos_estudiantes.proceso_id', $procesoId);
                                 })->whereMonth($proceso_campo,'<=',$arrayTrimestre[$indiceMes])->whereYear('fecha_registro',$this->anio)->count();
                           }
-                              
+
                             if ($procesoId == 1) {
                                 $dataPA[0] = $this->trimestres[implode($arrayTrimestre)]." 1º AÑO";
                             // Asignando en la posicion 0 el titulo de la tabla
@@ -1207,7 +1207,7 @@ class GestionProyectoController extends Controller
                     $dataPA = [];$dataSA = [];
 
                    foreach($carrera as $carre){
-                    
+
                     if($arrayMeses[$i] > date('m')){
                         /* En este caso significa que uno de los meses seleccionados es mayor al actual por lo tanto no se sacan datos */
                         $estudiantes_PA = new Collection();
@@ -1217,7 +1217,7 @@ class GestionProyectoController extends Controller
                         $estudiantesOB_PA =  0;
                         $estudiantesBM_SA = 0;
                         $estudiantesOB_SA =  0;
-                        
+
                     }else{
                         /* Aqui es lo meses menores o iguales al mes actual y si se sacan datos */
                         $estudiantes_PA = $carre->estudiantes()->select('id','nombre','apellido')->whereMonth($proceso_campo,'<=',$arrayMeses[$i])->where([['estado', true],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
@@ -1369,7 +1369,7 @@ class GestionProyectoController extends Controller
                 $dataPA = []; $dataSA = [];
 
                 foreach ($carrera as $carre) {
-                    
+
                         $estudiantesBM_PA =  $carre->estudiantes()->has('gestionProyecto')->select('id')->where([['estado', true], ['carrera_id', $carre->id],['nivel_academico_id',1],['tipo_beca_id',1],['proceso_actual','I']])->whereHas('proceso', function ($query) use ($procesoId) {
                             $query->where('procesos_estudiantes.proceso_id', $procesoId);
                         })->whereMonth($proceso_campo,'<=',date('m'))->whereYear('fecha_registro',$this->anio)->count();
@@ -1408,9 +1408,9 @@ class GestionProyectoController extends Controller
                 }
                 array_push($dataByNivel,$dataPA);
                 array_push($dataByNivel,$dataSA);
-                
 
-            
+
+
 
                 $pdf = PDF::loadView('reportes.reportePendientesFinalizacion', ['mensuales' => $dataMensual,'consolidadoAnualByNivel' => $dataByNivel,'meses'=>$mesesTitulo,'tipo'=>'A','procesoTitulo' => $procesoTitulo,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
                 $pdf->setOption('margin-top',15);
@@ -1564,16 +1564,16 @@ class GestionProyectoController extends Controller
 
                     $c2SA[0] = $carre->nombre;
                     $c2SA[1] = $estudiantesM2_SA;
-        
+
 
                     $c3SA[0] = $carre->nombre;
                     $c3SA[1] = $estudiantesM3_SA;
-                    
+
                     $mes1PA[1] = "PRIMER AÑO";$mes2PA[1] = "PRIMER AÑO";$mes3PA[1] = "PRIMER AÑO";
                     $mes1PA[$carre->id+2] = $c1PA;
                     $mes2PA[$carre->id+2] = $c2PA;
                     $mes3PA[$carre->id+2] = $c3PA;
-                    
+
                     $mes1SA[1] = "SEGUNDO AÑO";$mes2SA[1] = "SEGUNDO AÑO";$mes3SA[1] = "SEGUNDO AÑO";
                     $mes1SA[$carre->id+2] = $c1SA;
                     $mes2SA[$carre->id+2] = $c2SA;
@@ -1696,7 +1696,7 @@ class GestionProyectoController extends Controller
                     array_push($mensuales,array($mes2PA , $mes2SA));
                 else
                     array_push($mensuales, array($mes2SA));
-                
+
                 if($procesoId==1)
                     array_push($mensuales,array($mes3PA , $mes3SA));
                 else
@@ -1725,7 +1725,7 @@ class GestionProyectoController extends Controller
                 $dataPA = []; $dataSA = [];
                 $dataByNivel = [];
                 $arrayGeneral = [];
-                
+
 
                 for ($i=0; $i < count($arrayMeses) ; $i++) {
 
@@ -1781,7 +1781,7 @@ class GestionProyectoController extends Controller
                             else
                             $arrayMesEstudiantePA[1] = [];
 
-                           $arrayMesEstudianteSA[1] = $estudiantes_SA; 
+                           $arrayMesEstudianteSA[1] = $estudiantes_SA;
                            /* else */
                             /* $arrayMesEstudiante[1] = array("Segundo Año" => $estudiantes_SA); */
 
@@ -1791,7 +1791,7 @@ class GestionProyectoController extends Controller
 
                            $arrayMesSA[0] = $this->meses[$arrayMeses[$i]];
                            $arrayMesSA[1] = "SEGUNDO AÑO";
-                           $arrayMesSA[$carre->id+2] = $arrayMesEstudianteSA;   
+                           $arrayMesSA[$carre->id+2] = $arrayMesEstudianteSA;
 
                             // Datos para el consolidado de cada mes
                             /* if ($procesoId == 1) { */
@@ -1821,7 +1821,7 @@ class GestionProyectoController extends Controller
                    array_push($dataMensual, $arrayMesSA);
                    array_push($arrayGeneral, $dataMensual);
                 }
-                  
+
                if($request->onlyConsolidado=='OC'){
                  $pdf = PDF::loadView('reportes.reporteProcesosCulminados', ['mensuales' => $arrayGeneral,'tipo' => 'M', 'meses' => $mesesTitulo, 'procesoTitulo' => $procesoTitulo, 'anio' => $this->anio, 'onlyConsolidado' => true])->setOption('footer-center', 'Página [page] de [topage]');
                 }else{
@@ -1899,7 +1899,7 @@ class GestionProyectoController extends Controller
                     else
                     $arrayMesEstudiantePA[1] = [];
 
-                    $arrayMesEstudianteSA[1] = $estudiantes_SA; 
+                    $arrayMesEstudianteSA[1] = $estudiantes_SA;
                     /* else */
                     /* $arrayMesEstudiante[1] = array("Segundo Año" => $estudiantes_SA); */
 
@@ -1909,7 +1909,7 @@ class GestionProyectoController extends Controller
 
                     $arrayMesSA[0] = $this->meses[$arrayMeses[$i]];
                     $arrayMesSA[1] = "SEGUNDO AÑO";
-                    $arrayMesSA[$carre->id+2] = $arrayMesEstudianteSA;   
+                    $arrayMesSA[$carre->id+2] = $arrayMesEstudianteSA;
 
                     // Datos para el consolidado de cada mes
                     /* if ($procesoId == 1) { */
@@ -2007,7 +2007,7 @@ class GestionProyectoController extends Controller
                 'gestionProyecto'=> function($query){
                     $query->where('gestion_proyectos.tipo_gp',1)->get();
                 }
-            ])->nombre($buscar)->where('estado_ss',1)->where('carrera_id',$carrera_id)->paginate(10);
+            ])->nombre($buscar)->whereYear('fecha_registro',$this->anio)->where([['estado_ss',1],['carrera_id',$carrera_id]])->paginate(10);
 
         }else if($proceso == 2){
             $gp = Estudiante::distinct('id')->with([
@@ -2016,7 +2016,7 @@ class GestionProyectoController extends Controller
                 'gestionProyecto'=> function($query){
                     $query->where('gestion_proyectos.tipo_gp',2)->get();
                 }
-            ])->nombre($buscar)->where('estado_pp', 2)->where('carrera_id',$carrera_id)->paginate(10);
+            ])->nombre($buscar)->whereYear('fecha_registro',$this->anio)->where([['estado_pp',2],['carrera_id',$carrera_id]])->paginate(10);
         }
         return [
             'pagination' => [
@@ -2054,7 +2054,7 @@ class GestionProyectoController extends Controller
                 $query->where('gestion_proyectos.tipo_gp',$procesoId)->get();
             }
 
-        ])->find($estudianteId);
+        ])->whereYear('fecha_registro',$this->anio)->find($estudianteId);
 
         $proyectos =  [];
         $proyectos = $estudiante->gestionProyecto()->where('tipo_gp',$procesoId)->get();
@@ -2078,8 +2078,7 @@ class GestionProyectoController extends Controller
 
         $admin = User::select('nombre')->find(0);
         $pdf = PDF::loadView('reportes.constanciass', ['admin'=>$admin,'estudiante'=>$infoEstudiante,'proyectos' => $proyectos, 'proceso' =>$tituloProceso,'fecha' => $date,'totalHoras' => $totalHoras])->setOption('footer-center', '');
-        return $pdf->stream('Perfil de proyecto.pdf');
-        return $estudiante;
+        return $pdf->stream('Constancia '.$tituloProceso.'.pdf');
     }
 
     // Metodo que devuelve la descarga de los documentos relacionadoa con el proceso que realiza cada estudiante
@@ -2116,14 +2115,14 @@ class GestionProyectoController extends Controller
                                 $gestion = GestionProyecto::where([
                                     ['estudiante_id',Auth::user()->estudiante->id],
                                     ['tipo_gp',$proceso],
-                                ])->find($request->gestionId);
+                                ])->whereYear('fecha_registro',$this->anio)->find($request->gestionId);
 
                             }else{
                                 $gestion = GestionProyecto::where([
                                     ['estudiante_id',Auth::user()->estudiante->id],
                                     ['tipo_gp',$proceso],
                                     ['estado','I']
-                                ])->first();
+                                ])->whereYear('fecha_registro',$this->anio)->first();
                             }
 
                             if($numeroProyectos == 1){
@@ -2187,7 +2186,7 @@ class GestionProyectoController extends Controller
                         $gestion = GestionProyecto::where([
                             ['estudiante_id',Auth::user()->estudiante->id],
                             ['tipo_gp',$proceso],
-                        ])->find($request->gestionId);
+                        ])->whereYear('fecha_registro',$this->anio)->find($request->gestionId);
 
                         $nombreP = $gestion->proyecto->nombre;
                         $nombreI = $gestion->proyecto->institucion->nombre;
@@ -2216,7 +2215,7 @@ class GestionProyectoController extends Controller
                         $gestion = GestionProyecto::where([
                             ['estudiante_id',Auth::user()->estudiante->id],
                             ['tipo_gp',$proceso],
-                        ])->find($request->gestionId);
+                        ])->whereYear('fecha_registro',$this->anio)->find($request->gestionId);
 
                         $nombreP = $gestion->proyecto->nombre;
                         $nombreI = $gestion->proyecto->institucion->nombre;
@@ -2249,7 +2248,7 @@ class GestionProyectoController extends Controller
     // Metodo que elimina un proyecto que estaba realizando el alumno sin contar las horas
     public function deleteProyectoEnMarcha(Request $request){
 
-       $gp = GestionProyecto::findOrFail($request->gestionId);
+       $gp = GestionProyecto::whereYear('fecha_registro',$this->anio)->findOrFail($request->gestionId);
        $estudiante = Estudiante::findOrFail($gp->estudiante_id);
        $estudiante->proceso_actual = 'P';
        $estudiante->update();
@@ -2303,12 +2302,12 @@ class GestionProyectoController extends Controller
         foreach ($documentos as $value) {
             $value->setAttribute("pivot",(object)[]);
             $data->documentos_entrega->push($value);
-        } 
+        }
         return view('public.detailGestion',compact(['data']));
     }
     /* Funcion que obtiene la fecha minima que iniciara un proyecto */
     public function getMinDateInicio($proyectoId,$process_id){
-        
+
         $sql = "SELECT MIN(fecha_inicio) as fecha FROM gestion_proyectos WHERE proyecto_id = :idProy AND tipo_gp = :idProceso";
         $fecha_min = DB::select($sql, [ 'idProy' => $proyectoId,'idProceso' => $process_id ]);
         return $fecha_min[0]->fecha;

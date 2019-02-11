@@ -10,27 +10,13 @@
     <style>
     .bg-header{background-color:#F8EFB6}
     .font-normal{font-weight: normal;}
-    /*thead{
-        display: table-row-group;
-    }
-    tr{
-        page-break-inside: avoid !important;
-        page-break-before: always;
-        page-break-after: always;
-    }
-    table{
-        word-wrap: break-word;
-    }
-    table td{
-        word-break: break-all;
-    }*/
-    .divTable{
+   /* .divTable{
         display: block;
         page-break-inside: avoid !important;
     }
     .divTable table,.divTable tbody,.divTable tr,.divTable td,.divTable th{
         page-break-inside: avoid !important;
-    }
+    }*/
 </style>
 
 </head>

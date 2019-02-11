@@ -74,7 +74,6 @@
                    <span v-if="item.gestion_proyecto[0].constancia_entreg[0] != undefined" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[0].constancia_entreg[0].created_at}}</span>
                    <span v-else class="badge badge-pill badge-danger">No Entregada</span>
                  </h4>
-
                  <!-- <h4 v-if="proceso==2">
                   <span v-if="item.gestion_proyecto[1].constancia_entreg.length > 0" class="badge badge-pill badge-primary">{{"Entregada: " + item.gestion_proyecto[1].constancia_entreg[0].created_at}}</span>
                    <span v-else class="badge badge-pill badge-danger">No Entregada</span>
@@ -225,7 +224,35 @@ methods:{
       me.getGestionProy(me.carrera_selected.value,me.proceso,page,"");
     }
   },
+  saveDoc(gp_id,procesoId) {
+    let me = this;
+    const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
+    swal({
+      title: "¿ Desea Generar Constancia?",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      confirmButtonClass: "button blue",
+      cancelButtonClass: "button red",
+      buttonsStyling: false,
+      reverseButtons: true
+    }).then(result => {
+      if (result.value) {
+       var url = route('getConstancia', {"estudianteId": gp_id,"procesoId": procesoId});
+       window.open(url);
+       me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
+     } else if (
+      result.dismiss === swal.DismissReason.cancel
 
+      ) {
+       me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
+     }
+     me.getGestionProy(me.carrera_selected.value,me.proceso,1,"");
+   });
+  },
   //descargar el pdf de la constancia
   downloadPdfFromBase64(base64){
    let a = document.createElement("a");

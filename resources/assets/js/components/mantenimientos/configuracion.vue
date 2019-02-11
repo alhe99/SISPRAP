@@ -6,9 +6,8 @@
         <div class="tabs">
           <a v-on:click="activetab=1" v-bind:class="[activetab===1?'active':'']"><i class="mdi mdi-format-list-bulleted mdi-18px"></i> Carreras</a>
           <a v-on:click="activetab=2" v-bind:class="[activetab===2?'active':'']"><i class="mdi mdi-face mdi-18px"></i> Estudiantes</a>
-          <a v-on:click="activetab=3" v-bind:class="[activetab===3?'active':'']"><i class="mdi mdi-settings mdi-18px"></i> Configuraciones</a>
         </div>
-        
+
          <div class="content">
           <div v-if="activetab === 1" class="tabcontent">
             <br>
@@ -395,19 +394,8 @@
             <i class="mdi mdi-account-plus"></i>&nbsp;Registrar Estudiante
           </button>
         </div>
-      </div>     
-    </div>
-    <div v-if="activetab === 3" class="tabcontent">
-        <br><h2 class="text-center">Año Actual del sistema</h2>
-      <div class="panel panel-default">
-       <div class="row">
-        <div class="col-md-12 col-xs-12 col-lg-12">
-          <br><label for="email">Seleccione año</label>
-          <br><v-select label="label" v-model="departamento_id" :onChange="watchDepa" placeholder="Seleccione año" :options="arrayDepartamentos"></v-select>
-        </div>
       </div>
     </div>
-  </div>
 </div>
 <br>
 </div>
@@ -465,7 +453,23 @@ export default {
           to: 0
       },
       offset: 3,
-      maxDatetime: new Date().toISOString().substring(0, 10)
+      maxDatetime: new Date().toISOString().substring(0, 10),
+      anio_selected: '',
+      arrayAños: [
+        // {value : new Date().getFullYear(), label: new Date().getFullYear()}
+        {value: 2028, label: 2018},
+        {value: this.app_year, label: this.app_year}
+      ],
+      options: [
+      { countryCode: this.app_year, countryName: this.app_year },
+      { countryCode: "CA", countryName: "Canada" },
+      { countryCode: "CN", countryName: "China" },
+      { countryCode: "DE", countryName: "Germany" },
+      { countryCode: "JP", countryName: "Japan" },
+      { countryCode: "MX", countryName: "Mexico" },
+      { countryCode: "CH", countryName: "Switzerland" },
+      { countryCode: "US", countryName: "United States" }
+      ]
     };
   },
   computed: {
@@ -594,7 +598,7 @@ export default {
             me.search = 0;
         }
         return me.search;
-    }, 
+    },
     abrirModal(modelo, accion, data = []) {
             const el = document.body;
             el.classList.add("abrirModal");
@@ -864,7 +868,7 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
-    },     
+    },
   },
   mounted() {
     this.getCarreras();

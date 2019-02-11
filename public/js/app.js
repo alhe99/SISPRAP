@@ -14866,6 +14866,7 @@ Vue.component('constancias', __webpack_require__(144));
 Vue.component('sectores', __webpack_require__(147));
 Vue.component('solicitudes_aprobadas', __webpack_require__(150));
 Vue.component('proyectos_externos', __webpack_require__(153));
+Vue.component('modal_year', __webpack_require__(156));
 
 var app = new Vue({
     el: '#app',
@@ -93349,7 +93350,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* RESET */\n* {\r\n  box-sizing: border-box;\r\n  margin: 0;\r\n  padding: 0;\n}\n.container {\r\n  margin: 60px auto;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 0.9em;\r\n  color: #888;\n}\r\n/* Style the tabs */\n.tabs a {\r\n  float: left;\r\n  cursor: pointer;\r\n  padding: 12px 24px;\r\n  transition: background-color 0.2s;\r\n  border: 1px solid #ccc;\r\n  border-right: none;\r\n  background-color: #f1f1f1;\r\n  border-radius: 10px 10px 0 0;\r\n  font-weight: bold;\n}\n.tabs a:last-child {\r\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\r\n  background-color: #aaa;\r\n  color: #fff;\n}\r\n\r\n/* Styling for active tab */\n.tabs a.active {\r\n  background-color: #fff;\r\n  color: #484848;\r\n  border-bottom: 2px solid #fff;\r\n  cursor: default;\n}\r\n\r\n/* Style the tab content */\n.tabcontent {\r\n  padding: 30px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 10px;\r\n  box-shadow: 3px 3px 6px #e1e1e1;\n}\r\n", ""]);
 
 // exports
 
@@ -93360,18 +93361,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -93827,7 +93816,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         to: 0
       },
       offset: 3,
-      maxDatetime: new Date().toISOString().substring(0, 10)
+      maxDatetime: new Date().toISOString().substring(0, 10),
+      anio_selected: '',
+      arrayAños: [
+      // {value : new Date().getFullYear(), label: new Date().getFullYear()}
+      { value: 2028, label: 2018 }, { value: this.app_year, label: this.app_year }],
+      options: [{ countryCode: this.app_year, countryName: this.app_year }, { countryCode: "CA", countryName: "Canada" }, { countryCode: "CN", countryName: "China" }, { countryCode: "DE", countryName: "Germany" }, { countryCode: "JP", countryName: "Japan" }, { countryCode: "MX", countryName: "Mexico" }, { countryCode: "CH", countryName: "Switzerland" }, { countryCode: "US", countryName: "United States" }]
     };
   },
 
@@ -94258,22 +94252,6 @@ var render = function() {
           [
             _c("i", { staticClass: "mdi mdi-face mdi-18px" }),
             _vm._v(" Estudiantes")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            class: [_vm.activetab === 3 ? "active" : ""],
-            on: {
-              click: function($event) {
-                _vm.activetab = 3
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "mdi mdi-settings mdi-18px" }),
-            _vm._v(" Configuraciones")
           ]
         )
       ]),
@@ -95720,48 +95698,6 @@ var render = function() {
                       _c("i", { staticClass: "mdi mdi-account-plus" }),
                       _vm._v(" Registrar Estudiante\n          ")
                     ]
-                  )
-                ])
-              ])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.activetab === 3
-          ? _c("div", { staticClass: "tabcontent" }, [
-              _c("br"),
-              _c("h2", { staticClass: "text-center" }, [
-                _vm._v("Año Actual del sistema")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "panel panel-default" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-md-12 col-xs-12 col-lg-12" },
-                    [
-                      _c("br"),
-                      _c("label", { attrs: { for: "email" } }, [
-                        _vm._v("Seleccione año")
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _c("v-select", {
-                        attrs: {
-                          label: "label",
-                          onChange: _vm.watchDepa,
-                          placeholder: "Seleccione año",
-                          options: _vm.arrayDepartamentos
-                        },
-                        model: {
-                          value: _vm.departamento_id,
-                          callback: function($$v) {
-                            _vm.departamento_id = $$v
-                          },
-                          expression: "departamento_id"
-                        }
-                      })
-                    ],
-                    1
                   )
                 ])
               ])
@@ -101267,7 +101203,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -101379,7 +101314,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.getGestionProy(me.carrera_selected.value, me.proceso, page, "");
       }
     },
-
+    saveDoc: function saveDoc(gp_id, procesoId) {
+      var me = this;
+      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
+      swal({
+        title: "¿ Desea Generar Constancia?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var url = route('getConstancia', { "estudianteId": gp_id, "procesoId": procesoId });
+          window.open(url);
+          me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
+        }
+        me.getGestionProy(me.carrera_selected.value, me.proceso, 1, "");
+      });
+    },
 
     //descargar el pdf de la constancia
     downloadPdfFromBase64: function downloadPdfFromBase64(base64) {
@@ -107038,6 +106998,365 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-87d02c86", module.exports)
   }
 }
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(159)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(157)
+/* template */
+var __vue_template__ = __webpack_require__(158)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\mantenimientos\\modal_year.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b153d2d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-b153d2d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 157 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['app_year'],
+  data: function data() {
+    return {
+      modalYear: 0,
+      loadSpinner: false,
+      yearSelected: this.app_year
+    };
+  },
+
+  computed: {},
+  methods: {
+    sendNewYear: function sendNewYear() {
+      var me = this;
+      me.loadSpinner = true;
+      var url = route('changeYearApp', me.yearSelected);
+      axios.get(url).then(function (response) {
+        me.loadSpinner = false;
+        swal({
+          position: "center",
+          type: "success",
+          title: "Año del sistema actualizado",
+          showConfirmButton: true,
+          width: '350px'
+        }).then(function (result) {
+          window.location.href = route('main');
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+  components: {},
+  mounted: function mounted() {
+    var me = this;
+    $("#modalChangeYear").on('show.bs.modal', function () {
+      $('#year').yearselect({
+        start: 2018,
+        end: new Date().getFullYear()
+      });
+      $("#year option[value=" + me.app_year + "]").attr('selected', 'selected');
+      $("#year").on('change', function () {
+        $("#btnSave").prop('disabled', false);
+        $("#btnSave").removeClass('disabled');
+      });
+    });
+  }
+});
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "row" }, [
+        _vm.loadSpinner
+          ? _c("div", { staticClass: "col-md-12 loading text-center" })
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal",
+          attrs: {
+            id: "modalChangeYear",
+            tabindex: "-4",
+            role: "dialog",
+            "aria-labelledby": "exampleModalLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-md",
+              staticStyle: { "margin-top": "60px" },
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "select" }, [
+                        _c("select", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.yearSelected,
+                              expression: "yearSelected"
+                            }
+                          ],
+                          staticClass: "yearselect select-text",
+                          attrs: {
+                            width: "100%",
+                            placeholder: "nhghjg",
+                            id: "year"
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.yearSelected = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { staticClass: "select-label" }, [
+                          _vm._v("Seleccione un año")
+                        ])
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "font-weight-bold" }, [
+                        _vm._v(
+                          "Año Actual del sistema: " + _vm._s(_vm.app_year)
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button blue disabled",
+                      attrs: { type: "button", id: "btnSave", disabled: "" },
+                      on: { click: _vm.sendNewYear }
+                    },
+                    [
+                      _c("i", { staticClass: "mdi mdi-content-save" }),
+                      _vm._v(" Guardar")
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h3",
+        {
+          staticClass: "modal-title text-center text-white",
+          attrs: { id: "exampleModalLongTitle" }
+        },
+        [_vm._v("Año del sistema")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "button red",
+        attrs: {
+          type: "button",
+          "data-target": "#exampleModal",
+          "data-dismiss": "modal"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-close-box" }), _vm._v(" Cancelar")]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b153d2d2", module.exports)
+  }
+}
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(160);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("3a2e6422", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b153d2d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./modal_year.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b153d2d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./modal_year.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* select starting stylings ------------------------------*/\n.select {\n  font-family:\n  'Roboto','Helvetica','Arial',sans-serif;\n  position: relative;\n  width: 100%;\n}\n.select-text {\n  position: relative;\n  font-family: inherit;\n  background-color: transparent;\n  width: 100%;\n  padding: 10px 10px 10px 0;\n  font-size: 18px;\n  border-radius: 0;\n  border: none;\n  border-bottom: 1px solid rgba(0,0,0, 0.12);\n}\n\n/* Remove focus */\n.select-text:focus {\n  outline: none;\n  border-bottom: 1px solid rgba(0,0,0, 0);\n}\n\n/* Use custom arrow */\n.select .select-text {\n  appearance: none;\n  -webkit-appearance:none\n}\n.select:after {\n  position: absolute;\n  top: 18px;\n  right: 10px;\n  /* Styling the down arrow */\n  width: 0;\n  height: 0;\n  padding: 0;\n  content: '';\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  border-top: 6px solid rgba(0, 0, 0, 0.12);\n  pointer-events: none;\n}\n\n\n/* LABEL ======================================= */\n.select-label {\n  color: rgba(0,0,0, 0.26);\n  font-size: 18px;\n  font-weight: normal;\n  position: absolute;\n  pointer-events: none;\n  left: 0;\n  top: 10px;\n  transition: 0.2s ease all;\n}\n\n/* active state */\n.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {\n  color: #2F80ED;\n  top: -20px;\n  transition: 0.2s ease all;\n  font-size: 14px;\n}\n\n/* BOTTOM BARS ================================= */\n.select-bar {\n  position: relative;\n  display: block;\n  width: 100%;\n}\n.select-bar:before, .select-bar:after {\n  content: '';\n  height: 2px;\n  width: 0;\n  bottom: 1px;\n  position: absolute;\n  background: #2F80ED;\n  transition: 0.2s ease all;\n}\n.select-bar:before {\n  left: 50%;\n}\n.select-bar:after {\n  right: 50%;\n}\n\n/* active state */\n.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {\n  width: 50%;\n}\n\n/* HIGHLIGHTER ================================== */\n.select-highlight {\n  position: absolute;\n  height: 60%;\n  width: 100px;\n  top: 25%;\n  left: 0;\n  pointer-events: none;\n  opacity: 0.5;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

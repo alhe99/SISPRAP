@@ -152,16 +152,20 @@ Route::get('/recepcion/payArancel/validate/{no_factura}','PagoArancelController@
 //Backup
 Route::get('/backup', 'BackupController@backup');
 
+//Usuarios
+Route::post('users/update','UsuarioController@update')->name('updateUsuario');
+Route::get('users/changeYear/{year}','UsuarioController@changeYearApp')->name('changeYearApp');
+
 Route::get('/test', function () {
-    
-    $carrera = App\Carrera::find(1);
-    $data = $carrera->estudiantes()->select('id','fecha_inicio_ss')->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro','2019')->get();
-    foreach ($data as $key => $value) {
-        if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
-            $data = $data->except($value->id);
-        }
-    }
-    return $data;
+
+    // $carrera = App\Carrera::find(1);
+    // $data = $carrera->estudiantes()->select('id','fecha_inicio_ss')->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro','2019')->get();
+    // foreach ($data as $key => $value) {
+    //     if(substr($value->fecha_inicio_ss,5,2) == date('m') and substr($value->fecha_inicio_ss,8,2) > date('d')){
+    //         $data = $data->except($value->id);
+    //     }
+    // }
+    // return $data;
     // $test = "2019-01-21SS5c4605667c309.jpeg";
     // if(file_exists(public_path('images/img_projects/').$test))
     // {
@@ -271,6 +275,16 @@ Route::get('/test', function () {
     // $img = App\ImgSupervision::where('supervision_id',$s->id)->select('img')->get();
     // return $img;
     //return Auth::user()->estudiante->gestionproyecto[0]->proyecto;
+    //
+    $path = base_path('.env');
+
+    if(file_exists($path)){
+        file_put_contents($path,str_replace(
+            'APP_YEAR='.'2020','APP_YEAR='.$key,file_get_contents($path)
+        ));
+    }
+    exec('php artisan config:cache');
+    return "Hecho";
 });
 
 /* Route::get('/_debugbar/assets/stylesheets', [

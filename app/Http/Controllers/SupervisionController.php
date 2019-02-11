@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 
 class SupervisionController extends Controller
 {
+    public $anio;
+
+    public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
 
     public function index(Request $request)
     {

@@ -39,7 +39,7 @@ class Carrera extends Model
             case 2:
                 $data = $this->estudiantes()->select('id','fecha_inicio_pp')->where([['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro',$anio)
                 ->whereMonth('fecha_inicio_pp','<=',date('m'))->whereIn(DB::raw('MONTH(fecha_inicio_pp)'), [$data[0],$data[1],$data[2]])->get();
-                
+
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_pp,5,2) == date('m') and substr($value->fecha_inicio_pp,8,2) > date('d')){
                         $data = $data->except($value->id);
@@ -67,7 +67,7 @@ class Carrera extends Model
             case 2:
                 $data = $this->estudiantes()->select('id','fecha_inicio_pp')->where([['tipo_beca_id',2],['estado',true]])->whereYear('fecha_registro',$anio)
                 ->whereMonth('fecha_inicio_pp','<=',date('m'))->whereIn(DB::raw('MONTH(fecha_inicio_pp)'), [$data[0],$data[1],$data[2]])->get();
-                
+
                 foreach ($data as $key => $value) {
                   if(substr($value->fecha_inicio_pp,5,2) == date('m') and substr($value->fecha_inicio_pp,8,2) > date('d')){
                         $data = $data->except($value->id);

@@ -21,6 +21,12 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProyectoController extends Controller
 {
+    public $anio;
+
+    public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
      //listado de proyectos por proceso y busqueda
     public function index(Request $request)
     {
@@ -30,8 +36,7 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::with(['institucion', 'tipoProceso','carre_proy'])->whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','I']])
-        ->orderBy('proyectos.id', 'desc')->paginate(10);
+        })->nombre($buscar)->whereYear('fecha_registro',$this->anio)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','I']])->orderBy('proyectos.id', 'desc')->paginate(10);
 
         return [
             'pagination' => [
@@ -285,7 +290,7 @@ class ProyectoController extends Controller
     public function GetProyectos($id)
     {
         $proceso = $id;
-        $proyecto = Proyecto::select('id', 'nombre')->proceso($proceso)->where('proyectos.estado', '1')->orderBy('proyectos.id', 'desc')->get();
+        $proyecto = Proyecto::select('id', 'nombre')->proceso($proceso)->whereYear('fecha_registro',$this->anio)->where('estado',1)->orderBy('proyectos.id', 'desc')->get();
         $data = [];
         foreach ($proyecto as $key => $value) {
             $data[$key] = [
@@ -324,7 +329,7 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','I']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
+        })->whereYear('fecha_registro',$this->anio)->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','I']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
 
         return [
             'pagination' => [
@@ -347,7 +352,7 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','E']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
+        })->whereYear('fecha_registro',$this->anio)->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','E']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
 
         return [
             'pagination' => [
@@ -360,18 +365,6 @@ class ProyectoController extends Controller
             ],
             'proyectos' => $proyecto,
         ];
-    }
-
-    //listado de proyectos en base a su carrera y actividades por carrera
-    public function obtenerProyecto(Request $request)
-    {
-        $proy = Proyecto::findOrFail($request->id);
-        $proyecto = Proyecto::where("nombre", $proy->nombre)->select("actividades", "id")->get();
-        $carreActvidad = Proyecto::where("nombre", $proy->nombre)->with(["carre_proy"])->select("id")->get();
-        for ($i = 0; $i < count($proyecto); $i++) {
-            $proyecto[$i]->setAttribute("Carrera", $carreActvidad[$i]["carre_proy"][0]["nombre"]);
-        }
-        return $proyecto;
     }
 
     //Funcion que obtiene los proyectos deacuerdo ala carerra del alumno logeado y verifica si ya se preisncribio a ese proyecto no lo muestra
@@ -389,7 +382,7 @@ class ProyectoController extends Controller
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                     $query->where('proceso_id', $tp);
-                })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                 for ($i=0; $i < count($pre_register) ; $i++) {
                  $proyectos = $proyectos->except([$pre_register[$i]->id]);
@@ -405,7 +398,7 @@ class ProyectoController extends Controller
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                     $query->where('proceso_id', $tp);
-                })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                if(count($gestion) > 0)
                {
@@ -419,7 +412,7 @@ class ProyectoController extends Controller
             if(collect($pre_register)->isNotEmpty()){
                 $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                     $query->where('carrera_id', $carre_id);
-                })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                 for ($i=0; $i < count($pre_register) ; $i++) {
                     $proyectos = $proyectos->except([$pre_register[$i]->id]);
@@ -435,7 +428,7 @@ class ProyectoController extends Controller
 
                 $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                     $query->where('carrera_id', $carre_id);
-                })->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                 if(count($gestion) > 0)
                 {
@@ -448,7 +441,7 @@ class ProyectoController extends Controller
         }
 
         $projects_ids = $proyectos->pluck('id');
-        $result_paginate = Proyecto::whereIn('id', $projects_ids)->orderby('id', 'desc')->paginate(12);
+        $result_paginate = Proyecto::whereIn('id', $projects_ids)->whereYear('fecha_registro',$this->anio)->orderby('id', 'desc')->paginate(12);
         return $result_paginate;
     }
 
@@ -467,21 +460,21 @@ class ProyectoController extends Controller
 
                     $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
                      $query->where('proceso_id', $process_id);
-                 })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
+                 })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->whereYear('fecha_registro',$this->anio)->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
 
 
                 } else if ($process_id == 2){
 
                     $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                         $query->where('carrera_id', $carre_id);
-                    })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
+                    })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->whereYear('fecha_registro',$this->anio)->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
                 }
             break;
             case 'E':
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
                    $query->where('proceso_id', $process_id);
-               })->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
+               })->orderby('id','desc')->whereYear('fecha_registro',$this->anio)->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
 
             break;
         }
@@ -587,7 +580,7 @@ class ProyectoController extends Controller
     //listado de estudiantes que se han preinscrito a un proyecto especificado
     public function getPreregistrationByProject(Request $request)
     {
-        $proyect = Proyecto::findOrFail($request->project_id);
+        $proyect = Proyecto::whereYear('fecha_registro',$this->anio)->findOrFail($request->project_id);
         $fechaActual= date('Y-m-d');
         $buscar = $request->buscar;
 
@@ -721,7 +714,7 @@ class ProyectoController extends Controller
         $buscar = $request->buscar;
         $proyectos = Proyecto::find($proyectoId)->preRegistration()->whereHas('preinscripciones',function($query){
             $query->where('preinscripciones_proyectos.estado','A')->orWhere('preinscripciones_proyectos.estado','F');
-        })->nombre($buscar)->paginate(10);
+        })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->paginate(10);
 
         return [
             'pagination' => [
@@ -752,7 +745,7 @@ class ProyectoController extends Controller
         $proceso = $request->proceso;
         $proyecto = Proyecto::with(['institucion', 'tipoProceso'])->whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','E']])
+        })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','E']])
         ->orderBy('proyectos.id', 'desc')->paginate(10);
 
         return [
