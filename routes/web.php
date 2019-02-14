@@ -112,7 +112,7 @@ Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepc
 Route::get('/admin/studentsHasPayArancel','EstudianteController@getStudentsHasPayArancel')->name('accessToPerfil');
 
 //PARTE PUBLICA, PERFIL DEL PROYECTO
-Route::get('/perfil_proy',function(){return view('public.perfilProject');})->name('show_perfil');
+Route::get('/perfil_proy',function(){exec('php artisan view:clear');return view('public.perfilProject');})->name('show_perfil');
 Route::get('/public', 'PublicController@index')->name('public');
 
 //GESTION PROYECTO

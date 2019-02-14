@@ -28,7 +28,7 @@ class SupervisorController extends Controller
         $supervisor->nombre = $request->nombre;
         $supervisor->no_telefono = $request->telefono;
         $supervisor->institucion_id = $request->institucion_id;
-        $supervisor->fecha_registro = date('Y-m-d');
+        $supervisor->fecha_registro = $this->anio;
         $supervisor->save();
     }
 

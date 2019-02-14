@@ -77,5 +77,8 @@ class Proyecto extends Model
         if($proceso)
             return $query->where('proceso_id',$proceso);
     }
+    public function scopeYear($query,$year){
+        return $query->where('fecha_registro',$year);
+    }
 
 }

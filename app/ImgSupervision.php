@@ -14,4 +14,7 @@ class ImgSupervision extends Model
 
         return $this->belongsTo(SupervisionProyecto::class,'supervision_id');
     }
+    public function scopeYear($query,$year){
+        return $query->where('fecha_registro',$year);
+    }
 }

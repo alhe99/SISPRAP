@@ -36,7 +36,7 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::with(['institucion', 'tipoProceso','carre_proy'])->whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->nombre($buscar)->whereYear('fecha_registro',$this->anio)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','I']])->orderBy('proyectos.id', 'desc')->paginate(10);
+        })->nombre($buscar)->year($this->anio)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','I']])->orderBy('proyectos.id', 'desc')->paginate(10);
 
         return [
             'pagination' => [
@@ -54,79 +54,6 @@ class ProyectoController extends Controller
     //Publicacion de proyectos verificando proceso y tipo de proyecto
     public function store(Request $request)
     {
-        /*$date = date('Y-m-d');
-        switch ($request->tipoProyecto) {
-            case 'I':
-             switch ($request->proceso_id) {
-                case 1:
-                $img_recv = $request->imagen;
-                $proyecto = new Proyecto();
-                $proyecto->nombre = $request->nombre;
-                $proyecto->fecha = Carbon::parse($date);
-                $proyecto->actividades = $request->actividadSS;
-                $proyecto->institucion_id = $request->institucion_id;
-                $proyecto->horas_realizar = $request->horas;
-                $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
-                $proyecto->tipo_proyecto = 'I';
-                $proyecto->proceso_id = 1;
-                if ($img_recv) {
-                    $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                    $proyecto->img = $name_img;
-                    Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
-                } else {
-                    $proyecto->img = $request->imageG;
-                }
-                $proyecto->estado = 1;
-                $proyecto->save();
-                break;
-                case 2:
-                try {
-                    for ($i = 0; $i < count($request->actividades); $i++) {
-                        DB::beginTransaction();
-                        $obj = $request->actividades[$i];
-                        $img_recv = $request->imagen;
-                        $proyecto = new Proyecto();
-                        $proyecto->nombre = $request->nombre;
-                        $proyecto->fecha = Carbon::parse($date);
-                        $proyecto->horas_realizar = $request->horas;
-                        $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
-                        $proyecto->actividades = $obj['actividades'];
-                        $proyecto->institucion_id = $request->institucion_id;
-                        $proyecto->proceso_id = 2;
-                        if ($img_recv) {
-                            $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
-                            $proyecto->img = $name_img;
-                            Image::make($request->imagen)->save(public_path('/images/img_projects/') . $name_img);
-                        } else {
-                            $proyecto->img = $request->imageG;
-                        }
-                        $proyecto->estado = 1;
-                        $proyecto->save();
-
-                        $proyecto->carre_proy()->attach($obj['carrera_id']);
-                        DB::commit();
-                    }
-                } catch (Exception $e) {
-                    DB::rollBack();
-                }
-                break;
-            }
-            break;
-            case 'E':
-            $proyecto = new Proyecto();
-            $proyecto->nombre = $request->nombre;
-            $proyecto->fecha = $date;
-            $proyecto->actividades = $request->actividadSS;
-            $proyecto->institucion_id = $request->institucion_id;
-            $proyecto->horas_realizar = $request->horas;
-            $proyecto->cantidades_vacantes = null;
-            $proyecto->tipo_proyecto = 'E';
-            $proyecto->proceso_id = $request->proceso_id;
-            $proyecto->estado = 1;
-            $proyecto->fecha_registro = $date;
-            $proyecto->save();
-            break;
-        }*/
         $date = date('Y-m-d');
         switch ($request->tipoProyecto) {
             case 'I':
@@ -142,7 +69,7 @@ class ProyectoController extends Controller
                 $proyecto->cantidades_vacantes = $request->cantidadAlumnos;
                 $proyecto->tipo_proyecto = 'I';
                 $proyecto->proceso_id = 1;
-                $proyecto->fecha_registro = $date;
+                $proyecto->fecha_registro = $this->anio;
 
                 if ($img_recv) {
                     $name_img = Carbon::now()->format('Y-m-d') . 'SS' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
@@ -168,7 +95,7 @@ class ProyectoController extends Controller
                         $proyecto->actividades = $actividad->actividades;
                         $proyecto->institucion_id = $request->institucion_id;
                         $proyecto->proceso_id = 2;
-                        $proyecto->fecha_registro = $date;
+                        $proyecto->fecha_registro =  $this->anio;
 
                         if ($img_recv) {
                             $name_img = Carbon::now()->format('Y-m-d') . 'PP' . uniqid() . '.' . explode('/', explode(':', substr($img_recv, 0, strpos($img_recv, ';')))[1])[1];
@@ -201,7 +128,7 @@ class ProyectoController extends Controller
             $proyecto->tipo_proyecto = 'E';
             $proyecto->proceso_id = $request->proceso_id;
             $proyecto->estado = 1;
-            $proyecto->fecha_registro = $date;
+            $proyecto->fecha_registro =  $this->anio;
             $proyecto->save();
             break;
         }
@@ -210,7 +137,6 @@ class ProyectoController extends Controller
     //actualizacion de proyecto
     public function update(Request $request)
     {
-        $date = date('Y-m-d');
         $cantidad = $request->cantidadEstudiantes;
         $img_recv = $request->imagen;
         switch ($request->tipoProyecto) {
@@ -290,7 +216,7 @@ class ProyectoController extends Controller
     public function GetProyectos($id)
     {
         $proceso = $id;
-        $proyecto = Proyecto::select('id', 'nombre')->proceso($proceso)->whereYear('fecha_registro',$this->anio)->where('estado',1)->orderBy('proyectos.id', 'desc')->get();
+        $proyecto = Proyecto::select('id', 'nombre')->proceso($proceso)->year($this->anio)->where('estado',1)->orderBy('proyectos.id', 'desc')->get();
         $data = [];
         foreach ($proyecto as $key => $value) {
             $data[$key] = [
@@ -329,7 +255,7 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->whereYear('fecha_registro',$this->anio)->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','I']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
+        })->year($this->anio)->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','I']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
 
         return [
             'pagination' => [
@@ -352,7 +278,7 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->whereYear('fecha_registro',$this->anio)->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','E']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
+        })->year($this->anio)->where([['proyectos.estado','0'],['proyectos.tipo_proyecto','E']])->nombre($buscar)->orderBy('proyectos.id', 'desc')->paginate(5);
 
         return [
             'pagination' => [
@@ -382,7 +308,7 @@ class ProyectoController extends Controller
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                     $query->where('proceso_id', $tp);
-                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->year($this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                 for ($i=0; $i < count($pre_register) ; $i++) {
                  $proyectos = $proyectos->except([$pre_register[$i]->id]);
@@ -398,7 +324,7 @@ class ProyectoController extends Controller
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($tp) {
                     $query->where('proceso_id', $tp);
-                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->year($this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                if(count($gestion) > 0)
                {
@@ -412,7 +338,7 @@ class ProyectoController extends Controller
             if(collect($pre_register)->isNotEmpty()){
                 $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                     $query->where('carrera_id', $carre_id);
-                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->year($this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                 for ($i=0; $i < count($pre_register) ; $i++) {
                     $proyectos = $proyectos->except([$pre_register[$i]->id]);
@@ -428,7 +354,7 @@ class ProyectoController extends Controller
 
                 $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                     $query->where('carrera_id', $carre_id);
-                })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
+                })->year($this->anio)->nombre($buscar)->orderby('id', 'desc')->where([['estado',1],['estado_vacantes','D'],['proyectos.tipo_proyecto','I']])->get();
 
                 if(count($gestion) > 0)
                 {
@@ -441,7 +367,7 @@ class ProyectoController extends Controller
         }
 
         $projects_ids = $proyectos->pluck('id');
-        $result_paginate = Proyecto::whereIn('id', $projects_ids)->whereYear('fecha_registro',$this->anio)->orderby('id', 'desc')->paginate(12);
+        $result_paginate = Proyecto::whereIn('id', $projects_ids)->year($this->anio)->orderby('id', 'desc')->paginate(12);
         return $result_paginate;
     }
 
@@ -460,21 +386,21 @@ class ProyectoController extends Controller
 
                     $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
                      $query->where('proceso_id', $process_id);
-                 })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->whereYear('fecha_registro',$this->anio)->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
+                 })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->year($this->anio)->orderby('id','desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
 
 
                 } else if ($process_id == 2){
 
                     $proyectos = Proyecto::with(["carre_proy", "tipoProceso", "institucion"])->whereHas('carre_proy', function ($query) use ($carre_id) {
                         $query->where('carrera_id', $carre_id);
-                    })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->whereYear('fecha_registro',$this->anio)->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
+                    })->select('id','nombre','cantidades_vacantes',DB::raw("(SELECT COUNT(id) FROM preinscripciones_proyectos WHERE proyecto_id = proyectos.id AND estado != 'R') AS solicitudes"))->year($this->anio)->orderby('id', 'desc')->where([['estado',1],['proyectos.tipo_proyecto','I']])->get();
                 }
             break;
             case 'E':
 
                 $proyectos = Proyecto::with(["tipoProceso", "institucion"])->whereHas('tipoProceso', function ($query) use ($process_id) {
                    $query->where('proceso_id', $process_id);
-               })->orderby('id','desc')->whereYear('fecha_registro',$this->anio)->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
+               })->orderby('id','desc')->year($this->anio)->where([['estado',1],['proyectos.tipo_proyecto','E']])->get();
 
             break;
         }
@@ -553,7 +479,7 @@ class ProyectoController extends Controller
         $proyect_name = $proyect->nombre;
         try {
             DB::beginTransaction();
-            if (!$proyect->preRegistration()->attach($estudent_id,array('fecha_registro' => date('Y-m-d')))) {
+            if (!$proyect->preRegistration()->attach($estudent_id,array('fecha_registro' => $this->anio))) {
 
                 $count_pre = $proyect->preRegistration()->count();
 
@@ -580,7 +506,7 @@ class ProyectoController extends Controller
     //listado de estudiantes que se han preinscrito a un proyecto especificado
     public function getPreregistrationByProject(Request $request)
     {
-        $proyect = Proyecto::whereYear('fecha_registro',$this->anio)->findOrFail($request->project_id);
+        $proyect = Proyecto::year($this->anio)->findOrFail($request->project_id);
         $fechaActual= date('Y-m-d');
         $buscar = $request->buscar;
 
@@ -678,7 +604,7 @@ class ProyectoController extends Controller
         for ($i=0; $i < count($arrayEstudiante); $i++) {
 
            $proyect = Proyecto::find($request->project_id);
-           $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','fecha_registro' => date('Y-m-d')));
+           $proyect->preRegistration()->attach($arrayEstudiante[$i],array('estado' => 'A','fecha_registro' =>  $this->anio));
 
            $estudiante = Estudiante::findOrFail($arrayEstudiante[$i]);
            if ($estudiante->proceso[0]->pago_arancel == 0) {
@@ -712,9 +638,9 @@ class ProyectoController extends Controller
     {
         $proyectoId = $request->proyectoId;
         $buscar = $request->buscar;
-        $proyectos = Proyecto::find($proyectoId)->preRegistration()->whereHas('preinscripciones',function($query){
+        $proyectos = Proyecto::year($this->anio)->find($proyectoId)->preRegistration()->whereHas('preinscripciones',function($query){
             $query->where('preinscripciones_proyectos.estado','A')->orWhere('preinscripciones_proyectos.estado','F');
-        })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->paginate(10);
+        })->nombre($buscar)->paginate(10);
 
         return [
             'pagination' => [
@@ -745,7 +671,7 @@ class ProyectoController extends Controller
         $proceso = $request->proceso;
         $proyecto = Proyecto::with(['institucion', 'tipoProceso'])->whereHas('tipoProceso', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
-        })->whereYear('fecha_registro',$this->anio)->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','E']])
+        })->year($this->anio)->nombre($buscar)->where([['proyectos.estado', '1'],['proyectos.tipo_proyecto','E']])
         ->orderBy('proyectos.id', 'desc')->paginate(10);
 
         return [

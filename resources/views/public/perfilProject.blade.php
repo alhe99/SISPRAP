@@ -18,6 +18,8 @@
     <div class="row">
       <div class="col-md-12 wow animated fadeInLeft" data-wow-delay=".1s">
         <h2 class="subtitle">Tu Información</h2><br>
+        <div hidden :onload="getAppYear('{{config('app.app_year')}}')">
+        </div>
       </div>
     </div>
     <div class="single-blog-post col-md-12">
@@ -232,7 +234,8 @@
       selectSuper: "",
       telSuper: "",
       nombreSupervisor: "",
-      showMessage: false
+      showMessage: false,
+      appYear: ''
     },
     computed:{
       validate: function(){
@@ -248,7 +251,10 @@
     },
   },
   methods : {
-    openDateIPicker(){
+   getAppYear(appYear){
+     this.appYear = appYear;
+   },
+   openDateIPicker(){
      var datepicker = $('#fecha_ini').datepicker();
      datepicker.open();
    },
@@ -324,7 +330,7 @@ mounted(){
   $('#total_horas').mask('###', {reverse: true});
   $("#fecha_ini").datepicker({
     locale: 'es-es',
-    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+    minDate: me.appYear == new Date().getFullYear() ? new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) : '',
     format: 'yyyy-mm-dd',
     change: function (e) {
       var datepicker = $('#fecha_ini').datepicker();

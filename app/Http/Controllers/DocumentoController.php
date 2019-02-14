@@ -8,6 +8,12 @@ use App\GestionProyecto;
 
 class DocumentoController extends Controller
 {
+    public $anio;
+
+    public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
     public function getDocumentsByStudent()
     {
         $doc = Documento::all();
@@ -26,7 +32,7 @@ class DocumentoController extends Controller
         $arraydoc = explode(',',$request->objDoc);
         $e = GestionProyecto::findOrFail($request->gestionId);
         for ($i=0; $i < count($arraydoc); $i++) {
-            $e->documentos_entrega()->attach($arraydoc[$i],['observacion'=>$request->observacion,'estado'=>true]);
+            $e->documentos_entrega()->attach($arraydoc[$i],['observacion'=>$request->observacion,'estado'=>true,'fecha_registro' => $this->anio]);
         }
     }
 }

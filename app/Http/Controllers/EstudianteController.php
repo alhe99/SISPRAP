@@ -6,6 +6,12 @@ use App\Estudiante;
 
 class EstudianteController extends Controller
 {
+    public $anio;
+
+    public function __construct()
+    {
+        $this->anio = config('app.app_year');
+    }
     //Registrar un estudiante
     public function store(Request $request)
     {
@@ -72,7 +78,7 @@ class EstudianteController extends Controller
         $buscar = $request->buscar;
 
         $estu = Estudiante::with(['carrera','pagoArancel','preinscripciones'])->whereHas('preinscripciones', function ($query) {
-            $query->where('preinscripciones_proyectos.estado','A');
+            $query->where([['preinscripciones_proyectos.estado','A'],['preinscripciones_proyectos.fecha_registro',$this->anio]]);
         })->whereHas('proceso', function ($query) use($process_id) {
             $query->where('procesos_estudiantes.proceso_id',$process_id)->where('procesos_estudiantes.pago_arancel',true);;
         })->where('carrera_id',$carrera_id)->nombre($buscar)->paginate(5);

@@ -29,7 +29,6 @@ class UsuarioController extends Controller
     public function changeYearApp($newYear){
        $this->setEnvironmentValue('APP_YEAR', $newYear);
        exec('php artisan config:cache');
-       return "Hecho";
     }
     public function update(Request $request)
     {

@@ -14,4 +14,5 @@ class Supervisor extends Model
 	{
 		return $this->belongsTo(Institucion::class, 'institucion_id');
 	}
+	
 }

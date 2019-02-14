@@ -617,33 +617,6 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -868,6 +841,33 @@ function applyToTag (styleElement, obj) {
     styleElement.appendChild(document.createTextNode(css))
   }
 }
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -14237,7 +14237,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
 /***/ }),
 /* 11 */
@@ -32075,7 +32075,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */](
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(23)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(23)(module)))
 
 /***/ }),
 /* 23 */
@@ -57954,7 +57954,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(47).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(47).setImmediate))
 
 /***/ }),
 /* 47 */
@@ -58024,7 +58024,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 48 */
@@ -58217,7 +58217,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(12)))
 
 /***/ }),
 /* 49 */
@@ -78455,7 +78455,7 @@ var content = __webpack_require__(80);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("0c0d176d", content, false, {});
+var update = __webpack_require__(4)("0c0d176d", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -78696,7 +78696,7 @@ var content = __webpack_require__(86);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("76a0428a", content, false, {});
+var update = __webpack_require__(4)("76a0428a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -84629,7 +84629,7 @@ var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("01b2762f", content, false, {});
+var update = __webpack_require__(4)("01b2762f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -91369,7 +91369,7 @@ var content = __webpack_require__(113);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("bbeaa7a4", content, false, {});
+var update = __webpack_require__(4)("bbeaa7a4", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -93326,7 +93326,7 @@ var content = __webpack_require__(126);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("0151acda", content, false, {});
+var update = __webpack_require__(4)("0151acda", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -98720,6 +98720,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98998,20 +98999,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getGestionProy(this.carrera_selected.value, this.proceso, 1, "");
     },
     abrirModalEnd: function abrirModalEnd() {
+      var me = this;
       var el = document.body;
       el.classList.add("abrirModal");
-      this.modalEnd = 1;
-
-      $("#fechaFin").datepicker({
-        locale: 'es-es',
-        maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-        format: 'yyyy-mm-dd',
-        minDate: this.gpObj.fecha_inicio,
-        change: function change(e) {
-          $("#btnCloseProyect").prop('disabled', false);
-          $("#btnCloseProyect").removeClass('disabled');
-        }
-      });
+      if (me.gpObj.fecha_inicio.substring(0, 4) == new Date().getFullYear()) {
+        $("#fechaFin").datepicker({
+          locale: 'es-es',
+          maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+          format: 'yyyy-mm-dd',
+          minDate: me.gpObj.fecha_inicio,
+          change: function change(e) {
+            $("#btnCloseProyect").prop('disabled', false);
+            $("#btnCloseProyect").removeClass('disabled');
+          }
+        });
+        me.modalEnd = 1;
+      } else {
+        $("#fechaFin").datepicker({
+          locale: 'es-es',
+          maxDate: me.gpObj.fecha_inicio.substring(0, 4) + "-12-31",
+          format: 'yyyy-mm-dd',
+          minDate: me.gpObj.fecha_inicio,
+          value: me.gpObj.fecha_inicio,
+          change: function change(e) {
+            $("#btnCloseProyect").prop('disabled', false);
+            $("#btnCloseProyect").removeClass('disabled');
+          }
+        });
+        me.modalEnd = 1;
+      }
     },
     cerrarModalEnd: function cerrarModalEnd() {
       var el = document.body;
@@ -100240,23 +100256,59 @@ var render = function() {
                                                               "col-md-12"
                                                           },
                                                           [
-                                                            _c(
-                                                              "p",
-                                                              {
-                                                                staticClass:
-                                                                  "text-center"
-                                                              },
-                                                              [
-                                                                _c("small", [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      item.pivot
-                                                                        .created_at
+                                                            _vm.gpObj.fecha_inicio.substring(
+                                                              0,
+                                                              4
+                                                            ) ==
+                                                            new Date().getFullYear()
+                                                              ? _c(
+                                                                  "p",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-center"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "small",
+                                                                      [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            item
+                                                                              .pivot
+                                                                              .created_at
+                                                                          )
+                                                                        )
+                                                                      ]
                                                                     )
-                                                                  )
-                                                                ])
-                                                              ]
-                                                            )
+                                                                  ]
+                                                                )
+                                                              : _c(
+                                                                  "p",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-center"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "small",
+                                                                      [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            _vm.gpObj.fecha_inicio.substring(
+                                                                              0,
+                                                                              4
+                                                                            ) +
+                                                                              "-" +
+                                                                              item.pivot.created_at.substring(
+                                                                                5,
+                                                                                25
+                                                                              )
+                                                                          )
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
                                                           ]
                                                         )
                                                       ]
@@ -107006,13 +107058,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(159)
+  __webpack_require__(157)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(157)
+var __vue_script__ = __webpack_require__(159)
 /* template */
-var __vue_template__ = __webpack_require__(158)
+var __vue_template__ = __webpack_require__(160)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -107052,6 +107104,46 @@ module.exports = Component.exports
 
 /***/ }),
 /* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(158);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("3a2e6422", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b153d2d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./modal_year.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b153d2d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./modal_year.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* select starting stylings ------------------------------*/\n.select {\n  font-family:\n  'Roboto','Helvetica','Arial',sans-serif;\n  position: relative;\n  width: 100%;\n}\n.select-text {\n  position: relative;\n  font-family: inherit;\n  background-color: transparent;\n  width: 100%;\n  padding: 10px 10px 10px 0;\n  font-size: 18px;\n  border-radius: 0;\n  border: none;\n  border-bottom: 1px solid rgba(0,0,0, 0.12);\n}\n\n/* Remove focus */\n.select-text:focus {\n  outline: none;\n  border-bottom: 1px solid rgba(0,0,0, 0);\n}\n\n/* Use custom arrow */\n.select .select-text {\n  appearance: none;\n  -webkit-appearance:none\n}\n.select:after {\n  position: absolute;\n  top: 18px;\n  right: 10px;\n  /* Styling the down arrow */\n  width: 0;\n  height: 0;\n  padding: 0;\n  content: '';\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  border-top: 6px solid rgba(0, 0, 0, 0.12);\n  pointer-events: none;\n}\n\n\n/* LABEL ======================================= */\n.select-label {\n  color: rgba(0,0,0, 0.26);\n  font-size: 18px;\n  font-weight: normal;\n  position: absolute;\n  pointer-events: none;\n  left: 0;\n  top: 10px;\n  transition: 0.2s ease all;\n}\n\n/* active state */\n.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {\n  color: #2F80ED;\n  top: -20px;\n  transition: 0.2s ease all;\n  font-size: 14px;\n}\n\n/* BOTTOM BARS ================================= */\n.select-bar {\n  position: relative;\n  display: block;\n  width: 100%;\n}\n.select-bar:before, .select-bar:after {\n  content: '';\n  height: 2px;\n  width: 0;\n  bottom: 1px;\n  position: absolute;\n  background: #2F80ED;\n  transition: 0.2s ease all;\n}\n.select-bar:before {\n  left: 50%;\n}\n.select-bar:after {\n  right: 50%;\n}\n\n/* active state */\n.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {\n  width: 50%;\n}\n\n/* HIGHLIGHTER ================================== */\n.select-highlight {\n  position: absolute;\n  height: 60%;\n  width: 100px;\n  top: 25%;\n  left: 0;\n  pointer-events: none;\n  opacity: 0.5;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 159 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -107146,7 +107238,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -107317,46 +107409,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-b153d2d2", module.exports)
   }
 }
-
-/***/ }),
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(160);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(5)("3a2e6422", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b153d2d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./modal_year.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b153d2d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./modal_year.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 160 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* select starting stylings ------------------------------*/\n.select {\n  font-family:\n  'Roboto','Helvetica','Arial',sans-serif;\n  position: relative;\n  width: 100%;\n}\n.select-text {\n  position: relative;\n  font-family: inherit;\n  background-color: transparent;\n  width: 100%;\n  padding: 10px 10px 10px 0;\n  font-size: 18px;\n  border-radius: 0;\n  border: none;\n  border-bottom: 1px solid rgba(0,0,0, 0.12);\n}\n\n/* Remove focus */\n.select-text:focus {\n  outline: none;\n  border-bottom: 1px solid rgba(0,0,0, 0);\n}\n\n/* Use custom arrow */\n.select .select-text {\n  appearance: none;\n  -webkit-appearance:none\n}\n.select:after {\n  position: absolute;\n  top: 18px;\n  right: 10px;\n  /* Styling the down arrow */\n  width: 0;\n  height: 0;\n  padding: 0;\n  content: '';\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  border-top: 6px solid rgba(0, 0, 0, 0.12);\n  pointer-events: none;\n}\n\n\n/* LABEL ======================================= */\n.select-label {\n  color: rgba(0,0,0, 0.26);\n  font-size: 18px;\n  font-weight: normal;\n  position: absolute;\n  pointer-events: none;\n  left: 0;\n  top: 10px;\n  transition: 0.2s ease all;\n}\n\n/* active state */\n.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {\n  color: #2F80ED;\n  top: -20px;\n  transition: 0.2s ease all;\n  font-size: 14px;\n}\n\n/* BOTTOM BARS ================================= */\n.select-bar {\n  position: relative;\n  display: block;\n  width: 100%;\n}\n.select-bar:before, .select-bar:after {\n  content: '';\n  height: 2px;\n  width: 0;\n  bottom: 1px;\n  position: absolute;\n  background: #2F80ED;\n  transition: 0.2s ease all;\n}\n.select-bar:before {\n  left: 50%;\n}\n.select-bar:after {\n  right: 50%;\n}\n\n/* active state */\n.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {\n  width: 50%;\n}\n\n/* HIGHLIGHTER ================================== */\n.select-highlight {\n  position: absolute;\n  height: 60%;\n  width: 100px;\n  top: 25%;\n  left: 0;\n  pointer-events: none;\n  opacity: 0.5;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

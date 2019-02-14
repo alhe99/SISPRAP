@@ -12,5 +12,8 @@ class ConstanciaEntregada extends Model
     {
         return $this->belongsTo(GestionProyecto::class, 'gestion_proyecto_id');
     }
+    public function scopeYear($query,$year){
+        return $query->where('fecha_registro',$year);
+    }
 
 }

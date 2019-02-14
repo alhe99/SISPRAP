@@ -19,5 +19,8 @@ class PreinscripcionProyecto extends Model
     {
         return $this->hasOne(GestionProyecto::class);
     }
+    public function scopeYear($query,$year){
+        return $query->where('fecha_registro',$year);
+    }
        
 }

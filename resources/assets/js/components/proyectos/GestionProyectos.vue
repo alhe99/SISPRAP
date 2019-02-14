@@ -217,7 +217,8 @@
                                   <p class="text-center">{{item.pivot.observacion}}</p>
                                 </div>
                                 <div class="col-md-12">
-                                  <p class="text-center"><small>{{item.pivot.created_at}}</small></p>
+                                  <p v-if="gpObj.fecha_inicio.substring(0,4) == new Date().getFullYear()" class="text-center"><small>{{item.pivot.created_at}}</small></p>
+                                  <p v-else class="text-center"><small>{{gpObj.fecha_inicio.substring(0,4)+'-'+item.pivot.created_at.substring(5,25)}}</small></p>
                                 </div>
                               </td>
                               <td>
@@ -640,7 +641,6 @@ methods:{
     el.classList.remove("abrirModal");
     this.modalFI = 0;
     datepickerEdicionFI.close();
-
   },
   abrirModalDoc() {
     const el = document.body;
@@ -662,21 +662,35 @@ methods:{
     this.getGestionProy(this.carrera_selected.value,this.proceso,1,"")
   },
   abrirModalEnd() {
+    let me = this;
     const el = document.body;
     el.classList.add("abrirModal");
-    this.modalEnd = 1;
-
-    $("#fechaFin").datepicker({
-      locale: 'es-es',
-      maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-      format: 'yyyy-mm-dd',
-      minDate: this.gpObj.fecha_inicio,
-      change:function(e){
-        $("#btnCloseProyect").prop('disabled',false);
-        $("#btnCloseProyect").removeClass('disabled');
-      }
-    });
-
+    if(me.gpObj.fecha_inicio.substring(0,4) == new Date().getFullYear()){
+        $("#fechaFin").datepicker({
+          locale: 'es-es',
+          maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+          format: 'yyyy-mm-dd',
+          minDate: me.gpObj.fecha_inicio,
+          change:function(e){
+            $("#btnCloseProyect").prop('disabled',false);
+            $("#btnCloseProyect").removeClass('disabled');
+          }
+        });
+        me.modalEnd = 1;
+    }else{
+        $("#fechaFin").datepicker({
+          locale: 'es-es',
+          maxDate: me.gpObj.fecha_inicio.substring(0,4)+"-12-31",
+          format: 'yyyy-mm-dd',
+          minDate: me.gpObj.fecha_inicio,
+          value: me.gpObj.fecha_inicio,
+          change:function(e){
+            $("#btnCloseProyect").prop('disabled',false);
+            $("#btnCloseProyect").removeClass('disabled');
+          }
+        });
+        me.modalEnd = 1;
+    }
   },
   cerrarModalEnd() {
     const el = document.body;

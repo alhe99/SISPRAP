@@ -85,7 +85,7 @@
 												</div>
 												<br>
 												<div class="card-footer text-muted">
-													{{substr($documentos->pivot->created_at,0,10)}}
+													{{substr($documentos->pivot->created_at,0,4) != substr($data->fecha_inicio,0,4) ? substr($data->fecha_inicio,0,4)."-".substr($documentos->pivot->created_at,5,5) : substr($documentos->pivot->created_at,0,10)}}
 												</div>
 												@else
 												<div class="card-header">

@@ -32,7 +32,7 @@ class SupervisionController extends Controller
                   $supervision->fecha = $request->fecha;
                   $supervision->observacion = $request->observacion;
                   $supervision->estado = 0;
-                  $supervision->fecha_registro = date('Y-m-d');
+                  $supervision->fecha_registro = $this->anio;
                   Proyecto::findOrFail($request->proyecto_id)->supervision()->save($supervision);
 
                   for ($i=0;$i<count($request->imagenes);$i++) {
@@ -40,7 +40,7 @@ class SupervisionController extends Controller
                     $imgSuper = new ImgSupervision();
                     $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
                     $imgSuper->img = $name_img;
-                    $imgSuper->fecha_registro = date('Y-m-d');
+                    $imgSuper->fecha_registro = $this->anio;
                     Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
                     SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
 

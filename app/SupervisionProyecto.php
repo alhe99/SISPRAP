@@ -18,4 +18,7 @@ class SupervisionProyecto extends Model
 
         return $this->belongsTo(Proyecto::class,'proyecto_id');
     }
+    public function scopeYear($query,$year){
+        return $query->where('fecha_registro',$year);
+    }
 }

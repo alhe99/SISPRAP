@@ -22,4 +22,7 @@ class PagoArancel extends Model
     {
         return $this->belongsTo(TipoProceso::class, 'proceso_id');
     }
+    public function scopeYear($query,$year){
+        return $query->where('fecha_registro',$year);
+    }
 }
