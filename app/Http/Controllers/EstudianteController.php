@@ -50,12 +50,16 @@ class EstudianteController extends Controller
         $carrera_id = $request->carre_id;
         $process_id = $request->proceso_id;
         $buscar = $request->buscar;
+        if($request->proceso_id == 1)
+          $nivelAcad = $request->nivelAcad;
+        else
+           $nivelAcad = 2;
 
         $estu = Estudiante::with(['carrera','proceso','pagoArancel' => function($query) use($process_id){
             $query->where('proceso_id',$process_id);
         }])->where('carrera_id',$carrera_id)->whereHas('proceso', function ($query) use($process_id) {
             $query->where([['procesos_estudiantes.proceso_id',$process_id],['procesos_estudiantes.estado',false]]);
-        })->nombre($buscar)->paginate(10);
+        })->where('nivel_academico_id',$nivelAcad)->nombre($buscar)->paginate(10);
 
         return [
             'pagination' => [
@@ -76,12 +80,17 @@ class EstudianteController extends Controller
         $carrera_id = $request->carre_id;
         $process_id = $request->proceso_id;
         $buscar = $request->buscar;
+        if ($request->proceso_id == 1) {
+            $nivelAcad = $request->nivelAcad;
+        } else {
+            $nivelAcad = 2;
+        }
 
         $estu = Estudiante::with(['carrera','pagoArancel','preinscripciones'])->whereHas('preinscripciones', function ($query) {
             $query->where([['preinscripciones_proyectos.estado','A'],['preinscripciones_proyectos.fecha_registro',$this->anio]]);
         })->whereHas('proceso', function ($query) use($process_id) {
             $query->where('procesos_estudiantes.proceso_id',$process_id)->where('procesos_estudiantes.pago_arancel',true);;
-        })->where('carrera_id',$carrera_id)->nombre($buscar)->paginate(5);
+        })->where([['carrera_id',$carrera_id],['nivel_academico_id',$nivelAcad]])->nombre($buscar)->paginate(5);
 
         return [
             'pagination' => [

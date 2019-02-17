@@ -36,9 +36,17 @@
     <div class="card" v-if="proceso != 0 ">
       <div class="card-body">
        <div class="row">
-         <div class="col-md-12">
-           <v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione Una Carrera Para ver el listado de estudiantes"></v-select>
+         <div :class="[proceso==2 ? 'col-md-12' : 'col-md-8']">
+           <v-select v-model="carrera_selected" :options="arrayCarreras" placeholder="Seleccione Una Carrera Para ver el listado de estudiantes">
+              <span slot="no-options">No hay datos disponibles</span>
+           </v-select>
          </div>
+          <div v-if="proceso==1" class="col-md-4">
+            <v-select v-model="nivelSelected" :options="arrayNiveles" placeholder="Seleccione nivel academico">
+              <span slot="no-options">No hay datos disponibles</span>
+            </v-select>
+            <span class="text-danger" v-if="carrera_selected != 0 && nivelSelected == 0">Seleccione nivel academico</span>
+        </div>
        </div>
        <div class="row" v-if="carrera_selected != 0 && carrera_selected != null">
         <div class="col-md-12"><br>
@@ -188,7 +196,12 @@
           tituloModal: "",
           payArancel: false,
           beca_selected: 0,
-          no_fact: ""
+          no_fact: "",
+          nivelSelected: 0,
+          arrayNiveles: [
+            { value: 1, label: "Primer Año" },
+            { value: 2, label: "Segundo Año" }
+          ],
         }
       },
       watch:{
@@ -196,9 +209,17 @@
           this.getCarreras();
           this.carrera_selected = 0;
           this.buscar = "";
+          this.nivelSelected = 0;
+        },
+        nivelSelected: function() {
+          this.getAllStudens(this.carrera_selected.value,this.proceso,1,"")
         },
         carrera_selected: function(){
-          this.getAllStudens(this.carrera_selected.value,this.proceso,1,"")
+          if((this.proceso == 1) && (this.nivelSelected != 0)){
+            this.getAllStudens(this.carrera_selected.value,this.proceso,1,"")
+          }else{
+            this.getAllStudens(this.carrera_selected.value,this.proceso,1,"")
+          }
         },
         estudiante: function(){
           if(this.estudiante.tipo_beca_id == 1)
@@ -258,6 +279,7 @@
       var url = route('getEstudiantesToRecepcion',{
         'carre_id': carrera_id,
         'proceso_id':proceso_id,
+        'nivelAcad':me.nivelSelected.value,
         'page': page,
         'buscar' : buscar
       });
@@ -269,7 +291,7 @@
 
       })
       .catch(function(error) {
-        console.log(error);
+        me.loadSpinner = 0;
         toast({
           type: 'danger',
           title: 'Error al cargar los datos! Intente Nuevamente'

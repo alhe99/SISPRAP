@@ -90490,6 +90490,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -90516,7 +90524,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       tituloModal: "",
       payArancel: false,
       beca_selected: 0,
-      no_fact: ""
+      no_fact: "",
+      nivelSelected: 0,
+      arrayNiveles: [{ value: 1, label: "Primer Año" }, { value: 2, label: "Segundo Año" }]
     };
   },
 
@@ -90525,9 +90535,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getCarreras();
       this.carrera_selected = 0;
       this.buscar = "";
+      this.nivelSelected = 0;
+    },
+    nivelSelected: function nivelSelected() {
+      this.getAllStudens(this.carrera_selected.value, this.proceso, 1, "");
     },
     carrera_selected: function carrera_selected() {
-      this.getAllStudens(this.carrera_selected.value, this.proceso, 1, "");
+      if (this.proceso == 1 && this.nivelSelected != 0) {
+        this.getAllStudens(this.carrera_selected.value, this.proceso, 1, "");
+      } else {
+        this.getAllStudens(this.carrera_selected.value, this.proceso, 1, "");
+      }
     },
     estudiante: function estudiante() {
       if (this.estudiante.tipo_beca_id == 1) {
@@ -90584,6 +90602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var url = route('getEstudiantesToRecepcion', {
         'carre_id': carrera_id,
         'proceso_id': proceso_id,
+        'nivelAcad': me.nivelSelected.value,
         'page': page,
         'buscar': buscar
       });
@@ -90593,7 +90612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.pagination = respuesta.pagination;
         me.loadSpinner = 0;
       }).catch(function (error) {
-        console.log(error);
+        me.loadSpinner = 0;
         toast({
           type: 'danger',
           title: 'Error al cargar los datos! Intente Nuevamente'
@@ -90800,25 +90819,77 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c(
                 "div",
-                { staticClass: "col-md-12" },
+                { class: [_vm.proceso == 2 ? "col-md-12" : "col-md-8"] },
                 [
-                  _c("v-select", {
-                    attrs: {
-                      options: _vm.arrayCarreras,
-                      placeholder:
-                        "Seleccione Una Carrera Para ver el listado de estudiantes"
-                    },
-                    model: {
-                      value: _vm.carrera_selected,
-                      callback: function($$v) {
-                        _vm.carrera_selected = $$v
+                  _c(
+                    "v-select",
+                    {
+                      attrs: {
+                        options: _vm.arrayCarreras,
+                        placeholder:
+                          "Seleccione Una Carrera Para ver el listado de estudiantes"
                       },
-                      expression: "carrera_selected"
-                    }
-                  })
+                      model: {
+                        value: _vm.carrera_selected,
+                        callback: function($$v) {
+                          _vm.carrera_selected = $$v
+                        },
+                        expression: "carrera_selected"
+                      }
+                    },
+                    [
+                      _c(
+                        "span",
+                        { attrs: { slot: "no-options" }, slot: "no-options" },
+                        [_vm._v("No hay datos disponibles")]
+                      )
+                    ]
+                  )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm.proceso == 1
+                ? _c(
+                    "div",
+                    { staticClass: "col-md-4" },
+                    [
+                      _c(
+                        "v-select",
+                        {
+                          attrs: {
+                            options: _vm.arrayNiveles,
+                            placeholder: "Seleccione nivel academico"
+                          },
+                          model: {
+                            value: _vm.nivelSelected,
+                            callback: function($$v) {
+                              _vm.nivelSelected = $$v
+                            },
+                            expression: "nivelSelected"
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              attrs: { slot: "no-options" },
+                              slot: "no-options"
+                            },
+                            [_vm._v("No hay datos disponibles")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.carrera_selected != 0 && _vm.nivelSelected == 0
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Seleccione nivel academico")
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _vm.carrera_selected != 0 && _vm.carrera_selected != null
@@ -91507,6 +91578,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -91526,7 +91603,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         from: 0,
         to: 0
       },
-      offset: 3
+      offset: 3,
+      nivelSelected: 0,
+      arrayNiveles: [{ value: 1, label: "Primer Año" }, { value: 2, label: "Segundo Año" }]
     };
   },
 
@@ -91534,9 +91613,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     proceso: function proceso() {
       this.getCarreras();
       this.carrera_selected = 0;
+      this.nivelSelected = 0;
+    },
+    nivelSelected: function nivelSelected() {
+      this.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, 1, "");
     },
     carrera_selected: function carrera_selected() {
-      this.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, 1, "");
+      if (this.proceso == 1 && this.nivelSelected != 0) {
+        this.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, 1, "");
+      } else {
+        this.getAllStudensHasPayArancel(this.carrera_selected.value, this.proceso, 1, "");
+      }
     }
   },
   computed: {
@@ -91575,11 +91662,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     getAllStudensHasPayArancel: function getAllStudensHasPayArancel(carrera_id, proceso_id, page, buscar) {
+      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
       var me = this;
       me.loadSpinner = 1;
       var url = route('accessToPerfil', {
         'carre_id': carrera_id,
         'proceso_id': proceso_id,
+        'nivelAcad': me.nivelSelected.value,
         'page': page,
         'buscar': buscar
       });
@@ -91591,6 +91680,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         console.log(error);
         me.loadSpinner = 0;
+        toast({
+          type: 'danger',
+          title: 'Error al cargar los datos! Intente Nuevamente'
+        });
       });
     },
     cambiarPagina: function cambiarPagina(page, buscar) {
@@ -91744,7 +91837,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c(
                 "div",
-                { staticClass: "col-md-12" },
+                { class: [_vm.proceso == 2 ? "col-md-12" : "col-md-8"] },
                 [
                   _c(
                     "v-select",
@@ -91776,7 +91869,49 @@ var render = function() {
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm.proceso == 1
+                ? _c(
+                    "div",
+                    { staticClass: "col-md-4" },
+                    [
+                      _c(
+                        "v-select",
+                        {
+                          attrs: {
+                            options: _vm.arrayNiveles,
+                            placeholder: "Seleccione nivel academico"
+                          },
+                          model: {
+                            value: _vm.nivelSelected,
+                            callback: function($$v) {
+                              _vm.nivelSelected = $$v
+                            },
+                            expression: "nivelSelected"
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              attrs: { slot: "no-options" },
+                              slot: "no-options"
+                            },
+                            [_vm._v("No hay datos disponibles")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.carrera_selected != 0 && _vm.nivelSelected == 0
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Seleccione nivel academico")
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _vm.carrera_selected != 0 && _vm.carrera_selected != null
