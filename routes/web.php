@@ -165,7 +165,7 @@ Route::get('/test', function () {
     //         $data = $data->except($value->id);
     //     }
     // }
-    // return $data;
+    return substr(date('Y-m-d'),6,1);
     // $test = "2019-01-21SS5c4605667c309.jpeg";
     // if(file_exists(public_path('images/img_projects/').$test))
     // {

@@ -54,7 +54,7 @@ class EstudianteController extends Controller
         $estu = Estudiante::with(['carrera','proceso','pagoArancel' => function($query) use($process_id){
             $query->where('proceso_id',$process_id);
         }])->where('carrera_id',$carrera_id)->whereHas('proceso', function ($query) use($process_id) {
-            $query->where('procesos_estudiantes.proceso_id',$process_id);
+            $query->where([['procesos_estudiantes.proceso_id',$process_id],['procesos_estudiantes.estado',false]]);
         })->nombre($buscar)->paginate(10);
 
         return [

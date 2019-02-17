@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Estudiantes que Iniciarion Procesos</title>
+    <title>Estudiantes que Iniciarion {{$procesoTitulo == "SERVICIO SOCIAL" ? 'Servicio Social' : 'Práctica Profesional'}}{{ " ".$anio }}</title>
     <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ public_path('images/logo-favicon.png') }}">
     <style>

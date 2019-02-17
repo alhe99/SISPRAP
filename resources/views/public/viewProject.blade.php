@@ -10,7 +10,7 @@
         <section class="welcome-section section-padding section-dark">
             <div class="container wow animated fadeInLeft">
                 <div class="row">
-                    <div class="col-md-12 col-lg-8 col-xs-12"> 
+                    <div class="col-md-12 col-lg-8 col-xs-12">
                         <div class="Material-tab">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
@@ -146,7 +146,7 @@
                                             swal({
                                                 position: "center",
                                                 type: "warning",
-                                                title: "Error, No puedes preinscribirte a este proyecto!",
+                                                title: "Error, No puedes preinscribirte a este proyecto!,Cantidad de vacantes completadas",
                                                 showConfirmButton: true,
                                                 timer: 5000
                                             });

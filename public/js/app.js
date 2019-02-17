@@ -102005,7 +102005,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -102482,29 +102481,30 @@ var render = function() {
               2
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 col-sm-12 col-lg-12" }, [
+            _c("div", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.search == 1,
+                  expression: "search == 1"
+                }
+              ],
+              staticClass:
+                "alert alert-primary h6 font-weight-bold text-center",
+              attrs: { role: "alert" },
+              domProps: {
+                textContent: _vm._s(
+                  "No se encontraron resultados o No hay registros"
+                )
+              }
+            })
+          ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 col-sm-12 col-lg-12" }, [
-        _c("div", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.search == 1,
-              expression: "search == 1"
-            }
-          ],
-          staticClass: "alert alert-primary h6 font-weight-bold text-center",
-          attrs: { role: "alert" },
-          domProps: {
-            textContent: _vm._s(
-              "No se encontraron resultados o No hay registros"
-            )
-          }
-        })
       ])
     ]),
     _vm._v(" "),

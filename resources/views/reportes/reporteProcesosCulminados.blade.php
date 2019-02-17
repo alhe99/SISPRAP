@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Estudiantes Con Procesos Culminados {{ ucfirst(strtolower($procesoTitulo)) }}</title>
+    <title>Estudiantes Con Procesos Culminados De {{$procesoTitulo == "SERVICIO SOCIAL" ? 'Servicio Social' : 'Práctica Profesional'}}{{ " ".$anio }}</title>
     <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ public_path('images/logo-favicon.png') }}">
     <style>
@@ -91,7 +91,7 @@
                                     </tr>
                                     <tr class="bg-header font-weight-bold text-center">
                                        <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                                    </tr> 
+                                    </tr>
                             </tbody>
                         </table><br><br>
                      @endif
@@ -120,7 +120,7 @@
                                         <td colspan="4">{{$mensuales[$i][$j][2][0]}}</td>
                                     @else
                                         <td colspan="4">{{substr($mensuales[$i][$j][2][0],strpos($mensuales[$i][$j][2][0]," "))}}</td>
-                                    @endif                                    
+                                    @endif
                                 </tr>
                                 <tr class="text-center">
                                     <td>Carrera</td>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
               @endif
-         @endfor  
+         @endfor
      {{-- TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
         @for ($i = 0; $i < count($consolidadoByNivel) ; $i++)
          <?php $cuentaMined = 0;$cuentaOtros=0; ?>
@@ -195,7 +195,7 @@
             </table><br>
            @endif
         @endfor
-        {{-- FIN DE TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}            
+        {{-- FIN DE TABLAS PARA CONSOLIDADO FINAL POR NIVEL ACADEMICO --}}
     @elseif($tipo == 'M')
              {{-- TABLA PARA MESES INDIVIDUALES --}}
          {{-- Bucle que entra al objecto de cada mes --}}
@@ -250,7 +250,7 @@
                                     </tr>
                                     <tr class="bg-header font-weight-bold text-center">
                                        <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                                    </tr> 
+                                    </tr>
                             </tbody>
                         </table><br><br>
                      @endif
@@ -279,7 +279,7 @@
                                         <td colspan="4">{{$mensuales[$i][$j][2][0]}}</td>
                                     @else
                                         <td colspan="4">{{substr($mensuales[$i][$j][2][0],strpos($mensuales[$i][$j][2][0]," "))}}</td>
-                                    @endif                                    
+                                    @endif
                                 </tr>
                                 <tr class="text-center">
                                     <td>Carrera</td>
@@ -314,7 +314,7 @@
                     </div>
                 </div>
               @endif
-         @endfor  
+         @endfor
 
     @elseif($tipo == 'A')
         {{-- TABLA PARA MESES INDIVIDUALES --}}
@@ -370,7 +370,7 @@
                                     </tr>
                                     <tr class="bg-header font-weight-bold text-center">
                                        <td  colspan="2">{{ $cuentaMined + $cuentaOtros }}</td>
-                                    </tr> 
+                                    </tr>
                             </tbody>
                         </table><br><br>
                      @endif
@@ -399,7 +399,7 @@
                                         <td colspan="4">{{$mensuales[$i][$j][2][0]}}</td>
                                     @else
                                         <td colspan="4">{{substr($mensuales[$i][$j][2][0],strpos($mensuales[$i][$j][2][0]," "))}}</td>
-                                    @endif                                    
+                                    @endif
                                 </tr>
                                 <tr class="text-center">
                                     <td>Carrera</td>
@@ -434,7 +434,7 @@
                     </div>
                 </div>
               @endif
-         @endfor  
+         @endfor
      {{-- TABLAS PARA CONSOLIDADO FINAL ANUAL POR NIVEL ACADEMICO --}}
         @for ($i = 0; $i < count($consolidadoByNivel) ; $i++)
          <?php $cuentaMined = 0;$cuentaOtros=0; ?>
