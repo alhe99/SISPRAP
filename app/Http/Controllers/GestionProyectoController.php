@@ -179,6 +179,10 @@ class GestionProyectoController extends Controller
         $buscar = $request->buscar;
         $proceso = $request->proceso_id;
         $carrera_id = $request->carre_id;
+        if($request->proceso_id == 1)
+          $nivelAcad = $request->nivelAcad;
+      else
+         $nivelAcad = 2;
 
         if ($buscar == '') {
 
@@ -186,8 +190,8 @@ class GestionProyectoController extends Controller
             ->whereHas('estudiante.proceso', function ($query) use ($proceso) {
                 $query->where('proceso_id', $proceso);
 
-            })->whereHas('estudiante', function ($query) use ($carrera_id) {
-                $query->where('carrera_id', $carrera_id);
+            })->whereHas('estudiante', function ($query) use ($carrera_id,$nivelAcad) {
+                $query->where([['carrera_id', $carrera_id],['nivel_academico_id',$nivelAcad]]);
 
             })->year($this->anio)->where('tipo_gp',$proceso)->paginate(8);
 
@@ -200,8 +204,8 @@ class GestionProyectoController extends Controller
             })->whereHas('estudiante', function ($query) use ($buscar) {
                 $query->where('nombre', 'like', '%' . $buscar . '%');
 
-            })->whereHas('estudiante', function ($query) use ($carrera_id) {
-                $query->where('carrera_id', $carrera_id);
+            })->whereHas('estudiante', function ($query) use ($carrera_id,$nivelAcad) {
+               $query->where([['carrera_id', $carrera_id],['nivel_academico_id',$nivelAcad]]);
             })->year($this->anio)->where('tipo_gp',$proceso)->paginate(8);
         }
 
@@ -326,7 +330,7 @@ class GestionProyectoController extends Controller
             $mesesTitulo = $mes1[0].", ".$mes2[0].", ".$mes3[0];
 
             foreach($carrera as $carre){
-            
+
                 $totalMinedMes1 += $carre->getCountStudentsByMinedMensual($arrayTrimestre[0], $procesoId,$this->anio);
                 $totalOtrosMes1 += $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[0], $procesoId,$this->anio);
 
@@ -372,7 +376,7 @@ class GestionProyectoController extends Controller
                     "BecadosMined" => $carre->getCountStudentsByMinedMensual($arrayTrimestre[2], $procesoId,$this->anio),
                     "Otros" => $carre->getCountStudentsByOtherBecaMensual($arrayTrimestre[2], $procesoId,$this->anio),
                 ]);
-            
+
                ++$iteratorMensuales;
 
             }
@@ -724,7 +728,7 @@ class GestionProyectoController extends Controller
                             $estudiantesOB_SA =  $carre->estudiantes()->doesntHave('gestionProyecto')->select('nombre')->where([['estado', true],['nivel_academico_id',2]])->whereHas('proceso', function ($query) use ($procesoId) {
                                 $query->where('procesos_estudiantes.proceso_id', $procesoId);
                             })->whereNull('fecha_inicio_ss')->where([['tipo_beca_id',2],['nivel_academico_id',2]])->count();
-                            
+
                         }
 
                             break;
@@ -874,7 +878,7 @@ class GestionProyectoController extends Controller
                                 })->whereNull('fecha_inicio_ss')->where([['estado', true],['tipo_beca_id',2],['nivel_academico_id',2]])->count();
                             }
                                 break;
-                        
+
                             case 2:
                                 $estudiantesPA = new Collection();
                             if($this->anio == date('Y')){
