@@ -63,7 +63,7 @@ return [
             'port' => '3306',
             'database' => 'registro_acad_itcha',
             'username' => 'root',
-            'password' => '',
+            'password' => 'AdminHost$16',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -112,7 +112,7 @@ return [
 
 
         //dump
-        
+
     ],
 
     /*
@@ -152,6 +152,6 @@ return [
 
     ],
 
-   
+
 
 ];
