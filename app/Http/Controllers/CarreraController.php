@@ -13,14 +13,11 @@ class CarreraController extends Controller
             if (!$request->ajax()) return redirect('/');
             $buscar = $request->buscar;
             if($buscar==''){
-
-                $carrera = Carrera::orderBy('id','desc')->where('estado','=','1')->paginate(5);
-
+                $carrera = Carrera::orderBy('id','asc')->where('estado','1')->paginate(10);
             }else{
 
-                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->where('estado','=','1')->orderBy('id','desc')->paginate(5);
+                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->where('estado','=','1')->orderBy('id','asc')->paginate(10);
             }
-
             return [
                 'pagination' => [
                     'total'        => $carrera->total(),
@@ -39,14 +36,10 @@ class CarreraController extends Controller
             if (!$request->ajax()) return redirect('/');
             $buscar = $request->buscar;
             if($buscar==''){
-
-                $carrera = Carrera::orderBy('id','desc')->where('estado','=','0')->paginate(5);
-
+                $carrera = Carrera::orderBy('id','asc')->where('estado','0')->paginate(5);
             }else{
-
-                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->where('estado','=','0')->orderBy('id','desc')->paginate(5);
+                $carrera = Carrera::where('nombre','like','%'.$buscar.'%')->where('estado','0')->orderBy('id','asc')->paginate(5);
             }
-
             return [
                 'pagination' => [
                     'total'        => $carrera->total(),

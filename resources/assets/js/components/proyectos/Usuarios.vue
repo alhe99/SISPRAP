@@ -1,249 +1,310 @@
 <template>
-    <div class="col-lg-12 col-md-12">
-          <div class="card">
-            <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                <div class="panel panel-default">
-                <div class="panel-body">
-                    <h1 class="text-center">Gestion de Usuarios</h1>
-                    <fieldset >
-                        <legend class="text-center">Opciones:</legend>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="button" @click="permisos()" class="btn btn-primary " data-toggle="tooltip" title="Permisos de Usuarios">Permisos de Usuarios</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" @click="rol()" class="btn btn-primary" data-toggle="tooltip" title="Añadir nuevo rol">Añadir nuevo rol</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                </div>
-                </div>
-            </div>
-            </div>
-
-    </div>
-    
-    <!-- MODAL PARA PERMISOS  -->
-<div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-white"></h4>
-        <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="text-white">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group row">
-          <div class="col-md-12 col-sm-12 col-lg-12">
-              <v-select v-model="roles" :options="arrayRol" placeholder="Seleccione una Rol">
-                <span slot="no-options">
-               No hay datos disponibles
-             </span>
-              </v-select>
-          </div>
-          </div>
-        <div class="row">
-          <div class="form-group row">
-          <div class="col-md-4" v-for="permiso in arrayPermiso" :key="permiso.id">
-            <switches v-model="enabled"></switches>
-						<label for="id-name" class="switch-label" v-text="permiso.nombre"></label>
-          </div>
-          </div>
-        </div>
-  </div>
-  <div class="modal-footer">
-    <div class="row"> 
-      <div class="col-md-12">
-        <button type="button" @click="cerrarModal()" class="btn red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-        <button  @click="permisos" class="btn blue" dense>Permisos</button>
+  <div class="col-lg-12 col-md-12">
+    <div class="row">
+      <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
       </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
-<!--- FIN MODAL PARA PERMISOS -->
-
-<!--MODAL PARA ROL-->
-<div class="modal fade" :class="{'mostrar' : modal2 }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-white"></h4>
-        <button type="button" @click="cerrarModal2()" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="text-white">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
         <div class="row">
           <div class="col-md-12">
             <div class="panel panel-default">
               <div class="panel-body">
-                <fieldset >
-                <legend class="text-center">Registrar un nuevo rol</legend>
-                   <div class="form-group row">
-                      <mdc-textfield type="text" name="roles" class="col-md-12" label="Nombre del rol" helptext="(Ingrese el nombre del rol a registrar)" v-model="nombre" v-validate="'required'"></mdc-textfield>
-                      <div class="error" v-if="errors.has('roles')">{{errors.first('roles')}}</div>
-                  </div>
-                </fieldset>
+                <h2 class="text-left font-weight-bold">Listado de usuarios con permisos de administrador</h2><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="row">
+              <div class="col-md-6">
+                <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getAllUsers(1,buscar);"  label="Buscar usuarios" v-model="buscar"></mdc-textfield>
+              </div>
+              <div class="col-md-6 text-right">
+                 <button type ="button" class="button secondary" @click="abrirModal"><i class="mdi mdi-account"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 col-sm-12">
+            <br>
+            <table class="table table-striped table-bordered table-mc-light-blue">
+              <thead class="thead-primary">
+                <tr>
+                  <th>Nombre Usuario</th>
+                  <th class="text-center">Login</th>
+                  <th class="text-center">Fecha registro</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+               <tr v-for="item in arrayUsers" :key="item.id">
+                <td v-text="item.nombre"></td>
+                <th class="text-center" v-text="item.usuario"></th>
+                <th class="text-center" v-text="item.fecha_registro"></th>
+                <td class="text-center">
+                  <button type="button" class="button red" @click="deleteUser(item.id)" ><i class="mdi mdi-delete-empty"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination" >
+              <li class="page-item" v-if="pagination.current_page > 1">
+                <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1,buscar)">Ant</a>
+              </li>
+              <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar)" v-text="page"></a>
+
+                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                  <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
+                </li>
+                <small v-show="arrayUsers.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayUsers.length + ' de ' + pagination.total + ' registros)'"></small>
+              </ul>
+            </nav>
+            <div v-if="arrayUsers.length == 0" class="alert alert-warning" role="alert">
+              <h4 class="font-weight-bold text-center">No hay registros disponibles</h4>
+            </div>
+        </div>
+      </div>
+
+
+    <!-- MODAL PARA AGREGAR USUARIOS  -->
+    <div class="modal fade" :class="{'mostrar' : modal }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-white">Agregar Nuevo Usuario</h4>
+            <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="text-white">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-primary text-center font-weight-bold h6" role="alert">
+                  Campos requeridos poseen un (*)
+                </div>
+              </div><br>
+              <div class="col-md-12">
+                <label class="font-weight-bold" for="nombre">Nombre (*)</label>
+                <input type="text" v-model="nombre" id="nombre" name="nombre" class="form-control" autocomplete="off">
+              </div>
+              <div class="col-md-12">
+                <br><label class="font-weight-bold" for="nombre">Login (*)</label>
+                <input type="text" v-model="usuario" id="usuario" name="usuario" class="form-control" autocomplete="off">
+              </div>
+              <div class="col-md-12">
+                <br><label class="font-weight-bold" for="nombre">Contraseña (*)</label>
+                <input type="password" v-model="password" id="password" name="password" class="form-control" autocomplete="off">
+              </div>
+              <div class="col-md-12">
+                <br><label class="font-weight-bold" for="nombre">Confirme contraseña (*)</label>
+                <input type="password" v-model="cPass" id="cPass" name="cPass" class="form-control" autocomplete="off">
+              </div>
+              <div class="col-md-12" id="divNoMatchPasswords" v-if="passNoMatch">
+               <br><div class="alert alert-warning font-weight-bold text-center" role="alert">
+                 Las contraseñas no coinciden
+               </div>
+             </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row">
+              <div class="col-md-12">
+                <button type="button" @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+                <button type="button" @click="saveUser()" :class="[nombre == '' || usuario == '' || password == '' || cPass != password ? 'disabled' : '']" :disabled="nombre == '' || usuario == '' || password == '' || cPass != password" class="button blue"><i class="mdi mdi mdi-content-save"></i>&nbsp;Guardar</button>
               </div>
             </div>
           </div>
         </div>
-  </div>
-  <div class="modal-footer">
-    <div class="row"> 
-      <div class="col-md-12">
-        <button type="button" @click="cerrarModal2()" class="btn red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-        <button  @click="saveRol" class="btn blue">Registrar Rol</button>
       </div>
     </div>
+    </div>
   </div>
-</div>
-</div>
-</div>
-<!--FIN DEL MODAL ROL--> 
-</div>
+    <!--- FIN MODAL PARA AGREGAR USUARIOS -->
+  </div>
 </template>
 <script>
-import Switches from 'vue-switches';
 export default {
-    data() {
-        return{
-            modal: 0,
-            modal2: 0,
-            modal3: 0,
-            arrayPermiso: [],
-            enabled: false,
-            nombre: "",
-            nombreUser: "",
-            password: "",
-            roles: "",
-            arrayRol: [],
-
-        }
-        
+  data() {
+    return{
+      modal: 0,
+      buscar: '',
+      loadSpinner: 0,
+      arrayUsers: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      offset: 3,
+      nombre: '',
+      usuario: '',
+      password: '',
+      cPass: '',
+      passNoMatch: false
+    }
+  },
+  watch:{
+    cPass: function(){
+      if(this.cPass != this.password)
+        this.passNoMatch = true;
+      else
+        this.passNoMatch = false;
+    }
+  },
+   computed:{
+     isActived: function() {
+      return this.pagination.current_page;
     },
-methods: {
-    permisos(){
-       let me = this;
-       this.modal = 1;
-       var url ="/permiso";
-        axios
-        .get(url)
-        .then(function(response) {
-          var respuesta = response.data;
-          me.arrayPermiso = respuesta;  
-
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
-    cerrarModal(){
-        this.modal = 0;
-    },
-    rol(){
-        this.modal2 = 1;
-    },
-    cerrarModal2(){
-        this.modal2 = 0;
-    },
-    usuario(){
-        this.modal3 = 1;
-    },
-    cerrarModal3(){
-        this.modal3 = 0;
-    },
-    saveRol(){
-      this.$validator.validateAll().then(result => {
-      if(result){
-       let me = this;
-       axios
-          .post("/rol/registrar", {
-            nombre: this.nombre
-          })
-          .then(function(response) {
-            swal({
-              position: "center",
-              type: "success",
-              title: "¡Rol reistrado correctamente!",
-              showConfirmButton: false,
-              timer: 1000
-            });
-            me.clearData();
-          })
-          .catch(error => {
-            console.log(error.response.data.errors);
-          });
-
+    pagesNumber: function() {
+      if (!this.pagination.to) {
+        return [];
       }
+      var from = this.pagination.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+  },
+  methods: {
+    getAllUsers(page,buscar) {
+      const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
+      let me = this;
+      me.loadSpinner = 1;
+      var url = route('getUsers',{
+        'buscar': buscar,
+      });
+      axios.get(url).then(function(response) {
+        var respuesta = response.data;
+        me.arrayUsers = respuesta.usuarios.data;
+        me.pagination = respuesta.pagination;
+        me.loadSpinner = 0;
+      })
+      .catch(function(error) {
+        console.log(error);
+        me.loadSpinner = 0;
+        toast({
+          type: 'danger',
+          title: 'Error al cargar los datos! Intente Nuevamente'
+        });
       });
     },
-    clearData() {
-        let me = this;
-        me.nombre = "";
-        const elem = me.$refs.divCollapse;
-        if (elem.classList.contains("collapse")) {
-          elem.classList.remove("show");
-        }
-      },
-    getRoles() {
+  abrirModal(){
+   let me = this;
+   const el = document.body;
+   el.classList.add("abrirModal");
+   me.modal = 1;
+  },
+  cerrarModal(){
+    this.modal = 0;
+    this.nombre = '';
+    this.usuario = '';
+    this.password = '';
+    this.cPass = '';
+    this.passNoMatch = false;
+  },
+  saveUser() {
+    let me = this;
+    const toast = swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 4000
+    });
+    var url = route('createUser',{
+      'nombre': me.nombre,
+      'usuario': me.usuario,
+      'pass': me.password,
+    });
+    me.loading = 1;
+    axios.post(url).then(function(response) {
+      swal({
+        position: "center",
+        type: "success",
+        title: "Usuario agregado correctamente",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      me.cerrarModal();
+      me.getAllUsers(1, "");
+    })
+    .catch(function(error) {
+      me.loadSpinner = 0;
+      toast({
+        type: "danger",
+        title: "Error! Intente Nuevamente"
+      });
+      console.log(error);
+    });
+  },
+  deleteUser(id){
+   const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500});
+   swal({
+    title: "Esta seguro de eliminar este usuario(a)?",
+    type: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Aceptar",
+    cancelButtonText: "Cancelar",
+    confirmButtonClass: "button blue",
+    cancelButtonClass: "button red",
+    buttonsStyling: false,
+    reverseButtons: true
+  }).then(result => {
+    if (result.value) {
       let me = this;
-         var url ="/rol";
-        axios
-          .get(url)
-          .then(function(response) {
-            var respuesta = response.data;
-            me.arrayRol = respuesta;
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-    },
-    saveUser(){
-      this.$validator.validateAll().then(result => {
-      if(result){
-      let me = this;
-       axios
-          .post("/usuario/registrar", {
-            usuario: this.nombreUser,
-            password: this.password,
-            rol_id: this.roles.value
-
-          })
-          .then(function(response) {
-            swal({
-              position: "center",
-              type: "success",
-              title: "¡Usuario reistrado correctamente!",
-              showConfirmButton: false,
-              timer: 1000
-            });
-            me.clearData();
-          })
-          .catch(error => {
-            console.log(error.response.data.errors);
-          });
-
-          }
+      me.loadSpinner = 1;
+      var url = route('deleteUser',id);
+      axios.put(url)
+      .then(function(response) {
+        swal(
+          "Eliminado!",
+          "El usuario ha sido eliminado con exito",
+          "success"
+          );
+        me.loadSpinner = 0;
+        me.getAllUsers(1, "");
+      })
+      .catch(function(error) {
+        me.loadSpinner = 0;
+        toast({
+          type: 'danger',
+          title: 'Error al cargar los datos! Intente Nuevamente'
         });
-    },
-
+        console.log(error);
+      });
+    } else if (
+      // Esto lo hace cuando se descativa el registro
+      result.dismiss === swal.DismissReason.cancel
+      ) {
+    }
+  });
   },
-  components: {
-     Switches,
+  cambiarPagina(page,buscar) {
+    let me = this;
+    me.pagination.current_page = page;
+    if (me.arrayUsers.length > 0) {
+      me.getAllUsers(page,"");
+    }
   },
-   mounted() {
-      this.getRoles();
-    },
+},
+components: {},
+mounted() {
+  this.getAllUsers(1,"");
+},
 }
 </script>

@@ -36,7 +36,7 @@
                         Versión: 01<br>
                         Pagina 1 de 1
                     </td>
-                    <tr>
+                    <tr> &nbsp;
                         <td colspan="3" height="50" class="text-left font-weight-bold">
                             Título: Constancia de {{ $proceso }}
                         </td>

@@ -13,14 +13,17 @@
                         {{Auth::user()->nombre }}</span>
                     </a>
                     <div class="dropdown-menu" style="width:80%">
+
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalUpdateDatos"><i class="ti-user"></i>
                             &nbsp;Mi Cuenta
                         </a>
                         <div class="dropdown-divider"></div>
+                     @if (Auth::user()->id == 0)
                         <a href="#" data-toggle="modal" data-target="#modalChangeYear" class="dropdown-item"><i class="mdi mdi-calendar-range"></i>
                             &nbsp;Año del sistema
                         </a>
                         <div class="dropdown-divider"></div>
+                    @endif
                         <a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"
                         class="dropdown-item"><i class="fa fa-power-off"></i>
                         &nbsp;Cerrar Sesion
@@ -88,9 +91,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li><button type="button" @click="menu=9" class="btn btn-link btn-field"><i class="mdi mdi-account-multiple btn-i"></i><span
-                        class="hide-menu"> Usuarios</span></button>
-                    </li>
+                    @if (Auth::user()->id == 0)
+                        <li><button type="button" @click="menu=9" class="btn btn-link btn-field"><i class="mdi mdi-account-multiple btn-i"></i><span
+                            class="hide-menu"> Usuarios</span></button>
+                        </li>
+                    @endif
                     <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                         class="hide-menu"> Copias de seguridad</span></button>
                     </li>

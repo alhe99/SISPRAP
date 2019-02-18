@@ -72,10 +72,14 @@ class LoginController extends Controller
             } else if (session('rol_id') == 1 ) {
 
                 exec('php artisan queue:listen --tries=2 ');
-                return redirect()->route('main');
-
+                $month =  app(\App\Http\Controllers\UsuarioController::class)->getCurrentMonth();
+                if($month != date('m')){
+                     app(\App\Http\Controllers\UsuarioController::class)->changeCurrentMonth();
+                     return redirect()->route('main');
+                }else{
+                    return redirect()->route('main');
+                }
             } else if (session('rol_id') == 2 ) {
-
                 return redirect()->route('main');
             }
 
@@ -90,7 +94,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if(Auth::user()->id > 1){
+        if(Auth::user()->id > 1 and Auth::user()->rol_id == 3){
             $proceso = Auth::user()->estudiante->proceso[0]->pivot->proceso_id;
             $carnet = Auth::user()->estudiante->codCarnet;
             if ($proceso == 1) { $ruta_img = public_path('docs/docs_ss/')."PSS-".$carnet.".jpg";}

@@ -80,7 +80,6 @@ Route::get('/viewProject/{process}/{slug}', 'ProyectoController@getProjectBySlug
 Route::get('/preRegister/{studentId}/{projectId}', 'ProyectoController@preRegistrationProject')->name('preRegister');
 Route::get('/my-pre-register/{studentId}/{proceso_id}', 'ProyectoController@getPreregisterProjects')->name('myPreregister');
 Route::get('/deletePreRegister/{studentId}/{projectId}', 'ProyectoController@deletePreRegistration')->name('deletePreRegister');
-Route::get('/proyecto/validatess/{nombre}','ProyectoController@ifProjectExist');//FALTA METODO
 Route::get('/destroyPreregister/{sId}/{pId}','ProyectoController@rechazPreregistration')->name('rechazarPreinscripcion');
 Route::get('acceptPreregister','ProyectoController@aceptarPreregistration')->name("preregister");
 Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provideAccessToPerfil')->name('darAccesoPerfil');
@@ -104,7 +103,7 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 //ESTUDIANTE
 Route::get('stundentById/{id}','EstudianteController@getStudentById')->name('getFullInfoEstudiante');
-Route::post('admin/registrar', 'EstudianteController@store');
+//Route::post('admin/registrar', 'EstudianteController@store');
 Route::get('stundentByCarrer','EstudianteController@getStudensByCarrerAndProcess')->name('getEstudiantesByCarrera');
 ///
 Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepcion')->name('getEstudiantesToRecepcion');
@@ -155,6 +154,11 @@ Route::get('/backup', 'BackupController@backup');
 //Usuarios
 Route::post('users/update','UsuarioController@update')->name('updateUsuario');
 Route::get('users/changeYear/{year}','UsuarioController@changeYearApp')->name('changeYearApp');
+Route::get('estudents/getCurrenthMonth', 'UsuarioController@getCurrentMonth')->name('getCurrentMonth');
+Route::post('estudents/changeMonth', 'UsuarioController@changeCurrentMonth')->name('updateMonth');
+Route::get('users/getAll','UsuarioController@index')->name('getUsers');
+Route::put('users/delete/{id}','UsuarioController@delete')->name('deleteUser');
+Route::post('users/create','UsuarioController@create')->name('createUser');
 
 Route::get('/test', function () {
 
@@ -165,7 +169,13 @@ Route::get('/test', function () {
     //         $data = $data->except($value->id);
     //     }
     // }
-    return substr(date('Y-m-d'),6,1);
+    return App\Alumno::whereHas('aspirante',function($query){
+        $query->where('articulado',true);
+    })->get();
+/*     if(date('m') > date('m',strtotime('-1 month')))
+      return "Actualizar mes";
+    else
+      return "Es el mismo"; */
     // $test = "2019-01-21SS5c4605667c309.jpeg";
     // if(file_exists(public_path('images/img_projects/').$test))
     // {
@@ -175,6 +185,8 @@ Route::get('/test', function () {
     // return "hecho";
 
     /*$id= 36;
+
+
 
     $proy = App\Proyecto::findOrFail($id);
 
@@ -276,7 +288,7 @@ Route::get('/test', function () {
     // return $img;
     //return Auth::user()->estudiante->gestionproyecto[0]->proyecto;
     //
-    $path = base_path('.env');
+/*     $path = base_path('.env');
 
     if(file_exists($path)){
         file_put_contents($path,str_replace(
@@ -284,7 +296,7 @@ Route::get('/test', function () {
         ));
     }
     exec('php artisan config:cache');
-    return "Hecho";
+    return "Hecho"; */
 });
 
 /* Route::get('/_debugbar/assets/stylesheets', [

@@ -237,7 +237,7 @@ methods:{
       if (result.value) {
         let me = this;
         me.loadSpinner = 1;
-        var url = route('darAccesoPerfil',[estudiante_id,proyecto_id])        
+        var url = route('darAccesoPerfil',[estudiante_id,proyecto_id])
         axios.post(url).then(function(response) {
           me.getAllStudensHasPayArancel(me.carrera_selected.value,me.proceso,1,"");
           swal(
@@ -263,7 +263,7 @@ methods:{
     });
   },
 },
-}
+};
 </script>
 <style>
 .button {

@@ -57,6 +57,21 @@ return [
                 'timeout' => 60 * 5, // 5 minute timeout
              ],
         ],
+        'itcha' => [
+            'driver' => 'mysql',
+            'host' => '127.0.0.1',
+            'port' => '3306',
+            'database' => 'registro_acad_itcha',
+            'username' => 'root',
+            'password' => '',
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
         /* 'mysql' => [
         'driver' => 'mysql',
         'host' => env('DB_HOST', '192.168.137.154'),
@@ -71,7 +86,6 @@ return [
         'strict' => true,
         'engine' => null,
         ],*/
-
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

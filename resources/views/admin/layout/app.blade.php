@@ -70,7 +70,7 @@
               </ul>
 
               <ul class="navbar-nav my-lg-0">
-                @if (Auth::user()->rol_id == 1)
+                @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                 <notification :notifications="notifications"></notification>
                 @endif
                 <li class="nav-item dropdown">
@@ -93,7 +93,7 @@
                          </div>
                        </li>
                        <li role="separator" class="divider"></li>
-                       @if (Auth::user()->rol_id == 1)
+                       @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                        <li role="separator" class="divider"></li>
                        <li><a style="cursor: pointer;" @click="menu=21"><i class="mdi mdi-square-inc-cash"></i> Recepción</a></li>
                        <li role="separator" class="divider"></li>
