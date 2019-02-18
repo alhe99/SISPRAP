@@ -93337,12 +93337,13 @@ var render = function() {
                   "button",
                   {
                     staticClass: "button blue",
+                    class: [_vm.proceso_id == 0 ? "disabled" : ""],
                     attrs: {
                       type: "button",
                       id: "btnGenerar",
-                      disabled: _vm.validate == true,
+                      disabled: _vm.proceso_id == 0,
                       "data-toggle": "tooltip",
-                      title: "Generar Hoja de Supervisión"
+                      title: "Generar reporte"
                     },
                     on: {
                       click: function($event) {

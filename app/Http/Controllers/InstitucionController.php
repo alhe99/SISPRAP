@@ -269,10 +269,24 @@ class InstitucionController extends Controller
 
         $institucion = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
             $query->where('proceso_id', $proceso);
+         })->whereHas('proyectosInsti',function($query) use($proceso){
+            $query->where('fecha_registro',$this->anio)->whereHas('gestionProyecto',function($query2) use($proceso){
+                $query2->where([
+                    ['tipo_gp',$proceso],
+                    ['estado','I']
+                ])->orWhere('estado','F');
+            });
         })->where('instituciones.estado',1)->orderBy('instituciones.id','desc')->get();
 
         $inst = Institucion::select('id', 'nombre')->whereHas('procesos', function ($query) use ($proceso) {
            $query->where('proceso_id', $proceso);
+        })->whereHas('proyectosInsti',function($query) use($proceso){
+            $query->where('fecha_registro',$this->anio)->whereHas('gestionProyecto',function($query2) use($proceso){
+                $query2->where([
+                    ['tipo_gp',$proceso],
+                    ['estado','I']
+                ])->orWhere('estado','F');
+            });
         })->where('instituciones.estado',1)->orderBy('instituciones.id', 'desc')->count();
 
         $process = "";
@@ -282,7 +296,7 @@ class InstitucionController extends Controller
             $process = "Práctica Profesional";
 
         $date = date('Y-m-d');
-        $pdf = PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $process])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf = PDF::loadView('reportes.reginst',['instituciones'=>$institucion,'total' =>$inst, 'proceso' => $process,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
         $pdf->setOption('margin-top',20);
         $pdf->setOption('margin-bottom',20);
         $pdf->setOption('margin-left',20);

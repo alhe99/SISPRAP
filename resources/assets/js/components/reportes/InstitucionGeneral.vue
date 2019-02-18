@@ -48,7 +48,7 @@
         </div>
       </fieldset>
       <div class="col-md-12 text-center"><br>
-        <button type="button" id="btnGenerar" :disabled="validate == true" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar Hoja de Supervisión"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
+        <button type="button" id="btnGenerar" :disabled="proceso_id == 0" :class="[proceso_id == 0 ? 'disabled': '']" class="button blue" @click="sendParameterToMethod()" data-toggle="tooltip" title="Generar reporte"><i class="mdi mdi-package-down"></i>&nbsp;Generar Reporte</button>
       </div>
     </div>
   </div>
