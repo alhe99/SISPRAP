@@ -40,7 +40,7 @@ class MensajeController extends Controller
 			'receiver_id' => $request->receiver_id
 		]);
 
-		// broadcast(new MessageSentEvent($user, $message))->toOthers();
+		broadcast(new MessageSentEvent($user, $message))->toOthers();
 		return response(['status'=>'Message private sent successfully','message'=>$message]);
 	}
 }
