@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Support\Facades\Storage;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
 echo "<pre>{$query->time}</pre>";
@@ -159,6 +158,12 @@ Route::post('estudents/changeMonth', 'UsuarioController@changeCurrentMonth')->na
 Route::get('users/getAll','UsuarioController@index')->name('getUsers');
 Route::put('users/delete/{id}','UsuarioController@delete')->name('deleteUser');
 Route::post('users/create','UsuarioController@create')->name('createUser');
+
+
+// RUTAS PARA CHAT
+Route::get('/private-messages/{user}', 'MessageController@privateMessages')->name('privateMessages');
+Route::post('/user/messages/store', 'MensajeController@sendPrivateMessage')->name('messages.store');
+Route::get('/user/getMessages', 'MensajeController@getMessagesToStudent')->name('getMessagesStudent');
 
 Route::get('/test', function () {
 

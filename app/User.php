@@ -21,9 +21,8 @@ class User extends Authenticatable
     public function estudiante(){
         return $this->belongsTo(Estudiante::class,'id');
     }
-    public function mensajes()
-    {
-        return $this->hasMany(Mensaje::class);
+    public function mensajes(){
+        return $this->hasMany(Mensaje::class,'usuario_id');
     }
 
     public function scopeUsuario($query,$name){

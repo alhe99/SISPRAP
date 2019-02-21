@@ -3,7 +3,6 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="userId" content="{{ Auth::check() ? Auth::user()->id : ''}}">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>SISPRAP || Public</title>
@@ -18,7 +17,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="{{asset('other/css/indigo.css')}}">
 	<link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
 	<link rel='stylesheet' href='{{ asset('other/css/chat.css') }}'>
-	 <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo-favicon.png') }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 	<div id="public">
@@ -102,122 +102,122 @@
 		{{-- DIV DE PANEL DE FLOAT BUTTON --}}
 		<br>
 		<div class="FLOAT BUTTON" id="div-fab">
-				<div class="contenedorBF">
-					<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
-						@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-						@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-						<span class="badge badge-primary">1</span>
-						@endif
-						@endif
-					</i>
-				</button>
-				<button class="btn BF2 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#modal" style="border-radius: 50px; cursor: pointer;">
-					<i class="far fa-folder-open fa-sm"></i>
-				</button>
-				<button class="btn BF3 hint--left chat-btn" data-hint="Chat con el administrador" style="border-radius: 50px; cursor: pointer;">
-					<i class="far fa-comments fa-sm"></i>
-				</button>
-				<button class="btn BF4 hint--left" data-hint="Notificaciones" data-toggle="modal" data-target=".docs-example-modal-lg" style="border-radius: 50px; cursor: pointer;"><i class="far fa-bell fa">
+			<div class="contenedorBF">
+				<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
 					@if (count(Auth::user()->estudiante->preinscripciones) != 0)
 					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-					<span class="badge badge-danger">1</span>
+					<span class="badge badge-primary">1</span>
 					@endif
 					@endif
 				</i>
 			</button>
+			<button class="btn BF2 hint--left" data-hint="Documentos de procesos" data-toggle="modal" data-target="#modal" style="border-radius: 50px; cursor: pointer;">
+				<i class="far fa-folder-open fa-sm"></i>
+			</button>
+			<button class="btn BF3 hint--left chat-btn" data-hint="Chat con el administrador" style="border-radius: 50px; cursor: pointer;">
+				<i class="far fa-comments fa-sm"></i>
+			</button>
+			<button class="btn BF4 hint--left" data-hint="Notificaciones" data-toggle="modal" data-target=".docs-example-modal-lg" style="border-radius: 50px; cursor: pointer;"><i class="far fa-bell fa">
+				@if (count(Auth::user()->estudiante->preinscripciones) != 0)
+				@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+				<span class="badge badge-danger">1</span>
+				@endif
+				@endif
+			</i>
+		</button>
+	</div>
+</div>
+{{-- FIN DE DIV DE FLOAT BUTTON --}}
+{{-- COMPONENTE DE CHAT --}}
+<chat_public :user="{{ Auth::user() }}"></chat_public>
+{{-- FIN DE COMPONENTE DE CHAT --}}
+{{-- DIV DE NOTIFICACIONES --}}
+<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Panel de Notificaciones</h5>
+			<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="row ">
+				<div class="col-md-12 ">
+					&nbsp;
+					@if (count(Auth::user()->estudiante->preinscripciones) != 0)
+					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
+					<h6>
+						<i class="fas fa-check">
+						</i> Tu solicitud al proyecto  Ha sido aceptada!
+						<a href="{{route('show_perfil')}}" onclick="perfilProy()">
+							<strong>
+								Puedes iniciar con tu proceso ahora!!
+							</strong>
+						</a>
+					</a>
+				</h6>
+				@endif
+				@endif
+			</div>
 		</div>
 	</div>
-	{{-- FIN DE DIV DE FLOAT BUTTON --}}
-	{{-- COMPONENTE DE CHAT --}}
-	<chat_public></chat_public>
-	{{-- FIN DE COMPONENTE DE CHAT --}}
-	{{-- DIV DE NOTIFICACIONES --}}
-	<div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Panel de Notificaciones</h5>
-					<button type="button" class="close" style="cursor: pointer;" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row ">
-						<div class="col-md-12 ">
-							&nbsp;
-							@if (count(Auth::user()->estudiante->preinscripciones) != 0)
-							@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
-							<h6>
-								<i class="fas fa-check">
-								</i> Tu solicitud al proyecto  Ha sido aceptada!
-								<a href="{{route('show_perfil')}}" onclick="perfilProy()">
-									<strong>
-										Puedes iniciar con tu proceso ahora!!
-									</strong>
-								</a>
-							</a>
-						</h6>
-						@endif
-						@endif
-					</div>
-				</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" style="cursor: pointer;"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
+	</div>
+</div>
+</div>
+</div>
+{{-- FIN DE DIV DE NOTIFICACIONES --}}
+{{-- SECCION DEL SLIDER --}}
+<section>
+	<div id="carouselExampleIndicators" class="carousel slide wow animated fadeInUp" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="{{asset('images/slider/carru1.jpg')}}" alt="First slide">
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" style="cursor: pointer;"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru2.jpg')}}" alt="Second slide">
 			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru3.jpg')}}" alt="Third slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru4.jpg')}}" alt="Third slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru5.jpg')}}" alt="Third slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru6.jpg')}}" alt="Third slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru7.jpg')}}" alt="Third slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="{{asset('images/slider/carru8.jpg')}}" alt="Third slide">
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 		</div>
-	</div>
-	</div>
-	{{-- FIN DE DIV DE NOTIFICACIONES --}}
-	{{-- SECCION DEL SLIDER --}}
-	<section>
-		<div id="carouselExampleIndicators" class="carousel slide wow animated fadeInUp" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img class="d-block w-100" src="{{asset('images/slider/carru1.jpg')}}" alt="First slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru2.jpg')}}" alt="Second slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru3.jpg')}}" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru4.jpg')}}" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru5.jpg')}}" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru6.jpg')}}" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru7.jpg')}}" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="{{asset('images/slider/carru8.jpg')}}" alt="Third slide">
-				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a>
-				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-			</div>
-		</section>
+	</section>
 	{{-- FIN DE SECCION DE SLIDER --}}
 	{{-- SECCION DE CONTENIDO --}}
 	<section class="Material-blog-section section-padding section-dark" id="contenido">
@@ -290,35 +290,36 @@
 		<div class="loader"  id="loader-1"></div>
 	</div>
 	{{-- FIN DE DIV DE LOADER --}}
-	</div>
-	<script src="{{ asset('js/public.js') }}"></script>
-	<script src="{{asset('other/js/jquery-min.js')}}"></script>
-	<script src="{{asset('other/js/popper.min.js')}}"></script>
-	<script src="{{asset('other/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('other/js/jquery.mixitup.min.js')}}"></script>
-	<script src="{{asset('other/js/jquery.inview.js')}}"></script>
-	<script src="{{asset('other/js/jquery.counterup.min.js')}}"></script>
-	<script src="{{asset('other/js/scroll-top.js')}}"></script>
-	<script src="{{asset('other/js/smoothscroll.js')}}"></script>
-	<script src="{{asset('other/js/material.min.js')}}"></script>
-	<script src="{{asset('other/js/ripples.min.js')}}"></script>
-	<script src="{{asset('other/js/owl.carousel.min.js')}}"></script>
-	<script src="{{asset('other/js/form-validator.min.js')}}"></script>
-	<script src="{{asset('other/js/contact-form-script.min.js')}}"></script>
-	<script src="{{asset('other/js/wow.js')}}"></script>
-	<script src="{{asset('other/js/jquery.vide.js')}}"></script>
-	<script src="{{asset('other/js/jquery.magnific-popup.min.js')}}"></script>
-	<script src="{{asset('other/js/jquery.slicknav.js')}}"></script>
-	<script src="{{asset('other/js/main.js')}}"></script>
-	<script src="{{asset('other/js/scripts.js')}}"></script>
-	<script src="{{asset('js/publicTemplate.js')}}"></script>
-	<script src="{{asset('other/js/jquery.mask.min.js')}}"></script>
-	<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
-	<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
-	<script src='{{ asset('other/js/chat.js') }}'></script>
-	@routes @yield('page_script')
-	{{-- INCLUDE MODAL DE DOCUMENTOS --}}
-	@include('public.modalDocumentos')
-	{{-- FIN DE INCLUDE DE MODAL DE DOCUMENTOS --}}
+</div>
+@routes
+<script src="{{ asset('js/public.js') }}"></script>
+<script src="{{asset('other/js/jquery-min.js')}}"></script>
+<script src="{{asset('other/js/popper.min.js')}}"></script>
+<script src="{{asset('other/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('other/js/jquery.mixitup.min.js')}}"></script>
+<script src="{{asset('other/js/jquery.inview.js')}}"></script>
+<script src="{{asset('other/js/jquery.counterup.min.js')}}"></script>
+<script src="{{asset('other/js/scroll-top.js')}}"></script>
+<script src="{{asset('other/js/smoothscroll.js')}}"></script>
+<script src="{{asset('other/js/material.min.js')}}"></script>
+<script src="{{asset('other/js/ripples.min.js')}}"></script>
+<script src="{{asset('other/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('other/js/form-validator.min.js')}}"></script>
+<script src="{{asset('other/js/contact-form-script.min.js')}}"></script>
+<script src="{{asset('other/js/wow.js')}}"></script>
+<script src="{{asset('other/js/jquery.vide.js')}}"></script>
+<script src="{{asset('other/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('other/js/jquery.slicknav.js')}}"></script>
+<script src="{{asset('other/js/main.js')}}"></script>
+<script src="{{asset('other/js/scripts.js')}}"></script>
+<script src="{{asset('js/publicTemplate.js')}}"></script>
+<script src="{{asset('other/js/jquery.mask.min.js')}}"></script>
+<script src='{{ asset('other/js/gijgo.min.js') }}'></script>
+<script src='{{ asset('other/js/messages.es-es.js') }}'></script>
+<script src='{{ asset('other/js/chat.js') }}'></script>
+@yield('page_script')
+{{-- INCLUDE MODAL DE DOCUMENTOS --}}
+@include('public.modalDocumentos')
+{{-- FIN DE INCLUDE DE MODAL DE DOCUMENTOS --}}
 </body>
 </html>

@@ -101,5 +101,18 @@ const app = new Vue({
                 closeOnHover: false
             });
         });
+
+
+        // Echo.private('chat').listen('MessageSentEvent',(e) => {
+        //     this.$toastr('add', {
+        //         title: 'Nuevo Mensaje',
+        //         msg: 'Nuevo mensaje recibido',
+        //         timeout: 5000,
+        //         position: 'toast-bottom-right',
+        //         type: 'info',
+        //         clickClose: true,
+        //         closeOnHover: false
+        //     });
+        // });
     },
 });

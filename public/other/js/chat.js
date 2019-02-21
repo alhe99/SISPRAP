@@ -86,7 +86,7 @@ $(function() {
     $(".chat-btn").toggle('scale');
     $(".chat-box").toggle('scale');
     $("#div-fab").css('display', 'none');
-
+    document.getElementById('chat-box').scrollTo(0,99999);
   })
 
   $(".chat-box-toggle").click(function() {

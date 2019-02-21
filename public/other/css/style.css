@@ -5165,3 +5165,6 @@ summary {
 .mostrar {
     position: fixed;
 }
+.disabled {
+    opacity: .40;
+}

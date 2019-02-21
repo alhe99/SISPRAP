@@ -32,10 +32,8 @@
       <svg class="circular" viewBox="25 25 50 50">
         <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
       </div>
+
       <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
         <header class="topbar">
           <nav class="navbar top-navbar navbar-expand-md navbar-light">
             <!-- ============================================================== -->
@@ -109,6 +107,7 @@
              </div>
            </nav>
          </header>
+
          <div class="modal" id="exampleModal" tabindex="-4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document" style="margin-top: 60px;">
             <div class="modal-content">
@@ -134,119 +133,95 @@
             </div>
           </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
+
         @if (Auth::user()->rol_id == 1)
-        @include('admin.layout.sidebar')
+          @include('admin.layout.sidebar')
         @elseif(Auth::user()->rol_id == 2)
-        @include('recepcion.layout.sidebar')
+          @include('recepcion.layout.sidebar')
         @endif
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
+
         <div class="page-wrapper">
-          <!-- ============================================================== -->
-          <!-- Container fluid  -->
-          <!-- ============================================================== -->
           <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             <br>
-{{--         <div class="row page-titles">
-            <div class="col-md-7 col-4 align-self-center">
-                <div class="d-flex m-t-10 justify-content-end">
-                    <div class="">
-                        <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-                    </div>
-                </div>
+
+
+            <div class="row">
+
+              @yield('contenido')
+
             </div>
-          </div> --}}
 
-          <div class="row">
-
-            @yield('contenido')
-
-          </div>
-
-          <div class="right-sidebar">
-            <div class="slimscrollright">
-              <div class="rpanel-title"> Personalización <span><i class="ti-close right-side-toggle"></i></span> </div>
-              <div class="r-panel-body">
-                <ul id="themecolors" class="m-t-20">
-                  <li><b>Colores disponibles</b></li>
-                  <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                  <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                  <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                  <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
-                  <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                  <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                  <li class="d-block m-t-30"><b>Colores al menu lateral</b></li>
-                  <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
-                  <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                  <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                  <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                  <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
-                  <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
-                </ul>
+            <div class="right-sidebar">
+              <div class="slimscrollright">
+                <div class="rpanel-title"> Personalización <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                  <ul id="themecolors" class="m-t-20">
+                    <li><b>Colores disponibles</b></li>
+                    <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                    <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                    <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                    <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                    <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                    <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                    <li class="d-block m-t-30"><b>Colores al menu lateral</b></li>
+                    <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                    <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                    <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                    <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                    <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                    <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+          <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-AGAPE </footer>
+          <button id="btnFAB" class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
         </div>
-        <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-AGAPE </footer>
-        <button id="btnFAB" class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-      </div>
 
-    </div>
-  </div>
-  <script src="js/app.js"></script>
-  <script src="js/admintemplate.js"></script>
-  <script src='{{ asset('other/js/gijgo.min.js') }}'></script>
-  <script src='{{ asset('other/js/messages.es-es.js') }}'></script>
-  <script src='{{ asset('js/year-select.js') }}'></script>
-{{-- Mensaje cuando un usuario ha actualizados sus datos personales --}}
-@if (session()->has('updateDataUser'))
-<script>
-  $(function(){
-   const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 5000});
-   toast({
-    type: 'success',
-    title: 'Datos Actualizados Correctamente'
-  });
- })
-</script>
-@endif
-<script>
- $(function(){
+       </div>
+     </div>
+     <script src="js/app.js"></script>
+     <script src="js/admintemplate.js"></script>
+     <script src='{{ asset('other/js/gijgo.min.js') }}'></script>
+     <script src='{{ asset('other/js/messages.es-es.js') }}'></script>
+     <script src='{{ asset('js/year-select.js') }}'></script>
+     {{-- Mensaje cuando un usuario ha actualizados sus datos personales --}}
+     @if (session()->has('updateDataUser'))
+     <script>
+      $(function(){
+       const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 5000});
+       toast({
+        type: 'success',
+        title: 'Datos Actualizados Correctamente'
+      });
+     })
+   </script>
+   @endif
+   <script>
+     $(function(){
 
-  $("#nombre").keyup(function(){
-    if(($(this).val().trim() != '') && ($("#usuario").val().trim() != '')){
-      $("#btnUpdateData").prop('disabled', false);
-      $("#btnUpdateData").removeClass('disabled');
-    }else{
-      $("#btnUpdateData").prop('disabled', true);
-      $("#btnUpdateData").addClass('disabled');
-    }
-  })
-  $("#usuario").keyup(function(){
-    if(($(this).val().trim() != '') && ($("#nombre").val().trim() != '')){
-      $("#btnUpdateData").prop('disabled', false)
-      $("#btnUpdateData").removeClass('disabled');
-    }else{
-      $("#btnUpdateData").prop('disabled', true);
-      $("#btnUpdateData").addClass('disabled');
-    }
-  });
+      $("#nombre").keyup(function(){
+        if(($(this).val().trim() != '') && ($("#usuario").val().trim() != '')){
+          $("#btnUpdateData").prop('disabled', false);
+          $("#btnUpdateData").removeClass('disabled');
+        }else{
+          $("#btnUpdateData").prop('disabled', true);
+          $("#btnUpdateData").addClass('disabled');
+        }
+      })
+      $("#usuario").keyup(function(){
+        if(($(this).val().trim() != '') && ($("#nombre").val().trim() != '')){
+          $("#btnUpdateData").prop('disabled', false)
+          $("#btnUpdateData").removeClass('disabled');
+        }else{
+          $("#btnUpdateData").prop('disabled', true);
+          $("#btnUpdateData").addClass('disabled');
+        }
+      });
 
-  $("#btnOpenPasswordsFields").on('click',function(){
-    if(!$("#divPasswords").hasClass('show')){
+      $("#btnOpenPasswordsFields").on('click',function(){
+        if(!$("#divPasswords").hasClass('show')){
              //Desabilitando el boton de guardar
              $("#btnUpdateData").prop('disabled', true);
              $("#btnUpdateData").addClass('disabled');
@@ -279,7 +254,7 @@
            }
          }
        });
-})
-</script>
+    })
+  </script>
 </body>
 </html>
