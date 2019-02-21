@@ -201,7 +201,7 @@
           </div>
         </div>
         <footer class="footer"> © {{date("Y")}} Intituto Técnologico de Chalatenango - ITCHA-AGAPE </footer>
-        <button class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        <button id="btnFAB" class="right-side-toggle waves-effect waves-light btn-float rounded-circle  btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
       </div>
 
     </div>
@@ -211,47 +211,47 @@
   <script src='{{ asset('other/js/gijgo.min.js') }}'></script>
   <script src='{{ asset('other/js/messages.es-es.js') }}'></script>
   <script src='{{ asset('js/year-select.js') }}'></script>
-  {{-- Mensaje cuando un usuario ha actualizados sus datos personales --}}
-  @if (session()->has('updateDataUser'))
-    <script>
-      $(function(){
-         const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 5000});
-          toast({
-            type: 'success',
-            title: 'Datos Actualizados Correctamente'
-          });
-      })
-    </script>
-  @endif
-  <script>
-     $(function(){
+{{-- Mensaje cuando un usuario ha actualizados sus datos personales --}}
+@if (session()->has('updateDataUser'))
+<script>
+  $(function(){
+   const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: true, timer: 5000});
+   toast({
+    type: 'success',
+    title: 'Datos Actualizados Correctamente'
+  });
+ })
+</script>
+@endif
+<script>
+ $(function(){
 
-        $("#nombre").keyup(function(){
-          if(($(this).val().trim() != '') && ($("#usuario").val().trim() != '')){
-            $("#btnUpdateData").prop('disabled', false);
-            $("#btnUpdateData").removeClass('disabled');
-          }else{
-            $("#btnUpdateData").prop('disabled', true);
-            $("#btnUpdateData").addClass('disabled');
-          }
-        })
-        $("#usuario").keyup(function(){
-          if(($(this).val().trim() != '') && ($("#nombre").val().trim() != '')){
-            $("#btnUpdateData").prop('disabled', false)
-            $("#btnUpdateData").removeClass('disabled');
-          }else{
-            $("#btnUpdateData").prop('disabled', true);
-            $("#btnUpdateData").addClass('disabled');
-          }
-        });
+  $("#nombre").keyup(function(){
+    if(($(this).val().trim() != '') && ($("#usuario").val().trim() != '')){
+      $("#btnUpdateData").prop('disabled', false);
+      $("#btnUpdateData").removeClass('disabled');
+    }else{
+      $("#btnUpdateData").prop('disabled', true);
+      $("#btnUpdateData").addClass('disabled');
+    }
+  })
+  $("#usuario").keyup(function(){
+    if(($(this).val().trim() != '') && ($("#nombre").val().trim() != '')){
+      $("#btnUpdateData").prop('disabled', false)
+      $("#btnUpdateData").removeClass('disabled');
+    }else{
+      $("#btnUpdateData").prop('disabled', true);
+      $("#btnUpdateData").addClass('disabled');
+    }
+  });
 
-        $("#btnOpenPasswordsFields").on('click',function(){
-          if(!$("#divPasswords").hasClass('show')){
+  $("#btnOpenPasswordsFields").on('click',function(){
+    if(!$("#divPasswords").hasClass('show')){
              //Desabilitando el boton de guardar
-            $("#btnUpdateData").prop('disabled', true);
-            $("#btnUpdateData").addClass('disabled');
+             $("#btnUpdateData").prop('disabled', true);
+             $("#btnUpdateData").addClass('disabled');
 
-            $("#cPassword").keyup(function(){
+             $("#cPassword").keyup(function(){
               if($(this).val().trim() != $("#password").val().trim()){
                 $("#divNoMatchPasswords").css('display','block');
                 $("#btnUpdateData").prop('disabled', true);
@@ -265,21 +265,21 @@
               if($(this).val().trim() == ''){
                $("#btnUpdateData").prop('disabled', true);
                $("#btnUpdateData").addClass('disabled');
-              }
-            });
+             }
+           });
 
-          }else {
+           }else {
             // Limpiando datos de password
             $("#password").val('');$("#cPassword").val('');
             if($("#btnUpdateData").hasClass('disabled')){
-                if(($("#nombre").val().trim() != '') && ($("#usuario").val().trim() != '')){
-                 $("#btnUpdateData").prop('disabled', false)
-                 $("#btnUpdateData").removeClass('disabled');
-               }
+              if(($("#nombre").val().trim() != '') && ($("#usuario").val().trim() != '')){
+               $("#btnUpdateData").prop('disabled', false)
+               $("#btnUpdateData").removeClass('disabled');
              }
-          }
-        });
-    })
+           }
+         }
+       });
+})
 </script>
 </body>
 </html>

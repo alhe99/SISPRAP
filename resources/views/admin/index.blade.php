@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('contenido')
 <template v-if="menu==0">
-   <div class="col-lg-12 col-md-12">
+ <div class="col-lg-12 col-md-12">
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -145,5 +145,8 @@
 </template>
 <template v-if="menu==23">
  <proyectos_externos></proyectos_externos>
+</template>
+<template v-if="menu==24">
+ <chat></chat>
 </template>
 @endsection

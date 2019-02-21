@@ -526,6 +526,8 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
     );
 
     public static $classMap = array (
+        'App\\Alumno' => __DIR__ . '/../..' . '/app/Alumno.php',
+        'App\\Aspirante' => __DIR__ . '/../..' . '/app/Aspirante.php',
         'App\\Carrera' => __DIR__ . '/../..' . '/app/Carrera.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\ConstanciaEntregada' => __DIR__ . '/../..' . '/app/ConstanciaEntregada.php',
@@ -546,6 +548,7 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'App\\Http\\Controllers\\EstudianteController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstudianteController.php',
         'App\\Http\\Controllers\\GestionProyectoController' => __DIR__ . '/../..' . '/app/Http/Controllers/GestionProyectoController.php',
         'App\\Http\\Controllers\\InstitucionController' => __DIR__ . '/../..' . '/app/Http/Controllers/InstitucionController.php',
+        'App\\Http\\Controllers\\MensajeController' => __DIR__ . '/../..' . '/app/Http/Controllers/MensajeController.php',
         'App\\Http\\Controllers\\MunicipioController' => __DIR__ . '/../..' . '/app/Http/Controllers/MunicipioController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\PagoArancelController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagoArancelController.php',
@@ -565,6 +568,7 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'App\\ImgSupervision' => __DIR__ . '/../..' . '/app/ImgSupervision.php',
         'App\\Institucion' => __DIR__ . '/../..' . '/app/Institucion.php',
         'App\\Jobs\\sendNotificationToAdmin' => __DIR__ . '/../..' . '/app/Jobs/sendNotificationToAdmin.php',
+        'App\\Mensaje' => __DIR__ . '/../..' . '/app/Mensaje.php',
         'App\\Municipio' => __DIR__ . '/../..' . '/app/Municipio.php',
         'App\\NivelAcademico' => __DIR__ . '/../..' . '/app/NivelAcademico.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',

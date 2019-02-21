@@ -21,8 +21,12 @@ class User extends Authenticatable
     public function estudiante(){
         return $this->belongsTo(Estudiante::class,'id');
     }
+    public function mensajes()
+    {
+        return $this->hasMany(Mensaje::class);
+    }
 
-      public function scopeUsuario($query,$name){
+    public function scopeUsuario($query,$name){
         if($name)
             return $query->where('nombre','LIKE',"%$name%")->orWhere('usuario','LIKE',"%$name%");
     }

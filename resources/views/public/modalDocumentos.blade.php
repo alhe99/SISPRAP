@@ -114,9 +114,6 @@
 </div>
 </div>
 </div>
-<script src="{{asset('js/publicTemplate.js')}}"></script>
-<script src="{{asset('other/js/jquery-min.js')}}"></script>}
-@routes @yield('page_script')
 <script type="text/javascript">
 	var app = new Vue({
 		el : '#modalDocumentos',

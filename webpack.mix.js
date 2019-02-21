@@ -31,6 +31,8 @@ mix.styles([
 
 .js(['resources/assets/js/app.js'], 'public/js/app.js');
 
+
+
 ////////////////ARCHIVOS PARA PUBLIC TEMPLATE //////////
 mix.styles([
     "resources/assets/PublicTemplate/css/toastr.min.css",
@@ -65,5 +67,6 @@ mix.styles([
     "resources/assets/LoginTemplate/js/bootstrap.min.js",
     "resources/assets/LoginTemplate/js/animsition.min.js",
 
-    ], 'public/js/loginTemplate.js');
+    ], 'public/js/loginTemplate.js')
 
+.js(['resources/assets/js/public.js'], 'public/js/public.js');

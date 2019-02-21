@@ -18,12 +18,12 @@
                             &nbsp;Mi Cuenta
                         </a>
                         <div class="dropdown-divider"></div>
-                     @if (Auth::user()->id == 0)
+                        @if (Auth::user()->id == 0)
                         <a href="#" data-toggle="modal" data-target="#modalChangeYear" class="dropdown-item"><i class="mdi mdi-calendar-range"></i>
                             &nbsp;Año del sistema
                         </a>
                         <div class="dropdown-divider"></div>
-                    @endif
+                        @endif
                         <a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"
                         class="dropdown-item"><i class="fa fa-power-off"></i>
                         &nbsp;Cerrar Sesion
@@ -63,6 +63,9 @@
                     <li><button type="button" @click="menu=8" class="btn btn-link btn-field"><i class="mdi mdi-marker-check btn-i"></i><span
                         class="hide-menu">Pago Arancel</span></button>
                     </li>
+                    <li><button type="button" @click="menu=24" class="btn btn-link btn-field"><i class="mdi mdi-message btn-i"></i><span
+                        class="hide-menu">Mensajes</span></button>
+                    </li>
                     <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span
                         class="hide-menu">Reportes</span></a>
                         <ul aria-expanded="false" class="collapse ">
@@ -92,9 +95,9 @@
                         </ul>
                     </li>
                     @if (Auth::user()->id == 0)
-                        <li><button type="button" @click="menu=9" class="btn btn-link btn-field"><i class="mdi mdi-account-multiple btn-i"></i><span
-                            class="hide-menu"> Usuarios</span></button>
-                        </li>
+                    <li><button type="button" @click="menu=9" class="btn btn-link btn-field"><i class="mdi mdi-account-multiple btn-i"></i><span
+                        class="hide-menu"> Usuarios</span></button>
+                    </li>
                     @endif
                     <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                         class="hide-menu"> Copias de seguridad</span></button>
@@ -109,6 +112,6 @@
         <!--Formulario de cerrar sesion-->
         <!--Fin de formulario de cerrar sesion-->
     </aside>
-     @include('admin.layout.modalUpdateDatos')
-     <modal_year :app_year="{{ env('APP_YEAR') }}"></modal_year>
+    @include('admin.layout.modalUpdateDatos')
+    <modal_year :app_year="{{ env('APP_YEAR') }}"></modal_year>
 </div>

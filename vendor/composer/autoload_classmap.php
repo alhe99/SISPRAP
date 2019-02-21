@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Alumno' => $baseDir . '/app/Alumno.php',
+    'App\\Aspirante' => $baseDir . '/app/Aspirante.php',
     'App\\Carrera' => $baseDir . '/app/Carrera.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\ConstanciaEntregada' => $baseDir . '/app/ConstanciaEntregada.php',
@@ -26,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\EstudianteController' => $baseDir . '/app/Http/Controllers/EstudianteController.php',
     'App\\Http\\Controllers\\GestionProyectoController' => $baseDir . '/app/Http/Controllers/GestionProyectoController.php',
     'App\\Http\\Controllers\\InstitucionController' => $baseDir . '/app/Http/Controllers/InstitucionController.php',
+    'App\\Http\\Controllers\\MensajeController' => $baseDir . '/app/Http/Controllers/MensajeController.php',
     'App\\Http\\Controllers\\MunicipioController' => $baseDir . '/app/Http/Controllers/MunicipioController.php',
     'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\PagoArancelController' => $baseDir . '/app/Http/Controllers/PagoArancelController.php',
@@ -45,6 +48,7 @@ return array(
     'App\\ImgSupervision' => $baseDir . '/app/ImgSupervision.php',
     'App\\Institucion' => $baseDir . '/app/Institucion.php',
     'App\\Jobs\\sendNotificationToAdmin' => $baseDir . '/app/Jobs/sendNotificationToAdmin.php',
+    'App\\Mensaje' => $baseDir . '/app/Mensaje.php',
     'App\\Municipio' => $baseDir . '/app/Municipio.php',
     'App\\NivelAcademico' => $baseDir . '/app/NivelAcademico.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',

@@ -71,6 +71,7 @@ Vue.component('sectores', require('./components/instituciones/Sectores.vue'));
 Vue.component('solicitudes_aprobadas', require('./components/proyectos/SolicitudesAprobadas.vue'));
 Vue.component('proyectos_externos', require('./components/proyectos/ProyectosExternos.vue'));
 Vue.component('modal_year', require('./components/mantenimientos/modal_year.vue'));
+Vue.component('chat', require('./components/chat/ChatAdmin.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -100,5 +101,5 @@ const app = new Vue({
                 closeOnHover: false
             });
         });
-    }
+    },
 });
