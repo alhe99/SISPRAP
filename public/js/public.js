@@ -57772,14 +57772,44 @@ window.Vue = __webpack_require__(41);
 Vue.component('chat_public', __webpack_require__(168));
 
 var app = new Vue({
-    el: '#public',
-    data: {
-        menu: 0,
-        notifications: []
-    },
-    created: function created() {
-        //
-    }
+	el: '#public',
+	data: {
+		notifications: [],
+		arrayMessages: []
+	},
+	methods: {
+		getMessages: function getMessages() {
+			var me = this;
+			var url = route('getMessagesStudent');
+			axios.get(url).then(function (response) {
+				var respuesta = response.data;
+				me.arrayMessages = respuesta;
+			}).catch(function (error) {
+				console.log(error);
+			});
+		},
+		sendMessage: function sendMessage(message) {
+			var me = this;
+			var url = route('messages.store', message);
+			axios.post(url).then(function (response) {
+				me.bodyMessage = '';
+				var respuesta = response.data;
+				me.arrayMessages.push(respuesta.message);
+				setTimeout(me.scrollToEnd, 0.10);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		},
+		scrollToEnd: function scrollToEnd() {
+			document.getElementById('chat-box').scrollTo(0, 99999);
+		}
+	},
+	mounted: function mounted() {
+		this.getMessages();
+		// Echo.private('chat').listen('MessageSentEvent', (e) => {
+		// 	alert(e.user.estudiante.nombre);
+		// });
+	}
 });
 
 /***/ }),
@@ -57907,47 +57937,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user'],
+	props: ['user', 'messages'],
 	data: function data() {
 		return {
 			bodyMessage: '',
-			arrayMessages: [],
 			token: document.head.querySelector('meta[name="csrf-token"]').content
 		};
 	},
 
 	watch: {},
 	methods: {
-		getMessages: function getMessages() {
+		send: function send() {
 			var me = this;
-			var url = route('getMessagesStudent');
-			axios.get(url).then(function (response) {
-				var respuesta = response.data;
-				me.arrayMessages = respuesta;
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		sendMessage: function sendMessage() {
-			var me = this;
-			var url = route('messages.store', { 'mensaje': me.bodyMessage, 'receiver_id': 0, _token: me.token });
-			axios.post(url).then(function (response) {
-				me.bodyMessage = '';
-				var respuesta = response.data;
-				me.arrayMessages.push(respuesta.message);
-				setTimeout(me.scrollToEnd, 100);
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		scrollToEnd: function scrollToEnd() {
-			document.getElementById('chat-box').scrollTo(0, 99999);
+			me.$emit('sendmessage', { 'mensaje': me.bodyMessage, 'receiver_id': 0, _token: me.token });
+			me.bodyMessage = '';
 		}
-	},
-	mounted: function mounted() {
-		this.getMessages();
-	},
-	destroyed: function destroyed() {}
+	}
 });
 
 /***/ }),
@@ -57968,7 +57973,7 @@ var render = function() {
         _c(
           "div",
           { staticClass: "chat-logs", attrs: { id: "chat-box" } },
-          _vm._l(_vm.arrayMessages, function(message) {
+          _vm._l(_vm.messages, function(message) {
             return _c(
               "div",
               {
@@ -58023,7 +58028,7 @@ var render = function() {
               ) {
                 return null
               }
-              return _vm.sendMessage($event)
+              return _vm.send($event)
             },
             input: function($event) {
               if ($event.target.composing) {
@@ -58045,7 +58050,7 @@ var render = function() {
               disabled: _vm.bodyMessage == "",
               id: "chat-submit"
             },
-            on: { click: _vm.sendMessage }
+            on: { click: _vm.send }
           },
           [_c("i", { staticClass: "mdi mdi-send" })]
         )

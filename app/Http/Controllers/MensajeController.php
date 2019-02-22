@@ -32,7 +32,7 @@ class MensajeController extends Controller
 	}
 	public function sendPrivateMessage(Request $request)
 	{
-		$user = Auth::user();
+		$user = User::with('estudiante.carrera')->find(Auth::user()->id);
 
 		$message = Mensaje::create([
 			'mensaje' => $request->mensaje,

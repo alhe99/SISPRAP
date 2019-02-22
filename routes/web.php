@@ -174,9 +174,13 @@ Route::get('/test', function () {
     //         $data = $data->except($value->id);
     //     }
     // }
-    return App\Alumno::whereHas('aspirante',function($query){
-        $query->where('articulado',true);
-    })->get();
+    // return App\Alumno::whereHas('aspirante',function($query){
+    //     $query->where('articulado',true);
+    // })->get();
+    //
+    if(Artisan::call('queue:work', ['--tries' => 3]))
+    return "true";
+    // return App\User::with('estudiante.carrera')->find(Auth::user()->id);
 /*     if(date('m') > date('m',strtotime('-1 month')))
       return "Actualizar mes";
     else

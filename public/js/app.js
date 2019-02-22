@@ -58225,6 +58225,7 @@ var app = new Vue({
     data: {
         menu: 0,
         notifications: []
+
     },
     created: function created() {
         var _this = this;
@@ -58252,15 +58253,16 @@ var app = new Vue({
         });
 
         Echo.private('chat').listen('MessageSentEvent', function (e) {
-            _this.$toastr('add', {
-                title: 'Nuevo Mensaje',
-                msg: 'Nuevo mensaje recibido',
-                timeout: 5000,
-                position: 'toast-bottom-right',
-                type: 'info',
-                clickClose: true,
-                closeOnHover: false
-            });
+            // this.$toastr('add', {
+            //     title: 'Nuevo Mensaje',
+            //     msg: 'Nuevo mensaje recibido',
+            //     timeout: 5000,
+            //     position: 'toast-bottom-right',
+            //     type: 'info',
+            //     clickClose: true,
+            //     closeOnHover: false
+            // });
+            alert("Nuevo mensaje de " + e.user.estudiante.nombre + " de " + e.user.estudiante.carrera.nombre);
         });
     }
 });

@@ -129,7 +129,7 @@
 </div>
 {{-- FIN DE DIV DE FLOAT BUTTON --}}
 {{-- COMPONENTE DE CHAT --}}
-<chat_public :user="{{ Auth::user() }}"></chat_public>
+<chat_public v-on:sendmessage="sendMessage" :messages="arrayMessages" :user="{{ Auth::user() }}"></chat_public>
 {{-- FIN DE COMPONENTE DE CHAT --}}
 {{-- DIV DE NOTIFICACIONES --}}
 <div class="modal fade docs-example-modal-lg col-md-12"  id="app" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"

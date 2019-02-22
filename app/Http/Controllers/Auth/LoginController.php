@@ -70,8 +70,6 @@ class LoginController extends Controller
                 return redirect()->route('public');
 
             } else if (session('rol_id') == 1 ) {
-
-                exec('php artisan queue:listen --tries=2 ');
                 $month =  app(\App\Http\Controllers\UsuarioController::class)->getCurrentMonth();
                 if($month != date('m')){
                      app(\App\Http\Controllers\UsuarioController::class)->changeCurrentMonth();
