@@ -53,7 +53,7 @@ export default {
 		left: -33.30px;
 	}
 	.dateUser{
-		left: 5px;
+		left: 15px;
 		position: absolute;
 		margin-top: 9px;
 	}

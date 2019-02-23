@@ -165,6 +165,7 @@ Route::get('/private-messages/{user}', 'MessageController@privateMessages')->nam
 Route::post('/user/messages/store', 'MensajeController@sendPrivateMessage')->name('messages.store');
 Route::get('/user/getMessages', 'MensajeController@getMessagesToStudent')->name('getMessagesStudent');
 Route::get('/user/getMessages/users', 'MensajeController@getListOfMessagesAdmin')->name('getMessagesUsers');
+Route::get('/user/getMessages/admin/{usuario_id}', 'MensajeController@getRecordsMessagesByUser')->name('getRecordsMessagesByUser');
 
 Route::get('/test', function () {
 

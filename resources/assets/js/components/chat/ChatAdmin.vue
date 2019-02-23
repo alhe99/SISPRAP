@@ -11,7 +11,7 @@
       </div>
       <div class="chats">
 	 <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
-         <div v-for="user in arrayUsers" :key="user.id" @click="openDetailChat(user)" class="chatUser active">
+         <div v-for="user in arrayUsers" :key="user.id" @click="getMessages(user.usuario_id)" class="chatUser active">
             <div class="chatUserIcon">
                <img :src="'http://registro.itcha.edu.sv/matricula/public/images/alumnos/'+user.foto" :alt="user.usuario">
             </div>
@@ -30,18 +30,21 @@
             <line x1="2" y1="15" x2="18" y2="15" />
          </svg>
       </button>
-      <div class="messageWrapper">
-         <div class="messages">
-            <span class="chat me">Test mensaje</span>
-            <span class="chat">Test mensaje otro</span>
+      <div class="messageWrapper" id="div-msj">
+         <div class="messages" >
+	  <div  v-for="message in arrayMessages" :key="message.id">
+            <div class="chat" v-text="message.mensaje" :class="[message.usuario_id == user.id ? 'me' : '']"></div>
+	    <small :class="[message.usuario_id == user.id ? 'dateMe' : 'dateOther']" v-text="message.created_at"></small>
+	   </div>
+	   <pulse-loader class="text-center" :loading="loadingMsj" :color="color" :size="size"></pulse-loader>
          </div>
       </div>
       <div class="textBoxWrapper">
          <div class="textBoxContainer">
-            <br><textarea class="form-control" rows="7"></textarea>
+            <br><textarea v-model="bodyMessage" class="form-control" rows="7"></textarea>
          </div>
          <div class="buttonGroup">
-            <button class="button blue btn-chat"><i class="mdi mdi-send"></i>&nbsp;Enviar</button>
+            <button :disabled="user_id == '' || bodyMessage == ''" @click="sendMessage" :class="[user_id == '' || bodyMessage == '' ? 'disabled' : '']" class="button blue btn-chat"><i class="mdi mdi-send"></i>&nbsp;Enviar</button>
          </div>
       </div>
    </div>
@@ -57,6 +60,10 @@ export default {
 	    loading: false,
             color: "#533fd0",
 	    size: "12px",
+	    arrayMessages: [],
+	    loadingMsj: false,
+	    bodyMessage: '',
+	    user_id: ''
 	  }
 	},
 	watch:{
@@ -75,17 +82,45 @@ export default {
 		})
 		.catch(function(error) {
 			me.loading = false;
-			toast({
+			/* toast({
 				type: 'warning',
 				title: 'Error al cargar los registros',
 				timer: 5000
-			});
+			}); */
 			console.log(error);
 		});  
 	  },
-	  openDetailChat(user){
-		console.log(user);
-	  }
+	  sendMessage(){
+		let me = this;
+		var url = route('messages.store',{'mensaje': me.bodyMessage,'receiver_id': me.user_id});
+		axios.post(url).then(function(response) {
+			me.bodyMessage = '';
+			var respuesta = response.data;
+			me.arrayMessages.push(respuesta.message);
+			setTimeout(me.scrollToEnd,0.10);
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+	  },
+	  getMessages(id) {
+		let me = this;
+		me.loadingMsj = true;
+		me.user_id = id;
+		var url = route('getRecordsMessagesByUser',id);
+		axios.get(url).then(function(response) {
+			var respuesta = response.data;
+			me.arrayMessages = respuesta;
+			me.loadingMsj = false;
+			setTimeout(me.scrollToEnd,0.10);
+		}).catch(function(error) {
+		  console.log(error);
+		});
+	  },
+	  scrollToEnd(){
+	      var objDiv = document.getElementById("div-msj");
+	      objDiv.scrollTop = objDiv.scrollHeight;
+	  },
 	},
 	mounted(){
 		$("#btnFAB").css('display','none');
@@ -97,6 +132,22 @@ export default {
 };
 </script>
 <style type="scss">
+	.dateMe{
+	   position: relative;
+	   float: right;
+	   right: 35px;
+	   font-size: 15px;
+	   margin-top: -8px;
+           color: rgb(154, 154, 154);
+	}
+	.dateOther{
+	   position: relative;
+	   float: left;
+	   left: 35px;
+	   font-size: 15px;
+	   margin-top: -8px;
+           color: rgb(154, 154, 154);
+	}
 	body {
 		font-family: Roboto, sans-serif;
 	}
@@ -180,6 +231,7 @@ export default {
 		padding: 0.8rem 1rem;
 		word-wrap: break-word;
 		font-size: 15px;
+		margin: 8px;
 	}
 	.chat~.chat {
 		margin-top: 2rem;
@@ -263,7 +315,7 @@ export default {
 			margin-top: 2rem;
 		}
 		.info {
-			background: #ddd;
+			background: rgb(173, 173, 173);
 			width: 60%;
 			padding: 0.7rem 0;
 			border-radius: 0.4rem;

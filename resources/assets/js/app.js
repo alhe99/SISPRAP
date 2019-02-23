@@ -78,7 +78,24 @@ const app = new Vue({
     data: {
         menu: 0,
         notifications: [],
-
+    },
+    methods: {
+        /* sendMessage(message) {
+            let me = this;
+            var url = route('messages.store', message);
+            axios.post(url).then(function (response) {
+                    me.bodyMessage = '';
+                    var respuesta = response.data;
+                    me.arrayMessages.push(respuesta.message);
+                    setTimeout(me.scrollToEnd, 0.10);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }, */
+        scrollToEnd() {
+            document.getElementById('chat-box').scrollTo(0, 99999);
+        },
     },
     created() {
         let me = this;
@@ -104,7 +121,7 @@ const app = new Vue({
         });
 
 
-        Echo.private('chat').listen('MessageSentEvent',(e) => {
+        Echo.private('chat').listen('MessageSentEvent', (e) => {
             // this.$toastr('add', {
             //     title: 'Nuevo Mensaje',
             //     msg: 'Nuevo mensaje recibido',
@@ -114,7 +131,7 @@ const app = new Vue({
             //     clickClose: true,
             //     closeOnHover: false
             // });
-            alert("Nuevo mensaje de " + e.user.estudiante.nombre +" de " + e.user.estudiante.carrera.nombre);
+            alert("Nuevo mensaje de " + e.user.estudiante.nombre + " de " + e.user.estudiante.carrera.nombre);
         });
     },
 });

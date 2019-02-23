@@ -50,6 +50,7 @@ class MensajeController extends Controller
 		$arrayMensajes = array();
 		foreach ($usuarios as $key => $usuario) {
 			array_push($arrayMensajes,array( 
+				"usuario_id" => $usuario->id,
 				"usuario" => $usuario->estudiante->nombre." ".substr($usuario->estudiante->apellido,0,strpos($usuario->estudiante->apellido," ")),
 				"foto" => $usuario->estudiante->foto_name,
 				"message" => Mensaje::select('mensaje','created_at')->where([['usuario_id', $usuario->id],['receiver_id',0]])
@@ -59,5 +60,14 @@ class MensajeController extends Controller
 			));
 		}
                 return $arrayMensajes;
+	}
+	public function getRecordsMessagesByUser($usuario_id){
+
+		$mensajes = Mensaje::where(['usuario_id'=> $usuario_id, 'receiver_id'=> 0])
+		->orWhere(function($query) use( $usuario_id){
+			$query->where(['usuario_id' => 0 , 'receiver_id' => $usuario_id]);
+		})->orderBy('created_at','asc')->get();
+
+		return $mensajes;
 	}
 }

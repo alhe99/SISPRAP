@@ -57898,7 +57898,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.dateSelf{\n\tposition: absolute;\n\tmargin-top: 9px;\n\twidth: 125%;\n\tleft: -33.30px;\n}\n.dateUser{\n\tleft: 5px;\n\tposition: absolute;\n\tmargin-top: 9px;\n}\n", ""]);
+exports.push([module.i, "\n.dateSelf{\n\tposition: absolute;\n\tmargin-top: 9px;\n\twidth: 125%;\n\tleft: -33.30px;\n}\n.dateUser{\n\tleft: 15px;\n\tposition: absolute;\n\tmargin-top: 9px;\n}\n", ""]);
 
 // exports
 
