@@ -69,6 +69,7 @@ export default {
 },
 mounted(){
   let me = this;
+  /* alert(me.app_year); */
   $("#modalChangeYear").on('show.bs.modal',function() {
     $('#year').yearselect({
       start: 2018,

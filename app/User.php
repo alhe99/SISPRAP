@@ -27,6 +27,6 @@ class User extends Authenticatable
 
     public function scopeUsuario($query,$name){
         if($name)
-            return $query->where('nombre','LIKE',"%$name%")->orWhere('usuario','LIKE',"%$name%");
+            return $query->where('nombre','LIKE',"%$name%");
     }
 }

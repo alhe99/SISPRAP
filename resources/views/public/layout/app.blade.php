@@ -21,7 +21,6 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-	<div id="public">
 		<header id="header">
 			<nav class="navbar navbar-expand-lg fixed-top scrolling-navbar nav-bg">
 				<div class="container">
@@ -101,6 +100,7 @@
 		{{-- FIN DE HEADER --}}
 		{{-- DIV DE PANEL DE FLOAT BUTTON --}}
 		<br>
+<div id="public">
 		<div class="FLOAT BUTTON" id="div-fab">
 			<div class="contenedorBF">
 				<button class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
@@ -166,6 +166,7 @@ aria-hidden="true">
 	<div class="modal-footer">
 		<button type="button" class="btn btn-primary" style="cursor: pointer;"  data-target="#exampleModal" data-dismiss="modal">Cerrar</button>
 	</div>
+</div>
 </div>
 </div>
 </div>
@@ -290,7 +291,6 @@ aria-hidden="true">
 		<div class="loader"  id="loader-1"></div>
 	</div>
 	{{-- FIN DE DIV DE LOADER --}}
-</div>
 @routes
 <script src="{{ asset('js/public.js') }}"></script>
 <script src="{{asset('other/js/jquery-min.js')}}"></script>

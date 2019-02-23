@@ -1,113 +1,95 @@
 <template>
-	<div class="messagingApp">
-		<div class="appOverlay"></div>
-		<div class="chatList">
-			<header class="chatListHeader">
-				<br><h4 class="font-weight-bold"><i class="mdi mdi-message-settings"></i>&nbsp;Chats con estudiantes</h4>
-			</header>
-			<div class="chatOptions">
-				<input type="text" class="search" placeholder="Buscar..." />
-			</div>
-			<div class="chats">
-				<div class="chatUser active">
-					<div class="chatUserIcon">
-						<img src="https://gravatar.com/avatar/ad7bfdd48e2c33f246f3b9de02e4fa0d?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="My profile icon">
-					</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Me</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">P</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Peter</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">M</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Maggie</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">E</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Eric</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">P</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Paul</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">M</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Maggie</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">E</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Eric</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-				<div class="chatUser">
-					<div class="chatUserIcon">P</div>
-					<div class="chatUserDetails">
-						<span class="chatUsername">Paul</span>
-						<span class="lastMessageTime">Today</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="chatDetails">
-			<button class="hamburger">
-				<svg viewBox="0 0 20 20" class="hamburgerIcon">
-					<line x1="2" y1="5" x2="18" y2="5" />
-					<line x1="2" y1="10" x2="18" y2="10" />
-					<line x1="2" y1="15" x2="18" y2="15" />
-				</svg>
-			</button>
-			<div class="messageWrapper">
-				<div class="messages">
-
-				</div>
-			</div>
-			<div class="textBoxWrapper">
-				<div class="textBoxContainer">
-					<br><textarea class="form-control" rows="7"></textarea>
-				</div>
-				<div class="buttonGroup">
-					<button class="button blue"><i class="mdi mdi-send"></i>&nbsp;Enviar</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="messagingApp">
+   <div class="appOverlay"></div>
+   <div class="chatList">
+      <header class="chatListHeader">
+         <br>
+         <h4 class="font-weight-bold"><i class="mdi mdi-message-settings"></i>&nbsp;Chats con estudiantes</h4>
+      </header>
+      <div class="chatOptions">
+         <input type="text" @keyup="getRecordsOfUsers(buscar)" v-model="buscar" class="search" placeholder="Buscar..." />
+      </div>
+      <div class="chats">
+	 <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+         <div v-for="user in arrayUsers" :key="user.id" @click="openDetailChat(user)" class="chatUser active">
+            <div class="chatUserIcon">
+               <img :src="'http://registro.itcha.edu.sv/matricula/public/images/alumnos/'+user.foto" :alt="user.usuario">
+            </div>
+            <div class="chatUserDetails">
+               <span class="chatUsername font-weight-bold" v-text="user.usuario"></span>
+	       <small class="chatPrevMessage">{{user.message.mensaje | truncate(30)}}</small>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="chatDetails">
+      <button class="hamburger">
+         <svg viewBox="0 0 20 20" class="hamburgerIcon">
+            <line x1="2" y1="5" x2="18" y2="5" />
+            <line x1="2" y1="10" x2="18" y2="10" />
+            <line x1="2" y1="15" x2="18" y2="15" />
+         </svg>
+      </button>
+      <div class="messageWrapper">
+         <div class="messages">
+            <span class="chat me">Test mensaje</span>
+            <span class="chat">Test mensaje otro</span>
+         </div>
+      </div>
+      <div class="textBoxWrapper">
+         <div class="textBoxContainer">
+            <br><textarea class="form-control" rows="7"></textarea>
+         </div>
+         <div class="buttonGroup">
+            <button class="button blue btn-chat"><i class="mdi mdi-send"></i>&nbsp;Enviar</button>
+         </div>
+      </div>
+   </div>
+</div>
 </template>
 <script>
 export default {
+	props:['user'],
 	data() {
-		return {
-
-		}
+	  return {
+	    arrayUsers: [],
+	    buscar: '',
+	    loading: false,
+            color: "#533fd0",
+	    size: "12px",
+	  }
 	},
 	watch:{
 
 	},
 	methods:{
-
+	  getRecordsOfUsers(){
+		const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000});
+		let me = this;
+		me.loading = true;
+		var url = route('getMessagesUsers',{"buscar" : me.buscar});
+		axios.get(url).then(function(response) {
+			var respuesta = response.data;
+			me.arrayUsers = respuesta
+			me.loading = false;
+		})
+		.catch(function(error) {
+			me.loading = false;
+			toast({
+				type: 'warning',
+				title: 'Error al cargar los registros',
+				timer: 5000
+			});
+			console.log(error);
+		});  
+	  },
+	  openDetailChat(user){
+		console.log(user);
+	  }
 	},
 	mounted(){
 		$("#btnFAB").css('display','none');
+		this.getRecordsOfUsers();
 	},
 	destroyed() {
 		$("#btnFAB").css('display','block');
@@ -117,6 +99,11 @@ export default {
 <style type="scss">
 	body {
 		font-family: Roboto, sans-serif;
+	}
+	.chatPrevMessage{
+		position: absolute;
+		top: 60px;
+		left: 32px;
 	}
 	.messagingApp {
 		position: relative;
@@ -302,8 +289,9 @@ export default {
 		}
 		.chatUser {
 			display: flex;
-			padding: 1.2rem 2rem;
+			padding: 1.2rem 2rem 6rem 3rem;
 			cursor: pointer;
+			height: 10%;
 		}
 		.chatUser~.chatUser {
 			border-top: 1px solid #eee;
@@ -312,7 +300,8 @@ export default {
 			background: #eee !important;
 		}
 		.chatUser:hover {
-			background: #f4f4f4;
+			background: #b5b5b5;
+			color: black;
 		}
 		.chatUserIcon {
 			width: 4.5rem;
@@ -332,6 +321,7 @@ export default {
 			position: relative;
 			flex-grow: 1;
 			padding-left: 2rem;
+			bottom: 10px;
 		}
 		.chatUsername {
 			line-height: 4.5rem;
@@ -418,7 +408,7 @@ export default {
 		.formUserInput:focus {
 			border-color: #333;
 		}
-		.button {
+		.btn-chat {
 			color: white;
 			padding: 1.2rem 2rem;
 			border: 0;

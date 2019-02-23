@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\MessageSentEvent;
-use App\Mensaje;
 use App\User;
+use App\Mensaje;
+use App\Estudiante;
 use Illuminate\Http\Request;
+use App\Events\MessageSentEvent;
 use Illuminate\Support\Facades\Auth;
 
 class MensajeController extends Controller
@@ -41,6 +42,22 @@ class MensajeController extends Controller
 		]);
 
 		broadcast(new MessageSentEvent($user, $message))->toOthers();
-		return response(['status'=>'Message private sent successfully','message'=>$message]);
+		return response(['status'=>'Message sent successfully','message'=>$message]);
+	}
+	public function getListOfMessagesAdmin(Request $request){
+		$buscar = $request->buscar;
+                $usuarios = User::has('mensajes')->usuario($buscar)->where('rol_id',3)->get();
+		$arrayMensajes = array();
+		foreach ($usuarios as $key => $usuario) {
+			array_push($arrayMensajes,array( 
+				"usuario" => $usuario->estudiante->nombre." ".substr($usuario->estudiante->apellido,0,strpos($usuario->estudiante->apellido," ")),
+				"foto" => $usuario->estudiante->foto_name,
+				"message" => Mensaje::select('mensaje','created_at')->where([['usuario_id', $usuario->id],['receiver_id',0]])
+                                        ->orWhere(function( $query) use( $usuario){ 
+                                                $query->where(['usuario_id' => 0, 'receiver_id' => $usuario->id]);
+                                        })->latest()->first()
+			));
+		}
+                return $arrayMensajes;
 	}
 }

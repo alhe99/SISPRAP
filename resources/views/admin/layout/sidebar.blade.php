@@ -36,7 +36,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">FUNCIONES</li>
+                <li class="nav-small-cap">FUNCIONES {{env('APP_YEAR')}}</li>
                 <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-file-check"></i><span
                     class="hide-menu">Control Proyectos</span></a>
                     <ul aria-expanded="false" class="collapse ">
@@ -113,5 +113,5 @@
         <!--Fin de formulario de cerrar sesion-->
     </aside>
     @include('admin.layout.modalUpdateDatos')
-    <modal_year :app_year="{{ env('APP_YEAR') }}"></modal_year>
+    <modal_year :app_year="{{ config('app.app_year') }}"></modal_year>
 </div>

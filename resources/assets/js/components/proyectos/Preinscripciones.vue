@@ -255,10 +255,7 @@ export default {
        }
      },
      estudiante: function(){
-      if(this.estudiante.codCarnet.length > 7)
-        this.rutaIMG =  "http://portal.itcha.edu.sv/fotos/alumnos/"+ this.estudiante.foto_name;
-      else
-        this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.estudiante.foto_name;
+      this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.estudiante.foto_name;
     }
   },
   computed: {

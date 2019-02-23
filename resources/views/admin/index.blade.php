@@ -147,6 +147,6 @@
  <proyectos_externos></proyectos_externos>
 </template>
 <template v-if="menu==24">
- <chat></chat>
+ <chat :user="{{Auth::user()}}"></chat>
 </template>
 @endsection

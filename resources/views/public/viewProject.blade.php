@@ -63,13 +63,8 @@
                                 <br><button type="button" class="ml-3 animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @else
-<<<<<<< HEAD
-                              <div class="col-md-6 text-center">
-                                <br><button  type="button" class="ml-3 btnPreinscripcion animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
-=======
                             <div class="col-md-6 text-center">
                                 <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
->>>>>>> 42387dc79fd9670644584326e14c96fdf89b7d8f
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif

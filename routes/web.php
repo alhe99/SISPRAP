@@ -164,6 +164,7 @@ Route::post('users/create','UsuarioController@create')->name('createUser');
 Route::get('/private-messages/{user}', 'MessageController@privateMessages')->name('privateMessages');
 Route::post('/user/messages/store', 'MensajeController@sendPrivateMessage')->name('messages.store');
 Route::get('/user/getMessages', 'MensajeController@getMessagesToStudent')->name('getMessagesStudent');
+Route::get('/user/getMessages/users', 'MensajeController@getListOfMessagesAdmin')->name('getMessagesUsers');
 
 Route::get('/test', function () {
 
@@ -178,8 +179,15 @@ Route::get('/test', function () {
     //     $query->where('articulado',true);
     // })->get();
     //
-    if(Artisan::call('queue:work', ['--tries' => 3]))
-    return "true";
+    $fecha1 = strtotime('2019-02-21 23:20:57');//fecha inicial
+    $fecha = date('d/M/Y H:i:s', $fecha1);
+    /*
+    *Aquí pones tu código o anidación de funciones.
+    */
+
+    $fecha2 = new DateTime();//fecha de cierre
+    $intervalo = $fecha->diff($fecha2);
+    return ' Tiempo de ejecución: '.$intervalo-> format('%i minutos %s segundos');
     // return App\User::with('estudiante.carrera')->find(Auth::user()->id);
 /*     if(date('m') > date('m',strtotime('-1 month')))
       return "Actualizar mes";
