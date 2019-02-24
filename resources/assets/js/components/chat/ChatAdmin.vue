@@ -11,15 +11,19 @@
       </div>
       <div class="chats">
 	 <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
-         <div v-for="user in arrayUsers" :key="user.id" @click="getMessages(user.usuario_id)" class="chatUser active">
+         <div v-for="user in arrayUsers" :key="user.id" :id="'div-user-'+user.usuario_id" @click="user.msj_unread > 0 ? getMessages(user.usuario_id,'markRead') : getMessages(user.usuario_id,'')" class="chatUser">
             <div class="chatUserIcon">
                <img :src="'http://registro.itcha.edu.sv/matricula/public/images/alumnos/'+user.foto" :alt="user.usuario">
             </div>
             <div class="chatUserDetails">
-               <span class="chatUsername font-weight-bold" v-text="user.usuario"></span>
+               <span class="chatUsername font-weight-bold" v-text="user.usuario"></span>	
+	       <span class="badge badge-pill badge-danger" v-if="user.msj_unread > 0" v-text="user.msj_unread"></span>
 	       <small class="chatPrevMessage">{{user.message.mensaje | truncate(30)}}</small>
             </div>
          </div>
+	 <div v-if="arrayUsers.length == 0" class="alert alert-primary text-center" role="alert">
+		 No hay ninguna conversación iniciada
+	 </div>
       </div>
    </div>
    <div class="chatDetails">
@@ -41,7 +45,7 @@
       </div>
       <div class="textBoxWrapper">
          <div class="textBoxContainer">
-            <br><textarea v-model="bodyMessage" class="form-control" rows="7"></textarea>
+            <br><textarea v-model="bodyMessage" placeholder="Escriba su mensaje..." class="form-control" rows="7"></textarea>
          </div>
          <div class="buttonGroup">
             <button :disabled="user_id == '' || bodyMessage == ''" @click="sendMessage" :class="[user_id == '' || bodyMessage == '' ? 'disabled' : '']" class="button blue btn-chat"><i class="mdi mdi-send"></i>&nbsp;Enviar</button>
@@ -90,6 +94,17 @@ export default {
 			console.log(error);
 		});  
 	  },
+	 getRecordsOfUsersAfterRead(){
+		let me = this;
+		var url = route('getMessagesUsers',{"buscar" : me.buscar});
+		axios.get(url).then(function(response) {
+			var respuesta = response.data;
+			me.arrayUsers = respuesta
+		})
+		.catch(function(error) {
+			console.log(error);
+		});  
+	  },
 	  sendMessage(){
 		let me = this;
 		var url = route('messages.store',{'mensaje': me.bodyMessage,'receiver_id': me.user_id});
@@ -103,16 +118,29 @@ export default {
 			console.log(error);
 		});
 	  },
-	  getMessages(id) {
+	  setReadMessages(usuario_id){
 		let me = this;
+		var url = route('setReadMessageAdmin',usuario_id);
+		axios.post(url).then(function(response) {
+			me.getRecordsOfUsersAfterRead();
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+	  },
+	  getMessages(id,markRead) {
+		let me = this;
+		me.user_id != '' ? $("#div-user-"+me.user_id).removeClass('active') : '';
 		me.loadingMsj = true;
 		me.user_id = id;
 		var url = route('getRecordsMessagesByUser',id);
 		axios.get(url).then(function(response) {
+			$("#div-user-"+id).addClass('active');
 			var respuesta = response.data;
 			me.arrayMessages = respuesta;
 			me.loadingMsj = false;
 			setTimeout(me.scrollToEnd,0.10);
+			markRead == 'markRead' ? me.setReadMessages(id) : ''; 
 		}).catch(function(error) {
 		  console.log(error);
 		});
@@ -132,6 +160,10 @@ export default {
 };
 </script>
 <style type="scss">
+	.active{
+	   background: #5C6BC0;
+	   color: white;
+	}
 	.dateMe{
 	   position: relative;
 	   float: right;
@@ -341,7 +373,7 @@ export default {
 		}
 		.chatUser {
 			display: flex;
-			padding: 1.2rem 2rem 6rem 3rem;
+			padding: 1.2rem 0rem 6rem 3rem;
 			cursor: pointer;
 			height: 10%;
 		}

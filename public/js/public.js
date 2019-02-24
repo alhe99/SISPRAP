@@ -57935,6 +57935,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user', 'messages'],
@@ -57973,34 +57976,58 @@ var render = function() {
         _c(
           "div",
           { staticClass: "chat-logs", attrs: { id: "chat-box" } },
-          _vm._l(_vm.messages, function(message) {
-            return _c(
-              "div",
-              {
-                key: message.id,
-                staticClass: "chat-msg",
-                class: [message.usuario_id == _vm.user.id ? "self" : "user"],
-                attrs: { id: "cm-msg-" + message.id }
-              },
-              [
-                _c("div", { staticClass: "cm-msg-text" }, [
-                  _c("div", {
-                    domProps: { textContent: _vm._s(message.mensaje) }
-                  }),
-                  _vm._v(" "),
-                  _c("small", {
-                    staticClass: "text-muted text-center",
-                    class: [
-                      message.usuario_id == _vm.user.id
-                        ? "dateSelf"
-                        : "dateUser"
-                    ],
-                    domProps: { textContent: _vm._s(message.created_at) }
-                  })
-                ])
-              ]
-            )
-          })
+          [
+            _vm._l(_vm.messages, function(message) {
+              return _c(
+                "div",
+                {
+                  key: message.id,
+                  staticClass: "chat-msg",
+                  class: [message.usuario_id == _vm.user.id ? "self" : "user"],
+                  attrs: { id: "cm-msg-" + message.id }
+                },
+                [
+                  _c("div", { staticClass: "cm-msg-text" }, [
+                    _c("div", {
+                      domProps: { textContent: _vm._s(message.mensaje) }
+                    }),
+                    _vm._v(" "),
+                    _c("small", {
+                      staticClass: "text-muted text-center",
+                      class: [
+                        message.usuario_id == _vm.user.id
+                          ? "dateSelf"
+                          : "dateUser"
+                      ],
+                      domProps: { textContent: _vm._s(message.created_at) }
+                    })
+                  ])
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm.messages.length == 0
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "alert alert-primary text-center font-weight-bold",
+                    staticStyle: {
+                      "font-size": "11px",
+                      "padding-left": "1px",
+                      "padding-right": "1px"
+                    },
+                    attrs: { role: "alert" }
+                  },
+                  [
+                    _vm._v(
+                      "\r\n\t\t   Inicia una conversación con el encargado de tus procesos\r\n\t    "
+                    )
+                  ]
+                )
+              : _vm._e()
+          ],
+          2
         )
       ]),
       _vm._v(" "),
@@ -58017,7 +58044,7 @@ var render = function() {
           attrs: {
             type: "text",
             id: "chat-input",
-            placeholder: "Escribe tu msj"
+            placeholder: "Escribe tu mensaje..."
           },
           domProps: { value: _vm.bodyMessage },
           on: {
@@ -58065,7 +58092,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "chat-box-header" }, [
       _c("i", { staticClass: "mdi mdi-message" }),
-      _vm._v(" Chat con el usuario administrador\n\t\t\t"),
+      _vm._v(" Chat con el usuario administrador\r\n         "),
       _c("span", { staticClass: "chat-box-toggle" }, [
         _c("i", { staticClass: "mdi mdi-close" })
       ])

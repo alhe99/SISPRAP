@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table = 'usuarios';
-    protected $fillable = ['nombre','usuario','password','estado'];
+    protected $fillable = ['nombre','usuario','password','estado', 'last_token_session'];
     public $timestamps = false;
 
     public function rol()
@@ -22,9 +22,8 @@ class User extends Authenticatable
         return $this->belongsTo(Estudiante::class,'id');
     }
     public function mensajes(){
-        return $this->hasMany(Mensaje::class,'usuario_id');
+        return $this->hasMany(Mensaje::class,'usuario_id')->orderBy('created_at','DESC');
     }
-
     public function scopeUsuario($query,$name){
         if($name)
             return $query->where('nombre','LIKE',"%$name%");

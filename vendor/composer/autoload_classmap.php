@@ -15,6 +15,7 @@ return array(
     'App\\Documento' => $baseDir . '/app/Documento.php',
     'App\\DocumentoEntregado' => $baseDir . '/app/DocumentoEntregado.php',
     'App\\Estudiante' => $baseDir . '/app/Estudiante.php',
+    'App\\Events\\MessageSentEvent' => $baseDir . '/app/Events/MessageSentEvent.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\GestionProyecto' => $baseDir . '/app/GestionProyecto.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

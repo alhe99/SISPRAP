@@ -1,28 +1,31 @@
 <template>
-	<div>
-		<div class="chat-box">
-			<div class="chat-box-header">
-				<i class="mdi mdi-message"></i>&nbsp;Chat con el usuario administrador
-				<span class="chat-box-toggle"><i class="mdi mdi-close"></i></span>
-			</div>
-			<div class="chat-box-body">
-				<div class="chat-box-overlay">
-				</div>
-				<div class="chat-logs" id="chat-box">
-					<div v-for="message in messages" :key="message.id" :id="'cm-msg-'+message.id" :class="[message.usuario_id == user.id ? 'self' : 'user']" class="chat-msg">
-						<div class="cm-msg-text">
-							<div  v-text="message.mensaje"></div>
-							<small class="text-muted text-center" v-text="message.created_at" :class="[message.usuario_id == user.id ? 'dateSelf' : 'dateUser']" ></small>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="chat-input">
-				<input type="text" @keyup.enter="send" v-model="bodyMessage" id="chat-input" placeholder="Escribe tu msj"/>
-				<button type="button" @click="send" style="cursor: pointer" :disabled="bodyMessage == ''" :class="[bodyMessage == '' ? 'disabled' : '']" class="chat-submit" id="chat-submit"><i class="mdi mdi-send"></i></button>
-			</div>
-		</div>
-	</div>
+<div>
+   <div class="chat-box">
+      <div class="chat-box-header">
+         <i class="mdi mdi-message"></i>&nbsp;Chat con el usuario administrador
+         <span class="chat-box-toggle"><i class="mdi mdi-close"></i></span>
+      </div>
+      <div class="chat-box-body">
+         <div class="chat-box-overlay">
+         </div>
+         <div class="chat-logs" id="chat-box">
+            <div v-for="message in messages" :key="message.id" :id="'cm-msg-'+message.id" :class="[message.usuario_id == user.id ? 'self' : 'user']" class="chat-msg">
+               <div class="cm-msg-text">
+                  <div  v-text="message.mensaje"></div>
+                  <small class="text-muted text-center" v-text="message.created_at" :class="[message.usuario_id == user.id ? 'dateSelf' : 'dateUser']" ></small>
+               </div>
+            </div>
+	    <div v-if="messages.length == 0" style="font-size: 11px;padding-left: 1px;padding-right: 1px;" class="alert alert-primary text-center font-weight-bold" role="alert">
+		   Inicia una conversación con el encargado de tus procesos
+	    </div>
+         </div>
+      </div>
+      <div class="chat-input">
+         <input type="text" @keyup.enter="send" v-model="bodyMessage" id="chat-input" placeholder="Escribe tu mensaje..."/>
+         <button type="button" @click="send" style="cursor: pointer" :disabled="bodyMessage == ''" :class="[bodyMessage == '' ? 'disabled' : '']" class="chat-submit" id="chat-submit"><i class="mdi mdi-send"></i></button>
+      </div>
+   </div>
+</div>
 </template>
 <script>
 export default {

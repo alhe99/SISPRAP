@@ -535,6 +535,7 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'App\\Documento' => __DIR__ . '/../..' . '/app/Documento.php',
         'App\\DocumentoEntregado' => __DIR__ . '/../..' . '/app/DocumentoEntregado.php',
         'App\\Estudiante' => __DIR__ . '/../..' . '/app/Estudiante.php',
+        'App\\Events\\MessageSentEvent' => __DIR__ . '/../..' . '/app/Events/MessageSentEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GestionProyecto' => __DIR__ . '/../..' . '/app/GestionProyecto.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
