@@ -53,29 +53,29 @@
                     <div class="row">
                         @if(in_array($proyecto->id,Auth::user()->estudiante->preinscripciones->pluck('id')->toArray()) == 1)
                         <div class="col-md-6 text-center">
-                            <br><button type="button" class="ml-3 animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
+                            <br><button type="button" class="animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                         </div>
                         @elseif(Auth::user()->estudiante->preinscripciones->count() > 0)
                         @if (
                             Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "F" ||
                             Auth::user()->estudiante->preinscripciones[0]->pivot->estado == "A")
                             <div class="col-md-6 text-center">
-                                <br><button type="button" class="ml-3 animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
+                                <br><button type="button" class="animated4 btn btn-dark CursorPoint" disabled>Preinscribirme &nbsp;<i class="mdi mdi-check-all"></i></button>
                             </div>
                             @else
                             <div class="col-md-6 text-center">
-                                <br><button  type="button" class="ml-3 animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
+                                <br><button  type="button" class="animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
                               @else
                               <div class="col-md-6 text-center">
-                                <br><button  type="button" class="ml-3 btnPreinscripcion animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
+                                <br><button  type="button" class="btnPreinscripcion animated4 btn btn-primary CursorPoint" @click.prevent="loadPreRegistration('{{Auth::user()->estudiante->id}}','{{$proyecto->id}}','{{ Auth::user()->estudiante->proceso[0]->id}}')"
                                   id="btnPreinscribir">Preinscribirme&nbsp;<i class="mdi mdi-check-all MisProyFon"></i></button>
                               </div>
                               @endif
-                              <div hidden class="col-md-6 text-center">
-                                <br><a  href="#" rel="nofollow" class="animated4 btn btn-info">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
+                              <div class="col-md-6 text-center">
+                                <br><a  href="#" rel="nofollow" class="animated4 btn btn-info chat-btn showMsjAdmin">Dudas sobre proyecto &nbsp;<i class="fas fa-question-circle MisProyFon"></i></a>
                             </div>
                         </div>
                     </div>

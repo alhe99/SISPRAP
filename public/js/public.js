@@ -57970,6 +57970,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user', 'messages'],
@@ -58060,6 +58063,26 @@ var render = function() {
               : _vm._e()
           ],
           2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "alert alert-info text-center font-weight-bold",
+            staticStyle: {
+              margin: "5px",
+              display: "none",
+              "font-size": "11px",
+              "padding-left": "1px",
+              "padding-right": "1px"
+            },
+            attrs: { id: "msj-duda", role: "alert" }
+          },
+          [
+            _vm._v(
+              "\r\n\t\t   Puedes realizar tus dudas sobre el proyecto directamente con la persona encargada de tus procesos.\r\n\t    "
+            )
+          ]
         )
       ]),
       _vm._v(" "),

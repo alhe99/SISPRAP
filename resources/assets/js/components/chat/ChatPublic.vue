@@ -19,6 +19,9 @@
 		   Inicia una conversación con el encargado de tus procesos
 	    </div>
          </div>
+		 <div id="msj-duda" style="margin: 5px;display: none;font-size: 11px;padding-left: 1px;padding-right: 1px;" class="alert alert-info text-center font-weight-bold" role="alert">
+		   Puedes realizar tus dudas sobre el proyecto directamente con la persona encargada de tus procesos.
+	    </div>
       </div>
       <div class="chat-input">
          <input type="text" @keyup.enter="send" v-model="bodyMessage" id="chat-input" placeholder="Escribe tu mensaje..."/>

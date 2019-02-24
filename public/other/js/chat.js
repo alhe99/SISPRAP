@@ -86,6 +86,10 @@ $(function() {
         $(".chat-box").toggle('scale');
         $("#div-fab").css('display', 'none');
         document.getElementById('chat-box').scrollTo(0, 99999);
+
+        if ($(this).hasClass('showMsjAdmin')) {
+            $("#msj-duda").css("display", "block");
+        }
     })
 
     $(".chat-box-toggle").click(function() {
@@ -93,6 +97,7 @@ $(function() {
         $(".chat-box").toggle('scale');
         $("#div-fab").css('display', 'block');
         $('body').removeClass('mostrar')
+        $("#msj-duda").css("display", "none");
     })
 
 })
