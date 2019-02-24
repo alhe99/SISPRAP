@@ -9,7 +9,8 @@ const app = new Vue({
     data: {
         notifications: [],
         arrayMessages: [],
-        msj_unread: ''
+        msj_unread: '',
+        token: document.head.querySelector('meta[name="csrf-token"]').content
     },
     methods: {
         getMessages() {
@@ -19,11 +20,20 @@ const app = new Vue({
                     var respuesta = response.data;
                     me.arrayMessages = respuesta.messages;
                     me.msj_unread = respuesta.messages_unread;
-                    me.msj_unread > 0 ? $(".span-chat").text(me.msj_unread) : '';
+                    me.showSpan();
                 })
                 .catch(function(error) {
                     console.log(error);
                 });
+        },
+        showSpan() {
+            let me = this;
+            if (me.msj_unread > 0) {
+                $(".span-chat").css('display', 'inline');
+                $(".span-chat").text(me.msj_unread)
+            } else {
+                $(".span-chat").css('display', 'none');
+            }
         },
         sendMessage(message) {
             let me = this;
@@ -41,16 +51,30 @@ const app = new Vue({
         scrollToEnd() {
             document.getElementById('chat-box').scrollTo(0, 99999);
         },
+        setReadMessages() {
+            let me = this;
+            var url = route('setReadMessageEstudent', { _token: me.token });
+            axios.post(url).then(function(response) {
+                me.getMessages();
+            }).catch(function(error) {
+                console.log(error);
+            });
+        },
     },
     mounted() {
-        this.getMessages();
+        let me = this;
+        me.getMessages();
         // Echo.private('chat').listen('MessageSentEvent', (e) => {
         // 	alert(e.user.estudiante.nombre);
         // });
         $("#btn-fab").on("mouseenter", function() {
-            $("#span-ppal").css('display', 'none');
+            me.msj_unread > 0 ? $("#span-ppal").css('display', 'none') : '';
         }).on("mouseleave", function() {
-            $("#span-ppal").css('display', 'inline');
+            me.msj_unread > 0 ? $("#span-ppal").css('display', 'inline') : '';
+        });
+
+        $(".chat-btn").click(function() {
+            me.msj_unread > 0 ? me.setReadMessages() : '';
         });
     },
 });

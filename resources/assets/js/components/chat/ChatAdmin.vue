@@ -113,6 +113,7 @@ export default {
 			var respuesta = response.data;
 			me.arrayMessages.push(respuesta.message);
 			setTimeout(me.scrollToEnd,0.10);
+			me.getRecordsOfUsersAfterRead();
 		})
 		.catch(function(error) {
 			console.log(error);

@@ -107156,6 +107156,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var respuesta = response.data;
 				me.arrayMessages.push(respuesta.message);
 				setTimeout(me.scrollToEnd, 0.10);
+				me.getRecordsOfUsersAfterRead();
 			}).catch(function (error) {
 				console.log(error);
 			});

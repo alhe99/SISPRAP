@@ -70,4 +70,8 @@ class MensajeController extends Controller
 	public function setReadMessageAdmin($usuario_id){
 	       DB::table('mensajes')->where([['usuario_id', $usuario_id], ['receiver_id', 0], ['read', false]])->update(array( 'read' => true));
 	}
+	public function setReadMessageEstudent(){
+	       $usuario_id = Auth::user()->id;
+	       DB::table('mensajes')->where([['usuario_id',0], ['receiver_id', $usuario_id], ['read',false]])->update(array( 'read' => true));
+	}
 }
