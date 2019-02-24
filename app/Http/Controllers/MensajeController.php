@@ -12,17 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class MensajeController extends Controller
 {
-	public function privateMessages(User $user)
-	{
-		$privateCommunication= Mensaje::with('user')
-		->where(['user_id'=> auth()->id(), 'receiver_id'=> $user->id])
-		->orWhere(function($query) use($user){
-			$query->where(['user_id' => $user->id, 'receiver_id' => auth()->id()]);
-		})
-		->get();
-
-		return $privateCommunication;
-	}
 	public function getMessagesToStudent(){
 		$user = Auth::user();
 		$mensajes = Mensaje::where(['usuario_id'=> $user->id, 'receiver_id'=> 0])
@@ -30,7 +19,12 @@ class MensajeController extends Controller
 			$query->where(['usuario_id' => 0 , 'receiver_id' => $user->id]);
 		})->orderBy('created_at','asc')->get();
 
-		return $mensajes;
+                $msj_unread = Mensaje::where([['usuario_id',0],['receiver_id',$user->id] ,['read',false]])->latest()->count();
+
+		return [
+			"messages" => $mensajes,
+			"messages_unread" => $msj_unread
+		];
 	}
 	public function sendPrivateMessage(Request $request)
 	{
