@@ -53,5 +53,5 @@ window.Echo = new Echo({
     key: '6a426b4fce5c447ff288',
     cluster: 'us2',
     encrypted: true,
-    /* authEndpoint: '../broadcasting/auth', */
+    /* authEndpoint: '../public/broadcasting/auth', */
 });
