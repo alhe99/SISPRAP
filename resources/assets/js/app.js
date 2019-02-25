@@ -101,34 +101,33 @@ const app = new Vue({
                 clickClose: true,
                 closeOnHover: false
             });
+        },
+        getNotifications() {
+            let me = this;
+            axios.get(route('getNotificationsAdmin')).then(function(response) {
+                me.notifications = response.data;
+            }).catch(function(error) {
+                console.log(error);
+            });
         }
     },
     created() {
         let me = this;
-        /*  
-         axios.post(route('getNotifications')).then(function(response) {
-             me.notifications = response.data;
-         }).catch(function(error) {
-             console.log(error);
-         });
-
-         var userId = 0;
-
-         Echo.private('App.User.' + userId).notification((notification) => {
-           me.notifications.unshift(notification);
-              this.$toastr('add', {
-                  title: 'Nueva Notificacion',
-                  msg: 'Tienes una Nueva Preinscripción',
-                  timeout: 5000,
-                  position: 'toast-bottom-right',
-                  type: 'success',
-                  clickClose: true,
-                  closeOnHover: false
-              }); 
-             alert("Nueva Notificacion");
-         }); */
+        Echo.private('App.User.' + 0).notification((notification) => {
+            this.$toastr('add', {
+                title: 'Nueva Notificación',
+                msg: notification.cantidad + " " + notification.msj,
+                timeout: 6000,
+                position: 'toast-bottom-right',
+                type: 'success',
+                clickClose: true,
+                closeOnHover: false
+            });
+            me.getNotifications();
+        });
 
         me.getMessagesUnread();
+        me.getNotifications();
 
         Echo.private('chat').listen('MessageSentEvent', (e) => {
             me.getMessagesUnread();

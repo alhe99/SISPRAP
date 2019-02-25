@@ -492,7 +492,7 @@ class ProyectoController extends Controller
                 if($proyect->estado_vacantes == 'C'){
                     return response('completado', 200);
                 }else{
-                    dispatch(new sendNotificationToAdmin($arrayData));
+                    broadcast(User::FindOrFail(0)->notify(new NotifyPreRegisterProject($arrayData)));
                     DB::commit();
                     return "true";
                 }

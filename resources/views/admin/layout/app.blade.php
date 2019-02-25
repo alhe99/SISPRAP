@@ -69,7 +69,7 @@
 
               <ul class="navbar-nav my-lg-0">
                 @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
-                <notification :notifications="notifications"></notification>
+                <notification v-on:getnotificactions="getNotifications" :notifications="notifications"></notification>
                 @endif
                 <li class="nav-item dropdown">
                   @if (Auth::user()->rol_id == 1)

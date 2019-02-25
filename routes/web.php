@@ -143,7 +143,8 @@ Route::get('/getDocuments','DocumentoController@getDocumentsByStudent')->name('g
 Route::get('/saveDoc','DocumentoController@addDocToStudent')->name('savedoc');
 
 //NOTIFICACIONES
-Route::post('notifications/get', 'NotificationController@get')->name('getNotifications');
+Route::get('notifications/get', 'NotificationController@get')->name('getNotificationsAdmin');
+Route::post('notifications/admin/setReadNotificacions', 'NotificationController@setReadNotificacion')->name('setReadNotificacions');
 
 //////PARTE DE RECEPCION ////////
 Route::post('/recepcion/payArancel','PagoArancelController@payArancel')->name('cancelarArancel');

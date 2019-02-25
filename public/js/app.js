@@ -58249,32 +58249,35 @@ var app = new Vue({
                 clickClose: true,
                 closeOnHover: false
             });
+        },
+        getNotifications: function getNotifications() {
+            var me = this;
+            axios.get(route('getNotificationsAdmin')).then(function (response) {
+                me.notifications = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
     created: function created() {
+        var _this = this;
+
         var me = this;
-        /*  
-         axios.post(route('getNotifications')).then(function(response) {
-             me.notifications = response.data;
-         }).catch(function(error) {
-             console.log(error);
-         });
-           var userId = 0;
-           Echo.private('App.User.' + userId).notification((notification) => {
-           me.notifications.unshift(notification);
-              this.$toastr('add', {
-                  title: 'Nueva Notificacion',
-                  msg: 'Tienes una Nueva Preinscripción',
-                  timeout: 5000,
-                  position: 'toast-bottom-right',
-                  type: 'success',
-                  clickClose: true,
-                  closeOnHover: false
-              }); 
-             alert("Nueva Notificacion");
-         }); */
+        Echo.private('App.User.' + 0).notification(function (notification) {
+            _this.$toastr('add', {
+                title: 'Nueva Notificación',
+                msg: notification.cantidad + " " + notification.msj,
+                timeout: 6000,
+                position: 'toast-bottom-right',
+                type: 'success',
+                clickClose: true,
+                closeOnHover: false
+            });
+            me.getNotifications();
+        });
 
         me.getMessagesUnread();
+        me.getNotifications();
 
         Echo.private('chat').listen('MessageSentEvent', function (e) {
             me.getMessagesUnread();
@@ -89055,36 +89058,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['notifications'],
     data: function data() {
-        return {
-            arrayNotifications: []
-        };
+        return {};
     },
 
-    computed: {
-        listar: function listar() {
-            //return this.notifications[0];
-            this.arrayNotifications = Object.values(this.notifications[0]);
-            if (this.notifications == '') {
-                return this.arrayNotifications = [];
-            } else {
-                //Capturo la ultima notificación agregada
-                this.arrayNotifications = Object.values(this.notifications[0]);
-                //Validación por indice fuera de rango
-                if (this.arrayNotifications.length > 3) {
-                    //Si el tamaño es > 3 Es cuando las notificaciones son obtenidas desde el mismo servidor, es decir por la consulta con AXIOS
-                    return Object.values(this.arrayNotifications[4]);
-                } else {
-                    //Si el tamaño es < 3 Es cuando las notificaciones son obtenidas desde el canal privado, es decir mediante Laravel Echo y Pusher
-                    return Object.values(this.arrayNotifications[0]);
-                }
-            }
-        }
-
-    },
     methods: {
         loadComponent: function loadComponent() {
             $("body").load("./proyectos/Preinscripciones.vue");
+        },
+        setReadNotifications: function setReadNotifications() {
+            var me = this;
+            var url = route('setReadNotificacions');
+            axios.post(url).then(function (response) {
+                /* me.$emit('getnotificactions'); */
+                console.log('Notifications are read');
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
+    },
+    mounted: function mounted() {
+        var me = this;
+        $("#btnReadNotifications").click(function () {
+            me.setReadNotifications();
+        });
     }
 });
 
@@ -89103,6 +89099,7 @@ var render = function() {
         staticClass:
           "nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark",
         attrs: {
+          id: "btnReadNotifications",
           href: "",
           "data-toggle": "dropdown",
           "aria-haspopup": "true",
@@ -89133,7 +89130,7 @@ var render = function() {
               ? _c(
                   "div",
                   { staticClass: "message-center" },
-                  _vm._l(_vm.listar, function(item) {
+                  _vm._l(_vm.notifications, function(item) {
                     return _c("a", { key: item.id, attrs: { href: "#" } }, [
                       _c("div", { staticClass: "btn btn-danger btn-circle" }, [
                         _c("span", { staticClass: "badge badge-secondary" }, [
