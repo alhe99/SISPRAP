@@ -45,8 +45,8 @@
 								</a>
 							</li>
 							<li class="nav-item active">
-								<a class="nav-link" target="_black" href="{{asset('manual/manual_public_sisprap.pdf')}}"><i class="mdi mdi-book-open-page-variant mdi-18px"></i>
-									<ins>MANUAL</ins>
+								<a class="nav-link" target="_black" href="{{asset('manual/manual_public_sisprap.pdf')}}"><i class="mdi mdi-book-open-page-variant mdi-18px text-danger"></i>
+									<ins class="text-danger">MANUAL DE USUARIOS</ins>
 								</a>
 							</li>
 							<li class="nav-item dropdown active">
@@ -81,7 +81,7 @@
 					</li>
 					<li>
 						<a href="{{asset('manual/manual_public_sisprap.pdf')}}" target="_black">
-							<ins>MANUAL</ins>
+							<ins class="text-danger">MANUAL DE USUARIOS</ins>
 						</a>
 					</li>
 					<li>
