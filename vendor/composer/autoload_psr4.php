@@ -79,6 +79,7 @@ return array(
     'Cocur\\Slugify\\' => array($vendorDir . '/cocur/slugify/src'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Barryvdh\\Snappy\\' => array($vendorDir . '/barryvdh/laravel-snappy/src'),
+    'Barryvdh\\Queue\\' => array($vendorDir . '/barryvdh/laravel-async-queue/src'),
     'Barryvdh\\DomPDF\\' => array($vendorDir . '/barryvdh/laravel-dompdf/src'),
     'Barryvdh\\Debugbar\\' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
     'BC\\Laravel\\DropboxDriver\\' => array($vendorDir . '/benjamincrozat/laravel-dropbox-driver/src'),

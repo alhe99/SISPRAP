@@ -14752,6 +14752,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */](
     key: '6a426b4fce5c447ff288',
     cluster: 'us2',
     encrypted: true
+    /* authEndpoint: '../broadcasting/auth', */
 });
 
 /***/ }),
@@ -58224,62 +58225,48 @@ var app = new Vue({
     el: '#app',
     data: {
         menu: 0,
-        notifications: []
+        notifications: [],
+        messages_unread: 0
     },
     methods: {
-        /* sendMessage(message) {
-            let me = this;
-            var url = route('messages.store', message);
-            axios.post(url).then(function (response) {
-                    me.bodyMessage = '';
-                    var respuesta = response.data;
-                    me.arrayMessages.push(respuesta.message);
-                    setTimeout(me.scrollToEnd, 0.10);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }, */
-        scrollToEnd: function scrollToEnd() {
-            document.getElementById('chat-box').scrollTo(0, 99999);
+        getMessagesUnread: function getMessagesUnread() {
+            var me = this;
+            var url = route('getCountOfUnreadMessages');
+            axios.get(url).then(function (response) {
+                var respuesta = response.data;
+                me.messages_unread = respuesta;
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
     created: function created() {
-        var _this = this;
-
         var me = this;
-        axios.post(route('getNotifications')).then(function (response) {
-            me.notifications = response.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
+        /*  
+         axios.post(route('getNotifications')).then(function(response) {
+             me.notifications = response.data;
+         }).catch(function(error) {
+             console.log(error);
+         });
+           var userId = 0;
+           Echo.private('App.User.' + userId).notification((notification) => {
+           me.notifications.unshift(notification);
+              this.$toastr('add', {
+                  title: 'Nueva Notificacion',
+                  msg: 'Tienes una Nueva Preinscripción',
+                  timeout: 5000,
+                  position: 'toast-bottom-right',
+                  type: 'success',
+                  clickClose: true,
+                  closeOnHover: false
+              }); 
+             alert("Nueva Notificacion");
+         }); */
 
-        var userId = 0;
-
-        Echo.private('App.User.' + userId).notification(function (notification) {
-            me.notifications.unshift(notification);
-            _this.$toastr('add', {
-                title: 'Nueva Notificacion',
-                msg: 'Tienes una Nueva Preinscripción',
-                timeout: 5000,
-                position: 'toast-bottom-right',
-                type: 'success',
-                clickClose: true,
-                closeOnHover: false
-            });
-        });
+        me.getMessagesUnread();
 
         Echo.private('chat').listen('MessageSentEvent', function (e) {
-            // this.$toastr('add', {
-            //     title: 'Nuevo Mensaje',
-            //     msg: 'Nuevo mensaje recibido',
-            //     timeout: 5000,
-            //     position: 'toast-bottom-right',
-            //     type: 'info',
-            //     clickClose: true,
-            //     closeOnHover: false
-            // });
-            alert("Nuevo mensaje de " + e.user.estudiante.nombre + " de " + e.user.estudiante.carrera.nombre);
+            me.getMessagesUnread();
         });
     }
 });
@@ -107105,7 +107092,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	props: ['user'],
 	data: function data() {
 		return {
-			arrayUsers: [],
 			buscar: '',
 			loading: false,
 			color: "#533fd0",
@@ -107113,11 +107099,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			arrayMessages: [],
 			loadingMsj: false,
 			bodyMessage: '',
-			user_id: ''
+			user_id: '',
+			arrayUsers: []
 		};
 	},
 
-	watch: {},
 	methods: {
 		getRecordsOfUsers: function getRecordsOfUsers() {
 			var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
@@ -107130,11 +107116,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				me.loading = false;
 			}).catch(function (error) {
 				me.loading = false;
-				/* toast({
-    	type: 'warning',
-    	title: 'Error al cargar los registros',
-    	timer: 5000
-    }); */
 				console.log(error);
 			});
 		},
@@ -107166,6 +107147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var url = route('setReadMessageAdmin', usuario_id);
 			axios.post(url).then(function (response) {
 				me.getRecordsOfUsersAfterRead();
+				me.$emit('updmessagesunread');
 			}).catch(function (error) {
 				console.log(error);
 			});
@@ -107187,10 +107169,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				console.log(error);
 			});
 		},
+		getMessagesWithoutReaload: function getMessagesWithoutReaload() {
+			var me = this;
+			var url = route('getRecordsMessagesByUser', me.user_id);
+			axios.get(url).then(function (response) {
+				var respuesta = response.data;
+				me.arrayMessages = respuesta;
+				me.$emit('updmessagesunread');
+				me.setReadMessages(me.user_id);
+				setTimeout(me.scrollToEnd, 0.10);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		},
 		scrollToEnd: function scrollToEnd() {
 			var objDiv = document.getElementById("div-msj");
 			objDiv.scrollTop = objDiv.scrollHeight;
 		}
+	},
+	created: function created() {
+		var me = this;
+		Echo.private('chat').listen('MessageSentEvent', function (e) {
+			me.getRecordsOfUsersAfterRead();
+			e.user.id == me.user_id ? me.getMessagesWithoutReaload() : '';
+		});
 	},
 	mounted: function mounted() {
 		$("#btnFAB").css('display', 'none');

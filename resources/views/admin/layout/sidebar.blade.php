@@ -64,7 +64,7 @@
                         class="hide-menu">Pago Arancel</span></button>
                     </li>
                     <li><button type="button" @click="menu=24" class="btn btn-link btn-field"><i class="mdi mdi-message btn-i"></i><span
-                        class="hide-menu">Mensajes</span></button>
+                        class="hide-menu">Mensajes&nbsp;</span><span class="badge badge-pill badge-danger" v-if="messages_unread > 0" v-text="messages_unread"></span></button>
                     </li>
                     <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span
                         class="hide-menu">Reportes</span></a>

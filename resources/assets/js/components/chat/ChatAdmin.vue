@@ -59,7 +59,6 @@ export default {
 	props:['user'],
 	data() {
 	  return {
-	    arrayUsers: [],
 	    buscar: '',
 	    loading: false,
             color: "#533fd0",
@@ -67,11 +66,9 @@ export default {
 	    arrayMessages: [],
 	    loadingMsj: false,
 	    bodyMessage: '',
-	    user_id: ''
+	    user_id: '',
+	    arrayUsers: []
 	  }
-	},
-	watch:{
-
 	},
 	methods:{
 	  getRecordsOfUsers(){
@@ -86,11 +83,6 @@ export default {
 		})
 		.catch(function(error) {
 			me.loading = false;
-			/* toast({
-				type: 'warning',
-				title: 'Error al cargar los registros',
-				timer: 5000
-			}); */
 			console.log(error);
 		});  
 	  },
@@ -124,6 +116,7 @@ export default {
 		var url = route('setReadMessageAdmin',usuario_id);
 		axios.post(url).then(function(response) {
 			me.getRecordsOfUsersAfterRead();
+			me.$emit('updmessagesunread');
 		})
 		.catch(function(error) {
 			console.log(error);
@@ -146,10 +139,30 @@ export default {
 		  console.log(error);
 		});
 	  },
+	  getMessagesWithoutReaload(){
+	        let me = this;
+		var url = route('getRecordsMessagesByUser',me.user_id);
+		axios.get(url).then(function(response) {
+			var respuesta = response.data;
+			me.arrayMessages = respuesta;
+			me.$emit('updmessagesunread');
+			me.setReadMessages(me.user_id); 
+			setTimeout(me.scrollToEnd,0.10);
+		}).catch(function(error) {
+		  console.log(error);
+		});
+	  },
 	  scrollToEnd(){
 	      var objDiv = document.getElementById("div-msj");
 	      objDiv.scrollTop = objDiv.scrollHeight;
 	  },
+	},
+	created() {
+		let me = this;
+		Echo.private('chat').listen('MessageSentEvent', (e) => {
+		  me.getRecordsOfUsersAfterRead();
+		  e.user.id == me.user_id ? me.getMessagesWithoutReaload() : '';
+		});
 	},
 	mounted(){
 		$("#btnFAB").css('display','none');

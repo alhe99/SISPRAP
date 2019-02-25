@@ -147,6 +147,6 @@
  <proyectos_externos></proyectos_externos>
 </template>
 <template v-if="menu==24">
- <chat :user="{{Auth::user()}}"></chat>
+<chat :user="{{Auth::user()}}" v-on:updmessagesunread="getMessagesUnread"></chat>
 </template>
 @endsection

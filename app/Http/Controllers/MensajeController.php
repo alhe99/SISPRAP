@@ -28,7 +28,7 @@ class MensajeController extends Controller
 	}
 	public function sendPrivateMessage(Request $request)
 	{
-		$user = User::with('estudiante.carrera')->find(Auth::user()->id);
+		$user = User::find(Auth::user()->id);
 
 		$message = Mensaje::create([
 			'mensaje' => $request->mensaje,
@@ -73,5 +73,10 @@ class MensajeController extends Controller
 	public function setReadMessageEstudent(){
 	       $usuario_id = Auth::user()->id;
 	       DB::table('mensajes')->where([['usuario_id',0], ['receiver_id', $usuario_id], ['read',false]])->update(array( 'read' => true));
+	}
+
+	public function getCountOfUnreadMessages(){
+                $mensajes =  Mensaje::where([['receiver_id',0] ,['read',false]])->latest()->count();
+		return $mensajes;
 	}
 }

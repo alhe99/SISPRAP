@@ -14344,6 +14344,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */](
     key: '6a426b4fce5c447ff288',
     cluster: 'us2',
     encrypted: true
+    /* authEndpoint: '../broadcasting/auth', */
 });
 
 /***/ }),

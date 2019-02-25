@@ -78,60 +78,49 @@ const app = new Vue({
     data: {
         menu: 0,
         notifications: [],
+        messages_unread: 0
     },
     methods: {
-        /* sendMessage(message) {
+        getMessagesUnread() {
             let me = this;
-            var url = route('messages.store', message);
-            axios.post(url).then(function (response) {
-                    me.bodyMessage = '';
-                    var respuesta = response.data;
-                    me.arrayMessages.push(respuesta.message);
-                    setTimeout(me.scrollToEnd, 0.10);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }, */
-        scrollToEnd() {
-            document.getElementById('chat-box').scrollTo(0, 99999);
+            var url = route('getCountOfUnreadMessages');
+            axios.get(url).then(function(response) {
+                var respuesta = response.data;
+                me.messages_unread = respuesta
+            }).catch(function(error) {
+                console.log(error);
+            });
         },
     },
     created() {
         let me = this;
-        axios.post(route('getNotifications')).then(function(response) {
-            me.notifications = response.data;
-        }).catch(function(error) {
-            console.log(error);
-        });
+        /*  
+         axios.post(route('getNotifications')).then(function(response) {
+             me.notifications = response.data;
+         }).catch(function(error) {
+             console.log(error);
+         });
 
-        var userId = 0;
+         var userId = 0;
 
-        Echo.private('App.User.' + userId).notification((notification) => {
-            me.notifications.unshift(notification);
-            this.$toastr('add', {
-                title: 'Nueva Notificacion',
-                msg: 'Tienes una Nueva Preinscripción',
-                timeout: 5000,
-                position: 'toast-bottom-right',
-                type: 'success',
-                clickClose: true,
-                closeOnHover: false
-            });
-        });
+         Echo.private('App.User.' + userId).notification((notification) => {
+           me.notifications.unshift(notification);
+              this.$toastr('add', {
+                  title: 'Nueva Notificacion',
+                  msg: 'Tienes una Nueva Preinscripción',
+                  timeout: 5000,
+                  position: 'toast-bottom-right',
+                  type: 'success',
+                  clickClose: true,
+                  closeOnHover: false
+              }); 
+             alert("Nueva Notificacion");
+         }); */
 
+        me.getMessagesUnread();
 
         Echo.private('chat').listen('MessageSentEvent', (e) => {
-            // this.$toastr('add', {
-            //     title: 'Nuevo Mensaje',
-            //     msg: 'Nuevo mensaje recibido',
-            //     timeout: 5000,
-            //     position: 'toast-bottom-right',
-            //     type: 'info',
-            //     clickClose: true,
-            //     closeOnHover: false
-            // });
-            alert("Nuevo mensaje de " + e.user.estudiante.nombre + " de " + e.user.estudiante.carrera.nombre);
+            me.getMessagesUnread();
         });
     },
 });

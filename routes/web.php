@@ -168,6 +168,7 @@ Route::get('/user/getMessages/users', 'MensajeController@getListOfMessagesAdmin'
 Route::get('/user/getMessages/admin/{usuario_id}', 'MensajeController@getRecordsMessagesByUser')->name('getRecordsMessagesByUser');
 Route::post('/user/messages/admin/setRead/{usuario_id}', 'MensajeController@setReadMessageAdmin')->name('setReadMessageAdmin');
 Route::post('/user/messages/setRead', 'MensajeController@setReadMessageEstudent')->name('setReadMessageEstudent');
+Route::get('/user/getMessages/count', 'MensajeController@getCountOfUnreadMessages')->name('getCountOfUnreadMessages');
 
 Route::get('/test', function () {
 

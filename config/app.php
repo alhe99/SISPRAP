@@ -172,6 +172,7 @@ return [
         //Linea a remover
         //Nueva Libreria para PDF
         Barryvdh\Snappy\ServiceProvider::class,
+        Barryvdh\Queue\AsyncServiceProvider::class,
     ],
 
     /*

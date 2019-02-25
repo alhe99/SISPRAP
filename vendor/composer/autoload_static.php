@@ -163,6 +163,7 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'B' => 
         array (
             'Barryvdh\\Snappy\\' => 16,
+            'Barryvdh\\Queue\\' => 15,
             'Barryvdh\\DomPDF\\' => 16,
             'Barryvdh\\Debugbar\\' => 18,
             'BC\\Laravel\\DropboxDriver\\' => 25,
@@ -468,6 +469,10 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src',
         ),
+        'Barryvdh\\Queue\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/barryvdh/laravel-async-queue/src',
+        ),
         'Barryvdh\\DomPDF\\' => 
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src',
@@ -632,6 +637,10 @@ class ComposerStaticInitd195071d74117fd6322582c80003748b
         'Barryvdh\\DomPDF\\Facade' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade.php',
         'Barryvdh\\DomPDF\\PDF' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/PDF.php',
         'Barryvdh\\DomPDF\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/ServiceProvider.php',
+        'Barryvdh\\Queue\\AsyncQueue' => __DIR__ . '/..' . '/barryvdh/laravel-async-queue/src/AsyncQueue.php',
+        'Barryvdh\\Queue\\AsyncServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-async-queue/src/AsyncServiceProvider.php',
+        'Barryvdh\\Queue\\Connectors\\AsyncConnector' => __DIR__ . '/..' . '/barryvdh/laravel-async-queue/src/Connectors/AsyncConnector.php',
+        'Barryvdh\\Queue\\Console\\AsyncCommand' => __DIR__ . '/..' . '/barryvdh/laravel-async-queue/src/Console/AsyncCommand.php',
         'Barryvdh\\Snappy\\Facades\\SnappyImage' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/Facades/SnappyImage.php',
         'Barryvdh\\Snappy\\Facades\\SnappyPdf' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/Facades/SnappyPdf.php',
         'Barryvdh\\Snappy\\IlluminateSnappyImage' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/IlluminateSnappyImage.php',
