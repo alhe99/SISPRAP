@@ -10,20 +10,20 @@
          <input type="text" @keyup="getRecordsOfUsers(buscar)" v-model="buscar" class="search" placeholder="Buscar..." />
       </div>
       <div class="chats">
-	 <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
+         <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
          <div v-for="user in arrayUsers" :key="user.id" :id="'div-user-'+user.usuario_id" @click="user.msj_unread > 0 ? getMessages(user.usuario_id,'markRead') : getMessages(user.usuario_id,'')" class="chatUser">
             <div class="chatUserIcon">
                <img :src="'http://registro.itcha.edu.sv/matricula/public/images/alumnos/'+user.foto" :alt="user.usuario">
             </div>
             <div class="chatUserDetails">
                <span class="chatUsername font-weight-bold" v-text="user.usuario"></span>	
-	       <span class="badge badge-pill badge-danger" v-if="user.msj_unread > 0" v-text="user.msj_unread"></span>
-	       <small class="chatPrevMessage">{{user.message.mensaje | truncate(30)}}</small>
+               <span class="badge badge-pill badge-danger" v-if="user.msj_unread > 0" v-text="user.msj_unread"></span>
+               <small class="chatPrevMessage">{{user.message.mensaje | truncate(30)}}</small>
             </div>
          </div>
-	 <div v-if="arrayUsers.length == 0" class="alert alert-primary text-center" role="alert">
-		 No hay ninguna conversación iniciada
-	 </div>
+         <div v-if="arrayUsers.length == 0" class="alert alert-primary text-center" role="alert">
+            No hay ninguna conversación iniciada
+         </div>
       </div>
    </div>
    <div class="chatDetails">
@@ -35,13 +35,27 @@
          </svg>
       </button>
       <div class="messageWrapper" id="div-msj">
+         <div class="row div-information" v-if="Object.keys(dataByUser).length > 0">
+            <div class="col-md-2">
+               <div class="btn-group pull-xs-left">
+                  <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más opciones">
+                  <i class="mdi mdi-dots-vertical"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-left"  aria-labelledby="mw2">
+                     <button class="dropdown-item d-block menu" type="button"><i class="mdi mdi-delete-empty"></i>&nbsp;Vaciar chat</button>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-10" v-text="dataByUser.nombre+' '+dataByUser.apellido+' - '+dataByUser.carrera+' ('+dataByUser.nivel+')'" style="padding: 10px;">
+            </div>
+         </div>
          <div class="messages" >
-	  <div  v-for="message in arrayMessages" :key="message.id">
-            <div class="chat" v-text="message.mensaje" :class="[message.usuario_id == user.id ? 'me' : '']">
-	    </div>
-	     <small :class="[message.usuario_id == user.id ? 'dateMe' : 'dateOther']" v-text="message.created_at"></small>
-	   </div>
-	   <pulse-loader class="text-center" :loading="loadingMsj" :color="color" :size="size"></pulse-loader>
+            <div  v-for="message in arrayMessages" :key="message.id">
+               <div class="chat" v-text="message.mensaje" :class="[message.usuario_id == user.id ? 'me' : '']">
+               </div>
+               <small :class="[message.usuario_id == user.id ? 'dateMe' : 'dateOther']" v-text="message.created_at"></small>
+            </div>
+            <pulse-loader class="text-center" :loading="loadingMsj" :color="color" :size="size"></pulse-loader>
          </div>
       </div>
       <div class="textBoxWrapper">
@@ -68,7 +82,8 @@ export default {
 	    loadingMsj: false,
 	    bodyMessage: '',
 	    user_id: '',
-	    arrayUsers: []
+	    arrayUsers: [],
+	    dataByUser: {}
 	  }
 	},
 	methods:{
@@ -132,7 +147,8 @@ export default {
 		axios.get(url).then(function(response) {
 			$("#div-user-"+id).addClass('activeUser');
 			var respuesta = response.data;
-			me.arrayMessages = respuesta;
+			me.arrayMessages = respuesta.mensajes;
+			me.dataByUser = respuesta.usuario;
 			me.loadingMsj = false;
 			setTimeout(me.scrollToEnd,0.10);
 			markRead == 'markRead' ? me.setReadMessages(id) : ''; 
@@ -175,6 +191,16 @@ export default {
 };
 </script>
 <style type="scss">
+	.div-information{
+	position: absolute;
+	height: 7%;
+	z-index: 9;
+	width: 100%;
+	margin-left: 0px;
+	font-size: 15px;
+	background: #ffffff;
+	font-weight: bold;
+	}
 	.activeUser{
 	   background: #5C6BC0;
 	   color: white;
@@ -263,7 +289,7 @@ export default {
 		border-top: 1px solid #eee;
 	}
 	.messages {
-		padding: 2rem;
+		padding: 3rem;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
@@ -352,6 +378,7 @@ export default {
 			box-sizing: border-box;
 			transform: translateY(2rem);
 			margin: 10px;
+			padding: 5px;
 			margin-top: -60px;
 		}
 		.emojiButton {
@@ -394,7 +421,7 @@ export default {
 		}
 		.chatUser {
 			display: flex;
-			padding: 1.2rem 0rem 6rem 3rem;
+			padding: 1.2rem 0rem 6rem 1rem;
 			cursor: pointer;
 			height: 10%;
 		}

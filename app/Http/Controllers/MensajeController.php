@@ -71,7 +71,15 @@ class MensajeController extends Controller
 			$query->where(['usuario_id' => 0 , 'receiver_id' => $usuario_id]);
 		})->orderBy('created_at','asc')->get();
 
-		return $mensajes;
+                $usuario = User::join('estudiantes','usuarios.id','=', 'estudiantes.id')
+		->join('carreras','estudiantes.carrera_id','carreras.id')
+		->join('niveles_academicos','estudiantes.nivel_academico_id','niveles_academicos.id')
+		->select('estudiantes.nombre','estudiantes.apellido','carreras.nombre as carrera','niveles_academicos.nivel')->find($usuario_id);
+
+		return [
+			"mensajes" => $mensajes,
+			"usuario" => $usuario
+		];
 	}
 	public function setReadMessageAdmin($usuario_id){
 	       DB::table('mensajes')->where([['usuario_id', $usuario_id], ['receiver_id', 0], ['read', false]])->update(array( 'read' => true));
