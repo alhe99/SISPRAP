@@ -91,6 +91,17 @@ const app = new Vue({
                 console.log(error);
             });
         },
+        showNotification(userName) {
+            this.$toastr('add', {
+                title: 'Nuevo Mensaje',
+                msg: 'Tienes nuevos mensajes de ' + userName,
+                timeout: 6000,
+                position: 'toast-bottom-right',
+                type: 'info',
+                clickClose: true,
+                closeOnHover: false
+            });
+        }
     },
     created() {
         let me = this;
@@ -121,6 +132,7 @@ const app = new Vue({
 
         Echo.private('chat').listen('MessageSentEvent', (e) => {
             me.getMessagesUnread();
+            !$("#btnFAB").hasClass('hiddeBtnFab') ? me.showNotification(e.user.nombre) : '';
         });
     },
 });

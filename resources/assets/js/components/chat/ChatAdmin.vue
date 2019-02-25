@@ -125,12 +125,12 @@ export default {
 	  },
 	  getMessages(id,markRead) {
 		let me = this;
-		me.user_id != '' ? $("#div-user-"+me.user_id).removeClass('active') : '';
+		me.user_id != '' ? $("#div-user-"+me.user_id).removeClass('activeUser') : '';
 		me.loadingMsj = true;
 		me.user_id = id;
 		var url = route('getRecordsMessagesByUser',id);
 		axios.get(url).then(function(response) {
-			$("#div-user-"+id).addClass('active');
+			$("#div-user-"+id).addClass('activeUser');
 			var respuesta = response.data;
 			me.arrayMessages = respuesta;
 			me.loadingMsj = false;
@@ -166,16 +166,16 @@ export default {
 		});
 	},
 	mounted(){
-		$("#btnFAB").css('display','none');
+		$("#btnFAB").addClass('hiddeBtnFab');
 		this.getRecordsOfUsers();
 	},
 	destroyed() {
-		$("#btnFAB").css('display','block');
+		$("#btnFAB").removeClass('hiddeBtnFab');
 	}
 };
 </script>
 <style type="scss">
-	.active{
+	.activeUser{
 	   background: #5C6BC0;
 	   color: white;
 	}
