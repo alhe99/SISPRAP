@@ -55,9 +55,9 @@ export default {
 	.dateSelf{
     position: absolute;
     margin-top: 2px;
-    width: 125%;
-    left: -1px;
-	 color: #bcbcbc;
+    /* width: 125%; */
+    left: 50px;
+    color: #bcbcbc;
 	}
 	.dateUser{
     left: 20px;

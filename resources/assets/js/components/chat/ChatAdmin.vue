@@ -42,7 +42,7 @@
                   <i class="mdi mdi-dots-vertical"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-left"  aria-labelledby="mw2">
-                     <button class="dropdown-item d-block menu" type="button"><i class="mdi mdi-delete-empty"></i>&nbsp;Vaciar chat</button>
+                     <button class="dropdown-item d-block menu" style="cursor: pointer;" @click="deleteConversation" type="button"><i class="mdi mdi-delete-empty"></i>&nbsp;Vaciar conversación</button>
                   </div>
                </div>
             </div>
@@ -161,7 +161,7 @@ export default {
 		var url = route('getRecordsMessagesByUser',me.user_id);
 		axios.get(url).then(function(response) {
 			var respuesta = response.data;
-			me.arrayMessages = respuesta;
+			me.arrayMessages = respuesta.mensajes;
 			me.$emit('updmessagesunread');
 			me.setReadMessages(me.user_id); 
 			setTimeout(me.scrollToEnd,0.10);
@@ -173,6 +173,48 @@ export default {
 	      var objDiv = document.getElementById("div-msj");
 	      objDiv.scrollTop = objDiv.scrollHeight;
 	  },
+	  deleteConversation(user_id,user_name){
+	   swal({
+		title: "Esta seguro de eliminar la conversación con " +this.dataByUser.nombre,
+		type: "question",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Aceptar",
+		cancelButtonText: "Cancelar",
+		confirmButtonClass: "button blue",
+		cancelButtonClass: "button red",
+		buttonsStyling: false,
+		reverseButtons: true
+	   }).then(result => {
+		if (result.value) {
+			let me = this;
+			var url = route('deleteConversation',{'usuario_id':me.user_id});
+			axios.post(url).then(function(response) {
+				swal({
+					position: "center",
+					type: "success",
+					title: "Conversación eliminada",
+					showConfirmButton: true,
+					width: '300px',
+				}).then(function(result){
+				me.user_id = '';
+				me.getRecordsOfUsers();
+				me.arrayMessages = [];
+				me.bodyMessage = [];
+				me.dataByUser = {};
+				});
+			})
+			.catch(function(error) {
+			   console.log(error);
+			});
+		} else if (
+		// Esto lo hace cuando se descativa el registro
+		result.dismiss === swal.DismissReason.cancel
+		) {
+		}
+	    });
+	  }
 	},
 	created() {
 		let me = this;

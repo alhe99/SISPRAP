@@ -93,4 +93,11 @@ class MensajeController extends Controller
                 $mensajes =  Mensaje::where([['receiver_id',0] ,['read',false]])->latest()->count();
 		return $mensajes;
 	}
+	public function deleteConversation($usuario_id){
+
+		DB::table('mensajes')->where(['usuario_id' => $usuario_id, 'receiver_id' => 0])
+		->orWhere(function ($query) use ($usuario_id) {
+			$query->where(['usuario_id' => 0, 'receiver_id' => $usuario_id]);
+		})->delete();
+	}
 }

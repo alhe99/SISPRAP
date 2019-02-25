@@ -205,10 +205,10 @@
     border-top-color: #5A5EB9;
     position: absolute;
     top: 100%;
-    right: -14px;
+    right: -5px;
     left: auto;
     transform: skew(45deg);
-    height: 50px;
+    height: 10px;
 }
 
 .chat-msg.user>.msg-avatar img {

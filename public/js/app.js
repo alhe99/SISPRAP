@@ -107203,7 +107203,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var url = route('getRecordsMessagesByUser', me.user_id);
 			axios.get(url).then(function (response) {
 				var respuesta = response.data;
-				me.arrayMessages = respuesta;
+				me.arrayMessages = respuesta.mensajes;
 				me.$emit('updmessagesunread');
 				me.setReadMessages(me.user_id);
 				setTimeout(me.scrollToEnd, 0.10);
@@ -107214,6 +107214,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		scrollToEnd: function scrollToEnd() {
 			var objDiv = document.getElementById("div-msj");
 			objDiv.scrollTop = objDiv.scrollHeight;
+		},
+		deleteConversation: function deleteConversation(user_id, user_name) {
+			var _this = this;
+
+			swal({
+				title: "Esta seguro de eliminar la conversación con " + this.dataByUser.nombre,
+				type: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Aceptar",
+				cancelButtonText: "Cancelar",
+				confirmButtonClass: "button blue",
+				cancelButtonClass: "button red",
+				buttonsStyling: false,
+				reverseButtons: true
+			}).then(function (result) {
+				if (result.value) {
+					var me = _this;
+					var url = route('deleteConversation', { 'usuario_id': me.user_id });
+					axios.post(url).then(function (response) {
+						swal({
+							position: "center",
+							type: "success",
+							title: "Conversación eliminada",
+							showConfirmButton: true,
+							width: '300px'
+						}).then(function (result) {
+							me.user_id = '';
+							me.getRecordsOfUsers();
+							me.arrayMessages = [];
+							me.bodyMessage = [];
+							me.dataByUser = {};
+						});
+					}).catch(function (error) {
+						console.log(error);
+					});
+				} else if (
+				// Esto lo hace cuando se descativa el registro
+				result.dismiss === swal.DismissReason.cancel) {}
+			});
 		}
 	},
 	created: function created() {
@@ -107367,7 +107408,34 @@ var render = function() {
       _c("div", { staticClass: "messageWrapper", attrs: { id: "div-msj" } }, [
         Object.keys(_vm.dataByUser).length > 0
           ? _c("div", { staticClass: "row div-information" }, [
-              _vm._m(1),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "btn-group pull-xs-left" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-menu dropdown-menu-left",
+                      attrs: { "aria-labelledby": "mw2" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "dropdown-item d-block menu",
+                          staticStyle: { cursor: "pointer" },
+                          attrs: { type: "button" },
+                          on: { click: _vm.deleteConversation }
+                        },
+                        [
+                          _c("i", { staticClass: "mdi mdi-delete-empty" }),
+                          _vm._v(" Vaciar conversación")
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", {
                 staticClass: "col-md-10",
@@ -107493,46 +107561,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("div", { staticClass: "btn-group pull-xs-left" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn bmd-btn-icon dropdown-toggle",
-            attrs: {
-              type: "button",
-              id: "mw2",
-              "data-toggle": "dropdown",
-              "aria-haspopup": "true",
-              "aria-expanded": "false",
-              title: "Más opciones"
-            }
-          },
-          [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu dropdown-menu-left",
-            attrs: { "aria-labelledby": "mw2" }
-          },
-          [
-            _c(
-              "button",
-              {
-                staticClass: "dropdown-item d-block menu",
-                attrs: { type: "button" }
-              },
-              [
-                _c("i", { staticClass: "mdi mdi-delete-empty" }),
-                _vm._v(" Vaciar chat")
-              ]
-            )
-          ]
-        )
-      ])
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn bmd-btn-icon dropdown-toggle",
+        attrs: {
+          type: "button",
+          id: "mw2",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+          title: "Más opciones"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-dots-vertical" })]
+    )
   }
 ]
 render._withStripped = true
