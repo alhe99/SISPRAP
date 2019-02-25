@@ -8,6 +8,8 @@ Route::get('/main', function () {
     return view('admin.index');
 })->name('main');
 
+/* Broadcast::routes(['middleware' => ['auth:api']]); */
+
 //INSTITUCION
 Route::get('/institucion', 'InstitucionController@index')->name('listInstituciones');
 Route::post('/institucion/registrar', 'InstitucionController@store')->name('registrarInstitucion');

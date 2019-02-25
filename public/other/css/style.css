@@ -7,6 +7,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
     unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
+
+
 /* cyrillic */
 
 @font-face {
@@ -16,6 +18,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
+
 /* greek-ext */
 
 @font-face {
@@ -25,6 +29,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');
     unicode-range: U+1F00-1FFF;
 }
+
+
 /* greek */
 
 @font-face {
@@ -34,6 +40,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');
     unicode-range: U+0370-03FF;
 }
+
+
 /* vietnamese */
 
 @font-face {
@@ -43,6 +51,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');
     unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
+
+
 /* latin-ext */
 
 @font-face {
@@ -52,6 +62,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
+
 /* latin */
 
 @font-face {
@@ -61,6 +73,8 @@
     src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+
 /* cyrillic */
 
 @font-face {
@@ -70,6 +84,8 @@
     src: local('Rubik Medium'), local('Rubik-Medium'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7EyjmmZ8WDm7Q.woff2) format('woff2');
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
+
 /* hebrew */
 
 @font-face {
@@ -79,6 +95,8 @@
     src: local('Rubik Medium'), local('Rubik-Medium'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7Eyjmmf8WDm7Q.woff2) format('woff2');
     unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
 }
+
+
 /* latin-ext */
 
 @font-face {
@@ -88,6 +106,8 @@
     src: local('Rubik Medium'), local('Rubik-Medium'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7EyjmmT8WDm7Q.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
+
 /* latin */
 
 @font-face {
@@ -97,6 +117,8 @@
     src: local('Rubik Medium'), local('Rubik-Medium'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7Eyjmmd8WA.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+
 /* cyrillic */
 
 @font-face {
@@ -106,6 +128,8 @@
     src: local('Rubik Bold'), local('Rubik-Bold'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7F6iGmZ8WDm7Q.woff2) format('woff2');
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
+
 /* hebrew */
 
 @font-face {
@@ -115,6 +139,8 @@
     src: local('Rubik Bold'), local('Rubik-Bold'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7F6iGmf8WDm7Q.woff2) format('woff2');
     unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
 }
+
+
 /* latin-ext */
 
 @font-face {
@@ -124,6 +150,8 @@
     src: local('Rubik Bold'), local('Rubik-Bold'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7F6iGmT8WDm7Q.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
+
 /* latin */
 
 @font-face {
@@ -133,6 +161,7 @@
     src: local('Rubik Bold'), local('Rubik-Bold'), url(https://fonts.gstatic.com/s/rubik/v7/iJWHBXyIfDnIV7F6iGmd8WA.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 .truncate {
     overflow: hidden;
     display: inline-block;
@@ -140,6 +169,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 body {
     background: #fff;
     font-size: 14px;
@@ -155,21 +185,29 @@ body {
     backface-visibility: hidden;
     overflow-x: hidden
 }
-h1, h2, h3, h4 {
+
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Rubik', sans-serif
 }
+
 a {
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear
 }
+
 a:hover {
     text-decoration: none
 }
+
 a a:focus {
     outline: none
 }
+
 .hero-heading {
     font-size: 45px;
     font-weight: 700;
@@ -178,16 +216,19 @@ a a:focus {
     line-height: 70px;
     letter-spacing: 1px
 }
+
 .hero-sub-heading {
     font-size: 20px;
     font-weight: 400;
     color: #e6e6e6;
     line-height: 45px
 }
+
 .rev-heading {
     text-transform: uppercase !important;
     font-size: 60px !important
 }
+
 .section-titile-bg {
     display: inline;
     font-size: 115px;
@@ -200,12 +241,15 @@ a a:focus {
     width: 100%;
     text-align: center
 }
+
 .Material-section-quote blockquote {
     border-left-width: 2px
 }
+
 .sub-quote p {
     padding-left: 20px
 }
+
 .section-title {
     color: #333;
     font-family: 'Rubik';
@@ -217,6 +261,7 @@ a a:focus {
     margin-bottom: 45px;
     text-transform: capitalize
 }
+
 .section-title:before {
     position: absolute;
     content: '';
@@ -225,6 +270,7 @@ a a:focus {
     height: 2px;
     background-color: #2196F3
 }
+
 .subtitle {
     font-size: 20px;
     letter-spacing: 0.5px;
@@ -234,27 +280,32 @@ a a:focus {
     text-transform: capitalize;
     margin-bottom: 10px
 }
+
 .inner-title {
     font-size: 24px;
     font-weight: 900;
     text-tranform: capitalize
 }
+
 .page-tagline {
     font-size: 24px;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7)
 }
+
 .page-title {
     font-size: 62px;
     font-weight: 900;
     color: #fff
 }
+
 .contact-title {
     font-weight: 900;
     font-size: 38px;
     color: #333
 }
+
 .btn-common {
     padding: 10px 20px;
     letter-spacing: 1px;
@@ -263,9 +314,13 @@ a a:focus {
     border-radius: 2px;
     box-shadow: 0 2px 2.7px 0.1px rgba(0, 0, 0, 0.24) !important
 }
-.btn-common:hover, .btn-common:focus, .btn-common:active {
+
+.btn-common:hover,
+.btn-common:focus,
+.btn-common:active {
     box-shadow: 0 4px 4.7px 0.3px rgba(0, 0, 0, 0.24) !important
 }
+
 .btn-border {
     font-weight: 900;
     padding: 9px 20px;
@@ -273,17 +328,24 @@ a a:focus {
     border: 1px solid transparent;
     box-shadow: 0 2px 2.7px 0.1px rgba(0, 0, 0, 0.24) !important
 }
-.btn-border:hover, .btn-border:focus, .btn-border:active {
+
+.btn-border:hover,
+.btn-border:focus,
+.btn-border:active {
     background-color: #eee !important
 }
+
 .btn-round {
     color: #fff !important
 }
+
 .material-icons {
     font-size: 24px;
     line-height: 1
 }
-.btn.btn-fab, .input-group-btn .btn.btn-fab {
+
+.btn.btn-fab,
+.input-group-btn .btn.btn-fab {
     border-radius: 50%;
     font-size: 24px;
     height: 40px;
@@ -292,10 +354,12 @@ a a:focus {
     width: 40px;
     padding: 0
 }
+
 .section-dark {
     background-color: #f9f9f9;
     z-index: -2
 }
+
 a.back-to-top {
     display: none;
     position: fixed;
@@ -303,6 +367,7 @@ a.back-to-top {
     left: 10px;
     text-decoration: none
 }
+
 a.back-to-top i {
     display: block;
     font-size: 22px;
@@ -318,20 +383,26 @@ a.back-to-top i {
     -o-transition: all 0.2s ease-in-out;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
 }
-a.back-to-top:hover, a.back-to-top:focus {
+
+a.back-to-top:hover,
+a.back-to-top:focus {
     text-decoration: none
 }
+
 .owl-carousel .item {
     margin: 3px
 }
+
 .owl-carousel.item img {
     display: block;
     width: 50%;
     height: auto
 }
+
 .owl-carousel .owl-controls .owl-page {
     display: inline-block
 }
+
 .owl-carousel .owl-controls .owl-page span {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
     border-radius: 50px;
@@ -341,6 +412,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     opacity: 0.5;
     width: 12px
 }
+
 #preloader {
     position: fixed;
     top: 0;
@@ -350,6 +422,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     background-color: #fff;
     z-index: 9999999
 }
+
 .loader {
     top: 50%;
     width: 50px;
@@ -358,7 +431,9 @@ a.back-to-top:hover, a.back-to-top:focus {
     position: relative;
     margin: 0 auto
 }
-#loader-1:before, #loader-1:after {
+
+#loader-1:before,
+#loader-1:after {
     content: "";
     position: absolute;
     top: -10px;
@@ -369,13 +444,16 @@ a.back-to-top:hover, a.back-to-top:focus {
     border: 7px solid transparent;
     border-top-color: #5166d8
 }
+
 #loader-1:before {
     z-index: 100;
     animation: spin 1s infinite
 }
+
 #loader-1:after {
     border: 7px solid #f2f2f2
 }
+
 @keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);
@@ -390,18 +468,23 @@ a.back-to-top:hover, a.back-to-top:focus {
         transform: rotate(360deg)
     }
 }
+
 .section-padding {
     padding: 45px 0
 }
+
 .no-padding {
     padding: 0 !important
 }
+
 .padding-left-none {
     padding-left: 0
 }
+
 .padding-right-none {
     padding-right: 0
 }
+
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0
@@ -410,6 +493,7 @@ a.back-to-top:hover, a.back-to-top:focus {
         opacity: 1
     }
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0
@@ -418,19 +502,24 @@ a.back-to-top:hover, a.back-to-top:focus {
         opacity: 1
     }
 }
+
 .fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn
 }
+
 .navbar-brand {
     position: relative
 }
+
 .navbar-brand .ripple-container {
     display: none
 }
+
 .navbar-brand img {
     width: 120px
 }
+
 .top-nav-collapse {
     background: #fff;
     z-index: 999999;
@@ -442,22 +531,28 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown
 }
+
 .top-nav-collapse .nav-link {
     color: #333 !important;
     margin-top: 0
 }
+
 .top-nav-collapse .nav-link:hover {
     color: rgba(0, 0, 0, 0.6)
 }
+
 .top-nav-collapse .navbar-brand {
     top: 0px
 }
+
 .nav-bg {
     background: #fff
 }
+
 .nav-bg .navbar-nav .nav-link {
     color: #333 !important
 }
+
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 15px 0 18px 0;
     font-size: 14px;
@@ -472,21 +567,27 @@ a.back-to-top:hover, a.back-to-top:focus {
     -moz-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s
 }
+
 .navbar-expand-lg .navbar-nav .nav-link:hover {
     color: #2196F3
 }
+
 .navbar-expand-lg .navbar-nav .nav-link .ripple-container {
     display: none
 }
+
 .navbar {
     padding: 0
 }
+
 .navbar li.active a.nav-link {
     color: #2196F3
 }
+
 .dropdown-toggle::after {
     display: none
 }
+
 .dropdown-menu {
     list-style: none;
     margin: 0px 30px;
@@ -508,6 +609,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     -ms-transition: 0.3s all ease-in-out;
     animation: 0.4s ease 0s normal none 1 running fadeInUpMenu
 }
+
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-left: 50px;
@@ -520,6 +622,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     -ms-transition: 0.3s all ease-in-out;
     animation: 0.4s ease 0s normal none 1 running fadeInUpMenu
 }
+
 .dropdown .dropdown-menu .dropdown-item {
     width: 100%;
     padding: 5px 45px;
@@ -538,12 +641,17 @@ a.back-to-top:hover, a.back-to-top:focus {
     -o-transition: 0.3s all ease-in-out;
     -ms-transition: 0.3s all ease-in-out
 }
-.dropdown .dropdown-item:focus, .dropdown .dropdown-item:hover {
+
+.dropdown .dropdown-item:focus,
+.dropdown .dropdown-item:hover {
     background-color: #fafafa
 }
-.dropdown-item.active, .dropdown-item:active {
+
+.dropdown-item.active,
+.dropdown-item:active {
     background: transparent
 }
+
 @-webkit-keyframes fadeInUpMenu {
     0% {
         opacity: 0;
@@ -554,6 +662,7 @@ a.back-to-top:hover, a.back-to-top:focus {
         -webkit-transform: translateY(0)
     }
 }
+
 @keyframes fadeInUpMenu {
     0% {
         opacity: 0;
@@ -564,10 +673,12 @@ a.back-to-top:hover, a.back-to-top:focus {
         transform: translateY(0)
     }
 }
+
 .fadeInUpMenu {
     -webkit-animation-name: fadeInUpMenu;
     animation-name: fadeInUpMenu
 }
+
 .search-side {
     position: relative;
     float: right;
@@ -578,12 +689,14 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out
 }
+
 .search-icon span {
     position: relative;
     display: block;
     cursor: pointer;
     margin-left: 20px
 }
+
 .search-icon span i {
     font-size: 22px !important;
     display: block;
@@ -595,9 +708,11 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out
 }
+
 .search-icon:hover i {
     color: #666
 }
+
 .navbar-form {
     background: #fff;
     z-index: 9001;
@@ -612,11 +727,13 @@ a.back-to-top:hover, a.back-to-top:focus {
     left: 0px;
     height: 60px
 }
+
 .navbar-form .form-group {
     height: 100%;
     width: 100%;
     margin: 10px 22px
 }
+
 .navbar-form .form-control {
     color: #333;
     border-radius: 0;
@@ -628,6 +745,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     font-weight: 400;
     line-height: 30px
 }
+
 .navbar-form .has-feedback .close {
     height: 30px;
     position: absolute;
@@ -639,15 +757,19 @@ a.back-to-top:hover, a.back-to-top:focus {
     color: #333;
     font-size: 22px
 }
+
 .navbar-toggler {
     display: none
 }
+
 .wpb-mobile-menu {
     display: none
 }
+
 .slicknav_menu {
     display: none
 }
+
 @media screen and (max-width: 991px) {
     .navbar-header {
         width: 100%
@@ -673,7 +795,8 @@ a.back-to-top:hover, a.back-to-top:focus {
         background: #5166d8;
         color: #fff
     }
-    .slicknav_nav a:hover, .slicknav_nav .active {
+    .slicknav_nav a:hover,
+    .slicknav_nav .active {
         color: #5166d8
     }
     .slicknav_nav .dropdown li a.active {
@@ -681,18 +804,22 @@ a.back-to-top:hover, a.back-to-top:focus {
         color: #fff
     }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
     #nav-main li a.nav-link {
         padding-top: 18px
     }
 }
+
 #main-slide .carousel-control {
     display: none;
     transition: all 0.3s ease-in-out
 }
+
 #main-slide .carousel-indicators {
     cursor: pointer
 }
+
 #main-slide:hover .carousel-control {
     display: block;
     transition: all 0.3s ease-in-out;
@@ -703,11 +830,13 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn
 }
+
 #main-slide .carousel-item img {
     position: relative;
     width: 100%;
     max-height: 670px
 }
+
 #main-slide .carousel-inner .carousel-item::after {
     bottom: 0;
     content: "";
@@ -716,51 +845,65 @@ a.back-to-top:hover, a.back-to-top:focus {
     right: 0;
     top: 0
 }
+
 #main-slide .carousel-item .carousel-caption {
     opacity: 0;
     transition: opacity 100ms ease 0s;
     z-index: 0
 }
+
 #main-slide .carousel-item.active .carousel-caption {
     opacity: 1;
     transition: opacity 100ms ease 0s;
     z-index: 1
 }
+
 #main-slide .carousel-caption {
     color: #fff;
     position: absolute;
     top: 35%
 }
-#main-slide .carousel-control-next, #main-slide .carousel-control-prev {
+
+#main-slide .carousel-control-next,
+#main-slide .carousel-control-prev {
     opacity: 1;
     box-shadow: none
 }
+
 #main-slide .carousel-control-prev span {
     padding: 15px
 }
+
 #main-slide .carousel-control-next span {
     padding: 15px
 }
+
 #main-slide .carousel-control {
     top: 45%
 }
-#main-slide .carousel-control .fa-angle-left, #main-slide .carousel-control .fa-angle-right {
+
+#main-slide .carousel-control .fa-angle-left,
+#main-slide .carousel-control .fa-angle-right {
     position: absolute;
     z-index: 5;
     display: inline-block
 }
+
 #main-slide .carousel-control .fa-angle-left {
     left: 10px
 }
+
 #main-slide .carousel-control .fa-angle-right {
     right: 10px
 }
+
 #main-slide .carousel-indicators li {
     width: 30px;
     height: 5px;
     margin-right: 5px;
     margin-left: 5px
 }
+
 #main-slide .carousel-control i {
     line-height: 40px;
     font-size: 38px;
@@ -771,47 +914,62 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-transition: all 500ms ease;
     transition: all 500ms ease
 }
+
 #main-slide .carousel-control i:hover {
     color: #fff;
     opacity: 0.6
 }
+
 .carousel .carousel-item.active .animated2 {
     animation: 1s ease-in 200ms normal both 1 running lightSpeedIn
 }
+
 .carousel .carousel-item.active .animated3 {
     animation: 1s ease-in-out 500ms normal both 1 running bounceInLeft
 }
+
 .carousel .carousel-item.active .animated4 {
     animation: 1s ease-in 500ms normal both 1 running flipInX
 }
+
 .carousel .carousel-item.active .animated5 {
     animation: 1s ease-in-out 100ms normal both 1 running bounceInLeft
 }
+
 .carousel .carousel-item.active .animated6 {
     animation: 1s ease-in 500ms normal both 1 running bounceIn
 }
+
 .carousel .carousel-item.active .animated7 {
     animation: 1s ease-in 500ms normal both 1 running bounceIn
 }
+
 .carousel .carousel-item.active .animated8 {
     animation: 1s ease-in 800ms normal both 1 running bounceInDown
 }
+
 .carousel-fade .carousel-inner .carousel-item {
     max-height: 700px;
     opacity: 0.8;
     transition-property: opacity
 }
+
 .carousel-fade .carousel-inner .active {
     opacity: 1
 }
-.carousel-fade .carousel-inner .active.left, .carousel-fade .carousel-inner .active.right {
+
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
     left: 0;
     opacity: 0;
     z-index: 1
 }
-.carousel-fade .carousel-inner .next.left, .carousel-fade .carousel-inner .prev.right {
+
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
     opacity: 1
 }
+
 .carousel-fade .carousel-inner .carousel-item::after {
     background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
     bottom: 0;
@@ -821,17 +979,21 @@ a.back-to-top:hover, a.back-to-top:focus {
     right: 0;
     top: 0
 }
+
 .carousel-fade .carousel-control {
     z-index: 20
 }
+
 .slider-title {
     font-size: 70px;
     font-weight: 900
 }
+
 .about-single {
     text-align: center;
     padding: 0 15px
 }
+
 .about-single i {
     border-radius: 50%;
     font-size: 50px;
@@ -843,9 +1005,11 @@ a.back-to-top:hover, a.back-to-top:focus {
     background: trasparent;
     transition: all 0.2s ease-in-out 0s
 }
+
 .about-single:hover {
     cursor: pointer
 }
+
 .about-single:hover i {
     font-size: 25px;
     color: #fff;
@@ -853,6 +1017,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
     cursor: pointer
 }
+
 .video-gallery {
     width: 100%;
     height: auto;
@@ -860,6 +1025,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     position: relative;
     overflow: hidden
 }
+
 .video-gallery .overlay-gallery {
     background-color: rgba(0, 0, 0, 0.5);
     bottom: 0;
@@ -873,15 +1039,18 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease
 }
+
 .video-gallery .icon-holder {
     display: table;
     width: 100%;
     height: 100%
 }
+
 .video-gallery .icon-holder .icon {
     display: table-cell;
     vertical-align: middle
 }
+
 .video-gallery .icon-holder .icon i {
     font-size: 80px;
     color: #fff;
@@ -889,30 +1058,37 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease
 }
+
 .video-gallery:hover .icon i {
     color: #fff
 }
+
 .welcome-section h1 {
     line-height: 45px;
     font-size: 30px;
     font-weight: 700
 }
+
 .single-service-widget {
     margin: 25px 0
 }
+
 .single-service-widget i {
     font-size: 50px;
     padding-right: 15px;
     line-height: 45px
 }
+
 .single-service-widget p {
     color: #999
 }
+
 .single-service-widget h2 {
     margin-top: 0;
     text-transform: capitalize;
     transition: all 0.3s ease-in-out
 }
+
 .single-service-widget:hover .pulse-shrink {
     -webkit-animation-name: pulse-shrink;
     animation-name: pulse-shrink;
@@ -925,12 +1101,14 @@ a.back-to-top:hover, a.back-to-top:focus {
     -webkit-animation-direction: alternate;
     animation-direction: alternate
 }
+
 @-webkit-keyframes pulse-shrink {
     to {
         -webkit-transform: scale(0.9);
         transform: scale(0.9)
     }
 }
+
 @keyframes pulse-shrink {
     to {
         -webkit-transform: scale(0.9);
@@ -938,17 +1116,21 @@ a.back-to-top:hover, a.back-to-top:focus {
         transform: scale(0.9)
     }
 }
+
 .pulse-shrink {
     display: inline-block
 }
+
 #Material-portfolio .mix {
     padding-bottom: 30px;
     display: none;
     margin: -2px
 }
+
 .portfolio-nav ul.nav {
     float: right
 }
+
 .portfolio-nav ul.nav li a {
     font-size: 15px;
     color: #333;
@@ -960,24 +1142,29 @@ a.back-to-top:hover, a.back-to-top:focus {
     text-transform: capitalize;
     cursor: pointer
 }
+
 .portfolio-nav ul.nav li a:hover {
     background: #2196F3;
     color: #FFF;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
 }
+
 .portfolio-nav ul.nav li a.active {
     background: #2196F3;
     color: #FFF;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
 }
+
 figure {
     position: relative;
     margin: 0;
     overflow: hidden
 }
+
 figure img {
     width: 100%
 }
+
 figure figcaption {
     background: #fff;
     bottom: 0px;
@@ -988,10 +1175,12 @@ figure figcaption {
     opacity: 0;
     transition: height 0.5s ease 0s
 }
+
 figure figcaption h2 {
     text-transform: capitalize;
     transition: all 0.5s ease 0s
 }
+
 figure figcaption a.btn {
     float: right;
     position: absolute;
@@ -1000,16 +1189,19 @@ figure figcaption a.btn {
     width: 20px !important;
     transition: all 0.5s ease 0s
 }
+
 figure:hover figcaption {
     transition: all 0.5s ease 0s;
     cursor: pointer;
     opacity: 1;
     margin-bottom: 0px
 }
+
 #conatiner-map {
     width: 100%;
     height: 480px
 }
+
 .contact-widget-section .single-contact-widget {
     background: #f9f9f9;
     padding: 20px 25px;
@@ -1018,50 +1210,63 @@ figure:hover figcaption {
     margin-top: 25px;
     transition: all 0.3s ease-in-out
 }
+
 .contact-widget-section .single-contact-widget i {
     font-size: 75px
 }
+
 .contact-widget-section .single-contact-widget h3 {
     font-size: 20px;
     color: #333;
     font-weight: 700;
     padding-bottom: 10px
 }
+
 .contact-widget-section .single-contact-widget p {
     line-height: 16px
 }
+
 .contact-widget-section .single-contact-widget:hover {
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
     cursor: pointer;
     transition: all 0.3s ease-in-out
 }
+
 #contactForm {
     margin-top: -10px
 }
+
 #contactForm .form-group label.control-label {
     color: #8c8c8c
 }
+
 #contactForm .form-control {
     font-weight: 500;
     height: auto
 }
+
 .google-map-container {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26)
 }
+
 .google-map-container #google-map-contact {
     height: 300px
 }
+
 .contact-widget-section2 h2 {
     margin-bottom: 30px
 }
+
 .contact-widget-section2 .find-widget {
     padding: 10px 0
 }
+
 .contact-widget-section2 .find-widget a {
     color: #333;
     font-size: 14px
 }
+
 .contact-widget-section2 .find-widget i {
     width: 40px;
     height: 40px;
@@ -1074,11 +1279,13 @@ figure:hover figcaption {
     display: inline-block;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
 }
+
 .Material-contact-section ul {
     margin: 0;
     padding: 0;
     list-style: none
 }
+
 .Material-contact-section ul li {
     color: #777;
     font-size: 13px;
@@ -1087,6 +1294,7 @@ figure:hover figcaption {
     min-height: 35px;
     width: 100%
 }
+
 .Material-contact-section ul li i {
     width: 35px;
     background: #f50057;
@@ -1101,23 +1309,28 @@ figure:hover figcaption {
     top: 4px;
     margin-right: 10px
 }
+
 .Material-our-team-section {
     padding-bottom: 200px
 }
+
 .single-team-widget {
     background: #f5f5f5;
     position: relative;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
     margin-bottom: 20px
 }
+
 .single-team-widget img {
     text-align: center
 }
+
 .single-team-widget:hover {
     -webkit-box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
     -moz-box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
     box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73)
 }
+
 .single-team-widget p {
     color: #999;
     font-size: 12px;
@@ -1125,106 +1338,129 @@ figure:hover figcaption {
     font-weight: 600;
     margin-bottom: 5px
 }
+
 .single-team-widget .team-member-info {
     height: 130px;
     background: #fff;
     padding: 5px 20px
 }
+
 .single-team-widget .team-member-info .know-more {
     position: absolute;
     right: 10%;
     bottom: 12%;
     display: none
 }
+
 .single-team-widget .team-member-info .social-profiles .mdi {
     color: #8c8c8c;
     font-size: 18px;
     padding-right: 5px;
     transition: all 0.3s ease-in-out
 }
+
 .single-team-widget .team-member-info .social-profiles .mdi.mdi-twitter:hover {
     transition: all 0.3s ease-in-out;
     color: #1DA1F2
 }
+
 .single-team-widget .team-member-info .social-profiles .mdi.mdi-facebook:hover {
     transition: all 0.3s ease-in-out;
     color: #3B5998
 }
+
 .single-team-widget .team-member-info .social-profiles .mdi.mdi-dribbble:hover {
     transition: all 0.3s ease-in-out;
     color: #EA4C89
 }
+
 .single-team-widget .team-member-info .social-profiles .mdi.mdi-linkedin:hover {
     transition: all 0.3s ease-in-out;
     color: #1769FF
 }
+
 .single-team-widget:hover {
     cursor: pointer
 }
+
 .single-team-widget:hover .know-more {
     display: block;
     animation: 0.4s ease 0s normal none 1 running fadeInUpMenu
 }
+
 .testimonial {
     background: url(../images/testimonial/testimonial_bg.jpg);
     background-attachment: fixed;
     overflow: hidden;
     position: relative
 }
+
 .testimonial .owl-pagination {
     text-align: center;
     width: 100%
 }
+
 .testimonial-item {
     display: inline-block;
     width: 100%;
     text-align: center;
     padding: 15px
 }
+
 .testimonial-item .img {
     width: 80px;
     height: 80px;
     position: relative;
     margin: 10px auto
 }
+
 .testimonial-item .img img {
     border-radius: 50%;
     box-shadow: 0px 1px 8px #fff;
     border: 3px solid #fff
 }
+
 .testimonial-item .datils {
     text-align: center
 }
+
 .testimonial-item .datils h5 {
     font-weight: 700;
     color: #fff;
     font-size: 20px;
     margin: 15px 0px 6px
 }
+
 .testimonial-item .datils span {
     color: rgba(255, 255, 255, 0.5)
 }
+
 .testimonial-item .datils p {
     margin: 5px 0 20px 0;
     color: #fff
 }
+
 .testimonial-item .owl-carousel .owl-controls .owl-page.active span {
     border: none;
     background: #fff !important;
     opacity: 1
 }
+
 .testimonial-item .owl-carousel .owl-controls .owl-page span {
     background: #fff !important
 }
+
 .testimonial-carousel .owl-pagination {
     margin-top: 70px
 }
+
 .testimonial-carousel .owl-pagination .owl-page span {
     background: #fff;
     border: 3px solid #f9f9f9;
     width: 15px;
     height: 15px
 }
+
 .testimonial-carousel .owl-pagination .owl-page.active span {
     background: #fff;
     border: none;
@@ -1233,23 +1469,31 @@ figure:hover figcaption {
     height: 20px;
     opacity: 1
 }
+
 .client {
     border-bottom: 1px solid #e9e9e9
 }
+
 .client .client-logo {
     text-align: center;
     transition: all 0.2s ease-in-out 0s
 }
+
 .client .client-logo img {
     transition: all 0.2s ease-in-out 0s
 }
-.client .client-logo:hover, .client .client-logo.active {
+
+.client .client-logo:hover,
+.client .client-logo.active {
     transition: all 0.2s ease-in-out 0s
 }
-.client .client-logo:hover img, .client .client-logo.active img {
+
+.client .client-logo:hover img,
+.client .client-logo.active img {
     cursor: pointer;
     transition: all 0.2s ease-in-out 0s
 }
+
 .single-blog-post {
     margin-bottom: 30px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
@@ -1257,38 +1501,47 @@ figure:hover figcaption {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out
 }
+
 .single-blog-post:hover {
     -webkit-box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
     -moz-box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
     box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
 }
+
 .single-blog-post .featured-image img {
     height: 10 !important;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
 .single-blog-post .post-meta {
     padding: 10px 20px
 }
+
 .single-blog-post .post-meta .read-more-icon {
     bottom: 100px;
     right: 40px
 }
+
 .single-blog-post .post-meta a {
     color: #333
 }
+
 .single-blog-post .post-meta a:hover {
     transition: all 0.2s ease-in-out
 }
+
 .single-blog-post .meta-tags {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding: 19px 20px
 }
+
 .single-blog-post .meta-tags .comments i {
     font-size: 15px;
     margin-right: 5px
 }
+
 .single-blog-post .meta-tags .btn-round {
     float: right;
     border-radius: 28px;
@@ -1298,53 +1551,66 @@ figure:hover figcaption {
     min-width: 35px;
     width: 35px
 }
+
 .Material-blog-post-page .blog-post-column .single-blog-post {
     margin-bottom: 40px
 }
+
 .Material-blog-post-page .blog-post-column .single-blog-post .post-meta .post-date {
     position: absolute
 }
+
 .Material-blog-post-page .blog-post-column .single-blog-post .post-meta .post-date span {
     color: #333;
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase
 }
+
 .Material-blog-post-page .blog-post-column .single-blog-post .post-meta .read-more-icon {
     bottom: 166px;
     position: absolute;
     right: 40px
 }
+
 .Material-blog-post-page .blog-post-column .single-blog-post .post-meta h2 {
     font-size: 19px;
     line-height: 26px;
     margin-top: 35px
 }
+
 .Material-blog-post-page .blog-post-column .post-without-image .featured-image {
     height: 50px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26)
 }
+
 .Material-blog-post-page .blog-post-column .post-without-image .pink-bg {
     background: #5e35b1
 }
+
 .Material-blog-post-page .blog-post-column .post-without-image .blue-bg {
     background: #1e88e5
 }
+
 .Material-blog-post-page .blog-post-column .post-without-image .aqua-bg {
     background: #00897b
 }
+
 .Material-blog-post-page .blog-post-column .quote-post h2 {
     font-style: italic
 }
+
 .blog-sidebar-column .single-sidebar-widget {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
     margin-bottom: 30px;
     background: #FAFAFA
 }
+
 .blog-sidebar-column .single-sidebar-widget .sidebar-widget-title {
     background: #424242;
     padding: 0 20px
 }
+
 .blog-sidebar-column .single-sidebar-widget .sidebar-widget-title h2 {
     color: #fff;
     font-size: 19px;
@@ -1352,38 +1618,48 @@ figure:hover figcaption {
     font-weight: 700;
     line-height: 48px
 }
+
 .blog-sidebar-column .author-widget .author-bg img {
     width: 100%
 }
+
 .blog-sidebar-column .author-widget .author-info {
     padding: 10px 20px;
     background: #fafafa
 }
+
 .blog-sidebar-column .author-widget .author-info .author-intro {
     position: absolute;
     float: right;
     right: 80px;
     top: 106px
 }
+
 .blog-sidebar-column .author-widget .author-info .author-intro h3 {
     color: #fff;
     font-weight: 700;
     font-size: 20px
 }
+
 .blog-sidebar-column .author-widget .author-info .author-image {
     position: absolute;
     top: 92px;
     left: 50px
 }
+
 .blog-sidebar-column .author-widget .author-info .author-bio {
     margin-top: 47px
 }
-.blog-sidebar-column .subscribe-widget .social-profiles, .blog-sidebar-column .subscribe-widget .subscribe-box {
+
+.blog-sidebar-column .subscribe-widget .social-profiles,
+.blog-sidebar-column .subscribe-widget .subscribe-box {
     padding: 30px 35px
 }
+
 .blog-sidebar-column .subscribe-widget .subscribe-box .form-group {
     margin-top: 10px
 }
+
 .blog-sidebar-column .subscribe-widget .subscribe-box button.btn-fab {
     width: 38px !important;
     height: 38px !important;
@@ -1395,129 +1671,161 @@ figure:hover figcaption {
     z-index: 1111;
     border-radius: 2px
 }
+
 .blog-sidebar-column .subscribe-widget .subscribe-box .form-control {
     border-radius: 2px !important;
     color: #333;
     font-weight: 700;
     width: 240px
 }
+
 .blog-sidebar-column .subscribe-widget .social-profiles {
     background: #f5f5f5
 }
+
 .blog-sidebar-column .instagram-widget .instagram-feed ul {
     list-style: none;
     padding: 13px 25px;
     display: inline-block;
     margin: 0
 }
+
 .blog-sidebar-column .instagram-widget .instagram-feed ul li {
     float: left
 }
+
 .blog-sidebar-column .instagram-widget .instagram-feed ul li a img {
     width: 100px;
     height: 100px;
     padding: 4px
 }
+
 .blog-sidebar-column .flickr-widget .flickr-feed {
     padding: 20px
 }
+
 .blog-sidebar-column .flickr-widget .flickr-feed .owl-pagination {
     text-align: center;
     margin-top: 10px
 }
+
 .blog-sidebar-column .flickr-widget .flickr-feed .owl-carousel .owl-controls .owl-page span {
     background: none;
     border: 2px solid #434343
 }
+
 .blog-sidebar-column .flickr-widget .flickr-feed .owl-carousel .owl-controls .owl-page.active span {
     background: #434343 !important
 }
+
 .blog-sidebar-column .flickr-widget .flickr-feed .owl-carousel .owl-controls .owl-page.active span {
     border: none
 }
+
 .single-post {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
     padding: 20px
 }
+
 .single-post h2 {
     font-weight: 500;
     font-size: 26px;
     margin: 30px 0
 }
+
 .single-post p {
     font-size: 15px;
     line-height: 35px
 }
+
 .single-post .single-post-meta {
     margin-top: 20px;
     padding: 30px 0;
     border-top: 1px solid #ddd
 }
+
 .single-post .single-post-meta .post-tag {
     float: left
 }
+
 .single-post .single-post-meta .post-tag a {
     font-weight: 500;
     font-size: 15px;
     color: #333
 }
+
 .single-post .single-post-meta .post-tag a:hover {
     opacity: 0.6
 }
+
 .single-post .single-post-meta .share-post {
     float: right
 }
+
 .single-post .single-post-meta .share-post i {
     font-size: 20px;
     margin-right: 10px
 }
+
 .single-post .single-post-meta .share-post i:hover {
     opacity: 0.6
 }
+
 .users-comment-section .media {
     border-top: 1px solid #ddd;
     padding-top: 25px;
     margin-top: 20px
 }
+
 .users-comment-section .media:first-child {
     border-top: none
 }
+
 .users-comment-section .media .media-left {
     padding-right: 30px
 }
+
 .users-comment-section .media .media-left img {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26)
 }
+
 .users-comment-section .media .media-body h3 {
     margin-top: 0;
     font-weight: 500;
     font-size: 20px
 }
+
 .users-comment-section .media .media-body p {
     font-size: 15px;
     line-height: 28px
 }
+
 .users-comment-section .media .media-body a.replay {
     float: right;
     font-size: 16px;
     font-weight: 500
 }
+
 .users-comment-section .media .media-body .media {
     padding-top: 24px;
     margin-top: 65px;
     border-top: 1px solid #ddd
 }
+
 .comment-box {
     padding: 20px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
     background: #FAFAFA
 }
+
 .bg-color-dark {
     background: #222222
 }
+
 .page-footer {
     background: #333
 }
+
 .page-footer .footer-title {
     position: relative;
     color: #fff;
@@ -1527,6 +1835,7 @@ figure:hover figcaption {
     letter-spacing: 0.1rem;
     margin-bottom: 40px
 }
+
 .page-footer .footer-title:before {
     position: absolute;
     content: '';
@@ -1536,44 +1845,54 @@ figure:hover figcaption {
     left: 0px;
     bottom: -15px
 }
+
 .page-footer p {
     color: #fff;
     line-height: 24px;
     margin: 0
 }
+
 .page-footer .recent-widget p a {
     color: #fff;
     font-size: 14px;
     transition: all 0.3s ease-in-out;
     line-height: 28px
 }
+
 .page-footer .recent-widget p a:hover {
     color: #2196F3;
     transition: all 0.3s ease-in-out
 }
+
 .page-footer .link-widget ul {
     margin: 0;
     padding: 0;
     list-style: none
 }
+
 .page-footer .link-widget ul li {
     list-style: none;
     float: left;
     padding-bottom: 22px;
     width: 50%
 }
+
 .page-footer .link-widget ul li a {
     color: #fff
 }
+
 .page-footer .link-widget ul li a:hover {
     color: #2196F3
 }
+
 .page-footer .widget-gallery {
     margin-right: -5px
 }
+
 .page-footer .widget-gallery ul {
     padding: 0
 }
+
 .page-footer .widget-gallery ul li {
     display: block;
     width: 33%;
@@ -1581,25 +1900,31 @@ figure:hover figcaption {
     padding: 0 5px 5px 0;
     margin: 0
 }
+
 .page-footer .widget-gallery ul li a img {
     width: 100%
 }
+
 .footer-contact-widget p {
     color: #fff;
     line-height: 24px;
     padding: 5px 0
 }
+
 .footer-contact-widget p span {
     font-weight: 700
 }
+
 .footer-contact-widget ul {
     margin: 15px 0;
     padding: 0
 }
+
 .footer-contact-widget ul li {
     float: left;
     list-style: none
 }
+
 .footer-contact-widget ul li a .mdi {
     color: #fff;
     width: 40px;
@@ -1612,39 +1937,49 @@ figure:hover figcaption {
     border-radius: 2px;
     transtion: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi:hover {
     transition: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi-facebook {
     transition: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi-facebook:hover {
     background: #3B5998;
     transition: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi-twitter:hover {
     background: #1DA1F2;
     transition: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi-dribbble:hover {
     background: #EA4C89;
     transition: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi-github-circle:hover {
     background: #009587;
     transition: all 0.3s ease-in-out
 }
+
 .footer-contact-widget ul li a .mdi-linkedin:hover {
     background: #0177B5;
     transition: all 0.3s ease-in-out
 }
+
 ul.recent-post {
     padding: 0;
     margin: 0
 }
+
 ul.recent-post li {
     margin-bottom: 30px
 }
+
 ul.recent-post li a {
     float: left;
     transition: all 0.2s ease-in-out;
@@ -1652,14 +1987,17 @@ ul.recent-post li a {
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out
 }
+
 ul.recent-post li a img {
     width: 100%;
     height: 65px
 }
+
 ul.recent-post li .post-text {
     padding-left: 92px;
     color: #aaa
 }
+
 ul.recent-post li .post-text h4 a {
     color: #fff;
     transition: all 0.3s ease-in-out;
@@ -1668,46 +2006,57 @@ ul.recent-post li .post-text h4 a {
     font-size: 15px;
     padding-bottom: 0
 }
+
 ul.recent-post li .post-text span {
     color: #999
 }
+
 .footer-copyright {
     line-height: 45px;
     background: #000000;
     color: #999
 }
+
 .footer-copyright p {
     margin: 22px 0
 }
+
 .footer-copyright .footer-links ul {
     padding-left: 0;
     float: right;
     margin: 10px 0
 }
+
 .footer-copyright .footer-links ul li {
     list-style: none;
     float: left
 }
+
 .footer-copyright .footer-links ul li a {
     color: #999;
     margin-right: 15px;
     transition: all 0.3s ease-in-out
 }
+
 .footer-copyright .footer-links ul li a .fa {
     padding-right: 4px
 }
+
 .footer-copyright .footer-links ul li a:hover {
     color: #fff;
     opacity: 0.7;
     transition: all 0.3s ease-in-out
 }
+
 .work-counter-widget i {
     font-size: 50px;
     color: #2196F3
 }
+
 .work-counter-widget .counter {
     z-index: 999999
 }
+
 .work-counter-widget .counter .timer {
     color: #333;
     font-family: 'Montserrat', sans-serif;
@@ -1715,36 +2064,43 @@ ul.recent-post li .post-text span {
     margin-top: 15px;
     font-weight: 700
 }
+
 .work-counter-widget .counter p {
     color: #999;
     margin-top: 7px;
     font-size: 16px;
     font-weight: 600
 }
+
 .call-to-action-section {
     padding: 60px 0;
     background: url(../images/cta-bg.jpg) no-repeat scroll center center;
     background-size: cover
 }
+
 .call-to-action-section h1 {
     color: #18191b;
     font-size: 56px;
     font-weight: 700;
     color: #fff
 }
+
 .call-to-action-section h3 {
     font-size: 24px;
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase
 }
+
 .page-title-section {
     position: relative;
     background: url(../images/page-title-bg.jpg) no-repeat scroll center center;
     background-size: cover
 }
+
 .page-title-section .title-center {
     padding-top: 65px
 }
+
 .Material-tab ul.nav.nav-tabs {
     padding: 0px 25px;
     background: #fff;
@@ -1752,6 +2108,7 @@ ul.recent-post li .post-text span {
     border-bottom: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26)
 }
+
 .Material-tab ul.nav.nav-tabs .nav-item .nav-link {
     background-color: transparent;
     font-size: 14px;
@@ -1766,26 +2123,33 @@ ul.recent-post li .post-text span {
     border-bottom: 4px solid transparent;
     display: inline-block
 }
+
 .Material-tab ul.nav.nav-tabs .nav-item .nav-link i {
     font-size: 38px
 }
+
 .Material-tab ul.nav.nav-tabs li .active {
     color: #fff
 }
+
 .Material-tab .tab-content {
     padding: 24px;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26)
 }
+
 .Material-tab p {
     text-align: justify
 }
+
 .Material-tab-default img {
     width: 100%
 }
+
 .Material-tab-default ul.nav.nav-tabs {
     border-bottom: 0
 }
+
 .Material-tab-default ul.nav.nav-tabs li a {
     color: #333;
     font-weight: 700;
@@ -1800,29 +2164,36 @@ ul.recent-post li .post-text span {
     margin-right: 29px;
     margin-top: 0
 }
+
 .Material-tab-default ul.nav.nav-tabs li a:hover {
     background: none
 }
+
 .Material-tab-default .tab-content {
     margin-top: 25px;
     padding: 20px;
     background: #FAFAFA;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26)
 }
+
 .Material-default-accordion .panel-default {
     border: 0;
     box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2)
 }
+
 .Material-default-accordion .panel-default .panel-heading {
     padding: 0;
     margin-bottom: 15px
 }
+
 .Material-default-accordion .panel-default .panel-heading .panel-title {
     font-size: 18px
 }
+
 .Material-default-accordion .panel-default .panel-heading .collapsed::after {
     content: "\f415"
 }
+
 .Material-default-accordion .panel-default .panel-heading a {
     font-weight: 500;
     padding: 15px 20px;
@@ -1832,6 +2203,7 @@ ul.recent-post li .post-text span {
     position: relative;
     text-decoration: none
 }
+
 .Material-default-accordion .panel-default .panel-heading a:after {
     font-family: Material Design Icons;
     content: "\f374";
@@ -1843,18 +2215,23 @@ ul.recent-post li .post-text span {
     line-height: 1;
     margin-top: -7px
 }
+
 .Material-default-accordion .panel-default .panel-body {
     padding: 15px
 }
+
 .Material-accordion-2 .panel-default {
     border: 0
 }
+
 .Material-accordion-2 .panel-default .panel-heading {
     padding: 0
 }
+
 .Material-accordion-2 .panel-default .panel-heading .collapsed::after {
     content: "\f415"
 }
+
 .Material-accordion-2 .panel-default .panel-heading a {
     font-weight: 500;
     padding: 15px 20px;
@@ -1865,6 +2242,7 @@ ul.recent-post li .post-text span {
     position: relative;
     text-decoration: none
 }
+
 .Material-accordion-2 .panel-default .panel-heading a:after {
     font-family: Material Design Icons;
     content: "\f374";
@@ -1876,9 +2254,11 @@ ul.recent-post li .post-text span {
     line-height: 1;
     margin-top: -7px
 }
+
 .alert {
     box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.24)
 }
+
 .icon-round {
     width: 50px;
     height: 50px;
@@ -1890,6 +2270,7 @@ ul.recent-post li .post-text span {
     color: #fff;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
 }
+
 .icon-box {
     width: 50px;
     height: 50px;
@@ -1900,16 +2281,19 @@ ul.recent-post li .post-text span {
     margin-right: 20px;
     color: #fff
 }
+
 .icon-common {
     font-size: 48px !important;
     margin-right: 22px
 }
+
 .icon-table .single-pricing-table {
     padding: 20px;
     -webkit-box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
     -moz-box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
     box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73)
 }
+
 .icon-table .single-pricing-table .pricing-table-heading h2 {
     color: #3d6370;
     font-size: 22px;
@@ -1919,6 +2303,7 @@ ul.recent-post li .post-text span {
     position: relative;
     width: 100%
 }
+
 .icon-table .single-pricing-table .pricing-table-heading h2:after {
     border: 1px dashed #eee;
     content: "";
@@ -1928,35 +2313,45 @@ ul.recent-post li .post-text span {
     width: 100%;
     z-index: -11111
 }
+
 .icon-table .single-pricing-table .price {
     margin-top: 20px
 }
+
 .icon-table .single-pricing-table .price span {
     font-size: 36px;
     font-weight: 700
 }
+
 .icon-table .single-pricing-table .pricing-item {
     padding: 20px 0
 }
+
 .icon-table .single-pricing-table .pricing-item ul {
     padding-left: 0
 }
+
 .icon-table .single-pricing-table .pricing-item ul li {
     list-style: none
 }
+
 .icon-table .single-pricing-table .pricing-item ul li p strong {
     color: #325D6A
 }
+
 .icon-table .single-pricing-table .pricing-button {
     padding: 20px 0
 }
+
 .pricing-table {
     border: 1px solid #e9e9e9;
     box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73)
 }
+
 .pricing-table .pricing-header {
     background-color: #fff
 }
+
 .pricing-table .pricing-header h1 {
     margin-bottom: 0;
     margin-top: 0;
@@ -1966,11 +2361,13 @@ ul.recent-post li .post-text span {
     font-size: 20px;
     text-transform: uppercase
 }
+
 .pricing-table .pricing-sub {
     background-color: #f7f9fc;
     border-top: 1px solid #e9e9e9;
     border-bottom: 1px solid #e9e9e9
 }
+
 .pricing-table .pricing-sub h1 {
     color: #333;
     text-align: center;
@@ -1978,10 +2375,12 @@ ul.recent-post li .post-text span {
     padding: 25px 0px 15px 0px;
     font-size: 22px
 }
+
 .pricing-table .features {
     margin: 0;
     padding: 0
 }
+
 .pricing-table .features li {
     padding: 15px;
     list-style: none;
@@ -1991,44 +2390,54 @@ ul.recent-post li .post-text span {
     color: #a4a4a4;
     font-size: 13px
 }
+
 .pricing-table .pricing-footer {
     background-color: #f9fbfc;
     border-top: 0;
     padding: 30px 0px;
     text-align: center
 }
+
 #Material-image-carousel .item img {
     width: 258px
 }
+
 #Material-image-carousel .owl-pagination {
     text-align: center;
     margin-top: 10px
 }
+
 #team-carousel .owl-pagination {
     text-align: center;
     margin-top: 10px
 }
+
 .portfolio-details-section .portfolio-details-iamge img {
     border: 1px solid #ddd;
     width: 100%
 }
+
 .portfolio-details-section .portfolio-details h2 {
     font-weight: 500;
     margin-top: 30px;
     text-transform: capitalize
 }
+
 .portfolio-details-section .portfolio-details p {
     font-size: 15px;
     line-height: 30px
 }
+
 .portfolio-details-section .portfolio-details .portfolio-category a {
     font-size: 16px;
     font-weight: 500;
     text-transform: capitalize
 }
+
 .portfolio-details-section .portfolio-details .portfolio-meta li {
     margin: 15px 0
 }
+
 .portfolio-details-section .portfolio-details .portfolio-meta li span {
     display: inline-block;
     width: 130px;
@@ -2038,36 +2447,47 @@ ul.recent-post li .post-text span {
     text-transform: uppercase;
     font-weight: 700
 }
+
 .portfolio-details-section .portfolio-details .portfolio-meta li i {
     font-size: 18px;
     margin-right: 5px
 }
+
 .portfolio-details-section .portfolio-details .portfolio-meta li i:hover {
     opacity: 0.6
 }
+
 .Material-error-section h1 {
     font-size: 10em;
     font-weight: 700;
     letter-spacing: 0.3rem
 }
+
 .Material-error-section h2 {
     font-size: 3em;
     font-weight: 500;
     color: #999999
 }
+
 * {
     margin: 0;
 }
+
+
 /* Modal */
 
 .modal.fade .modal-dialog {
     transform: translate3d(0, 60vh, 0);
     margin-top: 65px;
 }
+
 .modal.in .modal-dialog {
     transform: translate3d(0, 0, 0);
 }
+
+
 /* Fin Modal */
+
 
 /* Flotante */
 
@@ -2085,6 +2505,7 @@ ul.recent-post li .post-text span {
     border-radius: 50px;
     z-index: 100;
 }
+
 .BF1 {
     width: 55px;
     height: 55px;
@@ -2098,6 +2519,7 @@ ul.recent-post li .post-text span {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transition: .3s;
 }
+
 .BF4 {
     background: #009688;
     margin-bottom: 170px;
@@ -2112,6 +2534,7 @@ ul.recent-post li .post-text span {
     bottom: 0;
     transform: scale(0);
 }
+
 .BF2 {
     background: #673AB7;
     margin-bottom: 62px;
@@ -2127,6 +2550,7 @@ ul.recent-post li .post-text span {
     margin-right: -47px;
     transform: scale(0);
 }
+
 .BF3 {
     background: #2196F3;
     margin-bottom: 116px;
@@ -2142,6 +2566,8 @@ ul.recent-post li .post-text span {
     margin-right: -45px;
     transform: scale(0);
 }
+
+
 /* .BF5 {
  background: #2196F3;
     margin-bottom: 225px;
@@ -2162,33 +2588,43 @@ ul.recent-post li .post-text span {
 span {
     transition: .5s;
 }
+
 .BF1:hover span {
     transform: rotate(360deg);
 }
+
 .BF1:active {
     transform: scale(1.1);
 }
+
 .animacionVer {
     transform: scale(1);
 }
+
 .flotante {
     display: scroll;
     position: fixed;
     bottom: 320px;
     right: 0px;
 }
+
 .CursorPoint {
     cursor: pointer;
 }
+
 .MisProyFon {
     font-size: 17px;
 }
+
+
 /* LETRA MENSAJE */
 
 [class*=hint--] {
     position: relative;
 }
-[class*=hint--]:after, [class*=hint--]:before {
+
+[class*=hint--]:after,
+[class*=hint--]:before {
     position: absolute;
     transform: translate3d(0, 0, 0);
     visibility: hidden;
@@ -2198,11 +2634,14 @@ span {
     transition: .3s ease;
     transition-delay: 0s
 }
-[class*=hint--]:hover:after, [class*=hint--]:hover:before {
+
+[class*=hint--]:hover:after,
+[class*=hint--]:hover:before {
     visibility: visible;
     opacity: 1;
     transition-delay: .1s
 }
+
 [class*=hint--]:before {
     content: '';
     position: absolute;
@@ -2210,6 +2649,7 @@ span {
     border: 6px solid transparent;
     z-index: 1000001
 }
+
 [class*=hint--]:after {
     background: #383838;
     color: #fff;
@@ -2221,34 +2661,48 @@ span {
     text-shadow: 0 -1px 0 #000;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, .3)
 }
+
 [class*=hint--][aria-label]:after {
     content: attr(aria-label)
 }
+
 [class*=hint--][data-hint]:after {
     content: attr(data-hint)
 }
-[aria-label='']:after, [aria-label='']:before, [data-hint='']:after, [data-hint='']:before {
+
+[aria-label='']:after,
+[aria-label='']:before,
+[data-hint='']:after,
+[data-hint='']:before {
     display: none!important
 }
+
 .hint--left:before {
     border-left-color: #383838;
     margin-right: -11px;
     margin-bottom: -6px
 }
+
 .hint--left:after {
     margin-bottom: -14px
 }
-.hint--left:after, .hint--left:before {
+
+.hint--left:after,
+.hint--left:before {
     right: 100%;
     bottom: 50%
 }
+
+
 /* Fin Letra Mensaje */
+
 
 /* Riples.min */
 
 .withripple {
     position: relative
 }
+
 .ripple-container {
     position: absolute;
     top: 0;
@@ -2260,6 +2714,7 @@ span {
     border-radius: inherit;
     pointer-events: none
 }
+
 .ripple {
     position: absolute;
     width: 20px;
@@ -2280,26 +2735,33 @@ span {
     opacity: 0;
     pointer-events: none
 }
+
 .ripple.ripple-on {
     -webkit-transition: opacity .15s ease-in 0s, -webkit-transform .5s cubic-bezier(.4, 0, .2, 1) .1s;
     -o-transition: opacity .15s ease-in 0s, -o-transform .5s cubic-bezier(.4, 0, .2, 1) .1s;
     transition: opacity .15s ease-in 0s, transform .5s cubic-bezier(.4, 0, .2, 1) .1s;
     opacity: .1
 }
+
 .ripple.ripple-out {
     -webkit-transition: opacity .1s linear 0s!important;
     -o-transition: opacity .1s linear 0s!important;
     transition: opacity .1s linear 0s!important;
     opacity: 0
 }
+
+
 /*# sourceMappingURL=ripples.min.css.map */
 
+
 /*Fin Riples.min */
+
 
 /*
  *  Core Owl Carousel CSS File
  *  v1.3.3
  */
+
 
 /* clearfix */
 
@@ -2311,6 +2773,8 @@ span {
     line-height: 0;
     height: 0;
 }
+
+
 /* display none until init */
 
 .owl-carousel {
@@ -2319,16 +2783,19 @@ span {
     width: 100%;
     -ms-touch-action: pan-y;
 }
+
 .owl-carousel .owl-wrapper {
     display: none;
     position: relative;
     -webkit-transform: translate3d(0px, 0px, 0px);
 }
+
 .owl-carousel .owl-wrapper-outer {
     overflow: hidden;
     position: relative;
     width: 100%;
 }
+
 .owl-carousel .owl-wrapper-outer.autoHeight {
     -webkit-transition: height 500ms ease-in-out;
     -moz-transition: height 500ms ease-in-out;
@@ -2336,12 +2803,16 @@ span {
     -o-transition: height 500ms ease-in-out;
     transition: height 500ms ease-in-out;
 }
+
 .owl-carousel .owl-item {
     float: left;
 }
-.owl-controls .owl-page, .owl-controls .owl-buttons div {
+
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div {
     cursor: pointer;
 }
+
 .owl-controls {
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -2350,14 +2821,19 @@ span {
     user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+
 /* mouse grab icon */
 
 .grabbing {
     cursor: url(grabbing.png) 8 8, move;
 }
+
+
 /* fix */
 
-.owl-carousel .owl-wrapper, .owl-carousel .owl-item {
+.owl-carousel .owl-wrapper,
+.owl-carousel .owl-item {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -2365,14 +2841,18 @@ span {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
 }
+
+
 /*
  *  Fin Core Owl Carousel CSS File
  *  v1.3.3
  */
 
+
 /* Animate.css */
 
 @charset "UTF-8";
+
 /*!
 Animate.css - http://daneden.me/animate
 Licensed under the MIT license
@@ -2392,12 +2872,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
+
 .animated.hinge {
     -webkit-animation-duration: 2s;
     animation-duration: 2s;
 }
+
 @-webkit-keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
     }
@@ -2410,8 +2896,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-15px);
     }
 }
+
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         -webkit-transform: translateY(0);
         -ms-transform: translateY(0);
         transform: translateY(0);
@@ -2427,30 +2918,42 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-15px);
     }
 }
+
 .bounce {
     -webkit-animation-name: bounce;
     animation-name: bounce;
 }
+
 @-webkit-keyframes flash {
-    0%, 50%, 100% {
+    0%,
+    50%,
+    100% {
         opacity: 1;
     }
-    25%, 75% {
+    25%,
+    75% {
         opacity: 0;
     }
 }
+
 @keyframes flash {
-    0%, 50%, 100% {
+    0%,
+    50%,
+    100% {
         opacity: 1;
     }
-    25%, 75% {
+    25%,
+    75% {
         opacity: 0;
     }
 }
+
 .flash {
     -webkit-animation-name: flash;
     animation-name: flash;
 }
+
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes pulse {
@@ -2467,6 +2970,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(1);
     }
 }
+
 @keyframes pulse {
     0% {
         -webkit-transform: scale(1);
@@ -2484,45 +2988,66 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(1);
     }
 }
+
 .pulse {
     -webkit-animation-name: pulse;
     animation-name: pulse;
 }
+
 @-webkit-keyframes shake {
-    0%, 100% {
+    0%,
+    100% {
         -webkit-transform: translateX(0);
         transform: translateX(0);
     }
-    10%, 30%, 50%, 70%, 90% {
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
         -webkit-transform: translateX(-10px);
         transform: translateX(-10px);
     }
-    20%, 40%, 60%, 80% {
+    20%,
+    40%,
+    60%,
+    80% {
         -webkit-transform: translateX(10px);
         transform: translateX(10px);
     }
 }
+
 @keyframes shake {
-    0%, 100% {
+    0%,
+    100% {
         -webkit-transform: translateX(0);
         -ms-transform: translateX(0);
         transform: translateX(0);
     }
-    10%, 30%, 50%, 70%, 90% {
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
         -webkit-transform: translateX(-10px);
         -ms-transform: translateX(-10px);
         transform: translateX(-10px);
     }
-    20%, 40%, 60%, 80% {
+    20%,
+    40%,
+    60%,
+    80% {
         -webkit-transform: translateX(10px);
         -ms-transform: translateX(10px);
         transform: translateX(10px);
     }
 }
+
 .shake {
     -webkit-animation-name: shake;
     animation-name: shake;
 }
+
 @-webkit-keyframes swing {
     20% {
         -webkit-transform: rotate(15deg);
@@ -2545,6 +3070,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: rotate(0deg);
     }
 }
+
 @keyframes swing {
     20% {
         -webkit-transform: rotate(15deg);
@@ -2572,6 +3098,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: rotate(0deg);
     }
 }
+
 .swing {
     -webkit-transform-origin: top center;
     -ms-transform-origin: top center;
@@ -2579,20 +3106,27 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -webkit-animation-name: swing;
     animation-name: swing;
 }
+
 @-webkit-keyframes tada {
     0% {
         -webkit-transform: scale(1);
         transform: scale(1);
     }
-    10%, 20% {
+    10%,
+    20% {
         -webkit-transform: scale(0.9) rotate(-3deg);
         transform: scale(0.9) rotate(-3deg);
     }
-    30%, 50%, 70%, 90% {
+    30%,
+    50%,
+    70%,
+    90% {
         -webkit-transform: scale(1.1) rotate(3deg);
         transform: scale(1.1) rotate(3deg);
     }
-    40%, 60%, 80% {
+    40%,
+    60%,
+    80% {
         -webkit-transform: scale(1.1) rotate(-3deg);
         transform: scale(1.1) rotate(-3deg);
     }
@@ -2601,23 +3135,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(1) rotate(0);
     }
 }
+
 @keyframes tada {
     0% {
         -webkit-transform: scale(1);
         -ms-transform: scale(1);
         transform: scale(1);
     }
-    10%, 20% {
+    10%,
+    20% {
         -webkit-transform: scale(0.9) rotate(-3deg);
         -ms-transform: scale(0.9) rotate(-3deg);
         transform: scale(0.9) rotate(-3deg);
     }
-    30%, 50%, 70%, 90% {
+    30%,
+    50%,
+    70%,
+    90% {
         -webkit-transform: scale(1.1) rotate(3deg);
         -ms-transform: scale(1.1) rotate(3deg);
         transform: scale(1.1) rotate(3deg);
     }
-    40%, 60%, 80% {
+    40%,
+    60%,
+    80% {
         -webkit-transform: scale(1.1) rotate(-3deg);
         -ms-transform: scale(1.1) rotate(-3deg);
         transform: scale(1.1) rotate(-3deg);
@@ -2628,10 +3169,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(1) rotate(0);
     }
 }
+
 .tada {
     -webkit-animation-name: tada;
     animation-name: tada;
 }
+
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes wobble {
@@ -2664,6 +3208,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0%);
     }
 }
+
 @keyframes wobble {
     0% {
         -webkit-transform: translateX(0%);
@@ -2701,10 +3246,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0%);
     }
 }
+
 .wobble {
     -webkit-animation-name: wobble;
     animation-name: wobble;
 }
+
 @-webkit-keyframes bounceIn {
     0% {
         opacity: 0;
@@ -2725,6 +3272,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(1);
     }
 }
+
 @keyframes bounceIn {
     0% {
         opacity: 0;
@@ -2749,10 +3297,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(1);
     }
 }
+
 .bounceIn {
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
 }
+
 @-webkit-keyframes bounceInDown {
     0% {
         opacity: 0;
@@ -2773,6 +3323,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes bounceInDown {
     0% {
         opacity: 0;
@@ -2797,10 +3348,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .bounceInDown {
     -webkit-animation-name: bounceInDown;
     animation-name: bounceInDown;
 }
+
 @-webkit-keyframes bounceInLeft {
     0% {
         opacity: 0;
@@ -2821,6 +3374,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes bounceInLeft {
     0% {
         opacity: 0;
@@ -2845,10 +3399,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .bounceInLeft {
     -webkit-animation-name: bounceInLeft;
     animation-name: bounceInLeft;
 }
+
 @-webkit-keyframes bounceInRight {
     0% {
         opacity: 0;
@@ -2869,6 +3425,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes bounceInRight {
     0% {
         opacity: 0;
@@ -2893,10 +3450,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .bounceInRight {
     -webkit-animation-name: bounceInRight;
     animation-name: bounceInRight;
 }
+
 @-webkit-keyframes bounceInUp {
     0% {
         opacity: 0;
@@ -2917,6 +3476,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes bounceInUp {
     0% {
         opacity: 0;
@@ -2941,10 +3501,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .bounceInUp {
     -webkit-animation-name: bounceInUp;
     animation-name: bounceInUp;
 }
+
 @-webkit-keyframes bounceOut {
     0% {
         -webkit-transform: scale(1);
@@ -2965,6 +3527,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(.3);
     }
 }
+
 @keyframes bounceOut {
     0% {
         -webkit-transform: scale(1);
@@ -2989,10 +3552,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: scale(.3);
     }
 }
+
 .bounceOut {
     -webkit-animation-name: bounceOut;
     animation-name: bounceOut;
 }
+
 @-webkit-keyframes bounceOutDown {
     0% {
         -webkit-transform: translateY(0);
@@ -3009,6 +3574,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(2000px);
     }
 }
+
 @keyframes bounceOutDown {
     0% {
         -webkit-transform: translateY(0);
@@ -3028,10 +3594,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(2000px);
     }
 }
+
 .bounceOutDown {
     -webkit-animation-name: bounceOutDown;
     animation-name: bounceOutDown;
 }
+
 @-webkit-keyframes bounceOutLeft {
     0% {
         -webkit-transform: translateX(0);
@@ -3048,6 +3616,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-2000px);
     }
 }
+
 @keyframes bounceOutLeft {
     0% {
         -webkit-transform: translateX(0);
@@ -3067,10 +3636,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-2000px);
     }
 }
+
 .bounceOutLeft {
     -webkit-animation-name: bounceOutLeft;
     animation-name: bounceOutLeft;
 }
+
 @-webkit-keyframes bounceOutRight {
     0% {
         -webkit-transform: translateX(0);
@@ -3087,6 +3658,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(2000px);
     }
 }
+
 @keyframes bounceOutRight {
     0% {
         -webkit-transform: translateX(0);
@@ -3106,10 +3678,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(2000px);
     }
 }
+
 .bounceOutRight {
     -webkit-animation-name: bounceOutRight;
     animation-name: bounceOutRight;
 }
+
 @-webkit-keyframes bounceOutUp {
     0% {
         -webkit-transform: translateY(0);
@@ -3126,6 +3700,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-2000px);
     }
 }
+
 @keyframes bounceOutUp {
     0% {
         -webkit-transform: translateY(0);
@@ -3145,10 +3720,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-2000px);
     }
 }
+
 .bounceOutUp {
     -webkit-animation-name: bounceOutUp;
     animation-name: bounceOutUp;
 }
+
 @-webkit-keyframes fadeIn {
     0% {
         opacity: 0;
@@ -3157,6 +3734,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -3165,10 +3743,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
 }
+
 @-webkit-keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -3181,6 +3761,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -3195,10 +3776,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
 }
+
 @-webkit-keyframes fadeInDownBig {
     0% {
         opacity: 0;
@@ -3211,6 +3794,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes fadeInDownBig {
     0% {
         opacity: 0;
@@ -3225,10 +3809,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .fadeInDownBig {
     -webkit-animation-name: fadeInDownBig;
     animation-name: fadeInDownBig;
 }
+
 @-webkit-keyframes fadeInLeft {
     0% {
         opacity: 0;
@@ -3241,6 +3827,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
@@ -3255,10 +3842,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .fadeInLeft {
     -webkit-animation-name: fadeInLeft;
     animation-name: fadeInLeft;
 }
+
 @-webkit-keyframes fadeInLeftBig {
     0% {
         opacity: 0;
@@ -3271,6 +3860,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes fadeInLeftBig {
     0% {
         opacity: 0;
@@ -3285,10 +3875,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .fadeInLeftBig {
     -webkit-animation-name: fadeInLeftBig;
     animation-name: fadeInLeftBig;
 }
+
 @-webkit-keyframes fadeInRight {
     0% {
         opacity: 0;
@@ -3301,6 +3893,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes fadeInRight {
     0% {
         opacity: 0;
@@ -3315,10 +3908,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .fadeInRight {
     -webkit-animation-name: fadeInRight;
     animation-name: fadeInRight;
 }
+
 @-webkit-keyframes fadeInRightBig {
     0% {
         opacity: 0;
@@ -3331,6 +3926,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes fadeInRightBig {
     0% {
         opacity: 0;
@@ -3345,10 +3941,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .fadeInRightBig {
     -webkit-animation-name: fadeInRightBig;
     animation-name: fadeInRightBig;
 }
+
 @-webkit-keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -3361,6 +3959,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -3375,10 +3974,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .fadeInUp {
     -webkit-animation-name: fadeInUp;
     animation-name: fadeInUp;
 }
+
 @-webkit-keyframes fadeInUpBig {
     0% {
         opacity: 0;
@@ -3391,6 +3992,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes fadeInUpBig {
     0% {
         opacity: 0;
@@ -3405,10 +4007,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .fadeInUpBig {
     -webkit-animation-name: fadeInUpBig;
     animation-name: fadeInUpBig;
 }
+
 @-webkit-keyframes fadeOut {
     0% {
         opacity: 1;
@@ -3417,6 +4021,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes fadeOut {
     0% {
         opacity: 1;
@@ -3425,10 +4030,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .fadeOut {
     -webkit-animation-name: fadeOut;
     animation-name: fadeOut;
 }
+
 @-webkit-keyframes fadeOutDown {
     0% {
         opacity: 1;
@@ -3441,6 +4048,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(20px);
     }
 }
+
 @keyframes fadeOutDown {
     0% {
         opacity: 1;
@@ -3455,10 +4063,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(20px);
     }
 }
+
 .fadeOutDown {
     -webkit-animation-name: fadeOutDown;
     animation-name: fadeOutDown;
 }
+
 @-webkit-keyframes fadeOutDownBig {
     0% {
         opacity: 1;
@@ -3471,6 +4081,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(2000px);
     }
 }
+
 @keyframes fadeOutDownBig {
     0% {
         opacity: 1;
@@ -3485,10 +4096,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(2000px);
     }
 }
+
 .fadeOutDownBig {
     -webkit-animation-name: fadeOutDownBig;
     animation-name: fadeOutDownBig;
 }
+
 @-webkit-keyframes fadeOutLeft {
     0% {
         opacity: 1;
@@ -3501,6 +4114,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-20px);
     }
 }
+
 @keyframes fadeOutLeft {
     0% {
         opacity: 1;
@@ -3515,10 +4129,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-20px);
     }
 }
+
 .fadeOutLeft {
     -webkit-animation-name: fadeOutLeft;
     animation-name: fadeOutLeft;
 }
+
 @-webkit-keyframes fadeOutLeftBig {
     0% {
         opacity: 1;
@@ -3531,6 +4147,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-2000px);
     }
 }
+
 @keyframes fadeOutLeftBig {
     0% {
         opacity: 1;
@@ -3545,10 +4162,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-2000px);
     }
 }
+
 .fadeOutLeftBig {
     -webkit-animation-name: fadeOutLeftBig;
     animation-name: fadeOutLeftBig;
 }
+
 @-webkit-keyframes fadeOutRight {
     0% {
         opacity: 1;
@@ -3561,6 +4180,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(20px);
     }
 }
+
 @keyframes fadeOutRight {
     0% {
         opacity: 1;
@@ -3575,10 +4195,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(20px);
     }
 }
+
 .fadeOutRight {
     -webkit-animation-name: fadeOutRight;
     animation-name: fadeOutRight;
 }
+
 @-webkit-keyframes fadeOutRightBig {
     0% {
         opacity: 1;
@@ -3591,6 +4213,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(2000px);
     }
 }
+
 @keyframes fadeOutRightBig {
     0% {
         opacity: 1;
@@ -3605,10 +4228,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(2000px);
     }
 }
+
 .fadeOutRightBig {
     -webkit-animation-name: fadeOutRightBig;
     animation-name: fadeOutRightBig;
 }
+
 @-webkit-keyframes fadeOutUp {
     0% {
         opacity: 1;
@@ -3621,6 +4246,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-20px);
     }
 }
+
 @keyframes fadeOutUp {
     0% {
         opacity: 1;
@@ -3635,10 +4261,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-20px);
     }
 }
+
 .fadeOutUp {
     -webkit-animation-name: fadeOutUp;
     animation-name: fadeOutUp;
 }
+
 @-webkit-keyframes fadeOutUpBig {
     0% {
         opacity: 1;
@@ -3651,6 +4279,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-2000px);
     }
 }
+
 @keyframes fadeOutUpBig {
     0% {
         opacity: 1;
@@ -3665,10 +4294,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-2000px);
     }
 }
+
 .fadeOutUpBig {
     -webkit-animation-name: fadeOutUpBig;
     animation-name: fadeOutUpBig;
 }
+
 @-webkit-keyframes flip {
     0% {
         -webkit-transform: perspective(400px) translateZ(0) rotateY(0) scale(1);
@@ -3701,6 +4332,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         animation-timing-function: ease-in;
     }
 }
+
 @keyframes flip {
     0% {
         -webkit-transform: perspective(400px) translateZ(0) rotateY(0) scale(1);
@@ -3738,6 +4370,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         animation-timing-function: ease-in;
     }
 }
+
 .animated.flip {
     -webkit-backface-visibility: visible;
     -ms-backface-visibility: visible;
@@ -3745,6 +4378,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -webkit-animation-name: flip;
     animation-name: flip;
 }
+
 @-webkit-keyframes flipInX {
     0% {
         -webkit-transform: perspective(400px) rotateX(90deg);
@@ -3765,6 +4399,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes flipInX {
     0% {
         -webkit-transform: perspective(400px) rotateX(90deg);
@@ -3789,6 +4424,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .flipInX {
     -webkit-backface-visibility: visible !important;
     -ms-backface-visibility: visible !important;
@@ -3796,6 +4432,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -webkit-animation-name: flipInX;
     animation-name: flipInX;
 }
+
 @-webkit-keyframes flipInY {
     0% {
         -webkit-transform: perspective(400px) rotateY(90deg);
@@ -3816,6 +4453,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes flipInY {
     0% {
         -webkit-transform: perspective(400px) rotateY(90deg);
@@ -3840,6 +4478,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .flipInY {
     -webkit-backface-visibility: visible !important;
     -ms-backface-visibility: visible !important;
@@ -3847,6 +4486,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -webkit-animation-name: flipInY;
     animation-name: flipInY;
 }
+
 @-webkit-keyframes flipOutX {
     0% {
         -webkit-transform: perspective(400px) rotateX(0deg);
@@ -3859,6 +4499,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes flipOutX {
     0% {
         -webkit-transform: perspective(400px) rotateX(0deg);
@@ -3873,6 +4514,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .flipOutX {
     -webkit-animation-name: flipOutX;
     animation-name: flipOutX;
@@ -3880,6 +4522,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -ms-backface-visibility: visible !important;
     backface-visibility: visible !important;
 }
+
 @-webkit-keyframes flipOutY {
     0% {
         -webkit-transform: perspective(400px) rotateY(0deg);
@@ -3892,6 +4535,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes flipOutY {
     0% {
         -webkit-transform: perspective(400px) rotateY(0deg);
@@ -3906,6 +4550,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .flipOutY {
     -webkit-backface-visibility: visible !important;
     -ms-backface-visibility: visible !important;
@@ -3913,6 +4558,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     -webkit-animation-name: flipOutY;
     animation-name: flipOutY;
 }
+
 @-webkit-keyframes lightSpeedIn {
     0% {
         -webkit-transform: translateX(100%) skewX(-30deg);
@@ -3935,6 +4581,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes lightSpeedIn {
     0% {
         -webkit-transform: translateX(100%) skewX(-30deg);
@@ -3961,12 +4608,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .lightSpeedIn {
     -webkit-animation-name: lightSpeedIn;
     animation-name: lightSpeedIn;
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
+
 @-webkit-keyframes lightSpeedOut {
     0% {
         -webkit-transform: translateX(0%) skewX(0deg);
@@ -3979,6 +4628,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes lightSpeedOut {
     0% {
         -webkit-transform: translateX(0%) skewX(0deg);
@@ -3993,12 +4643,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .lightSpeedOut {
     -webkit-animation-name: lightSpeedOut;
     animation-name: lightSpeedOut;
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
 }
+
 @-webkit-keyframes rotateIn {
     0% {
         -webkit-transform-origin: center center;
@@ -4015,6 +4667,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes rotateIn {
     0% {
         -webkit-transform-origin: center center;
@@ -4035,10 +4688,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .rotateIn {
     -webkit-animation-name: rotateIn;
     animation-name: rotateIn;
 }
+
 @-webkit-keyframes rotateInDownLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4055,6 +4710,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes rotateInDownLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4075,10 +4731,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .rotateInDownLeft {
     -webkit-animation-name: rotateInDownLeft;
     animation-name: rotateInDownLeft;
 }
+
 @-webkit-keyframes rotateInDownRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4095,6 +4753,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes rotateInDownRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4115,10 +4774,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .rotateInDownRight {
     -webkit-animation-name: rotateInDownRight;
     animation-name: rotateInDownRight;
 }
+
 @-webkit-keyframes rotateInUpLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4135,6 +4796,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes rotateInUpLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4155,10 +4817,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .rotateInUpLeft {
     -webkit-animation-name: rotateInUpLeft;
     animation-name: rotateInUpLeft;
 }
+
 @-webkit-keyframes rotateInUpRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4175,6 +4839,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 @keyframes rotateInUpRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4195,10 +4860,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 1;
     }
 }
+
 .rotateInUpRight {
     -webkit-animation-name: rotateInUpRight;
     animation-name: rotateInUpRight;
 }
+
 @-webkit-keyframes rotateOut {
     0% {
         -webkit-transform-origin: center center;
@@ -4215,6 +4882,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes rotateOut {
     0% {
         -webkit-transform-origin: center center;
@@ -4235,10 +4903,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .rotateOut {
     -webkit-animation-name: rotateOut;
     animation-name: rotateOut;
 }
+
 @-webkit-keyframes rotateOutDownLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4255,6 +4925,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes rotateOutDownLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4275,10 +4946,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .rotateOutDownLeft {
     -webkit-animation-name: rotateOutDownLeft;
     animation-name: rotateOutDownLeft;
 }
+
 @-webkit-keyframes rotateOutDownRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4295,6 +4968,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes rotateOutDownRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4315,10 +4989,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .rotateOutDownRight {
     -webkit-animation-name: rotateOutDownRight;
     animation-name: rotateOutDownRight;
 }
+
 @-webkit-keyframes rotateOutUpLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4335,6 +5011,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes rotateOutUpLeft {
     0% {
         -webkit-transform-origin: left bottom;
@@ -4355,10 +5032,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .rotateOutUpLeft {
     -webkit-animation-name: rotateOutUpLeft;
     animation-name: rotateOutUpLeft;
 }
+
 @-webkit-keyframes rotateOutUpRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4375,6 +5054,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes rotateOutUpRight {
     0% {
         -webkit-transform-origin: right bottom;
@@ -4395,10 +5075,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .rotateOutUpRight {
     -webkit-animation-name: rotateOutUpRight;
     animation-name: rotateOutUpRight;
 }
+
 @-webkit-keyframes slideInDown {
     0% {
         opacity: 0;
@@ -4410,6 +5092,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 @keyframes slideInDown {
     0% {
         opacity: 0;
@@ -4423,10 +5106,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(0);
     }
 }
+
 .slideInDown {
     -webkit-animation-name: slideInDown;
     animation-name: slideInDown;
 }
+
 @-webkit-keyframes slideInLeft {
     0% {
         opacity: 0;
@@ -4438,6 +5123,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes slideInLeft {
     0% {
         opacity: 0;
@@ -4451,10 +5137,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .slideInLeft {
     -webkit-animation-name: slideInLeft;
     animation-name: slideInLeft;
 }
+
 @-webkit-keyframes slideInRight {
     0% {
         opacity: 0;
@@ -4466,6 +5154,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 @keyframes slideInRight {
     0% {
         opacity: 0;
@@ -4479,10 +5168,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0);
     }
 }
+
 .slideInRight {
     -webkit-animation-name: slideInRight;
     animation-name: slideInRight;
 }
+
 @-webkit-keyframes slideOutLeft {
     0% {
         -webkit-transform: translateX(0);
@@ -4494,6 +5185,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-2000px);
     }
 }
+
 @keyframes slideOutLeft {
     0% {
         -webkit-transform: translateX(0);
@@ -4507,10 +5199,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(-2000px);
     }
 }
+
 .slideOutLeft {
     -webkit-animation-name: slideOutLeft;
     animation-name: slideOutLeft;
 }
+
 @-webkit-keyframes slideOutRight {
     0% {
         -webkit-transform: translateX(0);
@@ -4522,6 +5216,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(2000px);
     }
 }
+
 @keyframes slideOutRight {
     0% {
         -webkit-transform: translateX(0);
@@ -4535,10 +5230,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(2000px);
     }
 }
+
 .slideOutRight {
     -webkit-animation-name: slideOutRight;
     animation-name: slideOutRight;
 }
+
 @-webkit-keyframes slideOutUp {
     0% {
         -webkit-transform: translateY(0);
@@ -4550,6 +5247,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-2000px);
     }
 }
+
 @keyframes slideOutUp {
     0% {
         -webkit-transform: translateY(0);
@@ -4563,10 +5261,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateY(-2000px);
     }
 }
+
 .slideOutUp {
     -webkit-animation-name: slideOutUp;
     animation-name: slideOutUp;
 }
+
 @-webkit-keyframes hinge {
     0% {
         -webkit-transform: rotate(0);
@@ -4576,7 +5276,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         -webkit-animation-timing-function: ease-in-out;
         animation-timing-function: ease-in-out;
     }
-    20%, 60% {
+    20%,
+    60% {
         -webkit-transform: rotate(80deg);
         transform: rotate(80deg);
         -webkit-transform-origin: top left;
@@ -4607,6 +5308,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 @keyframes hinge {
     0% {
         -webkit-transform: rotate(0);
@@ -4618,7 +5320,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         -webkit-animation-timing-function: ease-in-out;
         animation-timing-function: ease-in-out;
     }
-    20%, 60% {
+    20%,
+    60% {
         -webkit-transform: rotate(80deg);
         -ms-transform: rotate(80deg);
         transform: rotate(80deg);
@@ -4656,10 +5359,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         opacity: 0;
     }
 }
+
 .hinge {
     -webkit-animation-name: hinge;
     animation-name: hinge;
 }
+
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes rollIn {
@@ -4674,6 +5380,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0px) rotate(0deg);
     }
 }
+
 @keyframes rollIn {
     0% {
         opacity: 0;
@@ -4688,10 +5395,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(0px) rotate(0deg);
     }
 }
+
 .rollIn {
     -webkit-animation-name: rollIn;
     animation-name: rollIn;
 }
+
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @-webkit-keyframes rollOut {
@@ -4706,6 +5416,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(100%) rotate(120deg);
     }
 }
+
 @keyframes rollOut {
     0% {
         opacity: 1;
@@ -4720,11 +5431,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         transform: translateX(100%) rotate(120deg);
     }
 }
+
 .rollOut {
     -webkit-animation-name: rollOut;
     animation-name: rollOut;
 }
+
+
 /*Fin Animate.css */
+
 
 /*responsive.css */
 
@@ -4755,10 +5470,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     .icon-common {
         margin-right: 8px
     }
-    .blog-sidebar-column .subscribe-widget .social-profiles, .blog-sidebar-column .subscribe-widget .subscribe-box {
+    .blog-sidebar-column .subscribe-widget .social-profiles,
+    .blog-sidebar-column .subscribe-widget .subscribe-box {
         padding: 30px 20px
     }
 }
+
 @media (max-width: 991px) {
     .page-title-section {
         padding: 40px 0
@@ -4771,6 +5488,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         margin-bottom: 50px
     }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
     #main-slide .carousel-caption {
         top: 22%
@@ -4802,14 +5520,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     .page-footer .footer-title {
         margin-top: 30px
     }
-    .icon-round, .icon-box {
+    .icon-round,
+    .icon-box {
         width: 36px;
         height: 36px;
         text-align: center;
         line-height: 36px !important;
         margin-right: 6px
     }
-    .icon-round .material-icons, .icon-box .material-icons {
+    .icon-round .material-icons,
+    .icon-box .material-icons {
         font-size: 20px
     }
     .icon-common {
@@ -4845,6 +5565,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         line-height: 50px
     }
 }
+
 @media (max-width: 767px) {
     #main-slide .carousel-caption {
         top: 15%
@@ -4957,7 +5678,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         right: 55px;
         top: 82px
     }
-    .blog-sidebar-column .subscribe-widget .social-profiles, .blog-sidebar-column .subscribe-widget .subscribe-box {
+    .blog-sidebar-column .subscribe-widget .social-profiles,
+    .blog-sidebar-column .subscribe-widget .subscribe-box {
         padding: 30px 20px
     }
     .users-comment-section {
@@ -4993,7 +5715,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     .call-to-action-section .text-right {
         text-align: left !important
     }
-    .icon-round, .icon-box {
+    .icon-round,
+    .icon-box {
         margin-bottom: 20px
     }
     .icon-common {
@@ -5003,125 +5726,197 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         display: none
     }
 }
+
 @media (min-width: 320px) and (max-width: 479px) {
     #main-slide .btn {
         display: none
     }
 }
+
+
 /*Fin responsive.css */
+
 
 /*Normalize.css */
 
-button, hr, input {
+button,
+hr,
+input {
     overflow: visible
 }
-audio, canvas, progress, video {
+
+audio,
+canvas,
+progress,
+video {
     display: inline-block
 }
-progress, sub, sup {
+
+progress,
+sub,
+sup {
     vertical-align: baseline
 }
+
 html {
     font-family: sans-serif;
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
+
 body {
     margin: 0
 }
-menu, article, aside, details, footer, header, nav, section {
+
+menu,
+article,
+aside,
+details,
+footer,
+header,
+nav,
+section {
     display: block
 }
+
 h1 {
     font-size: 2em;
     margin: .67em 0
 }
-figcaption, figure, main {
+
+figcaption,
+figure,
+main {
     display: block
 }
+
 figure {
     margin: 1em 40px
 }
+
 hr {
     box-sizing: content-box;
     height: 0
 }
-code, kbd, pre, samp {
+
+code,
+kbd,
+pre,
+samp {
     font-family: monospace, monospace;
     font-size: 1em
 }
+
 a {
     background-color: transparent;
     -webkit-text-decoration-skip: objects
 }
-a:active, a:hover {
+
+a:active,
+a:hover {
     outline-width: 0
 }
+
 abbr[title] {
     border-bottom: none;
     text-decoration: underline;
     text-decoration: underline dotted
 }
-b, strong {
+
+b,
+strong {
     font-weight: bolder
 }
+
 dfn {
     font-style: italic
 }
+
 mark {
     background-color: #ff0;
     color: #000
 }
+
 small {
     font-size: 80%
 }
-sub, sup {
+
+sub,
+sup {
     font-size: 75%;
     line-height: 0;
     position: relative
 }
+
 sub {
     bottom: -.25em
 }
+
 sup {
     top: -.5em
 }
+
 audio:not([controls]) {
     display: none;
     height: 0
 }
+
 img {
     border-style: none
 }
+
 svg:not(:root) {
     overflow: hidden
 }
-button, input, optgroup, select, textarea {
+
+button,
+input,
+optgroup,
+select,
+textarea {
     font-family: sans-serif;
     font-size: 100%;
     line-height: 1.15;
     margin: 0
 }
-button, input {}
-button, select {
+
+button,
+input {}
+
+button,
+select {
     text-transform: none
 }
-[type=submit], [type=reset], button, html [type=button] {
+
+[type=submit],
+[type=reset],
+button,
+html [type=button] {
     -webkit-appearance: button
 }
-[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {
+
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
     border-style: none;
     padding: 0
 }
-[type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring, button:-moz-focusring {
+
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
     outline: ButtonText dotted 1px
 }
+
 fieldset {
     border: 1px solid silver;
     margin: 0 2px;
     padding: .35em .625em .75em
 }
+
 legend {
     box-sizing: border-box;
     color: inherit;
@@ -5130,41 +5925,62 @@ legend {
     padding: 0;
     white-space: normal
 }
+
 progress {}
+
 textarea {
     overflow: auto
 }
-[type=checkbox], [type=radio] {
+
+[type=checkbox],
+[type=radio] {
     box-sizing: border-box;
     padding: 0
 }
-[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
     height: auto
 }
+
 [type=search] {
     -webkit-appearance: textfield;
     outline-offset: -2px
 }
-[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {
+
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
     -webkit-appearance: none
 }
+
 ::-webkit-file-upload-button {
     -webkit-appearance: button;
     font: inherit
 }
+
 summary {
     display: list-item
 }
-[hidden], template {
+
+[hidden],
+template {
     display: none
 }
+
+
 /*# sourceMappingURL=normalize.min.css.map */
+
 
 /*Fin Normalize.css */
 
 .mostrar {
     position: fixed;
 }
+
 .disabled {
     opacity: .40;
+}
+
+.backdrop {
+    background-color: red;
 }

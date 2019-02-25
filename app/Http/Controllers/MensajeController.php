@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Events\MessageSentEvent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Events\MessageSentEventStudent;
 
 class MensajeController extends Controller
 {
@@ -35,9 +36,14 @@ class MensajeController extends Controller
 			'usuario_id' => $user->id,
 			'receiver_id' => $request->receiver_id
 		]);
-		$user->last_token_session = $message->created_at;
-		$user->update();
-		broadcast(new MessageSentEvent($user, $message))->toOthers();
+		
+		if($user->rol_id == 3){
+			$user->last_token_session = $message->created_at;
+			$user->update();
+			broadcast(new MessageSentEvent($user, $message))->toOthers();
+		}else{
+			broadcast(new MessageSentEventStudent($request->receiver_id));
+		}
 		return response(['status'=>'Message sent successfully','message'=>$message]);
 	}
 	public function getListOfMessagesAdmin(Request $request){

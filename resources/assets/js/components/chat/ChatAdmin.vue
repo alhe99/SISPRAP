@@ -37,15 +37,16 @@
       <div class="messageWrapper" id="div-msj">
          <div class="messages" >
 	  <div  v-for="message in arrayMessages" :key="message.id">
-            <div class="chat" v-text="message.mensaje" :class="[message.usuario_id == user.id ? 'me' : '']"></div>
-	    <small :class="[message.usuario_id == user.id ? 'dateMe' : 'dateOther']" v-text="message.created_at"></small>
+            <div class="chat" v-text="message.mensaje" :class="[message.usuario_id == user.id ? 'me' : '']">
+	    </div>
+	     <small :class="[message.usuario_id == user.id ? 'dateMe' : 'dateOther']" v-text="message.created_at"></small>
 	   </div>
 	   <pulse-loader class="text-center" :loading="loadingMsj" :color="color" :size="size"></pulse-loader>
          </div>
       </div>
       <div class="textBoxWrapper">
          <div class="textBoxContainer">
-            <br><textarea v-model="bodyMessage" placeholder="Escriba su mensaje..." class="form-control" rows="7"></textarea>
+            <br><textarea v-model="bodyMessage" @keyup.enter="sendMessage" placeholder="Escriba su mensaje..." class="form-control" rows="7"></textarea>
          </div>
          <div class="buttonGroup">
             <button :disabled="user_id == '' || bodyMessage == ''" @click="sendMessage" :class="[user_id == '' || bodyMessage == '' ? 'disabled' : '']" class="button blue btn-chat"><i class="mdi mdi-send"></i>&nbsp;Enviar</button>
@@ -179,20 +180,22 @@ export default {
 	   color: white;
 	}
 	.dateMe{
-	   position: relative;
-	   float: right;
-	   right: 35px;
-	   font-size: 15px;
-	   margin-top: -8px;
-           color: rgb(154, 154, 154);
+	  position: relative;
+          float: right;
+          right: 8%;
+          font-size: 13px;
+          margin-top: -8px;
+          color: rgb(225, 225, 225);
+          top: -20px;
 	}
 	.dateOther{
 	   position: relative;
 	   float: left;
-	   left: 35px;
-	   font-size: 15px;
+	   left: 55%;
+	   top: -20px;
+	   font-size: 13px;
 	   margin-top: -8px;
-           color: rgb(154, 154, 154);
+	   color: rgb(154, 154, 154);
 	}
 	body {
 		font-family: Roboto, sans-serif;
@@ -271,13 +274,15 @@ export default {
 	.chat {
 		position: relative;
 		width: 70%;
-		background-color: #ddd;
+		background-color: #fff5f5;
 		border-radius: 0.4rem;
 		box-sizing: border-box;
-		padding: 0.8rem 1rem;
+		padding: 0.8rem 1.4rem;
 		word-wrap: break-word;
 		font-size: 15px;
-		margin: 8px;
+		margin: 9px;
+		min-height: 50px;
+		height: auto;
 	}
 	.chat~.chat {
 		margin-top: 2rem;
@@ -295,17 +300,19 @@ export default {
 		border-width: 10px;
 		border-style: solid;
 		border-color: transparent;
-		border-top-color: #ddd;
+		border-top-color:  #fff5f5;
 		transform: skew(-45deg);
 		position: absolute;
 		top: 100%;
 		left: 0;
+		height: 50px;
 	}
 	.chat.me::after {
 		border-top-color: #5C6BC0;
 		right: 0;
 		left: auto;
 		transform: skew(45deg);
+		height: 50px;
 	}
 		/* .chat:nth-child(even){
 		  margin-left: auto;

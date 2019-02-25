@@ -1,6 +1,10 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+//Import Vue Toaster
+import VueToastr from '@deveodk/vue-toastr'
+import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
+Vue.use(VueToastr)
 
 Vue.component('chat_public', require('./components/chat/ChatPublic.vue'));
 
@@ -10,7 +14,8 @@ const app = new Vue({
         notifications: [],
         arrayMessages: [],
         msj_unread: '',
-        token: document.head.querySelector('meta[name="csrf-token"]').content
+        token: document.head.querySelector('meta[name="csrf-token"]').content,
+        user_id: document.head.querySelector('meta[name="user-id"]').content
     },
     methods: {
         getMessages() {
@@ -19,6 +24,7 @@ const app = new Vue({
             axios.get(url).then(function(response) {
                     var respuesta = response.data;
                     me.arrayMessages = respuesta.messages;
+                    setTimeout(me.scrollToEnd, 0.05);
                     me.msj_unread = respuesta.messages_unread;
                     me.showSpan();
                 })
@@ -60,13 +66,22 @@ const app = new Vue({
                 console.log(error);
             });
         },
+        showNotification() {
+            this.$toastr('add', {
+                title: 'Nuevo mensaje',
+                msg: 'Tienes un nuevo mensaje del usuario administrador',
+                timeout: 8000,
+                position: 'toast-bottom-left',
+                type: 'info',
+                clickClose: true,
+                closeOnHover: false
+            });
+        }
     },
     mounted() {
         let me = this;
         me.getMessages();
-        // Echo.private('chat').listen('MessageSentEvent', (e) => {
-        // 	alert(e.user.estudiante.nombre);
-        // });
+
         $("#btn-fab").on("mouseenter", function() {
             me.msj_unread > 0 ? $("#span-ppal").css('display', 'none') : '';
         }).on("mouseleave", function() {
@@ -75,6 +90,13 @@ const app = new Vue({
 
         $(".chat-btn").click(function() {
             me.msj_unread > 0 ? me.setReadMessages() : '';
+        });
+    },
+    created() {
+        let me = this;
+        Echo.private('messages.' + me.user_id).listen('MessageSentEventStudent', (e) => {
+            me.getMessages();
+            $("#container-chat").hasClass('show') ? me.setReadMessages() : me.showNotification();
         });
     },
 });

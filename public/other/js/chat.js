@@ -81,23 +81,24 @@ $(function() {
     })
 
     $(".chat-btn").click(function(e) {
-        $('body').addClass('mostrar');
         $(".chat-btn").toggle('scale');
         $(".chat-box").toggle('scale');
         $("#div-fab").css('display', 'none');
-        document.getElementById('chat-box').scrollTo(0, 99999);
-
+        $("#container-chat").addClass('show');
         if ($(this).hasClass('showMsjAdmin')) {
             $("#msj-duda").css("display", "block");
+            $(".btnPreinscripcion").css('margin-left', '12px');
         }
+        document.getElementById('chat-box').scrollTo(0, 99999);
     })
 
     $(".chat-box-toggle").click(function() {
         $(".chat-btn").toggle('scale');
         $(".chat-box").toggle('scale');
         $("#div-fab").css('display', 'block');
-        $('body').removeClass('mostrar')
         $("#msj-duda").css("display", "none");
+        $("#container-chat").removeClass('show');
+        $(".btnPreinscripcion").css('margin-left', '0px');
     })
 
 })
