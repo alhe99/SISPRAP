@@ -9,292 +9,234 @@
         </div>
 
         <div class="content">
-          <div v-if="activetab === 1" class="tabcontent">
-            <br><br><h2 class="text-left font-weight-bold">Listado de carreras activas</h2>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <mdc-textfield type="text" class="col-md-12" @keyup="listarCarreras(1,  buscar)"  label="Nombre de la carrera" v-model="buscar"></mdc-textfield>
-                        </div>
-                      </div>
-                      <div class="col-md-6 text-right">
-                        <button type="button" @click="abrirModalID()" class="button secondary text-rigth " data-toggle="tooltip" title="Carreras Desactivadas"><i class="mdi mdi-delete-empty"></i>&nbsp;Registros desactivados</button>
-                      </div>
+          
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <div v-show="search == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- MODAL PARA REGISTRAR Y ACTUALIZAR DATOS  -->
+      <div class="modal fade" :class="{'mostrar' : modalId }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-white" v-text="tituloModal"></h4>
+              <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 col-xs-12 col-lg-12">
+                  <br><label for="nombre">Nombre de la carrera*</label>
+                  <input type="text" v-model="car" id="car" name="car" class="form-control" autocomplete="off">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+                  <button type="button" :disabled="validate == true" class="button blue" @click="actualizarCarrera" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Carrera</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
+      <!-- MODAL LISTADO DE CARRERAS DESACTIVADAS  -->
+      <div class="modal fade" :class="{'mostrar' : modalId2 }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-white" v-text="tituloModal"></h4>
+              <button type="button" @click="cerrarModalID()" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="bmd-form-group bmd-collapse-inline pull-xs-right">
+                <button class="btn bmd-btn-icon" for="search" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
+                  <i class="mdi mdi-magnify"></i>
+                </button>
+                <span id="collapse-search" class="collapse">
+                  <input v-model="buscarDes" @keyup="listarCarrerasDes(1, buscarDes)" class="form-control" data-toggle="tooltip" title="Buscar Registros" type="text" id="search" placeholder="Ingrese Nombre de la Carrera">
+                </span>
+              </div><br>
+              <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="table-responsive">
+                  <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
+                    <thead class="thead-primary">
+                      <tr>
+                        <th>Nombre de Carrera</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-right" style="padding-right: 35px;">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="carrera in arrayCarDes" :key="carrera.id">
+                        <td v-text="carrera.nombre"></td>
+                        <td class="text-center">
+                          <template>
+                            <h4>
+                              <span v-if="carrera.estado == 0" class="badge badge-pill badge-info">Desactivada</span>
+                            </h4>
+                          </template>
+                          <td class="text-right">
+                            <template v-if="carrera.estado == 0">
+                              <button type="button" @click="activarCarrera(carrera.id)" class="button blue" data-toggle="tooltip" title="Desactivar carrera"><i class="mdi mdi-delete-variant"></i></button>
+                            </template>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <nav>
+                      <ul class="pagination">
+                        <li class="page-item" v-if="paginationID.current_page > 1">
+                          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaDes(paginationID.current_page -1, buscar)">Ant</a>
+                        </li>
+                        <li class="page-item" v-for="page in pagesNumberID" :key="page" :class="[page == isActivedID ? 'active' : '']">
+                          <a class="page-link" href="#" @click.prevent="cambiarPaginaDes(page, buscar)" v-text="page"></a>
+
+                          <li class="page-item" v-if="paginationID.current_page < paginationID.last_page">
+                            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaDes(paginationID.current_page + 1,buscar)">Sig</a>
+                          </li>
+                          <small v-show="arrayCarDes.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayCarDes.length + ' de ' + paginationID.total + ' registros)'"></small>
+                        </ul>
+                      </nav>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12 loading text-center" v-if="loadSpinner == 1">
-                    </div>
-                  </div>
-                  <!--tabla de carreras-->
-                  <div class="col-md-12 col-lg-12 col-sm-12">
-                    <div class="table-responsive">
-                      <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
-                        <thead class="thead-primary">
-                          <tr>
-                            <th>Nombre de Carrera</th>
-                            <th class="text-right" style="padding-right: 35px;">Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr v-for="carrera in arrayCar" :key="carrera.id">
-                            <td v-text="carrera.nombre"></td>
-                            <td class="text-right">
-                              <button type="button" @click="abrirModal('car','actualizar',carrera)" class="button blue" data-toggle="tooltip" title="Editar datos de la carrera"><i class="mdi mdi-border-color"></i></button>
-                              <template v-if="carrera.estado">
-                                <button type="button" @click="desactivarCarrera(carrera.id)" class="button red" data-toggle="tooltip" title="Desactivar carrera"><i class="mdi mdi-delete-variant"></i></button>
-                              </template>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <nav>
-                        <ul class="pagination">
-                          <li class="page-item" v-if="pagination.current_page > 1">
-                            <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page -1, buscar)">Ant</a>
-                          </li>
-                          <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                            <a class="page-link" href="#" @click.prevent="cambiarPagina(page, buscar)" v-text="page"></a>
-
-                            <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                              <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar)">Sig</a>
-                            </li>
-                            <small v-show="arrayCar.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayCar.length + ' de ' + pagination.total + ' registros)'"></small>
-                          </ul>
-                        </nav>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 col-sm-12 col-lg-12">
-                        <div v-show="search == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
-                      </div>
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                      <div v-show="searchID == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
                     </div>
                   </div>
                 </div>
-                <!-- MODAL PARA REGISTRAR Y ACTUALIZAR DATOS  -->
-                <div class="modal fade" :class="{'mostrar' : modalId }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title text-white" v-text="tituloModal"></h4>
-                        <button type="button" @click="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="text-white">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12 col-xs-12 col-lg-12">
-                            <br><label for="nombre">Nombre de la carrera*</label>
-                            <input type="text" v-model="car" id="car" name="car" class="form-control" autocomplete="off">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <button type="button"  @click="cerrarModal()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-                            <button type="button" :disabled="validate == true" class="button blue" @click="actualizarCarrera" dense><i class="mdi mdi-content-save"></i>&nbsp;Actualizar Carrera</button>
-                          </div>
-                        </div>
-                      </div>
+                <div class="modal-footer">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="button"  @click="cerrarModalID()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
                     </div>
                   </div>
-                </div>
-                <!--- FIN MODAL PARA REGISTRAR Y ACTUALIZAR DATOS -->
-                <!-- MODAL LISTADO DE CARRERAS DESACTIVADAS  -->
-                <div class="modal fade" :class="{'mostrar' : modalId2 }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title text-white" v-text="tituloModal"></h4>
-                        <button type="button" @click="cerrarModalID()" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="text-white">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="bmd-form-group bmd-collapse-inline pull-xs-right">
-                          <button class="btn bmd-btn-icon" for="search" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
-                            <i class="mdi mdi-magnify"></i>
-                          </button>
-                          <span id="collapse-search" class="collapse">
-                            <input v-model="buscarDes" @keyup="listarCarrerasDes(1, buscarDes)" class="form-control" data-toggle="tooltip" title="Buscar Registros" type="text" id="search" placeholder="Ingrese Nombre de la Carrera">
-                          </span>
-                        </div><br>
-                        <div class="col-md-12 col-lg-12 col-sm-12">
-                          <div class="table-responsive">
-                            <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
-                              <thead class="thead-primary">
-                                <tr>
-                                  <th>Nombre de Carrera</th>
-                                  <th class="text-center">Estado</th>
-                                  <th class="text-right" style="padding-right: 35px;">Acciones</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr v-for="carrera in arrayCarDes" :key="carrera.id">
-                                  <td v-text="carrera.nombre"></td>
-                                  <td class="text-center">
-                                    <template>
-                                      <h4>
-                                        <span v-if="carrera.estado == 0" class="badge badge-pill badge-info">Desactivada</span>
-                                      </h4>
-                                    </template>
-                                    <td class="text-right">
-                                      <template v-if="carrera.estado == 0">
-                                        <button type="button" @click="activarCarrera(carrera.id)" class="button blue" data-toggle="tooltip" title="Desactivar carrera"><i class="mdi mdi-delete-variant"></i></button>
-                                      </template>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <nav>
-                                <ul class="pagination">
-                                  <li class="page-item" v-if="paginationID.current_page > 1">
-                                    <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaDes(paginationID.current_page -1, buscar)">Ant</a>
-                                  </li>
-                                  <li class="page-item" v-for="page in pagesNumberID" :key="page" :class="[page == isActivedID ? 'active' : '']">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPaginaDes(page, buscar)" v-text="page"></a>
-
-                                    <li class="page-item" v-if="paginationID.current_page < paginationID.last_page">
-                                      <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaDes(paginationID.current_page + 1,buscar)">Sig</a>
-                                    </li>
-                                    <small v-show="arrayCarDes.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayCarDes.length + ' de ' + paginationID.total + ' registros)'"></small>
-                                  </ul>
-                                </nav>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12 col-sm-12 col-lg-12">
-                                <div v-show="searchID == 1"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <div class="row">
-                              <div class="col-md-12">
-                                <button type="button"  @click="cerrarModalID()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--- FIN MODAL PARA  LISTADOS DE CARRERAS DESACTIVADAS -->
-                  </div>
-                </div>
-                <div v-if="activetab === 2" class="tabcontent">
-
                 </div>
               </div>
-              <br>
             </div>
           </div>
-        </template>
-        <script>
-        export default {
-          data() {
-            return {
-              activetab: 1,
-              loadSpinner: 0,
-              modalId: 0,
-              modalId2: 0,
-              carrera: 0,
-              car_id: 0,
-              search: 0,
-              searchID: 0,
-              car: "",
-              tituloModal: "",
-              carUpd: "",
-              nombre: "",
-              buscar: "",
-              buscarDes: "",
-              sector: "",
-              genero: "",
-              date: "",
-              carnet: "",
-              password: "",
-              email: "",
-              telefono: "",
-              direccion: "",
-              pass: "",
-              usuario: "",
-              apellido: "",
-              departamento_id: 0,
-              municipio_id: 0,
-              beca_id: 0,
-              admin_id: 0,
-              carrerasProy: 0,
-              tipoAccion: 0,
-              arrayCarreras: [],
-              arrayBecas: [],
-              arrayDepartamentos: [],
-              arrayMunicipios: [],
-              arrayAdmin: [],
-              arrayCar: [],
-              arrayCarDes: [],
-              paginationID: {},
-              pagination: {
-                total: 0,
-                current_page: 0,
-                per_page: 0,
-                last_page: 0,
-                from: 0,
-                to: 0
-              },
-              offset: 3,
-            };
-          },
-          computed: {
-            isActived: function() {
-              return this.pagination.current_page;
-            },
-            isActivedID: function() {
-             return this.paginationID.current_page;
-           },
-           pagesNumber: function() {
-            if (!this.pagination.to) {
-              return [];
-            }
-            var from = this.pagination.current_page - this.offset;
-            if (from < 1) {
-              from = 1;
-            }
-            var to = from + this.offset * 2;
-            if (to >= this.pagination.last_page) {
-              to = this.pagination.last_page;
-            }
-            var pagesArray = [];
-            while (from <= to) {
-              pagesArray.push(from);
-              from++;
-            }
-            return pagesArray;
-          },
-          pagesNumberID: function() {
-            if (!this.paginationID.to) {
-              return [];
-            }
-            var from = this.paginationID.current_page - this.offset;
-            if (from < 1) {
-              from = 1;
-            }
-            var to = from + this.offset * 2;
-            if (to >= this.paginationID.last_page) {
-              to = this.paginationID.last_page;
-            }
-            var pagesArray = [];
-            while (from <= to) {
-              pagesArray.push(from);
-              from++;
-            }
-            return pagesArray;
-          },
-        },
-        methods: {
+          <!--- FIN MODAL PARA  LISTADOS DE CARRERAS DESACTIVADAS -->
+        </div>
+      </div>
+      <div v-if="activetab === 2" class="tabcontent">
+
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      activetab: 1,
+      loadSpinner: 0,
+      modalId: 0,
+      modalId2: 0,
+      carrera: 0,
+      car_id: 0,
+      search: 0,
+      searchID: 0,
+      car: "",
+      tituloModal: "",
+      carUpd: "",
+      nombre: "",
+      buscar: "",
+      buscarDes: "",
+      sector: "",
+      genero: "",
+      date: "",
+      carnet: "",
+      password: "",
+      email: "",
+      telefono: "",
+      direccion: "",
+      pass: "",
+      usuario: "",
+      apellido: "",
+      departamento_id: 0,
+      municipio_id: 0,
+      beca_id: 0,
+      admin_id: 0,
+      carrerasProy: 0,
+      tipoAccion: 0,
+      arrayCarreras: [],
+      arrayBecas: [],
+      arrayDepartamentos: [],
+      arrayMunicipios: [],
+      arrayAdmin: [],
+      arrayCar: [],
+      arrayCarDes: [],
+      paginationID: {},
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      offset: 3,
+    };
+  },
+  computed: {
+    isActived: function() {
+      return this.pagination.current_page;
+    },
+    isActivedID: function() {
+     return this.paginationID.current_page;
+   },
+   pagesNumber: function() {
+    if (!this.pagination.to) {
+      return [];
+    }
+    var from = this.pagination.current_page - this.offset;
+    if (from < 1) {
+      from = 1;
+    }
+    var to = from + this.offset * 2;
+    if (to >= this.pagination.last_page) {
+      to = this.pagination.last_page;
+    }
+    var pagesArray = [];
+    while (from <= to) {
+      pagesArray.push(from);
+      from++;
+    }
+    return pagesArray;
+  },
+  pagesNumberID: function() {
+    if (!this.paginationID.to) {
+      return [];
+    }
+    var from = this.paginationID.current_page - this.offset;
+    if (from < 1) {
+      from = 1;
+    }
+    var to = from + this.offset * 2;
+    if (to >= this.paginationID.last_page) {
+      to = this.paginationID.last_page;
+    }
+    var pagesArray = [];
+    while (from <= to) {
+      pagesArray.push(from);
+      from++;
+    }
+    return pagesArray;
+  },
+},
+methods: {
     //carrera
     listarCarreras(page, buscar) {
       let me = this;
