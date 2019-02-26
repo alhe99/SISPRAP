@@ -9,7 +9,7 @@
         </div>
 
         <div class="content">
-          <div v-if="activetab === 1" class="tabcontent">
+          <div v-if="activetab === 1" class="tabcontent" style="background-color: #fff">
             <br><br><h2 class="text-left font-weight-bold">Listado de carreras activas</h2>
             <div class="panel panel-default">
               <div class="panel-body">
@@ -186,7 +186,7 @@
                     <!--- FIN MODAL PARA  LISTADOS DE CARRERAS DESACTIVADAS -->
                   </div>
                 </div>
-                <div v-if="activetab === 2" class="tabcontent">
+                <div v-if="activetab === 2" class="tabcontent" style="background-color: #fff">
 
                 </div>
               </div>
