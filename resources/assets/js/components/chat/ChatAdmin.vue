@@ -13,7 +13,7 @@
          <pulse-loader class="text-center" :loading="loading" :color="color" :size="size"></pulse-loader>
          <div v-for="user in arrayUsers" :key="user.id" :id="'div-user-'+user.usuario_id" @click="user.msj_unread > 0 ? getMessages(user.usuario_id,'markRead') : getMessages(user.usuario_id,'')" class="chatUser">
             <div class="chatUserIcon">
-               <img :src="'http://registro.itcha.edu.sv/matricula/public/images/alumnos/'+user.foto" :alt="user.usuario">
+               <img :src="'http://portal.itcha.edu.sv/images/alumnos/'+user.foto" :alt="user.usuario">
             </div>
             <div class="chatUserDetails">
                <span class="chatUsername font-weight-bold" v-text="user.usuario"></span>	

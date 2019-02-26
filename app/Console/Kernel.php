@@ -25,9 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-/*         $schedule->command('queue:restart');
-
-        $schedule->command('queue:work'); */
+        $environment = config('app.env');
+        $schedule->command(
+            "db:backup --database=mysql --destination=local --destinationPath=/{$environment}/sisprap  --compression=gzip"
+        )->everyMinute();
 
     }
 

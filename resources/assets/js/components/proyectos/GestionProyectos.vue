@@ -434,7 +434,7 @@ export default {
       }else if(this.gpObj.documentos_entrega.length < 4){
         this.textoBtn = "Cancelar Proyecto"
       }
-      this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.gpObj.estudiante.foto_name;
+      this.rutaIMG =  "http://portal.itcha.edu.sv/images/alumnos/"+ this.gpObj.estudiante.foto_name;
       //Obteniendo en array individual los coumentos entregados de un estudiante
       if (this.gpObj.documentos_entrega.length > 0) {
         for (var i = 0; i < this.gpObj.documentos_entrega.length; i++) {

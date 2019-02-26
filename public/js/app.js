@@ -89516,7 +89516,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     estudiante: function estudiante() {
-      this.rutaIMG = "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" + this.estudiante.foto_name;
+      this.rutaIMG = "http://portal.itcha.edu.sv/images/alumnos/" + this.estudiante.foto_name;
     }
   },
   computed: {
@@ -98270,7 +98270,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else if (this.gpObj.documentos_entrega.length < 4) {
         this.textoBtn = "Cancelar Proyecto";
       }
-      this.rutaIMG = "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" + this.gpObj.estudiante.foto_name;
+      this.rutaIMG = "http://portal.itcha.edu.sv/images/alumnos/" + this.gpObj.estudiante.foto_name;
       //Obteniendo en array individual los coumentos entregados de un estudiante
       if (this.gpObj.documentos_entrega.length > 0) {
         for (var i = 0; i < this.gpObj.documentos_entrega.length; i++) {
@@ -107340,7 +107340,7 @@ var render = function() {
                   _c("img", {
                     attrs: {
                       src:
-                        "http://registro.itcha.edu.sv/matricula/public/images/alumnos/" +
+                        "http://portal.itcha.edu.sv/images/alumnos/" +
                         user.foto,
                       alt: user.usuario
                     }

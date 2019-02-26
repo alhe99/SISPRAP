@@ -255,7 +255,7 @@ export default {
        }
      },
      estudiante: function(){
-      this.rutaIMG =  "http://registro.itcha.edu.sv/matricula/public/images/alumnos/"+ this.estudiante.foto_name;
+      this.rutaIMG =  "http://portal.itcha.edu.sv/images/alumnos/"+ this.estudiante.foto_name;
     }
   },
   computed: {
