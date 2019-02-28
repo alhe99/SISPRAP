@@ -132,4 +132,51 @@ class EstudianteController extends Controller
             'estudiantes' => $estudiantes,
         ];
     }
+    public function getEstudianteToOtherOpctions(Request $request){
+        $carrera_id = $request->carrera_id;
+        $nivelAcad = $request->nivelAcad;
+        $nombre = $request->buscar;
+
+        $estudiantes = Estudiante::with(['carrera', 'nivelAcademico'])->whereHas('carrera', function ($query) use ($carrera_id) {
+            $query->where('id', $carrera_id);
+        })->whereNull('estado_pp')->where([['nivel_academico_id', $nivelAcad],['estado',true]])->nombre($nombre)->paginate(10);
+
+        return [
+            'pagination' => [
+                'total' => $estudiantes->total(),
+                'current_page' => $estudiantes->currentPage(),
+                'per_page' => $estudiantes->perPage(),
+                'last_page' => $estudiantes->lastPage(),
+                'from' => $estudiantes->firstItem(),
+                'to' => $estudiantes->lastItem(),
+            ],
+            'estudiantes' => $estudiantes,
+        ];
+    }
+
+    public function changeNivel(Request $request){
+        $estudianteId = $request->estudiante_id;
+        $newNivelId = $request->newNivel;
+
+        $estudiante = Estudiante::find($estudianteId);
+        $estudiante->nivel_academico_id = $newNivelId;
+        $estudiante->update();
+    }
+    public function desactivarEstudiante($id){
+        $estudiante = Estudiante::find($id);
+        $usuario = User::find($id);
+        $estudiante->estado = false;
+        $usuario->estado = false;
+        $estudiante->update();
+        $usuario->update();
+    }
+    public function activarEstudiante($id)
+    {
+        $estudiante = Estudiante::find($id);
+        $usuario = User::find($id);
+        $estudiante->estado = true;
+        $usuario->estado = true;
+        $estudiante->update();
+        $usuario->update();
+    }
 }

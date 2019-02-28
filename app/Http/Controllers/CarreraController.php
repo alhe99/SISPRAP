@@ -55,7 +55,7 @@ class CarreraController extends Controller
     public function GetCarreras()
     {
         //if (!$request->ajax()) return redirect('/');
-        $Carreras = Carrera::all();
+        $Carreras = Carrera::where('estado',true)->get();
         $data = [];
         foreach ($Carreras as $key => $value) {
             $data[$key] =[

@@ -93786,7 +93786,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* RESET */\n* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n.container {\n  margin: 60px auto;\n  font-family: Arial, Helvetica, sans-serif;\n  font-size: 0.9em;\n  color: rgb(108, 108, 108);\n}\n/* Style the tabs */\n.tabs a {\n  float: left;\n  cursor: pointer;\n  padding: 12px 24px;\n  transition: background-color 0.2s;\n  border: 1px solid #ccc;\n  border-right: none;\n  background-color: #f1f1f1;\n  border-radius: 10px 10px 0 0;\n  font-weight: bold;\n}\n.tabs a:last-child {\n  border-right: 1px solid #ccc;\n}\n.tabs a:hover {\n  background-color: #aaa;\n  color: rgb(54, 54, 54);\n}\n\n/* Styling for active tab */\n.tabs a.active {\n  background-color: rgb(255, 255, 255);\n  color: rgb(108, 108, 108);\n  border-bottom: 2px solid #fff;\n  cursor: default;\n}\n\n/* Style the tab content */\n.tabcontent {\n  padding: 30px;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  box-shadow: 3px 3px 6px #e1e1e1;\n  background-color: #f1f1f1;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* RESET */\n* {\nbox-sizing: border-box;\nmargin: 0;\npadding: 0;\n}\n.container {\nmargin: 8px auto;\nfont-family: Arial, Helvetica, sans-serif;\nfont-size: 0.9em;\ncolor: rgb(108, 108, 108);\n}\n/* Style the tabs */\n.tabs a {\nfloat: left;\ncursor: pointer;\npadding: 12px 24px;\ntransition: background-color 0.2s;\nborder: 1px solid #ccc;\nborder-right: none;\nbackground-color: #f1f1f1;\nborder-radius: 10px 10px 0 0;\nfont-weight: bold;\n}\n.tabs a:last-child {\nborder-right: 1px solid #ccc;\n}\n.tabs a:hover {\nbackground-color: #aaa;\ncolor: rgb(54, 54, 54);\n}\n\n/* Styling for active tab */\n.tabs a.active {\nbackground-color: rgb(255, 255, 255);\ncolor: rgb(108, 108, 108);\nborder-bottom: 2px solid #fff;\ncursor: default;\n}\n\n/* Style the tab content */\n.tabcontent {\npadding: 30px;\nborder: 1px solid #ccc;\nborder-radius: 10px;\nbox-shadow: 3px 3px 6px #e1e1e1;\nbackground-color: #f1f1f1;\n}\n/* select starting stylings ------------------------------*/\n.select {\nfont-family:\n'Roboto','Helvetica','Arial',sans-serif;\nposition: relative;\nwidth: 100%;\n}\n.select-text {\nposition: relative;\nfont-family: inherit;\nbackground-color: transparent;\nwidth: 100%;\npadding: 25px 10px 10px 0;\nfont-size: 18px;\nborder-radius: 0;\nborder: none;\nborder-bottom: 1px solid rgba(0,0,0, 0.12);\n}\n\n/* Remove focus */\n.select-text:focus {\noutline: none;\nborder-bottom: 1px solid rgba(0,0,0, 0);\n}\n\n/* Use custom arrow */\n.select .select-text {\nappearance: none;\n-webkit-appearance:none\n}\n.select:after {\nposition: absolute;\ntop: 18px;\nright: 10px;\n/* Styling the down arrow */\nwidth: 0;\nheight: 0;\npadding: 0;\ncontent: '';\nborder-left: 6px solid transparent;\nborder-right: 6px solid transparent;\nborder-top: 6px solid rgba(0, 0, 0, 0.12);\npointer-events: none;\n}\n\n\n/* LABEL ======================================= */\n.select-label {\ncolor: rgba(0,0,0, 0.26);\nfont-size: 18px;\nfont-weight: normal;\nposition: absolute;\npointer-events: none;\nleft: 0;\ntop: 10px;\ntransition: 0.2s ease all;\n}\n\n/* active state */\n.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {\ncolor: #2F80ED;\ntop: 0px;\ntransition: 0.2s ease all;\nfont-size: 14px;\n}\n\n/* BOTTOM BARS ================================= */\n.select-bar {\nposition: relative;\ndisplay: block;\nwidth: 100%;\n}\n.select-bar:before, .select-bar:after {\ncontent: '';\nheight: 2px;\nwidth: 0;\nbottom: 1px;\nposition: absolute;\nbackground: #2F80ED;\ntransition: 0.2s ease all;\n}\n.select-bar:before {\nleft: 50%;\n}\n.select-bar:after {\nright: 50%;\n}\n\n/* active state */\n.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {\nwidth: 50%;\n}\n\n/* HIGHLIGHTER ================================== */\n.select-highlight {\nposition: absolute;\nheight: 60%;\nwidth: 100px;\ntop: 25%;\nleft: 0;\npointer-events: none;\nopacity: 0.5;\n}\n", ""]);
 
 // exports
 
@@ -93797,6 +93797,120 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -94005,34 +94119,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       car_id: 0,
       search: 0,
       searchID: 0,
-      car: "",
       tituloModal: "",
       carUpd: "",
       nombre: "",
       buscar: "",
       buscarDes: "",
-      sector: "",
-      genero: "",
-      date: "",
-      carnet: "",
-      password: "",
-      email: "",
-      telefono: "",
-      direccion: "",
-      pass: "",
-      usuario: "",
-      apellido: "",
-      departamento_id: 0,
-      municipio_id: 0,
-      beca_id: 0,
       admin_id: 0,
       carrerasProy: 0,
+      car: '',
       tipoAccion: 0,
       arrayCarreras: [],
-      arrayBecas: [],
-      arrayDepartamentos: [],
-      arrayMunicipios: [],
-      arrayAdmin: [],
+      arrayCarrerasToSelect: [],
+      carrera_selected: 0,
       arrayCar: [],
       arrayCarDes: [],
       paginationID: {},
@@ -94044,13 +94142,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         from: 0,
         to: 0
       },
-      offset: 3
+      paginationEstudiantes: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      offset: 3,
+      nivelSelected: 0,
+      arrayNiveles: [{
+        value: 1,
+        label: "Primer Año"
+      }, {
+        value: 2,
+        label: "Segundo Año"
+      }],
+      buscarAlumno: '',
+      arrayEstudiantes: [],
+      modalNivel: 0,
+      nivelByEstudiante: 0,
+      estudiante_selected: 0
     };
   },
 
   computed: {
     isActived: function isActived() {
       return this.pagination.current_page;
+    },
+    isActivedEstudiante: function isActivedEstudiante() {
+      return this.paginationEstudiantes.current_page;
     },
     isActivedID: function isActivedID() {
       return this.paginationID.current_page;
@@ -94066,6 +94188,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var to = from + this.offset * 2;
       if (to >= this.pagination.last_page) {
         to = this.pagination.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberEstudiante: function pagesNumberEstudiante() {
+      if (!this.paginationEstudiantes.to) {
+        return [];
+      }
+      var from = this.paginationEstudiantes.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.paginationEstudiantes.last_page) {
+        to = this.paginationEstudiantes.last_page;
       }
       var pagesArray = [];
       while (from <= to) {
@@ -94094,11 +94235,100 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return pagesArray;
     }
   },
+  watch: {
+    activetab: function activetab() {
+      if (this.activetab == 2) {
+        this.getCarreras(1, '');
+      }
+    },
+    nivelSelected: function nivelSelected() {
+      if (this.nivelSelected != 0 && this.nivelSelected != null) this.getAlumnos(1, '');
+    },
+    carrera_selected: function carrera_selected() {
+      if (this.carrera_selected != 0 && this.nivelSelected != 0 && this.carrera_selected != null && this.nivelSelected != null) {
+        this.getAlumnos(1, '');
+      }
+    }
+  },
   methods: {
+    getAlumnos: function getAlumnos(page, buscar) {
+      var me = this;
+      me.loadSpinner = 1;
+      var url = route('getEstudianteToOtherOpctions', {
+        'carrera_id': me.carrera_selected.value,
+        'nivelAcad': me.nivelSelected.value,
+        'page': page,
+        'buscar': buscar
+      });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayEstudiantes = respuesta.estudiantes.data;
+        me.paginationEstudiantes = respuesta.pagination;
+        me.loadSpinner = 0;
+      }).catch(function (error) {
+        me.loadSpinner = 0;
+        console.log(error);
+      });
+    },
+    changeNivelAcademico: function changeNivelAcademico() {
+      var _this = this;
+
+      swal({
+        title: "Desea Guardar Los Datos Cambiados Realizados",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this;
+          me.loadSpinner = 1;
+          var url = route('changeNivelToEstudiante', { 'estudiante_id': me.estudiante_selected, 'newNivel': $("#nivelAcademico").val().trim() });
+          axios.post(url).then(function (response) {
+            me.getAlumnos(1, '');
+            me.cerrarModalChangeNivel();
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+
+    //Activar boton de cambiar fecha
+    activateButton: function activateButton() {
+      $("#btnChangeNivel").prop('disabled', false);
+      $("#btnChangeNivel").removeClass('disabled');
+    },
+
+    //obtener todas las carreras
+    getCarreras: function getCarreras() {
+      var me = this;
+      var url = route('GetCarreras');
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayCarrerasToSelect = respuesta;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+
     //carrera
     listarCarreras: function listarCarreras(page, buscar) {
       var me = this;
-      var urlCarreraList = route('carreraList', { "page": page, "buscar": buscar });
+      var urlCarreraList = route('carreraList', {
+        "page": page,
+        "buscar": buscar
+      });
       me.loadSpinner = 1;
       axios.get(urlCarreraList).then(function (response) {
         var respuesta = response.data;
@@ -94114,7 +94344,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     listarCarrerasDes: function listarCarrerasDes(page, buscar) {
       var me = this;
-      var urlDesactivadasCar = route('carrerasDesactivadas', { "page": page, "buscar": buscar });
+      var urlDesactivadasCar = route('carrerasDesactivadas', {
+        "page": page,
+        "buscar": buscar
+      });
       me.loadSpinner = 1;
       axios.get(urlDesactivadasCar).then(function (response) {
         var respuesta = response.data;
@@ -94137,6 +94370,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.pagination.current_page = page;
       me.listarCarreras(page, buscar);
+    },
+    cambiarPaginaEstudiante: function cambiarPaginaEstudiante(page, buscar) {
+      var me = this;
+      me.paginationEstudiantes.current_page = page;
+      me.getAlumnos(page, buscar);
     },
     cambiarPaginaDes: function cambiarPaginaDes(page, buscar) {
       var me = this;
@@ -94184,6 +94422,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.tituloModal = "Carreras Desactivadas";
       this.listarCarrerasDes(1, "");
     },
+    abrirModalChangeNivel: function abrirModalChangeNivel() {
+      var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      var me = this;
+      var el = document.body;
+      el.classList.add("abrirModal");
+      me.nivelByAlumno = item.nivel_academico_id;
+      me.estudiante_selected = item.id;
+      $("#nivelAcademico option:contains(" + item.nivel_academico_id + ")").attr("selected", true);
+      me.modalNivel = 1;
+    },
+    cerrarModalChangeNivel: function cerrarModalChangeNivel() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      /* $('#nivelAcademico').empty(); */
+      this.nivelByEstudiante = 0;
+      this.estudiante_selected = 0;
+      this.modalNivel = 0;
+    },
     cerrarModal: function cerrarModal() {
       var el = document.body;
       el.classList.remove("abrirModal");
@@ -94198,9 +94455,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.modalId2 = 0;
     },
     desactivarCarrera: function desactivarCarrera(id) {
-      var _this = this;
+      var _this2 = this;
 
-      var urlDesactivarCarrera = route('desactivarCarrera', { "id": id });
+      var urlDesactivarCarrera = route('desactivarCarrera', {
+        "id": id
+      });
       swal({
         title: "Esta seguro de desactivar esta Carrera?",
         type: "question",
@@ -94215,7 +94474,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this;
+          var me = _this2;
           me.loadSpinner = 1;
           axios.put(urlDesactivarCarrera).then(function (response) {
             me.listarCarreras(1, "");
@@ -94231,9 +94490,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     activarCarrera: function activarCarrera(id) {
-      var _this2 = this;
+      var _this3 = this;
 
-      var urlActivarcarrera = route('activarCarrera', { "id": id });
+      var urlActivarcarrera = route('activarCarrera', {
+        "id": id
+      });
       swal({
         title: "Esta seguro de activar esta Carrera?",
         type: "question",
@@ -94248,7 +94509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this2;
+          var me = _this3;
           me.loadSpinner = 1;
           axios.put(urlActivarcarrera).then(function (response) {
             me.listarCarrerasDes(1, "");
@@ -94266,8 +94527,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     actualizarCarrera: function actualizarCarrera() {
       var me = this;
-      var urlActualizar = route('actualizarCarrera', { "id": me.car_id, "nombre": me.car });
-      var url = route('validateCarrera', { "nombre": me.car });
+      var urlActualizar = route('actualizarCarrera', {
+        "id": me.car_id,
+        "nombre": me.car
+      });
+      var url = route('validateCarrera', {
+        "nombre": me.car
+      });
       me.loadSpinner = 1;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -94325,6 +94591,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-lg-12 col-md-12" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm.loadSpinner == 1
+        ? _c("div", { staticClass: "col-md-12 loading text-center" })
+        : _vm._e()
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "container col-md-12", attrs: { id: "tabs" } }, [
       _c("div", { staticClass: "tabs" }, [
         _c(
@@ -94371,6 +94643,7 @@ var render = function() {
               [
                 _c("br"),
                 _c("br"),
+                _vm._v(" "),
                 _c("h2", { staticClass: "text-left font-weight-bold" }, [
                   _vm._v("Listado de carreras activas")
                 ]),
@@ -94434,14 +94707,6 @@ var render = function() {
                             )
                           ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _vm.loadSpinner == 1
-                          ? _c("div", {
-                              staticClass: "col-md-12 loading text-center"
-                            })
-                          : _vm._e()
                       ]),
                       _vm._v(" "),
                       _c(
@@ -94923,6 +95188,7 @@ var render = function() {
                                 )
                               ]
                             ),
+                            _vm._v(" "),
                             _c("br"),
                             _vm._v(" "),
                             _c(
@@ -95216,10 +95482,542 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.activetab === 2
-          ? _c("div", {
-              staticClass: "tabcontent",
-              staticStyle: { "background-color": "#fff" }
-            })
+          ? _c(
+              "div",
+              {
+                staticClass: "tabcontent",
+                staticStyle: { "background-color": "#fff" }
+              },
+              [
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("h2", { staticClass: "text-left font-weight-bold" }, [
+                  _vm._v("Listado de alumnos en el sistema")
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8" },
+                        [
+                          _c(
+                            "v-select",
+                            {
+                              attrs: {
+                                options: _vm.arrayCarrerasToSelect,
+                                placeholder:
+                                  "Seleccione Una Carrera Para ver el listado de estudiantes"
+                              },
+                              model: {
+                                value: _vm.carrera_selected,
+                                callback: function($$v) {
+                                  _vm.carrera_selected = $$v
+                                },
+                                expression: "carrera_selected"
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { slot: "no-options" },
+                                  slot: "no-options"
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                           No hay datos disponibles\r\n                           "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-4" },
+                        [
+                          _c(
+                            "v-select",
+                            {
+                              attrs: {
+                                options: _vm.arrayNiveles,
+                                placeholder: "Seleccione nivel academico"
+                              },
+                              model: {
+                                value: _vm.nivelSelected,
+                                callback: function($$v) {
+                                  _vm.nivelSelected = $$v
+                                },
+                                expression: "nivelSelected"
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { slot: "no-options" },
+                                  slot: "no-options"
+                                },
+                                [_vm._v("No hay datos disponibles")]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          (_vm.carrera_selected != 0 &&
+                            _vm.nivelSelected == 0) ||
+                          _vm.nivelSelected == null
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("Seleccione nivel academico")
+                              ])
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm.carrera_selected != 0 &&
+                  _vm.carrera_selected != null &&
+                  _vm.nivelSelected != null
+                    ? _c(
+                        "div",
+                        { staticClass: "col-md-12 col-sm-12 col-lg-12" },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-5" },
+                              [
+                                _c("mdc-textfield", {
+                                  staticClass: "col-md-12",
+                                  staticStyle: { "margin-left": "-10px" },
+                                  attrs: {
+                                    type: "text",
+                                    label: "Nombre del estudiante"
+                                  },
+                                  on: {
+                                    keyup: function($event) {
+                                      _vm.getAlumnos(1, _vm.buscarAlumno)
+                                    }
+                                  },
+                                  model: {
+                                    value: _vm.buscarAlumno,
+                                    callback: function($$v) {
+                                      _vm.buscarAlumno = $$v
+                                    },
+                                    expression: "buscarAlumno"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _vm.nivelSelected != null && _vm.nivelSelected != 0
+                              ? _c("div", { staticClass: "col-md-6" }, [
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "alert alert-primary font-weight-bold",
+                                      staticStyle: { "border-radius": "8px" },
+                                      attrs: { role: "alert" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n                           Carrera: " +
+                                          _vm._s(_vm.carrera_selected.label) +
+                                          " - Nivel: " +
+                                          _vm._s(_vm.nivelSelected.label) +
+                                          "\r\n                        "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.nivelSelected != null && _vm.nivelSelected != 0
+                              ? _c(
+                                  "div",
+                                  { staticClass: "col-md-1 text-center" },
+                                  [_c("br"), _vm._m(3)]
+                                )
+                              : _vm._e()
+                          ])
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.carrera_selected != 0 &&
+                  _vm.carrera_selected != null &&
+                  _vm.nivelSelected != null
+                    ? _c(
+                        "div",
+                        { staticClass: "col-md-12 col-lg-12 col-sm-12" },
+                        [
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "table table-striped table-bordered table-mc-light-blue"
+                              },
+                              [
+                                _vm._m(4),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(_vm.arrayEstudiantes, function(item) {
+                                    return _c("tr", { key: item.id }, [
+                                      _c("td", {
+                                        domProps: {
+                                          textContent: _vm._s(item.codCarnet)
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("td", {
+                                        domProps: {
+                                          textContent: _vm._s(
+                                            item.nombre + " " + item.apellido
+                                          )
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("td", {
+                                        staticClass: "text-left",
+                                        domProps: {
+                                          textContent: _vm._s(
+                                            item.nivel_academico_id == 1
+                                              ? "Primer Año"
+                                              : "Segundo Año"
+                                          )
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "btn-sm button blue ",
+                                            attrs: {
+                                              type: "button",
+                                              "data-toggle": "tooltip",
+                                              title: "Cambiar Nivel Académico"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.abrirModalChangeNivel(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-bookmark-check"
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._m(5, true)
+                                      ])
+                                    ])
+                                  })
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("nav", [
+                            _c(
+                              "ul",
+                              { staticClass: "pagination" },
+                              [
+                                _vm.paginationEstudiantes.current_page > 1
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "page-link font-weight-bold",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.cambiarPaginaEstudiante(
+                                                _vm.paginationEstudiantes
+                                                  .current_page - 1,
+                                                _vm.buscarAlumno
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Ant")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumberEstudiante, function(
+                                  page
+                                ) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: page,
+                                      staticClass: "page-item",
+                                      class: [
+                                        page == _vm.isActivedEstudiante
+                                          ? "active"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("a", {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        domProps: { textContent: _vm._s(page) },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.cambiarPaginaEstudiante(
+                                              page,
+                                              _vm.buscarAlumno
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                }),
+                                _vm.paginationEstudiantes.current_page <
+                                _vm.paginationEstudiantes.last_page
+                                  ? _c("li", { staticClass: "page-item" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "page-link font-weight-bold",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.cambiarPaginaEstudiante(
+                                                _vm.paginationEstudiantes
+                                                  .current_page + 1,
+                                                _vm.buscarAlumno
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Sig")]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("small", {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.arrayEstudiantes.length != 0,
+                                      expression: "arrayEstudiantes.length != 0"
+                                    }
+                                  ],
+                                  staticClass: "text-muted pagination-count",
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      "(Mostrando " +
+                                        _vm.arrayEstudiantes.length +
+                                        " de " +
+                                        _vm.paginationEstudiantes.total +
+                                        " registros)"
+                                    )
+                                  }
+                                })
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm.arrayEstudiantes.length == 0
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "alert alert-warning",
+                                  attrs: { role: "alert" }
+                                },
+                                [
+                                  _c(
+                                    "h4",
+                                    {
+                                      staticClass:
+                                        "font-weight-bold text-center"
+                                    },
+                                    [_vm._v("No hay datos registrados")]
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      class: { mostrar: _vm.modalNivel },
+                      attrs: {
+                        role: "dialog",
+                        "aria-labelledby": "exampleModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-dialog modal-md" }, [
+                        _c("div", { staticClass: "modal-content" }, [
+                          _c("div", { staticClass: "modal-header" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "modal-title text-white" },
+                              [_vm._v("Edición de nivel academico")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "close",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal",
+                                  "aria-label": "Close"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.cerrarModalChangeNivel()
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "text-white",
+                                    attrs: { "aria-hidden": "true" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("div", { staticClass: "select" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass: "select-text",
+                                      attrs: {
+                                        width: "100%",
+                                        id: "nivelAcademico"
+                                      },
+                                      on: { change: _vm.activateButton }
+                                    },
+                                    _vm._l(_vm.arrayNiveles, function(nivel) {
+                                      return _c("option", {
+                                        key: nivel.value,
+                                        domProps: {
+                                          selected:
+                                            nivel.value ==
+                                            _vm.nivelSelected.value,
+                                          value: nivel.value,
+                                          textContent: _vm._s(nivel.label)
+                                        }
+                                      })
+                                    })
+                                  ),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _c("label", { staticClass: "select-label" }, [
+                                    _vm._v("Seleccione Nivel Académico")
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("br")
+                              ]),
+                              _vm._v(" "),
+                              _c("br")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-footer" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "button red",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.cerrarModalChangeNivel()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "mdi  mdi-close-box"
+                                    }),
+                                    _vm._v(" Cancelar")
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "button blue disabled",
+                                    attrs: {
+                                      type: "button",
+                                      id: "btnChangeNivel",
+                                      disabled: ""
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.changeNivelAcademico()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "mdi mdi-content-save"
+                                    }),
+                                    _vm._v(" Guardar Datos")
+                                  ]
+                                )
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
           : _vm._e()
       ]),
       _vm._v(" "),
@@ -95286,6 +96084,49 @@ var staticRenderFns = [
         )
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "button red", staticStyle: { top: "-8px" } },
+      [_c("i", { staticClass: "mdi mdi-delete-empty" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Código")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre Estudiante")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [_vm._v("Nivel Académico")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn-sm button secondary",
+        attrs: {
+          type: "button",
+          "data-toggle": "tooltip",
+          title: "Desactivar Alumno"
+        }
+      },
+      [_c("i", { staticClass: "mdi mdi-delete-variant" })]
+    )
   }
 ]
 render._withStripped = true

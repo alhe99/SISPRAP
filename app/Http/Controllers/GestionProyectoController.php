@@ -256,9 +256,9 @@ class GestionProyectoController extends Controller
 
                 if($request->horasRea == $e->proceso[0]->pivot->num_horas){
                     $e->no_proyectos = 0;
-                    if ($e->nivel_academico_id == 1) {
+                   /*  if ($e->nivel_academico_id == 1) {
                         $e->nivel_academico_id = 2;
-                    }
+                    } */
                     if($gp->tipo_gp == 1){
                         $e->fecha_fin_ss = $request->fechaFin;
 

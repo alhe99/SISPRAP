@@ -59533,7 +59533,7 @@ var render = function() {
           },
           [
             _vm._v(
-              "\r\n\t\t   Puedes realizar tus dudas sobre el proyecto directamente con la persona encargada de tus procesos.\r\n\t    "
+              "\r\n\t\t   Puedes consultar tus dudas sobre el proyecto directamente con la persona encargada de tus procesos.\r\n\t    "
             )
           ]
         )

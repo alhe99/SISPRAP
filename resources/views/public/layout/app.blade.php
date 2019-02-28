@@ -104,11 +104,11 @@
 		<div class="FLOAT BUTTON" id="div-fab">
 			<div class="contenedorBF">
 				<button id="btn-fab" class="btn BF1 tex-center" style="border-radius: 50px; cursor: pointer;">&nbsp;<i class="fas fa-plus fa">&nbsp;
-					{{-- @if (count(Auth::user()->estudiante->preinscripciones) != 0)
+					@if (count(Auth::user()->estudiante->preinscripciones) != 0)
 					@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
 					<span class="badge badge-primary">1</span>
 					@endif
-					@endif --}}
+					@endif
 				       <span class="badge badge-primary span-chat" id="span-ppal"></span>
 				</i>
 			</button>
@@ -120,11 +120,11 @@
 				<span class="badge badge-primary span-chat"></span>
 			</button>
 			<button class="btn BF4 hint--left" data-hint="Notificaciones" data-toggle="modal" data-target=".docs-example-modal-lg" style="border-radius: 50px; cursor: pointer;"><i class="far fa-bell fa">
-				{{-- @if (count(Auth::user()->estudiante->preinscripciones) != 0)
+				@if (count(Auth::user()->estudiante->preinscripciones) != 0)
 				@if (Auth::user()->estudiante->preinscripciones[0]->pivot->estado == 'F')
 				<span class="badge badge-danger">1</span>
 				@endif
-				@endif --}}
+				@endif
 			</i>
 		        </button>
 	</div>

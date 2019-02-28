@@ -36,7 +36,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">FUNCIONES {{env('APP_YEAR')}}</li>
+                <li class="nav-small-cap">FUNCIONES</li>
                 <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-file-check"></i><span
                     class="hide-menu">Control Proyectos</span></a>
                     <ul aria-expanded="false" class="collapse ">
@@ -99,9 +99,9 @@
                         class="hide-menu"> Usuarios</span></button>
                     </li>
                     @endif
-                    <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
+{{--                     <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                         class="hide-menu"> Copias de seguridad</span></button>
-                    </li>
+                    </li> --}}
                     <li><button type="button" class="btn btn-link btn-field"><i class="mdi mdi-alert-circle btn-i" style="color: #FF0000"></i>
                         <span class="hide-menu" style="color: #B0BEC5;"> Manual de Usuario</span></button>
                     </li>

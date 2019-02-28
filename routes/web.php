@@ -104,8 +104,11 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 //ESTUDIANTE
 Route::get('stundentById/{id}','EstudianteController@getStudentById')->name('getFullInfoEstudiante');
-//Route::post('admin/registrar', 'EstudianteController@store');
+Route::get('/estudiantes/otherOptions', 'EstudianteController@getEstudianteToOtherOpctions')->name('getEstudianteToOtherOpctions');
 Route::get('stundentByCarrer','EstudianteController@getStudensByCarrerAndProcess')->name('getEstudiantesByCarrera');
+Route::post('/estudiante/changeNivel','EstudianteController@changeNivel')->name('changeNivelToEstudiante');
+Route::post('/estudiante/desactivar','EstudianteController@desactivarEstudiante')->name('desactivarEstudiante');
+Route::post('/estudiante/activar','EstudianteController@activarEstudiante')->name('activarEstudiante');
 ///
 Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepcion')->name('getEstudiantesToRecepcion');
 //RECEPCION ESTUDIANTE
@@ -173,6 +176,7 @@ Route::post('/user/messages/admin/setRead/{usuario_id}', 'MensajeController@setR
 Route::post('/user/messages/setRead', 'MensajeController@setReadMessageEstudent')->name('setReadMessageEstudent');
 Route::get('/user/getMessages/count', 'MensajeController@getCountOfUnreadMessages')->name('getCountOfUnreadMessages');
 Route::post('/user/messages/delete/{usuario_id}', 'MensajeController@deleteConversation')->name('deleteConversation');
+
 
 Route::get('/test', function () {
 
