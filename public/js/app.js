@@ -93786,7 +93786,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* RESET */\n* {\nbox-sizing: border-box;\nmargin: 0;\npadding: 0;\n}\n.container {\nmargin: 8px auto;\nfont-family: Arial, Helvetica, sans-serif;\nfont-size: 0.9em;\ncolor: rgb(108, 108, 108);\n}\n/* Style the tabs */\n.tabs a {\nfloat: left;\ncursor: pointer;\npadding: 12px 24px;\ntransition: background-color 0.2s;\nborder: 1px solid #ccc;\nborder-right: none;\nbackground-color: #f1f1f1;\nborder-radius: 10px 10px 0 0;\nfont-weight: bold;\n}\n.tabs a:last-child {\nborder-right: 1px solid #ccc;\n}\n.tabs a:hover {\nbackground-color: #aaa;\ncolor: rgb(54, 54, 54);\n}\n\n/* Styling for active tab */\n.tabs a.active {\nbackground-color: rgb(255, 255, 255);\ncolor: rgb(108, 108, 108);\nborder-bottom: 2px solid #fff;\ncursor: default;\n}\n\n/* Style the tab content */\n.tabcontent {\npadding: 30px;\nborder: 1px solid #ccc;\nborder-radius: 10px;\nbox-shadow: 3px 3px 6px #e1e1e1;\nbackground-color: #f1f1f1;\n}\n/* select starting stylings ------------------------------*/\n.select {\nfont-family:\n'Roboto','Helvetica','Arial',sans-serif;\nposition: relative;\nwidth: 100%;\n}\n.select-text {\nposition: relative;\nfont-family: inherit;\nbackground-color: transparent;\nwidth: 100%;\npadding: 25px 10px 10px 0;\nfont-size: 18px;\nborder-radius: 0;\nborder: none;\nborder-bottom: 1px solid rgba(0,0,0, 0.12);\n}\n\n/* Remove focus */\n.select-text:focus {\noutline: none;\nborder-bottom: 1px solid rgba(0,0,0, 0);\n}\n\n/* Use custom arrow */\n.select .select-text {\nappearance: none;\n-webkit-appearance:none\n}\n.select:after {\nposition: absolute;\ntop: 18px;\nright: 10px;\n/* Styling the down arrow */\nwidth: 0;\nheight: 0;\npadding: 0;\ncontent: '';\nborder-left: 6px solid transparent;\nborder-right: 6px solid transparent;\nborder-top: 6px solid rgba(0, 0, 0, 0.12);\npointer-events: none;\n}\n\n\n/* LABEL ======================================= */\n.select-label {\ncolor: rgba(0,0,0, 0.26);\nfont-size: 18px;\nfont-weight: normal;\nposition: absolute;\npointer-events: none;\nleft: 0;\ntop: 10px;\ntransition: 0.2s ease all;\n}\n\n/* active state */\n.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {\ncolor: #2F80ED;\ntop: 0px;\ntransition: 0.2s ease all;\nfont-size: 14px;\n}\n\n/* BOTTOM BARS ================================= */\n.select-bar {\nposition: relative;\ndisplay: block;\nwidth: 100%;\n}\n.select-bar:before, .select-bar:after {\ncontent: '';\nheight: 2px;\nwidth: 0;\nbottom: 1px;\nposition: absolute;\nbackground: #2F80ED;\ntransition: 0.2s ease all;\n}\n.select-bar:before {\nleft: 50%;\n}\n.select-bar:after {\nright: 50%;\n}\n\n/* active state */\n.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {\nwidth: 50%;\n}\n\n/* HIGHLIGHTER ================================== */\n.select-highlight {\nposition: absolute;\nheight: 60%;\nwidth: 100px;\ntop: 25%;\nleft: 0;\npointer-events: none;\nopacity: 0.5;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* RESET */\n* {\nbox-sizing: border-box;\nmargin: 0;\npadding: 0;\n}\n.container {\nmargin: 8px auto;\nfont-family: Arial, Helvetica, sans-serif;\nfont-size: 0.9em;\ncolor: rgb(108, 108, 108);\n}\n/* Style the tabs */\n.tabs a {\nfloat: left;\ncursor: pointer;\npadding: 12px 24px;\ntransition: background-color 0.2s;\nborder: 1px solid #ccc;\nborder-right: none;\nbackground-color: #f1f1f1;\nborder-radius: 10px 10px 0 0;\nfont-weight: bold;\n}\n.tabs a:last-child {\nborder-right: 1px solid #ccc;\n}\n.tabs a:hover {\nbackground-color: #aaa;\ncolor: rgb(54, 54, 54);\n}\n\n/* Styling for active tab */\n.tabs a.active {\nbackground-color: rgb(255, 255, 255);\ncolor: rgb(108, 108, 108);\nborder-bottom: 2px solid #fff;\ncursor: default;\n}\n\n/* Style the tab content */\n.tabcontent {\npadding: 30px;\nborder: 1px solid #ccc;\nborder-radius: 10px;\nbox-shadow: 3px 3px 6px #e1e1e1;\nbackground-color: #f1f1f1;\n}\n/* select starting stylings ------------------------------*/\n.select {\nfont-family:\n'Roboto','Helvetica','Arial',sans-serif;\nposition: relative;\nwidth: 100%;\n}\n.select-text {\nposition: relative;\nfont-family: inherit;\nbackground-color: transparent;\nwidth: 100%;\npadding: 25px 10px 10px 0;\nfont-size: 18px;\nborder-radius: 0;\nborder: none;\nborder-bottom: 1px solid rgba(0,0,0, 0.12);\n}\n\n/* Remove focus */\n.select-text:focus {\noutline: none;\nborder-bottom: 1px solid rgba(0,0,0, 0);\n}\n\n/* Use custom arrow */\n.select .select-text {\nappearance: none;\n-webkit-appearance:none\n}\n.select:after {\nposition: absolute;\ntop: 18px;\nright: 10px;\n/* Styling the down arrow */\nwidth: 0;\nheight: 0;\npadding: 0;\ncontent: '';\nborder-left: 6px solid transparent;\nborder-right: 6px solid transparent;\nborder-top: 6px solid rgba(0, 0, 0, 0.12);\npointer-events: none;\n}\n\n\n/* LABEL ======================================= */\n.select-label {\ncolor: rgba(0,0,0, 0.26);\nfont-size: 18px;\nfont-weight: normal;\nposition: absolute;\npointer-events: none;\nleft: 0;\ntop: 10px;\ntransition: 0.2s ease all;\n}\n\n/* active state */\n.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {\ncolor: #2F80ED;\ntop: 0px;\ntransition: 0.2s ease all;\nfont-size: 14px;\n}\n\n/* BOTTOM BARS ================================= */\n.select-bar {\nposition: relative;\ndisplay: block;\nwidth: 100%;\n}\n.select-bar:before, .select-bar:after {\ncontent: '';\nheight: 2px;\nwidth: 0;\nbottom: 1px;\nposition: absolute;\nbackground: #2F80ED;\ntransition: 0.2s ease all;\n}\n.select-bar:before {\nleft: 50%;\n}\n.select-bar:after {\nright: 50%;\n}\n\n/* active state */\n.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {\nwidth: 50%;\n}\n\n/* HIGHLIGHTER ================================== */\n.select-highlight {\nposition: absolute;\nheight: 60%;\nwidth: 100px;\ntop: 25%;\nleft: 0;\npointer-events: none;\nopacity: 0.5;\n}\n", ""]);
 
 // exports
 
@@ -93797,6 +93797,87 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -94150,6 +94231,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         from: 0,
         to: 0
       },
+      paginationEstudiantesDesactivados: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
       offset: 3,
       nivelSelected: 0,
       arrayNiveles: [{
@@ -94163,7 +94252,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       arrayEstudiantes: [],
       modalNivel: 0,
       nivelByEstudiante: 0,
-      estudiante_selected: 0
+      estudiante_selected: 0,
+      nombre_estudiante_selected: '',
+      modalEstudiantesDesactivados: 0,
+      arrayEstudiantesDesactivados: [],
+      buscarEstudianteDesactivados: ''
     };
   },
 
@@ -94173,6 +94266,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     isActivedEstudiante: function isActivedEstudiante() {
       return this.paginationEstudiantes.current_page;
+    },
+    isActivedEstudianteDesactivados: function isActivedEstudianteDesactivados() {
+      return this.paginationEstudiantesDesactivados.current_page;
     },
     isActivedID: function isActivedID() {
       return this.paginationID.current_page;
@@ -94207,6 +94303,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var to = from + this.offset * 2;
       if (to >= this.paginationEstudiantes.last_page) {
         to = this.paginationEstudiantes.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberEstudianteDesactivados: function pagesNumberEstudianteDesactivados() {
+      if (!this.paginationEstudiantesDesactivados.to) {
+        return [];
+      }
+      var from = this.paginationEstudiantesDesactivados.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.paginationEstudiantesDesactivados.last_page) {
+        to = this.paginationEstudiantesDesactivados.last_page;
       }
       var pagesArray = [];
       while (from <= to) {
@@ -94270,6 +94385,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
+    getAlumnosDesactivados: function getAlumnosDesactivados(page, buscar) {
+      var me = this;
+      me.loadSpinner = 1;
+      var url = route('getEstudianteToOtherOpctionsDesactivados', {
+        'carrera_id': me.carrera_selected.value,
+        'nivelAcad': me.nivelSelected.value,
+        'page': page,
+        'buscar': buscar
+      });
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        me.arrayEstudiantesDesactivados = respuesta.estudiantes.data;
+        me.paginationEstudiantesDesactivados = respuesta.pagination;
+        me.loadSpinner = 0;
+      }).catch(function (error) {
+        me.loadSpinner = 0;
+        console.log(error);
+      });
+    },
     changeNivelAcademico: function changeNivelAcademico() {
       var _this = this;
 
@@ -94319,6 +94453,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         me.arrayCarrerasToSelect = respuesta;
       }).catch(function (error) {
         console.log(error);
+      });
+    },
+    desactivarEstudiante: function desactivarEstudiante(estudiante_id, estudiante_nombre) {
+      var _this2 = this;
+
+      swal({
+        title: "Esta seguro de desactivar a " + estudiante_nombre,
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this2;
+          var url = route('desactivarEstudiante', estudiante_id);
+          me.loadSpinner = 1;
+          axios.put(url).then(function (response) {
+            me.getAlumnos(1, '');
+            swal("Desactivado!", "El Registro ha sido desactivado con éxito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
+      });
+    },
+    activarEstudiante: function activarEstudiante(estudiante_id, estudiante_nombre) {
+      var _this3 = this;
+
+      swal({
+        title: "Esta seguro de activar a " + estudiante_nombre,
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          var me = _this3;
+          var url = route('activarEstudiante', estudiante_id);
+          me.loadSpinner = 1;
+          axios.post(url).then(function (response) {
+            me.getAlumnos(1, '');
+            me.getAlumnosDesactivados(1, '');
+            swal("Activado!", "El Registro ha sido activado con éxito", "success");
+            me.loadSpinner = 0;
+          }).catch(function (error) {
+            me.loadSpinner = 0;
+            console.log(error);
+          });
+        } else if (
+        // Esto lo hace cuando se descativa el registro
+        result.dismiss === swal.DismissReason.cancel) {}
       });
     },
 
@@ -94376,6 +94577,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       me.paginationEstudiantes.current_page = page;
       me.getAlumnos(page, buscar);
     },
+    cambiarPaginaEstudianteDesactivados: function cambiarPaginaEstudianteDesactivados(page, buscar) {
+      var me = this;
+      me.paginationEstudiantesDesactivados.current_page = page;
+      me.getAlumnosDesactivados(page, buscar);
+    },
     cambiarPaginaDes: function cambiarPaginaDes(page, buscar) {
       var me = this;
       me.paginationID.current_page = page;
@@ -94422,6 +94628,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.tituloModal = "Carreras Desactivadas";
       this.listarCarrerasDes(1, "");
     },
+    abrirModalEstudiantesDesactivados: function abrirModalEstudiantesDesactivados() {
+      var el = document.body;
+      el.classList.add("abrirModal");
+      this.modalEstudiantesDesactivados = 2;
+      this.getAlumnosDesactivados(1, "");
+    },
+    cerrarModalEstudiantesDesactivados: function cerrarModalEstudiantesDesactivados() {
+      var el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalEstudiantesDesactivados = 0;
+      this.arrayEstudiantesDesactivados = [];
+      this.paginationEstudiantesDesactivados = {};
+    },
     abrirModalChangeNivel: function abrirModalChangeNivel() {
       var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
@@ -94430,6 +94649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       el.classList.add("abrirModal");
       me.nivelByAlumno = item.nivel_academico_id;
       me.estudiante_selected = item.id;
+      me.nombre_estudiante_selected = item.nombre + " " + item.apellido;
       $("#nivelAcademico option:contains(" + item.nivel_academico_id + ")").attr("selected", true);
       me.modalNivel = 1;
     },
@@ -94455,7 +94675,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.modalId2 = 0;
     },
     desactivarCarrera: function desactivarCarrera(id) {
-      var _this2 = this;
+      var _this4 = this;
 
       var urlDesactivarCarrera = route('desactivarCarrera', {
         "id": id
@@ -94474,11 +94694,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this2;
+          var me = _this4;
           me.loadSpinner = 1;
           axios.put(urlDesactivarCarrera).then(function (response) {
             me.listarCarreras(1, "");
-            swal("Desactivado!", "El Registro ha sido desactivado con exito", "success");
+            swal("Desactivado!", "El Registro ha sido desactivado con éxito", "success");
             me.loadSpinner = 0;
           }).catch(function (error) {
             me.loadSpinner = 0;
@@ -94490,7 +94710,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     activarCarrera: function activarCarrera(id) {
-      var _this3 = this;
+      var _this5 = this;
 
       var urlActivarcarrera = route('activarCarrera', {
         "id": id
@@ -94509,7 +94729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reverseButtons: true
       }).then(function (result) {
         if (result.value) {
-          var me = _this3;
+          var me = _this5;
           me.loadSpinner = 1;
           axios.put(urlActivarcarrera).then(function (response) {
             me.listarCarrerasDes(1, "");
@@ -95651,7 +95871,25 @@ var render = function() {
                               ? _c(
                                   "div",
                                   { staticClass: "col-md-1 text-center" },
-                                  [_c("br"), _vm._m(3)]
+                                  [
+                                    _c("br"),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "button red",
+                                        staticStyle: { top: "-8px" },
+                                        on: {
+                                          click:
+                                            _vm.abrirModalEstudiantesDesactivados
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "mdi mdi-delete-empty"
+                                        })
+                                      ]
+                                    )
+                                  ]
                                 )
                               : _vm._e()
                           ])
@@ -95676,7 +95914,7 @@ var render = function() {
                                   "table table-striped table-bordered table-mc-light-blue"
                               },
                               [
-                                _vm._m(4),
+                                _vm._m(3),
                                 _vm._v(" "),
                                 _c(
                                   "tbody",
@@ -95731,7 +95969,32 @@ var render = function() {
                                           ]
                                         ),
                                         _vm._v(" "),
-                                        _vm._m(5, true)
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn-sm button secondary",
+                                            attrs: {
+                                              type: "button",
+                                              "data-toggle": "tooltip",
+                                              title: "Desactivar Alumno"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.desactivarEstudiante(
+                                                  item.id,
+                                                  item.nombre
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "mdi mdi-delete-variant"
+                                            })
+                                          ]
+                                        )
                                       ])
                                     ])
                                   })
@@ -95892,7 +96155,17 @@ var render = function() {
                             _c(
                               "h4",
                               { staticClass: "modal-title text-white" },
-                              [_vm._v("Edición de nivel academico")]
+                              [
+                                _vm._v(
+                                  "Nivel académico de " +
+                                    _vm._s(
+                                      _vm._f("truncate")(
+                                        _vm.nombre_estudiante_selected,
+                                        25
+                                      )
+                                    )
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -96014,6 +96287,484 @@ var render = function() {
                         ])
                       ])
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      class: { mostrar: _vm.modalEstudiantesDesactivados },
+                      attrs: {
+                        role: "dialog",
+                        "aria-labelledby": "exampleModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog modal-lg",
+                          staticStyle: { "min-width": "950px" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _c("div", { staticClass: "modal-header" }, [
+                              _c(
+                                "h4",
+                                { staticClass: "modal-title text-white" },
+                                [
+                                  _vm._v(
+                                    "Estudiantes desactivados de " +
+                                      _vm._s(_vm.carrera_selected.label) +
+                                      " - " +
+                                      _vm._s(_vm.nivelSelected.label)
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "close",
+                                  attrs: {
+                                    type: "button",
+                                    "data-dismiss": "modal",
+                                    "aria-label": "Close"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.cerrarModalEstudiantesDesactivados()
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "text-white",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [_vm._v("×")]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "bmd-form-group bmd-collapse-inline pull-xs-right"
+                                },
+                                [
+                                  _vm._m(4),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "collapse",
+                                      attrs: { id: "collapse-search" }
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.buscarEstudianteDesactivados,
+                                            expression:
+                                              "buscarEstudianteDesactivados"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          "data-toggle": "tooltip",
+                                          title: "Buscar Registros",
+                                          type: "text",
+                                          id: "search",
+                                          placeholder:
+                                            "Ingrese Nombre del estudiante"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.buscarEstudianteDesactivados
+                                        },
+                                        on: {
+                                          keyup: function($event) {
+                                            _vm.getAlumnosDesactivados(
+                                              1,
+                                              _vm.buscarEstudianteDesactivados
+                                            )
+                                          },
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.buscarEstudianteDesactivados =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "col-md-12 col-lg-12 col-sm-12"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "table-responsive" },
+                                    [
+                                      _c(
+                                        "table",
+                                        {
+                                          staticClass:
+                                            "table table-striped table-bordered table-mc-light-blue",
+                                          attrs: { id: "myTable" }
+                                        },
+                                        [
+                                          _vm._m(5),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tbody",
+                                            _vm._l(
+                                              _vm.arrayEstudiantesDesactivados,
+                                              function(estudiante) {
+                                                return _c(
+                                                  "tr",
+                                                  { key: estudiante.id },
+                                                  [
+                                                    _c("td", {
+                                                      domProps: {
+                                                        textContent: _vm._s(
+                                                          estudiante.codCarnet
+                                                        )
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("td", {
+                                                      domProps: {
+                                                        textContent: _vm._s(
+                                                          estudiante.nombre +
+                                                            "" +
+                                                            estudiante.apellido
+                                                        )
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("td", {
+                                                      staticClass: "text-left",
+                                                      domProps: {
+                                                        textContent: _vm._s(
+                                                          estudiante.nivel_academico_id ==
+                                                          1
+                                                            ? "Primer Año"
+                                                            : "Segundo Año"
+                                                        )
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [
+                                                        [
+                                                          _c("h4", [
+                                                            estudiante.estado ==
+                                                            0
+                                                              ? _c(
+                                                                  "span",
+                                                                  {
+                                                                    staticClass:
+                                                                      "badge badge-pill badge-info"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Desactivado"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ])
+                                                        ]
+                                                      ],
+                                                      2
+                                                    ),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "button blue",
+                                                            attrs: {
+                                                              type: "button",
+                                                              "data-toggle":
+                                                                "tooltip",
+                                                              title:
+                                                                "Desactivar estudiante"
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.activarEstudiante(
+                                                                  estudiante.id,
+                                                                  estudiante.nombre
+                                                                )
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "mdi mdi-restart"
+                                                            })
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              }
+                                            )
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("nav", [
+                                        _c(
+                                          "ul",
+                                          { staticClass: "pagination" },
+                                          [
+                                            _vm
+                                              .paginationEstudiantesDesactivados
+                                              .current_page > 1
+                                              ? _c(
+                                                  "li",
+                                                  { staticClass: "page-item" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "page-link font-weight-bold",
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            _vm.cambiarPaginaEstudianteDesactivados(
+                                                              _vm
+                                                                .paginationEstudiantesDesactivados
+                                                                .current_page -
+                                                                1,
+                                                              _vm.buscarEstudianteDesactivados
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v("Ant")]
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _vm._l(
+                                              _vm.pagesNumberEstudianteDesactivados,
+                                              function(page) {
+                                                return _c(
+                                                  "li",
+                                                  {
+                                                    key: page,
+                                                    staticClass: "page-item",
+                                                    class: [
+                                                      page ==
+                                                      _vm.isActivedEstudianteDesactivados
+                                                        ? "active"
+                                                        : ""
+                                                    ]
+                                                  },
+                                                  [
+                                                    _c("a", {
+                                                      staticClass: "page-link",
+                                                      attrs: { href: "#" },
+                                                      domProps: {
+                                                        textContent: _vm._s(
+                                                          page
+                                                        )
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          $event.preventDefault()
+                                                          _vm.cambiarPaginaEstudianteDesactivados(
+                                                            page,
+                                                            _vm.buscarEstudianteDesactivados
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              }
+                                            ),
+                                            _vm
+                                              .paginationEstudiantesDesactivados
+                                              .current_page <
+                                            _vm
+                                              .paginationEstudiantesDesactivados
+                                              .last_page
+                                              ? _c(
+                                                  "li",
+                                                  { staticClass: "page-item" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "page-link font-weight-bold",
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            _vm.cambiarPaginaEstudianteDesactivados(
+                                                              _vm
+                                                                .paginationEstudiantesDesactivados
+                                                                .current_page +
+                                                                1,
+                                                              _vm.buscarEstudianteDesactivados
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v("Sig")]
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _c("small", {
+                                              directives: [
+                                                {
+                                                  name: "show",
+                                                  rawName: "v-show",
+                                                  value:
+                                                    _vm
+                                                      .arrayEstudiantesDesactivados
+                                                      .length != 0,
+                                                  expression:
+                                                    "arrayEstudiantesDesactivados.length != 0"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "text-muted pagination-count",
+                                              domProps: {
+                                                textContent: _vm._s(
+                                                  "(Mostrando " +
+                                                    _vm
+                                                      .arrayEstudiantesDesactivados
+                                                      .length +
+                                                    " de " +
+                                                    _vm
+                                                      .paginationEstudiantesDesactivados
+                                                      .total +
+                                                    " registros)"
+                                                )
+                                              }
+                                            })
+                                          ],
+                                          2
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "col-md-12 col-sm-12 col-lg-12"
+                                  },
+                                  [
+                                    _c("div", {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value:
+                                            _vm.arrayEstudiantesDesactivados
+                                              .length == 0,
+                                          expression:
+                                            "arrayEstudiantesDesactivados.length == 0"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "alert alert-primary h6 font-weight-bold text-center",
+                                      attrs: { role: "alert" },
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          "No se encontraron resultados o No hay registros"
+                                        )
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-footer" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c("div", { staticClass: "col-md-12" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "button red",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.cerrarModalEstudiantesDesactivados()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "mdi mdi-close-box"
+                                      }),
+                                      _vm._v(" Cancelar")
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
                   )
                 ])
               ]
@@ -96089,16 +96840,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "button red", staticStyle: { top: "-8px" } },
-      [_c("i", { staticClass: "mdi mdi-delete-empty" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-primary" }, [
       _c("tr", [
         _c("th", [_vm._v("Código")]),
@@ -96118,15 +96859,35 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn-sm button secondary",
+        staticClass: "btn bmd-btn-icon",
         attrs: {
-          type: "button",
-          "data-toggle": "tooltip",
-          title: "Desactivar Alumno"
+          for: "search",
+          "data-toggle": "collapse",
+          "data-target": "#collapse-search",
+          "aria-expanded": "false",
+          "aria-controls": "collapse-search"
         }
       },
-      [_c("i", { staticClass: "mdi mdi-delete-variant" })]
+      [_c("i", { staticClass: "mdi mdi-magnify" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Código")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre Estudiante")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [_vm._v("Nivel Académico")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
   }
 ]
 render._withStripped = true

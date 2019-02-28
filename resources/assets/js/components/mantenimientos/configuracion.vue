@@ -219,7 +219,7 @@
                         </div>
                      </div>
                      <div class="col-md-1 text-center" v-if="nivelSelected != null && nivelSelected != 0">
-                        <br><button class="button red" style="top: -8px;"><i class="mdi mdi-delete-empty"></i></button>
+                        <br><button class="button red" @click="abrirModalEstudiantesDesactivados" style="top: -8px;"><i class="mdi mdi-delete-empty"></i></button>
                      </div>
                   </div>
                </div>
@@ -242,7 +242,7 @@
                               <td class="text-left" v-text="item.nivel_academico_id == 1 ? 'Primer Año' : 'Segundo Año'"></td>
                               <td class="text-center">
                                  <button type="button" @click="abrirModalChangeNivel(item)" class="btn-sm button blue " data-toggle="tooltip" title="Cambiar Nivel Académico"><i class="mdi mdi-bookmark-check"></i></button>
-                                 <button type="button" class="btn-sm button secondary" data-toggle="tooltip" title="Desactivar Alumno"><i class="mdi mdi-delete-variant"></i></button>
+                                 <button type="button" @click="desactivarEstudiante(item.id,item.nombre)" class="btn-sm button secondary" data-toggle="tooltip" title="Desactivar Alumno"><i class="mdi mdi-delete-variant"></i></button>
                               </td>
                            </tr>
                         </tbody>
@@ -270,7 +270,7 @@
                   <div class="modal-dialog modal-md">
                      <div class="modal-content">
                         <div class="modal-header">
-                           <h4 class="modal-title text-white">Edición de nivel academico</h4>
+                           <h4 class="modal-title text-white">Nivel académico de {{nombre_estudiante_selected | truncate(25)}}</h4>
                            <button type="button" @click="cerrarModalChangeNivel()" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true" class="text-white">&times;</span>
                            </button>
@@ -301,6 +301,87 @@
                   </div>
                </div>
                <!--///////// FIN DE MODAL PARA EDITAR FECHA DE INCIO DE PROYECTO/////////-->
+              <!-- MODAL LISTADO DE ESTUDINTES DESACTIVADOS  -->
+               <div class="modal fade" :class="{'mostrar' : modalEstudiantesDesactivados }" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" style="min-width: 950px;">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h4 class="modal-title text-white">Estudiantes desactivados de {{carrera_selected.label}} - {{nivelSelected.label}}</h4>
+                           <button type="button" @click="cerrarModalEstudiantesDesactivados()" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true" class="text-white">&times;</span>
+                           </button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="bmd-form-group bmd-collapse-inline pull-xs-right">
+                              <button class="btn bmd-btn-icon" for="search" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
+                              <i class="mdi mdi-magnify"></i>
+                              </button>
+                              <span id="collapse-search" class="collapse">
+                              <input v-model="buscarEstudianteDesactivados" @keyup="getAlumnosDesactivados(1,buscarEstudianteDesactivados)" class="form-control" data-toggle="tooltip" title="Buscar Registros" type="text" id="search" placeholder="Ingrese Nombre del estudiante">
+                              </span>
+                           </div>
+                           <br>
+                           <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="table-responsive">
+                                 <table id="myTable" class="table table-striped table-bordered table-mc-light-blue">
+                                    <thead class="thead-primary">
+                                       <tr>
+                                            <th>Código</th>
+                                            <th>Nombre Estudiante</th>
+                                            <th class="text-left">Nivel Académico</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Acciones</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr v-for="estudiante in arrayEstudiantesDesactivados" :key="estudiante.id">
+                                          <td  v-text="estudiante.codCarnet"></td>
+                                          <td v-text="estudiante.nombre+''+estudiante.apellido"></td>
+                                          <td class="text-left" v-text="estudiante.nivel_academico_id == 1 ? 'Primer Año' : 'Segundo Año'"></td>
+                                          <td class="text-center">
+                                             <template>
+                                                <h4>
+                                                   <span v-if="estudiante.estado == 0" class="badge badge-pill badge-info">Desactivado</span>
+                                                </h4>
+                                             </template>
+                                          <td class="text-center">
+                                                <button type="button" @click="activarEstudiante(estudiante.id,estudiante.nombre)" class="button blue" data-toggle="tooltip" title="Desactivar estudiante"><i class="mdi mdi-restart"></i></button>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <nav>
+                                    <ul class="pagination">
+                                       <li class="page-item" v-if="paginationEstudiantesDesactivados.current_page > 1">
+                                          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaEstudianteDesactivados(paginationEstudiantesDesactivados.current_page -1, buscarEstudianteDesactivados)">Ant</a>
+                                       </li>
+                                       <li class="page-item" v-for="page in pagesNumberEstudianteDesactivados" :key="page" :class="[page == isActivedEstudianteDesactivados ? 'active' : '']">
+                                          <a class="page-link" href="#" @click.prevent="cambiarPaginaEstudianteDesactivados(page, buscarEstudianteDesactivados)" v-text="page"></a>
+                                       <li class="page-item" v-if="paginationEstudiantesDesactivados.current_page < paginationEstudiantesDesactivados.last_page">
+                                          <a class="page-link font-weight-bold" href="#" @click.prevent="cambiarPaginaEstudianteDesactivados(paginationEstudiantesDesactivados.current_page + 1,buscarEstudianteDesactivados)">Sig</a>
+                                       </li>
+                                       <small v-show="arrayEstudiantesDesactivados.length != 0" class="text-muted pagination-count" v-text=" '(Mostrando ' + arrayEstudiantesDesactivados.length + ' de ' + paginationEstudiantesDesactivados.total + ' registros)'"></small>
+                                    </ul>
+                                 </nav>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12 col-sm-12 col-lg-12">
+                                 <div v-show="arrayEstudiantesDesactivados.length == 0"  class="alert alert-primary h6 font-weight-bold text-center" role="alert" v-text="'No se encontraron resultados o No hay registros'"></div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <button type="button"  @click="cerrarModalEstudiantesDesactivados()" class="button red"><i class="mdi mdi-close-box"></i>&nbsp;Cancelar</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!--- FIN MODAL PARA  LISTADOS DE CARRERAS DESACTIVADAS -->
             </div>
          </div>
       </div>
@@ -351,6 +432,14 @@
         from: 0,
         to: 0
       },
+       paginationEstudiantesDesactivados: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
       offset: 3,
       nivelSelected: 0,
       arrayNiveles: [{
@@ -366,7 +455,11 @@
       arrayEstudiantes: [],
       modalNivel: 0,
       nivelByEstudiante: 0,
-      estudiante_selected: 0
+      estudiante_selected: 0,
+      nombre_estudiante_selected: '',
+      modalEstudiantesDesactivados: 0,
+      arrayEstudiantesDesactivados: [],
+      buscarEstudianteDesactivados:''
     };
   },
   computed: {
@@ -375,6 +468,9 @@
     },
     isActivedEstudiante: function () {
       return this.paginationEstudiantes.current_page;
+    },
+    isActivedEstudianteDesactivados: function () {
+      return this.paginationEstudiantesDesactivados.current_page;
     },
     isActivedID: function () {
       return this.paginationID.current_page;
@@ -409,6 +505,25 @@
       var to = from + this.offset * 2;
       if (to >= this.paginationEstudiantes.last_page) {
         to = this.paginationEstudiantes.last_page;
+      }
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+      return pagesArray;
+    },
+    pagesNumberEstudianteDesactivados: function () {
+      if (!this.paginationEstudiantesDesactivados.to) {
+        return [];
+      }
+      var from = this.paginationEstudiantesDesactivados.current_page - this.offset;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + this.offset * 2;
+      if (to >= this.paginationEstudiantesDesactivados.last_page) {
+        to = this.paginationEstudiantesDesactivados.last_page;
       }
       var pagesArray = [];
       while (from <= to) {
@@ -474,6 +589,26 @@
           console.log(error);
         });
     },
+    getAlumnosDesactivados(page,buscar){
+      let me = this;
+      me.loadSpinner = 1;
+      var url = route('getEstudianteToOtherOpctionsDesactivados', {
+        'carrera_id': me.carrera_selected.value,
+        'nivelAcad': me.nivelSelected.value,
+        'page': page,
+        'buscar': buscar
+      });
+      axios.get(url).then(function (response) {
+          var respuesta = response.data;
+          me.arrayEstudiantesDesactivados = respuesta.estudiantes.data;
+          me.paginationEstudiantesDesactivados = respuesta.pagination;
+          me.loadSpinner = 0;
+        })
+        .catch(function (error) {
+          me.loadSpinner = 0;
+          console.log(error);
+        });
+    },
     changeNivelAcademico(){
       swal({
         title: "Desea Guardar Los Datos Cambiados Realizados",
@@ -524,6 +659,83 @@
         .catch(function (error) {
           console.log(error);
         });
+    },
+    desactivarEstudiante(estudiante_id,estudiante_nombre){
+      swal({
+        title: "Esta seguro de desactivar a " + estudiante_nombre,
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          let me = this;
+          var url = route('desactivarEstudiante',estudiante_id);
+          me.loadSpinner = 1;
+          axios.put(url)
+            .then(function (response) {
+              me.getAlumnos(1,'');
+              swal(
+                "Desactivado!",
+                "El Registro ha sido desactivado con éxito",
+                "success"
+              );
+              me.loadSpinner = 0;
+            })
+            .catch(function (error) {
+              me.loadSpinner = 0;
+              console.log(error);
+            });
+        } else if (
+          // Esto lo hace cuando se descativa el registro
+          result.dismiss === swal.DismissReason.cancel
+        ) {}
+      });
+    },
+    activarEstudiante(estudiante_id,estudiante_nombre){
+      swal({
+        title: "Esta seguro de activar a " + estudiante_nombre,
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "button blue",
+        cancelButtonClass: "button red",
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          let me = this;
+          var url = route('activarEstudiante',estudiante_id);
+          me.loadSpinner = 1;
+          axios.post(url)
+            .then(function (response) {
+              me.getAlumnos(1,'');
+              me.getAlumnosDesactivados(1,'');
+              swal(
+                "Activado!",
+                "El Registro ha sido activado con éxito",
+                "success"
+              );
+              me.loadSpinner = 0;
+            })
+            .catch(function (error) {
+              me.loadSpinner = 0;
+              console.log(error);
+            });
+        } else if (
+          // Esto lo hace cuando se descativa el registro
+          result.dismiss === swal.DismissReason.cancel
+        ) {}
+      });
     },
     //carrera
     listarCarreras(page, buscar) {
@@ -587,6 +799,11 @@
       me.paginationEstudiantes.current_page = page;
       me.getAlumnos(page, buscar);
     },
+    cambiarPaginaEstudianteDesactivados(page, buscar) {
+      let me = this;
+      me.paginationEstudiantesDesactivados.current_page = page;
+      me.getAlumnosDesactivados(page, buscar);
+    },
     cambiarPaginaDes(page, buscar) {
       let me = this;
       me.paginationID.current_page = page;
@@ -631,12 +848,26 @@
       this.tituloModal = "Carreras Desactivadas";
       this.listarCarrerasDes(1, "");
     },
+    abrirModalEstudiantesDesactivados() {
+      const el = document.body;
+      el.classList.add("abrirModal");
+      this.modalEstudiantesDesactivados = 2;
+      this.getAlumnosDesactivados(1,"");
+    },
+    cerrarModalEstudiantesDesactivados() {
+      const el = document.body;
+      el.classList.remove("abrirModal");
+      this.modalEstudiantesDesactivados = 0;
+      this.arrayEstudiantesDesactivados = [];
+      this.paginationEstudiantesDesactivados = {};
+    },
     abrirModalChangeNivel(item = []) {
       let me = this;
       const el = document.body;
       el.classList.add("abrirModal");
       me.nivelByAlumno = item.nivel_academico_id;
       me.estudiante_selected = item.id;
+      me.nombre_estudiante_selected = item.nombre +" "+item.apellido;
       $("#nivelAcademico option:contains(" + item.nivel_academico_id + ")").attr("selected", true);
       me.modalNivel = 1;
     },
@@ -686,7 +917,7 @@
               me.listarCarreras(1, "");
               swal(
                 "Desactivado!",
-                "El Registro ha sido desactivado con exito",
+                "El Registro ha sido desactivado con éxito",
                 "success"
               );
               me.loadSpinner = 0;

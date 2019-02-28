@@ -107,8 +107,9 @@ Route::get('stundentById/{id}','EstudianteController@getStudentById')->name('get
 Route::get('/estudiantes/otherOptions', 'EstudianteController@getEstudianteToOtherOpctions')->name('getEstudianteToOtherOpctions');
 Route::get('stundentByCarrer','EstudianteController@getStudensByCarrerAndProcess')->name('getEstudiantesByCarrera');
 Route::post('/estudiante/changeNivel','EstudianteController@changeNivel')->name('changeNivelToEstudiante');
-Route::post('/estudiante/desactivar','EstudianteController@desactivarEstudiante')->name('desactivarEstudiante');
-Route::post('/estudiante/activar','EstudianteController@activarEstudiante')->name('activarEstudiante');
+Route::put('/estudiante/desactivar/{estudiante_id}','EstudianteController@desactivarEstudiante')->name('desactivarEstudiante');
+Route::post('/estudiante/activar/{estudiante_id}','EstudianteController@activarEstudiante')->name('activarEstudiante');
+Route::get('/estudiantes/otherOptions/desactivados', 'EstudianteController@getEstudianteToOtherOpctionsDesactivados')->name('getEstudianteToOtherOpctionsDesactivados');
 ///
 Route::get('/recepcion/getAllStudents','EstudianteController@getStudentsToRecepcion')->name('getEstudiantesToRecepcion');
 //RECEPCION ESTUDIANTE

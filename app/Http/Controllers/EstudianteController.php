@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
 use App\Estudiante;
+use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
@@ -153,7 +154,28 @@ class EstudianteController extends Controller
             'estudiantes' => $estudiantes,
         ];
     }
+    public function getEstudianteToOtherOpctionsDesactivados(Request $request){
+   
+        $carrera_id = $request->carrera_id;
+        $nivelAcad = $request->nivelAcad;
+        $nombre = $request->buscar;
 
+        $estudiantes = Estudiante::with(['carrera', 'nivelAcademico'])->whereHas('carrera', function ($query) use ($carrera_id) {
+            $query->where('id', $carrera_id);
+        })->whereNull('estado_pp')->where([['nivel_academico_id', $nivelAcad],['estado',false]] )->nombre($nombre)->paginate(5);
+
+        return [
+            'pagination' => [
+                'total' => $estudiantes->total(),
+                'current_page' => $estudiantes->currentPage(),
+                'per_page' => $estudiantes->perPage(),
+                'last_page' => $estudiantes->lastPage(),
+                'from' => $estudiantes->firstItem(),
+                'to' => $estudiantes->lastItem(),
+            ],
+            'estudiantes' => $estudiantes,
+        ];
+    }
     public function changeNivel(Request $request){
         $estudianteId = $request->estudiante_id;
         $newNivelId = $request->newNivel;
@@ -162,18 +184,18 @@ class EstudianteController extends Controller
         $estudiante->nivel_academico_id = $newNivelId;
         $estudiante->update();
     }
-    public function desactivarEstudiante($id){
-        $estudiante = Estudiante::find($id);
-        $usuario = User::find($id);
+    public function desactivarEstudiante($estudiante_id){
+        $estudiante = Estudiante::find($estudiante_id);
+        $usuario = User::find($estudiante_id);
         $estudiante->estado = false;
         $usuario->estado = false;
         $estudiante->update();
         $usuario->update();
     }
-    public function activarEstudiante($id)
+    public function activarEstudiante($estudiante_id)
     {
-        $estudiante = Estudiante::find($id);
-        $usuario = User::find($id);
+        $estudiante = Estudiante::find($estudiante_id);
+        $usuario = User::find($estudiante_id);
         $estudiante->estado = true;
         $usuario->estado = true;
         $estudiante->update();
