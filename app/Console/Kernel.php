@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,17 +26,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
-        $schedule->command(
-            "db:backup --database=mysql --destination=local --destinationPath=dbsisprap-".now().".sql --compression=null"
-        )->everyMinute();
-
+        setlocale(LC_ALL,"es_ES");
+        $command = "db:backup --database=mysql --destination=local --destinationPath=dbsisprap_".strftime("%A_%d_%B_%Y").".sql --compression=null";
+        $schedule->command($command)->everyMinute();
+        /* appendOutputTo(storage_path('logs/scheduler.log'))->runInBackground() */
     }
 
     /**
      * Register the commands for the application.
      *
-     * @return void
+     * @return void2
      */
     protected function commands()
     {
