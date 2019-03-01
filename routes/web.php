@@ -180,6 +180,11 @@ Route::post('/user/messages/delete/{usuario_id}', 'MensajeController@deleteConve
 
 Route::get('/test', function () {
 
+    $date = '01';
+    if($date  == date('m'))
+        return "True";
+    else
+        return "False";
 /* 
     $file = new Filesystem;
     $file->cleanDirectory(\Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix()); */

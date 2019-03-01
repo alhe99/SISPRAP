@@ -52,7 +52,7 @@ class UsuarioController extends Controller
         DB::table('estudiantes')->where('estado',true)->whereNull('fecha_fin_pp')->update(array('ultimo_cambio' => $date));
     }
     public function desactivarAllProjectsInDB(){
-        
+        DB::table('proyectos')->where([['estado',true],['fecha_registro',date('Y',strtotime('-1 year'))]])->update(array('estado' => false));
     }
     public function index(Request $request){
 

@@ -72,9 +72,23 @@ class LoginController extends Controller
             } else if (session('rol_id') == 1 ) {
                 $month =  app(\App\Http\Controllers\UsuarioController::class)->getCurrentMonth();
                 if($month != date('m')){
-                     app(\App\Http\Controllers\UsuarioController::class)->changeCurrentMonth();
+                      app(\App\Http\Controllers\UsuarioController::class)->changeCurrentMonth();
+                     /* VERFICANDO SI UBO UN CAMBIO DE AÑO PARA DESACTIVAR LOS PROYECTOS DEL AÑO ANTERIOR */
+                        $date = '01';
+                        if($date == date('m')){
+                            app(\App\Http\Controllers\UsuarioController::class)->desactivarAllProjectsInDB();
+                            return redirect()->route('main');
+                        }else{
+                            return redirect()->route('main');
+                        }
                      return redirect()->route('main');
                 }else{
+                    /* VERFICANDO SI UBO UN CAMBIO DE AÑO PARA DESACTIVAR LOS PROYECTOS DEL AÑO ANTERIOR */
+                    $date = '01';
+                    if ($date == date('m')) {
+                        app(\App\Http\Controllers\UsuarioController::class)->desactivarAllProjectsInDB();
+                        return redirect()->route('main');
+                    }
                     return redirect()->route('main');
                 }
             } else if (session('rol_id') == 2 ) {

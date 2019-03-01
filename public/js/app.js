@@ -84515,7 +84515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             imgGallery: "",
             proyectoExterno: false,
             nombre: "",
-            arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.png", "mercadeo.jpg", "agro.jpg"],
+            arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.png", "mercadeo.jpg", "agro.jpg", 'itcha.jpg'],
             image: "",
             exist: false,
             carrerasProy: [],
