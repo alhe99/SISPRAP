@@ -88,8 +88,6 @@ return array(
     'Barryvdh\\Queue\\' => array($vendorDir . '/barryvdh/laravel-async-queue/src'),
     'Barryvdh\\DomPDF\\' => array($vendorDir . '/barryvdh/laravel-dompdf/src'),
     'Barryvdh\\Debugbar\\' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
-    'BackupManager\\Laravel\\' => array($vendorDir . '/backup-manager/laravel/src'),
-    'BackupManager\\' => array($vendorDir . '/backup-manager/backup-manager/src'),
     'Backpack\\Base\\' => array($vendorDir . '/backpack/base/src'),
     'Backpack\\BackupManager\\' => array($vendorDir . '/backpack/backupmanager/src'),
     'BC\\Laravel\\DropboxDriver\\' => array($vendorDir . '/benjamincrozat/laravel-dropbox-driver/src'),

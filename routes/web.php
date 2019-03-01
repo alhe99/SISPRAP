@@ -19,7 +19,6 @@ Route::put('/institucion/activar/{id}', 'InstitucionController@activar')->name('
 Route::get('GetInstituciones/{id}', 'InstitucionController@GetInstituciones')->name('getInstitucionById');
 Route::get('/institucion/desactivadas', 'InstitucionController@getInstiDes')->name('institucionesDesactivadas');
 Route::get('getProyectosByInstitucion', 'InstitucionController@getProyectosByInstitucion')->name('proyectosByinstitucion');
-Route::get('GetInst', 'InstitucionController@GetInst');
 Route::get('/institucion/validate', 'InstitucionController@validateInstitucion')->name('validateInstitucion');
 Route::get('getInstitucionesByProcess', 'InstitucionController@getInstitucionesByProcess')->name('getInstitucionesByProcess');
 //REPORTE INSTITUCION
@@ -88,11 +87,14 @@ Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistra
 
 //SUPERVISIONES
 Route::post('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
+
+/* FALTAN SUPERVISIONES */
 Route::get('/proyecto/obtenerProyecto', 'ProyectoController@obtenerProyecto');
 Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
+Route::put('/supervision/actualizar', 'SupervisionController@update');
+
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision')->name('getSupervisionById');
 Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv')->name('getImagenesBySupervision');
-Route::put('/supervision/actualizar', 'SupervisionController@update');
 Route::get('proyectos/getNumeroPreinscripciones', 'ProyectoController@getNumeroPreinscripciones')->name('getNumeroPreinscripciones');
 Route::get('getFullInfo', 'GestionProyectoController@getFullDataByGestion')->name('getFullDataByGestion');
 Route::get('/supervision/deteleImg/{id}', 'SupervisionController@delete')->name('deleteImgSupervision');
@@ -154,9 +156,6 @@ Route::post('notifications/admin/setReadNotificacions', 'NotificationController@
 Route::post('/recepcion/payArancel','PagoArancelController@payArancel')->name('cancelarArancel');
 Route::get('/recepcion/payArancel/validate/{no_factura}','PagoArancelController@validateIfExiste')->name('validateIfExisteArancel');
 
-//Backup
-Route::get('/backup', 'BackupController@backup');
-
 //Usuarios
 Route::post('users/update','UsuarioController@update')->name('updateUsuario');
 Route::get('users/changeYear/{year}','UsuarioController@changeYearApp')->name('changeYearApp');
@@ -192,20 +191,22 @@ Route::get('/test', function () {
     //     $query->where('articulado',true);
     // })->get();
     //
-    $fecha1 = strtotime('2019-02-21 23:20:57');//fecha inicial
-    $fecha = date('d/M/Y H:i:s', $fecha1);
+    /* $fecha1 = strtotime('2019-02-21 23:20:57');//fecha inicial
+    $fecha = date('d/M/Y H:i:s', $fecha1); */
     /*
     *Aquí pones tu código o anidación de funciones.
     */
-
+/* 
     $fecha2 = new DateTime();//fecha de cierre
     $intervalo = $fecha->diff($fecha2);
-    return ' Tiempo de ejecución: '.$intervalo-> format('%i minutos %s segundos');
+    return ' Tiempo de ejecución: '.$intervalo-> format('%i minutos %s segundos'); */
     // return App\User::with('estudiante.carrera')->find(Auth::user()->id);
-/*     if(date('m') > date('m',strtotime('-1 month')))
-      return "Actualizar mes";
+/*     if(date('Y') > date('Y',strtotime('-1 year')))
+      return "Desactivar Proyectos";
     else
       return "Es el mismo"; */
+
+
     // $test = "2019-01-21SS5c4605667c309.jpeg";
     // if(file_exists(public_path('images/img_projects/').$test))
     // {

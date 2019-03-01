@@ -51,6 +51,9 @@ class UsuarioController extends Controller
         $date = date('Y-m-d');
         DB::table('estudiantes')->where('estado',true)->whereNull('fecha_fin_pp')->update(array('ultimo_cambio' => $date));
     }
+    public function desactivarAllProjectsInDB(){
+        
+    }
     public function index(Request $request){
 
         $buscar = $request->buscar;

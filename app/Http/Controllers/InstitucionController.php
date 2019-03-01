@@ -148,7 +148,7 @@ class InstitucionController extends Controller
         $proceso = $request->proceso;
         $tipoProyecto = $request->tipoProyecto;
 
-        $proyectos = Institucion::findOrFail($id)->proyectosInsti()->has('gestionProyecto')->nombre($buscar)->where([['proceso_id',$proceso],['tipo_proyecto',$tipoProyecto]])->year($this->anio)->get();
+        $proyectos = Institucion::findOrFail($id)->proyectosInsti()->has('gestionProyecto')->nombre($buscar)->where([['proceso_id',$proceso]])->year($this->anio)->get();
 
         $proyectos_ids = $proyectos->pluck('id');
 
@@ -191,26 +191,11 @@ class InstitucionController extends Controller
             ];
     }
 
-    //obtener todas las instituciones
-    public function GetInst()
-    {
-        $instituciones = Institucion::where('estado',1)->get();
-        $data = [];
-        $data[0] = [];
-        foreach ($instituciones as $key => $value) {
-            $data[$key+1] =[
-                'value'   => $value->id,
-                'label' => $value->nombre,
-            ];
-        }
-        return  response()->json($data);
-    }
-
     // *********** METODOS UTLIZADOS PARA REPORTES *********** //
     //Obtener instituciones por municipio
     function getHojaSupervision(Request $request)
     {
-        $testId = "10,2,8,1";
+        /* $testId = "10,2,8,1"; */
         $arrayInstituciones = explode(",", $request->instituciones_id);
         $arrayInstitucionGeneral = [];
         $arrayInstitucionDetalle = [];
@@ -310,26 +295,35 @@ class InstitucionController extends Controller
         $proceso = $request->proceso_id;
         $arrayInstitucion = [];
         $supervisiones = array();
-        $arrayProyectos = [];
 
-        $instituciones = Institucion::has('proyectosInsti.supervision')->whereHas('procesos',function($query) use ($proceso){
+        $instituciones = Institucion::whereHas('proyectosInsti.supervision',function($query) use ($proceso){
+            $query->where([['fecha_registro', $this->anio],['proceso_id', $proceso]]);
+        })->whereHas('procesos',function($query) use ($proceso){
             $query->where('proceso_id',$proceso);
-        })->year($this->anio)->get();
+        })->get();
 
         for ($i=0; $i < $instituciones->count() ; $i++) {
             $arrayInstitucion = [];
 
             $arrayInstitucion[0] = $instituciones[$i]->nombre;
-            foreach ($instituciones[$i]->proyectosInsti as $key => $value) {
+            foreach ($instituciones[$i]->proyectosInsti()->where([['fecha_registro', $this->anio],['proceso_id', $proceso]])->get() as $key => $value) {
 
                 if(!is_null($value->supervision)){
                      if($proceso == 2){
-                         $carreraProy = Proyecto::findOrFail($value->id)->carre_proy[0]->nombre;
-                         $arrayInstitucion[] = array(
-                           "nombreProyecto" => $value->nombre,
-                           "fechaSupervision" => $value->supervision["fecha"],
-                           "carreraProyecto" => $carreraProy
-                       );
+                         if($value->tipo_proyecto == 'I'){
+                            $carreraProy = Proyecto::findOrFail($value->id)->carre_proy[0]->nombre;
+                            $arrayInstitucion[] = array(
+                                "nombreProyecto" => $value->nombre,
+                                "fechaSupervision" => $value->supervision["fecha"],
+                                "carreraProyecto" => $carreraProy
+                            );
+                         }else{
+                            $arrayInstitucion[] = array(
+                                "nombreProyecto" => $value->nombre,
+                                "fechaSupervision" => $value->supervision["fecha"],
+                            );
+                         }
+
                      }else{
                        $arrayInstitucion[] = array(
                          "nombreProyecto" => $value->nombre,
@@ -348,14 +342,14 @@ class InstitucionController extends Controller
          $process = "Práctica Profesional";
 
         $date = date('Y-m-d');
-        $pdf = PDF::loadView('reportes.supervisiones',['supervisiones'=>$supervisiones, 'proceso' =>$process,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
+        $pdf = PDF::loadView('reportes.supervisiones',['anio'=>$this->anio,'supervisiones'=>$supervisiones, 'proceso' =>$process,'anio' => $this->anio])->setOption('footer-center', 'Página [page] de [topage]');
         $pdf->setOption('margin-top',20);
         $pdf->setOption('margin-bottom',20);
         $pdf->setOption('margin-left',20);
         $pdf->setOption('margin-right',20);
 
         return $pdf->stream('Reporte General de Supervisiones ' .$date.'.pdf');
-        // return $supervisiones;
+        return $instituciones;
     }
 
     //Validar el nombre de la instituciones ya existen en la BD

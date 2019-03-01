@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         setlocale(LC_ALL,"es_ES");
-        $command = "db:backup --database=mysql --destination=local --destinationPath=dbsisprap_".strftime("%A_%d_%B_%Y").".sql --compression=null";
-        $schedule->command($command)->everyMinute();
+        $command = "db:backup --database=mysql --destination=dropbox --destinationPath=dbsisprap_".strftime("%A_%d_%B_%Y").".sql --compression=null";
+        $schedule->command($command)->appendOutputTo(storage_path('logs/scheduler.log'));
         /* appendOutputTo(storage_path('logs/scheduler.log'))->runInBackground() */
     }
 

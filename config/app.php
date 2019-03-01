@@ -172,7 +172,6 @@ return [
         //Nueva Libreria para PDF
         Barryvdh\Snappy\ServiceProvider::class,
         Barryvdh\Queue\AsyncServiceProvider::class,
-        BackupManager\Laravel\Laravel55ServiceProvider::class,
     ],
 
     /*

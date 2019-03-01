@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte General de Supervisiones de {{ $proceso }}</title>
+    <title>Reporte General de Supervisiones de {{ $proceso." ".$anio }}</title>
     <link rel="stylesheet" href="{{public_path('css/bmd.css')}}">
     <style>
     .bg-header {
@@ -29,7 +29,7 @@
                 <div class="col-md-12"><br>
                     <h6 class="text-center"><strong>INSTITUTO TECNOLÓGICO DE CHALATENANGO</strong></h6>
                     <h6 class="text-center"><strong>ASOCIACION AGAPE DE EL SALVADOR</strong></h6><br>
-                    <h6 class="text-center font-weight-bold"><ins>INFORME DE SUPERVISIONES DE {{ strtoupper($proceso)." ".$anio }}</ins></h6><br>
+<h6 class="text-center font-weight-bold"><ins>INFORME DE SUPERVISIONES DE {{$proceso == "Servicio Social" ? 'SERVICIO SOCIAL' : 'PRÁCTICA PROFESIONAL'}}{{" ".$anio}}</ins></h6><br>
                 </div>
             </div>
             <div class="col-md-12">
@@ -70,6 +70,13 @@
                     </tbody>
                 </table><br>
                 @endfor
+                @if (count($supervisiones) == 0 )
+                    <div class="row">
+                        <div class="col-md-12 text-center font-weight-bold">
+                            No hay datos de supervisiones para el año {{$anio}}
+                        </div>
+                    </div>
+                @endif
 
             </div>
         </div>
