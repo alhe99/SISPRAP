@@ -9,32 +9,24 @@ use phpseclib\Math\BigInteger;
 class Energon
 {
     /**
-     * @var BigInteger
+     * @var int
      */
     protected $prime;
 
     /**
-     * @param int|null $prime
+     * @var int
      */
-    public function __construct($prime = null)
-    {
-        if (is_null($prime)) {
-            $prime = static::generatePrime();
-        }
+    private $size;
 
-        $this->setPrime($prime);
+    public function __construct(int $prime = null, int $size = Optimus::DEFAULT_SIZE)
+    {
+        $this->setPrime($prime ?? static::generatePrime($size));
+        $this->setSize($size);
     }
 
-    /**
-     * Generates a set of numbers ready for use.
-     *
-     * @param int|null $prime
-     *
-     * @return array
-     */
-    public static function generate($prime = null)
+    public static function generate(int $prime = null, int $size = Optimus::DEFAULT_SIZE): array
     {
-        $instance = new static($prime);
+        $instance = new static($prime, $size);
 
         return [
             $instance->getPrime(),
@@ -43,80 +35,65 @@ class Energon
         ];
     }
 
-    /**
-     * Generate a random large prime.
-     *
-     * @return int
-     */
-    public static function generatePrime()
+    public static function generatePrime(int $size = Optimus::DEFAULT_SIZE): int
     {
-        $min = new BigInteger(1e7);
-        $max = new BigInteger(Optimus::MAX_INT);
+        $max = self::createMaxInt($size);
+        $expForMin = max(1, floor(log10($max->toString())) - 2);
+        $min = new BigInteger(10 ** $expForMin);
 
         return (int) $max->randomPrime($min, $max)->toString();
     }
 
-    /**
-     * Generate a random large number.
-     *
-     * @return int
-     */
-    public static function generateRandomInteger()
+    public static function calculateInverse(int $prime, int $size = Optimus::DEFAULT_SIZE): int
     {
-        return (int) hexdec(bin2hex(Random::string(4))) & Optimus::MAX_INT;
-    }
+        $max = self::createMaxInt($size)->add(new BigInteger(1));
+        $inverse = (new BigInteger($prime))->modInverse($max);
 
-    /**
-     * Get the current prime.
-     *
-     * @return int
-     */
-    public function getPrime()
-    {
-        return (int) $this->prime->toString();
-    }
-
-    /**
-     * Safely set the current prime as a BigInteger.
-     *
-     * @param mixed $prime
-     */
-    public function setPrime($prime)
-    {
-        if (! $prime instanceof BigInteger) {
-            $prime = new BigInteger($prime);
+        if (!$inverse) {
+            throw new InvalidPrimeException($prime);
         }
 
-        if (! $prime->isPrime()) {
+        return (int) $inverse->toString();
+    }
+
+    public static function generateRandomInteger(int $size = Optimus::DEFAULT_SIZE): int
+    {
+        return (int) (new BigInteger(hexdec(bin2hex(Random::string(4)))))
+            ->bitwise_and(self::createMaxInt($size))
+            ->toString();
+    }
+
+    public function getPrime(): int
+    {
+        return $this->prime;
+    }
+
+    public function setPrime(int $prime)
+    {
+        if (!(new BigInteger($prime))->isPrime()) {
             throw new InvalidPrimeException($prime);
         }
 
         $this->prime = $prime;
     }
 
-    /**
-     * Get the inverse of the current prime.
-     *
-     * @return int
-     */
-    public function getInverse()
+    public function setSize(int $size)
     {
-        $x = new BigInteger(Optimus::MAX_INT + 1);
-
-        if (! $inverse = $this->prime->modInverse($x)) {
-            throw new InvalidPrimeException($this->prime);
-        }
-
-        return (int) $inverse->toString();
+        $this->size = $size;
     }
 
-    /**
-     * Alias method for getting a random big number.
-     *
-     * @return int
-     */
-    public function getRand()
+    public function getInverse(): int
     {
-        return static::generateRandomInteger();
+        return self::calculateInverse($this->prime, $this->size);
+    }
+
+    public function getRand(): int
+    {
+        return static::generateRandomInteger($this->size);
+    }
+
+    protected static function createMaxInt(int $size): BigInteger
+    {
+        return (new BigInteger(2 ** $size))->subtract(new BigInteger(1));
     }
 }

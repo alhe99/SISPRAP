@@ -1,4 +1,5 @@
 <?php
+ use Illuminate\Filesystem\Filesystem;
 /*DB::listen(function($query){
 echo "<pre>{$query->sql}</pre>";
 echo "<pre>{$query->time}</pre>";
@@ -89,8 +90,7 @@ Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistra
 Route::post('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
 
 /* FALTAN SUPERVISIONES */
-Route::get('/proyecto/obtenerProyecto', 'ProyectoController@obtenerProyecto');
-Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer');
+Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer')->name('getProjectsByEstudiante');
 Route::put('/supervision/actualizar', 'SupervisionController@update');
 
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision')->name('getSupervisionById');
@@ -180,6 +180,12 @@ Route::post('/user/messages/delete/{usuario_id}', 'MensajeController@deleteConve
 
 Route::get('/test', function () {
 
+/* 
+    $file = new Filesystem;
+    $file->cleanDirectory(\Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix()); */
+
+    /* return \Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix(); */
+
     // $carrera = App\Carrera::find(1);
     // $data = $carrera->estudiantes()->select('id','fecha_inicio_ss')->where([['articulado',false],['tipo_beca_id',1],['estado',true]])->whereYear('fecha_registro','2019')->get();
     // foreach ($data as $key => $value) {
@@ -191,6 +197,8 @@ Route::get('/test', function () {
     //     $query->where('articulado',true);
     // })->get();
     //
+   /*  $files = \Storage::disk('dropbox')->allFiles();
+     return \Storage::disk('dropbox')->delete($files); */
     /* $fecha1 = strtotime('2019-02-21 23:20:57');//fecha inicial
     $fecha = date('d/M/Y H:i:s', $fecha1); */
     /*

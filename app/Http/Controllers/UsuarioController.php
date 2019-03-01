@@ -77,7 +77,7 @@ class UsuarioController extends Controller
     public function create(Request $request){
 
         $user = new User();
-        $user->id = User::max('id') + 300;
+        $user->id = User::max('id') + 80000;
         $user->nombre = $request->nombre;
         $user->usuario = $request->usuario;
         $user->password = bcrypt($request->pass);

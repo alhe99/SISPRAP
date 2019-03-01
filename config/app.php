@@ -167,11 +167,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        BC\Laravel\DropboxDriver\ServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
         //Linea a remover
         //Nueva Libreria para PDF
         Barryvdh\Snappy\ServiceProvider::class,
         Barryvdh\Queue\AsyncServiceProvider::class,
+        App\Providers\DropboxServiceProvider::class,
     ],
 
     /*

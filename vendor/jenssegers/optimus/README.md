@@ -19,12 +19,12 @@ Install using composer:
 composer require jenssegers/optimus
 ```
 
-For 32 bit systems it is required to install the [GMP extension](http://php.net/manual/en/book.gmp.php). For debian/ubuntu you can install the extension with one of these commands:
+If you will be running your code on a 32 bit system or will be working with large prime numbers it is suggested that you install the [GMP extension](http://php.net/manual/en/book.gmp.php). For debian/ubuntu you can install the extension with one of these commands:
 
 ```
-apt-get install php5-gmp
 apt-get install php7.0-gmp
 apt-get install php7.1-gmp
+apt-get install php7.2-gmp
 ```
 
 Usage
@@ -126,7 +126,7 @@ class UserController extends Controller
 {
     public function show($id, Optimus $optimus)
     {
-        $id = $optimus->decode($id));
+        $id = $optimus->decode($id);
     }
 }
 ```
@@ -137,8 +137,10 @@ More information: https://laravel.com/docs/5.3/container#resolving
 
 An integration with Laravel is provided by the [propaganistas/laravel-fakeid](https://packagist.org/packages/propaganistas/laravel-fakeid) package.
 
-### Silex
+Laravel Optimus with multiple connections provided by the [cybercog/laravel-optimus](https://github.com/cybercog/laravel-optimus) package.
 
 An integration with Silex 2 is provided by the [jaam/silex-optimus-provider](https://packagist.org/packages/jaam/silex-optimus-provider) package.
 
-See the repository for more information: https://github.com/letsjaam/silex-optimus-provider
+An integration with Laravel is provided by the [elfsundae/laravel-hashid](https://github.com/ElfSundae/laravel-hashid) package.
+
+A PSR-15 middleware provided by the [icanhazstring/optimus-middleware](https://github.com/icanhazstring/optimus-middleware) package.

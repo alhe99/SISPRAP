@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\CleanBackups::class,
     ];
 
     /**
@@ -26,12 +26,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        setlocale(LC_ALL,"es_ES");
-        $command = "db:backup --database=mysql --destination=dropbox --destinationPath=dbsisprap_".strftime("%A_%d_%B_%Y").".sql --compression=null";
-        $schedule->command($command)->appendOutputTo(storage_path('logs/scheduler.log'));
-        /* appendOutputTo(storage_path('logs/scheduler.log'))->runInBackground() */
+        /*  ->weekdays()->between('16:00', '17:00')->appendOutputTo(storage_path('logs/scheduler.log')); */
+        /*         $schedule->command("clean:backup")->weekdays()->between('16:30:01','16:30:59');
+        $schedule->command("backup:run --only-db")->weekdays()->between('17:00:01', '17:00:59'); */
+        $schedule->command("backup:clean")->weekdays()->between('16:30:01','16:30:59');
+        $schedule->command("backup:run --only-db")->weekdays()->between('16:31:01','16:31:59');
+        
     }
-
     /**
      * Register the commands for the application.
      *

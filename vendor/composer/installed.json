@@ -236,23 +236,23 @@
     },
     {
         "name": "barryvdh/laravel-debugbar",
-        "version": "v3.2.2",
-        "version_normalized": "3.2.2.0",
+        "version": "v3.2.3",
+        "version_normalized": "3.2.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/barryvdh/laravel-debugbar.git",
-            "reference": "ba046deba51f3899963c7d09840bf623c4ebf5ed"
+            "reference": "5fcba4cc8e92a230b13b99c1083fc22ba8a5c479"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ba046deba51f3899963c7d09840bf623c4ebf5ed",
-            "reference": "ba046deba51f3899963c7d09840bf623c4ebf5ed",
+            "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/5fcba4cc8e92a230b13b99c1083fc22ba8a5c479",
+            "reference": "5fcba4cc8e92a230b13b99c1083fc22ba8a5c479",
             "shasum": ""
         },
         "require": {
-            "illuminate/routing": "5.5.x|5.6.x|5.7.x",
-            "illuminate/session": "5.5.x|5.6.x|5.7.x",
-            "illuminate/support": "5.5.x|5.6.x|5.7.x",
+            "illuminate/routing": "5.5.x|5.6.x|5.7.x|5.8.x",
+            "illuminate/session": "5.5.x|5.6.x|5.7.x|5.8.x",
+            "illuminate/support": "5.5.x|5.6.x|5.7.x|5.8.x",
             "maximebf/debugbar": "~1.15.0",
             "php": ">=7.0",
             "symfony/debug": "^3|^4",
@@ -261,7 +261,7 @@
         "require-dev": {
             "laravel/framework": "5.5.x"
         },
-        "time": "2019-02-04T10:23:43+00:00",
+        "time": "2019-02-26T18:01:54+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -306,25 +306,25 @@
     },
     {
         "name": "barryvdh/laravel-dompdf",
-        "version": "v0.8.3",
-        "version_normalized": "0.8.3.0",
+        "version": "v0.8.4",
+        "version_normalized": "0.8.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/barryvdh/laravel-dompdf.git",
-            "reference": "46781d0304277845a19c09c169bc595fd182cce4"
+            "reference": "3fd817065e1c820b1ddace8b2bf65ca45088df4f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/46781d0304277845a19c09c169bc595fd182cce4",
-            "reference": "46781d0304277845a19c09c169bc595fd182cce4",
+            "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/3fd817065e1c820b1ddace8b2bf65ca45088df4f",
+            "reference": "3fd817065e1c820b1ddace8b2bf65ca45088df4f",
             "shasum": ""
         },
         "require": {
             "dompdf/dompdf": "^0.8",
-            "illuminate/support": "5.5.x|5.6.x|5.7.x",
+            "illuminate/support": "5.5.x|5.6.x|5.7.x|5.8.x",
             "php": ">=7"
         },
-        "time": "2018-08-31T13:25:44+00:00",
+        "time": "2019-02-26T18:07:43+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -364,26 +364,26 @@
     },
     {
         "name": "barryvdh/laravel-snappy",
-        "version": "v0.4.3",
-        "version_normalized": "0.4.3.0",
+        "version": "v0.4.4",
+        "version_normalized": "0.4.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/barryvdh/laravel-snappy.git",
-            "reference": "62bb5017b7004bf3e48bfed3d5c00d3dc6e60478"
+            "reference": "4379153df99c04938946b8174337eb99a8852a8f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/barryvdh/laravel-snappy/zipball/62bb5017b7004bf3e48bfed3d5c00d3dc6e60478",
-            "reference": "62bb5017b7004bf3e48bfed3d5c00d3dc6e60478",
+            "url": "https://api.github.com/repos/barryvdh/laravel-snappy/zipball/4379153df99c04938946b8174337eb99a8852a8f",
+            "reference": "4379153df99c04938946b8174337eb99a8852a8f",
             "shasum": ""
         },
         "require": {
-            "illuminate/filesystem": "5.5.x|5.6.x|5.7.x",
-            "illuminate/support": "5.5.x|5.6.x|5.7.x",
+            "illuminate/filesystem": "5.5.x|5.6.x|5.7.x|5.8.x",
+            "illuminate/support": "5.5.x|5.6.x|5.7.x|5.8.x",
             "knplabs/knp-snappy": "^1",
             "php": ">=7"
         },
-        "time": "2018-09-06T10:14:15+00:00",
+        "time": "2019-02-26T20:00:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -415,7 +415,7 @@
                 "email": "barryvdh@gmail.com"
             }
         ],
-        "description": "Snappy PDF/Image for Laravel 4",
+        "description": "Snappy PDF/Image for Laravel",
         "keywords": [
             "image",
             "laravel",
@@ -2082,35 +2082,34 @@
     },
     {
         "name": "jenssegers/optimus",
-        "version": "v0.2.3",
-        "version_normalized": "0.2.3.0",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jenssegers/optimus.git",
-            "reference": "9bb0fcbaa3b7a6a0eb3e6c07e672ce4de42600af"
+            "reference": "83e1a6537124f3f05e9a22c99828157f5826a39f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jenssegers/optimus/zipball/9bb0fcbaa3b7a6a0eb3e6c07e672ce4de42600af",
-            "reference": "9bb0fcbaa3b7a6a0eb3e6c07e672ce4de42600af",
+            "url": "https://api.github.com/repos/jenssegers/optimus/zipball/83e1a6537124f3f05e9a22c99828157f5826a39f",
+            "reference": "83e1a6537124f3f05e9a22c99828157f5826a39f",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.4.0"
+            "php": ">=7.0.0",
+            "phpseclib/phpseclib": "^2.0",
+            "symfony/console": "^3.0|^4.0"
         },
         "require-dev": {
-            "kherge/box": "^2.7",
-            "phpseclib/phpseclib": "^2.0",
-            "phpunit/phpunit": "^4.0|^5.0",
-            "satooshi/php-coveralls": "^1.0",
-            "symfony/console": "^2.6|^3.0"
+            "php-coveralls/php-coveralls": "^2.1",
+            "phpunit/phpunit": "^6.0|^7.0"
         },
         "suggest": {
             "ext-gmp": "Required for 32bit systems"
         },
-        "time": "2017-04-21T10:14:58+00:00",
+        "time": "2019-01-22T21:34:26+00:00",
         "bin": [
-            "optimus"
+            "bin/optimus"
         ],
         "type": "library",
         "installation-source": "dist",
@@ -4102,33 +4101,33 @@
     },
     {
         "name": "propaganistas/laravel-fakeid",
-        "version": "4.0.1",
-        "version_normalized": "4.0.1.0",
+        "version": "4.0.2",
+        "version_normalized": "4.0.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Propaganistas/Laravel-FakeId.git",
-            "reference": "b9c490d73c175adb80330733f8892b10d9c88ea0"
+            "reference": "dbf0606177e409812c574e5d8daec568f968764d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Propaganistas/Laravel-FakeId/zipball/b9c490d73c175adb80330733f8892b10d9c88ea0",
-            "reference": "b9c490d73c175adb80330733f8892b10d9c88ea0",
+            "url": "https://api.github.com/repos/Propaganistas/Laravel-FakeId/zipball/dbf0606177e409812c574e5d8daec568f968764d",
+            "reference": "dbf0606177e409812c574e5d8daec568f968764d",
             "shasum": ""
         },
         "require": {
-            "illuminate/config": ">=5.5,<5.8",
-            "illuminate/container": ">=5.5,<5.8",
-            "illuminate/routing": ">=5.5,<5.8",
-            "illuminate/support": ">=5.5,<5.8",
-            "jenssegers/optimus": "^0.2.2",
-            "php": ">=7.0",
+            "illuminate/config": ">=5.5,<5.9",
+            "illuminate/container": ">=5.5,<5.9",
+            "illuminate/routing": ">=5.5,<5.9",
+            "illuminate/support": ">=5.5,<5.9",
+            "jenssegers/optimus": "^1.0",
+            "php": ">=7.1",
             "phpseclib/phpseclib": "^2.0"
         },
         "require-dev": {
-            "orchestra/testbench": "^3.5",
+            "orchestra/testbench": "*",
             "phpunit/phpunit": "*"
         },
-        "time": "2018-08-16T11:46:12+00:00",
+        "time": "2019-02-27T06:55:50+00:00",
         "type": "library",
         "extra": {
             "laravel": {
@@ -5611,30 +5610,30 @@
     },
     {
         "name": "spatie/laravel-responsecache",
-        "version": "4.4.4",
-        "version_normalized": "4.4.4.0",
+        "version": "4.4.5",
+        "version_normalized": "4.4.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/spatie/laravel-responsecache.git",
-            "reference": "783c003f422dc20b73c0c83f7e12c338f7ece803"
+            "reference": "10044a6ce3b60161c8864b22b50887a494869c68"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/spatie/laravel-responsecache/zipball/783c003f422dc20b73c0c83f7e12c338f7ece803",
-            "reference": "783c003f422dc20b73c0c83f7e12c338f7ece803",
+            "url": "https://api.github.com/repos/spatie/laravel-responsecache/zipball/10044a6ce3b60161c8864b22b50887a494869c68",
+            "reference": "10044a6ce3b60161c8864b22b50887a494869c68",
             "shasum": ""
         },
         "require": {
-            "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
-            "nesbot/carbon": "~1.19",
+            "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+            "nesbot/carbon": "~1.19 || ^2.0",
             "php": "^7.0"
         },
         "require-dev": {
             "mockery/mockery": "^1.0",
-            "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
-            "phpunit/phpunit": "^6.2|^7.0"
+            "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+            "phpunit/phpunit": "^6.2|^7.0|^8.0"
         },
-        "time": "2018-09-27T06:47:28+00:00",
+        "time": "2019-02-27T10:20:55+00:00",
         "type": "library",
         "extra": {
             "laravel": {

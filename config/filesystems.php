@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => 'C:\Users\HP-PAVLION\Documents',
+            'root' => 'C:\DBSISPRAP-BACKUP',
         ],
         'images' => [
             'driver' => 'local',
@@ -69,10 +69,8 @@ return [
 
         'dropbox' => [
             'driver' => 'dropbox',
-            'app_secret' => env('DROPBOX_SECRET'),
-            'token' => env('DROPBOX_TOKEN'),
-
-        ],
+            'authorizationToken' => env('DROPBOX_TOKEN'),
+        ]
 
     ],
 
