@@ -91,9 +91,10 @@
                          </div>
                        </li>
                        <li role="separator" class="divider"></li>
-                       @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
+                      
                        <li role="separator" class="divider"></li>
                        <li><a style="cursor: pointer;" @click="menu=21"><i class="mdi mdi-square-inc-cash"></i> Recepción</a></li>
+                       @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                        <li role="separator" class="divider"></li>
                        <li><a style="cursor: pointer;" @click="menu=15" ><i class="mdi mdi-plus-circle mdi-18px"></i> Más opciones</a></li>
                        @endif

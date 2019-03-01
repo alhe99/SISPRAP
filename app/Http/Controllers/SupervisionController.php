@@ -19,10 +19,6 @@ class SupervisionController extends Controller
         $this->anio = config('app.app_year');
     }
 
-    public function index(Request $request)
-    {
-    }
-
     //registrar supervisiones
     public function store(Request $request)
     {
@@ -34,14 +30,16 @@ class SupervisionController extends Controller
                   $supervision->estado = 0;
                   $supervision->fecha_registro = $this->anio;
                   Proyecto::findOrFail($request->proyecto_id)->supervision()->save($supervision);
+                  
+                  $imagenes = json_decode($request->imagenes);
 
-                  for ($i=0;$i<count($request->imagenes);$i++) {
+                  for ($i=0;$i<count($imagenes);$i++) {
 
                     $imgSuper = new ImgSupervision();
-                    $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->imagenes[$i], 0, strpos($request->imagenes[$i], ';')))[1])[1];
+                    $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($imagenes[$i], 0, strpos($imagenes[$i], ';')))[1])[1];
                     $imgSuper->img = $name_img;
                     $imgSuper->fecha_registro = $this->anio;
-                    Image::make($request->imagenes[$i])->save(public_path('images_superv/').$name_img);
+                    Image::make($imagenes[$i])->save(public_path('images_superv/').$name_img);
                     SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
 
                   }
@@ -53,15 +51,16 @@ class SupervisionController extends Controller
     //actualizacion de supervisiones
     public function update(Request $request){
 
-        $supervision = Proyecto::findOrFail($request->id)->supervision;
+        $supervision = Proyecto::findOrFail($request->id_proyecto)->supervision;
         $supervision->fecha = $request->fecha;
         $supervision->observacion = $request->observacion;
-        for ($i=0;$i<count($request->images);$i++) {
+        $imagenes = json_decode($request->images);
+        for ($i=0;$i<count($imagenes);$i++) {
 
             $imgSuper = new ImgSupervision();
-            $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($request->images[$i], 0, strpos($request->images[$i], ';')))[1])[1];
+            $name_img = $supervision->id.'-'. uniqid().'.'. explode('/', explode(':', substr($imagenes[$i], 0, strpos($imagenes[$i], ';')))[1])[1];
             $imgSuper->img = $name_img;
-            Image::make($request->images[$i])->save(public_path('images_superv/').$name_img);
+            Image::make($imagenes[$i])->save(public_path('images_superv/').$name_img);
             SupervisionProyecto::findOrFail($supervision->id)->imgSupervisiones()->save($imgSuper);
           }
         $supervision->update();

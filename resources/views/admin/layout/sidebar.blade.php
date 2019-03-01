@@ -13,17 +13,16 @@
                         {{Auth::user()->nombre }}</span>
                     </a>
                     <div class="dropdown-menu" style="width:80%">
-
-                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalUpdateDatos"><i class="ti-user"></i>
-                            &nbsp;Mi Cuenta
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        @if (Auth::user()->id == 0)
+                        @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)   
+                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalUpdateDatos"><i class="ti-user"></i>
+                                &nbsp;Mi Cuenta
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        @endif 
                         <a href="#" data-toggle="modal" data-target="#modalChangeYear" class="dropdown-item"><i class="mdi mdi-calendar-range"></i>
                             &nbsp;Año del sistema
                         </a>
                         <div class="dropdown-divider"></div>
-                        @endif
                         <a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModal"
                         class="dropdown-item"><i class="fa fa-power-off"></i>
                         &nbsp;Cerrar Sesion
@@ -41,9 +40,13 @@
                     class="hide-menu">Control Proyectos</span></a>
                     <ul aria-expanded="false" class="collapse ">
                         <li><button type="button" @click="menu=1" class="btn btn-link  btn-colors">Publicación de proyectos</button></li>
+                        @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)   
                         <li><button type="button" @click="menu=3" class="btn btn-link btn-colors">Proyectos Internos</button></li>
+                        @endif
                         <li><button type="button" @click="menu=23" class="btn btn-link  btn-colors">Proyectos Externos</button></li>
+                        @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)  
                         <li><button type="button" @click="menu=2" class="btn btn-link btn-colors">Preinscripciones proyectos</button></li>
+                        @endif
                         <li><button type="button" @click="menu=22" class="btn btn-link btn-colors">Aprobaciones</button></li>
                         <li><button type="button" @click="menu=4" class="btn btn-link btn-colors">Gestión proyectos</button></li>
                     </ul>
@@ -53,16 +56,21 @@
                     <ul aria-expanded="false" class="collapse ">
                         <li><button type="button" @click="menu=5" class="btn btn-link btn-colors">Control instituciones</button></li>
                         <li><button type="button" @click="menu=20" class="btn btn-link btn-colors">Sector Institución</button></li>
-                        <li><button type="button" @click="menu=6" class="btn btn-link btn-colors">Hojas de supervisión</button></li>
+                        @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
+                          <li><button type="button" @click="menu=6" class="btn btn-link btn-colors">Hojas de supervisión</button></li>
+                        @endif
                     </ul>
                 </li>
+                @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                 <li>
                     <button type="button" @click="menu=7" aria-expanded="false" class="btn btn-link btn-field"><i class="mdi mdi-file-document-box btn-i"></i><span
                         class="hide-menu">Constancias</span></button>
                     </li>
+                @endif
                     <li><button type="button" @click="menu=8" class="btn btn-link btn-field"><i class="mdi mdi-marker-check btn-i"></i><span
                         class="hide-menu">Pago Arancel</span></button>
                     </li>
+                    @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                     <li><button type="button" @click="menu=24" class="btn btn-link btn-field"><i class="mdi mdi-message btn-i"></i><span
                         class="hide-menu">Mensajes&nbsp;</span><span class="badge badge-pill badge-danger" v-if="messages_unread > 0" v-text="messages_unread"></span></button>
                     </li>
@@ -94,7 +102,7 @@
                             </li>
                         </ul>
                     </li>
-                    @if (Auth::user()->id == 0)
+                    
                     <li><button type="button" @click="menu=9" class="btn btn-link btn-field"><i class="mdi mdi-account-multiple btn-i"></i><span
                         class="hide-menu"> Usuarios</span></button>
                     </li>

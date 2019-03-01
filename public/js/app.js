@@ -79399,8 +79399,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user'],
   data: function data() {
     return {
       //declaracion de variables
@@ -79569,7 +79571,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //listado de instituciones por busqueda
     listarInstitucion: function listarInstitucion(page, proceso, buscar) {
       var me = this;
-      var url = route('listInstituciones', { "page": page, "proceso": proceso, "buscar": buscar });
+      var url = route('listInstituciones', {
+        "page": page,
+        "proceso": proceso,
+        "buscar": buscar
+      });
       me.loadSpinner = 1;
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79588,7 +79594,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //listado de instituciones desactivadas
     listarInstitucionDes: function listarInstitucionDes(page, proceso, buscar) {
       var me = this;
-      var urlInstDe = route('institucionesDesactivadas', { "page": page, "proceso": proceso, "buscar": buscar });
+      var urlInstDe = route('institucionesDesactivadas', {
+        "page": page,
+        "proceso": proceso,
+        "buscar": buscar
+      });
       me.loading = true;
       axios.get(urlInstDe).then(function (response) {
         var respuesta = response.data;
@@ -79618,7 +79628,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getSupervisores: function getSupervisores() {
       var me = this;
       me.loadSpinner = 1;
-      var url = route("getSupervisores", { "institucion_id": me.institucionSelected });
+      var url = route("getSupervisores", {
+        "institucion_id": me.institucionSelected
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arraySupervisores = respuesta;
@@ -79650,7 +79662,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //OBTENIENDO LOS PROYECTOS RESPECTIVOS DE CADA INSTITUCION
     getProyectosInsti: function getProyectosInsti(id, page, buscar, proceso) {
       var me = this;
-      var urlProyecInst = route('proyectosByinstitucion', { "proyecto_id": id, "page": page, "buscar": buscar, "proceso": proceso, "tipoProyecto": me.tipoProyectos });
+      var urlProyecInst = route('proyectosByinstitucion', {
+        "proyecto_id": id,
+        "page": page,
+        "buscar": buscar,
+        "proceso": proceso,
+        "tipoProyecto": me.tipoProyectos
+      });
       me.loadSpinner = 1;
       me.pagination = "";
       axios.get(urlProyecInst).then(function (response) {
@@ -79669,7 +79687,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //imagenes
     /* Metodo para eliminar una imagen de una supervision */
     deleteImage: function deleteImage(id) {
-      var toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 4000 });
+      var toast = swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000
+      });
       var me = this;
       var url = route('deleteImgSupervision', id);
       me.loadSpinner = 1;
@@ -79704,10 +79727,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     registrarInstitucion: function registrarInstitucion() {
       var me = this;
       me.loading = true;
-      var urlSave = route('registrarInstitucion', { "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone, "email": me.email,
-        "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "proceso_id": me.tipoproceso_id });
+      var urlSave = route('registrarInstitucion', {
+        "nombre": me.nombre,
+        "direccion": me.direccion,
+        "telefono": me.phone,
+        "email": me.email,
+        "sector_institucion_id": me.sector_id["value"],
+        "municipio_id": me.municipio_id["value"],
+        "proceso_id": me.tipoproceso_id
+      });
 
-      var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
+      var url = route('validateInstitucion', {
+        "nombre": me.nombre,
+        "proceso_id": me.proceso
+      });
 
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -79745,9 +79778,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     actualizarInstitucion: function actualizarInstitucion() {
       var me = this;
       me.loading = true;
-      var urlUpdate = route('update', { "id": me.institucion_id, "nombre": me.nombre, "direccion": me.direccion, "telefono": me.phone,
-        "email": me.email, "sector_institucion_id": me.sector_id["value"], "municipio_id": me.municipio_id["value"], "estado": me.estado, "proceso_id": me.tipoproceso_id });
-      var url = route('validateInstitucion', { "nombre": me.nombre, "proceso_id": me.proceso });
+      var urlUpdate = route('update', {
+        "id": me.institucion_id,
+        "nombre": me.nombre,
+        "direccion": me.direccion,
+        "telefono": me.phone,
+        "email": me.email,
+        "sector_institucion_id": me.sector_id["value"],
+        "municipio_id": me.municipio_id["value"],
+        "estado": me.estado,
+        "proceso_id": me.tipoproceso_id
+      });
+      var url = route('validateInstitucion', {
+        "nombre": me.nombre,
+        "proceso_id": me.proceso
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         console.log(respuesta);
@@ -79804,8 +79849,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (result) {
         if (result.value) {
           me.loadSpinner = 1;
-          var urlSave = route('saveSupervisor', { "nombre": me.nombreSupervisor, "telefono": me.telefonoSupervisor, "institucion_id": me.institucionSelected });
-          var urlValidate = route('validateSupervisor', { "nombre": me.nombreSupervisor });
+          var urlSave = route('saveSupervisor', {
+            "nombre": me.nombreSupervisor,
+            "telefono": me.telefonoSupervisor,
+            "institucion_id": me.institucionSelected
+          });
+          var urlValidate = route('validateSupervisor', {
+            "nombre": me.nombreSupervisor
+          });
           axios.get(urlValidate).then(function (response) {
             var respuesta = response.data;
             if (respuesta == 'existe') {
@@ -79871,7 +79922,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (result) {
         if (result.value) {
           me.loadSpinner = 1;
-          var urlValidate = route('validateSupervisor', { "nombre": me.nombreSupervisor });
+          var urlValidate = route('validateSupervisor', {
+            "nombre": me.nombreSupervisor
+          });
           axios.get(urlValidate).then(function (response) {
             var respuesta = response.data;
             if (me.nombreSupervisor != me.nombreSupervisorUpd && respuesta == 'existe') {
@@ -79995,16 +80048,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.nombreSupervisorUpd = "";
     },
     registrarSupervision: function registrarSupervision() {
-      //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
       var me = this;
       me.loading = true;
       /* var url = window.location.origin+"proyecto/registrar/supervision/"; */
-      axios.post("/proyecto/registrar/supervision", {
-        proyecto_id: this.proyecto_id,
-        observacion: this.observacion,
-        fecha: $("#fechaSupervision").val().trim(),
-        imagenes: this.images
-      }).then(function (response) {
+      var url = route('saveSupervision', {
+        'proyecto_id': me.proyecto_id,
+        'observacion': me.observacion,
+        'fecha': $("#fechaSupervision").val().trim(),
+        'imagenes': JSON.stringify(me.images)
+      });
+      axios.get(url).then(function (response) {
         me.loading = false;
         swal({
           position: "center",
@@ -80020,15 +80073,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     actualizarSupervision: function actualizarSupervision() {
-      //FALTA CAMBIAR RUTA PORQUE AUN NO FUNCIONA
       var me = this;
       me.loadSpinner = 1;
-      axios.put("/supervision/actualizar", {
-        id: this.proyecto_id,
-        fecha: $("#fechaSupervision").val().trim(),
-        observacion: this.observacion,
-        images: this.images
-      }).then(function (response) {
+      var url = route('updateSupervision', {
+        'id_proyecto': me.proyecto_id,
+        'fecha': $("#fechaSupervision").val().trim(),
+        'observacion': me.observacion,
+        'images': JSON.stringify(me.images)
+      });
+      axios.put(url).then(function (response) {
         me.loadSpinner = 0;
         me.getSupervision(me.proyecto_id);
         swal({
@@ -80048,6 +80101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           showConfirmButton: false,
           timer: 1000
         });
+        me.loadSpinner = 0;
         console.log(error);
       });
     },
@@ -80070,7 +80124,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                   this.phone = "";
                   this.email = "";
                   this.municipio_id = 0;
-                  this.departamento_id = { value: 3, label: "Chalatenango" };
+                  this.departamento_id = {
+                    value: 3,
+                    label: "Chalatenango"
+                  };
                   this.sector_id = 0;
                   this.tipoAccion = 1;
                   this.tituloModal = "Registrar Institución";
@@ -80272,7 +80329,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (result) {
         if (result.value) {
           var me = _this3;
-          var urlDesactivar = route('desactivar', { "id": id });
+          var urlDesactivar = route('desactivar', {
+            "id": id
+          });
           me.loadSpinner = 1;
           axios.put(urlDesactivar).then(function (response) {
             me.listarInstitucion(1, me.proceso, "");
@@ -80290,7 +80349,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     activarInstitucion: function activarInstitucion(id) {
       var _this4 = this;
 
-      var urlActivar = route('activar', { "id": id });
+      var urlActivar = route('activar', {
+        "id": id
+      });
       swal({
         title: "Esta seguro de activar esta Institucion?",
         type: "question",
@@ -80377,15 +80438,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!file.type.match("image.*")) {
         return;
       }
-      this.loading = true;
-      this.files.push(file);
-      var img = new Image(),
-          reader = new FileReader();
-      reader.onload = function (e) {
-        return _this7.images.push(e.target.result);
-      };
-      reader.readAsDataURL(file);
-      this.loading = false;
+      if (file.size > 1068158) {
+        alert("El archivo seleccionado supera el limite de peso permitido de 1024KB");
+      } else {
+        this.loading = true;
+        this.files.push(file);
+        var img = new Image(),
+            reader = new FileReader();
+        reader.onload = function (e) {
+          return _this7.images.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+        this.loading = false;
+      }
     },
     getFileSize: function getFileSize(size) {
       var fSExt = ["Bytes", "KB", "MB", "GB"];
@@ -80414,7 +80479,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     DeleteImage: function DeleteImage(index, id) {
       this.arrayImagesUpd.splice(index, 1);
-      var url = "/supervision/eliminar/" + id;
+      var url = route('deleteImagenToSupervision', id);
       axios.get(url).then(function (response) {}).catch(function (error) {
         console.log(error);
       });
@@ -80628,22 +80693,26 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "dropdown-item d-block menu",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.abrirModalID()
-                                }
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "mdi mdi-delete-empty" }),
-                              _vm._v(" Instituciones Desactivadas")
-                            ]
-                          )
+                          _vm.user.id == 0 || _vm.user.rol_id == 3
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "dropdown-item d-block menu",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.abrirModalID()
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "mdi mdi-delete-empty"
+                                  }),
+                                  _vm._v(" Instituciones Desactivadas")
+                                ]
+                              )
+                            : _vm._e()
                         ]
                       )
                     ])
@@ -80737,30 +80806,33 @@ var render = function() {
                                   _vm._v(" "),
                                   institucion.estado
                                     ? [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "button red",
-                                            attrs: {
-                                              type: "button",
-                                              "data-toggle": "tooltip",
-                                              title: "Desactivar institución"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                _vm.desactivarInstitucion(
-                                                  institucion.id
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "mdi mdi-delete-variant"
-                                            })
-                                          ]
-                                        )
+                                        _vm.user.id == 0 || _vm.user.rol_id == 3
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "button red",
+                                                attrs: {
+                                                  type: "button",
+                                                  "data-toggle": "tooltip",
+                                                  title:
+                                                    "Desactivar institución"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.desactivarInstitucion(
+                                                      institucion.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "mdi mdi-delete-variant"
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
                                       ]
                                     : _vm._e(),
                                   _vm._v(" "),
@@ -80782,27 +80854,29 @@ var render = function() {
                                     [_c("i", { staticClass: "mdi mdi-eye" })]
                                   ),
                                   _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "button secondary ",
-                                      attrs: {
-                                        type: "button",
-                                        "data-toggle": "tooltip",
-                                        title: "Ver más información"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.verMasInfo(institucion)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "mdi mdi-playlist-plus"
-                                      })
-                                    ]
-                                  )
+                                  _vm.user.id == 0 || _vm.user.rol_id == 3
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass: "button secondary ",
+                                          attrs: {
+                                            type: "button",
+                                            "data-toggle": "tooltip",
+                                            title: "Ver más información"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.verMasInfo(institucion)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "mdi mdi-playlist-plus"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e()
                                 ],
                                 2
                               )
@@ -81153,6 +81227,7 @@ var render = function() {
                           ])
                         ]
                       ),
+                      _vm._v(" "),
                       _c("br"),
                       _vm._v(" "),
                       _c("fieldset", [
@@ -81414,6 +81489,7 @@ var render = function() {
                           )
                         ]
                       ),
+                      _vm._v(" "),
                       _c("br"),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
@@ -82159,6 +82235,7 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c("br"),
+                            _vm._v(" "),
                             _c(
                               "v-select",
                               {
@@ -82185,7 +82262,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n               No hay datos disponibles\n             "
+                                      "\r\n                           No hay datos disponibles\r\n                           "
                                     )
                                   ]
                                 )
@@ -82213,6 +82290,7 @@ var render = function() {
                                 ),
                                 _vm._v(" "),
                                 _c("br"),
+                                _vm._v(" "),
                                 _c(
                                   "v-select",
                                   {
@@ -82238,7 +82316,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n               No hay datos disponibles\n             "
+                                          "\r\n                           No hay datos disponibles\r\n                           "
                                         )
                                       ]
                                     )
@@ -82270,6 +82348,7 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c("br"),
+                            _vm._v(" "),
                             _c(
                               "v-select",
                               {
@@ -82296,7 +82375,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n               No hay datos disponibles\n             "
+                                      "\r\n                           No hay datos disponibles\r\n                           "
                                     )
                                   ]
                                 )
@@ -82551,6 +82630,7 @@ var render = function() {
                                   ]
                                 )
                               ]),
+                              _vm._v(" "),
                               _c("br"),
                               _vm._v(" "),
                               _c("div", { staticClass: "row" }, [
@@ -82826,7 +82906,7 @@ var render = function() {
                                                                       "mdi mdi-folder-plus h4"
                                                                   }),
                                                                   _vm._v(
-                                                                    "\n                                Registrar Supervisión\n                              "
+                                                                    "\r\n                                                         Registrar Supervisión\r\n                                                         "
                                                                   )
                                                                 ]
                                                               )
@@ -82867,7 +82947,7 @@ var render = function() {
                                                                       "mdi mdi-border-color h4"
                                                                   }),
                                                                   _vm._v(
-                                                                    "\n                              Editar Supervisión\n                            "
+                                                                    "\r\n                                                         Editar Supervisión\r\n                                                         "
                                                                   )
                                                                 ]
                                                               )
@@ -83519,6 +83599,8 @@ var render = function() {
                                                                           "input",
                                                                           {
                                                                             attrs: {
+                                                                              length:
+                                                                                "1024",
                                                                               type:
                                                                                 "file",
                                                                               id:
@@ -83961,6 +84043,7 @@ var staticRenderFns = [
       _c("h4", { staticClass: "align-baseline font-weight-bold" }, [
         _vm._v("Listado de Supervisores Registrados")
       ]),
+      _vm._v(" "),
       _c("br")
     ])
   },
@@ -83992,7 +84075,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n            No hay supervisores registrados en esta institución\n          "
+            "\r\n                                          No hay supervisores registrados en esta institución\r\n                                       "
           )
         ]
       )
@@ -84042,13 +84125,18 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("br"),
+        _vm._v(" "),
         _c(
           "div",
           {
             staticClass: "alert alert-primary text-center font-weight-bold h6",
             attrs: { role: "alert" }
           },
-          [_vm._v("\n            Campos requeridos poseen un (*)\n          ")]
+          [
+            _vm._v(
+              "\r\n                           Campos requeridos poseen un (*)\r\n                        "
+            )
+          ]
         )
       ])
     ])
@@ -84412,6 +84500,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['user'],
     data: function data() {
         return {
             loadSpinner: 0,
@@ -84665,7 +84754,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.actividadesCarre = "";
             me.institucion = "";
             me.loadSpinner = 0;
-            me.proyectoExterno = false;
+            if (me.user.id == 0 || me.user.rol_id == 3) {
+                me.proyectoExterno = false;
+            } else {
+                me.proyectoExterno = true;
+            }
             if (me.proceso == 1) me.catidadHoras = 300;else me.catidadHoras = 160;
         }
     },
@@ -84676,7 +84769,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getCarreras();
         this.getInstituciones();
-        //$("#btnGuardar").prop('disabled',true);
+        if (this.user.id == 0 || this.user.rol_id == 3) {
+            this.proyectoExterno = false;
+        } else {
+            this.proyectoExterno = true;
+        }
     }
 });
 
@@ -84994,7 +85091,13 @@ var render = function() {
                       _c("div", { staticClass: "row" }, [
                         _c(
                           "div",
-                          { staticClass: "col-md-10" },
+                          {
+                            class: [
+                              _vm.user.id == 0 || _vm.user.rol_id == 3
+                                ? "col-md-10"
+                                : "col-md-12"
+                            ]
+                          },
                           [
                             _c("mdc-textfield", {
                               staticClass: "col-md-12",
@@ -85016,28 +85119,30 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-2" },
-                          [
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "checkbox",
-                              {
-                                model: {
-                                  value: _vm.proyectoExterno,
-                                  callback: function($$v) {
-                                    _vm.proyectoExterno = $$v
+                        _vm.user.id == 0 || _vm.user.rol_id == 3
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-2" },
+                              [
+                                _c("br"),
+                                _vm._v(" "),
+                                _c(
+                                  "checkbox",
+                                  {
+                                    model: {
+                                      value: _vm.proyectoExterno,
+                                      callback: function($$v) {
+                                        _vm.proyectoExterno = $$v
+                                      },
+                                      expression: "proyectoExterno"
+                                    }
                                   },
-                                  expression: "proyectoExterno"
-                                }
-                              },
-                              [_vm._v("Proyecto Externo")]
+                                  [_vm._v("Proyecto Externo")]
+                                )
+                              ],
+                              1
                             )
-                          ],
-                          1
-                        )
+                          : _vm._e()
                       ])
                     ]
                   ),
@@ -88514,7 +88619,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.abrirModal }
                   },
-                  [_c("i", { staticClass: "mdi mdi-account" })]
+                  [_c("i", { staticClass: "mdi mdi-account-plus" })]
                 )
               ])
             ])

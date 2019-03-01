@@ -20,7 +20,7 @@
                 <mdc-textfield type="text" style="margin-left: -10px" class="col-md-12"  @keyup="getAllUsers(1,buscar);"  label="Buscar usuarios" v-model="buscar"></mdc-textfield>
               </div>
               <div class="col-md-6 text-right">
-                 <button type ="button" class="button secondary" @click="abrirModal"><i class="mdi mdi-account"></i></button>
+                 <button type ="button" class="button secondary" @click="abrirModal"><i class="mdi mdi-account-plus"></i></button>
               </div>
             </div>
           </div>

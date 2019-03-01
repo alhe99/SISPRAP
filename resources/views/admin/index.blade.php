@@ -12,7 +12,7 @@
         </div>
     </div>
 </div>
-@if (Auth::user()->rol_id == 1)
+@if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
 <div class="col-lg-4 col-md-4">
     <div class="card">
         <img class="card-img-top"  src="images/atajos/GESTIONES.png" @click="menu=4" style="cursor: pointer" alt="Card image cap">
@@ -73,7 +73,7 @@
 </template>
 @if (Auth::user()->rol_id == 1)
 <template v-if="menu==1">
-    <publiproject></publiproject>
+    <publiproject :user="{{Auth::user()}}"></publiproject>
 </template>
 @elseif(Auth::user()->rol_id == 2)
 <template v-if="menu==1">
@@ -90,7 +90,7 @@
     <gestproy></gestproy>
 </template>
 <template v-if="menu==5">
-    <institucion></institucion>
+    <institucion :user="{{Auth::user()}}"></institucion>
 </template>
 <template v-if="menu==6">
     <hojasupervgeneral></hojasupervgeneral>
@@ -103,9 +103,6 @@
 </template>
 <template v-if="menu==9">
     <usuarios></usuarios>
-</template>
-<template v-if="menu==10">
-    <h1>Copias de Seguridad</h1>
 </template>
 <template v-if="menu==11">
     <general></general>

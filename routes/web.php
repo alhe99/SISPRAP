@@ -87,11 +87,11 @@ Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provi
 Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistration')->name('deleteAllPreinscripciones');
 
 //SUPERVISIONES
-Route::post('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
+Route::get('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
 
 /* FALTAN SUPERVISIONES */
 Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer')->name('getProjectsByEstudiante');
-Route::put('/supervision/actualizar', 'SupervisionController@update');
+Route::put('/supervision/actualizar','SupervisionController@update')->name('updateSupervision');
 
 Route::get('GetSupervision/{id}', 'SupervisionController@GetSupervision')->name('getSupervisionById');
 Route::get('imgSuperv/{id}', 'SupervisionController@imgSuperv')->name('getImagenesBySupervision');

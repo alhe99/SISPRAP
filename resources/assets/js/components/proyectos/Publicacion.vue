@@ -49,7 +49,7 @@
                <form>
                   <div class="form-group" style="margin-left: -12px;">
                      <div class="row">
-                        <div class="col-md-10">
+                        <div :class="[user.id == 0 || user.rol_id == 3 ? 'col-md-10' : 'col-md-12']">
                            <mdc-textfield
                               type="text"
                               class="col-md-12"
@@ -58,7 +58,7 @@
                               v-model="nombre"
                               ></mdc-textfield>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" v-if="user.id == 0 || user.rol_id == 3">
                            <br>
                            <checkbox v-model="proyectoExterno">Proyecto Externo</checkbox>
                         </div>
@@ -266,6 +266,7 @@
 import { VueEditor} from "vue2-editor";
 import Switches from "vue-switches";
 export default {
+    props:['user'],
     data() {
         return {
             loadSpinner: 0,
@@ -539,7 +540,11 @@ export default {
             me.actividadesCarre = "";
             me.institucion = "";
             me.loadSpinner = 0;
-            me.proyectoExterno = false;
+            if((me.user.id == 0) || (me.user.rol_id == 3)){
+                me.proyectoExterno = false;
+            }else{
+                me.proyectoExterno = true;
+            }
             if (me.proceso == 1)
                 me.catidadHoras = 300;
             else
@@ -554,7 +559,11 @@ export default {
     mounted() {
         this.getCarreras();
         this.getInstituciones();
-        //$("#btnGuardar").prop('disabled',true);
+        if((this.user.id == 0) || (this.user.rol_id == 3)){
+            this.proyectoExterno = false;
+        }else{
+            this.proyectoExterno = true;
+        }
     }
 };
 </script>
