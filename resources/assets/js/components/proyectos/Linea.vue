@@ -576,7 +576,8 @@ export default {
                 "focos.jpg",
                 "herramienta.png",
                 "mercadeo.jpg",
-                "agro.jpg"
+                "agro.jpg",
+                'itcha.jpg'
             ],
             files: "",
             image: "",

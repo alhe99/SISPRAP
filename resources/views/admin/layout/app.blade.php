@@ -19,7 +19,7 @@
   <link href="css/table.css" rel="stylesheet">
   <link href="css/radioBtn.css" rel="stylesheet">
   <link href="css/colors/purple-dark.css" id="theme" rel="stylesheet">
-  <link rel='stylesheet' href='{{ asset('other/css/gijgo.min.css') }}'>
+  <link rel='stylesheet' href='{{ asset('css/gijgo.min.css') }}'>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Id for Channel Notification -->
   <meta name="userId" content="0">
@@ -184,8 +184,8 @@
      </div>
      <script src="js/app.js"></script>
      <script src="js/admintemplate.js"></script>
-     <script src='{{ asset('other/js/gijgo.min.js') }}'></script>
-     <script src='{{ asset('other/js/messages.es-es.js') }}'></script>
+     <script src='{{ asset('js/gijgo.min.js') }}'></script>
+     <script src='{{ asset('js/messages.es-es.js') }}'></script>
      <script src='{{ asset('js/year-select.js') }}'></script>
      {{-- Mensaje cuando un usuario ha actualizados sus datos personales --}}
      @if (session()->has('updateDataUser'))

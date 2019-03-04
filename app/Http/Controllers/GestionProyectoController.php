@@ -292,9 +292,9 @@ class GestionProyectoController extends Controller
                     }
 
                     $e->update();
-                    DB::commit();
+                   
                 }
-
+                DB::commit();
            } catch (Exception $e) {
               DB::rollBack();
            }
@@ -2318,6 +2318,12 @@ class GestionProyectoController extends Controller
         $buscar = $request->buscar;
         $proceso = $request->proceso_id;
         $carrera_id = $request->carre_id;
+        if ($request->proceso_id == 1) {
+            $nivelAcad = $request->nivelAcad;
+        } else {
+            $nivelAcad = 2;
+        }
+
         if($proceso == 1){
             $gp = Estudiante::distinct('id')->with([
                 'carrera',
@@ -2325,7 +2331,7 @@ class GestionProyectoController extends Controller
                 'gestionProyecto'=> function($query){
                     $query->year($this->anio)->where('gestion_proyectos.tipo_gp',1)->get();
                 }
-            ])->nombre($buscar)->where([['estado_ss',1],['carrera_id',$carrera_id],[DB::raw('YEAR(fecha_inicio_ss)'),$this->anio],[DB::raw('YEAR(fecha_fin_ss)'),$this->anio]])->paginate(10);
+            ])->nombre($buscar)->where([['nivel_academico_id',$nivelAcad],['estado_ss',1],['carrera_id',$carrera_id],[DB::raw('YEAR(fecha_inicio_ss)'),$this->anio],[DB::raw('YEAR(fecha_fin_ss)'),$this->anio]])->paginate(10);
 
         }else if($proceso == 2){
             $gp = Estudiante::distinct('id')->with([
@@ -2334,7 +2340,7 @@ class GestionProyectoController extends Controller
                 'gestionProyecto'=> function($query){
                     $query->year($this->anio)->where('gestion_proyectos.tipo_gp',2)->get();
                 }
-            ])->nombre($buscar)->where([['estado_pp',2],['carrera_id',$carrera_id],[DB::raw('YEAR(fecha_inicio_pp)'),$this->anio],[DB::raw('YEAR(fecha_fin_pp)'),$this->anio]])->paginate(10);
+            ])->nombre($buscar)->where([['nivel_academico_id', $nivelAcad],['estado_pp',2],['carrera_id',$carrera_id],[DB::raw('YEAR(fecha_inicio_pp)'),$this->anio],[DB::raw('YEAR(fecha_fin_pp)'),$this->anio]])->paginate(10);
         }
         return [
             'pagination' => [

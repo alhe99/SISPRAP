@@ -84553,6 +84553,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         switchImg: function switchImg() {
             if (this.switchImg == true) {
                 this.imgGallery = "";
+            } else {
+                var me = this;
+                var elem = me.$refs.imgUpload;
+                me.image = "";
+                elem.reset();
             }
         },
         proceso: function proceso() {
@@ -86314,7 +86319,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tipoproceso_id: 0,
             switchImg: false,
             imgGallery: "",
-            arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.png", "mercadeo.jpg", "agro.jpg"],
+            arrayImages: ["test.jpg", "turismo.jpg", "computacion.jpg", "focos.jpg", "herramienta.png", "mercadeo.jpg", "agro.jpg", 'itcha.jpg'],
             files: "",
             image: "",
             toolBars: [[{
@@ -102610,6 +102615,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -102640,7 +102651,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       textoBtn: "",
       fechaFin: '',
       obsFinal: '',
-      hrsFinal: 0
+      hrsFinal: 0,
+      nivelSelected: 0,
+      arrayNiveles: [{ value: 1, label: "Primer Año" }, { value: 2, label: "Segundo Año" }]
     };
   },
 
@@ -102649,8 +102662,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.getCarreras();
       this.carrera_selected = 0;
     },
-    carrera_selected: function carrera_selected() {
+    nivelSelected: function nivelSelected() {
       this.getGestionProy(this.carrera_selected.value, this.proceso, 1, "");
+    },
+    carrera_selected: function carrera_selected() {
+      if (this.proceso == 1 && this.nivelSelected != 0) {
+        this.getGestionProy(this.carrera_selected.value, this.proceso, 1, "");
+      } else {
+        this.getGestionProy(this.carrera_selected.value, this.proceso, 1, "");
+      }
     }
   },
   computed: {
@@ -102701,6 +102721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var url = route('getEstudiantesToConstacias', {
         'carre_id': carrera_id,
         'proceso_id': proceso_id,
+        'nivelAcad': me.nivelSelected.value,
         'page': page,
         'buscar': buscar
       });
@@ -102865,7 +102886,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c(
                 "div",
-                { staticClass: "col-md-12" },
+                { class: [_vm.proceso == 2 ? "col-md-12" : "col-md-8"] },
                 [
                   _c(
                     "v-select",
@@ -102897,7 +102918,49 @@ var render = function() {
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm.proceso == 1
+                ? _c(
+                    "div",
+                    { staticClass: "col-md-4" },
+                    [
+                      _c(
+                        "v-select",
+                        {
+                          attrs: {
+                            options: _vm.arrayNiveles,
+                            placeholder: "Seleccione nivel academico"
+                          },
+                          model: {
+                            value: _vm.nivelSelected,
+                            callback: function($$v) {
+                              _vm.nivelSelected = $$v
+                            },
+                            expression: "nivelSelected"
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              attrs: { slot: "no-options" },
+                              slot: "no-options"
+                            },
+                            [_vm._v("No hay datos disponibles")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.carrera_selected != 0 && _vm.nivelSelected == 0
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Seleccione nivel academico")
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _vm.carrera_selected != 0 && _vm.carrera_selected != null
@@ -109073,8 +109136,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	created: function created() {
 		var me = this;
 		Echo.private('chat').listen('MessageSentEvent', function (e) {
-			me.getRecordsOfUsersAfterRead();
-			e.user.id == me.user_id ? me.getMessagesWithoutReaload() : '';
+			if ($("#btnFAB").hasClass('hiddeBtnFab')) {
+				me.getRecordsOfUsersAfterRead();
+				e.user.id == me.user_id ? me.getMessagesWithoutReaload() : '';
+			}
 		});
 	},
 	mounted: function mounted() {

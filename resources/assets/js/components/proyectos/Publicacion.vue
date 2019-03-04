@@ -338,6 +338,11 @@ export default {
         switchImg: function () {
             if (this.switchImg == true) {
                 this.imgGallery = "";
+            }else{
+                let me = this;
+                const elem = me.$refs.imgUpload;
+                me.image = "";
+                elem.reset();
             }
         },
         proceso: function () {

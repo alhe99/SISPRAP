@@ -219,8 +219,10 @@ export default {
 	created() {
 		let me = this;
 		Echo.private('chat').listen('MessageSentEvent', (e) => {
-		  me.getRecordsOfUsersAfterRead();
-		  e.user.id == me.user_id ? me.getMessagesWithoutReaload() : '';
+		  if($("#btnFAB").hasClass('hiddeBtnFab')){
+			me.getRecordsOfUsersAfterRead();
+		        e.user.id == me.user_id ? me.getMessagesWithoutReaload() : '';
+		  }
 		});
 	},
 	mounted(){
