@@ -78,7 +78,7 @@
                         class="hide-menu">Reportes</span></a>
                         <ul aria-expanded="false" class="collapse ">
                             <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
-                                class="mdi mdi-clipboard-check"></i><span class="hide-menu">Reportes de SS-PP
+                                class="mdi mdi-clipboard-check"></i><span>Reportes de SS-PP
                                 &nbsp;&nbsp;&nbsp;</span></a>
                                 <ul aria-expanded="false" class="collapse ">
                                     <li><button type="button" @click="menu=16" class="btn btn-link  btn-colors">Inicio de
@@ -92,7 +92,7 @@
                                 </ul>
                             </li>
                             <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
-                                class="mdi mdi-clipboard-check"></i><span class="hide-menu">Reportes por Institución
+                                class="mdi mdi-clipboard-check"></i><span>Reportes por Institución
                                 </span></a>
                                 <ul aria-expanded="false" class="collapse ">
                                     <li><button type="button" @click="menu=11" class="btn btn-link  btn-colors">Informe
