@@ -6728,9 +6728,9 @@ When click on sidebar toggler and also for tablet
     }
     .mini-sidebar .sidebar-nav #sidebarnav>li>ul {
         position: absolute;
-        left: 60px;
+        left: 35px;
         top: 45px;
-        width: 200px;
+        width: 215px;
         z-index: 1001;
         background: #f2f6f8;
         display: none;
