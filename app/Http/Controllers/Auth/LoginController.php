@@ -106,14 +106,27 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if(Auth::user()->id > 1 and Auth::user()->rol_id == 3){
+        if(Auth::user()->id > 2 and Auth::user()->rol_id == 3){
             $proceso = Auth::user()->estudiante->proceso[0]->pivot->proceso_id;
             $carnet = Auth::user()->estudiante->codCarnet;
-            if ($proceso == 1) { $ruta_img = public_path('docs/docs_ss/')."PSS-".$carnet.".jpg";}
-            else{$ruta_img = public_path('docs/docs_pp/')."PPP-".$carnet.".jpg";}
+            if ($proceso == 1) {
+                $ruta_imgPP = public_path('docs/docs_ss/')."PSS-".$carnet.".jpg";
+                $ruta_imgCP = public_path('docs/docs_ss/')."CPSS-".$carnet.".jpg";
+                $ruta_imgCH = public_path('docs/docs_ss/')."CHSS-".$carnet.".jpg";
+            }else{
+                $ruta_imgPP = public_path('docs/docs_pp/')."PPP-".$carnet.".jpg";
+                $ruta_imgCP = public_path('docs/docs_pp/')."CPPP-".$carnet.".jpg";
+                $ruta_imgCH = public_path('docs/docs_pp/')."CHPP-".$carnet.".jpg";
+            }
 
-            if(file_exists($ruta_img))
-              unlink($ruta_img);
+            if(file_exists($ruta_imgPP))
+              unlink($ruta_imgPP);
+
+            if(file_exists($ruta_imgCP))
+              unlink($ruta_imgCP);
+
+            if(file_exists($ruta_imgCH))
+              unlink($ruta_imgCH);
         }
         Auth::logout();
         $request->session()->invalidate();

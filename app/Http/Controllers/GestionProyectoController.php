@@ -2506,12 +2506,19 @@ class GestionProyectoController extends Controller
                     }
                 break;
                 case 'CH':
-                    if(Auth::user()->estudiante->no_proyectos == 2){
-                        $gestion = GestionProyecto::where([
-                            ['estudiante_id',Auth::user()->estudiante->id],
-                            ['tipo_gp',$proceso],
-                        ])->year($this->anio)->find($request->gestionId);
+                        if(Auth::user()->estudiante->no_proyectos == 2){
+                            $gestion = GestionProyecto::where([
+                                ['estudiante_id',Auth::user()->estudiante->id],
+                                ['tipo_gp',$proceso],
+                            ])->year($this->anio)->find($request->gestionId);
 
+                        }else{
+                            $gestion = GestionProyecto::where([
+                                ['estudiante_id',Auth::user()->estudiante->id],
+                                ['tipo_gp',$proceso],
+                                ['estado','I']
+                            ])->year($this->anio)->first();
+                        }
                         $nombreP = $gestion->proyecto->nombre;
                         $nombreI = $gestion->proyecto->institucion->nombre;
 
@@ -2528,24 +2535,28 @@ class GestionProyectoController extends Controller
                         if ($proceso == 1) {$control_horas->save(public_path('docs/docs_ss/')."CHSS-".$codCarnet);}
                         else{$control_horas->save(public_path('docs/docs_pp/')."CHPP-".$codCarnet);}
 
-                        return $pdf->download('Control de Asistencia de proyecto.pdf');
-                    }else{
-                      return $pdf->download('Control de Asistencia.pdf');
-                    }
+                        return $pdf->download('Control de Horas - '.$codCarnet.'.pdf');
                 break;
                 case 'CP':
-                    if (Auth::user()->estudiante->no_proyectos == 2) {
 
-                        $gestion = GestionProyecto::where([
-                            ['estudiante_id',Auth::user()->estudiante->id],
-                            ['tipo_gp',$proceso],
-                        ])->year($this->anio)->find($request->gestionId);
+                        if(Auth::user()->estudiante->no_proyectos == 2){
+                            $gestion = GestionProyecto::where([
+                                ['estudiante_id',Auth::user()->estudiante->id],
+                                ['tipo_gp',$proceso],
+                            ])->year($this->anio)->find($request->gestionId);
+
+                        }else{
+                            $gestion = GestionProyecto::where([
+                                ['estudiante_id',Auth::user()->estudiante->id],
+                                ['tipo_gp',$proceso],
+                                ['estado','I']
+                            ])->year($this->anio)->first();
+                        }
 
                         $nombreP = $gestion->proyecto->nombre;
                         $nombreI = $gestion->proyecto->institucion->nombre;
 
                         $nombre_completo = $nombre." ".$apellido;
-
                         $control_proy = new TextPainter(public_path('images/controles/control-proyecto.jpg'),'',public_path('fonts/arial.ttf'), 10);
                         $control_proy->setTextColor(0,0,0);
                         if ($proceso == 1) {$control_proy->setText("x",472,498,30);}else{$control_proy->setText("x",944,500,30);}//Proceso
@@ -2562,9 +2573,6 @@ class GestionProyectoController extends Controller
                         else{$control_proy->save(public_path('docs/docs_pp/')."CPPP-".$codCarnet);}
 
                         return $pdf->download('Control Proyecto - '.$codCarnet.'.pdf');
-                    }else{
-                        return $pdf->download('Control de Proyecto - '.$codCarnet.'.pdf');
-                    }
                 break;
             }
     }

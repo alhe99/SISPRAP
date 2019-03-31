@@ -89618,13 +89618,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    value: {
-      default: null
-    }
-  },
   data: function data() {
     return {
       buscar: "",
@@ -89680,8 +89681,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //vselect.disabled = false;
     },
     proyecto_selectd: function proyecto_selectd() {
-      this.getPreregister(this.proyecto_selectd.value, 1, "");
-      this.getNumeroPreinscripciones();
+      if (this.proyecto_selectd != null && this.proyecto_selectd != undefined) {
+        this.getNumeroPreinscripciones();
+        this.getPreregister(this.proyecto_selectd.value, 1, "");
+      }
     },
     arrayProyectos: function arrayProyectos() {
       var vselect = this.$refs.vselectProy;
@@ -89697,6 +89700,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     estudiante: function estudiante() {
+      // Ruta para obtener la imagen de los estudiantes desde el servidor de ITCHA
       this.rutaIMG = "http://portal.itcha.edu.sv/images/alumnos/" + this.estudiante.foto_name;
     }
   },
@@ -89722,9 +89726,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         from++;
       }
       return pagesArray;
-    },
-    testProp: function testProp() {
-      return this.value = this.proyecto_selectd;
     }
   },
   methods: {
@@ -89733,9 +89734,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       me.loadSpinner = 1;
       if (this.proceso == 1) {
-        var url = route('getProyectosByProcess', { 'process_id': me.proceso, 'tipoProyecto': 'I' });
+        var url = route('getProyectosByProcess', {
+          'process_id': me.proceso,
+          'tipoProyecto': 'I'
+        });
       } else if (this.proceso == 2) {
-        var url = route('getProyectosByProcess', { 'process_id': me.proceso, 'carre_id': me.carrera_selected.value, 'tipoProyecto': 'I' });
+        var url = route('getProyectosByProcess', {
+          'process_id': me.proceso,
+          'carre_id': me.carrera_selected.value,
+          'tipoProyecto': 'I'
+        });
       }
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -89749,10 +89757,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //obtener proyectos que los estudiante se han preinscrito dependiendo por su proceso
     getNumeroPreinscripciones: function getNumeroPreinscripciones() {
       var me = this;
-      if (this.proceso == 1) {
-        var url = "proyectos/getNumeroPreinscripciones?process_id=" + this.proceso + "&proyectoId=" + this.proyecto_selectd.value;
-      } else if (this.proceso == 2) {
-        var url = "proyectos/getNumeroPreinscripciones?process_id=" + this.proceso + "&proyectoId=" + this.proyecto_selectd.value + "&carrera_id=" + this.carrera_selected.value;
+      me.loadSpinner = 1;
+      if (me.proceso == 1) {
+        var url = route('getNumeroPreinscripciones', {
+          'process_id': me.proceso,
+          'proyectoId': me.proyecto_selectd.value
+        });
+      } else if (me.proceso == 2) {
+        var url = route('getNumeroPreinscripciones', {
+          'process_id': me.proceso,
+          'proyectoId': me.proyecto_selectd.value,
+          'carrera_id': me.carrera_selected.value
+        });
       }
       axios.get(url).then(function (response) {
         var respuesta = response.data;
@@ -89778,8 +89794,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //listado de los estudiantes preinscritos a un proyecto en especifico
     getPreregister: function getPreregister(proyecto_id, page, buscar) {
       var me = this;
-      me.loadSpinner = 1;
-      var url = route('getPreinscripcionesByProyecto', { 'project_id': proyecto_id, 'page': page, 'buscar': buscar });
+      var url = route('getPreinscripcionesByProyecto', {
+        'project_id': proyecto_id,
+        'page': page,
+        'buscar': buscar
+      });
       axios.get(url).then(function (response) {
         var respuesta = response.data;
         me.arrayPreregister = respuesta.projects.data;
@@ -89837,9 +89856,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       //Actualiza la pagina actual
       me.pagination.current_page = page;
-      //Envia la pericion para visualizar los datos
+      //Envia la peticion para visualizar los datos
       if (me.arrayPreregister.length > 0) {
-
         me.getPreregister(this.proyecto_selectd.value, page, "");
       }
     },
@@ -89847,7 +89865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       //Actualiza la pagina actual
       me.paginationP.current_page = page;
-      //Envia la pericion para visualizar los datos
+      //Envia la peticion para visualizar los datos
       if (me.arrayEstudianteP.length > 0) {
 
         me.getEstudianteByCarrer(page, "");
@@ -89882,7 +89900,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           if (result.value) {
             var me = _this;
             me.loadSpinner = 1;
-            var url = route('preregister', { "estudent_id": estudiante_id, "project_id": proyecto_id });
+            var url = route('preregister', {
+              "estudent_id": estudiante_id,
+              "project_id": proyecto_id
+            });
             axios.get(url).then(function (response) {
               me.getPreregister(me.proyecto_selectd.value, 1, "");
               swal("Aprobado!", "Has Probado la solicitud para este proyecto", "success");
@@ -89967,10 +89988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   components: {},
-  mounted: function mounted() {
-    // this.getProyectos();
-    //this.contentProy = true;
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -90127,7 +90145,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                    No hay datos disponibles\n                  "
+                                    "\n                        No hay datos disponibles\n                        "
                                   )
                                 ]
                               )
@@ -90172,7 +90190,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                  No hay datos disponibles\n                "
+                                "\n                        No hay datos disponibles\n                        "
                               )
                             ]
                           )
@@ -90191,6 +90209,7 @@ var render = function() {
                   )
                 ])
               ]),
+              _vm._v(" "),
               _c("br"),
               _vm._v(" "),
               _vm.proyecto_selectd != 0 && _vm.proyecto_selectd != null
@@ -90240,12 +90259,12 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n              Vacantes disponibles: " +
+                              "\n                        Vacantes disponibles: " +
                                 _vm._s(
                                   _vm.proyecto_selectd.vacantes -
                                     _vm.numeroSolicitudes
                                 ) +
-                                "\n            "
+                                "\n                     "
                             )
                           ]
                         )
@@ -90580,6 +90599,7 @@ var render = function() {
                                             { staticClass: "font-weight-bold" },
                                             [_vm._v("Nombre:")]
                                           ),
+                                          _vm._v(" "),
                                           _c("h4", [
                                             _vm._v(
                                               _vm._s(
@@ -90595,6 +90615,7 @@ var render = function() {
                                             { staticClass: "font-weight-bold" },
                                             [_vm._v("Carrera:")]
                                           ),
+                                          _vm._v(" "),
                                           _c("h4", [
                                             _vm._v(
                                               _vm._s(_vm.estudiante.carrer)
@@ -90606,6 +90627,7 @@ var render = function() {
                                             { staticClass: "font-weight-bold" },
                                             [_vm._v("Fecha Nacimiento: ")]
                                           ),
+                                          _vm._v(" "),
                                           _c("h4", [
                                             _vm._v(
                                               _vm._s(_vm.estudiante.fechaNac)
@@ -90617,6 +90639,7 @@ var render = function() {
                                             { staticClass: "font-weight-bold" },
                                             [_vm._v("Género: ")]
                                           ),
+                                          _vm._v(" "),
                                           _c("h4", {
                                             domProps: {
                                               textContent: _vm._s(
@@ -90632,6 +90655,7 @@ var render = function() {
                                             { staticClass: "font-weight-bold" },
                                             [_vm._v("Codigo de Carnet: ")]
                                           ),
+                                          _vm._v(" "),
                                           _c("h4", [
                                             _vm._v(
                                               _vm._s(_vm.estudiante.codCarnet)
@@ -90643,6 +90667,7 @@ var render = function() {
                                             { staticClass: "font-weight-bold" },
                                             [_vm._v("Dirección: ")]
                                           ),
+                                          _vm._v(" "),
                                           _c("h4", [
                                             _vm._v(
                                               _vm._s(_vm.estudiante.direccion)

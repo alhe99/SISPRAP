@@ -30,7 +30,10 @@ class UsuarioController extends Controller
     }
     public function changeYearApp($newYear){
        $this->setEnvironmentValue('APP_YEAR', $newYear);
-       exec('php artisan config:cache');
+       // Limpiando los principales datos de cache de la aplicacion
+       Artisan::call('config:clear');
+       Artisan::call('view:cache');
+       Artisan::call('view:clear');
     }
     public function update(Request $request)
     {

@@ -38,7 +38,7 @@ class CreateEstudentsSeeder extends Seeder
 		        $e->fechaNac = $value->fecha_nac;
 		        $e->genero = substr($value->genero, 0, 1);
 		        $e->telefono = $value->celular;
-		        $e->codCarnet = $value->aspirante->codigo;
+		        $e->codCarnet = $value->aspirante->codigo;--
 		        $e->email = $value->correo;
 		        $e->direccion = $value->direccion;
 		        $e->estado = true;
@@ -49,9 +49,11 @@ class CreateEstudentsSeeder extends Seeder
 		        $e->supero_limite = 0;
 		        $e->password = bcrypt($value->aspirante->password);
 		        $e->foto_name = $value->foto;
+
 		        $e->no_proyectos = 0;
 		        $e->ultimo_cambio = date('Y-m-d');
 		        $e->tipo_beca_id = $value->aspirante->id_beca == 2 ? '1' : '2';
+			
 		        $e->proceso_actual = 'P';
 		        $e->fecha_registro = date('Y-m-d');
 		        $e->save();

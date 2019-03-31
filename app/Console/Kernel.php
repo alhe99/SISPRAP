@@ -29,8 +29,8 @@ class Kernel extends ConsoleKernel
         /*  ->weekdays()->between('16:00', '17:00')->appendOutputTo(storage_path('logs/scheduler.log')); */
         /*         $schedule->command("clean:backup")->weekdays()->between('16:30:01','16:30:59');
         $schedule->command("backup:run --only-db")->weekdays()->between('17:00:01', '17:00:59'); */
-        $schedule->command("backup:clean")->weekdays()->between('16:30:01','16:30:59');
-        $schedule->command("backup:run --only-db")->weekdays()->between('16:31:01','16:31:59');
+        $schedule->command("backup:clean");
+        $schedule->command("backup:run --only-db");
         
     }
     /**

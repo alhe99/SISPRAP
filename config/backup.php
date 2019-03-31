@@ -86,7 +86,7 @@ return [
              */
             'disks' => [
                 'local',
-                'dropbox'
+                /* 'dropbox' */
             ],
         ],
 
@@ -147,7 +147,7 @@ return [
     'monitorBackups' => [
         [
             'name' => config('app.name'),
-            'disks' => ['local','dropbox'],
+            'disks' => ['local'/* ,'dropbox' */],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],

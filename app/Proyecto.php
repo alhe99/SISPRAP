@@ -26,10 +26,6 @@ class Proyecto extends Model
         'tipo_proyecto'
     ];
 
-    protected $cast = [
-        'fecha' => 'date:Y-m-d',
-    ];
-
     public function institucion()
     {
 

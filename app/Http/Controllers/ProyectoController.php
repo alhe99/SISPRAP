@@ -144,7 +144,22 @@ class ProyectoController extends Controller
             switch ($request->proceso_id) {
                 case 1:
                 $proyecto = Proyecto::find($request->proyecto_id);
-                if ($cantidad > $proyecto->cantidades_vacantes) $proyecto->estado_vacantes = 'D';
+
+                // Obteniendo datos que se requieren para saber el total de estudiantes que estan realizando o que estan preinscritos a este proyecto
+                $dataToVancantesMethod = new Request();
+                $dataToVancantesMethod->setMethod('POST');
+                $dataToVancantesMethod->request->add(['process_id' => $proyecto->proceso_id]);
+                $dataToVancantesMethod->request->add(['proyectoId' => $proyecto->id]);
+                $dataToVancantesMethod->request->add(['carrera_id' => '']);
+                $estudiantesInProy = $this->getNumeroPreinscripciones($dataToVancantesMethod);
+
+                // Verficando si se ha bajado o subido la cantidad de vacantes para este proyecto
+                if ($cantidad > $proyecto->cantidades_vacantes and $cantidad > $estudiantesInProy)
+                 $proyecto->estado_vacantes = 'D';
+                else if($cantidad <= $estudiantesInProy)
+                 $proyecto->estado_vacantes = 'C';
+
+                // Actualizando los demas campos del proyecto
                 $proyecto->nombre = $request->nombre;
                 $proyecto->actividades = $request->actividades;
                 $proyecto->institucion_id = $request->institucion_id;
@@ -172,7 +187,24 @@ class ProyectoController extends Controller
                 break;
                 case 2:
                 $proyecto = Proyecto::find($request->proyecto_id);
-                if ($cantidad > $proyecto->cantidades_vacantes ) $proyecto->estado_vacantes = 'D';
+
+                // Obteniendo datos que se requieren para saber el total de estudiantes que estan realizando o que estan preinscritos a este proyecto
+                $dataToVancantesMethod = new Request();
+                $dataToVancantesMethod->setMethod('POST');
+                $dataToVancantesMethod->request->add(['process_id' => $proyecto->proceso_id]);
+                $dataToVancantesMethod->request->add(['proyectoId' => $proyecto->id]);
+                //Obteniendo para que carrera es este proyecto
+                $carreraToProy = $proyecto->carre_proy()->get();
+                $dataToVancantesMethod->request->add(['carrera_id' => $carreraToProy[0]->id]);
+                $estudiantesInProy = $this->getNumeroPreinscripciones($dataToVancantesMethod);
+
+                // Verficando si se ha bajado o subido la cantidad de vacantes para este proyecto
+                if ($cantidad > $proyecto->cantidades_vacantes and $cantidad > $estudiantesInProy)
+                 $proyecto->estado_vacantes = 'D';
+                else if($cantidad <= $estudiantesInProy)
+                 $proyecto->estado_vacantes = 'C';
+
+                // Actualizando los demas campos del proyecto
                 $proyecto->nombre = $request->nombre;
                 $proyecto->actividades = $request->actividades;
                 $proyecto->institucion_id = $request->institucion_id;

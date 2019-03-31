@@ -185,7 +185,7 @@ Route::get('/test', function () {
         return "True";
     else
         return "False";
-/* 
+/*
     $file = new Filesystem;
     $file->cleanDirectory(\Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix()); */
 
@@ -209,7 +209,7 @@ Route::get('/test', function () {
     /*
     *Aquí pones tu código o anidación de funciones.
     */
-/* 
+/*
     $fecha2 = new DateTime();//fecha de cierre
     $intervalo = $fecha->diff($fecha2);
     return ' Tiempo de ejecución: '.$intervalo-> format('%i minutos %s segundos'); */
