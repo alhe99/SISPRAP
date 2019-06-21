@@ -53,7 +53,7 @@ use SebastianBergmann\ObjectEnumerator\Enumerator;
 use Text_Template;
 use Throwable;
 
-abstract class TestCase extends Assert implements Test, SelfDescribing
+abstract class TestCase extends Assert implements SelfDescribing, Test
 {
     private const LOCALE_CATEGORIES = [\LC_ALL, \LC_COLLATE, \LC_CTYPE, \LC_MONETARY, \LC_NUMERIC, \LC_TIME];
 
@@ -118,12 +118,12 @@ abstract class TestCase extends Assert implements Test, SelfDescribing
     private $expectedException;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $expectedExceptionMessage;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $expectedExceptionMessageRegExp;
 
@@ -569,12 +569,12 @@ abstract class TestCase extends Assert implements Test, SelfDescribing
         return $this->expectedExceptionCode;
     }
 
-    public function getExpectedExceptionMessage(): string
+    public function getExpectedExceptionMessage(): ?string
     {
         return $this->expectedExceptionMessage;
     }
 
-    public function getExpectedExceptionMessageRegExp(): string
+    public function getExpectedExceptionMessageRegExp(): ?string
     {
         return $this->expectedExceptionMessageRegExp;
     }
@@ -916,6 +916,7 @@ abstract class TestCase extends Assert implements Test, SelfDescribing
         $this->unregisterCustomComparators();
         $this->cleanupIniSettings();
         $this->cleanupLocaleSettings();
+        \libxml_clear_errors();
 
         // Perform assertion on output.
         if (!isset($e)) {

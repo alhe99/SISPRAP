@@ -777,7 +777,7 @@ export default {
                 showConfirmButton: false,
                 timer: 4000
             });
-            var url = route('updateProyectos', {
+            /*var url = route('updateProyectos', {
                 'proyecto_id': me.proyecto_id,
                 'nombre': me.nombreP,
                 'actividades': me.actividadesUpd,
@@ -789,8 +789,20 @@ export default {
                 'imagen': me.image,
                 'hrsRealizar': me.hrsRealizar,
                 'cantidadEstudiantes': me.vacantesProy
-            });
-            axios.post(url).then(function (response) {
+            });*/
+            axios.post(route('updateProyectos').template,{
+                'proyecto_id': me.proyecto_id,
+                'nombre': me.nombreP,
+                'actividades': me.actividadesUpd,
+                'institucion_id': me.institucionP.value,
+                'estado': "1",
+                'proceso_id': me.proceso,
+                'tipoProyecto': "I",
+                'imagenG': me.imgGallery,
+                'imagen': me.image,
+                'hrsRealizar': me.hrsRealizar,
+                'cantidadEstudiantes': me.vacantesProy
+            }).then(function (response) {
                     swal({
                         position: "center",
                         type: "success",

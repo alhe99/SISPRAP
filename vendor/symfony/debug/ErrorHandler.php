@@ -45,6 +45,8 @@ use Symfony\Component\Debug\FatalErrorHandler\UndefinedMethodFatalErrorHandler;
  *
  * @author Nicolas Grekas <p@tchwork.com>
  * @author Grégoire Pineau <lyrixx@lyrixx.info>
+ *
+ * @final since Symfony 4.3
  */
 class ErrorHandler
 {
@@ -220,7 +222,7 @@ class ErrorHandler
             }
             if (!\is_array($log)) {
                 $log = [$log];
-            } elseif (!array_key_exists(0, $log)) {
+            } elseif (!\array_key_exists(0, $log)) {
                 throw new \InvalidArgumentException('No logger provided');
             }
             if (null === $log[0]) {
@@ -490,6 +492,11 @@ class ErrorHandler
         if ($this->isRecursive) {
             $log = 0;
         } else {
+            if (!\defined('HHVM_VERSION')) {
+                $currentErrorHandler = set_error_handler('var_dump');
+                restore_error_handler();
+            }
+
             try {
                 $this->isRecursive = true;
                 $level = ($type & $level) ? $this->loggers[$type][1] : LogLevel::DEBUG;
@@ -498,7 +505,7 @@ class ErrorHandler
                 $this->isRecursive = false;
 
                 if (!\defined('HHVM_VERSION')) {
-                    set_error_handler([$this, __FUNCTION__]);
+                    set_error_handler($currentErrorHandler);
                 }
             }
         }

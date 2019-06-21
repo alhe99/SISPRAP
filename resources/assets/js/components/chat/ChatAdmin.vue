@@ -490,8 +490,9 @@ export default {
 			line-height: 4.5rem;
 		}
 		.chatUserIcon img {
-			display: block;
-			width: 100%;
+		    display: block;
+    		width: 100%;
+    		height: 100%;
 		}
 		.chatUserDetails {
 			position: relative;

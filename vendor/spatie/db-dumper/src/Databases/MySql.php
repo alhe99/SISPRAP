@@ -17,11 +17,20 @@ class MySql extends DbDumper
     /** @var bool */
     protected $useSingleTransaction = false;
 
+    /** @var bool */
+    protected $skipLockTables = false;
+
+    /** @var bool */
+    protected $useQuick = false;
+
     /** @var string */
     protected $defaultCharacterSet = '';
 
     /** @var bool */
     protected $dbNameWasSetAsExtraOption = false;
+
+    /** @var bool */
+    protected $allDatabasesWasSetAsExtraOption = false;
 
     /** @var string */
     protected $setGtidPurged = 'AUTO';
@@ -95,6 +104,46 @@ class MySql extends DbDumper
     }
 
     /**
+     * @return $this
+     */
+    public function skipLockTables()
+    {
+        $this->skipLockTables = true;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function dontSkipLockTables()
+    {
+        $this->skipLockTables = false;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function useQuick()
+    {
+        $this->useQuick = true;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function dontUseQuick()
+    {
+        $this->useQuick = false;
+
+        return $this;
+    }
+
+    /**
      * @param string $characterSet
      *
      * @return $this
@@ -134,11 +183,7 @@ class MySql extends DbDumper
 
         $command = $this->getDumpCommand($dumpFile, $temporaryCredentialsFile);
 
-        $process = new Process($command);
-
-        if (! is_null($this->timeout)) {
-            $process->setTimeout($this->timeout);
-        }
+        $process = Process::fromShellCommandline($command, null, null, null, $this->timeout);
 
         $process->run();
 
@@ -147,6 +192,11 @@ class MySql extends DbDumper
 
     public function addExtraOption(string $extraOption)
     {
+        if (strpos($extraOption, '--all-databases') !== false) {
+            $this->dbNameWasSetAsExtraOption = true;
+            $this->allDatabasesWasSetAsExtraOption = true;
+        }
+
         if (preg_match('/^--databases (\S+)/', $extraOption, $matches) === 1) {
             $this->setDbName($matches[1]);
             $this->dbNameWasSetAsExtraOption = true;
@@ -196,6 +246,14 @@ class MySql extends DbDumper
             $command[] = '--single-transaction';
         }
 
+        if ($this->skipLockTables) {
+            $command[] = '--skip-lock-tables';
+        }
+
+        if ($this->useQuick) {
+            $command[] = '--quick';
+        }
+
         if ($this->socket !== '') {
             $command[] = "--socket={$this->socket}";
         }
@@ -243,10 +301,14 @@ class MySql extends DbDumper
 
     protected function guardAgainstIncompleteCredentials()
     {
-        foreach (['userName', 'dbName', 'host'] as $requiredProperty) {
+        foreach (['userName', 'host'] as $requiredProperty) {
             if (strlen($this->$requiredProperty) === 0) {
                 throw CannotStartDump::emptyParameter($requiredProperty);
             }
+        }
+
+        if (strlen('dbName') === 0 && ! $this->allDatabasesWasSetAsExtraOption) {
+            throw CannotStartDump::emptyParameter($requiredProperty);
         }
     }
 

@@ -1302,13 +1302,18 @@ export default {
       let me = this;
       me.loading = true;
       /* var url = window.location.origin+"proyecto/registrar/supervision/"; */
-      var url = route('saveSupervision',{
+      /*var url = route('saveSupervision',{
           'proyecto_id': me.proyecto_id,
           'observacion': me.observacion,
           'fecha': $("#fechaSupervision").val().trim(),
           'imagenes': JSON.stringify(me.images)
-      });
-      axios.get(url).then(function (response) {
+      });*/
+      axios.post(route('saveSupervision').template,{
+          'proyecto_id': me.proyecto_id,
+          'observacion': me.observacion,
+          'fecha': $("#fechaSupervision").val().trim(),
+          'imagenes': me.images
+         }).then(function (response) {
           me.loading = false;
           swal({
             position: "center",
@@ -1327,13 +1332,18 @@ export default {
     actualizarSupervision() {
       let me = this;
       me.loadSpinner = 1;
-      var url = route('updateSupervision',{
+      /*var url = route('updateSupervision',{
           'id_proyecto': me.proyecto_id,
           'fecha': $("#fechaSupervision").val().trim(),
           'observacion': me.observacion,
           'images':JSON.stringify(me.images)
-      });
-      axios.put(url).then(function (response) {
+      });*/
+      axios.put(route('updateSupervision').template,{
+          'id_proyecto': me.proyecto_id,
+          'fecha': $("#fechaSupervision").val().trim(),
+          'observacion': me.observacion,
+          'images': me.images
+      }).then(function (response) {
           me.loadSpinner = 0;
           me.getSupervision(me.proyecto_id);
           swal({

@@ -458,7 +458,7 @@ export default {
             if (me.proyectoExterno) {
                 tipoProyecto = 'E';
             };
-            var url = route('saveProyectosInternos', {
+            /*var url = route('saveProyectosInternos', {
                 'proceso_id': me.proceso,
                 'nombre': me.nombre,
                 'actividades': JSON.stringify(me.actividadesProy),
@@ -469,9 +469,20 @@ export default {
                 'horas': me.catidadHoras,
                 'cantidadAlumnos': me.cantidadVacantes,
                 'tipoProyecto': tipoProyecto
-            });
+            });*/
             me.loadSpinner = 1;
-            axios.post(url).then(function (response) {
+            axios.post(route('saveProyectosInternos').template,{
+                    'proceso_id': me.proceso,
+                    'nombre': me.nombre,
+                    'actividades': JSON.stringify(me.actividadesProy),
+                    'institucion_id': me.institucion.value,
+                    'imageG': me.imgGallery,
+                    'imagen': me.image,
+                    'actividadSS': me.actividadesCarre,
+                    'horas': me.catidadHoras,
+                    'cantidadAlumnos': me.cantidadVacantes,
+                    'tipoProyecto': tipoProyecto
+                }).then(function (response) {
                     swal({
                         position: "center",
                         type: "success",
@@ -570,6 +581,7 @@ export default {
         }else{
             this.proyectoExterno = true;
         }
+        console.log(route('saveProyectosInternos').template);
     }
 };
 </script>

@@ -70,13 +70,18 @@
                     <li><button type="button" @click="menu=8" class="btn btn-link btn-field"><i class="mdi mdi-marker-check btn-i"></i><span
                         class="hide-menu">Pago Arancel</span></button>
                     </li>
+
+
                     @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                     <li><button type="button" @click="menu=24" class="btn btn-link btn-field"><i class="mdi mdi-message btn-i"></i><span
                         class="hide-menu">Mensajes&nbsp;</span><span class="badge badge-pill badge-danger" v-if="messages_unread > 0" v-text="messages_unread"></span></button>
                     </li>
-                    <li> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span
+
+                    <li> 
+                        <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span
                         class="hide-menu">Reportes</span></a>
-                            <li style="margin-left: -5px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
+
+                   
                         <ul aria-expanded="false" class="collapse">
                             <li style="margin-left: -2px;"> <a class="has-arrow waves-effect waves-dark " aria-expanded="false"><i
                                 class="mdi mdi-clipboard-check"></i><span>Reportes de SS-PP
@@ -92,6 +97,7 @@
                                     culminados</button></li>
                                 </ul>
                             </li>
+
                             <li style="margin-left: -2px;"><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i
                                 class="mdi mdi-clipboard-check"></i><span>Reportes por Institución
                                 </span></a>
@@ -101,6 +107,7 @@
                                     <li><button type="button" @click="menu=13" class="btn btn-link btn-colors">Supervisiones</button></li>
                                 </ul>
                             </li>
+                            
                         </ul>
                     </li>
                     
@@ -108,6 +115,7 @@
                         class="hide-menu"> Usuarios</span></button>
                     </li>
                     @endif
+                    
 {{--                     <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                         class="hide-menu"> Copias de seguridad</span></button>
                     </li> --}}

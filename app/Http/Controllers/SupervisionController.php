@@ -31,7 +31,7 @@ class SupervisionController extends Controller
                   $supervision->fecha_registro = $this->anio;
                   Proyecto::findOrFail($request->proyecto_id)->supervision()->save($supervision);
                   
-                  $imagenes = json_decode($request->imagenes);
+                  $imagenes = $request->imagenes;
 
                   for ($i=0;$i<count($imagenes);$i++) {
 
@@ -54,7 +54,7 @@ class SupervisionController extends Controller
         $supervision = Proyecto::findOrFail($request->id_proyecto)->supervision;
         $supervision->fecha = $request->fecha;
         $supervision->observacion = $request->observacion;
-        $imagenes = json_decode($request->images);
+        $imagenes = $request->images;
         for ($i=0;$i<count($imagenes);$i++) {
 
             $imgSuper = new ImgSupervision();

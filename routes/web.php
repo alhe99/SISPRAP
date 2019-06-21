@@ -87,7 +87,7 @@ Route::post('/admin/provideAccessToPerfil/{sId}/{pId}','ProyectoController@provi
 Route::get('deleteAllPreregister/{pId}','ProyectoController@deleteAllPreregistration')->name('deleteAllPreinscripciones');
 
 //SUPERVISIONES
-Route::get('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
+Route::post('proyecto/registrar/supervision', 'SupervisionController@store')->name('saveSupervision');
 
 /* FALTAN SUPERVISIONES */
 Route::get('/proyecto/allProjects', 'ProyectoController@getProjectsByCarrer')->name('getProjectsByEstudiante');
