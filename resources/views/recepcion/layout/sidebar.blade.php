@@ -32,6 +32,11 @@
                 <button type="button" @click="menu=1"  aria-expanded="false" class="btn btn-link btn-field"><i class="mdi mdi-square-inc-cash btn-i"></i><span class="hide-menu"> Pago de Arancel</span></button>
                 </li>
                 <li class="nav-devider"></li>
+                  <li><a href="{{asset('manual/ManualRecepcion.pdf')}}" target="_blank" class="btn btn-link btn-field">
+                            <i class="mdi mdi-alert-circle btn-i" style="color: #FF0000"></i>
+                            <span class="hide-menu" style="color: #B0BEC5;"> Manual de Usuario</span>
+                        </a>
+                    </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

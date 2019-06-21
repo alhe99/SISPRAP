@@ -119,8 +119,10 @@
 {{--                     <li><button type="button" @click="menu=10" class="btn btn-link btn-field"><i class="mdi mdi-file-multiple btn-i"></i><span
                         class="hide-menu"> Copias de seguridad</span></button>
                     </li> --}}
-                    <li><button type="button" class="btn btn-link btn-field"><i class="mdi mdi-alert-circle btn-i" style="color: #FF0000"></i>
-                        <span class="hide-menu" style="color: #B0BEC5;"> Manual de Usuario</span></button>
+                    <li><a href="{{asset('manual/ManualAdmin.pdf')}}" target="_blank" class="btn btn-link btn-field">
+                            <i class="mdi mdi-alert-circle btn-i" style="color: #FF0000"></i>
+                            <span class="hide-menu" style="color: #B0BEC5;"> Manual de Usuario</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
