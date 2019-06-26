@@ -4,7 +4,7 @@
 import Vue from 'vue'
 import vSelect from 'src/components/Select.vue'
 import pointerScroll from 'src/mixins/pointerScroll.js'
-
+Vue.config.productionTip = false
 //  http://vue-loader.vuejs.org/en/workflow/testing-with-mocks.html
 const Mock = require('!!vue?inject!src/components/Select.vue')
 
@@ -109,6 +109,22 @@ describe('Select.vue', () => {
 			expect(vm.$children[0].mutableValue).toEqual(vm.value)
 		})
 
+    it('can select an option on tab', (done) => {
+      const vm = new Vue({
+        template: `<div><v-select :options="['one','two']" select-on-tab></v-select></div>`,
+        components: {vSelect},
+      }).$mount()
+
+      vm.$children[0].typeAheadPointer = 0
+
+      trigger(vm.$children[0].$refs.search, 'keydown', (e) => e.keyCode = 9)
+
+      Vue.nextTick(() => {
+        expect(vm.$children[0].mutableValue).toEqual('one');
+        done();
+      })
+    })
+
 		it('can deselect a pre-selected object', () => {
 			const vm = new Vue({
 				template: '<div><v-select :options="options" :value="value" :multiple="true"></v-select></div>',
@@ -117,7 +133,7 @@ describe('Select.vue', () => {
 					options: [{label: 'This is Foo', value: 'foo'}, {label: 'This is Bar', value: 'bar'}]
 				}
 			}).$mount()
-			vm.$children[0].select({label: 'This is Foo', value: 'foo'})
+			vm.$children[0].deselect({label: 'This is Foo', value: 'foo'})
 			expect(vm.$children[0].mutableValue.length).toEqual(1)
 		})
 
@@ -129,7 +145,7 @@ describe('Select.vue', () => {
 					options: ['foo','bar']
 				}
 			}).$mount()
-			vm.$children[0].select('foo')
+			vm.$children[0].deselect('foo')
 			expect(vm.$children[0].mutableValue.length).toEqual(1)
 		}),
 
@@ -234,7 +250,7 @@ describe('Select.vue', () => {
 			expect(vm.$children[0].value).toEqual('foo')
 			expect(vm.$children[0].mutableValue).toEqual('foo')
 
-			vm.$children[0].mutableValue = 'bar'
+			vm.$children[0].select('bar')
 
 			Vue.nextTick(() => {
 				expect(vm.value).toEqual('bar')
@@ -321,6 +337,47 @@ describe('Select.vue', () => {
 			vm.$refs.select.search = 'ba'
 			expect(JSON.stringify(vm.$refs.select.filteredOptions)).toEqual(JSON.stringify([{label: 'Bar', value: 'bar'}, {label: 'Baz', value: 'baz'}]))
 		})
+
+		it('can determine if a given option should match the current search text', () => {
+			const vm = new Vue({
+				template: `<div><v-select ref="select" :filter-by="customFn" :options="[{label: 'Aoo', value: 'foo'}, {label: 'Bar', value: 'bar'}, {label: 'Baz', value: 'baz'}]" v-model="value"></v-select></div>`,
+				data: {value: 'foo'},
+				methods:{
+					customFn: (option, label, search) => label.match(new RegExp('^' + search, 'i'))
+				}
+			}).$mount()
+			vm.$refs.select.search = 'a'
+			expect(JSON.stringify(vm.$refs.select.filteredOptions)).toEqual(JSON.stringify([{label: 'Aoo', value: 'foo'}]))
+		})
+
+		it('can use a custom filtering method', () => {
+      const vm = new Vue({
+        template: `<div><v-select ref="select" :filter="customFn" :options="options" v-model="value"></v-select></div>`,
+        data: {
+        	options: ['foo','bar','baz'],
+        	value: 'foo'
+				},
+        methods:{
+          customFn(options, search, vm) {
+          	return options.filter(option => option.indexOf(search) > 0)
+					}
+        }
+      }).$mount()
+      vm.$refs.select.search = 'a'
+      expect(JSON.stringify(vm.$refs.select.filteredOptions)).toEqual(JSON.stringify(['bar','baz']))
+		})
+
+		it('can filter arrays of numbers', () => {
+      const vm = new Vue({
+        template: `<div><v-select ref="select" :options="options"></v-select></div>`,
+        data: {
+        	options: [1,5,10],
+        	value: 'foo'
+				},
+      }).$mount()
+      vm.$refs.select.search = '5'
+      expect(JSON.stringify(vm.$refs.select.filteredOptions)).toEqual(JSON.stringify([5]))
+		})
 	})
 
 	describe('Toggling Dropdown', () => {
@@ -354,6 +411,26 @@ describe('Select.vue', () => {
 			}).$mount()
 
 			vm.$children[0].toggleDropdown({target: vm.$children[0].$refs.search})
+			Vue.nextTick(() => {
+				Vue.nextTick(() => {
+					expect(vm.$children[0].open).toEqual(true)
+					done()
+				})
+			})
+		})
+
+		it('should open the dropdown when the selected tag is clicked', (done) => {
+			const vm = new Vue({
+				template: '<div><v-select :options="options" :value="value"></v-select></div>',
+				components: {vSelect},
+				data: {
+					value: [{label: 'one'}],
+					options: [{label: 'one'}]
+				}
+			}).$mount()
+
+			const selectedTag = vm.$children[0].$el.getElementsByClassName('selected-tag')[0]
+			vm.$children[0].toggleDropdown({target: selectedTag})
 			Vue.nextTick(() => {
 				Vue.nextTick(() => {
 					expect(vm.$children[0].open).toEqual(true)
@@ -768,9 +845,10 @@ describe('Select.vue', () => {
 			const vm = new Vue({
 				template: '<div><v-select :options="[{}]"></v-select></div>',
 			}).$mount()
+			vm.$children[0].open = true
 			Vue.nextTick(() => {
 				expect(console.warn).toHaveBeenCalledWith(
-						'[vue-select warn]: Label key "option.label" does not exist in options object.' +
+						'[vue-select warn]: Label key "option.label" does not exist in options object {}.' +
 						'\nhttp://sagalbot.github.io/vue-select/#ex-labels'
 				)
 				done()
@@ -792,6 +870,241 @@ describe('Select.vue', () => {
 				expect(vm.$children[0].searchPlaceholder).not.toBeDefined()
 				done()
 			})
+		})
+	})
+
+	describe('When index prop is defined', () => {
+		it('can accept an array of objects and pre-selected value (single)', () => {
+			const vm = new Vue({
+				template: '<div><v-select :index="index" :options="options" :value="value"></v-select></div>',
+				components: {vSelect},
+				data: {
+					index: 'value',
+					value: 'foo',
+					options: [{label: 'This is Foo', value: 'foo'}, {label: 'This is Bar', value: 'bar'}]
+				}
+			}).$mount()
+			expect(vm.$children[0].mutableValue).toEqual(vm.value)
+		})
+
+    it('can determine if an object is pre-selected', () => {
+      const vm = new Vue({
+        template: '<div><v-select :options="options" v-model="value" index="id"></v-select></div>',
+        components: {vSelect},
+        data: {
+          value: 'foo',
+          options: [{
+          	id: 'foo',
+						label: 'This is Foo'
+					}]
+        }
+      }).$mount()
+
+      expect(vm.$children[0].isOptionSelected({
+        id: 'foo',
+        label: 'This is Foo'
+      })).toEqual(true)
+    })
+
+    it('can determine if an object is selected after it has been chosen', () => {
+      const vm = new Vue({
+        template: '<div><v-select :options="options" index="id"></v-select></div>',
+        components: {vSelect},
+				data: {
+        	options: [{id: 'foo', label: 'FooBar'}]
+				}
+      }).$mount()
+
+			vm.$children[0].select({id: 'foo', label: 'FooBar'});
+
+      // Vue.nextTick(() => {
+        expect(vm.$children[0].isOptionSelected({
+          id: 'foo',
+          label: 'This is Foo'
+        })).toEqual(true)
+				// done()
+			// })
+    })
+
+		it('can accept an array of objects and pre-selected values (multiple)', () => {
+			const vm = new Vue({
+				template: '<div><v-select :index="index" :options="options" :value="value" :multiple="true"></v-select></div>',
+				components: {vSelect},
+				data: {
+					index: 'value',
+					value: ['foo', 'bar'],
+					options: [{label: 'This is Foo', value: 'foo'}, {label: 'This is Bar', value: 'bar'}]
+				}
+			}).$mount()
+			expect(vm.$children[0].mutableValue).toEqual(vm.value)
+		})
+
+		it('can deselect a pre-selected object', () => {
+			const vm = new Vue({
+				template: '<div><v-select :index="index" :options="options" :value="value" :multiple="true"></v-select></div>',
+				data: {
+					index: 'value',
+					value: ['foo', 'bar'],
+					options: [{label: 'This is Foo', value: 'foo'}, {label: 'This is Bar', value: 'bar'}]
+				}
+			}).$mount()
+			vm.$children[0].deselect('foo')
+			expect(vm.$children[0].mutableValue.length).toEqual(1)
+			expect(vm.$children[0].mutableValue).toEqual(['bar'])
+		})
+
+		it('can deselect an option when multiple is false', () => {
+			const vm = new Vue({
+				template: `<div><v-select :index="index" :options="options" :value="value"></v-select></div>`,
+				data: {
+					index: 'value',
+					value: 'foo',
+					options: [{label: 'This is Foo', value: 'foo'}, {label: 'This is Bar', value: 'bar'}]
+				}
+			}).$mount()
+			vm.$children[0].deselect('foo')
+			expect(vm.$children[0].mutableValue).toEqual(null)
+		})
+
+		it('can use v-model syntax for a two way binding to a parent component', (done) => {
+			const vm = new Vue({
+				template: '<div><v-select :index="index" :options="options" v-model="value"></v-select></div>',
+				components: {vSelect},
+				data: {
+					index: 'value',
+					value: 'foo',
+					options: [{label: 'This is Foo', value: 'foo'}, {label: 'This is Bar', value: 'bar'}, {label: 'This is Baz', value: 'baz'}]
+				}
+			}).$mount()
+
+			expect(vm.$children[0].value).toEqual('foo')
+			expect(vm.$children[0].mutableValue).toEqual('foo')
+
+			vm.$children[0].select({label: 'This is Bar', value: 'bar'})
+
+			Vue.nextTick(() => {
+				expect(vm.value).toEqual('bar')
+				done()
+			})
+		}),
+
+    it('can work with an array of integers', () => {
+      const vm = new Vue({
+        template: '<div><v-select :options="[1,2,3,4,5]" v-model="value"></v-select></div>',
+        components: {vSelect},
+        data: {
+          value: 5,
+        }
+      }).$mount()
+
+      expect(vm.$children[0].isOptionSelected(5)).toEqual(true)
+      expect(vm.$children[0].isValueEmpty).toEqual(false)
+    })
+
+		it('can generate labels using a custom label key', () => {
+			const vm = new Vue({
+				template: '<div><v-select :index="index" label="name" :options="options" v-model="value" :multiple="true"></v-select></div>',
+				components: {vSelect},
+				data: {
+					index: 'value',
+					value: ['baz'],
+					options: [{value: 'foo', name: 'Foo'}, {value: 'baz', name: 'Baz'}]
+				}
+			}).$mount()
+			expect(vm.$children[0].$refs.toggle.querySelector('.selected-tag').textContent).toContain('Baz')
+		})
+
+    it('will console.warn when attempting to select an option with an undefined index', () => {
+      spyOn(console, 'warn')
+
+      const vm = new Vue({
+        template: '<div><v-select index="value" :options="options"></v-select></div>',
+        data: {
+          options: [{label: 'Foo'}]
+        }
+      }).$mount()
+      vm.$children[0].select({label: 'Foo'})
+      expect(console.warn).toHaveBeenCalledWith(
+          `[vue-select warn]: Index key "option.value" does not exist in options object {"label":"Foo"}.`
+      )
+    })
+
+		it('can find the original option within this.options', () => {
+      const vm = new Vue({
+        template: '<div><v-select index="id" :options="options"></v-select></div>',
+        data: {
+          options: [{id: 1, label: 'Foo'},{id:2, label: 'Bar'}]
+        }
+      }).$mount()
+
+			expect(vm.$children[0].findOptionByIndexValue(1)).toEqual({id: 1, label: 'Foo'})
+			expect(vm.$children[0].findOptionByIndexValue({id: 1, label: 'Foo'})).toEqual({id: 1, label: 'Foo'})
+		})
+
+		describe('And when option[index] is a nested object', () => {
+			it('can determine if an object is pre-selected', () => {
+        const nestedOption = {
+          value: {
+            nested: true
+          },
+          label: 'foo'
+        };
+        const vm = new Vue({
+          template: '<div><v-select index="value" :options="options" :value="value"></v-select></div>',
+          components: {vSelect},
+          data: {
+            value: {
+              nested: true
+            },
+            options: [nestedOption]
+          }
+        }).$mount()
+        expect(vm.$children[0].isOptionSelected({
+          nested: true
+        })).toEqual(true)
+			})
+
+			it('can determine if an object is selected after it is chosen', () => {
+        const nestedOption = {
+          value: {
+            nested: true
+          },
+          label: 'foo'
+        };
+        const vm = new Vue({
+          template: '<div><v-select index="value" :options="options"></v-select></div>',
+          components: {vSelect},
+          data: {
+            options: [nestedOption]
+          }
+        }).$mount()
+				vm.$children[0].select(nestedOption)
+        expect(vm.$children[0].isOptionSelected(nestedOption)).toEqual(true)
+			})
+
+      it('can determine a selected values label', () => {
+        const nestedOption = {
+          value: {
+            nested: true
+          },
+          label: 'foo'
+        };
+        const vm = new Vue({
+          template: '<div><v-select index="value" :options="options" :value="value"></v-select></div>',
+          components: {vSelect},
+          data: {
+            value: {
+              nested: true
+            },
+            options: [nestedOption]
+          }
+        }).$mount()
+
+        expect(vm.$children[0].getOptionLabel({
+          nested: true
+        })).toEqual('foo')
+      })
+
 		})
 	})
 
@@ -1048,7 +1361,7 @@ describe('Select.vue', () => {
 					vm.$refs.select.search = 'one'
 					searchSubmit(vm)
 					Vue.nextTick(() => {
-						expect(vm.$refs.select.mutableValue).toEqual([])
+						expect(vm.$refs.select.mutableValue).toEqual(['one'])
 						expect(vm.$refs.select.search).toEqual('')
 						done()
 					})
@@ -1067,7 +1380,7 @@ describe('Select.vue', () => {
 					vm.$refs.select.search = 'one'
 					searchSubmit(vm)
 					Vue.nextTick(() => {
-						expect(vm.$refs.select.mutableValue).toEqual([])
+						expect(vm.$refs.select.mutableValue).toEqual(['one'])
 						expect(vm.$refs.select.search).toEqual('')
 						done()
 					})
@@ -1266,17 +1579,17 @@ describe('Select.vue', () => {
 					options: ['one', 'two', 'three']
 				}
 			}).$mount()
-			
+
 			vm.$children[0].open = true
 			vm.$refs.select.search = "t"
 			expect(vm.$refs.select.search).toEqual('t')
-			
+
 			vm.$children[0].onSearchBlur()
 			Vue.nextTick(() => {
 				expect(vm.$refs.select.search).toEqual('')
 				done()
 			})
-		})
+    })
 
 		it ('should not reset the search input on focus lost when clearSearchOnSelect is false', (done) => {
 			const vm = new Vue({
@@ -1300,7 +1613,7 @@ describe('Select.vue', () => {
 		})
 	})
 
-	describe( 'Clear button', () => {
+	describe('Clear button', () => {
 
 		it( 'should be displayed on single select when value is selected', () => {
 			const VueSelect = Vue.extend( vSelect )
@@ -1335,7 +1648,7 @@ describe('Select.vue', () => {
 					value: 'foo'
 				}
 			}).$mount()
-			
+
 			expect(vm.mutableValue).toEqual('foo')
 			vm.$el.querySelector( 'button.clear' ).click()
 			expect(vm.mutableValue).toEqual(null)
@@ -1354,6 +1667,6 @@ describe('Select.vue', () => {
 			const buttonEl = vm.$el.querySelector( 'button.clear' )
 			expect(buttonEl.disabled).toEqual(true);
 		})
-	
+
 	});
 })

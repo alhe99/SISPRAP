@@ -64,29 +64,31 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row">
-                     <mdc-textfield
-                        type="text"
-                        v-mask="'###'"
-                        :min="0"
-                        :max="300"
-                        class="col-md-6"
-                        :class="[proyectoExterno == true ? 'col-md-12' : 'col-md-6']"
-                        label="Cantidad de horas a realizar (*)"
-                        helptext="Detalle el numero de horas del proyecto"
-                        v-model="catidadHoras"
-                        ></mdc-textfield>
-                     <mdc-textfield
-                        type="text"
-                        v-mask="'####'"
-                        :min="0"
-                        :max="500"
-                        v-show="proyectoExterno == false"
-                        class="col-md-6"
-                        label="Cantidad de alumnos para proyecto (*)"
-                        helptext="Digite la cantidad"
-                        v-model="cantidadVacantes"
-                        ></mdc-textfield>
+                  <div class="form-group row">
+                      <div class="col-md-6" :class="[proyectoExterno == true ? 'col-md-12' : 'col-md-6']">
+                          <label class="form-label" for="cHoras" v-text="'Cantidad de horas del proyecto(*)'"/>
+                          <input 
+                            id="cHoras"
+                            type="tel" 
+                            class="form-control" 
+                            v-mask="'###'"
+                            :min="1"
+                            :max="300"
+                            v-model="catidadHoras"
+                          />
+                      </div>
+                      <div class="col-md-6"  v-show="proyectoExterno == false">
+                          <label class="form-label" for="cAlumnos" v-text="'Cantidad de alumnos en proyecto(*)'"/>
+                          <input 
+                            id="cAlumnos"
+                            type="tel" 
+                            class="form-control" 
+                            v-mask="'####'"
+                            :min="1"
+                            :max="500"
+                            v-model="cantidadVacantes"
+                          />
+                      </div>
                   </div>
                   <div class="form-group row" v-if="proceso==2 && proyectoExterno == false">
                      <div class="col-md-10 col-sm-10 col-lg-10">
@@ -143,7 +145,7 @@
                               >Siguiente</mdc-button>
                            <mdc-button
                               type="button"
-                              ref="btnEnd"
+                              id="btnEnd"
                               raised
                               slot="finish"
                               @click="agregarActivi"
@@ -342,7 +344,8 @@ export default {
                 let me = this;
                 const elem = me.$refs.imgUpload;
                 me.image = "";
-                elem.reset();
+                if(elem != undefined)
+                    elem.reset();
             }
         },
         proceso: function () {
@@ -414,7 +417,8 @@ export default {
             const elem = me.$refs.imgUpload;
             me.imgGallery = "";
             me.image = "";
-            elem.reset();
+            if(elem != undefined)
+                elem.reset();
         },
         //obtener carreras
         getCarreras() {
@@ -506,17 +510,19 @@ export default {
         },
         //agregar elementos al arreglo de actvidades del proceso de practica profesional
         agregarActivi() {
-            this.indiceCarre = this.indiceCarre + 1;
-            const tituloStep = this.$refs.titleC;
-            this.actividadesProy.push({
+            let me = this;
+
+            me.indiceCarre = me.indiceCarre + 1;
+            const tituloStep = me.$refs.titleC;
+            me.actividadesProy.push({
                 actividades: this.actividadesCarre,
                 carrera_id: this.carrerasProy[this.indiceCarre - 1].value
             });
-            this.actividadesCarre = "";
-            const btnEnd = this.$refs.btnEnd;
-            if (btnEnd._events.click) {
-                this.disabledVE = true;
-            }
+            me.actividadesCarre = "";
+
+            const btnEnd = $("#btnEnd").on('click',function(){
+                me.disabledVE = true;
+            });
         },
         clickBtn() {
             $(function () {
@@ -547,7 +553,7 @@ export default {
                 me.switchImg = false;
             }
             const elem = me.$refs.divCollapse;
-            if (elem.classList.contains("collapse")) {
+            if (elem != undefined && elem.classList.contains("collapse")) {
                 elem.classList.remove("show");
             }
         },
@@ -581,7 +587,6 @@ export default {
         }else{
             this.proyectoExterno = true;
         }
-        console.log(route('saveProyectosInternos').template);
     }
 };
 </script>

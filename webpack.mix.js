@@ -7,6 +7,7 @@ mix.styles([
     'resources/assets/AdminTemplate/css/chartist-init.css',
     'resources/assets/AdminTemplate/css/chartist-plugin-tooltip.css',
     'resources/assets/AdminTemplate/css/roboto.css',
+    'resources/assets/AdminTemplate/css/c3.min.css',
     'resources/assets/AdminTemplate/css/icon.css',
     'resources/assets/AdminTemplate/css/normalize.min.css',
     'resources/assets/AdminTemplate/css/gallery.css',
@@ -15,18 +16,19 @@ mix.styles([
 
     "resources/assets/AdminTemplate/js/jquery.min.js",
     "resources/assets/AdminTemplate/js/popper.min.js",
+    "resources/assets/AdminTemplate/js/jquery-ui.min.js",
     "resources/assets/AdminTemplate/js/jquery.slimscroll.js",
     "resources/assets/AdminTemplate/js/waves.js",
     "resources/assets/AdminTemplate/js/sidebarmenu.js",
     "resources/assets/AdminTemplate/js/sticky-kit.min.js",
     "resources/assets/AdminTemplate/js/jquery.sparkline.min.js",
     "resources/assets/AdminTemplate/js/custom.min.js",
-    "resources/assets/AdminTemplate/js/d3.min.js",
     "resources/assets/AdminTemplate/js/c3.min.js",
     "resources/assets/AdminTemplate/js/jQuery.style.switcher.js",
     "resources/assets/PublicTemplate/js/sweetalert2.all.min.js",
     "resources/assets/AdminTemplate/js/vue-mdc-adapter.umd.min.js",
-
+    //"resources/assets/AdminTemplate/js/bootstrap.min.js",
+   
     ], 'public/js/admintemplate.js')
 
 .js(['resources/assets/js/app.js'], 'public/js/app.js');

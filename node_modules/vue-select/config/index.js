@@ -1,5 +1,5 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require('path');
 
 module.exports = {
   build: {
@@ -17,5 +17,14 @@ module.exports = {
   umd: {
     assetsRoot: path.resolve(__dirname, '../umd'),
     assetsPublicPath: '/'
+  },
+  homepage: {
+    env: require('./prod.env'),
+    entry: './docs/homepage/home.js',
+    assetsRoot: path.resolve(__dirname, '../site'),
+    assetsSubDirectory: '',
+    assetsPublicPath: '',
+    productionSourceMap: true
   }
-}
+};
+

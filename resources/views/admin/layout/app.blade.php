@@ -71,12 +71,23 @@
                 @if (Auth::user()->rol_id == 1 and Auth::user()->id == 0)
                 <notification v-on:getnotificactions="getNotifications" :notifications="notifications"></notification>
                 @endif
+
                 <li class="nav-item dropdown">
                   @if (Auth::user()->rol_id == 1)
-                  <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/1.png" alt="user" class="profile-pic" /></a>
+
+                  <a 
+                  class="nav-link dropdown-toggle text-muted " 
+                  href="" 
+                  data-toggle="dropdown" 
+                  aria-haspopup="true" 
+                  aria-expanded="false">
+                    <img src="images/users/1.png" alt="user" class="profile-pic" />
+                  </a>
+
                   @elseif(Auth::user()->rol_id == 2)
                   <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/recep.png" alt="user" class="profile-pic" /></a>
                   @endif
+
                   <div class="dropdown-menu dropdown-menu-right scale-up">
                     <ul class="dropdown-user">
                       <li>
@@ -104,6 +115,7 @@
                        </i> Cerrar sesion</a>
                      </li>
                    </div>
+
                  </li>
                </ul>
              </div>
@@ -184,6 +196,7 @@
        </div>
      </div>
      <script src="js/app.js"></script>
+    
      <script src="js/admintemplate.js"></script>
      <script src='{{ asset('js/gijgo.min.js') }}'></script>
      <script src='{{ asset('js/messages.es-es.js') }}'></script>

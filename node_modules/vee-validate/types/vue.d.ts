@@ -13,6 +13,11 @@ declare module 'vue/types/options' {
 
 declare module 'vue/types/vue' {
   interface Vue {
+    /**
+     * A `Validator` instance, injected via a mixin by VeeValidate.
+     *
+     * Note that this property is not available in the component if you are using `inject: false`.
+     */
     $validator: Validator;
   }
 }

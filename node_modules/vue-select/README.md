@@ -1,6 +1,8 @@
-# vue-select [![Build Status](https://travis-ci.org/sagalbot/vue-select.svg?branch=master)](https://travis-ci.org/sagalbot/vue-select) [![Code Score](https://img.shields.io/codeclimate/github/sagalbot/vue-select.svg?style=flat-square)](https://lima.codeclimate.com/github/sagalbot/vue-select) [![Code Coverage](https://img.shields.io/codeclimate/coverage/github/sagalbot/vue-select.svg?style=flat-square)](https://codeclimate.com/github/sagalbot/vue-select) [![No Dependencies](https://img.shields.io/gemnasium/sagalbot/vue-select.svg?style=flat-square)](https://gemnasium.com/github.com/sagalbot/vue-select) ![MIT License](https://img.shields.io/github/license/sagalbot/vue-select.svg?style=flat-square) ![Current Release](https://img.shields.io/github/release/sagalbot/vue-select.svg?style=flat-square)
+# vue-select [![Build Status](https://travis-ci.org/sagalbot/vue-select.svg?branch=master)](https://travis-ci.org/sagalbot/vue-select) ![MIT License](https://img.shields.io/github/license/sagalbot/vue-select.svg?style=flat-square) ![Current Release](https://img.shields.io/github/release/sagalbot/vue-select.svg?style=flat-square)
 
 > A native Vue.js select component that provides similar functionality to Select2 without the overhead of jQuery.
+
+Want to help out as a primary contributor? [Get in touch](https://github.com/sagalbot/vue-select/issues/581)!
 
 #### Features
 - AJAX Support
@@ -104,3 +106,7 @@ When provided an array of objects, `vue-select` will display a single value of t
 ```
 
 ### For more information, please visit the [vue-select documentation.](https://sagalbot.github.io/vue-select)
+
+## License
+
+[MIT](https://github.com/sagalbot/vue-select/blob/master/LICENSE.md)

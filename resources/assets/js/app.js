@@ -47,6 +47,12 @@ Validator.localize('es', es);
 import VueTheMask from 'vue-the-mask'
 Vue.use(VueTheMask)
 
+
+//Aplicando configuraciones generales para vuejs para cambiar a modo de produccion
+Vue.config.productionTip = false;
+Vue.config.debug = false;
+Vue.config.silent = true;
+
 Vue.component('pulse-loader', require('vue-spinner/src/PulseLoader.vue'));
 Vue.component('institucion', require('./components/instituciones/Institucion.vue'));
 Vue.component('publiproject', require('./components/proyectos/Publicacion.vue'));

@@ -27,7 +27,7 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: process.argv.indexOf('--docs') > 0 ? './docs/docs.html' : 'dev.html',
+      template: utils.shouldServeHomepage() ? './docs/homepage/home.html' : './dev/dev.html',
       inject: true
     })
   ],
