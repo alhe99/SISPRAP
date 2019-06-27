@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
-class CheckRoles
+
+class checkRolToUri
 {
-    
     /**
      * Handle an incoming request.
      *
@@ -16,12 +15,6 @@ class CheckRoles
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guest() )
-            return redirect('/');
-
-        if (Auth::user()->rol_id > 2)
-            return redirect('/');
-        
-        return $next($request);    
+        return $next($request);
     }
 }
