@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "@deveodk/vue-toastr": "^1.0.4",
-        "ajv": "^6.10.0",
+        "ajv": "^6.12.3",
         "css-loader": "^1.0.1",
         "d3": "^5.9.2",
         "datatables": "^1.10.18",
