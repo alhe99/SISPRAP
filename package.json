@@ -23,7 +23,7 @@
         "@deveodk/vue-toastr": "^1.0.4",
         "ajv": "^6.10.0",
         "css-loader": "^1.0.1",
-        "d3": "^5.9.2",
+        "d3": "^7.6.1",
         "datatables": "^1.10.18",
         "datatables.net": "^1.10.19",
         "datatables.net-dt": "^1.10.19",
